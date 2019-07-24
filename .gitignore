@@ -1,5 +1,7 @@
 # node_modules
 js_cucumber/node_modules
 
+# java target
+java_cucumber/target
 
 .DS_Store

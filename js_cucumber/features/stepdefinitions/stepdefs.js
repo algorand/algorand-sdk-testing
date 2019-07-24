@@ -107,7 +107,7 @@ Then("the rounds should be equal", function(){
         this.lastRound = result.lastRound;
     })
     this.statusAfter.then(function(result){
-        assert.strictEqual(result.lastRound > this.lastRound)
+        assert.strictEqual(true, result.lastRound > this.lastRound)
     });
 });
 

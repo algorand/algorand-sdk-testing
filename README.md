@@ -5,14 +5,22 @@ Testing framework for Algorand SDKs
 ## How to run tests
 1. Clone the repo
 2. Run ./setup.sh to install dependencies (if you already have a ~/node with a node/private network, comment that section out before running)
-4. Run ./test.sh or individual SDK tests, which skip crosstests (for example ./jstest.sh)
+3. Run ./test.sh or individual SDK tests, which skip crosstests (for example ./jstest.sh)
 
 
 ## Updating an SDK
 
 1. Update the SDK
-2. Optionally run tests
-3. Commit changes; this should trigger a travis build in both the SDK's repo and this repo. If anything fails, update accordingly. 
+2. Run tests 
+3. If anything fails, update and retest
+4. Commit
+
+In the future:
+3. Optionally run tests
+4. Commit changes; this should trigger a travis build in both the SDK's repo and this repo. If anything fails, update accordingly. 
+
+
+
 
 ## Adding more tests
 1. If you just want to add more examples, add them in the scenario outlines in the main set of feature files

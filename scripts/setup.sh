@@ -10,7 +10,7 @@ npm install
 # get algorand tools
 cd ..
 mkdir ~/inst
-curl -L https://github.com/algorand/go-algorand-doc/blob/master/downloads/installers/linux_amd64/install_master_linux-amd64.tar.gz?raw=true -o inst/install_master_linux-amd64.tar.gz
-cd ~/inst
-tar -xf install_master_linux-amd64.tar.gz
-./update.sh -i -c stable -p ~/node -d ~/node/data -n
+curl -L https://github.com/algorand/go-algorand-doc/blob/master/downloads/installers/linux_amd64/install_master_linux-amd64.tar.gz?raw=true -o ~/inst/installer.tar.gz
+tar -xf ~/inst/installer.tar.gz -C ~/inst
+~/node/update.sh -i -c stable -p ~/node -d ~/node/data -n
+cp template.json ~/node
