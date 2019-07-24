@@ -1,0 +1,18 @@
+{
+  "name": "js_cucumber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "algosdk": "^1.2.1",
+    "cucumber": "^5.1.0",
+    "xmlhttprequest": "^1.8.0"
+  }
+}
