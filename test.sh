@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-cd ..
 
 cp -r features/. go_godog/src/features
 cp -r features/. java_cucumber/src/test/resources/java_cucumber
@@ -8,49 +7,40 @@ cp -r features/. py_behave
 
 rm -r ~/node/network
 
-cd 
-cd node
+
+cd ~/node
 ./goal network create -n network -r network -t template.json
 ./goal network start -r network
 ./goal kmd start -d network/node
 ./update.sh -d network/Node
 
-cd 
-cd Documents/Github/algorand-sdk-testing
-# verbose
+cd -
 cd go_godog/src
-go test -v --godog.format=pretty
+go test
+goexitcode=$?
 cd ../../java_cucumber 
-mvn test # need to change to "pretty" in cucumberoptions
+mvn test -q # change to "pretty" in cucumberoptions if verbose
+javaexitcode=$?
 cd ../js_cucumber
 node_modules/.bin/cucumber-js
+jsexitcode=$?
 cd ../py_behave
-behave
+behave -f progress2
+pyexitcode=$?
 
 cd ..
 rm old.tx
 rm raw.tx
 rm txn.tx
 
-
-cd 
-cd node
+cd ~/node
 ./goal kmd stop -d network/Node
 ./goal network stop -r network
 ./goal network delete -r network
 
-# normal
-# cd go_godog/src
-# go test --godog.random
-# cd ../../java_cucumber
-# mvn test # need to change to "progress" in cucumberoptions
-# cd ../js_cucumber
-# npm test
-# cd ../py_behave
-# behave -f null
-
-# cd scripts
-# ./gotest.sh
-# ./javatest.sh
-# ./jstest.sh
-# ./pytest.sh
+if [ $goexitcode -eq 0 ] && [ $javaexitcode -eq 0 ] && [ $jsexitcode -eq 0 ] && [ $pyexitcode -eq 0 ]
+then
+    exit 0
+else
+    exit 1
+fi

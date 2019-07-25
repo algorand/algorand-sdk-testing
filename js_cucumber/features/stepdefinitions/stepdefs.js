@@ -400,7 +400,7 @@ When("I send the multisig transaction", async function(){
         this.err = false
         return this.txid
 
-    } catch{
+    } catch (e){
         this.err = true
     }
 
@@ -474,7 +474,7 @@ Then("the wallet handle should not work", async function(){
     try{
         await this.kcl.renewWalletHandle(this.handle)
         this.err = false
-    } catch{
+    } catch (e){
         this.err = true
     }
     assert.deepStrictEqual(true, this.err)

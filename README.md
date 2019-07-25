@@ -17,7 +17,7 @@ Testing framework for Algorand SDKs
 
 In the future:
 3. Optionally run tests
-4. Commit changes; this should trigger a travis build in both the SDK's repo and this repo. If anything fails, update accordingly. 
+4. Commit changes; this should trigger a travis build in both the SDK's repo and this repo with the updates without you having to update distribution packages. If anything fails, update accordingly. 
 
 
 

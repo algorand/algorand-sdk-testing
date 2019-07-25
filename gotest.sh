@@ -1,12 +1,12 @@
-cd
-cd node
+
+cd ~/node
 ./goal network create -r network -n network -t template.json
 ./goal network start -r network
 ./goal kmd start -d network/Node
 
-cd
-cd Documents/Github/algorand-sdk-testing/go_godog/src
-go test --godog.format=pretty --godog.tags=~@crosstest
+cd -
+cd go_godog/src
+go test --godog.tags=~@crosstest
 
 cd 
 cd node

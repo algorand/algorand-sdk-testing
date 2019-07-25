@@ -5,3 +5,5 @@ js_cucumber/node_modules
 java_cucumber/target
 
 .DS_Store
+
+.vscode/
