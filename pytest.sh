@@ -6,10 +6,9 @@ cd ~/node
 cd -
 cd py_behave
 
-behave --tags=-crosstest --f progress2
+behave --tags=-crosstest --f progress2 # for verbose reporting, remove --f progress2
 
-cd 
-cd node
+cd ~/node
 ./goal kmd stop -d network/Node
 ./goal network stop -r network
 ./goal network delete -r network

@@ -6,10 +6,9 @@ cd ~/node
 
 cd -
 cd go_godog/src
-go test --godog.tags=~@crosstest
+go test --godog.tags=~@crosstest # for verbose reporting, add --godog.format=pretty
 
-cd 
-cd node
+cd ~/node
 ./goal kmd stop -d network/Node
 ./goal network stop -r network
 ./goal network delete -r network

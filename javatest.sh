@@ -6,10 +6,9 @@ cd ~/node
 cd - 
 cd java_cucumber
 
-mvn test -q -Dcucumber.options="--tags \"not @crosstest\""
+mvn test -q -Dcucumber.options="--tags \"not @crosstest\"" # for verbose reporting, change "progress" to "pretty" in RunCucumberTest.java
 
-cd 
-cd node
+cd ~/node
 ./goal kmd stop -d network/Node
 ./goal network stop -r network
 ./goal network delete -r network

@@ -9,8 +9,7 @@ cd js_cucumber
 
 node_modules/.bin/cucumber-js --tags "not @crosstest"
 
-cd 
-cd node
+cd ~/node
 ./goal kmd stop -d network/Node
 ./goal network stop -r network
 ./goal network delete -r network
