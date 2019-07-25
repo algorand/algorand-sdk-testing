@@ -11,9 +11,8 @@ Testing framework for Algorand SDKs
 ## Updating an SDK
 
 1. Update the SDK
-2. Run tests 
-3. If anything fails, update and retest
-4. Commit
+2. Commit
+3. Trigger a build in this repo
 
 In the future:
 3. Optionally run tests
