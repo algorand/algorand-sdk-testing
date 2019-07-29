@@ -372,7 +372,6 @@ def write_txn(context):
 def check_enc(context):
     dir_path = os.path.dirname(os.path.realpath(__file__))
     dir_path = os.path.dirname(os.path.dirname(dir_path))
-
     new = transaction.retrieve_from_file(dir_path + "/raw.tx")
     old = transaction.retrieve_from_file(dir_path + "/old.tx")
     assert encoding.msgpack_encode(new[0]) == encoding.msgpack_encode(old[0])
@@ -382,7 +381,6 @@ def check_enc(context):
 def check_save_txn(context):
     dir_path = os.path.dirname(os.path.realpath(__file__))
     dir_path = os.path.dirname(os.path.dirname(dir_path))
-    print(dir_path)
     stx = transaction.retrieve_from_file(dir_path + "/txn.tx")[0]
     txid = stx.transaction.get_txid()
     context.acl.status_after_block(stx.transaction.first_valid_round + 2)

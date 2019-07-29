@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# call from parent directory; scripts/test.sh
 
 cp -r features/. go_godog/src/features
 cp -r features/. java_cucumber/src/test/resources/java_cucumber

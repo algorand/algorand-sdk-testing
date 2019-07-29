@@ -3,7 +3,7 @@ python:
   - "3.7"
 
 install:
-  - ./setup.sh
+  - scripts/setup.sh
 
 script: 
-  - ./test.sh
+  - scripts/test.sh
