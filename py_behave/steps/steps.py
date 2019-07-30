@@ -312,13 +312,13 @@ def get_sk(context):
 @when("I send the transaction")
 def send_txn(context):
     context.balance = context.acl.account_info(context.pk)["amountwithoutpendingrewards"]
-    context.acl.send_raw_transaction(context.stx)
+    context.acl.send_transaction(context.stx)
 
 
 @when("I send the multisig transaction")
 def send_msig_txn(context):
     try:
-        context.acl.send_raw_transaction(context.mtx)
+        context.acl.send_transaction(context.mtx)
     except:
         context.error = True
 
@@ -383,6 +383,6 @@ def check_save_txn(context):
     dir_path = os.path.dirname(os.path.dirname(dir_path))
     stx = transaction.retrieve_from_file(dir_path + "/txn.tx")[0]
     txid = stx.transaction.get_txid()
-    context.acl.status_after_block(stx.transaction.first_valid_round + 2)
+    context.acl.status_after_block(stx.transaction.first_valid_round + 5)
     assert context.acl.transaction_info(stx.transaction.sender, txid)
     

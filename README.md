@@ -18,9 +18,10 @@ Testing framework for Algorand SDKs
 ## Adding a new SDK
 1. Write all the mappings from gherkin to the new SDK under a new directory (cpp_cucumber if it's the C++ SDK and the tool is called cucumber)
 2. Add setup/installation procedure in setup.sh
-3. Add cucumber/run command to test.sh; also add a line to copy feature files from the features directory so all of the feature files are the same
-4. Create a new individual script (for example cpptest.sh if the new SDK is in C++)
+3. Add a line to copy feature files from the features directory so all of the feature files are the same in test.sh
+4. Add corresponding code for running tests in test.sh 
 5. Preferably test all of these before committing changes
+6. Add sdkupdate.sh to new SDK and call it in .travis.yml
 
 
 ## Adding more tests
@@ -31,5 +32,5 @@ Testing framework for Algorand SDKs
 ## Things to be careful of: 
 - If you use libraries that are not already used by the SDKs themselves, make sure to add them to setup.sh 
 - godog does not reset variables between tests, so make sure that you are referencing something that was set in a previous step of the current scenario
-- If you are testing locally, remember to rerun setup.sh every so often so you have the latest versions of the SDKs
+- If you are testing locally, check every so often that you have the latest versions of the SDKs
 

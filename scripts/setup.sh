@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 go get github.com/DATA-DOG/godog/cmd/godog
 go get -u github.com/algorand/go-algorand-sdk/...
 
