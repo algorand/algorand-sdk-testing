@@ -9,6 +9,7 @@ from algosdk import mnemonic
 from algosdk import wallet
 from os.path import expanduser
 import os.path
+import time
 
 
 @when("I create a wallet")
@@ -383,6 +384,7 @@ def check_save_txn(context):
     dir_path = os.path.dirname(os.path.dirname(dir_path))
     stx = transaction.retrieve_from_file(dir_path + "/txn.tx")[0]
     txid = stx.transaction.get_txid()
-    context.acl.status_after_block(stx.transaction.first_valid_round + 5)
+    last_round = context.acl.status()["lastRound"]
+    context.acl.status_after_block(last_round + 2)
     assert context.acl.transaction_info(stx.transaction.sender, txid)
     
