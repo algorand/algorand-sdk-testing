@@ -28,7 +28,7 @@ fi
 pip3 install behave
 if $py
 then
-    if [[ $TRAVIS_PULL_REQUEST = false ]]
+    if [[ $TRAVIS_PULL_REQUEST != false ]]
     then
         pip3 install "git+https://github.com/algorand/py-algorand-sdk@$TRAVIS_PULL_REQUEST_BRANCH"
     else
@@ -42,7 +42,7 @@ cd js_cucumber
 npm install
 if $js
 then
-    if [[ $TRAVIS_PULL_REQUEST = false ]]
+    if [[ $TRAVIS_PULL_REQUEST != false ]]
     then
         npm install --save "algorand/js-algorand-sdk#$TRAVIS_PULL_REQUEST_BRANCH"
     else
@@ -54,7 +54,7 @@ fi
 cd ../java_cucumber
 if $java
 then
-    if [[ $TRAVIS_PULL_REQUEST = false ]]
+    if [[ $TRAVIS_PULL_REQUEST != false ]]
     then
         mvn versions:use-dep-version -Dincludes=com.github.algorand:java-algorand-sdk -DdepVersion="${TRAVIS_PULL_REQUEST_BRANCH}-SNAPSHOT" -DforceVersion=true
     else
