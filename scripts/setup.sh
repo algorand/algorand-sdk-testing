@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+go=false
+java=false
+js=false
+py=false
 
 case "$1" in 
     --go*)
