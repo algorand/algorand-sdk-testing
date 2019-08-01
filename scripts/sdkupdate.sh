@@ -23,6 +23,7 @@ esac
 
 
 # add this to curl this file:
+# pyenv global 3.7
 # curl https://raw.githubusercontent.com/algorand/algorand-sdk-testing/master/scripts/sdkupdate.sh -o ~/sdkupdate.sh
 # chmod +x ~/sdkupdate.sh
 # ~/sdkupdate.sh --languagetag

@@ -1,13 +1,28 @@
 #!/usr/bin/env bash
 
+case "$1" in 
+    --go*)
+        go=true
+        ;;
+    --java*)
+        java=true
+        ;;
+    --js*)
+        js=true
+        ;;
+    --py*)
+        py=true
+        ;;
+esac
+
 go get github.com/DATA-DOG/godog/cmd/godog
-if [ ! "$1" in --go ]
+if $go
 then
     go get -u github.com/algorand/go-algorand-sdk/...
 fi
 
 pip3 install behave
-if [ "$1" in --py ]
+if $py
 then
     pip3 install "git+https://github.com/algorand/py-algorand-sdk@$TRAVIS_COMMIT"
 else
@@ -16,17 +31,17 @@ fi
 
 cd js_cucumber
 npm install
-if [ "$1" in --js ]
+if $js
 then
     npm install --save "algorand/js-algorand-sdk#$TRAVIS_COMMIT"
 fi
 
 cd ../java_cucumber
-if [ "$1" in --java ]
+if $java
 then
     mvn versions:use-dep-version -Dincludes=com.github.algorand:java-algorand-sdk -DdepVersion=$TRAVIS_COMMIT -DforceVersion=true
+    mvn versions:commit
 fi
-
 
 
 # get algorand tools; comment this section out if you already have this
