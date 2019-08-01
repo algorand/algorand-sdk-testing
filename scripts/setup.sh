@@ -56,7 +56,7 @@ if $java
 then
     if [[ $TRAVIS_PULL_REQUEST != false ]]
     then
-        latestcommit="${TRAVIS_PULL_REQUEST_BRANCH////~}"
+        latestcommit="${TRAVIS_PULL_REQUEST_BRANCH////\~}"
         mvn versions:use-dep-version -Dincludes=com.github.algorand:java-algorand-sdk -DdepVersion="${latestcommit}-SNAPSHOT" -DforceVersion=true
     else
         mvn versions:use-dep-version -Dincludes=com.github.algorand:java-algorand-sdk -DdepVersion=$TRAVIS_COMMIT -DforceVersion=true
