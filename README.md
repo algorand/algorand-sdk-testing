@@ -15,11 +15,13 @@ Step function locations:
 - [stepdefs.js](https://github.com/algorand/algorand-sdk-testing/blob/master/js_cucumber/features/stepdefinitions/stepdefs.js)
 - [steps.py](https://github.com/algorand/algorand-sdk-testing/blob/master/py_behave/steps/steps.py)
 
-
 ## How to run tests
 1. Clone the repo
-2. Run scripts/setup.sh to install dependencies
+2. Run scripts/setup.sh to install dependencies (comment out the dependencies you already have)
 3. Run scripts/test.sh
+
+## About the scripts
+The scripts have language flags to choose which SDK to test. The only script you should actually use flags for is test.sh; the others have tags so that travis builds in the SDK repos can specify what setups are needed. If you need to run tests locally, follow the the "How to run tests" section above. Lastly, don't run sdkupdate.sh, as that exists solely for the purpose of enabling travis builds in other repos. 
 
 ## Updating an SDK
 1. Update as normal and commit; this will grab the tests from this repo and run them as part of the SDK's travis build
@@ -36,4 +38,3 @@ Step function locations:
 - If you use libraries that are not already used by the SDKs themselves, make sure to add them to setup.sh 
 - godog does not reset variables between tests, so make sure that you are referencing something that was set in a previous step of the current scenario
 - If you are testing locally, check every so often that you have the latest versions of the SDKs
-
