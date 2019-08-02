@@ -46,7 +46,7 @@ then
     cd $TRAVIS_BUILD_DIR
     mvn package
     cd -
-    find "${TRAVIS_BUILD_DIR}/target" -type f -name "*.jar" -exec mvn install:install-file -Dfile={} \;
+    find "${TRAVIS_BUILD_DIR}/target" -type f -name "*.jar" -exec mvn install:install-file -Dfile={} -DpomFile="${TRAVIS_BUILD_DIR}/pom.xml"\;
 fi
 
 
