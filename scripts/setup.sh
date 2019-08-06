@@ -44,9 +44,9 @@ cd ../java_cucumber
 if $java
 then
     cd $TRAVIS_BUILD_DIR
-    mvn package
+    mvn package -q
     cd -
-    find "${TRAVIS_BUILD_DIR}/target" -type f -name "*.jar" -exec mvn install:install-file -Dfile={} -DpomFile="${TRAVIS_BUILD_DIR}/pom.xml"\;
+    find "${TRAVIS_BUILD_DIR}/target" -type f -name "*.jar" -exec mvn install:install-file -Dfile={} -DpomFile="${TRAVIS_BUILD_DIR}/pom.xml" -q\;
 fi
 
 
