@@ -493,7 +493,9 @@ When("I write the transaction to file", function(){
 })
 
 Then("the transaction should still be the same", function(){
-
+    stxnew = new Uint8Array(fs.readFileSync(maindir + '/raw.tx'));
+    stxold = new Uint8Array(fs.readFileSync(maindir + '/old.tx'));
+    assert.deepStrictEqual(stxnew, stxold)
 })
 
 Then("I do my part", async function(){

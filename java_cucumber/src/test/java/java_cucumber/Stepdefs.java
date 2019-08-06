@@ -299,33 +299,11 @@ public class Stepdefs {
     }
 
     //FIXTHIS
-    // @When("I import the multisig")
-    // public void importMsig() {
-    //     ImportMultisigRequest req = new ImportMultisigRequest();
-
-    //     List<com.algorand.algosdk.kmd.client.model.PublicKey> pks = new ArrayList<com.algorand.algosdk.kmd.client.model.PublicKey>();
-    //     for (Ed25519PublicKey p: msig.publicKeys){
-    //         PKCS8EncodedKeySpec pkS = new PKCS8EncodedKeySpec(p.getBytes());
-
-    //         CryptoProvider.setupIfNeeded();
-    //         KeyFactory kf = KeyFactory.getInstance("Ed25519");
-    //         java.security.PublicKey pk = kf.generatePublic(pkS);
-    //         pks.add(pk);
-    //     }
-
-         
-
-
-
-        
-    //     req.setPks( msig.publicKeys);
-        
-    //     req.setPks();
-    //     req.setMultisigVersion(msig.version);
-    //     req.setThreshold(msig.threshold);
-    //     req.setWalletHandleToken(handle);
-    //     kcl.importMultisig(req);
-    // }
+    @When("I import the multisig")
+    public void importMsig() {
+        // ImportMultisigRequest req = new ImportMultisigRequest();
+        throw new cucumber.api.PendingException();
+    }
 
     @Then("the multisig should be in the wallet")
     public void msigInWallet() throws com.algorand.algosdk.kmd.client.ApiException{
@@ -349,7 +327,6 @@ public class Stepdefs {
         pks = kcl.exportMultisig(req).getPks();
 
     }
-
 
     @Then("the multisig should equal the exported multisig")
     public void msigEq(){
@@ -436,15 +413,12 @@ public class Stepdefs {
     }
 
     //FIXTHIS
-    // @When("I import the key")
-    // public void importKey() throws com.algorand.algosdk.kmd.client.ApiException{
-    //     ImportKeyRequest req = new ImportKeyRequest();
-    //     req.setWalletHandleToken(handle);
-    //     PrivateKey sk = new PrivateKey();
-        
-    //     Mnemonic.
-    //     req.setPrivateKey(new PrivateKey(Mnemonic.toKey(account.toMnemonic())));
-    // }
+    @When("I import the key")
+    public void importKey() throws com.algorand.algosdk.kmd.client.ApiException{
+        // ImportKeyRequest req = new ImportKeyRequest();
+        // req.setWalletHandleToken(handle);
+        throw new cucumber.api.PendingException();
+    }
 
     @When("I get the private key")
     public void getSk() throws com.algorand.algosdk.kmd.client.ApiException, GeneralSecurityException{
@@ -582,7 +556,6 @@ public class Stepdefs {
         } catch(Exception e) {
             err = true;
         }
-
     }
 
     @Then("the transaction should go through")
@@ -610,21 +583,16 @@ public class Stepdefs {
         Assert.assertEquals(Encoder.encodeToBase64(stxBytes), Encoder.encodeToBase64(Encoder.encodeToMsgPack(stx)));
     }
 
-    // @When("I sign the multisig transaction with kmd")
-    // public void signMsigKmd() throws JsonProcessingException, com.algorand.algosdk.kmd.client.ApiException{
-    //     // FIXTHIS 
-    //     //need to import account first
-    //     SignMultisigRequest req = new SignMultisigRequest();
-    //     req.setPublicKey(pk.toString()); //F
-    //     MultisigSig m = new MultisigSig();
-    //     List<MultisigSubsig> l = new ArrayList<MultisigSubsig>();
-    //     l.add(new MultisigSubsig());
-    //     m.setSubsigs(subsigs);
-    //     req.setTransaction(Encoder.encodeToMsgPack(txn));
-    //     req.setWalletHandleToken(handle);
-    //     req.setWalletPassword(walletPswd);
-    //     stxBytes = kcl.signMultisigTransaction(req).getMultisig();//F
-    // }
+    // FIXTHIS
+    @When("I sign the multisig transaction with kmd")
+    public void signMsigKmd() throws JsonProcessingException, com.algorand.algosdk.kmd.client.ApiException{
+        // may need to import account first
+        // SignMultisigRequest req = new SignMultisigRequest();
+        // req.setTransaction(Encoder.encodeToMsgPack(txn));
+        // req.setWalletHandleToken(handle);
+        // req.setWalletPassword(walletPswd);
+        throw new cucumber.api.PendingException();
+    }
     @Then("the multisig transaction should equal the kmd signed multisig transaction")
     public void signMsigBothEqual() throws JsonProcessingException {
         Assert.assertEquals(Encoder.encodeToBase64(stxBytes), Encoder.encodeToBase64(Encoder.encodeToMsgPack(stx)));
@@ -655,7 +623,26 @@ public class Stepdefs {
     }
 
     @Then("the transaction should still be the same")
-    public void checkEnc(){
+    public void checkEnc() throws IOException{
+        String path = System.getProperty("user.dir");
+        Path p = Paths.get(path);
+        path = p.getParent() + "/raw.tx";
+        FileInputStream inputStream = new FileInputStream(path);
+        File file = new File(path);
+        byte[] data = new byte[(int) file.length()];
+        inputStream.read(data);
+        SignedTransaction stxnew = Encoder.decodeFromMsgPack(data, SignedTransaction.class);
+        inputStream.close();
+
+        path = p.getParent() + "/old.tx";
+        inputStream = new FileInputStream(path);
+        file = new File(path);
+        data = new byte[(int) file.length()];
+        inputStream.read(data);
+        SignedTransaction stxold = Encoder.decodeFromMsgPack(data, SignedTransaction.class);
+        inputStream.close();
+
+        Assert.assertEquals(stxold, stxnew);
 
     }
 

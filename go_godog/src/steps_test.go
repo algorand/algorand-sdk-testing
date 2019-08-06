@@ -835,6 +835,19 @@ func writeTxn() error {
 }
 
 func checkEnc() error {
+	path, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+	pathold := filepath.Dir(filepath.Dir(path)) + "/old.tx"
+	dataold, err := ioutil.ReadFile(pathold)
+
+	pathnew := filepath.Dir(filepath.Dir(path)) + "/raw.tx"
+	datanew, err := ioutil.ReadFile(pathnew)
+
+	if bytes.Equal(dataold, datanew) {
+		return nil
+	}
 	return nil
 }
 
