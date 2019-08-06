@@ -25,28 +25,28 @@ then
     go get -u github.com/algorand/go-algorand-sdk/...
 fi
 
-pip3 install behave
+pip3 install behave -q
 if $py
 then
-    pip3 install $TRAVIS_BUILD_DIR
+    pip3 install $TRAVIS_BUILD_DIR -q
 else
-    pip3 install git+https://github.com/algorand/py-algorand-sdk/
+    pip3 install git+https://github.com/algorand/py-algorand-sdk/ -q
 fi
 
 cd js_cucumber
-npm install
+npm install --silent
 if $js
 then
-    npm install $TRAVIS_BUILD_DIR
+    npm install $TRAVIS_BUILD_DIR --silent
 fi
 
 cd ../java_cucumber
 if $java
 then
     cd $TRAVIS_BUILD_DIR
-    mvn package -q
+    mvn package -q -DskipTests
     cd -
-    find "${TRAVIS_BUILD_DIR}/target" -type f -name "*.jar" -exec mvn install:install-file -Dfile={} -DpomFile="${TRAVIS_BUILD_DIR}/pom.xml" -q\;
+    find "${TRAVIS_BUILD_DIR}/target" -type f -name "*.jar" -exec mvn install:install-file -q -Dfile={} -DpomFile="${TRAVIS_BUILD_DIR}/pom.xml" \;
 fi
 
 
