@@ -13,18 +13,21 @@ then
     cd ~/node
     ./goal network create -n network -r network -t template.json
     ./goal network start -r network
-    ./goal kmd start -d network/node
+    ./goal kmd start -d network/Node
     ./update.sh -d network/Node
     cd -
     cd go_godog/src
     go test # for verbose reporting, add --godog.format=pretty
     goexitcode=$?
+    ~/node/goal kmd start -d ~/node/network/Node
     cd ../../java_cucumber 
     mvn test -q # change to "pretty" in cucumberoptions if verbose
     javaexitcode=$?
+    ~/node/goal kmd start -d ~/node/network/Node
     cd ../js_cucumber
     node_modules/.bin/cucumber-js
     jsexitcode=$?
+    ~/node/goal kmd start -d ~/node/network/Node
     cd ../py_behave
     behave -f progress2 # for verbose reporting, remove -f progress2
     pyexitcode=$?
@@ -80,7 +83,7 @@ else
     cd ~/node
     ./goal network create -n network -r network -t template.json
     ./goal network start -r network
-    ./goal kmd start -d network/node
+    ./goal kmd start -d network/Node
     ./update.sh -d network/Node
     cd -
 
@@ -95,6 +98,7 @@ else
         fi
         goexitcode=$?
         cd ../..
+        ~/node/goal kmd start -d ~/node/network/Node
     else
         if $cross
         then
@@ -105,6 +109,7 @@ else
         else
             goexitcode=0
         fi
+        ~/node/goal kmd start -d ~/node/network/Node
     fi
 
     if $java
@@ -118,6 +123,7 @@ else
         fi
         javaexitcode=$?
         cd ..
+        ~/node/goal kmd start -d ~/node/network/Node
     else
         if $cross
         then
@@ -128,6 +134,7 @@ else
         else
             javaexitcode=0
         fi
+        ~/node/goal kmd start -d ~/node/network/Node
     fi
 
     if $js
@@ -141,7 +148,7 @@ else
         fi
         jsexitcode=$?
         cd ..
-        
+        ~/node/goal kmd start -d ~/node/network/Node
     else
         if $cross
         then
@@ -152,6 +159,7 @@ else
         else
             jsexitcode=0
         fi
+        ~/node/goal kmd start -d ~/node/network/Node
     fi
     if $py
     then
