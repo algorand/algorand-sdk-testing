@@ -25,13 +25,15 @@ then
     go get -u github.com/algorand/go-algorand-sdk/...
 fi
 
-pip3 install behave -q
+
 if $py
 then
     pip3 install $TRAVIS_BUILD_DIR -q
 else
+    pyenv global 3.7.1
     pip3 install git+https://github.com/algorand/py-algorand-sdk/ -q
 fi
+pip3 install behave -q
 
 cd js_cucumber
 npm install --silent
