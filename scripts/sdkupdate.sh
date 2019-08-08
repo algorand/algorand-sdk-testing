@@ -24,9 +24,6 @@ esac
 
 # add these to travis to curl this file:
 
-# put this in before_install
-# pyenv global 3.7 
-
 # put this in install
 # curl https://raw.githubusercontent.com/algorand/algorand-sdk-testing/master/scripts/sdkupdate.sh -o ~/sdkupdate.sh
 # chmod +x ~/sdkupdate.sh
