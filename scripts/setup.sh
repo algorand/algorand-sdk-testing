@@ -59,7 +59,7 @@ else
     find ~/java-algorand-sdk/target -type f -name "*.jar" -exec mvn install:install-file -q -Dfile={} -DpomFile="${HOME}/java-algorand-sdk/pom.xml" \;
     rm -rf ~/java-algorand-sdk
 fi
-mvn versions:use-dep-version -DdepVersion=$ALGOSDK_VERSION -Dincludes=com.algorand:algosdk -DforceVersion=true
+mvn versions:use-dep-version -DdepVersion=$ALGOSDK_VERSION -Dincludes=com.algorand:algosdk -DforceVersion=true -q
 
 
 # get algorand tools; comment this section out if you already have this
