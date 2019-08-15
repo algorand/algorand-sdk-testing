@@ -482,14 +482,11 @@ Then("the wallet handle should not work", async function(){
 
 When("I read a transaction from file", function(){
     this.txn = encoding.decode(new Uint8Array(fs.readFileSync(maindir + '/raw.tx')));
+    return this.txn
 })
 
 When("I write the transaction to file", function(){
-    fs.writeFile(maindir + "/raw.tx", Buffer.from(encoding.encode(this.txn)), function(err){
-        if (err){
-            throw err
-        }
-    }); 
+    fs.writeFileSync(maindir + "/raw.tx", Buffer.from(encoding.encode(this.txn)));
 })
 
 Then("the transaction should still be the same", function(){
@@ -503,5 +500,4 @@ Then("I do my part", async function(){
     this.txid = await this.acl.sendRawTransaction(stx)
     this.txid = this.txid.txId
     return this.txid
-
 })
