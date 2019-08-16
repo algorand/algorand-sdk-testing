@@ -514,13 +514,6 @@ def txns_by_addr_round(context):
     assert (txns == {} or "transactions" in txns)
 
 
-# @then("I get transactions by address and limit")
-# def txns_by_addr_limit(context):
-    # txns = context.acl.transactions_by_address(context.accounts[0], limit=10)
-    # assert (txns == {} or "transactions" in txns)
-    # will fail because indexer is not enabled
-
-
 @then("I get pending transactions")
 def txns_pending(context):
     txns = context.acl.pending_transactions()

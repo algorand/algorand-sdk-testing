@@ -156,7 +156,6 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I get the ledger supply`, ledger)
 	s.Step(`^the ledger supply should tell me the total money`, checkLedger)
 	s.Step(`^I get transactions by address and round`, txnsByAddrRound)
-	s.Step(`^I get transactions by address and limit`, txnsByAddrLimit)
 	s.Step(`^I get pending transactions`, txnsPending)
 	s.Step(`^I get the suggested params`, suggestedParams)
 	s.Step(`^I get the suggested fee`, suggestedFee)
@@ -941,13 +940,6 @@ func txnsByAddrRound() error {
 		return err
 	}
 	return nil
-}
-
-func txnsByAddrLimit() error {
-	// _, err := acl.TransactionsByAddrLimit(accounts[0], 10)
-	// return err
-	// can only do if indexer is running
-	return godog.ErrPending
 }
 
 func txnsPending() error {

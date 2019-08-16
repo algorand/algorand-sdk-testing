@@ -19,7 +19,6 @@ Feature: Algod
     Given a kmd client
     And wallet information
     Then I get transactions by address and round
-    And I get transactions by address and limit
     And I get pending transactions
     
   Scenario: Suggested params
