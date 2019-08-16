@@ -25,7 +25,7 @@ then
     javaexitcode=$?
     ~/node/goal kmd start -d ~/node/network/Node
     cd ../js_cucumber
-    node_modules/.bin/cucumber-js
+    node_modules/.bin/cucumber-js --no-strict
     jsexitcode=$?
     ~/node/goal kmd start -d ~/node/network/Node
     cd ../py_behave
@@ -37,10 +37,10 @@ then
     rm raw.tx
     rm txn.tx
 else
-    go=false
-    java=false
-    js=false
-    py=false
+    rungo=false
+    runjava=false
+    runjs=false
+    runpy=false
     cross=false
 
     while [ $# -gt 0 ]
@@ -59,19 +59,19 @@ else
                 exit 0
                 ;;
             --go*)
-                go=true
+                rungo=true
                 shift
                 ;;
             --java*)
-                java=true
+                runjava=true
                 shift
                 ;;
             --js*)
-                js=true
+                runjs=true
                 shift
                 ;;
             --py*)
-                py=true
+                runpy=true
                 shift
                 ;;
             --cross*)
@@ -83,12 +83,12 @@ else
     cd ~/node
     ./goal network create -n network -r network -t template.json
     ./goal network start -r network
-    ./goal kmd start -d network/Node
     ./update.sh -d network/Node
     cd -
 
-    if $go
+    if $rungo
     then
+        ~/node/goal kmd start -d ~/node/network/Node
         cd go_godog/src
         if $cross
         then
@@ -98,10 +98,10 @@ else
         fi
         goexitcode=$?
         cd ../..
-        ~/node/goal kmd start -d ~/node/network/Node
     else
         if $cross
         then
+            ~/node/goal kmd start -d ~/node/network/Node
             cd go_godog/src
             go test --godog.tags=@crosstest
             goexitcode=$?
@@ -109,24 +109,24 @@ else
         else
             goexitcode=0
         fi
-        ~/node/goal kmd start -d ~/node/network/Node
     fi
 
-    if $java
+    if $runjava
     then
         cd java_cucumber 
         if $cross
         then
+            ~/node/goal kmd start -d ~/node/network/Node
             mvn test -q # change to "pretty" in cucumberoptions if verbose
         else
             mvn test -q -Dcucumber.options="--tags \"not @crosstest\""
         fi
         javaexitcode=$?
         cd ..
-        ~/node/goal kmd start -d ~/node/network/Node
     else
         if $cross
         then
+            ~/node/goal kmd start -d ~/node/network/Node
             cd java_cucumber
             mvn test -q -Dcucumber.options="--tags \"@crosstest\""
             javaexitcode=$?
@@ -134,35 +134,35 @@ else
         else
             javaexitcode=0
         fi
-        ~/node/goal kmd start -d ~/node/network/Node
     fi
 
-    if $js
+    if $runjs
     then
+        ~/node/goal kmd start -d ~/node/network/Node
         cd js_cucumber
         if $cross
         then
-            node_modules/.bin/cucumber-js
+            node_modules/.bin/cucumber-js --no-strict
         else
-            node_modules/.bin/cucumber-js --tags "not @crosstest"
+            node_modules/.bin/cucumber-js --no-strict --tags "not @crosstest"
         fi
         jsexitcode=$?
         cd ..
-        ~/node/goal kmd start -d ~/node/network/Node
     else
         if $cross
         then
+            ~/node/goal kmd start -d ~/node/network/Node
             cd js_cucumber
-            node_modules/.bin/cucumber-js --tags "@crosstest"
+            node_modules/.bin/cucumber-js --no-strict --tags "@crosstest"
             jsexitcode=$?
             cd ..
         else
             jsexitcode=0
         fi
-        ~/node/goal kmd start -d ~/node/network/Node
     fi
-    if $py
+    if $runpy
     then
+        ~/node/goal kmd start -d ~/node/network/Node
         cd py_behave
         if $cross
         then
@@ -175,6 +175,7 @@ else
     else
         if $cross
         then
+            ~/node/goal kmd start -d ~/node/network/Node
             cd py_behave
             behave --tags=crosstest -f progress2
             pyexitcode=$?
