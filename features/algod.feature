@@ -5,6 +5,12 @@ Feature: Algod
   Scenario: Node health
     Then the node should be healthy
 
+  Scenario: Status check
+    When I get the status
+    And I get status after this block
+    Then the rounds should be equal
+    And I can get the block info
+
   Scenario: Ledger supply
     When I get the ledger supply
     Then the ledger supply should tell me the total money
@@ -24,10 +30,3 @@ Feature: Algod
   Scenario: Version
     When I get versions with algod
     Then v1 should be in the versions
-
-  Scenario: Status check
-    When I get the status
-    And I get status after this block
-    Then the rounds should be equal
-    And I can get the block info
-

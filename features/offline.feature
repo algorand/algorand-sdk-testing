@@ -86,7 +86,7 @@ Feature: Offline
 
   Scenario Outline: Microalgos to algos
     When I convert <microalgos> microalgos to algos and back
-    Then it should still be the same amount
+    Then it should still be the same amount of microalgos <microalgos>
 
     Examples:
     | microalgos       |

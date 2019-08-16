@@ -16,6 +16,7 @@ import (
 
 	"github.com/DATA-DOG/godog"
 	"github.com/DATA-DOG/godog/colors"
+	"github.com/algorand/go-algorand-sdk/auction"
 	"github.com/algorand/go-algorand-sdk/client/algod"
 	"github.com/algorand/go-algorand-sdk/client/algod/models"
 	"github.com/algorand/go-algorand-sdk/client/kmd"
@@ -59,6 +60,16 @@ var accounts []string
 var balance uint64
 var e bool
 var lastRound uint64
+var supply models.Supply
+var sugParams models.TransactionParams
+var sugFee models.TransactionFee
+var bid types.Bid
+var oldBid types.Bid
+var oldPk string
+var newMn string
+var mdk types.MasterDerivationKey
+var microalgos types.MicroAlgos
+var bytetxs [][]byte
 
 var opt = godog.Options{
 	Output: colors.Colored(os.Stdout),
@@ -107,7 +118,7 @@ func FeatureContext(s *godog.Suite) {
 	s.Step("v1 should be in the versions", v1InVersions)
 	s.Step("I get versions with kmd", kclV)
 	s.Step("I get the status", getStatus)
-	s.Step(`^I get status after this block$`, statusAfterBlock)
+	s.Step(`^I get status after this block`, statusAfterBlock)
 	s.Step("the rounds should be equal", roundsEq)
 	s.Step("I can get the block info", block)
 	s.Step("I import the multisig", importMsig)
@@ -141,6 +152,32 @@ func FeatureContext(s *godog.Suite) {
 	s.Step("I write the transaction to file", writeTxn)
 	s.Step("the transaction should still be the same", checkEnc)
 	s.Step("I do my part", createSaveTxn)
+	s.Step(`^the node should be healthy`, nodeHealth)
+	s.Step(`^I get the ledger supply`, ledger)
+	s.Step(`^the ledger supply should tell me the total money`, checkLedger)
+	s.Step(`^I get transactions by address and round`, txnsByAddrRound)
+	s.Step(`^I get transactions by address and limit`, txnsByAddrLimit)
+	s.Step(`^I get pending transactions`, txnsPending)
+	s.Step(`^I get the suggested params`, suggestedParams)
+	s.Step(`^I get the suggested fee`, suggestedFee)
+	s.Step(`^the fee in the suggested params should equal the suggested fee`, checkSuggested)
+	s.Step(`^I create a bid`, createBid)
+	s.Step(`^I encode and decode the bid`, encDecBid)
+	s.Step(`^the bid should still be the same`, checkBid)
+	s.Step(`^I decode the address`, decAddr)
+	s.Step(`^I encode the address`, encAddr)
+	s.Step(`^the address should still be the same`, checkAddr)
+	s.Step(`^I convert the private key back to a mnemonic`, skToMn)
+	s.Step(`^the mnemonic should still be the same as "([^"]*)"`, checkMn)
+	s.Step(`^mnemonic for master derivation key "([^"]*)"`, mnToMdk)
+	s.Step(`^I convert the master derivation key back to a mnemonic`, mdkToMn)
+	s.Step(`^I create the flat fee payment transaction`, createTxnFlat)
+	s.Step(`^encoded multisig transaction "([^"]*)"`, encMsigTxn)
+	s.Step(`^I append a signature to the multisig transaction`, appendMsig)
+	s.Step(`^encoded multisig transactions "([^"]*)"`, encMtxs)
+	s.Step(`^I merge the multisig transactions`, mergeMsig)
+	s.Step(`^I convert (\d+) microalgos to algos and back`, microToAlgos)
+	s.Step(`^it should still be the same amount of microalgos (\d+)`, checkAlgos)
 
 	s.BeforeScenario(func(interface{}) {
 
@@ -874,4 +911,193 @@ func createSaveTxn() error {
 	data := msgpack.Encode(txn)
 	err = ioutil.WriteFile(path, data, 0644)
 	return err
+}
+
+func nodeHealth() error {
+	err := acl.HealthCheck()
+	return err
+}
+
+func ledger() error {
+	var err error
+	supply, err = acl.LedgerSupply()
+	return err
+}
+
+func checkLedger() error {
+	if &supply.TotalMoney == nil {
+		return fmt.Errorf("Ledger supply should have total money")
+	}
+	return nil
+}
+
+func txnsByAddrRound() error {
+	lr, err := acl.Status()
+	if err != nil {
+		return err
+	}
+	_, err = acl.TransactionsByAddr(accounts[0], 1, lr.LastRound)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func txnsByAddrLimit() error {
+	// _, err := acl.TransactionsByAddrLimit(accounts[0], 10)
+	// return err
+	// can only do if indexer is running
+	return godog.ErrPending
+}
+
+func txnsPending() error {
+	_, err := acl.GetPendingTransactions(10)
+	return err
+}
+
+func suggestedParams() error {
+	var err error
+	sugParams, err = acl.SuggestedParams()
+	return err
+}
+
+func suggestedFee() error {
+	var err error
+	sugFee, err = acl.SuggestedFee()
+	return err
+}
+
+func checkSuggested() error {
+	if sugParams.Fee != sugFee.Fee {
+		return fmt.Errorf("suggested fee from params should be equal to suggested fee")
+	}
+	return nil
+}
+
+func createBid() error {
+	var err error
+	bid, err = auction.MakeBid(accounts[0], 1, 2, 3, accounts[0], 4)
+	oldBid, err = auction.MakeBid(accounts[0], 1, 2, 3, accounts[0], 4)
+	return err
+}
+
+func encDecBid() error {
+	temp := msgpack.Encode(bid)
+	err := msgpack.Decode(temp, &bid)
+	return err
+}
+
+func checkBid() error {
+	if bid != oldBid {
+		return fmt.Errorf("bid should still be the same")
+	}
+	return nil
+}
+
+func decAddr() error {
+	var err error
+	oldPk = pk
+	a, err = types.DecodeAddress(pk)
+	return err
+}
+
+func encAddr() error {
+	pk = a.String()
+	return nil
+}
+
+func checkAddr() error {
+	if pk != oldPk {
+		return fmt.Errorf("A decoded and encoded address should equal the original address")
+	}
+	return nil
+}
+
+func skToMn() error {
+	var err error
+	newMn, err = mnemonic.FromPrivateKey(account.PrivateKey)
+	return err
+}
+
+func checkMn(mn string) error {
+	if mn != newMn {
+		return fmt.Errorf("the mnemonic should equal the original mnemonic")
+	}
+	return nil
+}
+
+func mnToMdk(mn string) error {
+	var err error
+	mdk, err = mnemonic.ToMasterDerivationKey(mn)
+	return err
+}
+
+func mdkToMn() error {
+	var err error
+	newMn, err = mnemonic.FromMasterDerivationKey(mdk)
+	return err
+}
+
+func createTxnFlat() error {
+	var err error
+	txn, err = transaction.MakePaymentTxnWithFlatFee(a.String(), to, fee, amt, fv, lv, note, close, gen, gh)
+	if err != nil {
+		return err
+	}
+	return err
+}
+
+func encMsigTxn(encoded string) error {
+	var err error
+	stx, err = base64.StdEncoding.DecodeString(encoded)
+	if err != nil {
+		return err
+	}
+	err = msgpack.Decode(stx, &stxObj)
+	return err
+}
+
+func appendMsig() error {
+	var err error
+	msig, err = crypto.MultisigAccountFromSig(stxObj.Msig)
+	if err != nil {
+		return err
+	}
+	_, stx, err = crypto.AppendMultisigTransaction(account.PrivateKey, msig, stx)
+	return err
+}
+
+func encMtxs(txs string) error {
+	var err error
+	enctxs := strings.Split(txs, " ")
+	bytetxs = make([][]byte, len(enctxs))
+	for i := range enctxs {
+		bytetxs[i], err = base64.StdEncoding.DecodeString(enctxs[i])
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func mergeMsig() (err error) {
+	_, stx, err = crypto.MergeMultisigTransactions(bytetxs...)
+	return
+}
+
+func microToAlgos(ma int) error {
+	// microalgos = types.MicroAlgos(ma)
+	// microalgos = types.ToMicroAlgos(microalgos.ToAlgos())
+	// return nil
+	// will fail as of now
+	return godog.ErrPending
+}
+
+func checkAlgos(ma int) error {
+	// if types.MicroAlgos(ma) != microalgos {
+	// 	return fmt.Errorf("Converting to and from algos should not change the value")
+	// }
+	// return nil
+	// will fail as of now
+	return godog.ErrPending
 }

@@ -364,6 +364,136 @@ Then("the multisig should equal the exported multisig", function(){
 })
 
 
+Then('the node should be healthy', function () {
+    return 'pending';
+});
+
+
+When('I get the ledger supply', function () {
+    return 'pending';
+});
+
+
+Then('the ledger supply should tell me the total money', function () {
+    return 'pending';
+});
+
+
+Then('I get transactions by address and round', function () {
+    return 'pending';
+});
+
+
+Then('I get transactions by address and limit', function () {
+    return 'pending';
+});
+
+
+Then('I get pending transactions', function () {
+    return 'pending';
+});
+
+
+When('I get the suggested params', function () {
+    return 'pending';
+});
+
+
+When('I get the suggested fee', function () {
+    return 'pending';
+});
+
+
+Then('the fee in the suggested params should equal the suggested fee', function () {
+    return 'pending';
+});
+
+
+When('I create a bid', function () {
+    return 'pending';
+});
+
+
+When('I encode and decode the bid', function () {
+    return 'pending';
+});
+
+
+Then('the bid should still be the same', function () {
+    return 'pending';
+});
+
+
+When('I decode the address', function () {
+    return 'pending';
+});
+
+
+When('I encode the address', function () {
+    return 'pending';
+});
+
+
+Then('the address should still be the same', function () {
+    return 'pending';
+});
+
+
+When('I convert the private key back to a mnemonic', function () {
+    return 'pending';
+});
+
+
+Then('the mnemonic should still be the same as {string}', function (string) {
+    return 'pending';
+});
+
+
+Given('mnemonic for master derivation key {string}', function (string) {
+    return 'pending';
+});
+
+
+When('I convert the master derivation key back to a mnemonic', function () {
+    return 'pending';
+});
+
+
+When('I create the flat fee payment transaction', function () {
+    return 'pending';
+});
+
+
+Given('encoded multisig transaction {string}', function (string) {
+    return 'pending';
+});
+
+
+When('I append a signature to the multisig transaction', function () {
+    return 'pending';
+});
+
+
+When('I merge the multisig transactions', function () {
+    return 'pending';
+});
+
+
+When('I convert {int} microalgos to algos and back', function (int) {
+    return 'pending';
+});
+
+
+Then('it should still be the same amount of microalgos {int}', function (int) {
+    return 'pending';
+});
+
+
+Given('encoded multisig transactions {string}', function (string) {
+    return 'pending';
+});
+
+
 When("I create the multisig payment transaction", function() {
     this.txn = {
         "from": algosdk.multisigAddress(this.msig),
@@ -501,3 +631,5 @@ Then("I do my part", async function(){
     this.txid = this.txid.txId
     return this.txid
 })
+
+
