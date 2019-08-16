@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 mkdir ~/algorand-sdk-testing
 git clone https://github.com/algorand/algorand-sdk-testing.git ~/algorand-sdk-testing
 cd ~/algorand-sdk-testing
@@ -22,10 +23,7 @@ case "$1" in
 esac
 
 
-# add these to travis to curl this file:
-
-# put this in before_install
-# pyenv global 3.7 
+# add these to .travis.yml in an SDK to curl this file:
 
 # put this in install
 # curl https://raw.githubusercontent.com/algorand/algorand-sdk-testing/master/scripts/sdkupdate.sh -o ~/sdkupdate.sh

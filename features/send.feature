@@ -16,7 +16,6 @@ Feature: Sending transactions
     | 0   | X4Bl4wQ9rCo= |
     | 1234523 | X4Bl4wQ9rCo= |
 
-
   Scenario Outline: Sending multisig transactions
     Given default multisig transaction with parameters <amt> "<note>"
     When I get the private key

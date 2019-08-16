@@ -7,3 +7,9 @@ java_cucumber/target
 .DS_Store
 
 .vscode/
+
+# feature files
+go_godog/src/features/*.feature
+java_cucumber/src/test/resources/java_cucumber/*.feature
+js_cucumber/features/*.feature
+py_behave/*.feature

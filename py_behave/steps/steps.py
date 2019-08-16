@@ -7,7 +7,8 @@ from algosdk import algod
 from algosdk import account
 from algosdk import mnemonic
 from algosdk import wallet
-from os.path import expanduser
+from algosdk import auction
+from algosdk import util
 import os.path
 import time
 
@@ -93,6 +94,7 @@ def txn_params(context, fee, fv, lv, gh, to, close, amt, gen, note):
 
 @given('mnemonic for private key "{mn}"')
 def mn_for_sk(context, mn):
+    context.mn = mn
     context.sk = mnemonic.to_private_key(mn)
     context.pk = account.address_from_private_key(context.sk)
 
@@ -100,8 +102,6 @@ def mn_for_sk(context, mn):
 @when('I create the payment transaction')
 def create_paytxn(context):
     context.txn = transaction.PaymentTxn(context.pk, context.fee, context.fv, context.lv, context.gh, context.to, context.amt, context.close, context.note, context.gen)
-    context.old_enc = encoding.msgpack_encode(context.txn)
-    context.dec = context.txn
 
 
 @given('multisig addresses "{addresses}"')
@@ -114,7 +114,6 @@ def msig_addresses(context, addresses):
 def create_msigpaytxn(context):
     context.txn = transaction.PaymentTxn(context.msig.address(), context.fee, context.fv, context.lv, context.gh, context.to, context.amt, context.close, context.note, context.gen)
     context.mtx = transaction.MultisigTransaction(context.txn, context.msig)
-    context.dec = context.mtx
 
 
 @when("I sign the multisig transaction with the private key")
@@ -234,6 +233,7 @@ def key_not_in_wallet(context):
 @when("I generate a key")
 def gen_key(context):
     context.sk, context.pk = account.generate_account()
+    context.old = context.pk
 
 
 @when("I import the key")
@@ -250,7 +250,7 @@ def sk_eq_export(context):
 
 @given("a kmd client")
 def kmd_client(context):
-    home = expanduser("~")
+    home = os.path.expanduser("~")
     data_dir_path = home + "/node/network/Node/"
     kmd_folder_name = "kmd-v0.5/"
     kmd_token = open(data_dir_path + kmd_folder_name + "kmd.token",
@@ -262,7 +262,7 @@ def kmd_client(context):
 
 @given("an algod client")
 def algod_client(context):
-    home = expanduser("~")
+    home = os.path.expanduser("~")
     data_dir_path = home + "/node/network/Node/"
     algod_token = open(data_dir_path + "algod.token", "r").read().strip("\n")
     algod_address = "http://" + open(data_dir_path + "algod.net",
@@ -387,4 +387,134 @@ def check_save_txn(context):
     last_round = context.acl.status()["lastRound"]
     context.acl.status_after_block(last_round + 2)
     assert context.acl.transaction_info(stx.transaction.sender, txid)
-    
+
+
+@when("I get the ledger supply")
+def get_ledger(context):
+    context.ledger_supply = context.acl.ledger_supply()
+
+
+@then("the ledger supply should tell me the total money")
+def check_ledger(context):
+    assert "totalMoney" in context.ledger_supply
+
+
+@then("the node should be healthy")
+def check_health(context):
+    assert context.acl.health() == None
+
+
+@when("I get the suggested params")
+def suggested_params(context):
+    context.params = context.acl.suggested_params()
+
+
+@when("I get the suggested fee")
+def suggested_params(context):
+    context.fee = context.acl.suggested_fee()["fee"]
+
+
+@then("the fee in the suggested params should equal the suggested fee")
+def check_suggested(context):
+    assert context.params["fee"] == context.fee
+
+
+@when("I create a bid")
+def create_bid(context):
+    sk, pk = account.generate_account()
+    context.bid = auction.Bid(pk, 1, 2, 3, pk, 4)
+    context.old = context.bid
+
+
+@when("I encode and decode the bid")
+def enc_dec_bid(context):
+    context.bid = encoding.msgpack_decode(encoding.msgpack_encode(context.bid))
+
+
+@then("the bid should still be the same")
+def check_bid(context):
+    assert context.bid == context.old
+
+
+@when("I decode the address")
+def decode_addr(context):
+    context.pk = encoding.decode_address(context.pk)
+
+
+@when("I encode the address")
+def encode_addr(context):
+    context.pk = encoding.encode_address(context.pk)
+
+
+@then("the address should still be the same")
+def check_addr(context):
+    assert context.pk == context.old
+
+
+@when("I convert the private key back to a mnemonic")
+def sk_to_mn(context):
+    context.mn = mnemonic.from_private_key(context.sk)
+
+
+@then('the mnemonic should still be the same as "{mn}"')
+def check_mn(context, mn):
+    assert context.mn == mn
+
+
+@given('mnemonic for master derivation key "{mn}"')
+def mn_for_mdk(context, mn):
+    context.mn = mn
+    context.mdk = mnemonic.to_master_derivation_key(mn)
+
+
+@when("I convert the master derivation key back to a mnemonic")
+def sk_to_mn(context):
+    context.mn = mnemonic.from_master_derivation_key(context.mdk)
+
+
+@when("I create the flat fee payment transaction")
+def create_paytxn_flat_fee(context):
+    context.txn = transaction.PaymentTxn(context.pk, context.fee, context.fv, context.lv, context.gh, context.to, context.amt, context.close, context.note, context.gen, flat_fee=True)
+
+
+@given('encoded multisig transaction "{mtx}"')
+def dec_mtx(context, mtx):
+    context.mtx = encoding.msgpack_decode(mtx)
+
+
+@when("I append a signature to the multisig transaction")
+def append_mtx(context):
+    context.mtx.sign(context.sk)
+
+
+@given('encoded multisig transactions "{msigtxns}"')
+def mtxs(context, msigtxns):
+    context.mtxs = msigtxns.split(" ")
+    context.mtxs = [encoding.msgpack_decode(m) for m in context.mtxs]
+
+
+@when("I merge the multisig transactions")
+def merge_mtxs(context):
+    context.mtx = transaction.MultisigTransaction.merge(context.mtxs)
+
+
+@when('I convert {microalgos} microalgos to algos and back')
+def convert_algos(context, microalgos):
+    context.microalgos = util.algos_to_microalgos(util.microalgos_to_algos(int(microalgos)))
+
+
+@then("it should still be the same amount of microalgos {microalgos}")
+def check_microalgos(context, microalgos):
+    assert int(microalgos) == context.microalgos
+
+
+@then("I get transactions by address and round")
+def txns_by_addr_round(context):
+    txns = context.acl.transactions_by_address(context.accounts[0], first=1, last=context.acl.status()["lastRound"])
+    assert (txns == {} or "transactions" in txns)
+
+
+@then("I get pending transactions")
+def txns_pending(context):
+    txns = context.acl.pending_transactions()
+    assert (txns == {} or "truncatedTxns" in txns)
