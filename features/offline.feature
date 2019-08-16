@@ -98,9 +98,8 @@ Feature: Offline
     | 2304985935       |
 
   Scenario: Build and sign go-online and go-offline transaction
-    Given change online status transaction parameters <fee> <fv> <lv> "<gh>" "<to>" "<close>" "<gen>" "<note>" <online>
+    Given change online status transaction parameters "<address>" <fee> <fv> <lv> "<gh>" "<gen>" <online>
     And mnemonic for private key "<mn>"
-    And address <"address">
     When I create the change online status transaction
     And I sign the transaction with the private key
     Then the transaction should equal the golden <"golden">
