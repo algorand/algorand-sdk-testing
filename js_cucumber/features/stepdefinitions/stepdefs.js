@@ -3,12 +3,11 @@ const { Given, When, Then, setDefaultTimeout } = require('cucumber');
 const algosdk = require("algosdk")
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const address = require("algosdk/src/encoding/address")
-const encoding = require("algosdk/src/encoding/encoding")
-const algtxn = require("algosdk/src/transaction")
 const fs = require('fs');
 const path = require("path")
 const maindir = path.dirname(path.dirname(path.dirname(__dirname)))
 const homedir = require('os').homedir()
+const bid = require("algosdk/src/bid")
 
 setDefaultTimeout(60000)
 
@@ -79,41 +78,39 @@ Given("wallet information", async function(){
 
 })
 
-When("I get versions with algod", function(){
-    this.versions = this.acl.versions().then(result => result.versions)
+When("I get versions with algod", async function(){
+    this.versions = await this.acl.versions();
+    this.versions = this.versions.versions;
+    return this.versions
 });
 
 Then("v1 should be in the versions", function(){
-    this.versions.then(function(result){
-        assert.deepStrictEqual(true, result.indexOf("v1") >= 0)
-
-    })
+    assert.deepStrictEqual(true, this.versions.indexOf("v1") >= 0)
 });
 
-When("I get versions with kmd", function(){
-    this.versions = this.kcl.versions().then(result => result.versions)
+When("I get versions with kmd", async function(){
+    this.versions = await this.kcl.versions();
+    this.versions = this.versions.versions;
+    return this.versions
 });
 
-When("I get the status", function(){
-    this.status = this.acl.status();
+When("I get the status", async function(){
+    this.status = await this.acl.status();
+    return this.status
 });
 
-When("I get status after this block", function(){
-    this.statusAfter = this.status.then(result => this.acl.statusAfterBlock(result.lastRound));
+When("I get status after this block", async function(){
+    this.statusAfter = await this.acl.statusAfterBlock(this.status.lastRound);
+    return this.statusAfter
 });
 
-Then("the rounds should be equal", function(){
-    this.status.then(function(result){
-        this.lastRound = result.lastRound;
-    })
-    this.statusAfter.then(function(result){
-        assert.strictEqual(true, result.lastRound > this.lastRound)
-    });
+Then("the rounds should be equal", async function(){
+    assert.strictEqual(true, this.statusAfter.lastRound > this.status.lastRound)
 });
 
-Then("I can get the block info", function(){
-    this.block = this.statusAfter.then(result => this.acl.block(result.lastRound))
-    this.block.then(result => assert.deepStrictEqual(true, Number.isInteger(result.round)))
+Then("I can get the block info", async function(){
+    this.block = await this.acl.block(this.statusAfter.lastRound);
+    assert.deepStrictEqual(true, Number.isInteger(this.block.round));
 })
 
 
@@ -219,8 +216,8 @@ Then('the multisig transaction should equal the golden {string}', function(golde
 
 Then("the multisig transaction should equal the kmd signed multisig transaction", async function(){
     await this.kcl.deleteMultisig(this.handle, this.wallet_pswd, algosdk.multisigAddress(this.msig))
-    s = encoding.decode(this.stx)
-    m = encoding.encode(s.msig)
+    s = algosdk.decodeObj(this.stx)
+    m = algosdk.encodeObj(s.msig)
     assert.deepStrictEqual(Buffer.from(m), Buffer.from(this.stxKmd, "base64"))
 })
 
@@ -364,98 +361,115 @@ Then("the multisig should equal the exported multisig", function(){
 })
 
 
-Then('the node should be healthy', function () {
-    return 'pending';
+Then('the node should be healthy', async function () {
+    health = await this.acl.healthCheck();
+    assert.deepStrictEqual(health, {});
 });
 
 
-When('I get the ledger supply', function () {
-    return 'pending';
+When('I get the ledger supply', async function () {
+    this.supply = await this.acl.ledgerSupply();
+    return this.supply
 });
 
 
 Then('the ledger supply should tell me the total money', function () {
-    return 'pending';
+    assert.deepStrictEqual(true, "totalMoney" in this.supply);
 });
 
 
-Then('I get transactions by address and round', function () {
-    return 'pending';
+Then('I get transactions by address and round', async function () {
+    lastRound = await this.acl.status()
+    transactions = await this.acl.transactionByAddress(this.accounts[0], 1, lastRound["lastRound"])
+    assert.deepStrictEqual(true, Object.entries(transactions).length === 0 || "transactions" in transactions)
 });
 
 
-Then('I get transactions by address and limit', function () {
-    return 'pending';
+Then('I get pending transactions', async function () {
+    transactions = await this.acl.pendingTransactions(10)
+    assert.deepStrictEqual(true, Object.entries(transactions).length === 0 || "truncatedTxns" in transactions)
 });
 
 
-Then('I get pending transactions', function () {
-    return 'pending';
+When('I get the suggested params', async function () {
+    this.params = await this.acl.getTransactionParams()
+    return this.params
 });
 
 
-When('I get the suggested params', function () {
-    return 'pending';
-});
-
-
-When('I get the suggested fee', function () {
-    return 'pending';
+When('I get the suggested fee', async function () {
+    this.fee = await this.acl.suggestedFee()
+    this.fee = this.fee.fee
+    return this.fee
 });
 
 
 Then('the fee in the suggested params should equal the suggested fee', function () {
-    return 'pending';
+    assert.deepStrictEqual(this.params.fee, this.fee)
 });
 
 
 When('I create a bid', function () {
-    return 'pending';
+    addr = algosdk.generateAccount().addr
+    temp = {
+        "bidderKey": addr,
+        "bidAmount": 1,
+        "maxPrice": 2,
+        "bidID": 3,
+        "auctionKey": addr,
+        "auctionID": 4
+    }
+    
+    this.bid = new bid.Bid(temp);
+    this.oldBid = new bid.Bid(temp);
+    return this.bid
 });
 
 
 When('I encode and decode the bid', function () {
-    return 'pending';
+    this.bid = algosdk.decodeObj(algosdk.encodeObj(this.bid));
+    return this.bid
 });
 
 
 Then('the bid should still be the same', function () {
-    return 'pending';
+    assert.deepStrictEqual(algosdk.encodeObj(this.bid), algosdk.encodeObj(this.oldBid))
 });
 
 
 When('I decode the address', function () {
-    return 'pending';
+    this.old = this.pk
+    this.addrBytes = address.decode(this.pk).publicKey
 });
 
 
 When('I encode the address', function () {
-    return 'pending';
+    this.pk = address.encode(this.addrBytes)
 });
 
 
 Then('the address should still be the same', function () {
-    return 'pending';
+    assert.deepStrictEqual(this.pk, this.old)
 });
 
 
 When('I convert the private key back to a mnemonic', function () {
-    return 'pending';
+    this.mn = algosdk.secretKeyToMnemonic(this.sk)
 });
 
 
-Then('the mnemonic should still be the same as {string}', function (string) {
-    return 'pending';
+Then('the mnemonic should still be the same as {string}', function (mn) {
+    assert.deepStrictEqual(this.mn, mn)
 });
 
 
-Given('mnemonic for master derivation key {string}', function (string) {
-    return 'pending';
+Given('mnemonic for master derivation key {string}', function (mn) {
+    this.mdk = algosdk.mnemonicToMasterDerivationKey(mn)
 });
 
 
 When('I convert the master derivation key back to a mnemonic', function () {
-    return 'pending';
+    this.mn = algosdk.masterDerivationKeyToMnemonic(this.mdk)
 });
 
 
@@ -464,18 +478,28 @@ When('I create the flat fee payment transaction', function () {
 });
 
 
-Given('encoded multisig transaction {string}', function (string) {
-    return 'pending';
+Given('encoded multisig transaction {string}', function (encTxn) {
+    this.mtx = Buffer.from(encTxn, "base64")
+    this.stx = algosdk.decodeObj(this.mtx);
 });
 
 
 When('I append a signature to the multisig transaction', function () {
-    return 'pending';
+    addresses = this.stx.msig.subsig.slice()
+    for (i=0; i < addresses.length; i++){
+        addresses[i] = address.encode(addresses[i].pk)
+    }
+    msig = {
+        version: this.stx.msig.v,
+        threshold: this.stx.msig.thr,
+        addrs: addresses
+    }
+    this.stx = algosdk.appendSignMultisigTransaction(this.mtx, msig, this.sk).blob
 });
 
 
 When('I merge the multisig transactions', function () {
-    return 'pending';
+    this.stx = algosdk.mergeMultisigTransactions(this.mtxs)
 });
 
 
@@ -489,8 +513,13 @@ Then('it should still be the same amount of microalgos {int}', function (int) {
 });
 
 
-Given('encoded multisig transactions {string}', function (string) {
-    return 'pending';
+Given('encoded multisig transactions {string}', function (encTxns) {
+    this.mtxs = [];
+    mtxs = encTxns.split(" ")
+    for (i = 0; i < mtxs.length; i++){
+        this.mtxs.push(Buffer.from(mtxs[i], "base64"))
+    }
+
 });
 
 
@@ -611,12 +640,12 @@ Then("the wallet handle should not work", async function(){
 })
 
 When("I read a transaction from file", function(){
-    this.txn = encoding.decode(new Uint8Array(fs.readFileSync(maindir + '/raw.tx')));
+    this.txn = algosdk.decodeObj(new Uint8Array(fs.readFileSync(maindir + '/raw.tx')));
     return this.txn
 })
 
 When("I write the transaction to file", function(){
-    fs.writeFileSync(maindir + "/raw.tx", Buffer.from(encoding.encode(this.txn)));
+    fs.writeFileSync(maindir + "/raw.tx", Buffer.from(algosdk.encodeObj(this.txn)));
 })
 
 Then("the transaction should still be the same", function(){
