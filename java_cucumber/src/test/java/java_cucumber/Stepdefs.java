@@ -16,7 +16,7 @@ import com.algorand.algosdk.util.Encoder;
 import com.algorand.algosdk.util.AlgoConverter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.algorand.algosdk.auction.Bid;
-
+import com.algorand.algosdk.auction.SignedBid;
 import com.algorand.algosdk.algod.client.AlgodClient;
 import com.algorand.algosdk.algod.client.api.AlgodApi;
 import com.algorand.algosdk.algod.client.ApiException;
@@ -80,14 +80,14 @@ public class Stepdefs {
     List<byte[]> pks;
     List<String> accounts;
     BigInteger lastRound;
-    BigInteger balance;
     boolean err;
     BigInteger microalgos;
     String mnemonic;
     byte[] mdk;
     String oldAddr;
     Bid bid;
-    Bid oldBid;
+    SignedBid oldBid;
+    SignedBid sbid;
     BigInteger paramsFee;
     Supply supply;
 
@@ -558,7 +558,6 @@ public class Stepdefs {
 
     @When("I send the transaction")
     public void sendTxn() throws JsonProcessingException, ApiException{
-        balance = acl.accountInformation(pk.toString()).getAmountwithoutpendingrewards();
         txid = acl.rawTransaction(Encoder.encodeToMsgPack(stx)).getTxId();
     }
 
@@ -731,17 +730,22 @@ public class Stepdefs {
         pk = account.getAddress();
         address = pk.toString();
         bid = new Bid(pk, pk, BigInteger.valueOf(1L), BigInteger.valueOf(2L), BigInteger.valueOf(3L), BigInteger.valueOf(4L));
-        oldBid = new Bid(pk, pk, BigInteger.valueOf(1L), BigInteger.valueOf(2L), BigInteger.valueOf(3L), BigInteger.valueOf(4L));
     }
 
     @When("I encode and decode the bid")
     public void encDecBid() throws JsonProcessingException, IOException{
-        bid = Encoder.decodeFromMsgPack(Encoder.encodeToMsgPack(bid), Bid.class);
+        sbid = Encoder.decodeFromMsgPack(Encoder.encodeToMsgPack(sbid), SignedBid.class);
+    }
+
+    @When("I sign the bid")
+    public void signBid() throws NoSuchAlgorithmException{
+        sbid = account.signBid(bid);
+        oldBid = account.signBid(bid);
     }
 
     @Then("the bid should still be the same")
     public void checkBid() {
-        Assert.assertTrue(bid.equals(oldBid));
+        Assert.assertTrue(sbid.equals(oldBid));
     }
 
     @When("I decode the address")
@@ -835,5 +839,10 @@ public class Stepdefs {
     @Then("it should still be the same amount of microalgos {long}")
     public void checkMicro(long ma) {
         Assert.assertTrue(microalgos.equals(BigInteger.valueOf(ma)));
+    }
+
+    @Then("I get account information")
+    public void accInfo() throws ApiException {
+        acl.accountInformation(accounts.get(0));
     }
 }

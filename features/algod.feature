@@ -29,3 +29,8 @@ Feature: Algod
   Scenario: Version
     When I get versions with algod
     Then v1 should be in the versions
+
+  Scenario: Account information
+    Given a kmd client
+    And wallet information
+    Then I get account information

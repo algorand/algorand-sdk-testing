@@ -57,14 +57,14 @@ var statusAfter models.NodeStatus
 var msigExp kmd.ExportMultisigResponse
 var pk string
 var accounts []string
-var balance uint64
 var e bool
 var lastRound uint64
 var supply models.Supply
 var sugParams models.TransactionParams
 var sugFee models.TransactionFee
 var bid types.Bid
-var oldBid types.Bid
+var sbid types.NoteField
+var oldBid types.NoteField
 var oldPk string
 var newMn string
 var mdk types.MasterDerivationKey
@@ -177,6 +177,8 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I merge the multisig transactions`, mergeMsig)
 	s.Step(`^I convert (\d+) microalgos to algos and back`, microToAlgos)
 	s.Step(`^it should still be the same amount of microalgos (\d+)`, checkAlgos)
+	s.Step(`I get account information`, accInfo)
+	s.Step("I sign the bid", signBid)
 
 	s.BeforeScenario(func(interface{}) {
 
@@ -968,19 +970,32 @@ func checkSuggested() error {
 
 func createBid() error {
 	var err error
-	bid, err = auction.MakeBid(accounts[0], 1, 2, 3, accounts[0], 4)
-	oldBid, err = auction.MakeBid(accounts[0], 1, 2, 3, accounts[0], 4)
+	account = crypto.GenerateAccount()
+	bid, err = auction.MakeBid(account.Address.String(), 1, 2, 3, account.Address.String(), 4)
 	return err
 }
 
 func encDecBid() error {
-	temp := msgpack.Encode(bid)
-	err := msgpack.Decode(temp, &bid)
+	temp := msgpack.Encode(sbid)
+	err := msgpack.Decode(temp, &sbid)
+	return err
+}
+
+func signBid() error {
+	signedBytes, err := crypto.SignBid(account.PrivateKey, bid)
+	if err != nil {
+		return err
+	}
+	err = msgpack.Decode(signedBytes, &sbid)
+	if err != nil {
+		return err
+	}
+	err = msgpack.Decode(signedBytes, &oldBid)
 	return err
 }
 
 func checkBid() error {
-	if bid != oldBid {
+	if sbid != oldBid {
 		return fmt.Errorf("bid should still be the same")
 	}
 	return nil
@@ -1092,4 +1107,9 @@ func checkAlgos(ma int) error {
 	// return nil
 	// will fail as of now
 	return godog.ErrPending
+}
+
+func accInfo() error {
+	_, err := acl.AccountInformation(accounts[0])
+	return err
 }

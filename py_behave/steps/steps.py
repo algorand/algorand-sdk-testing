@@ -10,7 +10,6 @@ from algosdk import wallet
 from algosdk import auction
 from algosdk import util
 import os.path
-import time
 
 
 @when("I create a wallet")
@@ -312,7 +311,6 @@ def get_sk(context):
 
 @when("I send the transaction")
 def send_txn(context):
-    context.balance = context.acl.account_info(context.pk)["amountwithoutpendingrewards"]
     context.acl.send_transaction(context.stx)
 
 
@@ -421,9 +419,8 @@ def check_suggested(context):
 
 @when("I create a bid")
 def create_bid(context):
-    sk, pk = account.generate_account()
+    context.sk, pk = account.generate_account()
     context.bid = auction.Bid(pk, 1, 2, 3, pk, 4)
-    context.old = context.bid
 
 
 @when("I encode and decode the bid")
@@ -433,7 +430,13 @@ def enc_dec_bid(context):
 
 @then("the bid should still be the same")
 def check_bid(context):
-    assert context.bid == context.old
+    assert context.sbid == context.old
+
+
+@when("I sign the bid")
+def sign_bid(context):
+    context.sbid = context.bid.sign(context.sk)
+    context.old = context.bid.sign(context.sk)
 
 
 @when("I decode the address")
@@ -518,3 +521,8 @@ def txns_by_addr_round(context):
 def txns_pending(context):
     txns = context.acl.pending_transactions()
     assert (txns == {} or "truncatedTxns" in txns)
+
+
+@then("I get account information")
+def accInfo(context):
+    context.acl.account_info(context.accounts[0])
