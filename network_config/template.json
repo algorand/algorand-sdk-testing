@@ -32,7 +32,6 @@
         },
         {
             "Name": "Node",
-            "IsRelay": true,
             "Wallets": [
                 {
                     "Name": "Wallet2",
