@@ -10,10 +10,16 @@ then
     cp -r features/. js_cucumber/features
     cp -r features/. py_behave
     cd ~/node
-    ./goal network create -n network -r network -t template.json
+    ./goal network create -n network -r network -t template.json    
+    INDEXER_DIR=~/node/$(ls -d network/Node/network*)
+    KMD_DIR=~/node/$(ls -d network/Node/kmd*)
+    export KMD_DIR=$(basename $KMD_DIR)
+    cd -
+    cp network_config/config.json ~/node/network/Node
+    cd ~/node
     ./goal network start -r network
-    ./goal kmd start -d network/Node
     ./update.sh -d network/Node
+    ./goal kmd start -d network/Node
     cd -
     cd go_godog/src
     go test # for verbose reporting, add --godog.format=pretty
@@ -80,7 +86,13 @@ else
         esac
     done
     cd ~/node
-    ./goal network create -n network -r network -t template.json
+    ./goal network create -n network -r network -t template.json    
+    INDEXER_DIR=~/node/$(ls -d network/Node/network*)
+    KMD_DIR=$(ls -d network/Node/kmd*)
+    export KMD_DIR=$(basename $KMD_DIR)
+    cd -
+    cp network_config/config.json ~/node/network/Node
+    cd ~/node
     ./goal network start -r network
     ./update.sh -d network/Node
     cd -
@@ -197,7 +209,7 @@ else
         rm raw.tx
         rm txn.tx  
     fi
-fi  
+fi
 
 cd ~/node
 ./goal kmd stop -d network/Node

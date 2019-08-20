@@ -35,7 +35,7 @@ Given("an algod client", async function(){
 
 Given("a kmd client", function(){
     data_dir_path = "file://" + homedir + "/node/network/Node/";
-    kmd_folder_name = "kmd-v0.5/";
+    kmd_folder_name = process.env.KMD_DIR + "/";
     kmd_token = "";
     kmd_address = "";
     
@@ -384,6 +384,18 @@ Then('I get transactions by address and round', async function () {
 });
 
 
+Then('I get transactions by address only', async function () {
+    lastRound = await this.acl.status()
+    transactions = await this.acl.transactionByAddress(this.accounts[0])
+    assert.deepStrictEqual(true, Object.entries(transactions).length === 0 || "transactions" in transactions)
+});
+
+
+Then('I get transactions by address and date', async function () {
+    return "pending"
+});
+
+
 Then('I get pending transactions', async function () {
     transactions = await this.acl.pendingTransactions(10)
     assert.deepStrictEqual(true, Object.entries(transactions).length === 0 || "truncatedTxns" in transactions)
@@ -425,14 +437,14 @@ When('I create a bid', function () {
 
 
 When('I encode and decode the bid', function () {
-    this.bid = algosdk.decodeObj(algosdk.encodeObj(this.bid));
-    return this.bid
+    this.sbid = algosdk.decodeObj(algosdk.encodeObj(this.sbid));
+    return this.sbid
 });
 
 
 When("I sign the bid", function() {
-    this.sbid = algosdk.signBid(this.bid, this.sk)
-    this.oldBid = algosdk.signBid(this.bid, this.sk)
+    this.sbid = algosdk.decodeObj(algosdk.signBid(this.bid, this.sk));
+    this.oldBid = algosdk.decodeObj(algosdk.signBid(this.bid, this.sk));
 })
 
 
@@ -576,6 +588,8 @@ Then("the transaction should go through", async function(){
     await this.acl.statusAfterBlock(this.lastRound + 2)
     info = await this.acl.transactionInformation(this.pk, this.txid)
     assert.deepStrictEqual(true, "type" in info)
+    info = await this.acl.transactionById(this.txid)
+    assert.deepStrictEqual(true, "type" in info)
 })
 
 
@@ -667,5 +681,3 @@ Then("I do my part", async function(){
 Then("I get account information", async function(){
    return await this.acl.accountInformation(this.accounts[0])
 })
-
-

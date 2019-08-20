@@ -71,8 +71,4 @@ tar -xf ~/inst/installer.tar.gz -C ~/inst
 ~/inst/update.sh -i -c stable -p ~/node -d ~/node/data -n
 
 # don't comment this out; tests depend on the specific network setup
-cp template.json ~/node
-
-
-
-
+cp network_config/template.json ~/node
