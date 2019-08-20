@@ -1,8 +1,12 @@
 # node_modules
 js_cucumber/node_modules
 
-# java target
+# java
 java_cucumber/target
+java_cucumber/.settings/
+java_cucumber/.project
+java_cucumber/.classpath
+
 
 .DS_Store
 
@@ -13,3 +17,4 @@ go_godog/src/features/*.feature
 java_cucumber/src/test/resources/java_cucumber/*.feature
 js_cucumber/features/*.feature
 py_behave/*.feature
+

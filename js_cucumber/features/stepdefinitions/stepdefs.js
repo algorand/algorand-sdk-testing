@@ -61,16 +61,15 @@ Given("wallet information", async function(){
     this.wallet_name = "unencrypted-default-wallet";
     this.wallet_pswd = "";
 
-    this.handle = await this.kcl.listWallets().then(result => {
-        for(var i = 0; i < result.wallets.length; i++){
-            var w = result.wallets[i];
-            if (w.name == this.wallet_name) {
-                this.wallet_id = w.id;
-                return w.id
-            }
+    result = await this.kcl.listWallets()
+    for(var i = 0; i < result.wallets.length; i++){
+        var w = result.wallets[i];
+        if (w.name == this.wallet_name) {
+            this.wallet_id = w.id;
+            break
         }
-    }).then(result => this.kcl.initWalletHandle(result, this.wallet_pswd)
-    )
+    }
+    this.handle = await this.kcl.initWalletHandle(this.wallet_id, this.wallet_pswd)
     this.handle = this.handle.wallet_handle_token
     this.accounts = await this.kcl.listKeys(this.handle)
     this.accounts = this.accounts.addresses
@@ -410,8 +409,10 @@ Then('the fee in the suggested params should equal the suggested fee', function 
 
 
 When('I create a bid', function () {
-    addr = algosdk.generateAccount().addr
-    temp = {
+    addr = algosdk.generateAccount()
+    this.sk = addr.sk
+    addr = addr.addr
+    this.bid = {
         "bidderKey": addr,
         "bidAmount": 1,
         "maxPrice": 2,
@@ -419,9 +420,6 @@ When('I create a bid', function () {
         "auctionKey": addr,
         "auctionID": 4
     }
-    
-    this.bid = new bid.Bid(temp);
-    this.oldBid = new bid.Bid(temp);
     return this.bid
 });
 
@@ -432,8 +430,14 @@ When('I encode and decode the bid', function () {
 });
 
 
+When("I sign the bid", function() {
+    this.sbid = algosdk.signBid(this.bid, this.sk)
+    this.oldBid = algosdk.signBid(this.bid, this.sk)
+})
+
+
 Then('the bid should still be the same', function () {
-    assert.deepStrictEqual(algosdk.encodeObj(this.bid), algosdk.encodeObj(this.oldBid))
+    assert.deepStrictEqual(algosdk.encodeObj(this.sbid), algosdk.encodeObj(this.oldBid))
 });
 
 
@@ -519,7 +523,6 @@ Given('encoded multisig transactions {string}', function (encTxns) {
     for (i = 0; i < mtxs.length; i++){
         this.mtxs.push(Buffer.from(mtxs[i], "base64"))
     }
-
 });
 
 
@@ -659,6 +662,10 @@ Then("I do my part", async function(){
     this.txid = await this.acl.sendRawTransaction(stx)
     this.txid = this.txid.txId
     return this.txid
+})
+
+Then("I get account information", async function(){
+   return await this.acl.accountInformation(this.accounts[0])
 })
 
 
