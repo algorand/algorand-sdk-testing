@@ -31,6 +31,7 @@ import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.Assert;
+import org.threeten.bp.LocalDate;
 
 import java.util.List;
 import java.io.BufferedReader;
@@ -453,7 +454,8 @@ public class Stepdefs {
     @Given("a kmd client")
     public void kClient() throws FileNotFoundException, IOException{
         String home = System.getProperty("user.home");
-        String data_dir_path = home + "/node/network/Node/kmd-v0.5/";
+        String data_dir_path = home + "/node/network/Node/";
+        data_dir_path += System.getenv("KMD_DIR") + "/";
         BufferedReader reader = new BufferedReader(new FileReader(data_dir_path + "kmd.token"));
         String kmdToken = reader.readLine();
         reader.close();
@@ -575,6 +577,7 @@ public class Stepdefs {
         Thread.sleep(8000);
         acl.waitForBlock(lastRound.add(BigInteger.valueOf(2)));
         Assert.assertTrue(acl.transactionInformation(pk.toString(), txid).getFrom().equals(pk.toString()));
+        Assert.assertTrue(acl.transaction(txid).getFrom().equals(pk.toString()));
     }
 
     @Then("the transaction should not go through")
@@ -702,6 +705,16 @@ public class Stepdefs {
     @Then("I get transactions by address and round")
     public void txnsByAddrRound() throws ApiException{
         Assert.assertTrue(acl.transactions(accounts.get(0), BigInteger.valueOf(1), acl.getStatus().getLastRound(), null, null, BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
+    }
+
+    @Then("I get transactions by address only")
+    public void txnsByAddrOnly() throws ApiException{
+        Assert.assertTrue(acl.transactions(accounts.get(0), null, null, null, null, BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
+    }
+
+    @Then("I get transactions by address and date")
+    public void txnsByAddrDate() throws ApiException{
+        Assert.assertTrue(acl.transactions(accounts.get(0), null, null, LocalDate.now(), LocalDate.now(), BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
     }
 
     @Then("I get pending transactions")

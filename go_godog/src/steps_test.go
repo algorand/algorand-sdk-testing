@@ -11,6 +11,7 @@ import (
 	"os"
 	"strings"
 	"testing"
+	"time"
 
 	"path/filepath"
 
@@ -179,6 +180,8 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^it should still be the same amount of microalgos (\d+)`, checkAlgos)
 	s.Step(`I get account information`, accInfo)
 	s.Step("I sign the bid", signBid)
+	s.Step("I get transactions by address only", txnsByAddrOnly)
+	s.Step("I get transactions by address and date", txnsByAddrDate)
 
 	s.BeforeScenario(func(interface{}) {
 
@@ -604,7 +607,7 @@ func skEqExport() error {
 }
 
 func kmdClient() error {
-	dataDirPath := os.Getenv("HOME") + "/node/network/Node/kmd-v0.5/"
+	dataDirPath := os.Getenv("HOME") + "/node/network/Node/" + os.Getenv("KMD_DIR") + "/"
 	tokenBytes, err := ioutil.ReadFile(dataDirPath + "kmd.token")
 	if err != nil {
 		return err
@@ -776,7 +779,8 @@ func checkTxn() error {
 	if err != nil {
 		return err
 	}
-	return nil
+	_, err = acl.TransactionByID(txid)
+	return err
 }
 
 func txnFail() error {
@@ -938,10 +942,18 @@ func txnsByAddrRound() error {
 		return err
 	}
 	_, err = acl.TransactionsByAddr(accounts[0], 1, lr.LastRound)
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
+}
+
+func txnsByAddrOnly() error {
+	_, err := acl.TransactionsByAddrLimit(accounts[0], 10)
+	return err
+}
+
+func txnsByAddrDate() error {
+	fromDate := time.Now().Format("2006-01-02")
+	_, err := acl.TransactionsByAddrForDate(accounts[0], fromDate, fromDate)
+	return err
 }
 
 func txnsPending() error {

@@ -20,6 +20,8 @@ Feature: Algod
     And wallet information
     Then I get transactions by address and round
     And I get pending transactions
+    And I get transactions by address only
+    And I get transactions by address and date
     
   Scenario: Suggested params
     When I get the suggested params
