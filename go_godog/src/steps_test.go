@@ -71,8 +71,8 @@ var newMn string
 var newAccount string
 var mdk types.MasterDerivationKey
 var microalgos types.MicroAlgos
-var algosFromMicroalgos uint64
-var microalgosFromAlgos uint64
+var algosFromMicroalgos float64
+var microalgosFromAlgos types.MicroAlgos
 var bytetxs [][]byte
 
 var opt = godog.Options{
@@ -195,9 +195,8 @@ func FeatureContext(s *godog.Suite) {
 
 	s.Step(`^I can get transaction information using the TXID$`, iCanGetTransactionInformationUsingTheTXID)
 	s.Step(`^I make a new account$`, iAskAlgodToMakeANewAccount)
-	s.Step(`^change online status transaction parameters (\d+) (\d+) (\d+) "([^"]*)" "tbd" (\d+)$`, changeOnlineStatusTransactionParametersTbd)
-	s.Step(`^I create the change online status transaction$`, iCreateTheChangeOnlineStatusTransaction)
-	s.Step(`^the transaction should equal the golden "([^"]*)"$`, theTransactionShouldEqualTheGolden)
+	s.Step(`^I create a change online status transaction using parameters (\d+) (\d+) (\d+) "([^"]*)" "tbd" (\d+)$`, iCreateAChangeOnlineStatusTransactionUsingParameters)
+	s.Step(`^the status change transaction should equal the golden "([^"]*)"$`, theStatusChangeTransactionShouldEqualTheGolden)
 	s.Step(`^a balance in microAlgos (\d+)$`, aBalanceInMicroAlgos)
 	s.Step(`^I convert the microAlgo balance to Algos$`, iConvertTheMicroAlgoBalanceToAlgos)
 	s.Step(`^the amount should equal the balance in Algos (\d+)$`, theAmountShouldEqualTheBalanceInAlgos)
@@ -1157,12 +1156,12 @@ func iGetRecentTransactions() error {
 }
 
 func iGetRecentTransactionsLimitedByCount(cnt int) error {
-	_, err := acl.TransactionsByAddrLimit(accounts[0], cnt)
+	_, err := acl.TransactionsByAddrLimit(accounts[0], uint64(cnt))
 	return err
 }
 
 func iGetRecentTransactionsLimitedByFirstRoundAndLastRound(first, last int) error {
-	_, err := acl.TransactionsByAddr(accounts[0], first, last)
+	_, err := acl.TransactionsByAddr(accounts[0], uint64(first), uint64(last))
 	return err
 }
 
@@ -1172,7 +1171,7 @@ func iGetRecentTransactionsLimitedByFirstDateAndLastDate(first, last string) err
 }
 
 func iCanGetTransactionInformationUsingTheTXID() error {
-	_, err = acl.TransactionByID(txid)
+	_, err := acl.TransactionByID(txid)
 	return err
 }
 
@@ -1185,15 +1184,13 @@ func iAskAlgodToMakeANewAccount() error {
 	return err
 }
 
-func changeOnlineStatusTransactionParametersTbd(arg1, arg2, arg3 int, arg4 string, arg5 int) error {
+func iCreateAChangeOnlineStatusTransactionUsingParameters(arg1, arg2, arg3 int, arg4 string, arg5 int, arg6 string) error {
+	// this can't be done in go SDK yet!
 	return godog.ErrPending
 }
 
-func iCreateTheChangeOnlineStatusTransaction() error {
-	return godog.ErrPending
-}
-
-func theTransactionShouldEqualTheGolden(arg1 string) error {
+func theStatusChangeTransactionShouldEqualTheGolden(arg1 string) error {
+	// this can't be done in GO sdk yet!
 	return godog.ErrPending
 }
 
@@ -1208,7 +1205,7 @@ func iConvertTheMicroAlgoBalanceToAlgos() error {
 }
 
 func theAmountShouldEqualTheBalanceInAlgos(balanceInAlgos int) error {
-	correct := algosFromMicroalgos == uint64(balanceInAlgos)
+	correct := algosFromMicroalgos == float64(balanceInAlgos)
 	if !correct {
 		return fmt.Errorf("actual converted amount of algos %v varies from expected %v", algosFromMicroalgos, balanceInAlgos)
 	} else {
@@ -1216,13 +1213,13 @@ func theAmountShouldEqualTheBalanceInAlgos(balanceInAlgos int) error {
 	}
 }
 
-func iConvertTheAlgoBalanceBalToMicroAlgos(balance int) error {
-	microalgosFromAlgos = types.ToMicroAlgos(uint64(balance))
+func iConvertTheAlgoBalanceBalToMicroAlgos(balance float64) error {
+	microalgosFromAlgos = types.ToMicroAlgos(balance)
 	return nil
 }
 
 func theAmountShouldEqualTheBalanceInMicroAlgos(balanceInMicroAlgos int) error {
-	correct := microalgosFromAlgos == uint64(balanceInMicroAlgos)
+	correct := microalgosFromAlgos == types.MicroAlgos(balanceInMicroAlgos)
 	if !correct {
 		return fmt.Errorf("actual converted amount of microalgos %v varies from expected %v", algosFromMicroalgos, balanceInMicroAlgos)
 	} else {

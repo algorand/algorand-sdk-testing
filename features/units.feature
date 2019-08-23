@@ -12,4 +12,4 @@ Feature: Units
     Then the amount should equal the balance in microAlgos <microbal>
     Examples:
     | microbal | bal |
-    | 10000000 | 1   |
+    | 1000000 | 1   |

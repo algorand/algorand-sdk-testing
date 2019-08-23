@@ -98,11 +98,9 @@ Feature: Offline
     | 2304985935       |
 
   Scenario Outline: Build and sign go-online and go-offline transaction
-    Given change online status transaction parameters <fee> <fv> <lv> "<gh>" "<gen>" <online>
-    And mnemonic for private key "<mn>"
-    When I create the change online status transaction
+    When I create a change online status transaction using parameters <fee> <fv> <lv> "<gh>" "<gen>" <online> "<mn>"
     And I sign the transaction with the private key
-    Then the transaction should equal the golden "<golden>"
+    Then the status change transaction should equal the golden "<golden>"
     # example uses parameters to do both the go-online path and go-offline path
     Examples:
     | fee  | fv | lv | gh  | gen | online | mn  | golden |
