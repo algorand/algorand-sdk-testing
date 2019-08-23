@@ -541,3 +541,94 @@ def txns_pending(context):
 @then("I get account information")
 def accInfo(context):
     context.acl.account_info(context.accounts[0])
+
+
+@when('I get the node health')
+def step_impl(context):
+    context.acl.health()
+
+
+@when(u'I get recent transactions')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When I get recent transactions')
+
+
+@when(u'I get recent transactions, limited by count 0')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When I get recent transactions, limited by count 0')
+
+
+@when(u'I get recent transactions, limited by count 1')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When I get recent transactions, limited by count 1')
+
+
+@when(u'I get recent transactions limited by first round 0 and last round 1')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When I get recent transactions limited by first round 0 and last round 1')
+
+
+@when(u'I get recent transactions limited by first date ""TBD TODO mm-dd-yyyy"" and last date ""TBD mm-dd-yyyy""')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When I get recent transactions limited by first date ""TBD TODO mm-dd-yyyy"" and last date ""TBD mm-dd-yyyy""')
+
+
+@then(u'I can get transaction information using the TXID')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then I can get transaction information using the TXID')
+
+
+@when(u'I make a new account')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When I make a new account')
+
+
+@then(u'I get account information using the new account')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then I get account information using the new account')
+
+
+@when(u'I create a change online status transaction using parameters 1000 0 1 "tbdtodo" "tbdtbd" 0 "tbdmakethis"')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When I create a change online status transaction using parameters 1000 0 1 "tbdtodo" "tbdtbd" 0 "tbdmakethis"')
+
+
+@then(u'the status change transaction should equal the golden "tbdproduce"')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then the status change transaction should equal the golden "tbdproduce"')
+
+
+@when(u'I create a change online status transaction using parameters 1000 0 1 "tbdfigure it out" "tbd unique tbds for cucumber parsing" 1 "tbd todo todo"')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When I create a change online status transaction using parameters 1000 0 1 "tbdfigure it out" "tbd unique tbds for cucumber parsing" 1 "tbd todo todo"')
+
+
+@then(u'the status change transaction should equal the golden "tbd"')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then the status change transaction should equal the golden "tbd"')
+
+
+@given(u'a balance in microAlgos 1000000')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Given a balance in microAlgos 1000000')
+
+
+@when(u'I convert the microAlgo balance to Algos')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When I convert the microAlgo balance to Algos')
+
+
+@then(u'the amount should equal the balance in Algos 1')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then the amount should equal the balance in Algos 1')
+
+
+@when(u'I convert the Algo balance 1 to microAlgos')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When I convert the Algo balance 1 to microAlgos')
+
+
+@then(u'the amount should equal the balance in microAlgos 1000000')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then the amount should equal the balance in microAlgos 1000000')
+

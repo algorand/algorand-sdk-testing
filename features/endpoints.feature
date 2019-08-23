@@ -8,8 +8,8 @@ Feature: REST Endpoints
     When I get the status
 
   Scenario: Get Status-After-Block and Block Info
-    When I get the status after this block
-    And I can get the block info
+    When I get status after this block
+    Then I can get the block info
 
   Scenario: Get Node Health
     When I get the node health
