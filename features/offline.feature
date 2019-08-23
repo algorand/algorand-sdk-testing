@@ -105,6 +105,6 @@ Feature: Offline
     Then the transaction should equal the golden "<golden>"
     # example uses parameters to do both the go-online path and go-offline path
     Examples:
-    | fee | fv | lv | gh | gen | online | mn | golden |
-    | 1000 | 0 | 1  | tbd | tbd | 0     | tbd | tbd   |
-    | 1000 | 0 | 1  | tbd | tbd | 1     | tbd | tbd   |
+    | fee  | fv | lv | gh  | gen | online | mn  | golden |
+    | 1000 | 0  | 1  | tbd | tbd | 0      | tbd | tbd    |
+    | 1000 | 0  | 1  | tbd | tbd | 1      | tbd | tbd    |

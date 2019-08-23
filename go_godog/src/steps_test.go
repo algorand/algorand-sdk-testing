@@ -186,6 +186,20 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I get the node health$`, iGetTheNodeHealth)
 	s.Step(`^I get recent transactions$`, iGetRecentTransactions)
 
+	s.Step(`^I get recent transactions, limited by count (\d+)$`, iGetRecentTransactionsLimitedByCount)
+	s.Step(`^I get recent transactions limited by first round (\d+) and last round (\d+)$`, iGetRecentTransactionsLimitedByFirstRoundAndLastRound)
+	s.Step(`^I get recent transactions limited by first date ""([^"]*)"" and last date ""([^"]*)""$`, iGetRecentTransactionsLimitedByFirstDateAndLastDate)
+	s.Step(`^I can get transaction information using the TXID$`, iCanGetTransactionInformationUsingTheTXID)
+	s.Step(`^I ask algod to make a new account$`, iAskAlgodToMakeANewAccount)
+	s.Step(`^change online status transaction parameters (\d+) (\d+) (\d+) "([^"]*)" "tbd" (\d+)$`, changeOnlineStatusTransactionParametersTbd)
+	s.Step(`^I create the change online status transaction$`, iCreateTheChangeOnlineStatusTransaction)
+	s.Step(`^the transaction should equal the golden "([^"]*)"$`, theTransactionShouldEqualTheGolden)
+	s.Step(`^a balance in microAlgos (\d+)$`, aBalanceInMicroAlgos)
+	s.Step(`^I convert the microAlgo balance to Algos$`, iConvertTheMicroAlgoBalanceToAlgos)
+	s.Step(`^the amount should equal the balance in Algos (\d+)$`, theAmountShouldEqualTheBalanceInAlgos)
+	s.Step(`^I convert the Algo balance to microAlgos$`, iConvertTheAlgoBalanceToMicroAlgos)
+	s.Step(`^the amount should equal the balance in microAlgos (\d+)$`, theAmountShouldEqualTheBalanceInMicroAlgos)
+
 	s.BeforeScenario(func(interface{}) {
 		walletInfo() // populate `accounts` before each scenario
 	})
@@ -1136,4 +1150,59 @@ func iGetTheNodeHealth() error {
 func iGetRecentTransactions() error {
 	_, err := acl.TransactionsByAddrLimit(accounts[0], 0)
 	return err
+}
+
+func iGetRecentTransactionsLimitedByCount(cnt int) error {
+	_, err := acl.TransactionsByAddrLimit(accounts[0], cnt)
+	return err
+}
+
+func iGetRecentTransactionsLimitedByFirstRoundAndLastRound(first, last int) error {
+	_, err := acl.TransactionsByAddr(accounts[0], first, last)
+	return err
+}
+
+func iGetRecentTransactionsLimitedByFirstDateAndLastDate(first, last string) error {
+	_, err := acl.TransactionsByAddrForDate(accounts[0], first, last)
+	return err
+}
+
+func iCanGetTransactionInformationUsingTheTXID() error {
+	return godog.ErrPending
+}
+
+func iAskAlgodToMakeANewAccount() error {
+	return godog.ErrPending
+}
+
+func changeOnlineStatusTransactionParametersTbd(arg1, arg2, arg3 int, arg4 string, arg5 int) error {
+	return godog.ErrPending
+}
+
+func iCreateTheChangeOnlineStatusTransaction() error {
+	return godog.ErrPending
+}
+
+func theTransactionShouldEqualTheGolden(arg1 string) error {
+	return godog.ErrPending
+}
+
+func aBalanceInMicroAlgos(arg1 int) error {
+	return godog.ErrPending
+}
+
+func iConvertTheMicroAlgoBalanceToAlgos() error {
+	return godog.ErrPending
+}
+
+func theAmountShouldEqualTheBalanceInAlgos(arg1 int) error {
+	return godog.ErrPending
+}
+
+func iConvertTheAlgoBalanceToMicroAlgos() error {
+	return godog.ErrPending
+}
+
+func theAmountShouldEqualTheBalanceInMicroAlgos(arg1 int) error {
+	return godog.ErrPending
 }
