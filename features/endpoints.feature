@@ -38,7 +38,7 @@ Feature: REST Endpoints
     When I get recent transactions limited by first date "<startdate>" and last date "<lastdate>"
     Examples:
       | startdate | lastdate|
-      | "TBD TODO"  | "TBD TODO"  |
+      | "TBD TODO mm-dd-yyyy"  | "TBD mm-dd-yyyy"  |
 
   Scenario Outline: Get Transaction by ID
     Given default transaction with parameters <amt> "<note>"

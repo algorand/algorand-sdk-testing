@@ -102,7 +102,8 @@ Feature: Offline
     And I sign the transaction with the private key
     Then the status change transaction should equal the golden "<golden>"
     # example uses parameters to do both the go-online path and go-offline path
+    # TODO: why does godog expect two different defs for step 1 here, one for each possible "<gen>"?
     Examples:
     | fee  | fv | lv | gh  | gen | online | mn  | golden |
-    | 1000 | 0  | 1  | tbd | tbd | 0      | tbd | tbd    |
-    | 1000 | 0  | 1  | tbd | tbd | 1      | tbd | tbd    |
+    | 1000 | 0  | 1  | tbdtodo | tbdtbd | 0      | tbdmakethis | tbdproduce    |
+    | 1000 | 0  | 1  | tbdfigure it out | tbd unique tbds for cucumber parsing | 1      | tbd todo todo | tbd    |
