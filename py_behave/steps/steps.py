@@ -9,8 +9,8 @@ from algosdk import mnemonic
 from algosdk import wallet
 from algosdk import auction
 from algosdk import util
-import os.path
-import time
+import os
+from datetime import datetime
 
 
 @when("I create a wallet")
@@ -252,7 +252,7 @@ def sk_eq_export(context):
 def kmd_client(context):
     home = os.path.expanduser("~")
     data_dir_path = home + "/node/network/Node/"
-    kmd_folder_name = "kmd-v0.5/"
+    kmd_folder_name = os.environ["KMD_DIR"] + "/"
     kmd_token = open(data_dir_path + kmd_folder_name + "kmd.token",
                      "r").read().strip("\n")
     kmd_address = "http://" + open(data_dir_path + kmd_folder_name + "kmd.net",
@@ -312,7 +312,6 @@ def get_sk(context):
 
 @when("I send the transaction")
 def send_txn(context):
-    context.balance = context.acl.account_info(context.pk)["amountwithoutpendingrewards"]
     context.acl.send_transaction(context.stx)
 
 
@@ -328,6 +327,7 @@ def send_msig_txn(context):
 def check_txn(context):
     context.acl.status_after_block(context.last_round+2)
     assert "type" in context.acl.transaction_info(context.pk, context.txn.get_txid())
+    assert "type" in context.acl.transaction_by_id(context.txn.get_txid())
 
 
 @then("the transaction should not go through")
@@ -421,9 +421,8 @@ def check_suggested(context):
 
 @when("I create a bid")
 def create_bid(context):
-    sk, pk = account.generate_account()
+    context.sk, pk = account.generate_account()
     context.bid = auction.Bid(pk, 1, 2, 3, pk, 4)
-    context.old = context.bid
 
 
 @when("I encode and decode the bid")
@@ -433,7 +432,13 @@ def enc_dec_bid(context):
 
 @then("the bid should still be the same")
 def check_bid(context):
-    assert context.bid == context.old
+    assert context.sbid == context.old
+
+
+@when("I sign the bid")
+def sign_bid(context):
+    context.sbid = context.bid.sign(context.sk)
+    context.old = context.bid.sign(context.sk)
 
 
 @when("I decode the address")
@@ -514,7 +519,25 @@ def txns_by_addr_round(context):
     assert (txns == {} or "transactions" in txns)
 
 
+@then("I get transactions by address only")
+def txns_by_addr_only(context):
+    txns = context.acl.transactions_by_address(context.accounts[0])
+    assert (txns == {} or "transactions" in txns)
+
+
+@then("I get transactions by address and date")
+def txns_by_addr_date(context):
+    date = datetime.today().strftime('%Y-%m-%d')
+    txns = context.acl.transactions_by_address(context.accounts[0], from_date=date, to_date=date)
+    assert (txns == {} or "transactions" in txns)
+
+
 @then("I get pending transactions")
 def txns_pending(context):
     txns = context.acl.pending_transactions()
     assert (txns == {} or "truncatedTxns" in txns)
+
+
+@then("I get account information")
+def accInfo(context):
+    context.acl.account_info(context.accounts[0])

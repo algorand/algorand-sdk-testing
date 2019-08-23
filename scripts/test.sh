@@ -1,20 +1,25 @@
 #!/usr/bin/env bash
 # call from parent directory; scripts/test.sh
 
-cp -r features/. go_godog/src/features
-cp -r features/. java_cucumber/src/test/resources/java_cucumber
-cp -r features/. js_cucumber/features
-cp -r features/. py_behave
-
 rm -r ~/node/network
 
 if [ $# -eq 0 ]
 then
+    cp -r features/. go_godog/src/features
+    cp -r features/. java_cucumber/src/test/resources/java_cucumber
+    cp -r features/. js_cucumber/features
+    cp -r features/. py_behave
     cd ~/node
-    ./goal network create -n network -r network -t template.json
+    ./goal network create -n network -r network -t template.json    
+    INDEXER_DIR=~/node/$(ls -d network/Node/network*)
+    KMD_DIR=~/node/$(ls -d network/Node/kmd*)
+    export KMD_DIR=$(basename $KMD_DIR)
+    cd -
+    cp network_config/config.json ~/node/network/Node
+    cd ~/node
     ./goal network start -r network
-    ./goal kmd start -d network/Node
     ./update.sh -d network/Node
+    ./goal kmd start -d network/Node
     cd -
     cd go_godog/src
     go test # for verbose reporting, add --godog.format=pretty
@@ -81,13 +86,20 @@ else
         esac
     done
     cd ~/node
-    ./goal network create -n network -r network -t template.json
+    ./goal network create -n network -r network -t template.json    
+    INDEXER_DIR=~/node/$(ls -d network/Node/network*)
+    KMD_DIR=$(ls -d network/Node/kmd*)
+    export KMD_DIR=$(basename $KMD_DIR)
+    cd -
+    cp network_config/config.json ~/node/network/Node
+    cd ~/node
     ./goal network start -r network
     ./update.sh -d network/Node
     cd -
 
     if $rungo
     then
+        cp -r features/. go_godog/src/features
         ~/node/goal kmd start -d ~/node/network/Node
         cd go_godog/src
         if $cross
@@ -101,6 +113,7 @@ else
     else
         if $cross
         then
+            cp -r features/. go_godog/src/features
             ~/node/goal kmd start -d ~/node/network/Node
             cd go_godog/src
             go test --godog.tags=@crosstest
@@ -113,6 +126,7 @@ else
 
     if $runjava
     then
+        cp -r features/. java_cucumber/src/test/resources/java_cucumber
         cd java_cucumber 
         if $cross
         then
@@ -126,6 +140,7 @@ else
     else
         if $cross
         then
+            cp -r features/. java_cucumber/src/test/resources/java_cucumber
             ~/node/goal kmd start -d ~/node/network/Node
             cd java_cucumber
             mvn test -q -Dcucumber.options="--tags \"@crosstest\""
@@ -138,6 +153,7 @@ else
 
     if $runjs
     then
+        cp -r features/. js_cucumber/features
         ~/node/goal kmd start -d ~/node/network/Node
         cd js_cucumber
         if $cross
@@ -151,6 +167,7 @@ else
     else
         if $cross
         then
+            cp -r features/. js_cucumber/features
             ~/node/goal kmd start -d ~/node/network/Node
             cd js_cucumber
             node_modules/.bin/cucumber-js --no-strict --tags "@crosstest"
@@ -162,6 +179,7 @@ else
     fi
     if $runpy
     then
+        cp -r features/. py_behave
         ~/node/goal kmd start -d ~/node/network/Node
         cd py_behave
         if $cross
@@ -175,6 +193,7 @@ else
     else
         if $cross
         then
+            cp -r features/. py_behave
             ~/node/goal kmd start -d ~/node/network/Node
             cd py_behave
             behave --tags=crosstest -f progress2
@@ -190,7 +209,7 @@ else
         rm raw.tx
         rm txn.tx  
     fi
-fi  
+fi
 
 cd ~/node
 ./goal kmd stop -d network/Node

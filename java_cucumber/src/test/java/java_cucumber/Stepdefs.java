@@ -13,8 +13,10 @@ import com.algorand.algosdk.crypto.MultisigSignature;
 import com.algorand.algosdk.transaction.SignedTransaction;
 import com.algorand.algosdk.transaction.Transaction;
 import com.algorand.algosdk.util.Encoder;
+import com.algorand.algosdk.util.AlgoConverter;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
+import com.algorand.algosdk.auction.Bid;
+import com.algorand.algosdk.auction.SignedBid;
 import com.algorand.algosdk.algod.client.AlgodClient;
 import com.algorand.algosdk.algod.client.api.AlgodApi;
 import com.algorand.algosdk.algod.client.ApiException;
@@ -22,11 +24,14 @@ import com.algorand.algosdk.algod.client.model.*;
 import com.algorand.algosdk.kmd.client.KmdClient;
 import com.algorand.algosdk.kmd.client.api.KmdApi;
 import com.algorand.algosdk.kmd.client.model.*;
+import com.algorand.algosdk.mnemonic.Mnemonic;
 
 import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.Assert;
+import org.threeten.bp.LocalDate;
 
 import java.util.List;
 import java.io.BufferedReader;
@@ -43,11 +48,13 @@ import java.util.Arrays;
 
 public class Stepdefs {
     SignedTransaction stx;
+    SignedTransaction[] stxs;
     byte[] stxBytes;
     Transaction txn;
     String txid;
     Account account;
     Address pk;
+    String address;
     byte[] sk;
     BigInteger fee;
     BigInteger fv;
@@ -74,12 +81,16 @@ public class Stepdefs {
     List<byte[]> pks;
     List<String> accounts;
     BigInteger lastRound;
-    BigInteger balance;
     boolean err;
-
-
-
-    
+    BigInteger microalgos;
+    String mnemonic;
+    byte[] mdk;
+    String oldAddr;
+    Bid bid;
+    SignedBid oldBid;
+    SignedBid sbid;
+    BigInteger paramsFee;
+    Supply supply;
 
     @When("I create a wallet")
     public void createWallet() throws com.algorand.algosdk.kmd.client.ApiException {
@@ -189,7 +200,7 @@ public class Stepdefs {
     }
 
     @When("I create the payment transaction")
-    public void create_paytxn() throws NoSuchAlgorithmException, JsonProcessingException, IOException{
+    public void createPaytxn() throws NoSuchAlgorithmException, JsonProcessingException, IOException{
         txn = new Transaction(
                     pk,
                     fee,
@@ -410,6 +421,7 @@ public class Stepdefs {
     public void genKey()throws NoSuchAlgorithmException{
         account = new Account();
         pk = account.getAddress();
+        address = pk.toString();
     }
 
     //FIXTHIS
@@ -442,13 +454,15 @@ public class Stepdefs {
     @Given("a kmd client")
     public void kClient() throws FileNotFoundException, IOException{
         String home = System.getProperty("user.home");
-        String data_dir_path = home + "/node/network/Node/kmd-v0.5/";
+        String data_dir_path = home + "/node/network/Node/";
+        data_dir_path += System.getenv("KMD_DIR") + "/";
         BufferedReader reader = new BufferedReader(new FileReader(data_dir_path + "kmd.token"));
         String kmdToken = reader.readLine();
         reader.close();
         reader = new BufferedReader(new FileReader(data_dir_path + "kmd.net"));
         String kmdAddress = reader.readLine();
         kmdClient = new KmdClient();
+        kmdClient.setConnectTimeout(20000);
         kmdClient.setApiKey(kmdToken);
         kmdClient.setBasePath("http://" + kmdAddress);
         kcl = new KmdApi(kmdClient);
@@ -465,6 +479,7 @@ public class Stepdefs {
         reader = new BufferedReader(new FileReader(data_dir_path + "algod.net"));
         String algodAddress = reader.readLine();
         algodClient = new AlgodClient();
+        algodClient.setConnectTimeout(20000);
         algodClient.setApiKey(algodToken);
         algodClient.setBasePath("http://" + algodAddress);
         acl = new AlgodApi(algodClient);
@@ -545,7 +560,6 @@ public class Stepdefs {
 
     @When("I send the transaction")
     public void sendTxn() throws JsonProcessingException, ApiException{
-        balance = acl.accountInformation(pk.toString()).getAmountwithoutpendingrewards();
         txid = acl.rawTransaction(Encoder.encodeToMsgPack(stx)).getTxId();
     }
 
@@ -563,6 +577,7 @@ public class Stepdefs {
         Thread.sleep(8000);
         acl.waitForBlock(lastRound.add(BigInteger.valueOf(2)));
         Assert.assertTrue(acl.transactionInformation(pk.toString(), txid).getFrom().equals(pk.toString()));
+        Assert.assertTrue(acl.transaction(txid).getFrom().equals(pk.toString()));
     }
 
     @Then("the transaction should not go through")
@@ -670,6 +685,177 @@ public class Stepdefs {
         FileOutputStream out = new FileOutputStream(path);
         out.write(data);
         out.close();
-        
+    }
+
+    @Then("the node should be healthy")
+    public void nodeHealth() throws ApiException{
+        acl.healthCheck();
+    }
+
+    @When("I get the ledger supply")
+    public void getLedger() throws ApiException{
+        supply = acl.getSupply();
+    }
+
+    @Then("the ledger supply should tell me the total money")
+    public void checkLedger() {
+        Assert.assertTrue(supply.getTotalMoney() instanceof BigInteger);
+    }
+
+    @Then("I get transactions by address and round")
+    public void txnsByAddrRound() throws ApiException{
+        Assert.assertTrue(acl.transactions(accounts.get(0), BigInteger.valueOf(1), acl.getStatus().getLastRound(), null, null, BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
+    }
+
+    @Then("I get transactions by address only")
+    public void txnsByAddrOnly() throws ApiException{
+        Assert.assertTrue(acl.transactions(accounts.get(0), null, null, null, null, BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
+    }
+
+    @Then("I get transactions by address and date")
+    public void txnsByAddrDate() throws ApiException{
+        Assert.assertTrue(acl.transactions(accounts.get(0), null, null, LocalDate.now(), LocalDate.now(), BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
+    }
+
+    @Then("I get pending transactions")
+    public void pendingTxns() throws ApiException{
+        Assert.assertTrue(acl.getPendingTransactions(BigInteger.valueOf(10)).getTruncatedTxns() instanceof TransactionList);
+    }
+
+    @When("I get the suggested params")
+    public void suggestedParams() throws ApiException{
+        paramsFee = acl.transactionParams().getFee();
+    }
+
+    @When("I get the suggested fee")
+    public void suggestedFee() throws ApiException {
+        fee = acl.suggestedFee().getFee();
+    }
+
+    @Then("the fee in the suggested params should equal the suggested fee")
+    public void checkSuggested() {
+        Assert.assertTrue(paramsFee.equals(fee));
+    }
+
+    @When("I create a bid")
+    public void createBid() throws NoSuchAlgorithmException {
+        account = new Account();
+        pk = account.getAddress();
+        address = pk.toString();
+        bid = new Bid(pk, pk, BigInteger.valueOf(1L), BigInteger.valueOf(2L), BigInteger.valueOf(3L), BigInteger.valueOf(4L));
+    }
+
+    @When("I encode and decode the bid")
+    public void encDecBid() throws JsonProcessingException, IOException{
+        sbid = Encoder.decodeFromMsgPack(Encoder.encodeToMsgPack(sbid), SignedBid.class);
+    }
+
+    @When("I sign the bid")
+    public void signBid() throws NoSuchAlgorithmException{
+        sbid = account.signBid(bid);
+        oldBid = account.signBid(bid);
+    }
+
+    @Then("the bid should still be the same")
+    public void checkBid() {
+        Assert.assertTrue(sbid.equals(oldBid));
+    }
+
+    @When("I decode the address")
+    public void decAddr() throws NoSuchAlgorithmException{
+        pk = new Address(address);
+        oldAddr = address;
+    }
+
+    @When("I encode the address")
+    public void encAddr() {
+        address = pk.toString();
+    }
+
+    @Then("the address should still be the same")
+    public void checkAddr() {
+        Assert.assertEquals(address, oldAddr);
+    }
+
+    @When("I convert the private key back to a mnemonic")
+    public void skToMn() {
+        mnemonic = account.toMnemonic();
+    }
+
+    @Then("the mnemonic should still be the same as {string}")
+    public void checkMn(String mn) {
+        Assert.assertEquals(mn, mnemonic);
+    }
+
+    @Given("mnemonic for master derivation key {string}")
+    public void mnforMdk(String mn) throws GeneralSecurityException {
+        mdk = Mnemonic.toKey(mn);
+    }
+
+    @When("I convert the master derivation key back to a mnemonic")
+    public void mdkToMn() {
+        mnemonic = Mnemonic.fromKey(mdk);
+    }
+
+    @When("I create the flat fee payment transaction")
+    public void createPaytxnFlat() throws NoSuchAlgorithmException{
+        txn = new Transaction(
+                    pk,
+                    fee,
+                    fv,
+                    lv,
+                    note,
+                    gen,
+                    gh,
+                    amt,
+                    to,
+                    close
+            );    
+    }
+
+    @Given("encoded multisig transaction {string}")
+    public void encMsigTxn(String encTxn) throws IOException {
+        stx = Encoder.decodeFromMsgPack(Encoder.decodeFromBase64(encTxn), SignedTransaction.class);
+        Ed25519PublicKey[] addrlist = new Ed25519PublicKey[stx.mSig.subsigs.size()];
+        for(int x = 0; x < addrlist.length; x++){
+            addrlist[x] = stx.mSig.subsigs.get(x).key;
+        }
+        msig = new MultisigAddress(stx.mSig.version, stx.mSig.threshold, Arrays.asList(addrlist));
+    }
+
+    @When("I append a signature to the multisig transaction")
+    public void appendMsig() throws NoSuchAlgorithmException {
+        stx = account.appendMultisigTransaction(msig, stx);
+    }
+
+    @Given("encoded multisig transactions {string}")
+    public void encMsigTxns(String encTxns) throws IOException {
+        String[] txnArray = encTxns.split(" ");
+        stxs = new SignedTransaction[txnArray.length];
+        for (int t = 0; t < txnArray.length; t++){
+            stxs[t] = Encoder.decodeFromMsgPack(Encoder.decodeFromBase64(txnArray[t]), SignedTransaction.class);
+        }
+    }
+
+    @When("I merge the multisig transactions")
+    public void mergeMsig() {
+        stx = Account.mergeMultisigTransactions(stxs);
+    }
+
+    @When("I convert {long} microalgos to algos and back")
+    public void microToAlgo(long ma) {
+        microalgos = BigInteger.valueOf(ma);
+        BigDecimal algos = AlgoConverter.toAlgos(microalgos);
+        microalgos = AlgoConverter.toMicroAlgos(algos);
+    }
+
+    @Then("it should still be the same amount of microalgos {long}")
+    public void checkMicro(long ma) {
+        Assert.assertTrue(microalgos.equals(BigInteger.valueOf(ma)));
+    }
+
+    @Then("I get account information")
+    public void accInfo() throws ApiException {
+        acl.accountInformation(accounts.get(0));
     }
 }
