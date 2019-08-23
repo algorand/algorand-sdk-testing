@@ -178,13 +178,16 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I merge the multisig transactions`, mergeMsig)
 	s.Step(`^I convert (\d+) microalgos to algos and back`, microToAlgos)
 	s.Step(`^it should still be the same amount of microalgos (\d+)`, checkAlgos)
+
 	s.Step(`I get account information`, accInfo)
 	s.Step("I sign the bid", signBid)
 	s.Step("I get transactions by address only", txnsByAddrOnly)
 	s.Step("I get transactions by address and date", txnsByAddrDate)
+	s.Step(`^I get the node health$`, iGetTheNodeHealth)
+	s.Step(`^I get recent transactions$`, iGetRecentTransactions)
 
 	s.BeforeScenario(func(interface{}) {
-
+		walletInfo() // populate `accounts` before each scenario
 	})
 }
 
@@ -1123,5 +1126,14 @@ func checkAlgos(ma int) error {
 
 func accInfo() error {
 	_, err := acl.AccountInformation(accounts[0])
+	return err
+}
+
+func iGetTheNodeHealth() error {
+	return acl.HealthCheck()
+}
+
+func iGetRecentTransactions() error {
+	_, err := acl.TransactionsByAddrLimit(accounts[0], 0)
 	return err
 }
