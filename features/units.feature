@@ -8,7 +8,7 @@ Feature: Units
     Given a balance in microAlgos <microbal>
     When I convert the microAlgo balance to Algos
     Then the amount should equal the balance in Algos <bal>
-    When I convert the Algo balance to microAlgos
+    When I convert the Algo balance <bal> to microAlgos
     Then the amount should equal the balance in microAlgos <microbal>
     Examples:
     | microbal | bal |

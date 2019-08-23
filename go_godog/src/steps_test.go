@@ -68,8 +68,11 @@ var sbid types.NoteField
 var oldBid types.NoteField
 var oldPk string
 var newMn string
+var newAccount string
 var mdk types.MasterDerivationKey
 var microalgos types.MicroAlgos
+var algosFromMicroalgos uint64
+var microalgosFromAlgos uint64
 var bytetxs [][]byte
 
 var opt = godog.Options{
@@ -189,15 +192,16 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I get recent transactions, limited by count (\d+)$`, iGetRecentTransactionsLimitedByCount)
 	s.Step(`^I get recent transactions limited by first round (\d+) and last round (\d+)$`, iGetRecentTransactionsLimitedByFirstRoundAndLastRound)
 	s.Step(`^I get recent transactions limited by first date ""([^"]*)"" and last date ""([^"]*)""$`, iGetRecentTransactionsLimitedByFirstDateAndLastDate)
+
 	s.Step(`^I can get transaction information using the TXID$`, iCanGetTransactionInformationUsingTheTXID)
-	s.Step(`^I ask algod to make a new account$`, iAskAlgodToMakeANewAccount)
+	s.Step(`^I make a new account$`, iAskAlgodToMakeANewAccount)
 	s.Step(`^change online status transaction parameters (\d+) (\d+) (\d+) "([^"]*)" "tbd" (\d+)$`, changeOnlineStatusTransactionParametersTbd)
 	s.Step(`^I create the change online status transaction$`, iCreateTheChangeOnlineStatusTransaction)
 	s.Step(`^the transaction should equal the golden "([^"]*)"$`, theTransactionShouldEqualTheGolden)
 	s.Step(`^a balance in microAlgos (\d+)$`, aBalanceInMicroAlgos)
 	s.Step(`^I convert the microAlgo balance to Algos$`, iConvertTheMicroAlgoBalanceToAlgos)
 	s.Step(`^the amount should equal the balance in Algos (\d+)$`, theAmountShouldEqualTheBalanceInAlgos)
-	s.Step(`^I convert the Algo balance to microAlgos$`, iConvertTheAlgoBalanceToMicroAlgos)
+	s.Step(`^I convert the Algo balance (\d+) to microAlgos$`, iConvertTheAlgoBalanceBalToMicroAlgos)
 	s.Step(`^the amount should equal the balance in microAlgos (\d+)$`, theAmountShouldEqualTheBalanceInMicroAlgos)
 
 	s.BeforeScenario(func(interface{}) {
@@ -1168,11 +1172,17 @@ func iGetRecentTransactionsLimitedByFirstDateAndLastDate(first, last string) err
 }
 
 func iCanGetTransactionInformationUsingTheTXID() error {
-	return godog.ErrPending
+	_, err = acl.TransactionByID(txid)
+	return err
 }
 
 func iAskAlgodToMakeANewAccount() error {
-	return godog.ErrPending
+	response, err := kcl.GenerateKey(handle)
+	if err != nil {
+		return err
+	}
+	newAccount = response.Address
+	return err
 }
 
 func changeOnlineStatusTransactionParametersTbd(arg1, arg2, arg3 int, arg4 string, arg5 int) error {
@@ -1187,22 +1197,35 @@ func theTransactionShouldEqualTheGolden(arg1 string) error {
 	return godog.ErrPending
 }
 
-func aBalanceInMicroAlgos(arg1 int) error {
-	return godog.ErrPending
+func aBalanceInMicroAlgos(bal int) error {
+	microalgos = types.MicroAlgos(bal)
+	return nil
 }
 
 func iConvertTheMicroAlgoBalanceToAlgos() error {
-	return godog.ErrPending
+	algosFromMicroalgos = microalgos.ToAlgos()
+	return nil
 }
 
-func theAmountShouldEqualTheBalanceInAlgos(arg1 int) error {
-	return godog.ErrPending
+func theAmountShouldEqualTheBalanceInAlgos(balanceInAlgos int) error {
+	correct := algosFromMicroalgos == uint64(balanceInAlgos)
+	if !correct {
+		return fmt.Errorf("actual converted amount of algos %v varies from expected %v", algosFromMicroalgos, balanceInAlgos)
+	} else {
+		return nil
+	}
 }
 
-func iConvertTheAlgoBalanceToMicroAlgos() error {
-	return godog.ErrPending
+func iConvertTheAlgoBalanceBalToMicroAlgos(balance int) error {
+	microalgosFromAlgos = types.ToMicroAlgos(uint64(balance))
+	return nil
 }
 
-func theAmountShouldEqualTheBalanceInMicroAlgos(arg1 int) error {
-	return godog.ErrPending
+func theAmountShouldEqualTheBalanceInMicroAlgos(balanceInMicroAlgos int) error {
+	correct := microalgosFromAlgos == uint64(balanceInMicroAlgos)
+	if !correct {
+		return fmt.Errorf("actual converted amount of microalgos %v varies from expected %v", algosFromMicroalgos, balanceInMicroAlgos)
+	} else {
+		return nil
+	}
 }

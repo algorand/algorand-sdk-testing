@@ -52,7 +52,7 @@ Feature: REST Endpoints
       | 1234523 | X4Bl4wQ9rCo= |
 
   Scenario: Make Account And Query Info
-    When I ask algod to make a new account
+    When I make a new account
     Then I get account information using the new account
 
   Scenario: Get Current Suggested Parameters
