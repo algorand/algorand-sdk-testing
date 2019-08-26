@@ -325,6 +325,7 @@ def send_msig_txn(context):
 
 @then("the transaction should go through")
 def check_txn(context):
+    assert "type" in context.acl.pending_transaction_info(context.txn.get_txid())
     context.acl.status_after_block(context.last_round+2)
     assert "type" in context.acl.transaction_info(context.pk, context.txn.get_txid())
     assert "type" in context.acl.transaction_by_id(context.txn.get_txid())
@@ -355,26 +356,27 @@ def sign_msig_both_equal(context):
     assert encoding.msgpack_encode(context.mtx) == encoding.msgpack_encode(context.mtx_kmd)
 
 
-@when("I read a transaction from file")
-def read_txn(context):
+@when('I read a transaction "{txn}" from file "{num}"')
+def read_txn(context, txn, num):
     dir_path = os.path.dirname(os.path.realpath(__file__))
     dir_path = os.path.dirname(os.path.dirname(dir_path))
-    context.txn = transaction.retrieve_from_file(dir_path + "/raw.tx")[0]
+    context.num = num
+    context.txn = transaction.retrieve_from_file(dir_path + "/temp/raw" + num + ".tx")[0]
     
 
 @when("I write the transaction to file")
 def write_txn(context):
     dir_path = os.path.dirname(os.path.realpath(__file__))
     dir_path = os.path.dirname(os.path.dirname(dir_path))
-    transaction.write_to_file([context.txn], dir_path + "/raw.tx")
+    transaction.write_to_file([context.txn], dir_path + "/temp/raw" + context.num + ".tx")
 
 
 @then("the transaction should still be the same")
 def check_enc(context):
     dir_path = os.path.dirname(os.path.realpath(__file__))
     dir_path = os.path.dirname(os.path.dirname(dir_path))
-    new = transaction.retrieve_from_file(dir_path + "/raw.tx")
-    old = transaction.retrieve_from_file(dir_path + "/old.tx")
+    new = transaction.retrieve_from_file(dir_path + "/temp/raw" + context.num + ".tx")
+    old = transaction.retrieve_from_file(dir_path + "/temp/old" + context.num + ".tx")
     assert encoding.msgpack_encode(new[0]) == encoding.msgpack_encode(old[0])
 
 
@@ -382,7 +384,7 @@ def check_enc(context):
 def check_save_txn(context):
     dir_path = os.path.dirname(os.path.realpath(__file__))
     dir_path = os.path.dirname(os.path.dirname(dir_path))
-    stx = transaction.retrieve_from_file(dir_path + "/txn.tx")[0]
+    stx = transaction.retrieve_from_file(dir_path + "/temp/txn.tx")[0]
     txid = stx.transaction.get_txid()
     last_round = context.acl.status()["lastRound"]
     context.acl.status_after_block(last_round + 2)
@@ -541,3 +543,30 @@ def txns_pending(context):
 @then("I get account information")
 def accInfo(context):
     context.acl.account_info(context.accounts[0])
+
+
+@given('key registration transaction parameters {fee} {fv} {lv} "{gh}" "{votekey}" "{selkey}" {votefst} {votelst} {votekd} "{gen}" "{note}"')
+def keyreg_txn_params(context, fee, fv, lv, gh, votekey, selkey, votefst, votelst, votekd, gen, note):
+    context.fee = int(fee)
+    context.fv = int(fv)
+    context.lv = int(lv)
+    context.gh = gh
+    context.votekey = encoding.encode_address(base64.b64decode(votekey))
+    context.selkey = encoding.encode_address(base64.b64decode(selkey))
+    context.votefst = int(votefst)
+    context.votelst = int(votelst)
+    context.votekd = int(votekd)
+    if note == "none":
+        context.note = None
+    else:
+        context.note = base64.b64decode(note)
+    if gen == "none":
+        context.gen = None
+    else:
+        context.gen = gen
+
+
+@when("I create the key registration transaction")
+def create_keyreg_txn(context):
+    context.txn = transaction.KeyregTxn(context.pk, context.fee, context.fv, context.lv, context.gh, context.votekey, 
+                                        context.selkey, context.votefst, context.votelst, context.votekd, context.note, context.gen)
