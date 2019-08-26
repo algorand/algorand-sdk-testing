@@ -548,34 +548,36 @@ def step_impl(context):
     context.acl.health()
 
 
-@when(u'I get recent transactions')
+@when('I get recent transactions')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When I get recent transactions')
+    txns = context.acl.transactions_by_address(context.accounts[0])
+    assert (txns == {} or "transactions" in txns)
 
-
-@when(u'I get recent transactions, limited by count 0')
+@when('I get recent transactions, limited by count 0')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When I get recent transactions, limited by count 0')
+    txns = context.acl.transactions_by_address(context.accounts[0], limit=0)
+    assert (txns == {} or "transactions" in txns)
 
-
-@when(u'I get recent transactions, limited by count 1')
+@when('I get recent transactions, limited by count 1')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When I get recent transactions, limited by count 1')
+    txns = context.acl.transactions_by_address(context.accounts[0], limit=1)
+    assert (txns == {} or "transactions" in txns)
 
 
-@when(u'I get recent transactions limited by first round 0 and last round 1')
+@when('I get recent transactions limited by first round 0 and last round 1')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When I get recent transactions limited by first round 0 and last round 1')
+    txns = context.acl.transactions_by_address(context.accounts[0], first=0, last=1)
+    assert (txns == {} or "transactions" in txns)
 
-
-@when(u'I get recent transactions limited by first date ""TBD TODO mm-dd-yyyy"" and last date ""TBD mm-dd-yyyy""')
+@when('I get recent transactions limited by first date ""TBD TODO mm-dd-yyyy"" and last date ""TBD mm-dd-yyyy""')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When I get recent transactions limited by first date ""TBD TODO mm-dd-yyyy"" and last date ""TBD mm-dd-yyyy""')
+    date = datetime.today().strftime('%Y-%m-%d')
+    txns = context.acl.transactions_by_address(context.accounts[0], from_date=date, to_date=date)
+    assert (txns == {} or "transactions" in txns)
 
-
-@then(u'I can get transaction information using the TXID')
+@then('I can get transaction information using the TXID')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then I can get transaction information using the TXID')
+    assert "type" in context.acl.transaction_by_id(context.txn.get_txid())
 
 
 @when(u'I make a new account')
