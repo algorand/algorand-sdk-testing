@@ -681,3 +681,73 @@ Then("I do my part", async function(){
 Then("I get account information", async function(){
    return await this.acl.accountInformation(this.accounts[0])
 })
+
+When('I get the node health', function () {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+When('I get recent transactions', function () {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+When('I get recent transactions, limited by count {int}', function (int) {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+When('I get recent transactions limited by first round {int} and last round {int}', function (int, int2) {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+Then('I can get transaction information using the TXID', function () {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+When('I make a new account', function () {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+Then('I get account information using the new account', function () {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+When('I create a change online status transaction using parameters {int} {int} {int} {string} {string} {int} {string}', function (int, int2, int3, string, string2, int4, string3) {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+Then('the status change transaction should equal the golden {string}', function (string) {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+Given('a balance in microAlgos {int}', function (int) {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+When('I convert the microAlgo balance to Algos', function () {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+Then('the amount should equal the balance in Algos {int}', function (int) {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+When('I convert the Algo balance {int} to microAlgos', function (int) {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
+
+Then('the amount should equal the balance in microAlgos {int}', function (int) {
+    // Write code here that turns the phrase above into concrete actions
+    return 'pending';
+});
