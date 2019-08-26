@@ -34,11 +34,8 @@ Feature: REST Endpoints
       | 0  | 1  |
 
 
-  Scenario Outline: Get Transactions By Address and Date
-    When I get recent transactions limited by first date "<startdate>" and last date "<lastdate>"
-    Examples:
-      | startdate | lastdate|
-      | "TBD TODO mm-dd-yyyy"  | "TBD mm-dd-yyyy"  |
+  Scenario: Get Transactions By Address and Date
+    Then I get transactions by address and date
 
   Scenario Outline: Get Transaction by ID
     Given default transaction with parameters <amt> "<note>"

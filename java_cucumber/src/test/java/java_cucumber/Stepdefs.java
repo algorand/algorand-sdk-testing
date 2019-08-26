@@ -858,4 +858,84 @@ public class Stepdefs {
     public void accInfo() throws ApiException {
         acl.accountInformation(accounts.get(0));
     }
+
+    @When("I get the node health")
+    public void i_get_the_node_health() {
+       acl.healthCheck();
+    }
+
+    @When("I get recent transactions")
+    public void i_get_recent_transactions() {
+        Assert.assertTrue(acl.transactions(accounts.get(0), null, null, null, null, BigInteger.valueOf(0)).getTransactions() instanceof List<?>);
+    }
+
+    @When("I get recent transactions, limited by count {int}")
+    public void i_get_recent_transactions_limited_by_count(Integer cnt) {
+        Assert.assertTrue(acl.transactions(accounts.get(0), null, null, null, null, BigInteger.valueOf(cnt)).getTransactions() instanceof List<?>);
+
+    }
+
+    @When("I get recent transactions limited by first round {int} and last round {int}")
+    public void i_get_recent_transactions_limited_by_first_round_and_last_round(Integer first, Integer last) {
+        Assert.assertTrue(acl.transactions(accounts.get(0), BigInteger.valueOf(first), BigInteger.valueOf(last), null, null, BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
+    }
+
+    @Then("I can get transaction information using the TXID")
+    public void i_can_get_transaction_information_using_the_TXID() {
+        Assert.assertTrue(acl.transactionInformation(pk.toString(), txid).getFrom().equals(pk.toString()));
+    }
+
+    @When("I make a new account")
+    public void i_make_a_new_account() {
+        account = new Account();
+        pk = account.getAddress();
+        address = pk.toString();
+    }
+
+    @Then("I get account information using the new account")
+    public void i_get_account_information_using_the_new_account() {
+        acl.accountInformation(address);
+    }
+
+    @When("I create a change online status transaction using parameters {int} {int} {int} {string} {string} {int} {string}")
+    public void i_create_a_change_online_status_transaction_using_parameters(Integer int1, Integer int2, Integer int3, String string, String string2, Integer int4, String string3) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Then("the status change transaction should equal the golden {string}")
+    public void the_status_change_transaction_should_equal_the_golden(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Given("a balance in microAlgos {int}")
+    public void a_balance_in_microAlgos(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("I convert the microAlgo balance to Algos")
+    public void i_convert_the_microAlgo_balance_to_Algos() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Then("the amount should equal the balance in Algos {int}")
+    public void the_amount_should_equal_the_balance_in_Algos(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("I convert the Algo balance {int} to microAlgos")
+    public void i_convert_the_Algo_balance_to_microAlgos(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Then("the amount should equal the balance in microAlgos {int}")
+    public void the_amount_should_equal_the_balance_in_microAlgos(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
 }
