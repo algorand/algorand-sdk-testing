@@ -706,7 +706,7 @@ Then('I can get transaction information using the TXID', async function () {
     return await this.acl.transactionInformation(this.accounts[0], this.txid);
 });
 
-When('I make a new account', function () {
+When('I make a new account', async function () {
     response = await this.kcl.generateKey(this.handle);
     this.generatedAccount = response.Address;
     return this.generatedAccount;
