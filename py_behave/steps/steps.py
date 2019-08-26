@@ -580,14 +580,14 @@ def step_impl(context):
     assert "type" in context.acl.transaction_by_id(context.txn.get_txid())
 
 
-@when(u'I make a new account')
+@when('I make a new account')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When I make a new account')
+    context.pk = context.wallet.generate_key()
 
 
-@then(u'I get account information using the new account')
+@then('I get account information using the new account')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then I get account information using the new account')
+    context.acl.account_info(context.pk)
 
 
 @when(u'I create a change online status transaction using parameters 1000 0 1 "tbdtodo" "tbdtbd" 0 "tbdmakethis"')
