@@ -860,40 +860,40 @@ public class Stepdefs {
     }
 
     @When("I get the node health")
-    public void i_get_the_node_health() {
+    public void i_get_the_node_health() throws ApiException {
        acl.healthCheck();
     }
 
     @When("I get recent transactions")
-    public void i_get_recent_transactions() {
+    public void i_get_recent_transactions() throws ApiException {
         Assert.assertTrue(acl.transactions(accounts.get(0), null, null, null, null, BigInteger.valueOf(0)).getTransactions() instanceof List<?>);
     }
 
     @When("I get recent transactions, limited by count {int}")
-    public void i_get_recent_transactions_limited_by_count(Integer cnt) {
+    public void i_get_recent_transactions_limited_by_count(Integer cnt) throws ApiException {
         Assert.assertTrue(acl.transactions(accounts.get(0), null, null, null, null, BigInteger.valueOf(cnt)).getTransactions() instanceof List<?>);
 
     }
 
     @When("I get recent transactions limited by first round {int} and last round {int}")
-    public void i_get_recent_transactions_limited_by_first_round_and_last_round(Integer first, Integer last) {
+    public void i_get_recent_transactions_limited_by_first_round_and_last_round(Integer first, Integer last) throws ApiException {
         Assert.assertTrue(acl.transactions(accounts.get(0), BigInteger.valueOf(first), BigInteger.valueOf(last), null, null, BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
     }
 
     @Then("I can get transaction information using the TXID")
-    public void i_can_get_transaction_information_using_the_TXID() {
+    public void i_can_get_transaction_information_using_the_TXID() throws ApiException {
         Assert.assertTrue(acl.transactionInformation(pk.toString(), txid).getFrom().equals(pk.toString()));
     }
 
     @When("I make a new account")
-    public void i_make_a_new_account() {
+    public void i_make_a_new_account() throws NoSuchAlgorithmException {
         account = new Account();
         pk = account.getAddress();
         address = pk.toString();
     }
 
     @Then("I get account information using the new account")
-    public void i_get_account_information_using_the_new_account() {
+    public void i_get_account_information_using_the_new_account() throws ApiException {
         acl.accountInformation(address);
     }
 
