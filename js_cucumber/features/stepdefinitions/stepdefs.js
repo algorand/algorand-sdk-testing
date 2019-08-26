@@ -682,39 +682,38 @@ Then("I get account information", async function(){
    return await this.acl.accountInformation(this.accounts[0])
 })
 
-When('I get the node health', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+When('I get the node health', async function () {
+    return await this.acl.healthCheck()
 });
 
-When('I get recent transactions', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+When('I get recent transactions', async function () {
+    transactions = await this.acl.transactionByAddress(this.accounts[0]);
+    return transactions
 });
 
 When('I get recent transactions, limited by count {int}', function (int) {
     // Write code here that turns the phrase above into concrete actions
     return 'pending';
+    // TODO EVAN! LOOKS LIKE WE HAVE A MISSING FEATURE
 });
 
-When('I get recent transactions limited by first round {int} and last round {int}', function (int, int2) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+When('I get recent transactions limited by first round {int} and last round {int}', async function (first, last) {
+    transactions = await this.acl.transactionByAddress(this.accounts[0], first, last);
+    return transactions
 });
 
-Then('I can get transaction information using the TXID', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Then('I can get transaction information using the TXID', async function () {
+    return await this.acl.transactionInformation(this.accounts[0], this.txid);
 });
 
 When('I make a new account', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    response = await this.kcl.generateKey(this.handle);
+    this.generatedAccount = response.Address;
+    return this.generatedAccount;
 });
 
-Then('I get account information using the new account', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Then('I get account information using the new account', async function () {
+    return await this.acl.accountInformation(this.generatedAccount);
 });
 
 When('I create a change online status transaction using parameters {int} {int} {int} {string} {string} {int} {string}', function (int, int2, int3, string, string2, int4, string3) {
