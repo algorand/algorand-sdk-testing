@@ -908,34 +908,4 @@ public class Stepdefs {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
-
-    @Given("a balance in microAlgos {int}")
-    public void a_balance_in_microAlgos(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @When("I convert the microAlgo balance to Algos")
-    public void i_convert_the_microAlgo_balance_to_Algos() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @Then("the amount should equal the balance in Algos {int}")
-    public void the_amount_should_equal_the_balance_in_Algos(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @When("I convert the Algo balance {int} to microAlgos")
-    public void i_convert_the_Algo_balance_to_microAlgos(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @Then("the amount should equal the balance in microAlgos {int}")
-    public void the_amount_should_equal_the_balance_in_microAlgos(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
 }

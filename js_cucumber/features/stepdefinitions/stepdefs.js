@@ -725,28 +725,3 @@ Then('the status change transaction should equal the golden {string}', function 
     // Write code here that turns the phrase above into concrete actions
     return 'pending';
 });
-
-Given('a balance in microAlgos {int}', function (int) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-});
-
-When('I convert the microAlgo balance to Algos', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-});
-
-Then('the amount should equal the balance in Algos {int}', function (int) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-});
-
-When('I convert the Algo balance {int} to microAlgos', function (int) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-});
-
-Then('the amount should equal the balance in microAlgos {int}', function (int) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-});

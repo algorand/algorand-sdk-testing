@@ -608,29 +608,3 @@ def step_impl(context):
 @then(u'the status change transaction should equal the golden "tbd"')
 def step_impl(context):
     raise NotImplementedError(u'STEP: Then the status change transaction should equal the golden "tbd"')
-
-
-@given(u'a balance in microAlgos 1000000')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Given a balance in microAlgos 1000000')
-
-
-@when(u'I convert the microAlgo balance to Algos')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: When I convert the microAlgo balance to Algos')
-
-
-@then(u'the amount should equal the balance in Algos 1')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Then the amount should equal the balance in Algos 1')
-
-
-@when(u'I convert the Algo balance 1 to microAlgos')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: When I convert the Algo balance 1 to microAlgos')
-
-
-@then(u'the amount should equal the balance in microAlgos 1000000')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Then the amount should equal the balance in microAlgos 1000000')
-

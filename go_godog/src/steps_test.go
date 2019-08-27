@@ -197,11 +197,6 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I make a new account$`, iAskAlgodToMakeANewAccount)
 	s.Step(`^I create a change online status transaction using parameters (\d+) (\d+) (\d+) "([^"]*)" "tbd" (\d+)$`, iCreateAChangeOnlineStatusTransactionUsingParameters)
 	s.Step(`^the status change transaction should equal the golden "([^"]*)"$`, theStatusChangeTransactionShouldEqualTheGolden)
-	s.Step(`^a balance in microAlgos (\d+)$`, aBalanceInMicroAlgos)
-	s.Step(`^I convert the microAlgo balance to Algos$`, iConvertTheMicroAlgoBalanceToAlgos)
-	s.Step(`^the amount should equal the balance in Algos (\d+)$`, theAmountShouldEqualTheBalanceInAlgos)
-	s.Step(`^I convert the Algo balance (\d+) to microAlgos$`, iConvertTheAlgoBalanceBalToMicroAlgos)
-	s.Step(`^the amount should equal the balance in microAlgos (\d+)$`, theAmountShouldEqualTheBalanceInMicroAlgos)
 
 	s.BeforeScenario(func(interface{}) {
 		walletInfo() // populate `accounts` before each scenario
@@ -1192,37 +1187,4 @@ func iCreateAChangeOnlineStatusTransactionUsingParameters(arg1, arg2, arg3 int, 
 func theStatusChangeTransactionShouldEqualTheGolden(arg1 string) error {
 	// this can't be done in GO sdk yet!
 	return godog.ErrPending
-}
-
-func aBalanceInMicroAlgos(bal int) error {
-	microalgos = types.MicroAlgos(bal)
-	return nil
-}
-
-func iConvertTheMicroAlgoBalanceToAlgos() error {
-	algosFromMicroalgos = microalgos.ToAlgos()
-	return nil
-}
-
-func theAmountShouldEqualTheBalanceInAlgos(balanceInAlgos int) error {
-	correct := algosFromMicroalgos == float64(balanceInAlgos)
-	if !correct {
-		return fmt.Errorf("actual converted amount of algos %v varies from expected %v", algosFromMicroalgos, balanceInAlgos)
-	} else {
-		return nil
-	}
-}
-
-func iConvertTheAlgoBalanceBalToMicroAlgos(balance float64) error {
-	microalgosFromAlgos = types.ToMicroAlgos(balance)
-	return nil
-}
-
-func theAmountShouldEqualTheBalanceInMicroAlgos(balanceInMicroAlgos int) error {
-	correct := microalgosFromAlgos == types.MicroAlgos(balanceInMicroAlgos)
-	if !correct {
-		return fmt.Errorf("actual converted amount of microalgos %v varies from expected %v", algosFromMicroalgos, balanceInMicroAlgos)
-	} else {
-		return nil
-	}
 }
