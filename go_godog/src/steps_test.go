@@ -68,12 +68,11 @@ var sbid types.NoteField
 var oldBid types.NoteField
 var oldPk string
 var newMn string
-var newAccount string
 var mdk types.MasterDerivationKey
 var microalgos types.MicroAlgos
-var algosFromMicroalgos float64
-var microalgosFromAlgos types.MicroAlgos
 var bytetxs [][]byte
+var newAccount string
+var statusChangeTxBytes []byte
 
 var opt = godog.Options{
 	Output: colors.Colored(os.Stdout),
@@ -1120,20 +1119,16 @@ func mergeMsig() (err error) {
 }
 
 func microToAlgos(ma int) error {
-	// microalgos = types.MicroAlgos(ma)
-	// microalgos = types.ToMicroAlgos(microalgos.ToAlgos())
-	// return nil
-	// will fail as of now
-	return godog.ErrPending
+	microalgos = types.MicroAlgos(ma)
+	microalgos = types.ToMicroAlgos(microalgos.ToAlgos())
+	return nil
 }
 
 func checkAlgos(ma int) error {
-	// if types.MicroAlgos(ma) != microalgos {
-	// 	return fmt.Errorf("Converting to and from algos should not change the value")
-	// }
-	// return nil
-	// will fail as of now
-	return godog.ErrPending
+	if types.MicroAlgos(ma) != microalgos {
+		return fmt.Errorf("converting microalgos to and from algos should not change the value - microalgos in: %v - as algos: %v - microalgos out: %v", ma, microalgos.ToAlgos(), microalgos)
+	}
+	return nil
 }
 
 func accInfo() error {
@@ -1179,12 +1174,25 @@ func iAskAlgodToMakeANewAccount() error {
 	return err
 }
 
-func iCreateAChangeOnlineStatusTransactionUsingParameters(arg1, arg2, arg3 int, arg4 string, arg5 int, arg6 string) error {
-	// this can't be done in go SDK yet!
+func iCreateAChangeOnlineStatusTransactionUsingParameters(fee, firstRound, lastRound int, genesisID, genesisHash string, passphrase string) error {
 	return godog.ErrPending
+	//statusChangeTx, err := transaction.MakeKeyRegTxnWithFlatFee(account, fee, firstRound, lastRound, note, genesisID, genesisHash, voteKey, selectionKey, voteFirst, voteLast, voteKeyDilution)
+	//if err != nil {
+	//	return err
+	//}
+	//privateKey, err := mnemonic.ToPrivateKey(passphrase)
+	//_, statusChangeTxBytes, err = crypto.SignTransaction(privateKey, statusChangeTx)
+	//return err
 }
 
-func theStatusChangeTransactionShouldEqualTheGolden(arg1 string) error {
-	// this can't be done in GO sdk yet!
-	return godog.ErrPending
+func theStatusChangeTransactionShouldEqualTheGolden(golden string) error {
+	goldenDecoded, err := base64.StdEncoding.DecodeString(golden)
+	if err != nil {
+		return err
+	}
+
+	if !bytes.Equal(goldenDecoded, statusChangeTxBytes) {
+		return fmt.Errorf(base64.StdEncoding.EncodeToString(statusChangeTxBytes))
+	}
+	return nil
 }
