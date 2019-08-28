@@ -98,12 +98,11 @@ Feature: Offline
     | 2304985935       |
 
   Scenario Outline: Build and sign go-online and go-offline transaction
-    When I create a change online status transaction using parameters <fee> <fv> <lv> "<gh>" "<gen>" <online> "<mn>"
+    When I create a change online status transaction using parameters <fee> <fv> <lv> <votefirst> <votelast> <votedilution> "<ghb64>" "<sk>" "<votepkb64>" "<selectionpkb64>"
     And I sign the transaction with the private key
     Then the status change transaction should equal the golden "<golden>"
     # example uses parameters to do both the go-online path and go-offline path
-    # TODO: why does godog expect two different defs for step 1 here, one for each possible "<gen>"?
     Examples:
-    | fee  | fv | lv | gh  | gen | online | mn  | golden |
-    | 1000 | 0  | 1  | tbdtodo | tbdtbd | 0      | tbdmakethis | tbdproduce    |
-    | 1000 | 0  | 1  | tbdfigure it out | tbd unique tbds for cucumber parsing | 1      | tbd todo todo | tbd    |
+    | fee  | fv      | lv        | votefirst | votelast     | votedilution | ghb64                                        | votepkb64                                    | selectionpkb64                               | sk                                                                                                                                                         | golden     |
+    | 4000 | 322575  | 323675    | 10000     | 10111        | 11           | JgsgCaCTqIaLeVhyL6XlRu3n7Rfk2FxMeK+wRSaQ7dI= | Kv7QI7chi1y6axoy+t7wzAVpePqRq/rkjzWh/RMYyLo= | bPgrv4YogPcdaUAxrt1QysYZTVyRAuUMD4zQmCu9llc= | awful drop leaf tennis indoor begin mandate discover uncle seven only coil atom any hospital uncover make any climb actor armed measure need above hundred | todogolden |
+    | 4000 | 322575  | 323675    | 10000     | 10111        | 11           | JgsgCaCTqIaLeVhyL6XlRu3n7Rfk2FxMeK+wRSaQ7dI= |                                              |                                              | awful drop leaf tennis indoor begin mandate discover uncle seven only coil atom any hospital uncover make any climb actor armed measure need above hundred | todogolden |
