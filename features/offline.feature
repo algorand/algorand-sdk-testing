@@ -89,10 +89,22 @@ Feature: Offline
     Then it should still be the same amount of microalgos <microalgos>
 
     Examples:
-    | microalgos       |
-    | 9999999999999999 |
-    | 9999999999999998 |
-    | 9999999999999997 |
-    | 9999999999999996 |
-    | 9999999999999995 |
-    | 2304985935       |
+    | microalgos   |
+    | 123456789012 |
+    | 123456789013 |
+    | 123456789014 |
+    | 123456789015 |
+    | 123456789016 |
+    | 123456789017 |
+  
+  Scenario Outline: Create key registration transaction
+    Given key registration transaction parameters <fee> <fv> <lv> "<gh>" "<votekey>" "<selkey>" <votefst> <votelst> <votekd> "<gen>" "<note>"
+    And mnemonic for private key "<mn>"
+    When I create the key registration transaction
+    And I sign the transaction with the private key
+    Then the signed transaction should equal the golden "<golden>"
+
+    Examples:
+    | fee | fv    | lv    | gh                                           | votekey                                      | selkey                                       | votefst | votelst | votekd | gen          | note         | mn                                                                                                                                                                   | golden                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+    | 4   | 12466 | 13466 | JgsgCaCTqIaLeVhyL6XlRu3n7Rfk2FxMeK+wRSaQ7dI= | JgsgCaCTqIaLeVhyL6XlRu3n7Rfk2FxMeK+wRSaQ7dI= | JgsgCaCTqIaLeVhyL6XlRu3n7Rfk2FxMeK+wRSaQ7dI= | 100     | 102     | 1234   | devnet-v33.0 | X4Bl4wQ9rCo= | advice pudding treat near rule blouse same whisper inner electric quit surface sunny dismiss leader blood seat clown cost exist hospital century reform able sponsor | gqNzaWfEQCzedNPqrhDsDBMY9vktJhaXjbJ2MJqr6Opt7Xae1uNQPVczCPin3feuk9YqhmmmLVNbzOgAS6nRh+K8MhgF+AKjdHhujaNmZWXNBQyiZnbNMLKjZ2VurGRldm5ldC12MzMuMKJnaMQgJgsgCaCTqIaLeVhyL6XlRu3n7Rfk2FxMeK+wRSaQ7dKibHbNNJqkbm90ZcQIX4Bl4wQ9rCqmc2Vsa2V5xCAmCyAJoJOohot5WHIvpeVG7eftF+TYXEx4r7BFJpDt0qNzbmTEIOfw+E0GgR358xyNh4sRVfRnHVGhhcIAkIZn9ElYcGihpHR5cGWma2V5cmVnp3ZvdGVmc3RkpnZvdGVrZM0E0qd2b3Rla2V5xCAmCyAJoJOohot5WHIvpeVG7eftF+TYXEx4r7BFJpDt0qd2b3RlbHN0Zg== |
+    | 5   | 19    | 345   | JgsgCaCTqIaLeVhyL6XlRu3n7Rfk2FxMeK+wRSaQ7dI= | oImqaSLjuZj63/bNSAjd+eAh5JROOJ6j1cY4eGaJGX4= | uw62NBVKGAtqJ03XdSlcNtO6eq5rXbDMEMVGLbDzMN8= | 123     | 1000    | 65     | none         | none         | advice pudding treat near rule blouse same whisper inner electric quit surface sunny dismiss leader blood seat clown cost exist hospital century reform able sponsor | gqNzaWfEQNi9HHxsOAUwjXOHgpsEJvpe+b6hjLjIoWM9P389HMZ4RWZSB8uVvk1Kg+e52NvxTI3Vm9+Vl9W+dATm3m55ZAOjdHhui6NmZWXNBaWiZnYTomdoxCAmCyAJoJOohot5WHIvpeVG7eftF+TYXEx4r7BFJpDt0qJsds0BWaZzZWxrZXnEILsOtjQVShgLaidN13UpXDbTunqua12wzBDFRi2w8zDfo3NuZMQg5/D4TQaBHfnzHI2HixFV9GcdUaGFwgCQhmf0SVhwaKGkdHlwZaZrZXlyZWendm90ZWZzdHumdm90ZWtkQad2b3Rla2V5xCCgiappIuO5mPrf9s1ICN354CHklE44nqPVxjh4ZokZfqd2b3RlbHN0zQPo                                                 |
