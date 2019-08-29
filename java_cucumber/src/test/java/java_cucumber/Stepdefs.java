@@ -10,6 +10,7 @@ import com.algorand.algosdk.crypto.Digest;
 import com.algorand.algosdk.crypto.Ed25519PublicKey;
 import com.algorand.algosdk.crypto.MultisigAddress;
 import com.algorand.algosdk.crypto.MultisigSignature;
+import com.algorand.algosdk.crypto.MultisigSignature.MultisigSubsig;
 import com.algorand.algosdk.transaction.SignedTransaction;
 import com.algorand.algosdk.transaction.Transaction;
 import com.algorand.algosdk.util.Encoder;
@@ -347,18 +348,21 @@ public class Stepdefs {
         acl.getBlock(status.getLastRound().add(BigInteger.valueOf(1)));
     }
 
-    //FIXTHIS
     @When("I import the multisig")
-    public void importMsig() {
-        // ImportMultisigRequest req = new ImportMultisigRequest();
-        throw new cucumber.api.PendingException();
+    public void importMsig() throws com.algorand.algosdk.kmd.client.ApiException{
+        ImportMultisigRequest req = new ImportMultisigRequest();
+        req.setMultisigVersion(msig.version);
+        req.setThreshold(msig.threshold);
+        req.setWalletHandleToken(handle);
+        req.setPks(msig.publicKeys);
+        kcl.importMultisig(req);
     }
 
     @Then("the multisig should be in the wallet")
     public void msigInWallet() throws com.algorand.algosdk.kmd.client.ApiException{
         ListMultisigRequest req = new ListMultisigRequest();
         req.setWalletHandleToken(handle);
-        List<String> msigs = kcl.listMultisg(req).getAddresses();
+        List<String> msigs = kcl.listMultisig(req).getAddresses();
         boolean exists = false;
         for (String m : msigs){
             if (m.equals(msig.toString())){
@@ -381,7 +385,7 @@ public class Stepdefs {
     public void msigEq(){
         boolean eq = true;
         for (int x = 0; x < msig.publicKeys.size(); x++){
-            if (msig.publicKeys.get(x).getBytes() != pks.get(x)){
+            if (!Encoder.encodeToBase64(msig.publicKeys.get(x).getBytes()).equals(Encoder.encodeToBase64(pks.get(x)))){
                 eq = false;
             }
         }
@@ -400,11 +404,13 @@ public class Stepdefs {
     public void msigNotInWallet()throws com.algorand.algosdk.kmd.client.ApiException{
         ListMultisigRequest req = new ListMultisigRequest();
         req.setWalletHandleToken(handle);
-        List<String> msigs = kcl.listMultisg(req).getAddresses();
+        List<String> msigs = kcl.listMultisig(req).getAddresses();
         boolean exists = false;
-        for (String m : msigs){
-            if (m.equals(msig.toString())){
-                exists = true;
+        if (msigs != null) {
+            for (String m : msigs){
+                if (m.equals(msig.toString())){
+                    exists = true;
+                }
             }
         }
         Assert.assertTrue(!exists);
@@ -456,18 +462,19 @@ public class Stepdefs {
     }
 
     @When("I generate a key")
-    public void genKey()throws NoSuchAlgorithmException{
+    public void genKey()throws NoSuchAlgorithmException, GeneralSecurityException{
         account = new Account();
         pk = account.getAddress();
         address = pk.toString();
+        sk = Mnemonic.toKey(account.toMnemonic());
     }
 
-    //FIXTHIS
     @When("I import the key")
     public void importKey() throws com.algorand.algosdk.kmd.client.ApiException{
-        // ImportKeyRequest req = new ImportKeyRequest();
-        // req.setWalletHandleToken(handle);
-        throw new cucumber.api.PendingException();
+        ImportKeyRequest req = new ImportKeyRequest();
+        req.setWalletHandleToken(handle);
+        req.setPrivateKey(sk);
+        kcl.importKey(req);
     }
 
     @When("I get the private key")
@@ -486,7 +493,13 @@ public class Stepdefs {
         req.setAddress(pk.toString());
         req.setWalletHandleToken(handle);
         req.setWalletPassword(walletPswd);
-        Assert.assertEquals(kcl.exportKey(req).getPrivateKey(), sk);
+        byte[] exported = Arrays.copyOfRange(kcl.exportKey(req).getPrivateKey(), 0, 32);
+        Assert.assertEquals(Encoder.encodeToBase64(exported), Encoder.encodeToBase64(sk));
+        DeleteKeyRequest deleteReq = new DeleteKeyRequest();
+        deleteReq.setAddress(pk.toString());
+        deleteReq.setWalletHandleToken(handle);
+        deleteReq.setWalletPassword(walletPswd);
+        kcl.deleteKey(deleteReq);
     }
 
     @Given("a kmd client")
@@ -640,19 +653,31 @@ public class Stepdefs {
         Assert.assertEquals(Encoder.encodeToBase64(stxBytes), Encoder.encodeToBase64(Encoder.encodeToMsgPack(stx)));
     }
 
-    // FIXTHIS
     @When("I sign the multisig transaction with kmd")
-    public void signMsigKmd() throws JsonProcessingException, com.algorand.algosdk.kmd.client.ApiException{
-        // may need to import account first
-        // SignMultisigRequest req = new SignMultisigRequest();
-        // req.setTransaction(Encoder.encodeToMsgPack(txn));
-        // req.setWalletHandleToken(handle);
-        // req.setWalletPassword(walletPswd);
-        throw new cucumber.api.PendingException();
+    public void signMsigKmd() throws JsonProcessingException, com.algorand.algosdk.kmd.client.ApiException, IOException{
+        ImportMultisigRequest importReq = new ImportMultisigRequest();
+        importReq.setMultisigVersion(msig.version);
+        importReq.setThreshold(msig.threshold);
+        importReq.setWalletHandleToken(handle);
+        importReq.setPks(msig.publicKeys);
+        kcl.importMultisig(importReq);
+
+        SignMultisigRequest req = new SignMultisigRequest();
+        req.setTransaction(Encoder.encodeToMsgPack(txn));
+        req.setWalletHandleToken(handle);
+        req.setWalletPassword(walletPswd);
+        req.setPublicKey(pk.getBytes());
+        stxBytes = kcl.signMultisigTransaction(req).getMultisig();
     }
+    
     @Then("the multisig transaction should equal the kmd signed multisig transaction")
-    public void signMsigBothEqual() throws JsonProcessingException {
-        Assert.assertEquals(Encoder.encodeToBase64(stxBytes), Encoder.encodeToBase64(Encoder.encodeToMsgPack(stx)));
+    public void signMsigBothEqual() throws JsonProcessingException, com.algorand.algosdk.kmd.client.ApiException {
+        Assert.assertEquals(Encoder.encodeToBase64(stxBytes), Encoder.encodeToBase64(Encoder.encodeToMsgPack(stx.mSig)));
+        DeleteMultisigRequest req = new DeleteMultisigRequest();
+        req.setAddress(msig.toString());
+        req.setWalletHandleToken(handle);
+        req.setWalletPassword(walletPswd);
+        kcl.deleteMultisig(req);
     }
 
     @When("I read a transaction {string} from file {string}")
