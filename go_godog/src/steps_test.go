@@ -194,7 +194,7 @@ func FeatureContext(s *godog.Suite) {
 
 	s.Step(`^I can get transaction information using the TXID$`, iCanGetTransactionInformationUsingTheTXID)
 	s.Step(`^I make a new account$`, iAskAlgodToMakeANewAccount)
-	s.Step(`^I create a change online status transaction using parameters (\d+) (\d+) (\d+) "([^"]*)" "tbd" (\d+)$`, iCreateAChangeOnlineStatusTransactionUsingParameters)
+	s.Step(`^I create a change online status transaction using parameters (\d+) (\d+) (\d+) (\d+) (\d+) (\d+) "([^"]*)" "([^"]*)" "([^"]*)" "([^"]*)" "([^"]*)"$`, iCreateAChangeOnlineStatusTransactionUsingParameters)
 	s.Step(`^the status change transaction should equal the golden "([^"]*)"$`, theStatusChangeTransactionShouldEqualTheGolden)
 
 	s.BeforeScenario(func(interface{}) {
@@ -1174,8 +1174,11 @@ func iAskAlgodToMakeANewAccount() error {
 	return err
 }
 
-func iCreateAChangeOnlineStatusTransactionUsingParameters(fee, firstRound, lastRound int, genesisID, genesisHash string, passphrase string) error {
-	return godog.ErrPending
+func iCreateAChangeOnlineStatusTransactionUsingParameters(fee, firstRound, lastRound, voteFirst, voteLast, voteKeyDilution int, genesisID, genesisHash, votepkb64, selectionpkb64, passphrase string) error {
+	//return godog.ErrPending
+	//voteKey := "TODO convert votepkb64 string into expected type" + votepkb64
+	//selectionKey := "TODO same" + selectionpkb64
+	return fmt.Errorf("numbers: %v %v %v %v %v %v strings: %v %v %v %v %v", fee, firstRound, lastRound, voteFirst, voteLast, voteKeyDilution, genesisID, genesisHash, votepkb64, selectionpkb64, passphrase)
 	//statusChangeTx, err := transaction.MakeKeyRegTxnWithFlatFee(account, fee, firstRound, lastRound, note, genesisID, genesisHash, voteKey, selectionKey, voteFirst, voteLast, voteKeyDilution)
 	//if err != nil {
 	//	return err
