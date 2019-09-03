@@ -7,7 +7,6 @@ const fs = require('fs');
 const path = require("path")
 const maindir = path.dirname(path.dirname(path.dirname(__dirname)))
 const homedir = require('os').homedir()
-const bid = require("algosdk/src/bid")
 
 setDefaultTimeout(60000)
 
@@ -119,11 +118,16 @@ Given("payment transaction parameters {int} {int} {int} {string} {string} {strin
     this.lv = parseInt(lv)
     this.gh = gh
     this.to = to
-    this.close = close
+    if (close !== "none"){
+        this.close = close
+    }
     this.amt = parseInt(amt)
-    this.gen = gen
-    this.note = new Uint8Array(Buffer.from(note, "base64"))
-
+    if (gen !== "none") {
+        this.gen = gen
+    }
+    if (note !== "none") {
+        this.note = new Uint8Array(Buffer.from(note, "base64"))
+    }
 })
 
 Given("mnemonic for private key {string}", function(mn) {
@@ -392,7 +396,9 @@ Then('I get transactions by address only', async function () {
 
 
 Then('I get transactions by address and date', async function () {
-    return "pending"
+    fromDate = (new Date()).toISOString().split("T")[0]
+    transactions = await this.acl.transactionByAddressAndDate(this.accounts[0])
+    assert.deepStrictEqual(true, Object.entries(transactions).length === 0 || "transactions" in transactions)
 });
 
 
@@ -490,7 +496,26 @@ When('I convert the master derivation key back to a mnemonic', function () {
 
 
 When('I create the flat fee payment transaction', function () {
-    return 'pending';
+    this.txn = {
+        "to": this.to,
+        "fee": this.fee,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "genesisHash": this.gh,
+        "flatFee": true
+    };
+    if (this.gen) {
+        this.txn["genesisID"] = this.gen
+    }
+    if (this.close) {
+        this.txn["closeRemainderTo"] = this.close
+    }
+    if (this.note) {
+        this.txn["note"] = this.note
+    }
+    if (this.amt) {
+        this.txn["amount"] = this.amt
+    }
 });
 
 
@@ -519,13 +544,13 @@ When('I merge the multisig transactions', function () {
 });
 
 
-When('I convert {int} microalgos to algos and back', function (int) {
-    return 'pending';
+When('I convert {int} microalgos to algos and back', function (microalgos) {
+    this.microalgos = algosdk.algosToMicroalgos(algosdk.microalgosToAlgos(microalgos)).toString()
 });
 
 
-Then('it should still be the same amount of microalgos {int}', function (int) {
-    return 'pending';
+Then('it should still be the same amount of microalgos {int}', function (microalgos) {
+    assert.deepStrictEqual(this.microalgos, microalgos.toString())
 });
 
 
@@ -581,10 +606,8 @@ When("I send the multisig transaction", async function(){
 })
 
 Then("the transaction should go through", async function(){
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-      }
-    await sleep(8000)
+    info = await this.acl.pendingTransactionInformation(this.txid)
+    assert.deepStrictEqual(true, "type" in info)
     await this.acl.statusAfterBlock(this.lastRound + 2)
     info = await this.acl.transactionInformation(this.pk, this.txid)
     assert.deepStrictEqual(true, "type" in info)
@@ -656,23 +679,24 @@ Then("the wallet handle should not work", async function(){
     assert.deepStrictEqual(true, this.err)
 })
 
-When("I read a transaction from file", function(){
-    this.txn = algosdk.decodeObj(new Uint8Array(fs.readFileSync(maindir + '/raw.tx')));
+When("I read a transaction {string} from file {string}", function(string, num){
+    this.num = num
+    this.txn = algosdk.decodeObj(new Uint8Array(fs.readFileSync(maindir + '/temp/raw' + num + '.tx')));
     return this.txn
 })
 
 When("I write the transaction to file", function(){
-    fs.writeFileSync(maindir + "/raw.tx", Buffer.from(algosdk.encodeObj(this.txn)));
+    fs.writeFileSync(maindir + '/temp/raw' + this.num + '.tx', Buffer.from(algosdk.encodeObj(this.txn)));
 })
 
 Then("the transaction should still be the same", function(){
-    stxnew = new Uint8Array(fs.readFileSync(maindir + '/raw.tx'));
-    stxold = new Uint8Array(fs.readFileSync(maindir + '/old.tx'));
+    stxnew = new Uint8Array(fs.readFileSync(maindir + '/temp/raw' + this.num + '.tx'));
+    stxold = new Uint8Array(fs.readFileSync(maindir + '/temp/old' + this.num + '.tx'));
     assert.deepStrictEqual(stxnew, stxold)
 })
 
 Then("I do my part", async function(){
-    stx = new Uint8Array(fs.readFileSync(maindir + '/txn.tx'));
+    stx = new Uint8Array(fs.readFileSync(maindir + '/temp/txn.tx'));
     this.txid = await this.acl.sendRawTransaction(stx)
     this.txid = this.txid.txId
     return this.txid
@@ -716,12 +740,41 @@ Then('I get account information using the new account', async function () {
     return await this.acl.accountInformation(this.generatedAccount);
 });
 
-When('I create a change online status transaction using parameters {int} {int} {int} {string} {string} {int} {string}', function (int, int2, int3, string, string2, int4, string3) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Given('key registration transaction parameters {int} {int} {int} {string} {string} {string} {int} {int} {int} {string} {string}', function (fee, fv, lv, gh, votekey, selkey, votefst, votelst, votekd, gen, note) {
+    this.fee = parseInt(fee)
+    this.fv = parseInt(fv)
+    this.lv = parseInt(lv)
+    this.gh = gh
+    if (gen !== "none") {
+        this.gen = gen
+    }
+    if (note !== "none") {
+        this.note = new Uint8Array(Buffer.from(note, "base64"))
+    }
+    this.votekey = votekey
+    this.selkey = selkey
+    this.votefst = votefst
+    this.votelst = votelst
+    this.votekd = votekd
 });
 
-Then('the status change transaction should equal the golden {string}', function (string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+When('I create the key registration transaction', function () {
+    this.txn = {
+        "fee": this.fee,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "genesisHash": this.gh,
+        "voteKey": this.votekey,
+        "selectionKey": this.selkey,
+        "voteFirst":this.votefst,
+        "voteLast": this.votelst,
+        "voteKeyDilution": this.votekd,
+        "type": "keyreg"
+    };
+    if (this.gen) {
+        this.txn["genesisID"] = this.gen
+    }
+    if (this.note) {
+        this.txn["note"] = this.note
+    }
 });
