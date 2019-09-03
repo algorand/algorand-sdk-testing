@@ -27,6 +27,11 @@ Feature: KMD
     When I delete the key
     Then the key should not be in the wallet
 
+  Scenario: Make account and get info
+    Given an algod client
+    When I generate a key using kmd
+    Then I can get account information
+
   Scenario: Import and export key
     When I generate a key
     And I import the key

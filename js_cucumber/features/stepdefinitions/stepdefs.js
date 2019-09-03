@@ -102,10 +102,6 @@ When("I get status after this block", async function(){
     return this.statusAfter
 });
 
-Then("the rounds should be equal", async function(){
-    assert.strictEqual(true, this.statusAfter.lastRound > this.status.lastRound)
-});
-
 Then("I can get the block info", async function(){
     this.block = await this.acl.block(this.statusAfter.lastRound);
     assert.deepStrictEqual(true, Number.isInteger(this.block.round));
@@ -370,14 +366,8 @@ Then('the node should be healthy', async function () {
 });
 
 
-When('I get the ledger supply', async function () {
-    this.supply = await this.acl.ledgerSupply();
-    return this.supply
-});
-
-
-Then('the ledger supply should tell me the total money', function () {
-    assert.deepStrictEqual(true, "totalMoney" in this.supply);
+Then('I get the ledger supply', async function () {
+    return await this.acl.ledgerSupply();
 });
 
 
@@ -616,6 +606,13 @@ Then("the transaction should go through", async function(){
 })
 
 
+Then("I can get the transaction by ID", async function(){
+    await this.acl.statusAfterBlock(this.lastRound + 2)
+    info = await this.acl.transactionById(this.txid)
+    assert.deepStrictEqual(true, "type" in info)
+})
+
+
 Then("the transaction should not go through", function(){
     assert.deepStrictEqual(true, this.err)
 })
@@ -706,6 +703,11 @@ Then("I get account information", async function(){
    return await this.acl.accountInformation(this.accounts[0])
 })
 
+Then("I can get account information", async function(){
+    await this.acl.accountInformation(this.pk)
+    return this.kcl.deleteKey(this.handle, this.wallet_pswd, this.pk)
+})
+
 Given('key registration transaction parameters {int} {int} {int} {string} {string} {string} {int} {int} {int} {string} {string}', function (fee, fv, lv, gh, votekey, selkey, votefst, votelst, votekd, gen, note) {
     this.fee = parseInt(fee)
     this.fv = parseInt(fv)
@@ -743,4 +745,8 @@ When('I create the key registration transaction', function () {
     if (this.note) {
         this.txn["note"] = this.note
     }
+});
+
+When('I get recent transactions, limited by {int} transactions', function (int) {
+    this.acl.transactionByAddress(this.accounts[0], parseInt(int));
 });

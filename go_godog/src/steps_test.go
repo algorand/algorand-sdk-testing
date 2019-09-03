@@ -60,7 +60,6 @@ var pk string
 var accounts []string
 var e bool
 var lastRound uint64
-var supply models.Supply
 var sugParams models.TransactionParams
 var sugFee models.TransactionFee
 var bid types.Bid
@@ -126,7 +125,6 @@ func FeatureContext(s *godog.Suite) {
 	s.Step("I get versions with kmd", kclV)
 	s.Step("I get the status", getStatus)
 	s.Step(`^I get status after this block`, statusAfterBlock)
-	s.Step("the rounds should be equal", roundsEq)
 	s.Step("I can get the block info", block)
 	s.Step("I import the multisig", importMsig)
 	s.Step("the multisig should be in the wallet", msigInWallet)
@@ -161,7 +159,6 @@ func FeatureContext(s *godog.Suite) {
 	s.Step("I do my part", createSaveTxn)
 	s.Step(`^the node should be healthy`, nodeHealth)
 	s.Step(`^I get the ledger supply`, ledger)
-	s.Step(`^the ledger supply should tell me the total money`, checkLedger)
 	s.Step(`^I get transactions by address and round`, txnsByAddrRound)
 	s.Step(`^I get pending transactions`, txnsPending)
 	s.Step(`^I get the suggested params`, suggestedParams)
@@ -190,6 +187,9 @@ func FeatureContext(s *godog.Suite) {
 	s.Step("I get transactions by address and date", txnsByAddrDate)
 	s.Step(`key registration transaction parameters (\d+) (\d+) (\d+) "([^"]*)" "([^"]*)" "([^"]*)" (\d+) (\d+) (\d+) "([^"]*)" "([^"]*)`, keyregTxnParams)
 	s.Step("I create the key registration transaction", createKeyregTxn)
+	s.Step(`^I get recent transactions, limited by (\d+) transactions$`, getTxnsByCount)
+	s.Step(`^I can get account information`, newAccInfo)
+	s.Step(`^I can get the transaction by ID$`, txnbyID)
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -450,13 +450,6 @@ func statusAfterBlock() error {
 	statusAfter, err = acl.StatusAfterBlock(lastRound)
 	if err != nil {
 		return err
-	}
-	return nil
-}
-
-func roundsEq() error {
-	if status.LastRound >= statusAfter.LastRound {
-		return fmt.Errorf("new round should be greater")
 	}
 	return nil
 }
@@ -794,6 +787,16 @@ func checkTxn() error {
 	return err
 }
 
+func txnbyID() error {
+	var err error
+	_, err = acl.StatusAfterBlock(lastRound + 2)
+	if err != nil {
+		return err
+	}
+	_, err = acl.TransactionByID(txid)
+	return err
+}
+
 func txnFail() error {
 	if e {
 		return nil
@@ -924,16 +927,8 @@ func nodeHealth() error {
 }
 
 func ledger() error {
-	var err error
-	supply, err = acl.LedgerSupply()
+	_, err := acl.LedgerSupply()
 	return err
-}
-
-func checkLedger() error {
-	if &supply.TotalMoney == nil {
-		return fmt.Errorf("Ledger supply should have total money")
-	}
-	return nil
 }
 
 func txnsByAddrRound() error {
@@ -1122,6 +1117,12 @@ func accInfo() error {
 	return err
 }
 
+func newAccInfo() error {
+	_, err := acl.AccountInformation(pk)
+	_, _ = kcl.DeleteKey(handle, walletPswd, pk)
+	return err
+}
+
 func keyregTxnParams(ifee, ifv, ilv int, igh, ivotekey, iselkey string, ivotefst, ivotelst, ivotekd int, igen, inote string) error {
 	var err error
 	if inote != "none" {
@@ -1164,5 +1165,10 @@ func createKeyregTxn() (err error) {
 	if err != nil {
 		return err
 	}
+	return err
+}
+
+func getTxnsByCount(cnt int) error {
+	_, err := acl.TransactionsByAddrLimit(accounts[0], uint64(cnt))
 	return err
 }

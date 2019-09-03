@@ -10,7 +10,6 @@ import com.algorand.algosdk.crypto.Digest;
 import com.algorand.algosdk.crypto.Ed25519PublicKey;
 import com.algorand.algosdk.crypto.MultisigAddress;
 import com.algorand.algosdk.crypto.MultisigSignature;
-import com.algorand.algosdk.crypto.MultisigSignature.MultisigSubsig;
 import com.algorand.algosdk.transaction.SignedTransaction;
 import com.algorand.algosdk.transaction.Transaction;
 import com.algorand.algosdk.util.Encoder;
@@ -93,7 +92,6 @@ public class Stepdefs {
     SignedBid oldBid;
     SignedBid sbid;
     BigInteger paramsFee;
-    Supply supply;
     ParticipationPublicKey votepk;
     VRFPublicKey vrfpk;
     BigInteger votefst;
@@ -110,7 +108,6 @@ public class Stepdefs {
         req.setWalletPassword(walletPswd);
         req.setWalletDriverName("sqlite");
         walletID = kcl.createWallet(req).getWallet().getId();
-
     }
 
     @Then("the wallet should exist")
@@ -336,11 +333,6 @@ public class Stepdefs {
     public void statusBlock() throws ApiException, InterruptedException {
         Thread.sleep(4000);
         statusAfter = acl.waitForBlock(status.getLastRound());
-    }
-
-    @Then("the rounds should be equal")
-    public void roundsEq() {
-        Assert.assertTrue(statusAfter.getLastRound().compareTo(status.getLastRound()) == 1);
     }
 
     @Then("I can get the block info")
@@ -635,6 +627,12 @@ public class Stepdefs {
         Assert.assertTrue(acl.transaction(txid).getFrom().equals(pk.toString()));
     }
 
+    @Then("I can get the transaction by ID")
+    public void txnbyID() throws ApiException, InterruptedException{
+        acl.waitForBlock(lastRound.add(BigInteger.valueOf(2)));
+        Assert.assertTrue(acl.transaction(txid).getFrom().equals(pk.toString()));
+    }
+
     @Then("the transaction should not go through")
     public void txnFail(){
         Assert.assertTrue(err);
@@ -669,7 +667,7 @@ public class Stepdefs {
         req.setPublicKey(pk.getBytes());
         stxBytes = kcl.signMultisigTransaction(req).getMultisig();
     }
-    
+
     @Then("the multisig transaction should equal the kmd signed multisig transaction")
     public void signMsigBothEqual() throws JsonProcessingException, com.algorand.algosdk.kmd.client.ApiException {
         Assert.assertEquals(Encoder.encodeToBase64(stxBytes), Encoder.encodeToBase64(Encoder.encodeToMsgPack(stx.mSig)));
@@ -758,14 +756,9 @@ public class Stepdefs {
         acl.healthCheck();
     }
 
-    @When("I get the ledger supply")
+    @Then("I get the ledger supply")
     public void getLedger() throws ApiException{
-        supply = acl.getSupply();
-    }
-
-    @Then("the ledger supply should tell me the total money")
-    public void checkLedger() {
-        Assert.assertTrue(supply.getTotalMoney() instanceof BigInteger);
+        acl.getSupply();
     }
 
     @Then("I get transactions by address and round")
@@ -923,5 +916,20 @@ public class Stepdefs {
     @Then("I get account information")
     public void accInfo() throws ApiException {
         acl.accountInformation(accounts.get(0));
+    }
+
+    @Then("I can get account information")
+    public void newAccInfo() throws ApiException, NoSuchAlgorithmException, com.algorand.algosdk.kmd.client.ApiException {
+        acl.accountInformation(pk.encodeAsString());
+        DeleteKeyRequest req = new DeleteKeyRequest();
+        req.setAddress(pk.encodeAsString());
+        req.setWalletHandleToken(handle);
+        req.setWalletPassword(walletPswd);
+        kcl.deleteKey(req);
+    }
+
+    @When("I get recent transactions, limited by {int} transactions")
+    public void i_get_recent_transactions_limited_by_count(int cnt) throws ApiException {
+        Assert.assertTrue(acl.transactions(accounts.get(0), null, null, null, null, BigInteger.valueOf(cnt)).getTransactions() instanceof List<?>);
     }
 }
