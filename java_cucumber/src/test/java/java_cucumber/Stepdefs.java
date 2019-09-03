@@ -92,7 +92,6 @@ public class Stepdefs {
     SignedBid oldBid;
     SignedBid sbid;
     BigInteger paramsFee;
-    Supply supply;
     ParticipationPublicKey votepk;
     VRFPublicKey vrfpk;
     BigInteger votefst;
@@ -753,12 +752,7 @@ public class Stepdefs {
 
     @When("I get the ledger supply")
     public void getLedger() throws ApiException{
-        supply = acl.getSupply();
-    }
-
-    @Then("the ledger supply should tell me the total money")
-    public void checkLedger() {
-        Assert.assertTrue(supply.getTotalMoney() instanceof BigInteger);
+        acl.getSupply();
     }
 
     @Then("I get transactions by address and round")

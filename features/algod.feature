@@ -11,16 +11,17 @@ Feature: Algod
     Then I can get the block info
 
   Scenario: Ledger supply
-    When I get the ledger supply
-    Then the ledger supply should tell me the total money
+    Then I get the ledger supply
 
-  Scenario: Getting transactions
+  Scenario: Getting transactions by address
     Given a kmd client
     And wallet information
     Then I get transactions by address and round
-    And I get pending transactions
     And I get transactions by address only
     And I get transactions by address and date
+
+  Scenario: Get pending transactions
+    Then I get pending transactions
 
   Scenario Outline: Get Transactions By Address and Limit Count
     Given a kmd client

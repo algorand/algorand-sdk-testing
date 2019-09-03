@@ -60,7 +60,6 @@ var pk string
 var accounts []string
 var e bool
 var lastRound uint64
-var supply models.Supply
 var sugParams models.TransactionParams
 var sugFee models.TransactionFee
 var bid types.Bid
@@ -160,7 +159,6 @@ func FeatureContext(s *godog.Suite) {
 	s.Step("I do my part", createSaveTxn)
 	s.Step(`^the node should be healthy`, nodeHealth)
 	s.Step(`^I get the ledger supply`, ledger)
-	s.Step(`^the ledger supply should tell me the total money`, checkLedger)
 	s.Step(`^I get transactions by address and round`, txnsByAddrRound)
 	s.Step(`^I get pending transactions`, txnsPending)
 	s.Step(`^I get the suggested params`, suggestedParams)
@@ -918,16 +916,8 @@ func nodeHealth() error {
 }
 
 func ledger() error {
-	var err error
-	supply, err = acl.LedgerSupply()
+	_, err := acl.LedgerSupply()
 	return err
-}
-
-func checkLedger() error {
-	if &supply.TotalMoney == nil {
-		return fmt.Errorf("Ledger supply should have total money")
-	}
-	return nil
 }
 
 func txnsByAddrRound() error {

@@ -388,12 +388,7 @@ def check_save_txn(context):
 
 @when("I get the ledger supply")
 def get_ledger(context):
-    context.ledger_supply = context.acl.ledger_supply()
-
-
-@then("the ledger supply should tell me the total money")
-def check_ledger(context):
-    assert "totalMoney" in context.ledger_supply
+    context.acl.ledger_supply()
 
 
 @then("the node should be healthy")

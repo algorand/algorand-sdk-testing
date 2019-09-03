@@ -367,13 +367,7 @@ Then('the node should be healthy', async function () {
 
 
 When('I get the ledger supply', async function () {
-    this.supply = await this.acl.ledgerSupply();
-    return this.supply
-});
-
-
-Then('the ledger supply should tell me the total money', function () {
-    assert.deepStrictEqual(true, "totalMoney" in this.supply);
+    return await this.acl.ledgerSupply();
 });
 
 
