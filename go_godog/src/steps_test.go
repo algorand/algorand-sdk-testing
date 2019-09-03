@@ -126,7 +126,6 @@ func FeatureContext(s *godog.Suite) {
 	s.Step("I get versions with kmd", kclV)
 	s.Step("I get the status", getStatus)
 	s.Step(`^I get status after this block`, statusAfterBlock)
-	s.Step("the rounds should be equal", roundsEq)
 	s.Step("I can get the block info", block)
 	s.Step("I import the multisig", importMsig)
 	s.Step("the multisig should be in the wallet", msigInWallet)
@@ -190,6 +189,8 @@ func FeatureContext(s *godog.Suite) {
 	s.Step("I get transactions by address and date", txnsByAddrDate)
 	s.Step(`key registration transaction parameters (\d+) (\d+) (\d+) "([^"]*)" "([^"]*)" "([^"]*)" (\d+) (\d+) (\d+) "([^"]*)" "([^"]*)`, keyregTxnParams)
 	s.Step("I create the key registration transaction", createKeyregTxn)
+	s.Step(`^I get recent transactions, limited by (\d+) transactions$`, getTxnsByCount)
+	s.Step(`^I can get account information`, newAccInfo)
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -450,13 +451,6 @@ func statusAfterBlock() error {
 	statusAfter, err = acl.StatusAfterBlock(lastRound)
 	if err != nil {
 		return err
-	}
-	return nil
-}
-
-func roundsEq() error {
-	if status.LastRound >= statusAfter.LastRound {
-		return fmt.Errorf("new round should be greater")
 	}
 	return nil
 }
@@ -1122,6 +1116,12 @@ func accInfo() error {
 	return err
 }
 
+func newAccInfo() error {
+	_, err := acl.AccountInformation(pk)
+	_, _ = kcl.DeleteKey(handle, walletPswd, pk)
+	return err
+}
+
 func keyregTxnParams(ifee, ifv, ilv int, igh, ivotekey, iselkey string, ivotefst, ivotelst, ivotekd int, igen, inote string) error {
 	var err error
 	if inote != "none" {
@@ -1164,5 +1164,10 @@ func createKeyregTxn() (err error) {
 	if err != nil {
 		return err
 	}
+	return err
+}
+
+func getTxnsByCount(cnt int) error {
+	_, err := acl.TransactionsByAddrLimit(accounts[0], uint64(cnt))
 	return err
 }

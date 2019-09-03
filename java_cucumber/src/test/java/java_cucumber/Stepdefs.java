@@ -10,7 +10,6 @@ import com.algorand.algosdk.crypto.Digest;
 import com.algorand.algosdk.crypto.Ed25519PublicKey;
 import com.algorand.algosdk.crypto.MultisigAddress;
 import com.algorand.algosdk.crypto.MultisigSignature;
-import com.algorand.algosdk.crypto.MultisigSignature.MultisigSubsig;
 import com.algorand.algosdk.transaction.SignedTransaction;
 import com.algorand.algosdk.transaction.Transaction;
 import com.algorand.algosdk.util.Encoder;
@@ -110,7 +109,6 @@ public class Stepdefs {
         req.setWalletPassword(walletPswd);
         req.setWalletDriverName("sqlite");
         walletID = kcl.createWallet(req).getWallet().getId();
-
     }
 
     @Then("the wallet should exist")
@@ -336,11 +334,6 @@ public class Stepdefs {
     public void statusBlock() throws ApiException, InterruptedException {
         Thread.sleep(4000);
         statusAfter = acl.waitForBlock(status.getLastRound());
-    }
-
-    @Then("the rounds should be equal")
-    public void roundsEq() {
-        Assert.assertTrue(statusAfter.getLastRound().compareTo(status.getLastRound()) == 1);
     }
 
     @Then("I can get the block info")
@@ -669,7 +662,7 @@ public class Stepdefs {
         req.setPublicKey(pk.getBytes());
         stxBytes = kcl.signMultisigTransaction(req).getMultisig();
     }
-    
+
     @Then("the multisig transaction should equal the kmd signed multisig transaction")
     public void signMsigBothEqual() throws JsonProcessingException, com.algorand.algosdk.kmd.client.ApiException {
         Assert.assertEquals(Encoder.encodeToBase64(stxBytes), Encoder.encodeToBase64(Encoder.encodeToMsgPack(stx.mSig)));
@@ -923,5 +916,20 @@ public class Stepdefs {
     @Then("I get account information")
     public void accInfo() throws ApiException {
         acl.accountInformation(accounts.get(0));
+    }
+
+    @Then("I can get account information")
+    public void newAccInfo() throws ApiException, NoSuchAlgorithmException, com.algorand.algosdk.kmd.client.ApiException {
+        acl.accountInformation(pk.encodeAsString());
+        DeleteKeyRequest req = new DeleteKeyRequest();
+        req.setAddress(pk.encodeAsString());
+        req.setWalletHandleToken(handle);
+        req.setWalletPassword(walletPswd);
+        kcl.deleteKey(req);
+    }
+
+    @When("I get recent transactions, limited by {int} transactions")
+    public void i_get_recent_transactions_limited_by_count(int cnt) throws ApiException {
+        Assert.assertTrue(acl.transactions(accounts.get(0), null, null, null, null, BigInteger.valueOf(cnt)).getTransactions() instanceof List<?>);
     }
 }

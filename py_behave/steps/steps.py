@@ -166,11 +166,6 @@ def status_block(context):
     context.status_after = context.acl.status_after_block(context.status["lastRound"])
 
 
-@then("the rounds should be equal")
-def rounds_eq(context):
-    assert context.status["lastRound"] < context.status_after["lastRound"]
-
-
 @then("I can get the block info")
 def block(context):
     context.block = context.acl.block_info(context.status["lastRound"]+1)
@@ -541,8 +536,14 @@ def txns_pending(context):
 
 
 @then("I get account information")
-def accInfo(context):
+def acc_info(context):
     context.acl.account_info(context.accounts[0])
+
+
+@then("I can get account information")
+def new_acc_info(context):
+    context.acl.account_info(context.pk)
+    context.wallet.delete_key(context.pk)
 
 
 @given('key registration transaction parameters {fee} {fv} {lv} "{gh}" "{votekey}" "{selkey}" {votefst} {votelst} {votekd} "{gen}" "{note}"')
@@ -570,3 +571,8 @@ def keyreg_txn_params(context, fee, fv, lv, gh, votekey, selkey, votefst, votels
 def create_keyreg_txn(context):
     context.txn = transaction.KeyregTxn(context.pk, context.fee, context.fv, context.lv, context.gh, context.votekey, 
                                         context.selkey, context.votefst, context.votelst, context.votekd, context.note, context.gen)
+
+@when('I get recent transactions, limited by {cnt} transactions')
+def step_impl(context, cnt):
+    txns = context.acl.transactions_by_address(context.accounts[0], limit=int(cnt))
+    assert (txns == {} or "transactions" in txns)
