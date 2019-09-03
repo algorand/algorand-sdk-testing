@@ -10,7 +10,6 @@ import com.algorand.algosdk.crypto.Digest;
 import com.algorand.algosdk.crypto.Ed25519PublicKey;
 import com.algorand.algosdk.crypto.MultisigAddress;
 import com.algorand.algosdk.crypto.MultisigSignature;
-import com.algorand.algosdk.crypto.MultisigSignature.MultisigSubsig;
 import com.algorand.algosdk.transaction.SignedTransaction;
 import com.algorand.algosdk.transaction.Transaction;
 import com.algorand.algosdk.util.Encoder;
@@ -26,8 +25,6 @@ import com.algorand.algosdk.kmd.client.KmdClient;
 import com.algorand.algosdk.kmd.client.api.KmdApi;
 import com.algorand.algosdk.kmd.client.model.*;
 import com.algorand.algosdk.mnemonic.Mnemonic;
-import com.algorand.algosdk.crypto.ParticipationPublicKey;
-import com.algorand.algosdk.crypto.VRFPublicKey;
 
 import java.math.BigInteger;
 import java.math.BigDecimal;
@@ -94,12 +91,6 @@ public class Stepdefs {
     SignedBid sbid;
     BigInteger paramsFee;
     Supply supply;
-    ParticipationPublicKey votepk;
-    VRFPublicKey vrfpk;
-    BigInteger votefst;
-    BigInteger votelst;
-    BigInteger votekd;
-    String num;
 
     @When("I create a wallet")
     public void createWallet() throws com.algorand.algosdk.kmd.client.ApiException {
@@ -189,41 +180,17 @@ public class Stepdefs {
     }
 
     @Given("payment transaction parameters {int} {int} {int} {string} {string} {string} {int} {string} {string}")
-    public void transactionParameters(int fee, int fv, int lv, String gh, String to, String close, int amt, String gen, String note)  throws GeneralSecurityException, NoSuchAlgorithmException{
+    public void transaction_parameters(int fee, int fv, int lv, String gh, String to, String close, int amt, String gen, String note)  throws GeneralSecurityException, NoSuchAlgorithmException{
         this.fee = BigInteger.valueOf(fee);
         this.fv = BigInteger.valueOf(fv);
         this.lv = BigInteger.valueOf(lv);
         this.gh = new Digest(Encoder.decodeFromBase64(gh));
         this.to = new Address(to);
-        if (!close.equals("none")){
-            this.close = new Address(close);
-        }
+        this.close = new Address(close);
         this.amt = BigInteger.valueOf(amt);
-        if (!gen.equals("none")) {
-            this.gen = gen;
-        }
-        if (!note.equals("none")) {
-            this.note = Encoder.decodeFromBase64(note);
-        }
-    }
 
-    @Given("key registration transaction parameters {int} {int} {int} {string} {string} {string} {int} {int} {int} {string} {string}")
-    public void keyregTxnParameters(int fee, int fv, int lv, String gh, String votepk, String vrfpk, int votefst, int votelst, int votekd, String gen, String note)  throws GeneralSecurityException, NoSuchAlgorithmException{
-        this.fee = BigInteger.valueOf(fee);
-        this.fv = BigInteger.valueOf(fv);
-        this.lv = BigInteger.valueOf(lv);
-        this.gh = new Digest(Encoder.decodeFromBase64(gh));
-        this.votepk = new ParticipationPublicKey(Encoder.decodeFromBase64(votepk));
-        this.vrfpk = new VRFPublicKey(Encoder.decodeFromBase64(vrfpk));
-        this.votefst = BigInteger.valueOf(votefst);
-        this.votelst = BigInteger.valueOf(votelst);
-        this.votekd = BigInteger.valueOf(votekd);
-        if (!gen.equals("none")) {
-            this.gen = gen;
-        }
-        if (!note.equals("none")) {
-            this.note = Encoder.decodeFromBase64(note);
-        }
+        this.gen = gen;
+        this.note = Encoder.decodeFromBase64(note);
     }
 
     @Given("mnemonic for private key {string}")
@@ -246,12 +213,6 @@ public class Stepdefs {
                     to,
                     close
             );
-        txn = Account.transactionWithSuggestedFeePerByte(txn, txn.fee);
-    }
-
-    @When("I create the key registration transaction")
-    public void createKeyregTxn() throws NoSuchAlgorithmException, JsonProcessingException, IOException{
-        txn = new Transaction(pk, fee, fv, lv, note, gen, gh, votepk, vrfpk, votefst, votelst, votekd);
         txn = Account.transactionWithSuggestedFeePerByte(txn, txn.fee);
     }
 
@@ -348,21 +309,18 @@ public class Stepdefs {
         acl.getBlock(status.getLastRound().add(BigInteger.valueOf(1)));
     }
 
+    //FIXTHIS
     @When("I import the multisig")
-    public void importMsig() throws com.algorand.algosdk.kmd.client.ApiException{
-        ImportMultisigRequest req = new ImportMultisigRequest();
-        req.setMultisigVersion(msig.version);
-        req.setThreshold(msig.threshold);
-        req.setWalletHandleToken(handle);
-        req.setPks(msig.publicKeys);
-        kcl.importMultisig(req);
+    public void importMsig() {
+        // ImportMultisigRequest req = new ImportMultisigRequest();
+        throw new cucumber.api.PendingException();
     }
 
     @Then("the multisig should be in the wallet")
     public void msigInWallet() throws com.algorand.algosdk.kmd.client.ApiException{
         ListMultisigRequest req = new ListMultisigRequest();
         req.setWalletHandleToken(handle);
-        List<String> msigs = kcl.listMultisig(req).getAddresses();
+        List<String> msigs = kcl.listMultisg(req).getAddresses();
         boolean exists = false;
         for (String m : msigs){
             if (m.equals(msig.toString())){
@@ -385,7 +343,7 @@ public class Stepdefs {
     public void msigEq(){
         boolean eq = true;
         for (int x = 0; x < msig.publicKeys.size(); x++){
-            if (!Encoder.encodeToBase64(msig.publicKeys.get(x).getBytes()).equals(Encoder.encodeToBase64(pks.get(x)))){
+            if (msig.publicKeys.get(x).getBytes() != pks.get(x)){
                 eq = false;
             }
         }
@@ -404,13 +362,11 @@ public class Stepdefs {
     public void msigNotInWallet()throws com.algorand.algosdk.kmd.client.ApiException{
         ListMultisigRequest req = new ListMultisigRequest();
         req.setWalletHandleToken(handle);
-        List<String> msigs = kcl.listMultisig(req).getAddresses();
+        List<String> msigs = kcl.listMultisg(req).getAddresses();
         boolean exists = false;
-        if (msigs != null) {
-            for (String m : msigs){
-                if (m.equals(msig.toString())){
-                    exists = true;
-                }
+        for (String m : msigs){
+            if (m.equals(msig.toString())){
+                exists = true;
             }
         }
         Assert.assertTrue(!exists);
@@ -462,19 +418,18 @@ public class Stepdefs {
     }
 
     @When("I generate a key")
-    public void genKey()throws NoSuchAlgorithmException, GeneralSecurityException{
+    public void genKey()throws NoSuchAlgorithmException{
         account = new Account();
         pk = account.getAddress();
         address = pk.toString();
-        sk = Mnemonic.toKey(account.toMnemonic());
     }
 
+    //FIXTHIS
     @When("I import the key")
     public void importKey() throws com.algorand.algosdk.kmd.client.ApiException{
-        ImportKeyRequest req = new ImportKeyRequest();
-        req.setWalletHandleToken(handle);
-        req.setPrivateKey(sk);
-        kcl.importKey(req);
+        // ImportKeyRequest req = new ImportKeyRequest();
+        // req.setWalletHandleToken(handle);
+        throw new cucumber.api.PendingException();
     }
 
     @When("I get the private key")
@@ -493,13 +448,7 @@ public class Stepdefs {
         req.setAddress(pk.toString());
         req.setWalletHandleToken(handle);
         req.setWalletPassword(walletPswd);
-        byte[] exported = Arrays.copyOfRange(kcl.exportKey(req).getPrivateKey(), 0, 32);
-        Assert.assertEquals(Encoder.encodeToBase64(exported), Encoder.encodeToBase64(sk));
-        DeleteKeyRequest deleteReq = new DeleteKeyRequest();
-        deleteReq.setAddress(pk.toString());
-        deleteReq.setWalletHandleToken(handle);
-        deleteReq.setWalletPassword(walletPswd);
-        kcl.deleteKey(deleteReq);
+        Assert.assertEquals(kcl.exportKey(req).getPrivateKey(), sk);
     }
 
     @Given("a kmd client")
@@ -513,9 +462,7 @@ public class Stepdefs {
         reader = new BufferedReader(new FileReader(data_dir_path + "kmd.net"));
         String kmdAddress = reader.readLine();
         kmdClient = new KmdClient();
-        kmdClient.setConnectTimeout(30000);
-        kmdClient.setReadTimeout(30000);
-        kmdClient.setWriteTimeout(30000);
+        kmdClient.setConnectTimeout(20000);
         kmdClient.setApiKey(kmdToken);
         kmdClient.setBasePath("http://" + kmdAddress);
         kcl = new KmdApi(kmdClient);
@@ -532,9 +479,7 @@ public class Stepdefs {
         reader = new BufferedReader(new FileReader(data_dir_path + "algod.net"));
         String algodAddress = reader.readLine();
         algodClient = new AlgodClient();
-        algodClient.setConnectTimeout(30000);
-        algodClient.setReadTimeout(30000);
-        algodClient.setWriteTimeout(30000);
+        algodClient.setConnectTimeout(20000);
         algodClient.setApiKey(algodToken);
         algodClient.setBasePath("http://" + algodAddress);
         acl = new AlgodApi(algodClient);
@@ -629,7 +574,7 @@ public class Stepdefs {
 
     @Then("the transaction should go through")
     public void checkTxn() throws ApiException, InterruptedException{
-        Assert.assertTrue(acl.pendingTransactionInformation(txid).getFrom().equals(pk.toString()));
+        Thread.sleep(8000);
         acl.waitForBlock(lastRound.add(BigInteger.valueOf(2)));
         Assert.assertTrue(acl.transactionInformation(pk.toString(), txid).getFrom().equals(pk.toString()));
         Assert.assertTrue(acl.transaction(txid).getFrom().equals(pk.toString()));
@@ -653,39 +598,26 @@ public class Stepdefs {
         Assert.assertEquals(Encoder.encodeToBase64(stxBytes), Encoder.encodeToBase64(Encoder.encodeToMsgPack(stx)));
     }
 
+    // FIXTHIS
     @When("I sign the multisig transaction with kmd")
-    public void signMsigKmd() throws JsonProcessingException, com.algorand.algosdk.kmd.client.ApiException, IOException{
-        ImportMultisigRequest importReq = new ImportMultisigRequest();
-        importReq.setMultisigVersion(msig.version);
-        importReq.setThreshold(msig.threshold);
-        importReq.setWalletHandleToken(handle);
-        importReq.setPks(msig.publicKeys);
-        kcl.importMultisig(importReq);
-
-        SignMultisigRequest req = new SignMultisigRequest();
-        req.setTransaction(Encoder.encodeToMsgPack(txn));
-        req.setWalletHandleToken(handle);
-        req.setWalletPassword(walletPswd);
-        req.setPublicKey(pk.getBytes());
-        stxBytes = kcl.signMultisigTransaction(req).getMultisig();
+    public void signMsigKmd() throws JsonProcessingException, com.algorand.algosdk.kmd.client.ApiException{
+        // may need to import account first
+        // SignMultisigRequest req = new SignMultisigRequest();
+        // req.setTransaction(Encoder.encodeToMsgPack(txn));
+        // req.setWalletHandleToken(handle);
+        // req.setWalletPassword(walletPswd);
+        throw new cucumber.api.PendingException();
     }
-    
     @Then("the multisig transaction should equal the kmd signed multisig transaction")
-    public void signMsigBothEqual() throws JsonProcessingException, com.algorand.algosdk.kmd.client.ApiException {
-        Assert.assertEquals(Encoder.encodeToBase64(stxBytes), Encoder.encodeToBase64(Encoder.encodeToMsgPack(stx.mSig)));
-        DeleteMultisigRequest req = new DeleteMultisigRequest();
-        req.setAddress(msig.toString());
-        req.setWalletHandleToken(handle);
-        req.setWalletPassword(walletPswd);
-        kcl.deleteMultisig(req);
+    public void signMsigBothEqual() throws JsonProcessingException {
+        Assert.assertEquals(Encoder.encodeToBase64(stxBytes), Encoder.encodeToBase64(Encoder.encodeToMsgPack(stx)));
     }
 
-    @When("I read a transaction {string} from file {string}")
-    public void readTxn(String encodedTxn, String num) throws IOException {
+    @When("I read a transaction from file")
+    public void readTxn() throws IOException {
         String path = System.getProperty("user.dir");
         Path p = Paths.get(path);
-        this.num = num;
-        path = p.getParent() + "/temp/raw" + this.num + ".tx";
+        path = p.getParent() + "/raw.tx";
         FileInputStream inputStream = new FileInputStream(path);
         File file = new File(path);
         byte[] data = new byte[(int) file.length()];
@@ -698,7 +630,7 @@ public class Stepdefs {
     public void writeTxn() throws JsonProcessingException, IOException{
         String path = System.getProperty("user.dir");
         Path p = Paths.get(path);
-        path = p.getParent() + "/temp/raw" + this.num + ".tx";
+        path = p.getParent() + "/raw.tx";
         byte[] data = Encoder.encodeToMsgPack(stx);
         FileOutputStream out = new FileOutputStream(path);
         out.write(data);
@@ -709,7 +641,7 @@ public class Stepdefs {
     public void checkEnc() throws IOException{
         String path = System.getProperty("user.dir");
         Path p = Paths.get(path);
-        path = p.getParent() + "/temp/raw" + this.num + ".tx";
+        path = p.getParent() + "/raw.tx";
         FileInputStream inputStream = new FileInputStream(path);
         File file = new File(path);
         byte[] data = new byte[(int) file.length()];
@@ -717,21 +649,23 @@ public class Stepdefs {
         SignedTransaction stxnew = Encoder.decodeFromMsgPack(data, SignedTransaction.class);
         inputStream.close();
 
-        path = p.getParent() + "/temp/old" + this.num + ".tx";
+        path = p.getParent() + "/old.tx";
         inputStream = new FileInputStream(path);
         file = new File(path);
         data = new byte[(int) file.length()];
         inputStream.read(data);
         SignedTransaction stxold = Encoder.decodeFromMsgPack(data, SignedTransaction.class);
         inputStream.close();
+
         Assert.assertEquals(stxold, stxnew);
+
     }
 
     @Then("I do my part")
     public void signSaveTxn() throws IOException, JsonProcessingException, NoSuchAlgorithmException, com.algorand.algosdk.kmd.client.ApiException, Exception{
         String path = System.getProperty("user.dir");
         Path p = Paths.get(path);
-        path = p.getParent() + "/temp/txn.tx";
+        path = p.getParent() + "/txn.tx";
         FileInputStream inputStream = new FileInputStream(path);
         File file = new File(path);
         byte[] data = new byte[(int) file.length()];

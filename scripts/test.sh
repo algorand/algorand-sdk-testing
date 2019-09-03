@@ -9,7 +9,6 @@ then
     cp -r features/. java_cucumber/src/test/resources/java_cucumber
     cp -r features/. js_cucumber/features
     cp -r features/. py_behave
-    mkdir temp
     cd ~/node
     ./goal network create -n network -r network -t template.json    
     INDEXER_DIR=~/node/$(ls -d network/Node/network*)
@@ -39,7 +38,9 @@ then
     pyexitcode=$?
 
     cd ..
-    rm -r temp
+    rm old.tx
+    rm raw.tx
+    rm txn.tx
 else
     rungo=false
     runjava=false
@@ -96,10 +97,6 @@ else
     ./update.sh -d network/Node
     cd -
 
-    if $cross
-    then
-        mkdir temp
-    fi
     if $rungo
     then
         cp -r features/. go_godog/src/features
@@ -208,7 +205,9 @@ else
     fi
     if $cross
     then
-        rm -r temp 
+        rm old.tx
+        rm raw.tx
+        rm txn.tx  
     fi
 fi
 

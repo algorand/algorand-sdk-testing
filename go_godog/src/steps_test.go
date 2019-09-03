@@ -71,12 +71,8 @@ var newMn string
 var mdk types.MasterDerivationKey
 var microalgos types.MicroAlgos
 var bytetxs [][]byte
-var votekey string
-var selkey string
-var votefst uint64
-var votelst uint64
-var votekd uint64
-var num string
+var newAccount string
+var statusChangeTxBytes []byte
 
 var opt = godog.Options{
 	Output: colors.Colored(os.Stdout),
@@ -155,7 +151,7 @@ func FeatureContext(s *godog.Suite) {
 	s.Step("the signed transaction should equal the kmd signed transaction", signBothEqual)
 	s.Step("I sign the multisig transaction with kmd", signMsigKmd)
 	s.Step("the multisig transaction should equal the kmd signed multisig transaction", signMsigBothEqual)
-	s.Step(`I read a transaction "([^"]*)" from file "([^"]*)"`, readTxn)
+	s.Step("I read a transaction from file", readTxn)
 	s.Step("I write the transaction to file", writeTxn)
 	s.Step("the transaction should still be the same", checkEnc)
 	s.Step("I do my part", createSaveTxn)
@@ -198,11 +194,11 @@ func FeatureContext(s *godog.Suite) {
 
 	s.Step(`^I can get transaction information using the TXID$`, iCanGetTransactionInformationUsingTheTXID)
 	s.Step(`^I make a new account$`, iAskAlgodToMakeANewAccount)
-  s.Step(`key registration transaction parameters (\d+) (\d+) (\d+) "([^"]*)" "([^"]*)" "([^"]*)" (\d+) (\d+) (\d+) "([^"]*)" "([^"]*)`, keyregTxnParams)
-	s.Step("I create the key registration transaction", createKeyregTxn)
+	s.Step(`^I create a change online status transaction using parameters (\d+) (\d+) (\d+) (\d+) (\d+) (\d+) "([^"]*)" "([^"]*)" "([^"]*)" "([^"]*)" "([^"]*)"$`, iCreateAChangeOnlineStatusTransactionUsingParameters)
+	s.Step(`^the status change transaction should equal the golden "([^"]*)"$`, theStatusChangeTransactionShouldEqualTheGolden)
 
 	s.BeforeScenario(func(interface{}) {
-    stxObj = types.SignedTxn{}
+		walletInfo() // populate `accounts` before each scenario
 	})
 }
 
@@ -342,6 +338,7 @@ func createTxn() error {
 		return err
 	}
 	return err
+
 }
 
 func msigAddresses(addresses string) error {
@@ -788,11 +785,7 @@ func sendMsigTxn() error {
 }
 
 func checkTxn() error {
-	_, err := acl.PendingTransactionInformation(txid)
-	if err != nil {
-		return err
-	}
-	_, err = acl.StatusAfterBlock(lastRound + 2)
+	_, err := acl.StatusAfterBlock(lastRound + 2)
 	if err != nil {
 		return err
 	}
@@ -851,27 +844,38 @@ func signMsigBothEqual() error {
 	if bytes.Equal(stx, stxKmd) {
 		return nil
 	}
+	fmt.Print(stx)
+	fmt.Print(stxKmd)
 	return fmt.Errorf("signed transactions not equal")
 
 }
 
-func readTxn(encodedTxn string, inum string) error {
-	encodedBytes, err := base64.StdEncoding.DecodeString(encodedTxn)
+func readTxn() error {
+	amt = 100000
+	pk = accounts[0]
+	params, err := acl.SuggestedParams()
 	if err != nil {
 		return err
 	}
+	lastRound = params.LastRound
+	txn, err = transaction.MakePaymentTxn(accounts[0], accounts[1], params.Fee, amt, params.LastRound, params.LastRound+1000, note, "", params.GenesisID, params.GenesisHash)
+	if err != nil {
+		return err
+	}
+	sk, err := kcl.ExportKey(handle, walletPswd, pk)
+	txid, stx, err = crypto.SignTransaction(sk.PrivateKey, txn)
+
 	path, err := os.Getwd()
 	if err != nil {
 		return err
 	}
-	num = inum
-	path = filepath.Dir(filepath.Dir(path)) + "/temp/old" + num + ".tx"
-	err = ioutil.WriteFile(path, encodedBytes, 0644)
+	path = filepath.Dir(filepath.Dir(path)) + "/old.tx"
+	err = ioutil.WriteFile(path, stx, 0644)
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
 		return err
 	}
-	err = msgpack.Decode(data, &stxObj)
+	msgpack.Decode(data, &stxObj)
 	return err
 }
 
@@ -880,7 +884,7 @@ func writeTxn() error {
 	if err != nil {
 		return err
 	}
-	path = filepath.Dir(filepath.Dir(path)) + "/temp/raw" + num + ".tx"
+	path = filepath.Dir(filepath.Dir(path)) + "/raw.tx"
 	data := msgpack.Encode(stxObj)
 	err = ioutil.WriteFile(path, data, 0644)
 	return err
@@ -891,16 +895,16 @@ func checkEnc() error {
 	if err != nil {
 		return err
 	}
-	pathold := filepath.Dir(filepath.Dir(path)) + "/temp/old" + num + ".tx"
+	pathold := filepath.Dir(filepath.Dir(path)) + "/old.tx"
 	dataold, err := ioutil.ReadFile(pathold)
 
-	pathnew := filepath.Dir(filepath.Dir(path)) + "/temp/raw" + num + ".tx"
+	pathnew := filepath.Dir(filepath.Dir(path)) + "/raw.tx"
 	datanew, err := ioutil.ReadFile(pathnew)
 
 	if bytes.Equal(dataold, datanew) {
 		return nil
 	}
-	return fmt.Errorf("should be equal")
+	return nil
 }
 
 func createSaveTxn() error {
@@ -922,7 +926,7 @@ func createSaveTxn() error {
 	if err != nil {
 		return err
 	}
-	path = filepath.Dir(filepath.Dir(path)) + "/temp/txn.tx"
+	path = filepath.Dir(filepath.Dir(path)) + "/txn.tx"
 	data := msgpack.Encode(txn)
 	err = ioutil.WriteFile(path, data, 0644)
 	return err
@@ -1170,47 +1174,28 @@ func iAskAlgodToMakeANewAccount() error {
 	return err
 }
 
-func keyregTxnParams(ifee, ifv, ilv int, igh, ivotekey, iselkey string, ivotefst, ivotelst, ivotekd int, igen, inote string) error {
-	var err error
-	if inote != "none" {
-		note, err = base64.StdEncoding.DecodeString(inote)
-		if err != nil {
-			return err
-		}
-	} else {
-		note, err = base64.StdEncoding.DecodeString("")
-		if err != nil {
-			return err
-		}
-	}
-	gh, err = base64.StdEncoding.DecodeString(igh)
-	if err != nil {
-		return err
-	}
-	votekey = ivotekey
-	selkey = iselkey
-	fee = uint64(ifee)
-	fv = uint64(ifv)
-	lv = uint64(ilv)
-	votefst = uint64(ivotefst)
-	votelst = uint64(ivotelst)
-	votekd = uint64(ivotekd)
-	if igen != "none" {
-		gen = igen
-	} else {
-		gen = ""
-	}
-	if err != nil {
-		return err
-	}
-	return nil
+func iCreateAChangeOnlineStatusTransactionUsingParameters(fee, firstRound, lastRound, voteFirst, voteLast, voteKeyDilution int, genesisID, genesisHash, votepkb64, selectionpkb64, passphrase string) error {
+	//return godog.ErrPending
+	//voteKey := "TODO convert votepkb64 string into expected type" + votepkb64
+	//selectionKey := "TODO same" + selectionpkb64
+	return fmt.Errorf("numbers: %v %v %v %v %v %v strings: %v %v %v %v %v", fee, firstRound, lastRound, voteFirst, voteLast, voteKeyDilution, genesisID, genesisHash, votepkb64, selectionpkb64, passphrase)
+	//statusChangeTx, err := transaction.MakeKeyRegTxnWithFlatFee(account, fee, firstRound, lastRound, note, genesisID, genesisHash, voteKey, selectionKey, voteFirst, voteLast, voteKeyDilution)
+	//if err != nil {
+	//	return err
+	//}
+	//privateKey, err := mnemonic.ToPrivateKey(passphrase)
+	//_, statusChangeTxBytes, err = crypto.SignTransaction(privateKey, statusChangeTx)
+	//return err
 }
 
-func createKeyregTxn() (err error) {
-	strGh := base64.StdEncoding.EncodeToString(gh)
-	txn, err = transaction.MakeKeyRegTxn(a.String(), fee, fv, lv, note, gen, strGh, votekey, selkey, votefst, votelst, votekd)
+func theStatusChangeTransactionShouldEqualTheGolden(golden string) error {
+	goldenDecoded, err := base64.StdEncoding.DecodeString(golden)
 	if err != nil {
 		return err
 	}
-	return err
+
+	if !bytes.Equal(goldenDecoded, statusChangeTxBytes) {
+		return fmt.Errorf(base64.StdEncoding.EncodeToString(statusChangeTxBytes))
+	}
+	return nil
 }
