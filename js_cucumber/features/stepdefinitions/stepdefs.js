@@ -366,7 +366,7 @@ Then('the node should be healthy', async function () {
 });
 
 
-When('I get the ledger supply', async function () {
+Then('I get the ledger supply', async function () {
     return await this.acl.ledgerSupply();
 });
 
@@ -601,6 +601,13 @@ Then("the transaction should go through", async function(){
     await this.acl.statusAfterBlock(this.lastRound + 2)
     info = await this.acl.transactionInformation(this.pk, this.txid)
     assert.deepStrictEqual(true, "type" in info)
+    info = await this.acl.transactionById(this.txid)
+    assert.deepStrictEqual(true, "type" in info)
+})
+
+
+Then("I can get the transaction by ID", async function(){
+    await this.acl.statusAfterBlock(this.lastRound + 2)
     info = await this.acl.transactionById(this.txid)
     assert.deepStrictEqual(true, "type" in info)
 })

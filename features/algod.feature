@@ -20,6 +20,15 @@ Feature: Algod
     And I get transactions by address only
     And I get transactions by address and date
 
+  Scenario: Getting transaction by ID
+    Given a kmd client
+    And wallet information
+    And default transaction with parameters 0 "none"
+    When I get the private key
+    And I sign the transaction with the private key
+    And I send the transaction
+    Then I can get the transaction by ID
+
   Scenario: Get pending transactions
     Then I get pending transactions
 

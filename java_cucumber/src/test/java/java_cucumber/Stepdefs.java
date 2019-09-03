@@ -627,6 +627,12 @@ public class Stepdefs {
         Assert.assertTrue(acl.transaction(txid).getFrom().equals(pk.toString()));
     }
 
+    @Then("I can get the transaction by ID")
+    public void txnbyID() throws ApiException, InterruptedException{
+        acl.waitForBlock(lastRound.add(BigInteger.valueOf(2)));
+        Assert.assertTrue(acl.transaction(txid).getFrom().equals(pk.toString()));
+    }
+
     @Then("the transaction should not go through")
     public void txnFail(){
         Assert.assertTrue(err);
@@ -750,7 +756,7 @@ public class Stepdefs {
         acl.healthCheck();
     }
 
-    @When("I get the ledger supply")
+    @Then("I get the ledger supply")
     public void getLedger() throws ApiException{
         acl.getSupply();
     }

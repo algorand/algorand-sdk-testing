@@ -326,6 +326,12 @@ def check_txn(context):
     assert "type" in context.acl.transaction_by_id(context.txn.get_txid())
 
 
+@then("I can get the transaction by ID")
+def check_txn(context):
+    context.acl.status_after_block(context.last_round+2)
+    assert "type" in context.acl.transaction_by_id(context.txn.get_txid())
+
+
 @then("the transaction should not go through")
 def txn_fail(context):
     assert context.error
@@ -386,7 +392,7 @@ def check_save_txn(context):
     assert context.acl.transaction_info(stx.transaction.sender, txid)
 
 
-@when("I get the ledger supply")
+@then("I get the ledger supply")
 def get_ledger(context):
     context.acl.ledger_supply()
 

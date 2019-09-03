@@ -189,6 +189,7 @@ func FeatureContext(s *godog.Suite) {
 	s.Step("I create the key registration transaction", createKeyregTxn)
 	s.Step(`^I get recent transactions, limited by (\d+) transactions$`, getTxnsByCount)
 	s.Step(`^I can get account information`, newAccInfo)
+	s.Step(`^I can get the transaction by ID$`, txnbyID)
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -779,6 +780,16 @@ func checkTxn() error {
 		return err
 	}
 	_, err = acl.TransactionInformation(txn.Sender.String(), txid)
+	if err != nil {
+		return err
+	}
+	_, err = acl.TransactionByID(txid)
+	return err
+}
+
+func txnbyID() error {
+	var err error
+	_, err = acl.StatusAfterBlock(lastRound + 2)
 	if err != nil {
 		return err
 	}
