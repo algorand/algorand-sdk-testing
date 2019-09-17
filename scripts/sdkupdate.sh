@@ -3,7 +3,7 @@ mkdir ~/algorand-sdk-testing
 git clone https://github.com/algorand/algorand-sdk-testing.git ~/algorand-sdk-testing
 cd ~/algorand-sdk-testing
 
-case "$1" in 
+case "$1" in
     --go*)
         scripts/setup.sh --go
         scripts/test.sh --go --cross
@@ -30,4 +30,4 @@ esac
 # chmod +x ~/sdkupdate.sh
 
 # put this in script (make sure to change languagetag to the right language)
-# ~/sdkupdate.sh --languagetag 
+# ~/sdkupdate.sh --languagetag

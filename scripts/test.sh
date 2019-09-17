@@ -3,6 +3,8 @@
 
 rm -r ~/node/network
 
+source $(dirname $0)/shared.sh
+
 if [ $# -eq 0 ]
 then
     cp -r features/. go_godog/src/features
@@ -11,7 +13,7 @@ then
     cp -r features/. py_behave
     mkdir temp
     cd ~/node
-    ./goal network create -n network -r network -t template.json    
+    ./goal network create -n network -r network -t template.json
     INDEXER_DIR=~/node/$(ls -d network/Node/network*)
     KMD_DIR=~/node/$(ls -d network/Node/kmd*)
     export KMD_DIR=$(basename $KMD_DIR)
@@ -26,11 +28,12 @@ then
     go test # for verbose reporting, add --godog.format=pretty
     goexitcode=$?
     ~/node/goal kmd start -d ~/node/network/Node
-    cd ../../java_cucumber 
+    cd ../../java_cucumber
     mvn test -q # change to "pretty" in cucumberoptions if verbose
     javaexitcode=$?
     ~/node/goal kmd start -d ~/node/network/Node
     cd ../js_cucumber
+    ensure_nodejs_version
     node_modules/.bin/cucumber-js --no-strict
     jsexitcode=$?
     ~/node/goal kmd start -d ~/node/network/Node
@@ -49,7 +52,7 @@ else
 
     while [ $# -gt 0 ]
     do
-        case "$1" in 
+        case "$1" in
             -h|--help)
                 echo "Use no flags to run all tests"
                 echo " "
@@ -85,7 +88,7 @@ else
         esac
     done
     cd ~/node
-    ./goal network create -n network -r network -t template.json    
+    ./goal network create -n network -r network -t template.json
     INDEXER_DIR=~/node/$(ls -d network/Node/network*)
     KMD_DIR=$(ls -d network/Node/kmd*)
     export KMD_DIR=$(basename $KMD_DIR)
@@ -130,7 +133,7 @@ else
     if $runjava
     then
         cp -r features/. java_cucumber/src/test/resources/java_cucumber
-        cd java_cucumber 
+        cd java_cucumber
         if $cross
         then
             ~/node/goal kmd start -d ~/node/network/Node
@@ -152,6 +155,11 @@ else
         else
             javaexitcode=0
         fi
+    fi
+
+    if $runjs || $cross
+    then
+        ensure_nodejs_version
     fi
 
     if $runjs
@@ -208,7 +216,7 @@ else
     fi
     if $cross
     then
-        rm -r temp 
+        rm -r temp
     fi
 fi
 
