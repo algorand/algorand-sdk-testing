@@ -4,7 +4,7 @@ java=false
 js=false
 py=false
 
-case "$1" in 
+case "$1" in
     --go*)
         go=true
         ;;
@@ -34,6 +34,10 @@ else
     pip3 install git+https://github.com/algorand/py-algorand-sdk/ -q
 fi
 pip3 install behave -q
+
+# ensure correct nodejs version (>=10) if running on travis
+source $(dirname $0)/shared.sh
+ensure_nodejs_version
 
 cd js_cucumber
 npm install --silent
