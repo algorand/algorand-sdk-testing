@@ -245,8 +245,7 @@ def sk_eq_export(context):
 
 @given("a kmd client")
 def kmd_client(context):
-    home = os.path.expanduser("~")
-    data_dir_path = home + "/node/network/Node/"
+    data_dir_path = os.environ["NODE_DIR"] + "/"
     kmd_folder_name = os.environ["KMD_DIR"] + "/"
     kmd_token = open(data_dir_path + kmd_folder_name + "kmd.token",
                      "r").read().strip("\n")
@@ -257,8 +256,7 @@ def kmd_client(context):
 
 @given("an algod client")
 def algod_client(context):
-    home = os.path.expanduser("~")
-    data_dir_path = home + "/node/network/Node/"
+    data_dir_path = os.environ["NODE_DIR"] + "/"
     algod_token = open(data_dir_path + "algod.token", "r").read().strip("\n")
     algod_address = "http://" + open(data_dir_path + "algod.net",
                                      "r").read().strip("\n")

@@ -65,14 +65,23 @@ else
 fi
 mvn versions:use-dep-version -DdepVersion=$ALGOSDK_VERSION -Dincludes=com.algorand:algosdk -DforceVersion=true -q
 
-
-# get algorand tools; comment this section out if you already have this
 cd ..
-mkdir ~/inst
-# this is the link for linux; change this if on mac or windows
-curl -L https://github.com/algorand/go-algorand-doc/blob/master/downloads/installers/linux_amd64/install_master_linux-amd64.tar.gz?raw=true -o ~/inst/installer.tar.gz
-tar -xf ~/inst/installer.tar.gz -C ~/inst
-~/inst/update.sh -i -c stable -p ~/node -d ~/node/data -n
-
-# don't comment this out; tests depend on the specific network setup
+mkdir ~/node
 cp network_config/template.json ~/node
+
+
+# test latest
+go -get github.com/algorand/go-algorand/...
+cd $GOPATH/src/github.com/algorand/go-algorand
+make install
+cd -
+
+
+
+# # test stable
+# mkdir ~/inst
+# # this is the link for linux; change this if on mac or windows
+# curl -L https://github.com/algorand/go-algorand-doc/blob/master/downloads/installers/linux_amd64/install_master_linux-amd64.tar.gz?raw=true -o ~/inst/installer.tar.gz
+# tar -xf ~/inst/installer.tar.gz -C ~/inst
+# ~/inst/update.sh -i -c stable -p ~/node -d ~/node/data -n
+

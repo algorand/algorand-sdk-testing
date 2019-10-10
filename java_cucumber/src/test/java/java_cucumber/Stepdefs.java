@@ -496,8 +496,7 @@ public class Stepdefs {
 
     @Given("a kmd client")
     public void kClient() throws FileNotFoundException, IOException{
-        String home = System.getProperty("user.home");
-        String data_dir_path = home + "/node/network/Node/";
+        String data_dir_path = System.getenv("NODE_DIR") + "/";
         data_dir_path += System.getenv("KMD_DIR") + "/";
         BufferedReader reader = new BufferedReader(new FileReader(data_dir_path + "kmd.token"));
         String kmdToken = reader.readLine();
@@ -516,8 +515,7 @@ public class Stepdefs {
 
     @Given("an algod client")
     public void aClient() throws FileNotFoundException, IOException{
-        String home = System.getProperty("user.home");
-        String data_dir_path = home + "/node/network/Node/";
+        String data_dir_path = System.getenv("NODE_DIR") + "/";
         BufferedReader reader = new BufferedReader(new FileReader(data_dir_path + "algod.token"));
         String algodToken = reader.readLine();
         reader.close();

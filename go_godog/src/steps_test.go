@@ -607,7 +607,7 @@ func skEqExport() error {
 }
 
 func kmdClient() error {
-	dataDirPath := os.Getenv("HOME") + "/node/network/Node/" + os.Getenv("KMD_DIR") + "/"
+	dataDirPath := os.Getenv("NODE_DIR") + "/" + os.Getenv("KMD_DIR") + "/"
 	tokenBytes, err := ioutil.ReadFile(dataDirPath + "kmd.token")
 	if err != nil {
 		return err
@@ -627,7 +627,7 @@ func kmdClient() error {
 }
 
 func algodClient() error {
-	dataDirPath := os.Getenv("HOME") + "/node/network/Node/"
+	dataDirPath := os.Getenv("NODE_DIR") + "/"
 	tokenBytes, err := ioutil.ReadFile(dataDirPath + "algod.token")
 	if err != nil {
 		return err

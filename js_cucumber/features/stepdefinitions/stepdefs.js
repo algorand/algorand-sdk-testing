@@ -11,7 +11,7 @@ const homedir = require('os').homedir()
 setDefaultTimeout(60000)
 
 Given("an algod client", async function(){
-    data_dir_path = "file://" + homedir + "/node/network/Node/";
+    data_dir_path = "file://" + process.env.NODE_DIR + "/";
     algod_token = "";
     algod_address = "";
 
@@ -33,7 +33,7 @@ Given("an algod client", async function(){
 })
 
 Given("a kmd client", function(){
-    data_dir_path = "file://" + homedir + "/node/network/Node/";
+    data_dir_path = "file://" + process.env.NODE_DIR + "/";
     kmd_folder_name = process.env.KMD_DIR + "/";
     kmd_token = "";
     kmd_address = "";
