@@ -67,8 +67,9 @@ mvn versions:use-dep-version -DdepVersion=$ALGOSDK_VERSION -Dincludes=com.algora
 
 # test latest
 go get github.com/algorand/go-algorand/...
-yes | cd $GOPATH/src/github.com/algorand/go-algorand
-make install
+cd $GOPATH/src/github.com/algorand/go-algorand
+pwd
+yes | make install
 cd -
 
 # # test stable
