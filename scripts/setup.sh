@@ -71,7 +71,7 @@ cp network_config/template.json ~/node
 
 
 # test latest
-go -get github.com/algorand/go-algorand/...
+go get github.com/algorand/go-algorand/...
 cd $GOPATH/src/github.com/algorand/go-algorand
 make install
 cd -
