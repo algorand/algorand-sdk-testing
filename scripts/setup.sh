@@ -66,8 +66,8 @@ fi
 mvn versions:use-dep-version -DdepVersion=$ALGOSDK_VERSION -Dincludes=com.algorand:algosdk -DforceVersion=true -q
 
 # test latest
-yes | go get github.com/algorand/go-algorand/...
-cd $GOPATH/src/github.com/algorand/go-algorand
+go get github.com/algorand/go-algorand/...
+yes | cd $GOPATH/src/github.com/algorand/go-algorand
 make install
 cd -
 
