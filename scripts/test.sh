@@ -20,7 +20,6 @@ then
     export KMD_DIR=$(basename $KMD_DIR)
     cp network_config/config.json $NODE_DIR
     $BIN_DIR/goal network start -r $NETWORK_DIR
-    ./update.sh -d network/Node
     $BIN_DIR/goal kmd start -d $NODE_DIR
     cd go_godog/src
     go test # for verbose reporting, add --godog.format=pretty

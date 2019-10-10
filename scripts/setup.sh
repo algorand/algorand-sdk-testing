@@ -65,18 +65,11 @@ else
 fi
 mvn versions:use-dep-version -DdepVersion=$ALGOSDK_VERSION -Dincludes=com.algorand:algosdk -DforceVersion=true -q
 
-cd ..
-mkdir ~/node
-cp network_config/template.json ~/node
-
-
 # test latest
-go get github.com/algorand/go-algorand/...
+yes | go get github.com/algorand/go-algorand/...
 cd $GOPATH/src/github.com/algorand/go-algorand
 make install
 cd -
-
-
 
 # # test stable
 # mkdir ~/inst
