@@ -85,6 +85,9 @@ else
                 cross=true
                 shift
                 ;;
+            *)
+                shift
+                ;;
         esac
     done
     cd ~/node
