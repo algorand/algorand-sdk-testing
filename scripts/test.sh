@@ -86,7 +86,8 @@ else
                 shift
                 ;;
             *)
-                shift
+                echo "Unsupported flag: " $1
+                exit 1
                 ;;
         esac
     done
