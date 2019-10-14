@@ -72,7 +72,7 @@ cd $GOPATH/src/github.com/algorand/go-algorand
 yes | make install
 cd -
 
-# # test stable
+# # test last release
 # mkdir ~/inst
 # # this is the link for linux; change this if on mac or windows
 # curl -L https://github.com/algorand/go-algorand-doc/blob/master/downloads/installers/linux_amd64/install_master_linux-amd64.tar.gz?raw=true -o ~/inst/installer.tar.gz
