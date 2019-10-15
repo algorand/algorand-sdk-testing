@@ -77,6 +77,16 @@ var votelst uint64
 var votekd uint64
 var num string
 
+var assetTestFixture struct {
+	Creator               string
+	AssetIndex            uint64
+	AssetName             string
+	AssetUnitName         string
+	Params                types.AssetParams
+	QueriedParams         models.AssetParams
+	LastTransactionIssued types.Transaction
+}
+
 var opt = godog.Options{
 	Output: colors.Colored(os.Stdout),
 	Format: "progress", // can define default values
@@ -190,6 +200,10 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I get recent transactions, limited by (\d+) transactions$`, getTxnsByCount)
 	s.Step(`^I can get account information`, newAccInfo)
 	s.Step(`^I can get the transaction by ID$`, txnbyID)
+	s.Step("asset test fixture", createAssetTestFixture)
+	s.Step(`^default asset creation transaction with total issuance (\d+)$`, defaultAssetCreateTxn)
+	s.Step(`^I get the asset info$`, getAssetInfo)
+	s.Step(`^the asset info should match the creation transaction$`, matchAssetInfoToCreationTxn)
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -1171,4 +1185,79 @@ func createKeyregTxn() (err error) {
 func getTxnsByCount(cnt int) error {
 	_, err := acl.TransactionsByAddrLimit(accounts[0], uint64(cnt))
 	return err
+}
+
+func createAssetTestFixture() error {
+	assetTestFixture.Creator = ""
+	assetTestFixture.AssetIndex = 1
+	assetTestFixture.AssetName = "testcoin"
+	assetTestFixture.AssetUnitName = "coins"
+	assetTestFixture.Params = types.AssetParams{}
+	assetTestFixture.QueriedParams = models.AssetParams{}
+	assetTestFixture.LastTransactionIssued = types.Transaction{}
+	return nil
+}
+
+func defaultAssetCreateTxn(issuance int) error {
+	accountToUse := accounts[0]
+	assetTestFixture.Creator = accountToUse
+	creator := assetTestFixture.Creator
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	firstRound := params.LastRound
+	lastRound := firstRound + 1000
+	assetNote := nil
+	assetIssuance := uint64(issuance)
+	genesisID := params.GenesisID
+	genesisHash := string(params.GenesisHash)
+	defaultFrozen := false
+	manager := creator
+	reserve := creator
+	freeze := creator
+	clawback := creator
+	unitName := assetTestFixture.AssetUnitName
+	assetName := assetTestFixture.AssetName
+	assetCreateTxn, err := transaction.MakeAssetCreateTxn(creator, 10, firstRound, lastRound, assetNote,
+		genesisID, genesisHash, assetIssuance, defaultFrozen, manager, reserve, freeze, clawback, unitName,
+		assetName)
+	assetTestFixture.LastTransactionIssued = assetCreateTxn
+	txn = assetCreateTxn
+	copy(assetTestFixture.Params.UnitName[:], []byte(unitName))
+	copy(assetTestFixture.Params.AssetName[:], []byte(assetName))
+	assetTestFixture.Params.DefaultFrozen = defaultFrozen
+	assetTestFixture.Params.Total = assetIssuance
+	assetTestFixture.Params.Manager, _ = types.DecodeAddress(manager)
+	assetTestFixture.Params.Reserve, _ = types.DecodeAddress(reserve)
+	assetTestFixture.Params.Freeze, _ = types.DecodeAddress(freeze)
+	assetTestFixture.Params.Clawback, _ = types.DecodeAddress(clawback)
+	return err
+}
+
+func getAssetInfo() error {
+	response, err := acl.AssetInformation(assetTestFixture.Creator, assetTestFixture.AssetIndex)
+	assetTestFixture.QueriedParams = response
+	return err
+}
+
+func matchAssetInfoToCreationTxn() error {
+	expectedParams := assetTestFixture.Params
+	actualParams := assetTestFixture.QueriedParams
+	var nameBuf [32]byte
+	copy(nameBuf[:], []byte(actualParams.AssetName))
+	nameMatch := expectedParams.AssetName == nameBuf
+	var unitBuf [8]byte
+	copy(unitBuf[:], []byte(actualParams.UnitName))
+	unitMatch := expectedParams.UnitName == unitBuf
+	issuanceMatch := expectedParams.Total == actualParams.Total
+	defaultFrozenMatch := expectedParams.DefaultFrozen == actualParams.DefaultFrozen
+	managerMatch := expectedParams.Manager.String() == actualParams.ManagerAddr
+	reserveMatch := expectedParams.Reserve.String() == actualParams.ReserveAddr
+	freezeMatch := expectedParams.Freeze.String() == actualParams.FreezeAddr
+	clawbackMatch := expectedParams.Clawback.String() == actualParams.ClawbackAddr
+	if nameMatch && unitMatch && issuanceMatch && defaultFrozenMatch && managerMatch && reserveMatch && freezeMatch && clawbackMatch {
+		return nil
+	}
+	return fmt.Errorf("queried params %v mismatch with creation params %v", actualParams, expectedParams)
 }
