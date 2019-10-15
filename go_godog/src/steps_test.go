@@ -1225,14 +1225,7 @@ func defaultAssetCreateTxn(issuance int) error {
 		assetName)
 	assetTestFixture.LastTransactionIssued = assetCreateTxn
 	txn = assetCreateTxn
-	copy(assetTestFixture.Params.UnitName[:], []byte(unitName))
-	copy(assetTestFixture.Params.AssetName[:], []byte(assetName))
-	assetTestFixture.Params.DefaultFrozen = defaultFrozen
-	assetTestFixture.Params.Total = assetIssuance
-	assetTestFixture.Params.Manager, _ = types.DecodeAddress(manager)
-	assetTestFixture.Params.Reserve, _ = types.DecodeAddress(reserve)
-	assetTestFixture.Params.Freeze, _ = types.DecodeAddress(freeze)
-	assetTestFixture.Params.Clawback, _ = types.DecodeAddress(clawback)
+	assetTestFixture.Params = assetCreateTxn.AssetParams
 	return err
 }
 
