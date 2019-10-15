@@ -387,7 +387,7 @@ func signMsigTxn() error {
 
 func signTxn() error {
 	var err error
-	_, _ = fmt.Fprintf(os.Stderr, "\n signing transaction from %v with key relating to %v \n", txn.Sender, account.Address.String())
+	_, _ = fmt.Fprintf(os.Stderr, "\n signing transaction from %v with key relating to %v \n", txn.Sender, account.Address.String()) // TODO EJR remove before PR
 	txid, stx, err = crypto.SignTransaction(account.PrivateKey, txn)
 	if err != nil {
 		return err
@@ -1199,7 +1199,7 @@ func createAssetTestFixture() error {
 }
 
 func defaultAssetCreateTxn(issuance int) error {
-	_, _ = fmt.Fprintln(os.Stderr, "this is the asset test")
+	_, _ = fmt.Fprintln(os.Stderr, "this is an asset test") // TODO EJR remove before PR
 	accountToUse := account.Address.String()
 	assetTestFixture.Creator = accountToUse
 	creator := assetTestFixture.Creator
