@@ -85,6 +85,10 @@ else
                 cross=true
                 shift
                 ;;
+            *)
+                echo "Unsupported flag: " $1
+                exit 1
+                ;;
         esac
     done
     cd ~/node
