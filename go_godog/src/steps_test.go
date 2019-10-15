@@ -387,6 +387,7 @@ func signMsigTxn() error {
 
 func signTxn() error {
 	var err error
+	_, _ = fmt.Fprintf(os.Stderr, "\n signing transaction from %v with key relating to %v \n", txn.Sender, account.Address.String())
 	txid, stx, err = crypto.SignTransaction(account.PrivateKey, txn)
 	if err != nil {
 		return err
@@ -765,7 +766,6 @@ func getSk() error {
 }
 
 func sendTxn() error {
-
 	tx, err := acl.SendRawTransaction(stx)
 	if err != nil {
 		return err
@@ -1199,7 +1199,8 @@ func createAssetTestFixture() error {
 }
 
 func defaultAssetCreateTxn(issuance int) error {
-	accountToUse := accounts[0]
+	_, _ = fmt.Fprintln(os.Stderr, "this is the asset test")
+	accountToUse := account.Address.String()
 	assetTestFixture.Creator = accountToUse
 	creator := assetTestFixture.Creator
 	params, err := acl.SuggestedParams()
@@ -1208,10 +1209,10 @@ func defaultAssetCreateTxn(issuance int) error {
 	}
 	firstRound := params.LastRound
 	lastRound := firstRound + 1000
-	assetNote := nil
+	assetNote := []byte(nil)
 	assetIssuance := uint64(issuance)
 	genesisID := params.GenesisID
-	genesisHash := string(params.GenesisHash)
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
 	defaultFrozen := false
 	manager := creator
 	reserve := creator
