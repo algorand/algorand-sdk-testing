@@ -156,6 +156,7 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`default multisig transaction with parameters (\d+) "([^"]*)"`, defaultMsigTxn)
 	s.Step("I get the private key", getSk)
 	s.Step("I send the transaction", sendTxn)
+	s.Step("I send the kmd-signed transaction", sendTxnKmd)
 	s.Step("I send the multisig transaction", sendMsigTxn)
 	s.Step("the transaction should go through", checkTxn)
 	s.Step("the transaction should not go through", txnFail)
@@ -387,7 +388,6 @@ func signMsigTxn() error {
 
 func signTxn() error {
 	var err error
-	_, _ = fmt.Fprintf(os.Stderr, "\n signing transaction from %v with key relating to %v \n", txn.Sender, account.Address.String()) // TODO EJR remove before PR
 	txid, stx, err = crypto.SignTransaction(account.PrivateKey, txn)
 	if err != nil {
 		return err
@@ -774,6 +774,15 @@ func sendTxn() error {
 	return nil
 }
 
+func sendTxnKmd() error {
+	tx, err := acl.SendRawTransaction(stxKmd)
+	if err != nil {
+		return err
+	}
+	txid = tx.TxID
+	return nil
+}
+
 func sendMsigTxn() error {
 	_, err := acl.SendRawTransaction(stx)
 
@@ -789,7 +798,7 @@ func checkTxn() error {
 	if err != nil {
 		return err
 	}
-	_, err = acl.StatusAfterBlock(lastRound + 2)
+	_, err = acl.StatusAfterBlock(lastRound + 4)
 	if err != nil {
 		return err
 	}
@@ -1199,8 +1208,7 @@ func createAssetTestFixture() error {
 }
 
 func defaultAssetCreateTxn(issuance int) error {
-	_, _ = fmt.Fprintln(os.Stderr, "this is an asset test") // TODO EJR remove before PR
-	accountToUse := account.Address.String()
+	accountToUse := accounts[0]
 	assetTestFixture.Creator = accountToUse
 	creator := assetTestFixture.Creator
 	params, err := acl.SuggestedParams()
@@ -1230,6 +1238,14 @@ func defaultAssetCreateTxn(issuance int) error {
 }
 
 func getAssetInfo() error {
+	accountResp, err := acl.AccountInformation(assetTestFixture.Creator)
+	if err != nil {
+		return err
+	}
+	for assetIndex, _ := range accountResp.AssetParams {
+		assetTestFixture.AssetIndex = assetIndex
+		break
+	}
 	response, err := acl.AssetInformation(assetTestFixture.Creator, assetTestFixture.AssetIndex)
 	assetTestFixture.QueriedParams = response
 	return err
