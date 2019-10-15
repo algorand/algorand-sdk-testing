@@ -11,7 +11,25 @@ Feature: Assets
     And I send the kmd-signed transaction
     Then the transaction should go through
     When I get the asset info
-    Then the asset info should match the creation transaction
+    Then the asset info should match the transaction
+
+    Examples:
+      | total |
+      | 1 |
+
+  Scenario Outline: Asset reconfigure
+    Given default asset creation transaction with total issuance <total>
+    When I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    When I get the asset info
+    Then the asset info should match the transaction
+    When I create a no-managers asset reconfigure transaction
+    And I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    When I get the asset info
+    Then the asset info should match the transaction
 
     Examples:
       | total |

@@ -82,7 +82,7 @@ var assetTestFixture struct {
 	AssetIndex            uint64
 	AssetName             string
 	AssetUnitName         string
-	Params                types.AssetParams
+	ExpectedParams        models.AssetParams
 	QueriedParams         models.AssetParams
 	LastTransactionIssued types.Transaction
 }
@@ -204,7 +204,8 @@ func FeatureContext(s *godog.Suite) {
 	s.Step("asset test fixture", createAssetTestFixture)
 	s.Step(`^default asset creation transaction with total issuance (\d+)$`, defaultAssetCreateTxn)
 	s.Step(`^I get the asset info$`, getAssetInfo)
-	s.Step(`^the asset info should match the creation transaction$`, matchAssetInfoToCreationTxn)
+	s.Step(`^the asset info should match the transaction$`, checkExpectedVsActualAssetParams)
+	s.Step(`^I create a no-managers asset reconfigure transaction$`, createNoManagerAssetReconfigure)
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -798,7 +799,7 @@ func checkTxn() error {
 	if err != nil {
 		return err
 	}
-	_, err = acl.StatusAfterBlock(lastRound + 4)
+	_, err = acl.StatusAfterBlock(lastRound + 2)
 	if err != nil {
 		return err
 	}
@@ -1201,10 +1202,25 @@ func createAssetTestFixture() error {
 	assetTestFixture.AssetIndex = 1
 	assetTestFixture.AssetName = "testcoin"
 	assetTestFixture.AssetUnitName = "coins"
-	assetTestFixture.Params = types.AssetParams{}
+	assetTestFixture.ExpectedParams = models.AssetParams{}
 	assetTestFixture.QueriedParams = models.AssetParams{}
 	assetTestFixture.LastTransactionIssued = types.Transaction{}
 	return nil
+}
+
+func convertTransactionAssetParamsToModelsAssetParam(input types.AssetParams) models.AssetParams {
+	result := models.AssetParams{
+		Total:         input.Total,
+		DefaultFrozen: input.DefaultFrozen,
+		ManagerAddr:   input.Manager.String(),
+		ReserveAddr:   input.Reserve.String(),
+		FreezeAddr:    input.Freeze.String(),
+		ClawbackAddr:  input.Clawback.String(),
+		UnitName:      strings.TrimRight(string(input.UnitName[:]), "\x00"),
+		AssetName:     strings.TrimRight(string(input.AssetName[:]), "\x00"),
+	}
+	// input doesn't have Creator so that will remain empty
+	return result
 }
 
 func defaultAssetCreateTxn(issuance int) error {
@@ -1215,8 +1231,9 @@ func defaultAssetCreateTxn(issuance int) error {
 	if err != nil {
 		return err
 	}
-	firstRound := params.LastRound
-	lastRound := firstRound + 1000
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
 	assetNote := []byte(nil)
 	assetIssuance := uint64(issuance)
 	genesisID := params.GenesisID
@@ -1228,12 +1245,41 @@ func defaultAssetCreateTxn(issuance int) error {
 	clawback := creator
 	unitName := assetTestFixture.AssetUnitName
 	assetName := assetTestFixture.AssetName
-	assetCreateTxn, err := transaction.MakeAssetCreateTxn(creator, 10, firstRound, lastRound, assetNote,
+	assetCreateTxn, err := transaction.MakeAssetCreateTxn(creator, 10, firstRound, lastRoundValid, assetNote,
 		genesisID, genesisHash, assetIssuance, defaultFrozen, manager, reserve, freeze, clawback, unitName,
 		assetName)
 	assetTestFixture.LastTransactionIssued = assetCreateTxn
 	txn = assetCreateTxn
-	assetTestFixture.Params = assetCreateTxn.AssetParams
+	assetTestFixture.ExpectedParams = convertTransactionAssetParamsToModelsAssetParam(assetCreateTxn.AssetParams)
+	//convertTransactionAssetParamsToModelsAssetParam leaves creator blank, repopulate
+	assetTestFixture.ExpectedParams.Creator = creator
+	return err
+}
+
+func createNoManagerAssetReconfigure() error {
+	creator := assetTestFixture.Creator
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	assetNote := []byte(nil)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	reserve := ""
+	freeze := ""
+	clawback := ""
+	manager := creator // if this were "" as well, this wouldn't be a reconfigure txn, it would be a destroy txn
+	assetReconfigureTxn, err := transaction.MakeAssetConfigTxn(creator, 10, firstRound, lastRoundValid, assetNote,
+		genesisID, genesisHash, creator, assetTestFixture.AssetIndex, manager, reserve, freeze, clawback)
+	assetTestFixture.LastTransactionIssued = assetReconfigureTxn
+	txn = assetReconfigureTxn
+	// update expected params
+	assetTestFixture.ExpectedParams.ReserveAddr = reserve
+	assetTestFixture.ExpectedParams.FreezeAddr = freeze
+	assetTestFixture.ExpectedParams.ClawbackAddr = clawback
 	return err
 }
 
@@ -1251,23 +1297,48 @@ func getAssetInfo() error {
 	return err
 }
 
-func matchAssetInfoToCreationTxn() error {
-	expectedParams := assetTestFixture.Params
+func checkExpectedVsActualAssetParams() error {
+	expectedParams := assetTestFixture.ExpectedParams
 	actualParams := assetTestFixture.QueriedParams
-	var nameBuf [32]byte
-	copy(nameBuf[:], []byte(actualParams.AssetName))
-	nameMatch := expectedParams.AssetName == nameBuf
-	var unitBuf [8]byte
-	copy(unitBuf[:], []byte(actualParams.UnitName))
-	unitMatch := expectedParams.UnitName == unitBuf
-	issuanceMatch := expectedParams.Total == actualParams.Total
-	defaultFrozenMatch := expectedParams.DefaultFrozen == actualParams.DefaultFrozen
-	managerMatch := expectedParams.Manager.String() == actualParams.ManagerAddr
-	reserveMatch := expectedParams.Reserve.String() == actualParams.ReserveAddr
-	freezeMatch := expectedParams.Freeze.String() == actualParams.FreezeAddr
-	clawbackMatch := expectedParams.Clawback.String() == actualParams.ClawbackAddr
-	if nameMatch && unitMatch && issuanceMatch && defaultFrozenMatch && managerMatch && reserveMatch && freezeMatch && clawbackMatch {
-		return nil
+	nameMatch := expectedParams.AssetName == actualParams.AssetName
+	if !nameMatch {
+		return fmt.Errorf("expected asset name was %v but actual asset name was %v",
+			expectedParams.AssetName, actualParams.AssetName)
 	}
-	return fmt.Errorf("queried params %v mismatch with creation params %v", actualParams, expectedParams)
+	unitMatch := expectedParams.UnitName == actualParams.UnitName
+	if !unitMatch {
+		return fmt.Errorf("expected unit name was %v but actual unit name was %v",
+			expectedParams.UnitName, actualParams.UnitName)
+	}
+	issuanceMatch := expectedParams.Total == actualParams.Total
+	if !issuanceMatch {
+		return fmt.Errorf("expected total issuance was %v but actual issuance was %v",
+			expectedParams.Total, actualParams.Total)
+	}
+	defaultFrozenMatch := expectedParams.DefaultFrozen == actualParams.DefaultFrozen
+	if !defaultFrozenMatch {
+		return fmt.Errorf("expected default frozen state %v but actual default frozen state was %v",
+			expectedParams.DefaultFrozen, actualParams.DefaultFrozen)
+	}
+	managerMatch := expectedParams.ManagerAddr == actualParams.ManagerAddr
+	if !managerMatch {
+		return fmt.Errorf("expected asset manager was %v but actual asset manager was %v",
+			expectedParams.ManagerAddr, actualParams.ManagerAddr)
+	}
+	reserveMatch := expectedParams.ReserveAddr == actualParams.ReserveAddr
+	if !reserveMatch {
+		return fmt.Errorf("expected asset reserve was %v but actual asset reserve was %v",
+			expectedParams.ReserveAddr, actualParams.ReserveAddr)
+	}
+	freezeMatch := expectedParams.FreezeAddr == actualParams.FreezeAddr
+	if !freezeMatch {
+		return fmt.Errorf("expected freeze manager was %v but actual freeze manager was %v",
+			expectedParams.FreezeAddr, actualParams.FreezeAddr)
+	}
+	clawbackMatch := expectedParams.ClawbackAddr == actualParams.ClawbackAddr
+	if !clawbackMatch {
+		return fmt.Errorf("expected revocation (clawback) manager was %v but actual revocation manager was %v",
+			expectedParams.ClawbackAddr, actualParams.ClawbackAddr)
+	}
+	return nil
 }
