@@ -204,7 +204,7 @@ func FeatureContext(s *godog.Suite) {
 	s.Step("asset test fixture", createAssetTestFixture)
 	s.Step(`^default asset creation transaction with total issuance (\d+)$`, defaultAssetCreateTxn)
 	s.Step(`^I get the asset info$`, getAssetInfo)
-	s.Step(`^the asset info should match the transaction$`, checkExpectedVsActualAssetParams)
+	s.Step(`^the asset info should match the expected asset info$`, checkExpectedVsActualAssetParams)
 	s.Step(`^I create a no-managers asset reconfigure transaction$`, createNoManagerAssetReconfigure)
 
 	s.BeforeScenario(func(interface{}) {
