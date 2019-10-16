@@ -209,6 +209,9 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^the asset info should match the expected asset info$`, checkExpectedVsActualAssetParams)
 	s.Step(`^I create a no-managers asset reconfigure transaction$`, createNoManagerAssetReconfigure)
 	s.Step(`^I create an asset destroy transaction$`, createAssetDestroy)
+	s.Step(`^I create a transaction for a second account, signalling asset acceptance$`, createAssetAcceptanceForSecondAccount)
+	s.Step(`^I create a transaction transferring (\d+) assets from creator to a second account$`, createAssetTransferTransactionToSecondAccount)
+	s.Step(`^the creator should have (\d+) assets remaining$`, theCreatorShouldHaveAssetsRemaining)
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -1393,4 +1396,63 @@ func checkExpectedVsActualAssetParams() error {
 			expectedParams.ClawbackAddr, actualParams.ClawbackAddr)
 	}
 	return nil
+}
+
+func theCreatorShouldHaveAssetsRemaining(expectedBal int) error {
+	expectedBalance := uint64(expectedBal)
+	accountResp, err := acl.AccountInformation(assetTestFixture.Creator)
+	if err != nil {
+		return err
+	}
+	holding, ok := accountResp.Assets[assetTestFixture.AssetIndex]
+	if !ok {
+		return fmt.Errorf("attempted to get balance of account %v for creator %v and index %v, but no balance was found for that index", assetTestFixture.Creator, assetTestFixture.Creator, assetTestFixture.AssetIndex)
+	}
+	if holding.Amount != expectedBalance {
+		return fmt.Errorf("actual balance %v differed from expected balance %v", holding.Amount, expectedBalance)
+	}
+	return nil
+}
+
+func createAssetAcceptanceForSecondAccount() error {
+	accountToUse := accounts[1]
+	creator := assetTestFixture.Creator
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	assetNote := []byte(nil)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	assetAcceptanceTxn, err := transaction.MakeAssetAcceptanceTxn(accountToUse, 10, firstRound,
+		lastRoundValid, assetNote, genesisID, genesisHash, creator, assetTestFixture.AssetIndex)
+	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
+	txn = assetAcceptanceTxn
+	return err
+}
+
+func createAssetTransferTransactionToSecondAccount(amount int) error {
+	recipient := accounts[1]
+	creator := assetTestFixture.Creator
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	sendAmount := uint64(amount)
+	closeAssetsTo := ""
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	assetNote := []byte(nil)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(creator, recipient, closeAssetsTo, sendAmount,
+		10, firstRound, lastRoundValid, assetNote, genesisID, genesisHash, creator,
+		assetTestFixture.AssetIndex)
+	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
+	txn = assetAcceptanceTxn
+	return err
 }
