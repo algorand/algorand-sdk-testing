@@ -203,7 +203,9 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I can get the transaction by ID$`, txnbyID)
 	s.Step("asset test fixture", createAssetTestFixture)
 	s.Step(`^default asset creation transaction with total issuance (\d+)$`, defaultAssetCreateTxn)
+	s.Step(`^I update the asset index$`, getAssetIndex)
 	s.Step(`^I get the asset info$`, getAssetInfo)
+	s.Step(`^I should be unable to get the asset info`, failToGetAssetInfo)
 	s.Step(`^the asset info should match the expected asset info$`, checkExpectedVsActualAssetParams)
 	s.Step(`^I create a no-managers asset reconfigure transaction$`, createNoManagerAssetReconfigure)
 	s.Step(`^I create an asset destroy transaction$`, createAssetDestroy)
@@ -1307,19 +1309,44 @@ func createAssetDestroy() error {
 	return err
 }
 
-func getAssetInfo() error {
+// used in getAssetInfo and similar to get the index of the most recently operated on asset
+func getMaxKey(numbers map[uint64]models.AssetParams) uint64 {
+	var maxNumber uint64
+	for n := range numbers {
+		maxNumber = n
+		break
+	}
+	for n := range numbers {
+		if n > maxNumber {
+			maxNumber = n
+		}
+	}
+	return maxNumber
+}
+
+func getAssetIndex() error {
 	accountResp, err := acl.AccountInformation(assetTestFixture.Creator)
 	if err != nil {
 		return err
 	}
-	for assetIndex, _ := range accountResp.AssetParams {
-		assetTestFixture.AssetIndex = assetIndex
-		break
-	}
+	// get most recent asset index
+	assetTestFixture.AssetIndex = getMaxKey(accountResp.AssetParams)
+	return nil
+}
+
+func getAssetInfo() error {
 	response, err := acl.AssetInformation(assetTestFixture.Creator, assetTestFixture.AssetIndex)
 	assetTestFixture.QueriedParams = response
-	_, _ = fmt.Fprintf(os.Stderr, "\n latest params response looks like %v \n", response)
 	return err
+}
+
+func failToGetAssetInfo() error {
+	_, err := acl.AssetInformation(assetTestFixture.Creator, assetTestFixture.AssetIndex)
+	if err != nil {
+		return nil
+	}
+	return fmt.Errorf("expected an error getting asset with index %v and creator %v, but no error was returned",
+		assetTestFixture.AssetIndex, assetTestFixture.Creator)
 }
 
 func checkExpectedVsActualAssetParams() error {

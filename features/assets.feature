@@ -10,7 +10,8 @@ Feature: Assets
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
     Then the transaction should go through
-    When I get the asset info
+    When I update the asset index
+    And I get the asset info
     Then the asset info should match the expected asset info
 
     Examples:
@@ -22,7 +23,8 @@ Feature: Assets
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
     Then the transaction should go through
-    When I get the asset info
+    When I update the asset index
+    And I get the asset info
     Then the asset info should match the expected asset info
     When I create a no-managers asset reconfigure transaction
     And I sign the transaction with kmd
@@ -40,13 +42,13 @@ Feature: Assets
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
     Then the transaction should go through
-    When I get the asset info
+    When I update the asset index
+    And I get the asset info
     And I create an asset destroy transaction
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
     Then the transaction should go through
-    When I get the asset info
-    Then the asset info should match the expected asset info
+    And I should be unable to get the asset info
 
     Examples:
       | total |
