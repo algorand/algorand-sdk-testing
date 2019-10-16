@@ -157,6 +157,7 @@ func FeatureContext(s *godog.Suite) {
 	s.Step("I get the private key", getSk)
 	s.Step("I send the transaction", sendTxn)
 	s.Step("I send the kmd-signed transaction", sendTxnKmd)
+	s.Step("I send the bogus kmd-signed transaction", sendTxnKmdFailureExpected)
 	s.Step("I send the multisig transaction", sendMsigTxn)
 	s.Step("the transaction should go through", checkTxn)
 	s.Step("the transaction should not go through", txnFail)
@@ -212,6 +213,9 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I create a transaction for a second account, signalling asset acceptance$`, createAssetAcceptanceForSecondAccount)
 	s.Step(`^I create a transaction transferring (\d+) assets from creator to a second account$`, createAssetTransferTransactionToSecondAccount)
 	s.Step(`^the creator should have (\d+) assets remaining$`, theCreatorShouldHaveAssetsRemaining)
+	s.Step(`^I create a freeze transaction targeting the second account$`, createFreezeTransactionTargetingSecondAccount)
+	s.Step(`^I create a transaction transferring (\d+) assets from a second account to creator$`, createAssetTransferTransactionFromSecondAccountToCreator)
+	s.Step(`^I create an un-freeze transaction targeting the second account$`, createUnfreezeTransactionTargetingSecondAccount)
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -786,6 +790,17 @@ func sendTxnKmd() error {
 	if err != nil {
 		return err
 	}
+	txid = tx.TxID
+	return nil
+}
+
+func sendTxnKmdFailureExpected() error {
+	tx, err := acl.SendRawTransaction(stxKmd)
+	if err == nil {
+		e = false
+		return fmt.Errorf("expected an error when sending kmd-signed transaction but no error occurred")
+	}
+	e = true
 	txid = tx.TxID
 	return nil
 }
@@ -1455,4 +1470,56 @@ func createAssetTransferTransactionToSecondAccount(amount int) error {
 	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
 	txn = assetAcceptanceTxn
 	return err
+}
+
+func createAssetTransferTransactionFromSecondAccountToCreator(amount int) error {
+	recipient := assetTestFixture.Creator
+	sender := accounts[1]
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	sendAmount := uint64(amount)
+	closeAssetsTo := ""
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	assetNote := []byte(nil)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(sender, recipient, closeAssetsTo, sendAmount,
+		10, firstRound, lastRoundValid, assetNote, genesisID, genesisHash, assetTestFixture.Creator,
+		assetTestFixture.AssetIndex)
+	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
+	txn = assetAcceptanceTxn
+	return err
+}
+
+// sets up a freeze transaction, with freeze state `setting` against target account `target`
+// assumes creator is asset freeze manager
+func freezeTransactionHelper(target string, setting bool) error {
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	assetNote := []byte(nil)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	assetFreezeOrUnfreezeTxn, err := transaction.MakeAssetFreezeTxn(assetTestFixture.Creator, 10, firstRound, lastRoundValid,
+		assetNote, genesisID, genesisHash, assetTestFixture.Creator, assetTestFixture.AssetIndex, target,
+		setting)
+	assetTestFixture.LastTransactionIssued = assetFreezeOrUnfreezeTxn
+	txn = assetFreezeOrUnfreezeTxn
+	return err
+}
+
+func createFreezeTransactionTargetingSecondAccount() error {
+	return freezeTransactionHelper(accounts[1], true)
+}
+
+func createUnfreezeTransactionTargetingSecondAccount() error {
+	return freezeTransactionHelper(accounts[1], false)
 }
