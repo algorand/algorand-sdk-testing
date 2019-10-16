@@ -53,3 +53,23 @@ Feature: Assets
     Examples:
       | total |
       | 1 |
+
+  Scenario Outline: Asset acceptance
+    Given default asset creation transaction with total issuance <total>
+    When I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    When I update the asset index
+    And I create a transaction for a second account, signalling asset acceptance
+    And I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    When I create a transaction transferring <amount> assets from creator to a second account
+    And I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    And the creator should have <expected balance> assets remaining
+
+    Examples:
+      | total | amount | expected balance |
+      | 100   | 50     | 50               |
