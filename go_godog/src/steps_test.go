@@ -206,6 +206,7 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I get the asset info$`, getAssetInfo)
 	s.Step(`^the asset info should match the expected asset info$`, checkExpectedVsActualAssetParams)
 	s.Step(`^I create a no-managers asset reconfigure transaction$`, createNoManagerAssetReconfigure)
+	s.Step(`^I create an asset destroy transaction$`, createAssetDestroy)
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -1283,6 +1284,29 @@ func createNoManagerAssetReconfigure() error {
 	return err
 }
 
+func createAssetDestroy() error {
+	creator := assetTestFixture.Creator
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	assetNote := []byte(nil)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	assetDestroyTxn, err := transaction.MakeAssetDestroyTxn(creator, 10, firstRound, lastRoundValid, assetNote, genesisID, genesisHash, creator, assetTestFixture.AssetIndex)
+	assetTestFixture.LastTransactionIssued = assetDestroyTxn
+	txn = assetDestroyTxn
+	// update expected params
+	assetTestFixture.ExpectedParams.ReserveAddr = ""
+	assetTestFixture.ExpectedParams.FreezeAddr = ""
+	assetTestFixture.ExpectedParams.ClawbackAddr = ""
+	assetTestFixture.ExpectedParams.ManagerAddr = ""
+	return err
+}
+
 func getAssetInfo() error {
 	accountResp, err := acl.AccountInformation(assetTestFixture.Creator)
 	if err != nil {
@@ -1294,6 +1318,7 @@ func getAssetInfo() error {
 	}
 	response, err := acl.AssetInformation(assetTestFixture.Creator, assetTestFixture.AssetIndex)
 	assetTestFixture.QueriedParams = response
+	_, _ = fmt.Fprintf(os.Stderr, "\n latest params response looks like %v \n", response)
 	return err
 }
 

@@ -23,7 +23,7 @@ Feature: Assets
     And I send the kmd-signed transaction
     Then the transaction should go through
     When I get the asset info
-    Then the asset info should match the transaction
+    Then the asset info should match the expected asset info
     When I create a no-managers asset reconfigure transaction
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
@@ -40,7 +40,8 @@ Feature: Assets
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
     Then the transaction should go through
-    When I create an asset destroy transaction
+    When I get the asset info
+    And I create an asset destroy transaction
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
     Then the transaction should go through
