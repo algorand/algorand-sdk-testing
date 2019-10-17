@@ -77,6 +77,16 @@ var votelst uint64
 var votekd uint64
 var num string
 
+var assetTestFixture struct {
+	Creator               string
+	AssetIndex            uint64
+	AssetName             string
+	AssetUnitName         string
+	ExpectedParams        models.AssetParams
+	QueriedParams         models.AssetParams
+	LastTransactionIssued types.Transaction
+}
+
 var opt = godog.Options{
 	Output: colors.Colored(os.Stdout),
 	Format: "progress", // can define default values
@@ -146,6 +156,8 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`default multisig transaction with parameters (\d+) "([^"]*)"`, defaultMsigTxn)
 	s.Step("I get the private key", getSk)
 	s.Step("I send the transaction", sendTxn)
+	s.Step("I send the kmd-signed transaction", sendTxnKmd)
+	s.Step("I send the bogus kmd-signed transaction", sendTxnKmdFailureExpected)
 	s.Step("I send the multisig transaction", sendMsigTxn)
 	s.Step("the transaction should go through", checkTxn)
 	s.Step("the transaction should not go through", txnFail)
@@ -190,6 +202,20 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I get recent transactions, limited by (\d+) transactions$`, getTxnsByCount)
 	s.Step(`^I can get account information`, newAccInfo)
 	s.Step(`^I can get the transaction by ID$`, txnbyID)
+	s.Step("asset test fixture", createAssetTestFixture)
+	s.Step(`^default asset creation transaction with total issuance (\d+)$`, defaultAssetCreateTxn)
+	s.Step(`^I update the asset index$`, getAssetIndex)
+	s.Step(`^I get the asset info$`, getAssetInfo)
+	s.Step(`^I should be unable to get the asset info`, failToGetAssetInfo)
+	s.Step(`^the asset info should match the expected asset info$`, checkExpectedVsActualAssetParams)
+	s.Step(`^I create a no-managers asset reconfigure transaction$`, createNoManagerAssetReconfigure)
+	s.Step(`^I create an asset destroy transaction$`, createAssetDestroy)
+	s.Step(`^I create a transaction for a second account, signalling asset acceptance$`, createAssetAcceptanceForSecondAccount)
+	s.Step(`^I create a transaction transferring (\d+) assets from creator to a second account$`, createAssetTransferTransactionToSecondAccount)
+	s.Step(`^the creator should have (\d+) assets remaining$`, theCreatorShouldHaveAssetsRemaining)
+	s.Step(`^I create a freeze transaction targeting the second account$`, createFreezeTransactionTargetingSecondAccount)
+	s.Step(`^I create a transaction transferring (\d+) assets from a second account to creator$`, createAssetTransferTransactionFromSecondAccountToCreator)
+	s.Step(`^I create an un-freeze transaction targeting the second account$`, createUnfreezeTransactionTargetingSecondAccount)
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -751,11 +777,30 @@ func getSk() error {
 }
 
 func sendTxn() error {
-
 	tx, err := acl.SendRawTransaction(stx)
 	if err != nil {
 		return err
 	}
+	txid = tx.TxID
+	return nil
+}
+
+func sendTxnKmd() error {
+	tx, err := acl.SendRawTransaction(stxKmd)
+	if err != nil {
+		return err
+	}
+	txid = tx.TxID
+	return nil
+}
+
+func sendTxnKmdFailureExpected() error {
+	tx, err := acl.SendRawTransaction(stxKmd)
+	if err == nil {
+		e = false
+		return fmt.Errorf("expected an error when sending kmd-signed transaction but no error occurred")
+	}
+	e = true
 	txid = tx.TxID
 	return nil
 }
@@ -1171,4 +1216,310 @@ func createKeyregTxn() (err error) {
 func getTxnsByCount(cnt int) error {
 	_, err := acl.TransactionsByAddrLimit(accounts[0], uint64(cnt))
 	return err
+}
+
+func createAssetTestFixture() error {
+	assetTestFixture.Creator = ""
+	assetTestFixture.AssetIndex = 1
+	assetTestFixture.AssetName = "testcoin"
+	assetTestFixture.AssetUnitName = "coins"
+	assetTestFixture.ExpectedParams = models.AssetParams{}
+	assetTestFixture.QueriedParams = models.AssetParams{}
+	assetTestFixture.LastTransactionIssued = types.Transaction{}
+	return nil
+}
+
+func convertTransactionAssetParamsToModelsAssetParam(input types.AssetParams) models.AssetParams {
+	result := models.AssetParams{
+		Total:         input.Total,
+		DefaultFrozen: input.DefaultFrozen,
+		ManagerAddr:   input.Manager.String(),
+		ReserveAddr:   input.Reserve.String(),
+		FreezeAddr:    input.Freeze.String(),
+		ClawbackAddr:  input.Clawback.String(),
+		UnitName:      strings.TrimRight(string(input.UnitName[:]), "\x00"),
+		AssetName:     strings.TrimRight(string(input.AssetName[:]), "\x00"),
+	}
+	// input doesn't have Creator so that will remain empty
+	return result
+}
+
+func defaultAssetCreateTxn(issuance int) error {
+	accountToUse := accounts[0]
+	assetTestFixture.Creator = accountToUse
+	creator := assetTestFixture.Creator
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	assetNote := []byte(nil)
+	assetIssuance := uint64(issuance)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	defaultFrozen := false
+	manager := creator
+	reserve := creator
+	freeze := creator
+	clawback := creator
+	unitName := assetTestFixture.AssetUnitName
+	assetName := assetTestFixture.AssetName
+	assetCreateTxn, err := transaction.MakeAssetCreateTxn(creator, 10, firstRound, lastRoundValid, assetNote,
+		genesisID, genesisHash, assetIssuance, defaultFrozen, manager, reserve, freeze, clawback, unitName,
+		assetName)
+	assetTestFixture.LastTransactionIssued = assetCreateTxn
+	txn = assetCreateTxn
+	assetTestFixture.ExpectedParams = convertTransactionAssetParamsToModelsAssetParam(assetCreateTxn.AssetParams)
+	//convertTransactionAssetParamsToModelsAssetParam leaves creator blank, repopulate
+	assetTestFixture.ExpectedParams.Creator = creator
+	return err
+}
+
+func createNoManagerAssetReconfigure() error {
+	creator := assetTestFixture.Creator
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	assetNote := []byte(nil)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	reserve := ""
+	freeze := ""
+	clawback := ""
+	manager := creator // if this were "" as well, this wouldn't be a reconfigure txn, it would be a destroy txn
+	assetReconfigureTxn, err := transaction.MakeAssetConfigTxn(creator, 10, firstRound, lastRoundValid, assetNote,
+		genesisID, genesisHash, creator, assetTestFixture.AssetIndex, manager, reserve, freeze, clawback)
+	assetTestFixture.LastTransactionIssued = assetReconfigureTxn
+	txn = assetReconfigureTxn
+	// update expected params
+	assetTestFixture.ExpectedParams.ReserveAddr = reserve
+	assetTestFixture.ExpectedParams.FreezeAddr = freeze
+	assetTestFixture.ExpectedParams.ClawbackAddr = clawback
+	return err
+}
+
+func createAssetDestroy() error {
+	creator := assetTestFixture.Creator
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	assetNote := []byte(nil)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	assetDestroyTxn, err := transaction.MakeAssetDestroyTxn(creator, 10, firstRound, lastRoundValid, assetNote, genesisID, genesisHash, creator, assetTestFixture.AssetIndex)
+	assetTestFixture.LastTransactionIssued = assetDestroyTxn
+	txn = assetDestroyTxn
+	// update expected params
+	assetTestFixture.ExpectedParams.ReserveAddr = ""
+	assetTestFixture.ExpectedParams.FreezeAddr = ""
+	assetTestFixture.ExpectedParams.ClawbackAddr = ""
+	assetTestFixture.ExpectedParams.ManagerAddr = ""
+	return err
+}
+
+// used in getAssetInfo and similar to get the index of the most recently operated on asset
+func getMaxKey(numbers map[uint64]models.AssetParams) uint64 {
+	var maxNumber uint64
+	for n := range numbers {
+		maxNumber = n
+		break
+	}
+	for n := range numbers {
+		if n > maxNumber {
+			maxNumber = n
+		}
+	}
+	return maxNumber
+}
+
+func getAssetIndex() error {
+	accountResp, err := acl.AccountInformation(assetTestFixture.Creator)
+	if err != nil {
+		return err
+	}
+	// get most recent asset index
+	assetTestFixture.AssetIndex = getMaxKey(accountResp.AssetParams)
+	return nil
+}
+
+func getAssetInfo() error {
+	response, err := acl.AssetInformation(assetTestFixture.Creator, assetTestFixture.AssetIndex)
+	assetTestFixture.QueriedParams = response
+	return err
+}
+
+func failToGetAssetInfo() error {
+	_, err := acl.AssetInformation(assetTestFixture.Creator, assetTestFixture.AssetIndex)
+	if err != nil {
+		return nil
+	}
+	return fmt.Errorf("expected an error getting asset with index %v and creator %v, but no error was returned",
+		assetTestFixture.AssetIndex, assetTestFixture.Creator)
+}
+
+func checkExpectedVsActualAssetParams() error {
+	expectedParams := assetTestFixture.ExpectedParams
+	actualParams := assetTestFixture.QueriedParams
+	nameMatch := expectedParams.AssetName == actualParams.AssetName
+	if !nameMatch {
+		return fmt.Errorf("expected asset name was %v but actual asset name was %v",
+			expectedParams.AssetName, actualParams.AssetName)
+	}
+	unitMatch := expectedParams.UnitName == actualParams.UnitName
+	if !unitMatch {
+		return fmt.Errorf("expected unit name was %v but actual unit name was %v",
+			expectedParams.UnitName, actualParams.UnitName)
+	}
+	issuanceMatch := expectedParams.Total == actualParams.Total
+	if !issuanceMatch {
+		return fmt.Errorf("expected total issuance was %v but actual issuance was %v",
+			expectedParams.Total, actualParams.Total)
+	}
+	defaultFrozenMatch := expectedParams.DefaultFrozen == actualParams.DefaultFrozen
+	if !defaultFrozenMatch {
+		return fmt.Errorf("expected default frozen state %v but actual default frozen state was %v",
+			expectedParams.DefaultFrozen, actualParams.DefaultFrozen)
+	}
+	managerMatch := expectedParams.ManagerAddr == actualParams.ManagerAddr
+	if !managerMatch {
+		return fmt.Errorf("expected asset manager was %v but actual asset manager was %v",
+			expectedParams.ManagerAddr, actualParams.ManagerAddr)
+	}
+	reserveMatch := expectedParams.ReserveAddr == actualParams.ReserveAddr
+	if !reserveMatch {
+		return fmt.Errorf("expected asset reserve was %v but actual asset reserve was %v",
+			expectedParams.ReserveAddr, actualParams.ReserveAddr)
+	}
+	freezeMatch := expectedParams.FreezeAddr == actualParams.FreezeAddr
+	if !freezeMatch {
+		return fmt.Errorf("expected freeze manager was %v but actual freeze manager was %v",
+			expectedParams.FreezeAddr, actualParams.FreezeAddr)
+	}
+	clawbackMatch := expectedParams.ClawbackAddr == actualParams.ClawbackAddr
+	if !clawbackMatch {
+		return fmt.Errorf("expected revocation (clawback) manager was %v but actual revocation manager was %v",
+			expectedParams.ClawbackAddr, actualParams.ClawbackAddr)
+	}
+	return nil
+}
+
+func theCreatorShouldHaveAssetsRemaining(expectedBal int) error {
+	expectedBalance := uint64(expectedBal)
+	accountResp, err := acl.AccountInformation(assetTestFixture.Creator)
+	if err != nil {
+		return err
+	}
+	holding, ok := accountResp.Assets[assetTestFixture.AssetIndex]
+	if !ok {
+		return fmt.Errorf("attempted to get balance of account %v for creator %v and index %v, but no balance was found for that index", assetTestFixture.Creator, assetTestFixture.Creator, assetTestFixture.AssetIndex)
+	}
+	if holding.Amount != expectedBalance {
+		return fmt.Errorf("actual balance %v differed from expected balance %v", holding.Amount, expectedBalance)
+	}
+	return nil
+}
+
+func createAssetAcceptanceForSecondAccount() error {
+	accountToUse := accounts[1]
+	creator := assetTestFixture.Creator
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	assetNote := []byte(nil)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	assetAcceptanceTxn, err := transaction.MakeAssetAcceptanceTxn(accountToUse, 10, firstRound,
+		lastRoundValid, assetNote, genesisID, genesisHash, creator, assetTestFixture.AssetIndex)
+	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
+	txn = assetAcceptanceTxn
+	return err
+}
+
+func createAssetTransferTransactionToSecondAccount(amount int) error {
+	recipient := accounts[1]
+	creator := assetTestFixture.Creator
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	sendAmount := uint64(amount)
+	closeAssetsTo := ""
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	assetNote := []byte(nil)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(creator, recipient, closeAssetsTo, sendAmount,
+		10, firstRound, lastRoundValid, assetNote, genesisID, genesisHash, creator,
+		assetTestFixture.AssetIndex)
+	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
+	txn = assetAcceptanceTxn
+	return err
+}
+
+func createAssetTransferTransactionFromSecondAccountToCreator(amount int) error {
+	recipient := assetTestFixture.Creator
+	sender := accounts[1]
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	sendAmount := uint64(amount)
+	closeAssetsTo := ""
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	assetNote := []byte(nil)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(sender, recipient, closeAssetsTo, sendAmount,
+		10, firstRound, lastRoundValid, assetNote, genesisID, genesisHash, assetTestFixture.Creator,
+		assetTestFixture.AssetIndex)
+	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
+	txn = assetAcceptanceTxn
+	return err
+}
+
+// sets up a freeze transaction, with freeze state `setting` against target account `target`
+// assumes creator is asset freeze manager
+func freezeTransactionHelper(target string, setting bool) error {
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	assetNote := []byte(nil)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	assetFreezeOrUnfreezeTxn, err := transaction.MakeAssetFreezeTxn(assetTestFixture.Creator, 10, firstRound, lastRoundValid,
+		assetNote, genesisID, genesisHash, assetTestFixture.Creator, assetTestFixture.AssetIndex, target,
+		setting)
+	assetTestFixture.LastTransactionIssued = assetFreezeOrUnfreezeTxn
+	txn = assetFreezeOrUnfreezeTxn
+	return err
+}
+
+func createFreezeTransactionTargetingSecondAccount() error {
+	return freezeTransactionHelper(accounts[1], true)
+}
+
+func createUnfreezeTransactionTargetingSecondAccount() error {
+	return freezeTransactionHelper(accounts[1], false)
 }
