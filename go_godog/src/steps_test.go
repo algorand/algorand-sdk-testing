@@ -216,6 +216,7 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I create a freeze transaction targeting the second account$`, createFreezeTransactionTargetingSecondAccount)
 	s.Step(`^I create a transaction transferring (\d+) assets from a second account to creator$`, createAssetTransferTransactionFromSecondAccountToCreator)
 	s.Step(`^I create an un-freeze transaction targeting the second account$`, createUnfreezeTransactionTargetingSecondAccount)
+	s.Step(`^default-frozen asset creation transaction with total issuance (\d+)$`, defaultAssetCreateTxnWithDefaultFrozen)
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -1244,7 +1245,7 @@ func convertTransactionAssetParamsToModelsAssetParam(input types.AssetParams) mo
 	return result
 }
 
-func defaultAssetCreateTxn(issuance int) error {
+func assetCreateTxnHelper(issuance int, frozenState bool) error {
 	accountToUse := accounts[0]
 	assetTestFixture.Creator = accountToUse
 	creator := assetTestFixture.Creator
@@ -1275,6 +1276,14 @@ func defaultAssetCreateTxn(issuance int) error {
 	//convertTransactionAssetParamsToModelsAssetParam leaves creator blank, repopulate
 	assetTestFixture.ExpectedParams.Creator = creator
 	return err
+}
+
+func defaultAssetCreateTxn(issuance int) error {
+	return assetCreateTxnHelper(issuance, false)
+}
+
+func defaultAssetCreateTxnWithDefaultFrozen(issuance int) error {
+	return assetCreateTxnHelper(issuance, true)
 }
 
 func createNoManagerAssetReconfigure() error {
