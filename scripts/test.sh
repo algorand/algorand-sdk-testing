@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 # call from parent directory; scripts/test.sh
 
-rm -r ~/node/network
-
 source $(dirname $0)/shared.sh
+BIN_DIR=$GOPATH/bin
+TEMPLATE=future_template.json
+NETWORK_DIR=~/testnetwork
+export NODE_DIR=$NETWORK_DIR/Node
+rm -r $NETWORK_DIR
 
 if [ $# -eq 0 ]
 then
@@ -12,31 +15,26 @@ then
     cp -r features/. js_cucumber/features
     cp -r features/. py_behave
     mkdir temp
-    cd ~/node
-    ./goal network create -n network -r network -t template.json
-    INDEXER_DIR=~/node/$(ls -d network/Node/network*)
-    KMD_DIR=~/node/$(ls -d network/Node/kmd*)
+    $BIN_DIR/goal network create -n testnetwork -r $NETWORK_DIR -t network_config/$TEMPLATE    
+    INDEXER_DIR=$(ls -d $NETWORK_DIR/Node/testnetwork*)
+    KMD_DIR=$(ls -d $NETWORK_DIR/Node/kmd*)
     export KMD_DIR=$(basename $KMD_DIR)
-    cd -
-    cp network_config/config.json ~/node/network/Node
-    cd ~/node
-    ./goal network start -r network
-    ./update.sh -d network/Node
-    ./goal kmd start -d network/Node
-    cd -
+    cp network_config/config.json $NODE_DIR
+    $BIN_DIR/goal network start -r $NETWORK_DIR
+    $BIN_DIR/goal kmd start -d $NODE_DIR
     cd go_godog/src
     go test # for verbose reporting, add --godog.format=pretty
     goexitcode=$?
-    ~/node/goal kmd start -d ~/node/network/Node
-    cd ../../java_cucumber
+    $BIN_DIR/goal kmd start -d $NODE_DIR
+    cd ../../java_cucumber 
     mvn test -q # change to "pretty" in cucumberoptions if verbose
     javaexitcode=$?
-    ~/node/goal kmd start -d ~/node/network/Node
+    $BIN_DIR/goal kmd start -d $NODE_DIR
     cd ../js_cucumber
     ensure_nodejs_version
     node_modules/.bin/cucumber-js --no-strict
     jsexitcode=$?
-    ~/node/goal kmd start -d ~/node/network/Node
+    $BIN_DIR/goal kmd start -d $NODE_DIR
     cd ../py_behave
     behave -f progress2 # for verbose reporting, remove -f progress2
     pyexitcode=$?
@@ -91,17 +89,12 @@ else
                 ;;
         esac
     done
-    cd ~/node
-    ./goal network create -n network -r network -t template.json
-    INDEXER_DIR=~/node/$(ls -d network/Node/network*)
-    KMD_DIR=$(ls -d network/Node/kmd*)
+    $BIN_DIR/goal network create -n testnetwork -r $NETWORK_DIR -t network_config/$TEMPLATE   
+    INDEXER_DIR=$(ls -d $NETWORK_DIR/Node/testnetwork*)
+    KMD_DIR=$(ls -d $NETWORK_DIR/Node/kmd*)
     export KMD_DIR=$(basename $KMD_DIR)
-    cd -
-    cp network_config/config.json ~/node/network/Node
-    cd ~/node
-    ./goal network start -r network
-    ./update.sh -d network/Node
-    cd -
+    cp network_config/config.json $NODE_DIR
+    $BIN_DIR/goal network start -r $NETWORK_DIR
 
     if $cross
     then
@@ -110,7 +103,7 @@ else
     if $rungo
     then
         cp -r features/. go_godog/src/features
-        ~/node/goal kmd start -d ~/node/network/Node
+        $BIN_DIR/goal kmd start -d $NODE_DIR
         cd go_godog/src
         if $cross
         then
@@ -124,7 +117,7 @@ else
         if $cross
         then
             cp -r features/. go_godog/src/features
-            ~/node/goal kmd start -d ~/node/network/Node
+            $BIN_DIR/goal kmd start -d $NODE_DIR
             cd go_godog/src
             go test --godog.tags=@crosstest
             goexitcode=$?
@@ -140,7 +133,7 @@ else
         cd java_cucumber
         if $cross
         then
-            ~/node/goal kmd start -d ~/node/network/Node
+            $BIN_DIR/goal kmd start -d $NODE_DIR
             mvn test -q # change to "pretty" in cucumberoptions if verbose
         else
             mvn test -q -Dcucumber.options="--tags \"not @crosstest\""
@@ -151,7 +144,7 @@ else
         if $cross
         then
             cp -r features/. java_cucumber/src/test/resources/java_cucumber
-            ~/node/goal kmd start -d ~/node/network/Node
+            $BIN_DIR/goal kmd start -d $NODE_DIR
             cd java_cucumber
             mvn test -q -Dcucumber.options="--tags \"@crosstest\""
             javaexitcode=$?
@@ -169,7 +162,7 @@ else
     if $runjs
     then
         cp -r features/. js_cucumber/features
-        ~/node/goal kmd start -d ~/node/network/Node
+        $BIN_DIR/goal kmd start -d $NODE_DIR
         cd js_cucumber
         if $cross
         then
@@ -183,7 +176,7 @@ else
         if $cross
         then
             cp -r features/. js_cucumber/features
-            ~/node/goal kmd start -d ~/node/network/Node
+            $BIN_DIR/goal kmd start -d $NODE_DIR
             cd js_cucumber
             node_modules/.bin/cucumber-js --no-strict --tags "@crosstest"
             jsexitcode=$?
@@ -195,7 +188,7 @@ else
     if $runpy
     then
         cp -r features/. py_behave
-        ~/node/goal kmd start -d ~/node/network/Node
+        $BIN_DIR/goal kmd start -d $NODE_DIR
         cd py_behave
         if $cross
         then
@@ -209,7 +202,7 @@ else
         if $cross
         then
             cp -r features/. py_behave
-            ~/node/goal kmd start -d ~/node/network/Node
+            $BIN_DIR/goal kmd start -d $NODE_DIR
             cd py_behave
             behave --tags=crosstest -f progress2
             pyexitcode=$?
@@ -224,10 +217,10 @@ else
     fi
 fi
 
-cd ~/node
-./goal kmd stop -d network/Node
-./goal network stop -r network
-./goal network delete -r network
+$BIN_DIR/goal kmd stop -d $NODE_DIR
+$BIN_DIR/goal network stop -r $NETWORK_DIR
+$BIN_DIR/goal network delete -r $NETWORK_DIR
+echo $KMD_DIR
 
 if [ $goexitcode -eq 0 ] && [ $javaexitcode -eq 0 ] && [ $jsexitcode -eq 0 ] && [ $pyexitcode -eq 0 ]
 then

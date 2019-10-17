@@ -65,14 +65,18 @@ else
 fi
 mvn versions:use-dep-version -DdepVersion=$ALGOSDK_VERSION -Dincludes=com.algorand:algosdk -DforceVersion=true -q
 
+# test latest
+go get github.com/algorand/go-algorand/...
+cd $GOPATH/src/github.com/algorand/go-algorand
+./scripts/configure_dev.sh
+yes | make install
+cd -
 
-# get algorand tools; comment this section out if you already have this
-cd ..
-mkdir ~/inst
-# this is the link for linux; change this if on mac or windows
-curl -L https://github.com/algorand/go-algorand-doc/blob/master/downloads/installers/linux_amd64/install_master_linux-amd64.tar.gz?raw=true -o ~/inst/installer.tar.gz
-tar -xf ~/inst/installer.tar.gz -C ~/inst
-~/inst/update.sh -i -c stable -p ~/node -d ~/node/data -n
+# # test last release: uncomment this section and comment the "test latest" section
+# # to test the last release. Also change BIN_DIR in test.sh to ~/node and TEMPLATE to template.json.
+# mkdir ~/inst
+# # this is the link for linux; change this if on mac or windows
+# curl -L https://github.com/algorand/go-algorand-doc/blob/master/downloads/installers/linux_amd64/install_master_linux-amd64.tar.gz?raw=true -o ~/inst/installer.tar.gz
+# tar -xf ~/inst/installer.tar.gz -C ~/inst
+# ~/inst/update.sh -i -c stable -p ~/node -d ~/node/data -n
 
-# don't comment this out; tests depend on the specific network setup
-cp network_config/template.json ~/node
