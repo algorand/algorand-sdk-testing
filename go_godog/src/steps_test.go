@@ -217,6 +217,7 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I create a transaction transferring (\d+) assets from a second account to creator$`, createAssetTransferTransactionFromSecondAccountToCreator)
 	s.Step(`^I create an un-freeze transaction targeting the second account$`, createUnfreezeTransactionTargetingSecondAccount)
 	s.Step(`^default-frozen asset creation transaction with total issuance (\d+)$`, defaultAssetCreateTxnWithDefaultFrozen)
+	s.Step(`^I create a transaction revoking (\d+) assets from a second account to creator$`, createRevocationTransaction)
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -1531,4 +1532,24 @@ func createFreezeTransactionTargetingSecondAccount() error {
 
 func createUnfreezeTransactionTargetingSecondAccount() error {
 	return freezeTransactionHelper(accounts[1], false)
+}
+
+func createRevocationTransaction(amount int) error {
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound
+	firstRound := lastRound
+	lastRoundValid := firstRound + 1000
+	revocationAmount := uint64(amount)
+	assetNote := []byte(nil)
+	genesisID := params.GenesisID
+	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
+	assetRevokeTxn, err := transaction.MakeAssetRevocationTxn(assetTestFixture.Creator, accounts[1],
+		assetTestFixture.Creator, revocationAmount, 10, firstRound, lastRoundValid, assetNote,
+		genesisID, genesisHash, assetTestFixture.Creator, assetTestFixture.AssetIndex)
+	assetTestFixture.LastTransactionIssued = assetRevokeTxn
+	txn = assetRevokeTxn
+	return err
 }
