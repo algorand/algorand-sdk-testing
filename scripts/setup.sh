@@ -72,7 +72,8 @@ cd $GOPATH/src/github.com/algorand/go-algorand
 yes | make install
 cd -
 
-# # test last release
+# # test last release: uncomment this section and comment the "test latest" section
+# # to test the last release. Also change BIN_DIR in test.sh to ~/node and TEMPLATE to template.json.
 # mkdir ~/inst
 # # this is the link for linux; change this if on mac or windows
 # curl -L https://github.com/algorand/go-algorand-doc/blob/master/downloads/installers/linux_amd64/install_master_linux-amd64.tar.gz?raw=true -o ~/inst/installer.tar.gz
