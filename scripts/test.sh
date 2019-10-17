@@ -3,6 +3,7 @@
 
 source $(dirname $0)/shared.sh
 BIN_DIR=$GOPATH/bin
+TEMPLATE=future_template.json
 NETWORK_DIR=~/testnetwork
 export NODE_DIR=$NETWORK_DIR/Node
 rm -r $NETWORK_DIR
@@ -14,7 +15,7 @@ then
     cp -r features/. js_cucumber/features
     cp -r features/. py_behave
     mkdir temp
-    $BIN_DIR/goal network create -n testnetwork -r $NETWORK_DIR -t network_config/template.json    
+    $BIN_DIR/goal network create -n testnetwork -r $NETWORK_DIR -t network_config/$TEMPLATE
     INDEXER_DIR=$(ls -d $NETWORK_DIR/Node/testnetwork*)
     KMD_DIR=$(ls -d $NETWORK_DIR/Node/kmd*)
     export KMD_DIR=$(basename $KMD_DIR)
@@ -82,9 +83,13 @@ else
                 cross=true
                 shift
                 ;;
+            *)
+                echo "Unsupported flag: " $1
+                exit 1
+                ;;
         esac
     done
-    $BIN_DIR/goal network create -n testnetwork -r $NETWORK_DIR -t network_config/template.json    
+    $BIN_DIR/goal network create -n testnetwork -r $NETWORK_DIR -t network_config/$TEMPLATE
     INDEXER_DIR=$(ls -d $NETWORK_DIR/Node/testnetwork*)
     KMD_DIR=$(ls -d $NETWORK_DIR/Node/kmd*)
     export KMD_DIR=$(basename $KMD_DIR)
