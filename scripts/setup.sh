@@ -4,6 +4,8 @@ java=false
 js=false
 py=false
 
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
 case "$1" in
     --go*)
         go=true
@@ -36,17 +38,18 @@ fi
 pip3 install behave -q
 
 # ensure correct nodejs version (>=10) if running on travis
-source $(dirname $0)/shared.sh
+source "$SCRIPTPATH/shared.sh"
 ensure_nodejs_version
 
-cd js_cucumber
+pushd js_cucumber
 npm install --silent
 if $js
 then
     npm install $TRAVIS_BUILD_DIR --silent
 fi
+popd
 
-cd ../java_cucumber
+pushd java_cucumber
 if $java
 then
     cd $TRAVIS_BUILD_DIR
@@ -64,19 +67,15 @@ else
     rm -rf ~/java-algorand-sdk
 fi
 mvn versions:use-dep-version -DdepVersion=$ALGOSDK_VERSION -Dincludes=com.algorand:algosdk -DforceVersion=true -q
+popd
 
-# test latest
-go get github.com/algorand/go-algorand/...
-cd $GOPATH/src/github.com/algorand/go-algorand
-./scripts/configure_dev.sh
-yes | make install
-cd -
 
-# # test last release: uncomment this section and comment the "test latest" section
-# # to test the last release. Also change BIN_DIR in test.sh to ~/node and TEMPLATE to template.json.
-# mkdir ~/inst
-# # this is the link for linux; change this if on mac or windows
-# curl -L https://github.com/algorand/go-algorand-doc/blob/master/downloads/installers/linux_amd64/install_master_linux-amd64.tar.gz?raw=true -o ~/inst/installer.tar.gz
-# tar -xf ~/inst/installer.tar.gz -C ~/inst
-# ~/inst/update.sh -i -c stable -p ~/node -d ~/node/data -n
+# test last release: change to config_stable here and in test.sh
+# test current code: change to config_nightly here and in test.sh
+source "$SCRIPTPATH/config_future"
 
+mkdir ~/inst
+# this is the link for linux; change this if on mac or windows
+curl -L https://algorand-releases.s3.amazonaws.com/channel/nightly/install_nightly_linux-amd64_1.0.288.tar.gz -o ~/inst/installer.tar.gz
+tar -xf ~/inst/installer.tar.gz -C ~/inst
+~/inst/update.sh -i -c $CHANNEL -p $BIN_DIR -d $BIN_DIR/data -n
