@@ -45,6 +45,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
 
@@ -98,6 +99,14 @@ public class Stepdefs {
     BigInteger votelst;
     BigInteger votekd;
     String num;
+
+    /* Assets */
+    String creator = "";
+    BigInteger assetIndex = BigInteger.valueOf(1);
+    String assetName = "testcoin";
+    String assetUnitName = "coins";
+    AssetParams expectedParams = new AssetParams();
+    AssetParams queriedParams = new AssetParams();
 
     @When("I create a wallet")
     public void createWallet() throws com.algorand.algosdk.kmd.client.ApiException {
@@ -930,4 +939,194 @@ public class Stepdefs {
     public void i_get_recent_transactions_limited_by_count(int cnt) throws ApiException {
         Assert.assertTrue(acl.transactions(accounts.get(0), null, null, null, null, BigInteger.valueOf(cnt)).getTransactions() instanceof List<?>);
     }
+
+
+
+
+
+
+
+
+
+    
+    @Given("asset test fixture")
+    public void asset_test_fixture() {
+	// Implemented by the construction of Stepdefs;
+    }
+
+    @Given("default asset creation transaction with total issuance {int}")
+    public void default_asset_creation_transaction_with_total_issuance(Integer assetTotal) throws NoSuchAlgorithmException, ApiException, InvalidKeySpecException {
+
+        Transaction tx = new Transaction(
+                new Address(accounts.get(0)), // sender source address
+                acl.transactionParams().getFee(), // transaction fee
+                acl.transactionParams().getLastRound(), // first valid round 
+                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                this.note,
+                acl.transactionParams().getGenesisID(),
+                new Digest(acl.transactionParams().getGenesishashb64()),
+                BigInteger.valueOf(assetTotal),
+                false, // defaultFrozen
+                this.assetUnitName,
+                this.assetName,
+                new Address(accounts.get(0)), // manager
+                new Address(accounts.get(0)), // reserve
+                new Address(accounts.get(0)), // freeze
+                new Address(accounts.get(0))); // clawback
+        this.creator = accounts.get(0);
+        this.txn = tx;
+        this.expectedParams = tx.assetParams.extractModelAssetParams();
+    }
+
+    @When("I get the asset info")
+    public void i_get_the_asset_info() throws ApiException {
+        this.queriedParams = acl.assetInformation(this.creator, this.assetIndex);
+    }
+
+    @Then("the asset info should match the expected asset info")
+    public void the_asset_info_should_match_the_expected_asset_info() {
+        Assert.assertTrue(this.queriedParams.equals(this.expectedParams));
+    }
+
+    @When("I create a no-managers asset reconfigure transaction")
+    public void i_create_a_no_managers_asset_reconfigure_transaction() throws NoSuchAlgorithmException, ApiException, InvalidKeySpecException {
+
+        Transaction tx = new Transaction(
+                new Address(this.creator), // sender source address
+                acl.transactionParams().getFee(), // transaction fee
+                acl.transactionParams().getLastRound(), // first valid round 
+                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                this.note,
+                acl.transactionParams().getGenesisID(),
+                new Digest(acl.transactionParams().getGenesishashb64()),
+                new Address(this.creator), // creator
+                this.assetIndex,
+                new Address(this.creator), // manager
+                new Address(), // reserve
+                new Address(), // freeze
+                new Address()); // clawback
+        this.txn = tx;
+        this.expectedParams = tx.assetParams.extractModelAssetParams();        
+    }
+
+    @When("I create an asset destroy transaction")
+    public void i_create_an_asset_destroy_transaction() throws NoSuchAlgorithmException, ApiException, InvalidKeySpecException {
+
+        Transaction tx = new Transaction(
+                new Address(this.creator), // sender source address
+                acl.transactionParams().getFee(), // transaction fee
+                acl.transactionParams().getLastRound(), // first valid round 
+                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                this.note,
+                acl.transactionParams().getGenesisID(),
+                new Digest(acl.transactionParams().getGenesishashb64()),
+                new Address(this.creator), // creator
+                this.assetIndex,
+                new Address(), // manager
+                new Address(), // reserve
+                new Address(), // freeze
+                new Address()); // clawback
+        this.txn = tx;
+        this.expectedParams = tx.assetParams.extractModelAssetParams();     
+    }
+
+    @Then("I should be unable to get the asset info")
+    public void i_should_be_unable_to_get_the_asset_info() {
+        try {
+            this.i_get_the_asset_info();
+        } catch (ApiException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    @When("I create a transaction transferring {int} assets from creator to a second account")
+    public void i_create_a_transaction_transferring_assets_from_creator_to_a_second_account(Integer int1) throws NoSuchAlgorithmException, ApiException, InvalidKeySpecException {
+
+        Transaction tx = Transaction.createTransferAssetTransaction(
+                new Address(this.creator), // sender source address
+                new Address(this.accounts.get(1)),
+                new Address(),
+                BigInteger.valueOf(int1),
+                acl.transactionParams().getFee(), // transaction fee
+                acl.transactionParams().getLastRound(), // first valid round 
+                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                this.note,
+                acl.transactionParams().getGenesisID(),
+                new Digest(acl.transactionParams().getGenesishashb64()),
+                new Address(this.creator), // creator
+                this.assetIndex);
+        this.txn = tx;
+    }
+/*
+    @Then("the creator should have {int} assets remaining")
+    public void the_creator_should_have_assets_remaining(Integer expectedBal) throws ApiException {
+        com.algorand.algosdk.algod.client.model.Account accountResp = 
+                this.acl.accountInformation(this.creator);
+        accountResp.getAssets();// Assets field is Object. 
+        
+    }
+
+    @Then("I update the asset index")
+    public void i_update_the_asset_index() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("I send the bogus kmd-signed transaction")
+    public void i_send_the_bogus_kmd_signed_transaction() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Then("I create a transaction for a second account, signalling asset acceptance")
+    public void i_create_a_transaction_for_a_second_account_signalling_asset_acceptance() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Then("I send the kmd-signed transaction")
+    public void i_send_the_kmd_signed_transaction() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("I create a freeze transaction targeting the second account")
+    public void i_create_a_freeze_transaction_targeting_the_second_account() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("I create a transaction transferring {int} assets from a second account to creator")
+    public void i_create_a_transaction_transferring_assets_from_a_second_account_to_creator(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("I create an un-freeze transaction targeting the second account")
+    public void i_create_an_un_freeze_transaction_targeting_the_second_account() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Given("default-frozen asset creation transaction with total issuance {int}")
+    public void default_frozen_asset_creation_transaction_with_total_issuance(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("I create a transaction revoking {int} assets from a second account to creator")
+    public void i_create_a_transaction_revoking_assets_from_a_second_account_to_creator(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+
+
+
+
+*/
+
+
+    
 }
