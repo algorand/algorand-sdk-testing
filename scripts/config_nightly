@@ -1,0 +1,3 @@
+CHANNEL="nightly"
+TEMPLATE="template.json"
+BIN_DIR="$HOME/node"
