@@ -243,13 +243,13 @@ public class Stepdefs {
                     to,
                     close
             );
-        txn = Account.transactionWithSuggestedFeePerByte(txn, txn.fee);
+        Account.setFeeByFeePerByte(txn, txn.fee);
     }
 
     @When("I create the key registration transaction")
     public void createKeyregTxn() throws NoSuchAlgorithmException, JsonProcessingException, IOException{
         txn = new Transaction(pk, fee, fv, lv, note, gen, gh, votepk, vrfpk, votefst, votelst, votekd);
-        txn = Account.transactionWithSuggestedFeePerByte(txn, txn.fee);
+        Account.setFeeByFeePerByte(txn, txn.fee);
     }
 
     @Given("multisig addresses {string}")
@@ -277,7 +277,7 @@ public class Stepdefs {
             to,
             close
         );
-        txn = Account.transactionWithSuggestedFeePerByte(txn, txn.fee);
+        Account.setFeeByFeePerByte(txn, txn.fee);
     }
 
     @When("I sign the multisig transaction with the private key")
@@ -570,7 +570,7 @@ public class Stepdefs {
                     params.getGenesisID(),
                     new Digest(params.getGenesishashb64())
             );
-        txn = Account.transactionWithSuggestedFeePerByte(txn, txn.fee);
+        Account.setFeeByFeePerByte(txn, txn.fee);
         pk = new Address(accounts.get(0));
     }
 
@@ -599,7 +599,7 @@ public class Stepdefs {
                     params.getGenesisID(),
                     new Digest(params.getGenesishashb64())
             );
-        txn = Account.transactionWithSuggestedFeePerByte(txn, txn.fee);
+        Account.setFeeByFeePerByte(txn, txn.fee);
         pk = new Address(accounts.get(0));
     }
 

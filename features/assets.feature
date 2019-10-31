@@ -74,6 +74,22 @@ Feature: Assets
       | total | amount | expected balance |
       | 100   | 50     | 50               |
 
+  Scenario Outline: Asset non-acceptance
+    Given default asset creation transaction with total issuance <total>
+    When I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    Then I update the asset index
+    When I create a transaction transferring <amount> assets from creator to a second account
+    And I sign the transaction with kmd
+    And I send the bogus kmd-signed transaction
+    Then the transaction should not go through
+    And the creator should have <expected balance> assets remaining
+
+    Examples:
+      | total | amount | expected balance  |
+      | 100   | 50     | 100               |
+
   Scenario Outline: Asset freeze and unfreeze
     Given default asset creation transaction with total issuance <total>
     When I sign the transaction with kmd
@@ -116,3 +132,55 @@ Feature: Assets
     Examples:
       | total | amount | expected balance  | final expected balance |
       | 100   | 50     | 50                | 100                    |
+
+  Scenario Outline: Frozen by default
+    Given default-frozen asset creation transaction with total issuance <total>
+    When I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    Then I update the asset index
+    When I create a transaction for a second account, signalling asset acceptance
+    And I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    When I create a transaction transferring <amount> assets from creator to a second account
+    And I send the bogus kmd-signed transaction
+    Then the transaction should not go through
+    And the creator should have <expected balance> assets remaining
+    When I create an un-freeze transaction targeting the second account
+    And I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    When I create a transaction transferring <amount> assets from creator to a second account
+    And I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    And the creator should have <final expected balance> assets remaining
+
+    Examples:
+      | total | amount | expected balance   | final expected balance |
+      | 100   | 50     | 100                | 50                     |
+
+  Scenario Outline: Asset revocation
+    Given default asset creation transaction with total issuance <total>
+    When I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    When I update the asset index
+    And I create a transaction for a second account, signalling asset acceptance
+    And I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    When I create a transaction transferring <amount> assets from creator to a second account
+    And I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    When I create a transaction revoking <amount> assets from a second account to creator
+    And I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
+    And the creator should have <expected balance> assets remaining
+
+    Examples:
+      | total | amount | expected balance  |
+      | 100   | 50     | 100               |

@@ -1,0 +1,3 @@
+CHANNEL="stable"
+TEMPLATE="template.json"
+BIN_DIR="$HOME/node"

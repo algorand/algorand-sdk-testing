@@ -2,8 +2,11 @@
 # call from parent directory; scripts/test.sh
 
 source $(dirname $0)/shared.sh
-BIN_DIR=$GOPATH/bin
-TEMPLATE=future_template.json
+
+# test last release: change to config_stable here and in test.sh
+# test current code: change to config_nightly here and in test.sh
+source $(dirname $0)/config_future
+
 NETWORK_DIR=~/testnetwork
 export NODE_DIR=$NETWORK_DIR/Node
 rm -r $NETWORK_DIR
@@ -15,7 +18,7 @@ then
     cp -r features/. js_cucumber/features
     cp -r features/. py_behave
     mkdir temp
-    $BIN_DIR/goal network create -n testnetwork -r $NETWORK_DIR -t network_config/$TEMPLATE    
+    $BIN_DIR/goal network create -n testnetwork -r $NETWORK_DIR -t network_config/$TEMPLATE
     INDEXER_DIR=$(ls -d $NETWORK_DIR/Node/testnetwork*)
     KMD_DIR=$(ls -d $NETWORK_DIR/Node/kmd*)
     export KMD_DIR=$(basename $KMD_DIR)
@@ -26,7 +29,7 @@ then
     go test # for verbose reporting, add --godog.format=pretty
     goexitcode=$?
     $BIN_DIR/goal kmd start -d $NODE_DIR
-    cd ../../java_cucumber 
+    cd ../../java_cucumber
     mvn test -q # change to "pretty" in cucumberoptions if verbose
     javaexitcode=$?
     $BIN_DIR/goal kmd start -d $NODE_DIR
@@ -83,9 +86,13 @@ else
                 cross=true
                 shift
                 ;;
+            *)
+                echo "Unsupported flag: " $1
+                exit 1
+                ;;
         esac
     done
-    $BIN_DIR/goal network create -n testnetwork -r $NETWORK_DIR -t network_config/$TEMPLATE   
+    $BIN_DIR/goal network create -n testnetwork -r $NETWORK_DIR -t network_config/$TEMPLATE
     INDEXER_DIR=$(ls -d $NETWORK_DIR/Node/testnetwork*)
     KMD_DIR=$(ls -d $NETWORK_DIR/Node/kmd*)
     export KMD_DIR=$(basename $KMD_DIR)
