@@ -793,7 +793,7 @@ func sendTxn() error {
 func sendTxnKmd() error {
 	tx, err := acl.SendRawTransaction(stxKmd)
 	if err != nil {
-		return err
+		e = true
 	}
 	txid = tx.TxID
 	return nil

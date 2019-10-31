@@ -20,6 +20,7 @@ Feature: Algod
     And I get transactions by address only
     And I get transactions by address and date
 
+  @assets
   Scenario: Getting transaction by ID
     Given a kmd client
     And wallet information

@@ -306,12 +306,18 @@ def get_sk(context):
 
 @when("I send the transaction")
 def send_txn(context):
-    context.acl.send_transaction(context.stx)
+    try:
+        context.acl.send_transaction(context.stx)
+    except:
+        context.error = True
 
 
 @when("I send the kmd-signed transaction")
 def send_txn_kmd(context):
-    print(context.acl.send_transaction(context.stx_kmd))
+    try:
+        print(context.acl.send_transaction(context.stx_kmd))
+    except:
+        context.error = True
 
 
 @when("I send the multisig transaction")
@@ -324,20 +330,11 @@ def send_msig_txn(context):
 
 @then("the transaction should go through")
 def check_txn(context):
-    print(context.txn.get_txid())
     last_round = context.acl.status()["lastRound"]
     print(encoding.msgpack_encode(context.txn))
-    print("pending txns")
-    print(context.acl.pending_transactions())
-    print("pending txn info")
-    print(context.acl.pending_transaction_info(context.txn.get_txid()))
     assert "type" in context.acl.pending_transaction_info(context.txn.get_txid())
     context.acl.status_after_block(last_round+2)
-    print("transactions by addr")
-    print(context.acl.transactions_by_address(context.pk))
-    print(context.acl.account_info(context.pk))
-    print("_____________________")
-    assert "type" in context.acl.transaction_info(context.pk, context.txn.get_txid())
+    assert "type" in context.acl.transaction_info(context.txn.sender, context.txn.get_txid())
     assert "type" in context.acl.transaction_by_id(context.txn.get_txid())
 
 
@@ -349,6 +346,10 @@ def get_txn_by_id(context):
 
 @then("the transaction should not go through")
 def txn_fail(context):
+    print("-------------- expected fail")
+    print(context.asset_index)
+    print(encoding.msgpack_encode(context.txn))
+    print(context.txn.get_txid())
     assert context.error
 
 
@@ -621,15 +622,37 @@ def default_asset_creation_txn(context, total):
         "metadatahash": None
     }
 
+
+@given("default-frozen asset creation transaction with total issuance {total}")
+def default_asset_creation_txn(context, total):
+    context.total = int(total)
+    params = context.acl.suggested_params()
+    context.last_round = params["lastRound"]
+    context.pk = context.accounts[0]
+    asset_name = "asset"
+    unit_name = "unit"
+    context.txn = transaction.AssetConfigTxn(context.pk, 1, context.last_round, context.last_round + 100, params["genesishashb64"], total=context.total,
+                        default_frozen=True, unit_name=unit_name, asset_name=asset_name, manager=context.pk, 
+                        reserve=context.pk, freeze=context.pk, clawback=context.pk)
+
+    context.expected_asset_info = {
+        "defaultfrozen": False,
+        "unitname": "unit",
+        "assetname": "asset",
+        "managerkey": context.pk,
+        "reserveaddr": context.pk,
+        "freezeaddr": context.pk,
+        "clawbackaddr": context.pk,
+        "creator": context.pk,
+        "total": context.total,
+        "url": "",
+        "metadatahash": None
+    }
+
 @Given("asset test fixture")
 def asset_fixture(context):
-    context.creator = ""
-    context.asset_index = 1
-    context.asset_name = "testcoin"
-    context.unit_name = "coins"
-    context.expected_params = None
-    context.queried_params = None
-    context.last_transaction_issued = None
+    context.expected_asset_info = dict()
+    context.rcv = context.accounts[1]
 
 
 @When("I update the asset index")
@@ -637,6 +660,7 @@ def update_asset_index(context):
     assets = context.acl.list_assets()["assets"]
     indices = [a["AssetIndex"] for a in assets]
     context.asset_index = max(indices)
+    print(assets)
 
 
 @When("I get the asset info")
@@ -680,8 +704,7 @@ def accept_asset_txn(context):
     params = context.acl.suggested_params()
     last_round = params["lastRound"]
     gh = params["genesishashb64"]
-    context.rcv = context.accounts[1]
-    context.txn = transaction.AssetTransferTxn(context.rcv, 0, last_round, last_round+1000, gh, context.rcv, 0, context.asset_index)
+    context.txn = transaction.AssetTransferTxn(context.rcv, 10, last_round, last_round+1000, gh, context.rcv, 0, context.asset_index)
 
 
 @When("I create a transaction transferring {amount} assets from creator to a second account")
@@ -689,10 +712,44 @@ def transfer_assets(context, amount):
     params = context.acl.suggested_params()
     last_round = params["lastRound"]
     gh = params["genesishashb64"]
-    context.txn = transaction.AssetTransferTxn(context.pk, int(amount), last_round, last_round+1000, gh, context.rcv, 0, context.asset_index)
+    context.txn = transaction.AssetTransferTxn(context.pk, 10, last_round, last_round+1000, gh, context.rcv, int(amount), context.asset_index)
+
+
+@When("I create a transaction transferring {amount} assets from a second account to creator")
+def transfer_assets(context, amount):
+    params = context.acl.suggested_params()
+    last_round = params["lastRound"]
+    gh = params["genesishashb64"]
+    context.txn = transaction.AssetTransferTxn(context.rcv, 10, last_round, last_round+1000, gh, context.pk, int(amount), context.asset_index)
 
 
 @Then("the creator should have {exp_balance} assets remaining")
 def check_asset_balance(context, exp_balance):
-    asset_info = context.acl.account_info(context.pk)["thisassettotal"][str(context.asset_index)]
-    raise Exception(asset_info)
+    asset_info = context.acl.account_info(context.pk)["assets"][str(context.asset_index)]
+    assert asset_info["amount"] == int(exp_balance)
+
+
+@When("I create a freeze transaction targeting the second account")
+def freeze_txn(context):
+    params = context.acl.suggested_params()
+    last_round = params["lastRound"]
+    gh = params["genesishashb64"]
+    context.txn = transaction.AssetFreezeTxn(context.pk, 10, last_round, last_round+1000, gh, context.asset_index, context.rcv, True)
+
+
+@When("I create an un-freeze transaction targeting the second account")
+def freeze_txn(context):
+    params = context.acl.suggested_params()
+    last_round = params["lastRound"]
+    gh = params["genesishashb64"]
+    context.txn = transaction.AssetFreezeTxn(context.pk, 10, last_round, last_round+1000, gh, context.asset_index, context.rcv, False)
+
+
+@when("I create a transaction revoking {amount} assets from a second account to creator")
+def revoke_txn(context, amount):
+    params = context.acl.suggested_params()
+    last_round = params["lastRound"]
+    gh = params["genesishashb64"]
+    context.txn = transaction.AssetTransferTxn(context.pk, 10, last_round, last_round+1000, gh, context.pk, int(amount), context.asset_index, revocation_target=context.rcv)
+
+

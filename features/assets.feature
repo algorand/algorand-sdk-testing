@@ -1,3 +1,4 @@
+@assets
 Feature: Assets
   Background:
     Given an algod client
@@ -79,10 +80,10 @@ Feature: Assets
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
     Then the transaction should go through
-    Then I update the asset index
+    When I update the asset index
     When I create a transaction transferring <amount> assets from creator to a second account
     And I sign the transaction with kmd
-    And I send the bogus kmd-signed transaction
+    And I send the kmd-signed transaction
     Then the transaction should not go through
     And the creator should have <expected balance> assets remaining
 
@@ -111,12 +112,12 @@ Feature: Assets
     Then the transaction should go through
     When I create a transaction transferring <amount> assets from creator to a second account
     And I sign the transaction with kmd
-    And I send the bogus kmd-signed transaction
+    And I send the kmd-signed transaction
     Then the transaction should not go through
     And the creator should have <expected balance> assets remaining
     When I create a transaction transferring <amount> assets from a second account to creator
     And I sign the transaction with kmd
-    And I send the bogus kmd-signed transaction
+    And I send the kmd-signed transaction
     Then the transaction should not go through
     And the creator should have <expected balance> assets remaining
     When I create an un-freeze transaction targeting the second account
@@ -138,13 +139,13 @@ Feature: Assets
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
     Then the transaction should go through
-    Then I update the asset index
+    When I update the asset index
     When I create a transaction for a second account, signalling asset acceptance
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
     Then the transaction should go through
     When I create a transaction transferring <amount> assets from creator to a second account
-    And I send the bogus kmd-signed transaction
+    And I send the kmd-signed transaction
     Then the transaction should not go through
     And the creator should have <expected balance> assets remaining
     When I create an un-freeze transaction targeting the second account
