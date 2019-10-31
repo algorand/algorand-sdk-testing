@@ -312,8 +312,6 @@ def send_txn(context):
 @when("I send the kmd-signed transaction")
 def send_txn_kmd(context):
     print(context.acl.send_transaction(context.stx_kmd))
-    last_round = context.acl.status()["lastRound"]
-    context.acl.status_after_block(last_round + 2)
 
 
 @when("I send the multisig transaction")
@@ -328,11 +326,17 @@ def send_msig_txn(context):
 def check_txn(context):
     print(context.txn.get_txid())
     last_round = context.acl.status()["lastRound"]
-    assert "type" in context.acl.pending_transaction_info(context.txn.get_txid())
-    print(context.acl.pending_transaction_info(context.txn.get_txid()))
+    print(encoding.msgpack_encode(context.txn))
+    print("pending txns")
     print(context.acl.pending_transactions())
+    print("pending txn info")
+    print(context.acl.pending_transaction_info(context.txn.get_txid()))
+    assert "type" in context.acl.pending_transaction_info(context.txn.get_txid())
     context.acl.status_after_block(last_round+2)
+    print("transactions by addr")
     print(context.acl.transactions_by_address(context.pk))
+    print(context.acl.account_info(context.pk))
+    print("_____________________")
     assert "type" in context.acl.transaction_info(context.pk, context.txn.get_txid())
     assert "type" in context.acl.transaction_by_id(context.txn.get_txid())
 

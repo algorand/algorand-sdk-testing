@@ -79,11 +79,11 @@ Feature: Assets
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
     Then the transaction should go through
-    Then I update the asset index
+    When I update the asset index
     And I create a transaction for a second account, signalling asset acceptance
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    And the transaction should go through
+    Then the transaction should go through
     When I create a transaction transferring <amount> assets from creator to a second account
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
