@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { Given, When, Then, setDefaultTimeout } = require('cucumber');
+const { Before, Given, When, Then, setDefaultTimeout } = require('cucumber');
 const algosdk = require("algosdk")
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const address = require("algosdk/src/encoding/address")
@@ -9,6 +9,11 @@ const maindir = path.dirname(path.dirname(path.dirname(__dirname)))
 const homedir = require('os').homedir()
 
 setDefaultTimeout(60000)
+
+Before(async function () {
+    // This hook will be executed before all scenarios
+    await this.kcl.renewWalletHandle(this.handle)
+});
 
 Given("an algod client", async function(){
     data_dir_path = "file://" + process.env.NODE_DIR + "/";
