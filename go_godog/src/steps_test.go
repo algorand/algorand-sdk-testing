@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"reflect"
 	"strings"
 	"testing"
 	"time"
@@ -1244,8 +1245,10 @@ func convertTransactionAssetParamsToModelsAssetParam(input types.AssetParams) mo
 		ReserveAddr:   input.Reserve.String(),
 		FreezeAddr:    input.Freeze.String(),
 		ClawbackAddr:  input.Clawback.String(),
-		UnitName:      strings.TrimRight(string(input.UnitName[:]), "\x00"),
-		AssetName:     strings.TrimRight(string(input.AssetName[:]), "\x00"),
+		UnitName:      input.UnitName,
+		AssetName:     input.AssetName,
+		URL:           input.URL,
+		MetadataHash:  input.MetadataHash[:],
 	}
 	// input doesn't have Creator so that will remain empty
 	return result
@@ -1345,7 +1348,7 @@ func createAssetDestroy() error {
 	return err
 }
 
-// used in getAssetInfo and similar to get the index of the most recently operated on asset
+// used in getAssetIndex and similar to get the index of the most recently operated on asset
 func getMaxKey(numbers map[uint64]models.AssetParams) uint64 {
 	var maxNumber uint64
 	for n := range numbers {
@@ -1397,6 +1400,16 @@ func checkExpectedVsActualAssetParams() error {
 	if !unitMatch {
 		return fmt.Errorf("expected unit name was %v but actual unit name was %v",
 			expectedParams.UnitName, actualParams.UnitName)
+	}
+	urlMatch := expectedParams.URL == actualParams.URL
+	if !urlMatch {
+		return fmt.Errorf("expected URL was %v but actual URL was %v",
+			expectedParams.URL, actualParams.URL)
+	}
+	hashMatch := reflect.DeepEqual(expectedParams.MetadataHash, actualParams.MetadataHash)
+	if !hashMatch {
+		return fmt.Errorf("expected MetadataHash was %v but actual MetadataHash was %v",
+			expectedParams.MetadataHash, actualParams.MetadataHash)
 	}
 	issuanceMatch := expectedParams.Total == actualParams.Total
 	if !issuanceMatch {
