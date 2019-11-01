@@ -315,7 +315,7 @@ def send_txn(context):
 @when("I send the kmd-signed transaction")
 def send_txn_kmd(context):
     try:
-        print(context.acl.send_transaction(context.stx_kmd))
+        context.acl.send_transaction(context.stx_kmd)
     except:
         context.error = True
 
@@ -331,7 +331,6 @@ def send_msig_txn(context):
 @then("the transaction should go through")
 def check_txn(context):
     last_round = context.acl.status()["lastRound"]
-    print(encoding.msgpack_encode(context.txn))
     assert "type" in context.acl.pending_transaction_info(context.txn.get_txid())
     context.acl.status_after_block(last_round+2)
     assert "type" in context.acl.transaction_info(context.txn.sender, context.txn.get_txid())
@@ -346,10 +345,6 @@ def get_txn_by_id(context):
 
 @then("the transaction should not go through")
 def txn_fail(context):
-    print("-------------- expected fail")
-    print(context.asset_index)
-    print(encoding.msgpack_encode(context.txn))
-    print(context.txn.get_txid())
     assert context.error
 
 
@@ -660,7 +655,6 @@ def update_asset_index(context):
     assets = context.acl.list_assets()["assets"]
     indices = [a["AssetIndex"] for a in assets]
     context.asset_index = max(indices)
-    print(assets)
 
 
 @When("I get the asset info")

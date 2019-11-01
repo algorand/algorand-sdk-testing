@@ -112,7 +112,7 @@ else
         then
             go test
         else
-            go test --godog.tags=@assets
+            go test --godog.tags=-@crosstest
         fi
         goexitcode=$?
         cd ../..
@@ -197,7 +197,7 @@ else
         then
             behave -f progress2
         else
-            behave --tags=assets
+            behave --tags=-crosstest -f progress2
         fi
         pyexitcode=$?
         cd ..
