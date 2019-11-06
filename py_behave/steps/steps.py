@@ -314,6 +314,11 @@ def send_txn(context):
 
 @when("I send the kmd-signed transaction")
 def send_txn_kmd(context):
+    context.acl.send_transaction(context.stx_kmd)
+
+
+@when("I send the bogus kmd-signed transaction")
+def send_txn_kmd(context):
     try:
         context.acl.send_transaction(context.stx_kmd)
     except:

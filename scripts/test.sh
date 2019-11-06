@@ -112,7 +112,7 @@ else
         then
             go test
         else
-            go test --godog.tags=-@crosstest
+            go test --godog.tags=~@crosstest
         fi
         goexitcode=$?
         cd ../..
