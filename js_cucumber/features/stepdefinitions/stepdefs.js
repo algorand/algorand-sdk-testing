@@ -897,14 +897,25 @@ Given('default-frozen asset creation transaction with total issuance {int}', asy
     this.pk = this.accounts[0];
 });
 
+// a lambda "return a-b" would suffice for keys.sort, below, but define it separately for readability
+function sortKeysAscending(a, b) {
+    if (a > b) {
+        return 1;
+    } else if (b > a) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
 When("I update the asset index", async function () {
     let accountResponse = await this.acl.accountInformation(this.assetTestFixture.creator);
     let heldAssets = accountResponse.thisassettotal;
     let keys = [];
-    for (var k in heldAssets) keys.push(k);
-    keys = keys.sort();
+    for (var k in heldAssets) keys.push(parseInt(k));
+    keys = keys.sort(sortKeysAscending);
     let assetIndex = keys[keys.length - 1];
-    this.assetTestFixture.index = assetIndex;
+    this.assetTestFixture.index = assetIndex.toString(); // this is stored as a string so it can be used as a key later.
 });
 
 When("I get the asset info", async function () {
@@ -1093,10 +1104,11 @@ Then('the creator should have {int} assets remaining', async function (expectedT
 });
 
 When('I send the bogus kmd-signed transaction', async function () {
+    this.err = false;
     try {
         response = await this.acl.sendRawTransaction(this.stxKmd);
     } catch (e) {
-        this.err = true
+        this.err = true;
     }
 });
 
@@ -1107,7 +1119,7 @@ When('I create an un-freeze transaction targeting the second account', async fun
     this.lv = this.fv + 1000;
     this.note = undefined;
     this.gh = this.params.genesishashb64;
-    let freezer = this.assetTestfixture.creator;
+    let freezer = this.assetTestFixture.creator;
 
     this.assetTestFixture.lastTxn = {
         "from": freezer,
@@ -1134,7 +1146,7 @@ When('I create a freeze transaction targeting the second account', async functio
     this.lv = this.fv + 1000;
     this.note = undefined;
     this.gh = this.params.genesishashb64;
-    let freezer = this.assetTestfixture.creator;
+    let freezer = this.assetTestFixture.creator;
 
     this.assetTestFixture.lastTxn = {
         "from": freezer,
@@ -1167,7 +1179,7 @@ When('I create a transaction revoking {int} assets from a second account to crea
 
     this.assetTestFixture.lastTxn = {
         "from": this.assetTestFixture.creator,
-        "to": this.assetTestfixture.creator,
+        "to": this.assetTestFixture.creator,
         "assetRevocationTarget": this.accounts[1],
         "amount": parseInt(amount),
         "fee": this.fee,
