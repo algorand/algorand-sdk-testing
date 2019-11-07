@@ -1122,7 +1122,7 @@ public class Stepdefs {
 
         Transaction tx = Transaction.createAssetFreezeTransaction(
                 new Address(this.accounts.get(0)), // transaction sender
-                new Address(this.accounts.get(1)), // revoked from
+                new Address(this.accounts.get(1)), // account to freeze
                 true, // freeze state
                 acl.transactionParams().getFee(), // transaction fee
                 acl.transactionParams().getLastRound(), // first valid round 
@@ -1165,7 +1165,7 @@ public class Stepdefs {
 
         Transaction tx = Transaction.createAssetFreezeTransaction(
                 new Address(this.accounts.get(0)), // transaction sender
-                new Address(this.accounts.get(1)), // revoked from
+                new Address(this.accounts.get(1)), // account to freeze
                 false, // freeze state
                 acl.transactionParams().getFee(), // transaction fee
                 acl.transactionParams().getLastRound(), // first valid round 
