@@ -116,6 +116,7 @@ Feature: Assets
     Then the transaction should not go through
     And the creator should have <expected balance> assets remaining
     When I create a transaction transferring <amount> assets from a second account to creator
+    And I renew the wallet handle
     And I sign the transaction with kmd
     And I send the bogus kmd-signed transaction
     Then the transaction should not go through
