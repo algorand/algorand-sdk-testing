@@ -56,6 +56,11 @@ def renew_handle(context):
     context.kcl.renew_wallet_handle(context.handle)
 
 
+@given("I renew the wallet handle")
+def given_renew_handle(context):
+    context.kcl.renew_wallet_handle(context.handle)
+
+
 @when("I release the wallet handle")
 def release_handle(context):
     context.kcl.release_wallet_handle(context.handle)
