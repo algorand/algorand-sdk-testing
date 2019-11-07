@@ -590,7 +590,6 @@ When("I send the transaction", async function(){
 
 When("I send the kmd-signed transaction", async function(){
     this.txid = await this.acl.sendRawTransaction(this.stxKmd)
-    console.log("nonbogus response looks like: ", this.txid);
     this.txid = this.txid.txId
     return this.txid
 });
@@ -1094,14 +1093,11 @@ Then('the creator should have {int} assets remaining', async function (expectedT
 });
 
 When('I send the bogus kmd-signed transaction', async function () {
-    var response;
     try {
         response = await this.acl.sendRawTransaction(this.stxKmd);
     } catch (e) {
-        return
+        this.err = true
     }
-    console.log("bogus response: ", response);
-    assert.deepStrictEqual(false, true);
 });
 
 When('I create an un-freeze transaction targeting the second account', async function () {
