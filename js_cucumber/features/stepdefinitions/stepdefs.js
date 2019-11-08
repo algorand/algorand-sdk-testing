@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { Given, When, Then, setDefaultTimeout } = require('cucumber');
+const { Before, Given, When, Then, setDefaultTimeout } = require('cucumber');
 const algosdk = require("algosdk")
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const address = require("algosdk/src/encoding/address")
@@ -9,6 +9,11 @@ const maindir = path.dirname(path.dirname(path.dirname(__dirname)))
 const homedir = require('os').homedir()
 
 setDefaultTimeout(60000)
+
+Before(async function () {
+    // You can use this hook to write code that will run before each scenario,
+    // before even the Background steps
+});
 
 Given("an algod client", async function(){
     data_dir_path = "file://" + process.env.NODE_DIR + "/";
@@ -21,13 +26,13 @@ Given("an algod client", async function(){
         algod_address = xml.responseText.trim();
     };
     xml.send();
-    
+
     xml.open("GET", data_dir_path + "algod.token", false);
     xml.onreadystatechange = function () {
         algod_token = xml.responseText.trim();
     };
     xml.send();
-    
+
     this.acl = new algosdk.Algod(algod_token, algod_address.split(":")[0], algod_address.split(":")[1]);
     return this.acl
 })
@@ -37,13 +42,13 @@ Given("a kmd client", function(){
     kmd_folder_name = process.env.KMD_DIR + "/";
     kmd_token = "";
     kmd_address = "";
-    
+
     xml.open("GET", data_dir_path + kmd_folder_name + "kmd.net", false);
     xml.onreadystatechange = function () {
         kmd_address = xml.responseText.trim();
     };
     xml.send();
-    
+
     xml.open("GET", data_dir_path + kmd_folder_name + "kmd.token", false);
     xml.onreadystatechange = function () {
         kmd_token = xml.responseText.trim();
@@ -74,7 +79,7 @@ Given("wallet information", async function(){
     this.accounts = this.accounts.addresses
     return this.accounts
 
-})
+});
 
 When("I get versions with algod", async function(){
     this.versions = await this.acl.versions();
@@ -129,7 +134,7 @@ Given("payment transaction parameters {int} {int} {int} {string} {string} {strin
 Given("mnemonic for private key {string}", function(mn) {
     result = algosdk.mnemonicToSecretKey(mn)
     this.pk = result.addr
-  
+
     this.sk = result.sk
 })
 
@@ -257,7 +262,7 @@ When("I import the key", async function(){
 
 Then("the private key should be equal to the exported private key", async function(){
     exp = await this.kcl.exportKey(this.handle, this.wallet_pswd, this.pk)
-    exp = exp.private_key    
+    exp = exp.private_key
     assert.deepStrictEqual(Buffer.from(exp).toString("base64"), Buffer.from(this.sk).toString("base64"))
     return await this.kcl.deleteKey(this.handle, this.wallet_pswd, this.pk)
 })
@@ -270,7 +275,7 @@ When("I get the private key", async function(){
 })
 
 
-Given("default transaction with parameters {int} {string}", async function(amt, note) {    
+Given("default transaction with parameters {int} {string}", async function(amt, note) {
     this.pk = this.accounts[0]
     result = await this.acl.getTransactionParams()
     this.lastRound = result.lastRound
@@ -289,7 +294,7 @@ Given("default transaction with parameters {int} {string}", async function(amt, 
 });
 
 
-Given("default multisig transaction with parameters {int} {string}", async function(amt, note) {    
+Given("default multisig transaction with parameters {int} {string}", async function(amt, note) {
     this.pk = this.accounts[0]
     result = await this.acl.getTransactionParams()
     this.msig = {
@@ -575,13 +580,19 @@ When("I create the multisig payment transaction", function() {
         this.txn["amount"] = this.amt
     }
     return this.txn
-})
+});
 
 When("I send the transaction", async function(){
     this.txid = await this.acl.sendRawTransaction(this.stx)
     this.txid = this.txid.txId
     return this.txid
-})
+});
+
+When("I send the kmd-signed transaction", async function(){
+    this.txid = await this.acl.sendRawTransaction(this.stxKmd)
+    this.txid = this.txid.txId
+    return this.txid
+});
 
 When("I send the multisig transaction", async function(){
     try {
@@ -593,7 +604,7 @@ When("I send the multisig transaction", async function(){
         this.err = true
     }
 
-})
+});
 
 Then("the transaction should go through", async function(){
     info = await this.acl.pendingTransactionInformation(this.txid)
@@ -603,19 +614,19 @@ Then("the transaction should go through", async function(){
     assert.deepStrictEqual(true, "type" in info)
     info = await this.acl.transactionById(this.txid)
     assert.deepStrictEqual(true, "type" in info)
-})
+});
 
 
 Then("I can get the transaction by ID", async function(){
     await this.acl.statusAfterBlock(this.lastRound + 2)
     info = await this.acl.transactionById(this.txid)
     assert.deepStrictEqual(true, "type" in info)
-})
+});
 
 
 Then("the transaction should not go through", function(){
     assert.deepStrictEqual(true, this.err)
-})
+});
 
 
 When("I create a wallet", async function(){
@@ -749,4 +760,439 @@ When('I create the key registration transaction', function () {
 
 When('I get recent transactions, limited by {int} transactions', function (int) {
     this.acl.transactionByAddress(this.accounts[0], parseInt(int));
+});
+
+Given("asset test fixture", function() {
+    this.assetTestFixture = {
+        "creator": "",
+        "index": 0,
+        "name": "testcoin",
+        "unitname": "coins",
+        "url": "http://test",
+        "metadataHash": "fACPO4nRgO55j1ndAK3W6Sgc4APkcyFh",
+        "expectedParams": undefined,
+        "queriedParams": undefined,
+        "lastTxn": undefined
+    };
+});
+
+
+Given('default asset creation transaction with total issuance {int}', async function (issuance) {
+    this.assetTestFixture.creator = this.accounts[0];
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.note = undefined;
+    this.gh = this.params.genesishashb64;
+    issuance = parseInt(issuance);
+    let defaultFrozen = false;
+    let assetName = this.assetTestFixture.name;
+    let unitName = this.assetTestFixture.unitname;
+    let assetURL = this.assetTestFixture.url;
+    let metadataHash = this.assetTestFixture.metadataHash;
+    let manager = this.assetTestFixture.creator;
+    let reserve = this.assetTestFixture.creator;
+    let freeze = this.assetTestFixture.creator;
+    let clawback = this.assetTestFixture.creator;
+    let genesisID = "";
+    let type = "acfg";
+
+    this.assetTestFixture.lastTxn = {
+        "from": this.assetTestFixture.creator,
+        "fee": this.fee,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "note": this.note,
+        "genesisHash": this.gh,
+        "assetTotal": issuance,
+        "assetDefaultFrozen": defaultFrozen,
+        "assetUnitName": unitName,
+        "assetName": assetName,
+        "assetURL": assetURL,
+        "assetMetadataHash": metadataHash,
+        "assetManager": manager,
+        "assetReserve": reserve,
+        "assetFreeze": freeze,
+        "assetClawback": clawback,
+        "genesisID": genesisID,
+        "type": type
+    };
+    // update vars used by other helpers
+    this.assetTestFixture.expectedParams = {
+      "creator": this.assetTestFixture.creator,
+      "total": issuance,
+      "defaultfrozen": defaultFrozen,
+      "unitname": unitName,
+      "assetname": assetName,
+      "url": assetURL,
+      "metadatahash": Buffer.from(metadataHash).toString('base64'),
+      "managerkey": manager,
+      "reserveaddr": reserve,
+      "freezeaddr": freeze,
+      "clawbackaddr": clawback
+    };
+    this.txn = this.assetTestFixture.lastTxn;
+    this.lastRound = this.params.lastRound;
+    this.pk = this.accounts[0];
+});
+
+Given('default-frozen asset creation transaction with total issuance {int}', async function (issuance) {
+    this.assetTestFixture.creator = this.accounts[0];
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.note = undefined;
+    this.gh = this.params.genesishashb64;
+    issuance = parseInt(issuance);
+    let defaultFrozen = true;
+    let assetName = this.assetTestFixture.name;
+    let unitName = this.assetTestFixture.unitname;
+    let assetURL = this.assetTestFixture.url;
+    let metadataHash = this.assetTestFixture.metadataHash;
+    let manager = this.assetTestFixture.creator;
+    let reserve = this.assetTestFixture.creator;
+    let freeze = this.assetTestFixture.creator;
+    let clawback = this.assetTestFixture.creator;
+    let genesisID = "";
+    let type = "acfg";
+
+    this.assetTestFixture.lastTxn = {
+        "from": this.assetTestFixture.creator,
+        "fee": this.fee,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "note": this.note,
+        "genesisHash": this.gh,
+        "assetTotal": issuance,
+        "assetDefaultFrozen": defaultFrozen,
+        "assetUnitName": unitName,
+        "assetName": assetName,
+        "assetURL": assetURL,
+        "assetMetadataHash": metadataHash,
+        "assetManager": manager,
+        "assetReserve": reserve,
+        "assetFreeze": freeze,
+        "assetClawback": clawback,
+        "genesisID": genesisID,
+        "type": type
+    };
+    // update vars used by other helpers
+    this.assetTestFixture.expectedParams = {
+        "creator": this.assetTestFixture.creator,
+        "total": issuance,
+        "defaultfrozen": defaultFrozen,
+        "unitname": unitName,
+        "assetname": assetName,
+        "url": assetURL,
+        "metadatahash": Buffer.from(metadataHash).toString('base64'),
+        "managerkey": manager,
+        "reserveaddr": reserve,
+        "freezeaddr": freeze,
+        "clawbackaddr": clawback
+    };
+    this.txn = this.assetTestFixture.lastTxn;
+    this.lastRound = this.params.lastRound;
+    this.pk = this.accounts[0];
+});
+
+// a lambda "return a-b" would suffice for keys.sort, below, but define it separately for readability
+function sortKeysAscending(a, b) {
+    if (a > b) {
+        return 1;
+    } else if (b > a) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
+When("I update the asset index", async function () {
+    let accountResponse = await this.acl.accountInformation(this.assetTestFixture.creator);
+    let heldAssets = accountResponse.thisassettotal;
+    let keys = [];
+    for (var k in heldAssets) keys.push(parseInt(k));
+    keys = keys.sort(sortKeysAscending);
+    let assetIndex = keys[keys.length - 1];
+    this.assetTestFixture.index = assetIndex.toString(); // this is stored as a string so it can be used as a key later.
+});
+
+When("I get the asset info", async function () {
+    this.assetTestFixture.queriedParams = await this.acl.assetInformation(this.assetTestFixture.index)
+});
+
+Then("the asset info should match the expected asset info", function () {
+    assert.deepStrictEqual(this.assetTestFixture.expectedParams, this.assetTestFixture.queriedParams)
+});
+
+When('I create a no-managers asset reconfigure transaction', async function () {
+    this.assetTestFixture.creator = this.accounts[0];
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.note = undefined;
+    this.gh = this.params.genesishashb64;
+    // if we truly supplied no managers at all, it would be an asset destroy txn
+    // so leave one key written
+    let manager = this.assetTestFixture.creator;
+    let reserve = undefined;
+    let freeze = undefined;
+    let clawback = undefined;
+    let genesisID = "";
+    let type = "acfg";
+
+    this.assetTestFixture.lastTxn = {
+        "from": this.assetTestFixture.creator,
+        "fee": this.fee,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "note": this.note,
+        "genesisHash": this.gh,
+        "assetManager": manager,
+        "assetReserve": reserve,
+        "assetFreeze": freeze,
+        "assetClawback": clawback,
+        "assetIndex": parseInt(this.assetTestFixture.index),
+        "genesisID": genesisID,
+        "type": type
+    };
+    // update vars used by other helpers
+    this.assetTestFixture.expectedParams.reserveaddr = "";
+    this.assetTestFixture.expectedParams.freezeaddr = "";
+    this.assetTestFixture.expectedParams.clawbackaddr = "";
+    this.txn = this.assetTestFixture.lastTxn;
+    this.lastRound = this.params.lastRound;
+    this.pk = this.accounts[0];
+});
+
+When('I create an asset destroy transaction', async function () {
+    this.assetTestFixture.creator = this.accounts[0];
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.note = undefined;
+    this.gh = this.params.genesishashb64;
+    let manager = undefined;
+    let reserve = undefined;
+    let freeze = undefined;
+    let clawback = undefined;
+    let genesisID = "";
+    let type = "acfg";
+
+    this.assetTestFixture.lastTxn = {
+        "from": this.assetTestFixture.creator,
+        "fee": this.fee,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "note": this.note,
+        "genesisHash": this.gh,
+        "assetIndex": parseInt(this.assetTestFixture.index),
+        "genesisID": genesisID,
+        "type": type
+    };
+    // update vars used by other helpers
+    this.txn = this.assetTestFixture.lastTxn;
+    this.lastRound = this.params.lastRound;
+    this.pk = this.accounts[0];
+});
+
+Then('I should be unable to get the asset info', async function () {
+    let failed = false;
+    try {
+        await this.acl.assetInformation(this.assetTestFixture.index);
+    } catch (e) {
+        failed = true;
+    }
+    assert.deepStrictEqual(failed, true);
+});
+
+When('I create a transaction for a second account, signalling asset acceptance', async function () {
+    let accountToUse = this.accounts[1];
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.note = undefined;
+    this.gh = this.params.genesishashb64;
+    let genesisID = "";
+    let type = "axfer";
+
+    this.assetTestFixture.lastTxn = {
+        "from": accountToUse,
+        "to": accountToUse,
+        "amount": 0,
+        "fee": this.fee,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "note": this.note,
+        "genesisHash": this.gh,
+        "assetIndex": parseInt(this.assetTestFixture.index),
+        "genesisID": genesisID,
+        "type": type
+    };
+    // update vars used by other helpers
+    this.txn = this.assetTestFixture.lastTxn;
+    this.lastRound = this.params.lastRound;
+    this.pk = accountToUse;
+});
+
+When('I create a transaction transferring {int} assets from creator to a second account', async function (amount) {
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.note = undefined;
+    this.gh = this.params.genesishashb64;
+    let genesisID = "";
+    let type = "axfer";
+
+    this.assetTestFixture.lastTxn = {
+        "from": this.assetTestFixture.creator,
+        "to": this.accounts[1],
+        "amount": parseInt(amount),
+        "fee": this.fee,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "note": this.note,
+        "genesisHash": this.gh,
+        "assetIndex": parseInt(this.assetTestFixture.index),
+        "genesisID": genesisID,
+        "type": type
+    };
+    // update vars used by other helpers
+    this.txn = this.assetTestFixture.lastTxn;
+    this.lastRound = this.params.lastRound;
+    this.pk = this.assetTestFixture.creator;
+});
+
+When('I create a transaction transferring {int} assets from a second account to creator', async function (amount) {
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.note = undefined;
+    this.gh = this.params.genesishashb64;
+    let genesisID = "";
+    let type = "axfer";
+
+    this.assetTestFixture.lastTxn = {
+        "to": this.assetTestFixture.creator,
+        "from": this.accounts[1],
+        "amount": parseInt(amount),
+        "fee": this.fee,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "note": this.note,
+        "genesisHash": this.gh,
+        "assetIndex": parseInt(this.assetTestFixture.index),
+        "genesisID": genesisID,
+        "type": type
+    };
+    // update vars used by other helpers
+    this.txn = this.assetTestFixture.lastTxn;
+    this.lastRound = this.params.lastRound;
+    this.pk = this.accounts[1];
+});
+
+Then('the creator should have {int} assets remaining', async function (expectedTotal) {
+    let accountInformation = await this.acl.accountInformation(this.assetTestFixture.creator);
+    let assetsHeld = accountInformation.assets[this.assetTestFixture.index];
+    assert.deepStrictEqual(assetsHeld.amount, parseInt(expectedTotal))
+});
+
+When('I send the bogus kmd-signed transaction', async function () {
+    this.err = false;
+    try {
+        response = await this.acl.sendRawTransaction(this.stxKmd);
+    } catch (e) {
+        this.err = true;
+    }
+});
+
+When('I create an un-freeze transaction targeting the second account', async function () {
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.note = undefined;
+    this.gh = this.params.genesishashb64;
+    let freezer = this.assetTestFixture.creator;
+
+    this.assetTestFixture.lastTxn = {
+        "from": freezer,
+        "fee": this.fee,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "genesisHash": this.gh,
+        "type": "afrz",
+        "freezeAccount": this.accounts[1],
+        "assetIndex": parseInt(this.assetTestFixture.index),
+        "freezeState" : false,
+        "note": this.note
+    };
+    // update vars used by other helpers
+    this.txn = this.assetTestFixture.lastTxn;
+    this.lastRound = this.params.lastRound;
+    this.pk = this.assetTestFixture.creator;
+});
+
+When('I create a freeze transaction targeting the second account', async function () {
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.note = undefined;
+    this.gh = this.params.genesishashb64;
+    let freezer = this.assetTestFixture.creator;
+
+    this.assetTestFixture.lastTxn = {
+        "from": freezer,
+        "fee": this.fee,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "genesisHash": this.gh,
+        "type": "afrz",
+        "freezeAccount": this.accounts[1],
+        "assetIndex": parseInt(this.assetTestFixture.index),
+        "freezeState" : true,
+        "note": this.note
+    };
+    // update vars used by other helpers
+    this.txn = this.assetTestFixture.lastTxn;
+    this.lastRound = this.params.lastRound;
+    this.pk = this.assetTestFixture.creator;
+});
+
+
+When('I create a transaction revoking {int} assets from a second account to creator', async function (amount) {
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.note = undefined;
+    this.gh = this.params.genesishashb64;
+    let genesisID = "";
+    let type = "axfer";
+
+    this.assetTestFixture.lastTxn = {
+        "from": this.assetTestFixture.creator,
+        "to": this.assetTestFixture.creator,
+        "assetRevocationTarget": this.accounts[1],
+        "amount": parseInt(amount),
+        "fee": this.fee,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "note": this.note,
+        "genesisHash": this.gh,
+        "assetIndex": parseInt(this.assetTestFixture.index),
+        "genesisID": genesisID,
+        "type": type
+    };
+    // update vars used by other helpers
+    this.txn = this.assetTestFixture.lastTxn;
+    this.lastRound = this.params.lastRound;
+    this.pk = this.assetTestFixture.creator;
 });
