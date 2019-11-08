@@ -4,7 +4,6 @@ Feature: Assets
     And a kmd client
     And wallet information
     And asset test fixture
-    And I renew the wallet handle
 
   Scenario Outline: Asset creation
     Given default asset creation transaction with total issuance <total>

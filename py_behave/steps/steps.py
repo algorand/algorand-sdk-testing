@@ -53,11 +53,8 @@ def get_wallet_info(context):
 
 @when("I renew the wallet handle")
 def renew_handle(context):
-    context.kcl.renew_wallet_handle(context.handle)
-
-
-@given("I renew the wallet handle")
-def given_renew_handle(context):
+    if not hasattr(context, 'handle'):
+        context.handle = context.kcl.init_wallet_handle(context.wallet_id, context.wallet_pswd)
     context.kcl.renew_wallet_handle(context.handle)
 
 
