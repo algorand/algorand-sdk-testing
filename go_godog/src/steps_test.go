@@ -1314,7 +1314,7 @@ func createNoManagerAssetReconfigure() error {
 	clawback := ""
 	manager := creator // if this were "" as well, this wouldn't be a reconfigure txn, it would be a destroy txn
 	assetReconfigureTxn, err := transaction.MakeAssetConfigTxn(creator, 10, firstRound, lastRoundValid, assetNote,
-		genesisID, genesisHash, assetTestFixture.AssetIndex, manager, reserve, freeze, clawback)
+		genesisID, genesisHash, assetTestFixture.AssetIndex, manager, reserve, freeze, clawback, false)
 	assetTestFixture.LastTransactionIssued = assetReconfigureTxn
 	txn = assetReconfigureTxn
 	// update expected params
