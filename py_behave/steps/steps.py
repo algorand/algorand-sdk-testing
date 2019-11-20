@@ -676,7 +676,7 @@ def asset_info_match(context):
 def create_asset_destroy_txn(context):
     lastRound = context.acl.status()["lastRound"]
     gh = context.acl.suggested_params()["genesishashb64"]
-    context.txn = transaction.AssetConfigTxn(context.pk, 0, lastRound, lastRound+100, gh=gh , index=context.asset_index)
+    context.txn = transaction.AssetConfigTxn(context.pk, 0, lastRound, lastRound+100, gh=gh , index=context.asset_index, strict_empty_address_check=False)
 
 
 @Then("I should be unable to get the asset info")
@@ -693,7 +693,7 @@ def err_asset_info(context):
 def no_manager_txn(context):
     lastRound = context.acl.status()["lastRound"]
     gh = context.acl.suggested_params()["genesishashb64"]
-    context.txn = transaction.AssetConfigTxn(context.pk, 0, lastRound, lastRound+100, gh=gh , index=context.asset_index, reserve=context.pk, clawback=context.pk, freeze=context.pk)
+    context.txn = transaction.AssetConfigTxn(context.pk, 0, lastRound, lastRound+100, gh=gh , index=context.asset_index, reserve=context.pk, clawback=context.pk, freeze=context.pk, strict_empty_address_check=False)
 
     context.expected_asset_info["managerkey"] = ""
 
