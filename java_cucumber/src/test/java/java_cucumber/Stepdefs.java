@@ -1008,7 +1008,7 @@ public class Stepdefs {
                 new Address(this.creator), // manager
                 new Address(), // reserve
                 new Address(), // freeze
-                new Address()); // clawback
+                new Address(), false); // clawback
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
         this.expectedParams = tx.assetParams;        
