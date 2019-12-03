@@ -620,8 +620,6 @@ def default_asset_creation_txn(context, total):
         "clawbackaddr": context.pk,
         "creator": context.pk,
         "total": context.total,
-        "url": "",
-        "metadatahash": None
     }
 
 
@@ -646,9 +644,7 @@ def default_asset_creation_txn(context, total):
         "freezeaddr": context.pk,
         "clawbackaddr": context.pk,
         "creator": context.pk,
-        "total": context.total,
-        "url": "",
-        "metadatahash": None
+        "total": context.total
     }
 
 @Given("asset test fixture")
