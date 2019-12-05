@@ -1240,6 +1240,7 @@ func createAssetTestFixture() error {
 func convertTransactionAssetParamsToModelsAssetParam(input types.AssetParams) models.AssetParams {
 	result := models.AssetParams{
 		Total:         input.Total,
+		Decimals:      input.Decimals,
 		DefaultFrozen: input.DefaultFrozen,
 		ManagerAddr:   input.Manager.String(),
 		ReserveAddr:   input.Reserve.String(),
