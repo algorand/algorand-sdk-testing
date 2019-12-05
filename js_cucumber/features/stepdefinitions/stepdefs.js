@@ -786,6 +786,7 @@ Given('default asset creation transaction with total issuance {int}', async func
     this.note = undefined;
     this.gh = this.params.genesishashb64;
     issuance = parseInt(issuance);
+    let decimals = 0;
     let defaultFrozen = false;
     let assetName = this.assetTestFixture.name;
     let unitName = this.assetTestFixture.unitname;
@@ -806,6 +807,7 @@ Given('default asset creation transaction with total issuance {int}', async func
         "note": this.note,
         "genesisHash": this.gh,
         "assetTotal": issuance,
+        "assetDecimals": decimals,
         "assetDefaultFrozen": defaultFrozen,
         "assetUnitName": unitName,
         "assetName": assetName,
@@ -846,6 +848,7 @@ Given('default-frozen asset creation transaction with total issuance {int}', asy
     this.note = undefined;
     this.gh = this.params.genesishashb64;
     issuance = parseInt(issuance);
+    let decimals = 0;
     let defaultFrozen = true;
     let assetName = this.assetTestFixture.name;
     let unitName = this.assetTestFixture.unitname;
@@ -866,6 +869,7 @@ Given('default-frozen asset creation transaction with total issuance {int}', asy
         "note": this.note,
         "genesisHash": this.gh,
         "assetTotal": issuance,
+        "assetDecimals": decimals,
         "assetDefaultFrozen": defaultFrozen,
         "assetUnitName": unitName,
         "assetName": assetName,
