@@ -832,7 +832,8 @@ Given('default asset creation transaction with total issuance {int}', async func
       "managerkey": manager,
       "reserveaddr": reserve,
       "freezeaddr": freeze,
-      "clawbackaddr": clawback
+      "clawbackaddr": clawback,
+      "decimals": decimals
     };
     this.txn = this.assetTestFixture.lastTxn;
     this.lastRound = this.params.lastRound;
@@ -894,7 +895,8 @@ Given('default-frozen asset creation transaction with total issuance {int}', asy
         "managerkey": manager,
         "reserveaddr": reserve,
         "freezeaddr": freeze,
-        "clawbackaddr": clawback
+        "clawbackaddr": clawback,
+        "decimals": decimals
     };
     this.txn = this.assetTestFixture.lastTxn;
     this.lastRound = this.params.lastRound;
