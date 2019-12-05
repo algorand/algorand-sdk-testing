@@ -620,6 +620,9 @@ def default_asset_creation_txn(context, total):
         "clawbackaddr": context.pk,
         "creator": context.pk,
         "total": context.total,
+        "decimals": 0,
+        "metadatahash": None,
+        "url": ""
     }
 
 
@@ -644,7 +647,10 @@ def default_asset_creation_txn(context, total):
         "freezeaddr": context.pk,
         "clawbackaddr": context.pk,
         "creator": context.pk,
-        "total": context.total
+        "total": context.total,
+        "decimals": 0,
+        "metadatahash": None,
+        "url": ""
     }
 
 @Given("asset test fixture")
@@ -667,7 +673,8 @@ def get_asset_info(context):
 
 @Then("the asset info should match the expected asset info")
 def asset_info_match(context):
-    assert all(v == context.asset_info[k] for k,v in context.expected_asset_info.items()) and len(context.expected_asset_info) == len(context.asset_info)
+    for k in context.expected_asset_info:
+        assert (context.expected_asset_info[k] == context.asset_info.get(k)) or ((not context.expected_asset_info[k]) and (not context.asset_info.get(k)))
 
 
 @When("I create an asset destroy transaction")
