@@ -923,7 +923,9 @@ When("I get the asset info", async function () {
 });
 
 Then("the asset info should match the expected asset info", function () {
-    assert.deepStrictEqual(this.assetTestFixture.expectedParams, this.assetTestFixture.queriedParams)
+    for (var k in this.assetTestFixture.expectedParams) {
+        assert.equal(true, this.assetTestFixture.expectedParams[k] === this.assetTestFixture.queriedParams[k] || ((!this.assetTestFixture.expectedParams[k]) && (!this.assetTestFixture.queriedParams[k])))
+    }
 });
 
 When('I create a no-managers asset reconfigure transaction', async function () {
