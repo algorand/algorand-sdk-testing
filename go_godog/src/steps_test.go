@@ -1240,6 +1240,7 @@ func createAssetTestFixture() error {
 func convertTransactionAssetParamsToModelsAssetParam(input types.AssetParams) models.AssetParams {
 	result := models.AssetParams{
 		Total:         input.Total,
+		Decimals:      input.Decimals,
 		DefaultFrozen: input.DefaultFrozen,
 		ManagerAddr:   input.Manager.String(),
 		ReserveAddr:   input.Reserve.String(),
@@ -1278,9 +1279,7 @@ func assetCreateTxnHelper(issuance int, frozenState bool) error {
 	assetName := assetTestFixture.AssetName
 	url := assetTestFixture.AssetURL
 	metadataHash := assetTestFixture.AssetMetadataHash
-	assetCreateTxn, err := transaction.MakeAssetCreateTxn(creator, 10, firstRound, lastRoundValid, assetNote,
-		genesisID, genesisHash, assetIssuance, defaultFrozen, manager, reserve, freeze, clawback,
-		unitName, assetName, url, metadataHash)
+	assetCreateTxn, err := transaction.MakeAssetCreateTxn(creator, 10, firstRound, lastRoundValid, assetNote, genesisID, genesisHash, assetIssuance, 0, defaultFrozen, manager, reserve, freeze, clawback, unitName, assetName, url, metadataHash)
 	assetTestFixture.LastTransactionIssued = assetCreateTxn
 	txn = assetCreateTxn
 	assetTestFixture.ExpectedParams = convertTransactionAssetParamsToModelsAssetParam(assetCreateTxn.AssetParams)
