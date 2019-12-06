@@ -963,6 +963,7 @@ public class Stepdefs {
                 acl.transactionParams().getGenesisID(),
                 new Digest(acl.transactionParams().getGenesishashb64()),
                 BigInteger.valueOf(assetTotal),
+                BigInteger.valueOf(0),
                 false, // defaultFrozen
                 this.assetUnitName,
                 this.assetName,
@@ -1192,6 +1193,7 @@ public class Stepdefs {
                 acl.transactionParams().getGenesisID(),
                 new Digest(acl.transactionParams().getGenesishashb64()),
                 BigInteger.valueOf(int1),
+                BigInteger.valueOf(0),
                 true, // defaultFrozen
                 this.assetUnitName,
                 this.assetName,
