@@ -35,6 +35,7 @@ then
 else
     cd /opt/pyenv/plugins/python-build/../.. && git pull && cd -
     pyenv install 3.7.1
+    pyenv install --list
     pyenv global 3.7.1
     pip3 install git+https://github.com/algorand/py-algorand-sdk/ -q
 fi
