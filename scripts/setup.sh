@@ -33,7 +33,7 @@ if $py
 then
     pip3 install $TRAVIS_BUILD_DIR -q
 else
-    /opt/pyenv/plugins/python-build/../..
+    cd /opt/pyenv/plugins/python-build/../..
     git pull
     cd -
     pyenv install --list
