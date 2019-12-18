@@ -37,8 +37,8 @@ else
     git pull origin master
     cd -
     pyenv install --list
-    pyenv install 3.7.2
-    pyenv global 3.7.2
+    pyenv install 3.7.1
+    pyenv global 3.7.1
     pip3 install git+https://github.com/algorand/py-algorand-sdk/ -q
 fi
 pip3 install behave -q
