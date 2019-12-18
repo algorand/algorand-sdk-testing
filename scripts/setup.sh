@@ -34,9 +34,9 @@ then
     pip3 install $TRAVIS_BUILD_DIR -q
 else
     cd /opt/pyenv/plugins/python-build/../.. && git pull && cd -
-    pyenv install 3.7.1
+    pyenv install 3.7.2
     pyenv install --list
-    pyenv global 3.7.1
+    pyenv global 3.7.2
     pip3 install git+https://github.com/algorand/py-algorand-sdk/ -q
 fi
 pip3 install behave -q
