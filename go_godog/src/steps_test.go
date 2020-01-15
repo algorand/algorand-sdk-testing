@@ -7,6 +7,8 @@ import (
 	"encoding/gob"
 	"flag"
 	"fmt"
+	"github.com/algorand/go-algorand-sdk/templates"
+	"github.com/algorand/go-algorand/data/transactions/logic"
 	"io/ioutil"
 	"os"
 	"reflect"
@@ -77,6 +79,7 @@ var votefst uint64
 var votelst uint64
 var votekd uint64
 var num string
+var backupTxnSender string
 
 var assetTestFixture struct {
 	Creator               string
@@ -88,6 +91,12 @@ var assetTestFixture struct {
 	ExpectedParams        models.AssetParams
 	QueriedParams         models.AssetParams
 	LastTransactionIssued types.Transaction
+}
+
+var contractTestFixture struct {
+	split         templates.Split
+	htlc          templates.HTLC
+	activeAddress string
 }
 
 var opt = godog.Options{
@@ -221,6 +230,18 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I create an un-freeze transaction targeting the second account$`, createUnfreezeTransactionTargetingSecondAccount)
 	s.Step(`^default-frozen asset creation transaction with total issuance (\d+)$`, defaultAssetCreateTxnWithDefaultFrozen)
 	s.Step(`^I create a transaction revoking (\d+) assets from a second account to creator$`, createRevocationTransaction)
+	s.Step(`^a split contract with ratio (\d+) to (\d+) and minimum payment (\d+)$`, aSplitContractWithRatioToAndMinimumPayment)
+	s.Step(`^I send the split transactions$`, iSendTheSplitTransactions)
+	s.Step(`^an HTLC contract with hash preimage "([^"]*)"$`, anHTLCContractWithHashPreimage)
+	s.Step(`^I fund the contract account$`, iFundTheContractAccount)
+	s.Step(`^I claim the algos$`, iClaimTheAlgos)
+	s.Step(`^a periodic payment contract with withdrawing window (\d+) and period (\d+)$`, aPeriodicPaymentContractWithWithdrawingWindowAndPeriod)
+	s.Step(`^I claim the periodic payment$`, iClaimThePeriodicPayment)
+	s.Step(`^a limit order contract with parameters (\d+) (\d+) (\d+)$`, aLimitOrderContractWithParameters)
+	s.Step(`^I swap assets for algos$`, iSwapAssetsForAlgos)
+	s.Step(`^a dynamic fee contract with amount (\d+)$`, aDynamicFeeContractWithAmount)
+	s.Step(`^I send the group transaction$`, iSendTheGroupTransaction)
+	s.Step("contract test fixture", createContractTestFixture)
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -830,7 +851,11 @@ func checkTxn() error {
 	if err != nil {
 		return err
 	}
-	_, err = acl.TransactionInformation(txn.Sender.String(), txid)
+	if txn.Sender.String() != "" {
+		_, err = acl.TransactionInformation(txn.Sender.String(), txid)
+	} else {
+		_, err = acl.TransactionInformation(backupTxnSender, txid)
+	}
 	if err != nil {
 		return err
 	}
@@ -1568,4 +1593,144 @@ func createRevocationTransaction(amount int) error {
 	assetTestFixture.LastTransactionIssued = assetRevokeTxn
 	txn = assetRevokeTxn
 	return err
+}
+
+func createContractTestFixture() error {
+	contractTestFixture.split = templates.Split{}
+	contractTestFixture.htlc = templates.HTLC{}
+	contractTestFixture.activeAddress = ""
+	return nil
+}
+
+func aSplitContractWithRatioToAndMinimumPayment(ratn, ratd, minPay int) error {
+	owner := accounts[0]
+	receivers := [2]string{accounts[0], accounts[1]}
+	expiryRound := uint64(100)
+	maxFee := uint64(5000000)
+	c, err := templates.MakeSplit(owner, receivers[0], receivers[1], uint64(ratn), uint64(ratd), expiryRound, uint64(minPay), maxFee)
+	if err != nil {
+		return err
+	}
+	contractTestFixture.split = c
+	contractTestFixture.activeAddress = c.GetAddress()
+	// send money to c.address
+	amount := uint64(100000)
+	firstRound := uint64(1)
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound + 10
+	txn, err = transaction.MakePaymentTxn(owner, c.GetAddress(), params.Fee, amount, firstRound, lastRound, nil, "", "", params.GenesisHash)
+	if err != nil {
+		return err
+	}
+	err = signKmd()
+	if err != nil {
+		return err
+	}
+	err = sendTxnKmd()
+	if err != nil {
+		return err
+	}
+	return checkTxn()
+}
+
+func iSendTheSplitTransactions() error {
+	amount := uint64(10000)
+	precise := false
+	firstRound := uint64(1)
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound + 5
+	txnBytes, err := contractTestFixture.split.GetSendFundsTransaction(amount, precise, firstRound, lastRound, params.Fee, params.GenesisHash)
+	if err != nil {
+		return err
+	}
+	txIdResponse, err := acl.SendRawTransaction(txnBytes)
+	txid = txIdResponse.TxID
+	// hack to make checkTxn work
+	backupTxnSender = contractTestFixture.split.GetAddress()
+	return err
+}
+
+func anHTLCContractWithHashPreimage(preImage string) error {
+	var hashImage string
+	if preImage == "hello" {
+		hashImage = "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+	} else {
+		return fmt.Errorf("unrecognized hash preimage %s supplied", preImage)
+	}
+	owner := accounts[0]
+	receiver := accounts[1]
+	hashFn := "sha256"
+	expiryRound := uint64(100)
+	maxFee := uint64(1000000)
+	c, err := templates.MakeHTLC(owner, receiver, hashFn, hashImage, expiryRound, maxFee)
+	contractTestFixture.htlc = c
+	contractTestFixture.activeAddress = c.GetAddress()
+	return err
+}
+
+func iFundTheContractAccount() error {
+	// send money to c.address
+	amount := uint64(1000000)
+	firstRound := uint64(1)
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound + 5
+	txn, err = transaction.MakePaymentTxn(accounts[0], contractTestFixture.activeAddress, params.Fee, amount, firstRound, lastRound, nil, "", "", params.GenesisHash)
+	if err != nil {
+		return err
+	}
+	err = signKmd()
+	if err != nil {
+		return err
+	}
+	err = sendTxnKmd()
+	if err != nil {
+		return err
+	}
+	return checkTxn()
+}
+
+// used in HTLC
+func iClaimTheAlgos() error {
+	// make transaction (???how? maybe see example scripts)
+	return godog.ErrPending
+}
+
+func aPeriodicPaymentContractWithWithdrawingWindowAndPeriod(withdrawWindow, period int) error {
+	return godog.ErrPending
+}
+
+func iClaimThePeriodicPayment() error {
+	// maybe wait if necessary
+	// get transaction
+	// submit
+	return godog.ErrPending
+}
+
+func aLimitOrderContractWithParameters(ratn, ratd, minTrade int) error {
+	//make contract and save to fixture. note that asset fixture is now involved
+	return godog.ErrPending
+}
+
+func iSwapAssetsForAlgos() error {
+	// get transaction and submit - may need to use params from fixture
+	return godog.ErrPending
+}
+
+func aDynamicFeeContractWithAmount(amount int) error {
+	// make contract and save to fixture
+	return godog.ErrPending
+}
+
+func iSendTheGroupTransaction() error {
+	// get txns and submit
+	return godog.ErrPending
 }
