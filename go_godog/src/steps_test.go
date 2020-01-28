@@ -3,14 +3,11 @@ package main
 import (
 	"bytes"
 	"crypto/sha256"
-	"crypto/sha512"
 	"encoding/base32"
 	"encoding/base64"
 	"encoding/gob"
 	"flag"
 	"fmt"
-	"github.com/algorand/go-algorand-sdk/templates"
-	"github.com/algorand/go-algorand/data/transactions/logic"
 	"io/ioutil"
 	"os"
 	"reflect"
@@ -29,6 +26,7 @@ import (
 	"github.com/algorand/go-algorand-sdk/crypto"
 	"github.com/algorand/go-algorand-sdk/encoding/msgpack"
 	"github.com/algorand/go-algorand-sdk/mnemonic"
+	"github.com/algorand/go-algorand-sdk/templates"
 	"github.com/algorand/go-algorand-sdk/transaction"
 	"github.com/algorand/go-algorand-sdk/types"
 )
@@ -244,7 +242,7 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I send the split transactions$`, iSendTheSplitTransactions)
 	s.Step(`^an HTLC contract with hash preimage "([^"]*)"$`, anHTLCContractWithHashPreimage)
 	s.Step(`^I fund the contract account$`, iFundTheContractAccount)
-	s.Step(`^I claim the algos$`, iClaimTheAlgos)
+	s.Step(`^I claim the algos$`, iClaimTheAlgosHTLC)
 	s.Step(`^a periodic payment contract with withdrawing window (\d+) and period (\d+)$`, aPeriodicPaymentContractWithWithdrawingWindowAndPeriod)
 	s.Step(`^I claim the periodic payment$`, iClaimThePeriodicPayment)
 	s.Step(`^a limit order contract with parameters (\d+) (\d+) (\d+)$`, aLimitOrderContractWithParameters)
@@ -1716,7 +1714,7 @@ func iFundTheContractAccount() error {
 }
 
 // used in HTLC
-func iClaimTheAlgos() error {
+func iClaimTheAlgosHTLC() error {
 	preImage := contractTestFixture.htlcPreImage
 	preImageAsArgument := []byte(preImage)
 	args := make([][]byte, 1)
@@ -1771,6 +1769,9 @@ func iClaimThePeriodicPayment() error {
 func aLimitOrderContractWithParameters(ratn, ratd, minTrade int) error {
 	maxFee := uint64(100000)
 	expiryRound := uint64(100)
+	contractTestFixture.limitOrderN = uint64(ratn)
+	contractTestFixture.limitOrderD = uint64(ratd)
+	contractTestFixture.limitOrderMin = uint64(minTrade)
 	contract, err := templates.MakeLimitOrder(accounts[0], assetTestFixture.AssetIndex, uint64(ratn), uint64(ratd), expiryRound, uint64(minTrade), maxFee)
 	contractTestFixture.activeAddress = contract.GetAddress()
 	contractTestFixture.limitOrder = contract
@@ -1801,7 +1802,6 @@ func iSwapAssetsForAlgos() error {
 }
 
 func aDynamicFeeContractWithAmount(amount int) error {
-	// make contract and save to fixture
 	params, err := acl.SuggestedParams()
 	if err != nil {
 		return err
@@ -1809,7 +1809,7 @@ func aDynamicFeeContractWithAmount(amount int) error {
 	lastRound = params.LastRound
 	txnFirstValid := lastRound
 	txnLastValid := txnFirstValid + 3
-	contract, err := templates.MakeDynamicFee(accounts[0], accounts[0], uint64(amount), txnFirstValid, txnLastValid)
+	contract, err := templates.MakeDynamicFee(accounts[0], accounts[1], uint64(amount), txnFirstValid, txnLastValid)
 	if err != nil {
 		return err
 	}
@@ -1823,7 +1823,14 @@ func aDynamicFeeContractWithAmount(amount int) error {
 	if err != nil {
 		return err
 	}
-	groupTxnBytes, err = templates.GetDynamicFeeTransactions(txn, lsig, secretKey, params.Fee)
+	exp, err = kcl.ExportKey(handle, walletPswd, accounts[1])
+	if err != nil {
+		return err
+	}
+	secretKeyTwo := exp.PrivateKey
+	groupTxnBytes, err = templates.GetDynamicFeeTransactions(txn, lsig, secretKeyTwo, params.Fee)
+	// hack to make checkTxn work
+	backupTxnSender = txn.Sender.String()
 	return err
 }
 
