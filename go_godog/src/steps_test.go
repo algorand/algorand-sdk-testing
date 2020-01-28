@@ -2,6 +2,8 @@ package main
 
 import (
 	"bytes"
+	"crypto/sha256"
+	"crypto/sha512"
 	"encoding/base32"
 	"encoding/base64"
 	"encoding/gob"
@@ -80,6 +82,7 @@ var votelst uint64
 var votekd uint64
 var num string
 var backupTxnSender string
+var groupTxnBytes []byte
 
 var assetTestFixture struct {
 	Creator               string
@@ -94,9 +97,16 @@ var assetTestFixture struct {
 }
 
 var contractTestFixture struct {
+	activeAddress string
 	split         templates.Split
 	htlc          templates.HTLC
-	activeAddress string
+	htlcPreImage  string
+	periodicPay   templates.PeriodicPayment
+	limitOrder    templates.LimitOrder
+	limitOrderN   uint64
+	limitOrderD   uint64
+	limitOrderMin uint64
+	dynamicFee    templates.DynamicFee
 }
 
 var opt = godog.Options{
@@ -1598,7 +1608,14 @@ func createRevocationTransaction(amount int) error {
 func createContractTestFixture() error {
 	contractTestFixture.split = templates.Split{}
 	contractTestFixture.htlc = templates.HTLC{}
+	contractTestFixture.periodicPay = templates.PeriodicPayment{}
+	contractTestFixture.limitOrder = templates.LimitOrder{}
+	contractTestFixture.dynamicFee = templates.DynamicFee{}
 	contractTestFixture.activeAddress = ""
+	contractTestFixture.htlcPreImage = ""
+	contractTestFixture.limitOrderN = 0
+	contractTestFixture.limitOrderD = 0
+	contractTestFixture.limitOrderMin = 0
 	return nil
 }
 
@@ -1607,6 +1624,9 @@ func aSplitContractWithRatioToAndMinimumPayment(ratn, ratd, minPay int) error {
 	receivers := [2]string{accounts[0], accounts[1]}
 	expiryRound := uint64(100)
 	maxFee := uint64(5000000)
+	contractTestFixture.limitOrderN = uint64(ratn)
+	contractTestFixture.limitOrderD = uint64(ratd)
+	contractTestFixture.limitOrderMin = uint64(minPay)
 	c, err := templates.MakeSplit(owner, receivers[0], receivers[1], uint64(ratn), uint64(ratd), expiryRound, uint64(minPay), maxFee)
 	if err != nil {
 		return err
@@ -1657,26 +1677,23 @@ func iSendTheSplitTransactions() error {
 }
 
 func anHTLCContractWithHashPreimage(preImage string) error {
-	var hashImage string
-	if preImage == "hello" {
-		hashImage = "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
-	} else {
-		return fmt.Errorf("unrecognized hash preimage %s supplied", preImage)
-	}
+	hashImage := sha256.Sum256([]byte(preImage))
 	owner := accounts[0]
 	receiver := accounts[1]
 	hashFn := "sha256"
 	expiryRound := uint64(100)
 	maxFee := uint64(1000000)
-	c, err := templates.MakeHTLC(owner, receiver, hashFn, hashImage, expiryRound, maxFee)
+	hashB64 := base64.StdEncoding.EncodeToString(hashImage[:])
+	c, err := templates.MakeHTLC(owner, receiver, hashFn, hashB64, expiryRound, maxFee)
 	contractTestFixture.htlc = c
+	contractTestFixture.htlcPreImage = preImage
 	contractTestFixture.activeAddress = c.GetAddress()
 	return err
 }
 
 func iFundTheContractAccount() error {
 	// send money to c.address
-	amount := uint64(1000000)
+	amount := uint64(100000000)
 	firstRound := uint64(1)
 	params, err := acl.SuggestedParams()
 	if err != nil {
@@ -1700,37 +1717,118 @@ func iFundTheContractAccount() error {
 
 // used in HTLC
 func iClaimTheAlgos() error {
-	// make transaction (???how? maybe see example scripts)
-	return godog.ErrPending
+	preImage := contractTestFixture.htlcPreImage
+	preImageAsArgument := []byte(preImage)
+	args := make([][]byte, 1)
+	args[0] = preImageAsArgument
+	receiver := accounts[0]
+	var blankMultisig crypto.MultisigAccount
+	lsig, err := crypto.MakeLogicSig(contractTestFixture.htlc.GetProgram(), args, nil, blankMultisig)
+	if err != nil {
+		return err
+	}
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	firstRound := params.LastRound
+	lastRound = params.LastRound + 5
+	txn, err = transaction.MakePaymentTxnWithFlatFee(contractTestFixture.activeAddress, receiver, params.Fee, 0, firstRound, lastRound, nil, receiver, "", params.GenesisHash)
+	if err != nil {
+		return err
+	}
+	txid, stx, err = crypto.SignLogicsigTransaction(lsig, txn)
+	if err != nil {
+		return err
+	}
+	return sendTxn()
 }
 
 func aPeriodicPaymentContractWithWithdrawingWindowAndPeriod(withdrawWindow, period int) error {
-	return godog.ErrPending
+	receiver := accounts[0]
+	amount := uint64(10000000)
+	expiryRound := uint64(100)
+	maxFee := uint64(100000)
+	contract, err := templates.MakePeriodicPayment(receiver, amount, uint64(withdrawWindow), uint64(period), expiryRound, maxFee)
+	contractTestFixture.activeAddress = contract.GetAddress()
+	contractTestFixture.periodicPay = contract
+	return err
 }
 
 func iClaimThePeriodicPayment() error {
-	// maybe wait if necessary
-	// get transaction
-	// submit
-	return godog.ErrPending
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	txnFirstValid := params.LastRound
+	stx, err = templates.GetPeriodicPaymentWithdrawalTransaction(contractTestFixture.periodicPay.GetProgram(), txnFirstValid, params.GenesisHash)
+	if err != nil {
+		return err
+	}
+	return sendTxn()
 }
 
 func aLimitOrderContractWithParameters(ratn, ratd, minTrade int) error {
-	//make contract and save to fixture. note that asset fixture is now involved
-	return godog.ErrPending
+	maxFee := uint64(100000)
+	expiryRound := uint64(100)
+	contract, err := templates.MakeLimitOrder(accounts[0], assetTestFixture.AssetIndex, uint64(ratn), uint64(ratd), expiryRound, uint64(minTrade), maxFee)
+	contractTestFixture.activeAddress = contract.GetAddress()
+	contractTestFixture.limitOrder = contract
+	return err
 }
 
 func iSwapAssetsForAlgos() error {
-	// get transaction and submit - may need to use params from fixture
-	return godog.ErrPending
+	exp, err := kcl.ExportKey(handle, walletPswd, accounts[0])
+	if err != nil {
+		return err
+	}
+	secretKey := exp.PrivateKey
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound
+	txnFirstValid := lastRound
+	txnLastValid := txnFirstValid + 3
+	contract := contractTestFixture.limitOrder.GetProgram()
+	microAlgoAmount := contractTestFixture.limitOrderMin
+	assetAmount := microAlgoAmount * contractTestFixture.limitOrderN / contractTestFixture.limitOrderD
+	stx, err = contractTestFixture.limitOrder.GetSwapAssetsTransaction(assetAmount, contract, secretKey, params.Fee, microAlgoAmount, txnFirstValid, txnLastValid, params.GenesisHash)
+	if err != nil {
+		return err
+	}
+	return sendTxn()
 }
 
 func aDynamicFeeContractWithAmount(amount int) error {
 	// make contract and save to fixture
-	return godog.ErrPending
+	params, err := acl.SuggestedParams()
+	if err != nil {
+		return err
+	}
+	lastRound = params.LastRound
+	txnFirstValid := lastRound
+	txnLastValid := txnFirstValid + 3
+	contract, err := templates.MakeDynamicFee(accounts[0], accounts[0], uint64(amount), txnFirstValid, txnLastValid)
+	if err != nil {
+		return err
+	}
+	contractTestFixture.dynamicFee = contract
+	exp, err := kcl.ExportKey(handle, walletPswd, accounts[0])
+	if err != nil {
+		return err
+	}
+	secretKey := exp.PrivateKey
+	txn, lsig, err := templates.SignDynamicFee(contract.GetProgram(), secretKey, params.GenesisHash)
+	if err != nil {
+		return err
+	}
+	groupTxnBytes, err = templates.GetDynamicFeeTransactions(txn, lsig, secretKey, params.Fee)
+	return err
 }
 
 func iSendTheGroupTransaction() error {
-	// get txns and submit
-	return godog.ErrPending
+	response, err := acl.SendRawTransaction(groupTxnBytes)
+	txid = response.TxID
+	return err
 }
