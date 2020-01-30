@@ -2,10 +2,6 @@ FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# This didn't work
-#COPY ./scripts/docker/install_dependencies.sh /opt/install_dependencies.sh
-#RUN /opt/install_dependencies.sh
-
 # Basic dependencies
 RUN apt-get update && apt-get install -y apt-utils curl git git-core bsdmainutils
 
