@@ -608,7 +608,6 @@ def default_asset_creation_txn(context, total):
     params = context.acl.suggested_params()
     context.last_round = params["lastRound"]
     context.pk = context.accounts[0]
-    print("current pk: " + context.pk)
     asset_name = "asset"
     unit_name = "unit"
     context.txn = transaction.AssetConfigTxn(context.pk, 1, context.last_round, context.last_round + 100, params["genesishashb64"], total=context.total,
@@ -784,7 +783,8 @@ def send_split(context):
 def htlc_contract(context, preimage):
     context.preimage = bytes(preimage, "ascii")
     context.params = context.acl.suggested_params()
-    h = hashlib.sha256(context.preimage)
+    h = base64.b64encode(hashlib.sha256(context.preimage).digest()).decode()
+    context.fund_amt = 1000000
     context.template = template.HTLC(context.accounts[0], context.accounts[1], "sha256", h, context.params["lastRound"]+1000, 2000)
 
 
@@ -794,12 +794,16 @@ def fund_contract(context):
     context.txn = context.wallet.sign_transaction(context.txn)
     context.acl.send_transaction(context.txn)
     context.acl.status_after_block(context.acl.status()["lastRound"]+3)
-    print(context.acl.account_info(context.template.get_address()))
 
 
 @when("I claim the algos")
 def claim_algos(context):
-    pass
+    lsig = transaction.LogicSig(context.template.get_program(), [context.preimage])
+    context.txn = transaction.PaymentTxn(context.template.get_address(), 0, context.params["lastRound"], context.params["lastRound"] + 1000, context.params["genesishashb64"], context.accounts[0], 12345)
+    context.ltxn = transaction.LogicSigTransaction(context.txn, lsig)
+    print(encoding.msgpack_encode(context.ltxn))
+    context.acl.send_transaction(context.ltxn)
+    
 
 
 @given("a periodic payment contract with withdrawing window {wd_window} and period {period}")
@@ -846,7 +850,6 @@ def dynamic_fee_contract(context, amt):
 
 @when("I send the dynamic fee transactions")
 def send_dynamic_fee(context):
-    print([encoding.msgpack_encode(t) for t in context.txns])
     context.acl.send_transactions(context.txns)
     
 
