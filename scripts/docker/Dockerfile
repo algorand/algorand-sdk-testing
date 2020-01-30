@@ -17,7 +17,7 @@ RUN eval "$(pyenv init -)" && \
     pyenv global 3.7.1 && \
     pip install --upgrade pip && \
     pyenv rehash
-ENV PATH=$PYENV_ROOT/shims
+ENV PATH=$PYENV_ROOT/shims:$PATH
 
 RUN pip3 install git+https://github.com/algorand/py-algorand-sdk/ -q \
     && pip3 install behave -q

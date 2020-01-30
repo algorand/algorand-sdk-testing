@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 rootdir=`dirname $0`
 pushd $rootdir
 docker build -t sdk-testing -f ./scripts/docker/Dockerfile $rootdir
