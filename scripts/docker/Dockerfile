@@ -3,10 +3,10 @@ FROM ubuntu:18.04
 ENV DEBIAN_FRONTEND noninteractive
 
 # Basic dependencies
+ENV HOME /opt
 RUN apt-get update && apt-get install -y apt-utils curl git git-core bsdmainutils
 
 # Install python dependencies
-ENV HOME /opt
 ENV PYENV_ROOT $HOME/pyenv
 ENV PATH $PYENV_ROOT/bin:$PATH
 RUN apt-get install -y curl gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev libffi-dev
@@ -17,12 +17,9 @@ RUN eval "$(pyenv init -)" && \
     pyenv global 3.7.1 && \
     pip install --upgrade pip && \
     pyenv rehash
+ENV PATH=$PYENV_ROOT/shims
 
-# This might make it so pyenv init isn't necessary
-#ENV PATH=$PYENV_ROOT/shims
-
-RUN eval "$(pyenv init -)" \
-    && pip3 install git+https://github.com/algorand/py-algorand-sdk/ -q \
+RUN pip3 install git+https://github.com/algorand/py-algorand-sdk/ -q \
     && pip3 install behave -q
 
 # Install Javascript dependencies
