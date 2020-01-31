@@ -37,6 +37,9 @@ ENV GOROOT /usr/local/go
 ENV GOPATH $HOME/go
 ENV PATH $GOROOT/bin:$PATH
 
+# Install algorand-sdk-testing script dependencies
+RUN pip3 install gitpython
+
 RUN mkdir -p $HOME/sdk-testing
 WORKDIR $HOME/sdk-testing
 CMD ["/bin/bash", "-c", "GO111MODULE=off && ./scripts/setup.sh && ./scripts/test.sh"]
