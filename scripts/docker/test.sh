@@ -26,7 +26,7 @@ then
     cp -r features/. java_cucumber/src/test/resources/java_cucumber
     cp -r features/. js_cucumber/features
     cp -r features/. py_behave
-    mkdir temp
+    mkdir -p temp
     $BIN_DIR/goal network create -n testnetwork -r $NETWORK_DIR -t network_config/$TEMPLATE
     INDEXER_DIR=$(ls -d $NETWORK_DIR/Node/testnetwork*)
     KMD_DIR=$(ls -d $NETWORK_DIR/Node/kmd*)
