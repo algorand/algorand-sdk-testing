@@ -39,4 +39,4 @@ ENV PATH $GOROOT/bin:$PATH
 
 RUN mkdir -p $HOME/sdk-testing
 WORKDIR $HOME/sdk-testing
-CMD ["/bin/bash"]
+CMD ["/bin/bash", "-c", "GO111MODULE=off && ./scripts/setup.sh && ./scripts/test.sh"]
