@@ -42,4 +42,4 @@ RUN pip3 install gitpython
 
 RUN mkdir -p $HOME/sdk-testing
 WORKDIR $HOME/sdk-testing
-CMD ["/bin/bash", "-c", "GO111MODULE=off && ./scripts/docker/setup.py && ./scripts/docker/test.sh"]
+CMD ["/bin/bash", "-c", "GO111MODULE=off && ./scripts/docker/setup.py --algod-config scripts/config_future && ./scripts/test.sh"]

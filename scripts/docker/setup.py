@@ -3,11 +3,18 @@
 import argparse
 import git
 import os
+import pprint
 import shutil
 import subprocess
+import tarfile
 import time
+import urllib.request
+from os.path import expanduser
 
 parser = argparse.ArgumentParser(description='Install SDKs according to the configuration, either some default or override with a commit hash / local mount.')
+
+parser.add_argument('--algod-config', required=True, help='Path to algod config file.')
+
 parser.add_argument('--java-dir', required=False, help='Local path to java sdk source directory.')
 parser.add_argument('--javascript-dir', required=False, help='Local path to javascript sdk source directory.')
 parser.add_argument('--python-dir', required=False, help='Local path to python sdk source directory.')
@@ -53,6 +60,8 @@ GO = {
     'url': 'https://github.com/algorand/go-algorand-sdk.git',
     'source': '/opt/go/src/github.com/algorand/go-algorand-sdk'
 }
+
+pp = pprint.PrettyPrinter(indent=4)
 
 
 class IllegalArgumentError(ValueError):
@@ -150,6 +159,30 @@ def setup_java(config):
     subprocess.check_call(['mvn versions:use-dep-version -DdepVersion=%s -Dincludes=com.algorand:algosdk -DforceVersion=true -q' % version], shell=True, cwd=config['cucumber'])
 
 
+def setup_algod(config_file):
+    """
+    Download and install algod.
+    """
+    # mkdir -p ~/inst
+    # curl -L https://algorand-releases.s3.amazonaws.com/channel/nightly/install_nightly_linux-amd64_1.0.288.tar.gz -o ~/inst/installer.tar.gz
+    # tar -xf ~/inst/installer.tar.gz -C ~/inst
+    # ~/inst/update.sh -i -c $CHANNEL -p $BIN_DIR -d $BIN_DIR/data -n
+    
+    # Parse config file...
+    with open(config_file) as f:
+        l = [line.split("=") for line in f.readlines()]
+        d = {key.strip(): value.strip().strip('\"') for key, value in l}
+    home = expanduser('~')
+    os.makedirs("%s/inst" % home, exist_ok=True)
+    print('downloading updater...')
+    url='https://algorand-releases.s3.amazonaws.com/channel/nightly/install_nightly_linux-amd64_1.0.288.tar.gz'
+    updater_tar='%s/inst/installer.tar.gz' % home
+    filedata = urllib.request.urlretrieve(url, updater_tar)
+    tar = tarfile.open(updater_tar)
+    tar.extractall(path='%s/inst' % home)
+    subprocess.check_call(['%s/inst/update.sh -i -c %s -p %s -d %s/data -n' % (home, d['CHANNEL'], d['BIN_DIR'], d['BIN_DIR'])], shell=True)
+
+
 if __name__ == '__main__':
     args = parser.parse_args()
 
@@ -165,7 +198,11 @@ if __name__ == '__main__':
     setup_directory(PYTHON['source']    , PYTHON['url']    , args.python_dir    , args.python_hash    )
     setup_directory(GO['source']        , GO['url']        , args.go_dir        , args.go_hash        )
 
+    # Setup each SDK
     setup_go(GO)
     setup_java(JAVA)
     setup_javascript(JAVASCRIPT)
     setup_python(PYTHON)
+
+    # Setup algod
+    setup_algod(args.algod_config)
