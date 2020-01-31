@@ -72,7 +72,8 @@ def setup_directory(source_dir, url, local_dir, commit_hash):
     shutil.rmtree(source_dir, ignore_errors=True)
 
     if local_dir != None:
-        shutil.move(local_dir, source_dir)
+        print('Copying "%s" <- "%s"' % (source_dir, local_dir))
+        shutil.copytree(local_dir, source_dir)
         return
 
     print('Cloning into "%s" <- "%s"' % (source_dir, url))
@@ -80,6 +81,7 @@ def setup_directory(source_dir, url, local_dir, commit_hash):
 
     # Checkout commit hash if specified.
     if commit_hash != None:
+        print('Checking out commit hash: %s' % commit_hash)
         repo.git.checkout(commit_hash)
 
 def apply_overrides(sdk_tuple, url, source_dir):
