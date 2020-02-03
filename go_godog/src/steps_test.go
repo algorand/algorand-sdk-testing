@@ -98,6 +98,9 @@ var contractTestFixture struct {
 	activeAddress      string
 	contractFundAmount uint64
 	split              templates.Split
+	splitN             uint64
+	splitD             uint64
+	splitMin           uint64
 	htlc               templates.HTLC
 	htlcPreImage       string
 	periodicPay        templates.PeriodicPayment
@@ -1616,6 +1619,9 @@ func createContractTestFixture() error {
 	contractTestFixture.limitOrderN = 0
 	contractTestFixture.limitOrderD = 0
 	contractTestFixture.limitOrderMin = 0
+	contractTestFixture.splitN = 0
+	contractTestFixture.splitD = 0
+	contractTestFixture.splitMin = 0
 	contractTestFixture.contractFundAmount = 0
 	contractTestFixture.periodicPayPeriod = 0
 	return nil
@@ -1626,19 +1632,20 @@ func aSplitContractWithRatioToAndMinimumPayment(ratn, ratd, minPay int) error {
 	receivers := [2]string{accounts[0], accounts[1]}
 	expiryRound := uint64(100)
 	maxFee := uint64(5000000)
-	contractTestFixture.limitOrderN = uint64(ratn)
-	contractTestFixture.limitOrderD = uint64(ratd)
-	contractTestFixture.limitOrderMin = uint64(minPay)
+	contractTestFixture.splitN = uint64(ratn)
+	contractTestFixture.splitD = uint64(ratd)
+	contractTestFixture.splitMin = uint64(minPay)
 	fmt.Println()
 	c, err := templates.MakeSplit(owner, receivers[0], receivers[1], uint64(ratn), uint64(ratd), expiryRound, uint64(minPay), maxFee)
 	contractTestFixture.split = c
 	contractTestFixture.activeAddress = c.GetAddress()
-	contractTestFixture.contractFundAmount = uint64(minPay * (ratd + ratn))
+	// add enough to evenly split, plus a flat 2000 to pay for txn fees
+	contractTestFixture.contractFundAmount = uint64(minPay*(ratd+ratn)) + 2000
 	return err
 }
 
 func iSendTheSplitTransactions() error {
-	amount := contractTestFixture.contractFundAmount
+	amount := contractTestFixture.splitMin * (contractTestFixture.splitN + contractTestFixture.splitD)
 	firstRound := uint64(1)
 	params, err := acl.SuggestedParams()
 	if err != nil {
@@ -1649,7 +1656,6 @@ func iSendTheSplitTransactions() error {
 	if err != nil {
 		return err
 	}
-	fmt.Println(base64.StdEncoding.EncodeToString(txnBytes))
 	txIdResponse, err := acl.SendRawTransaction(txnBytes)
 	txid = txIdResponse.TxID
 	// hack to make checkTxn work
@@ -1674,9 +1680,8 @@ func anHTLCContractWithHashPreimage(preImage string) error {
 }
 
 func iFundTheContractAccount() error {
-	// send the requested money to c.address, plus money for some fees
-	const txnFee = 1000
-	amount := contractTestFixture.contractFundAmount + txnFee*2
+	// send the requested money to c.address
+	amount := contractTestFixture.contractFundAmount
 	params, err := acl.SuggestedParams()
 	if err != nil {
 		return err
@@ -1703,7 +1708,7 @@ func iClaimTheAlgosHTLC() error {
 	preImageAsArgument := []byte(preImage)
 	args := make([][]byte, 1)
 	args[0] = preImageAsArgument
-	receiver := accounts[0]
+	receiver := accounts[1] // was set as receiver in setup step
 	var blankMultisig crypto.MultisigAccount
 	lsig, err := crypto.MakeLogicSig(contractTestFixture.htlc.GetProgram(), args, nil, blankMultisig)
 	if err != nil {
@@ -1719,6 +1724,7 @@ func iClaimTheAlgosHTLC() error {
 	if err != nil {
 		return err
 	}
+	txn.Receiver = types.Address{} //txn must have no receiver but MakePayment disallows this.
 	txid, stx, err = crypto.SignLogicsigTransaction(lsig, txn)
 	if err != nil {
 		return err
@@ -1814,7 +1820,6 @@ func aDynamicFeeContractWithAmount(amount int) error {
 	}
 	secretKey := exp.PrivateKey
 	txn, lsig, err := templates.SignDynamicFee(contract.GetProgram(), secretKey, params.GenesisHash)
-	fmt.Println(txn)
 	if err != nil {
 		return err
 	}
