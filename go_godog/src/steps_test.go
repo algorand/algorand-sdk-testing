@@ -95,16 +95,18 @@ var assetTestFixture struct {
 }
 
 var contractTestFixture struct {
-	activeAddress string
-	split         templates.Split
-	htlc          templates.HTLC
-	htlcPreImage  string
-	periodicPay   templates.PeriodicPayment
-	limitOrder    templates.LimitOrder
-	limitOrderN   uint64
-	limitOrderD   uint64
-	limitOrderMin uint64
-	dynamicFee    templates.DynamicFee
+	activeAddress      string
+	contractFundAmount uint64
+	split              templates.Split
+	htlc               templates.HTLC
+	htlcPreImage       string
+	periodicPay        templates.PeriodicPayment
+	periodicPayPeriod  uint64
+	limitOrder         templates.LimitOrder
+	limitOrderN        uint64
+	limitOrderD        uint64
+	limitOrderMin      uint64
+	dynamicFee         templates.DynamicFee
 }
 
 var opt = godog.Options{
@@ -248,7 +250,7 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^a limit order contract with parameters (\d+) (\d+) (\d+)$`, aLimitOrderContractWithParameters)
 	s.Step(`^I swap assets for algos$`, iSwapAssetsForAlgos)
 	s.Step(`^a dynamic fee contract with amount (\d+)$`, aDynamicFeeContractWithAmount)
-	s.Step(`^I send the group transaction$`, iSendTheGroupTransaction)
+	s.Step(`^I send the dynamic fee transactions$`, iSendTheDynamicFeeTransaction)
 	s.Step("contract test fixture", createContractTestFixture)
 
 	s.BeforeScenario(func(interface{}) {
@@ -1614,6 +1616,8 @@ func createContractTestFixture() error {
 	contractTestFixture.limitOrderN = 0
 	contractTestFixture.limitOrderD = 0
 	contractTestFixture.limitOrderMin = 0
+	contractTestFixture.contractFundAmount = 0
+	contractTestFixture.periodicPayPeriod = 0
 	return nil
 }
 
@@ -1625,48 +1629,27 @@ func aSplitContractWithRatioToAndMinimumPayment(ratn, ratd, minPay int) error {
 	contractTestFixture.limitOrderN = uint64(ratn)
 	contractTestFixture.limitOrderD = uint64(ratd)
 	contractTestFixture.limitOrderMin = uint64(minPay)
+	fmt.Println()
 	c, err := templates.MakeSplit(owner, receivers[0], receivers[1], uint64(ratn), uint64(ratd), expiryRound, uint64(minPay), maxFee)
-	if err != nil {
-		return err
-	}
 	contractTestFixture.split = c
 	contractTestFixture.activeAddress = c.GetAddress()
-	// send money to c.address
-	amount := uint64(100000)
-	firstRound := uint64(1)
-	params, err := acl.SuggestedParams()
-	if err != nil {
-		return err
-	}
-	lastRound = params.LastRound + 10
-	txn, err = transaction.MakePaymentTxn(owner, c.GetAddress(), params.Fee, amount, firstRound, lastRound, nil, "", "", params.GenesisHash)
-	if err != nil {
-		return err
-	}
-	err = signKmd()
-	if err != nil {
-		return err
-	}
-	err = sendTxnKmd()
-	if err != nil {
-		return err
-	}
-	return checkTxn()
+	contractTestFixture.contractFundAmount = uint64(minPay * (ratd + ratn))
+	return err
 }
 
 func iSendTheSplitTransactions() error {
-	amount := uint64(10000)
-	precise := false
+	amount := contractTestFixture.contractFundAmount
 	firstRound := uint64(1)
 	params, err := acl.SuggestedParams()
 	if err != nil {
 		return err
 	}
 	lastRound = params.LastRound + 5
-	txnBytes, err := contractTestFixture.split.GetSendFundsTransaction(amount, precise, firstRound, lastRound, params.Fee, params.GenesisHash)
+	txnBytes, err := templates.GetSplitFundsTransaction(contractTestFixture.split.GetProgram(), amount, firstRound, lastRound, params.Fee, params.GenesisHash)
 	if err != nil {
 		return err
 	}
+	fmt.Println(base64.StdEncoding.EncodeToString(txnBytes))
 	txIdResponse, err := acl.SendRawTransaction(txnBytes)
 	txid = txIdResponse.TxID
 	// hack to make checkTxn work
@@ -1686,19 +1669,20 @@ func anHTLCContractWithHashPreimage(preImage string) error {
 	contractTestFixture.htlc = c
 	contractTestFixture.htlcPreImage = preImage
 	contractTestFixture.activeAddress = c.GetAddress()
+	contractTestFixture.contractFundAmount = 100000000
 	return err
 }
 
 func iFundTheContractAccount() error {
-	// send money to c.address
-	amount := uint64(100000000)
-	firstRound := uint64(1)
+	// send the requested money to c.address, plus money for some fees
+	const txnFee = 1000
+	amount := contractTestFixture.contractFundAmount + txnFee*2
 	params, err := acl.SuggestedParams()
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound + 5
-	txn, err = transaction.MakePaymentTxn(accounts[0], contractTestFixture.activeAddress, params.Fee, amount, firstRound, lastRound, nil, "", "", params.GenesisHash)
+	lastRound = params.LastRound
+	txn, err = transaction.MakePaymentTxn(accounts[0], contractTestFixture.activeAddress, params.Fee, amount, lastRound, lastRound+5, nil, "", "", params.GenesisHash)
 	if err != nil {
 		return err
 	}
@@ -1745,11 +1729,13 @@ func iClaimTheAlgosHTLC() error {
 func aPeriodicPaymentContractWithWithdrawingWindowAndPeriod(withdrawWindow, period int) error {
 	receiver := accounts[0]
 	amount := uint64(10000000)
+	contractTestFixture.contractFundAmount = amount
 	expiryRound := uint64(100)
 	maxFee := uint64(100000)
 	contract, err := templates.MakePeriodicPayment(receiver, amount, uint64(withdrawWindow), uint64(period), expiryRound, maxFee)
 	contractTestFixture.activeAddress = contract.GetAddress()
 	contractTestFixture.periodicPay = contract
+	contractTestFixture.periodicPayPeriod = uint64(period)
 	return err
 }
 
@@ -1759,6 +1745,10 @@ func iClaimThePeriodicPayment() error {
 		return err
 	}
 	txnFirstValid := params.LastRound
+	remainder := txnFirstValid % contractTestFixture.periodicPayPeriod
+	if remainder != 0 {
+		txnFirstValid += remainder
+	}
 	stx, err = templates.GetPeriodicPaymentWithdrawalTransaction(contractTestFixture.periodicPay.GetProgram(), txnFirstValid, params.GenesisHash)
 	if err != nil {
 		return err
@@ -1772,6 +1762,10 @@ func aLimitOrderContractWithParameters(ratn, ratd, minTrade int) error {
 	contractTestFixture.limitOrderN = uint64(ratn)
 	contractTestFixture.limitOrderD = uint64(ratd)
 	contractTestFixture.limitOrderMin = uint64(minTrade)
+	contractTestFixture.contractFundAmount = 2 * uint64(minTrade)
+	if contractTestFixture.contractFundAmount < 1000000 {
+		contractTestFixture.contractFundAmount = 1000000
+	}
 	contract, err := templates.MakeLimitOrder(accounts[0], assetTestFixture.AssetIndex, uint64(ratn), uint64(ratd), expiryRound, uint64(minTrade), maxFee)
 	contractTestFixture.activeAddress = contract.GetAddress()
 	contractTestFixture.limitOrder = contract
@@ -1820,6 +1814,7 @@ func aDynamicFeeContractWithAmount(amount int) error {
 	}
 	secretKey := exp.PrivateKey
 	txn, lsig, err := templates.SignDynamicFee(contract.GetProgram(), secretKey, params.GenesisHash)
+	fmt.Println(txn)
 	if err != nil {
 		return err
 	}
@@ -1834,7 +1829,7 @@ func aDynamicFeeContractWithAmount(amount int) error {
 	return err
 }
 
-func iSendTheGroupTransaction() error {
+func iSendTheDynamicFeeTransaction() error {
 	response, err := acl.SendRawTransaction(groupTxnBytes)
 	txid = response.TxID
 	return err
