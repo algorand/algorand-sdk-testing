@@ -255,6 +255,7 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^a dynamic fee contract with amount (\d+)$`, aDynamicFeeContractWithAmount)
 	s.Step(`^I send the dynamic fee transactions$`, iSendTheDynamicFeeTransaction)
 	s.Step("contract test fixture", createContractTestFixture)
+	s.Step(`^I create a transaction transferring <amount> assets from creator to a second account$`, iCreateATransactionTransferringAmountAssetsFromCreatorToASecondAccount) // provide handler for when godog misreads
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -864,7 +865,7 @@ func checkTxn() error {
 	if err != nil {
 		return err
 	}
-	if txn.Sender.String() != "" {
+	if txn.Sender.String() != "" && txn.Sender.String() != "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ" {
 		_, err = acl.TransactionInformation(txn.Sender.String(), txid)
 	} else {
 		_, err = acl.TransactionInformation(backupTxnSender, txid)
@@ -1308,7 +1309,6 @@ func assetCreateTxnHelper(issuance int, frozenState bool) error {
 	assetIssuance := uint64(issuance)
 	genesisID := params.GenesisID
 	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
-	defaultFrozen := false
 	manager := creator
 	reserve := creator
 	freeze := creator
@@ -1317,7 +1317,7 @@ func assetCreateTxnHelper(issuance int, frozenState bool) error {
 	assetName := assetTestFixture.AssetName
 	url := assetTestFixture.AssetURL
 	metadataHash := assetTestFixture.AssetMetadataHash
-	assetCreateTxn, err := transaction.MakeAssetCreateTxn(creator, 10, firstRound, lastRoundValid, assetNote, genesisID, genesisHash, assetIssuance, 0, defaultFrozen, manager, reserve, freeze, clawback, unitName, assetName, url, metadataHash)
+	assetCreateTxn, err := transaction.MakeAssetCreateTxn(creator, 10, firstRound, lastRoundValid, assetNote, genesisID, genesisHash, assetIssuance, 0, frozenState, manager, reserve, freeze, clawback, unitName, assetName, url, metadataHash)
 	assetTestFixture.LastTransactionIssued = assetCreateTxn
 	txn = assetCreateTxn
 	assetTestFixture.ExpectedParams = convertTransactionAssetParamsToModelsAssetParam(assetCreateTxn.AssetParams)
@@ -1635,7 +1635,6 @@ func aSplitContractWithRatioToAndMinimumPayment(ratn, ratd, minPay int) error {
 	contractTestFixture.splitN = uint64(ratn)
 	contractTestFixture.splitD = uint64(ratd)
 	contractTestFixture.splitMin = uint64(minPay)
-	fmt.Println()
 	c, err := templates.MakeSplit(owner, receivers[0], receivers[1], uint64(ratn), uint64(ratd), expiryRound, uint64(minPay), maxFee)
 	contractTestFixture.split = c
 	contractTestFixture.activeAddress = c.GetAddress()
@@ -1735,9 +1734,10 @@ func iClaimTheAlgosHTLC() error {
 func aPeriodicPaymentContractWithWithdrawingWindowAndPeriod(withdrawWindow, period int) error {
 	receiver := accounts[0]
 	amount := uint64(10000000)
-	contractTestFixture.contractFundAmount = amount
+	// add far more than enough to withdraw
+	contractTestFixture.contractFundAmount = amount * 10
 	expiryRound := uint64(100)
-	maxFee := uint64(100000)
+	maxFee := uint64(1000000000000)
 	contract, err := templates.MakePeriodicPayment(receiver, amount, uint64(withdrawWindow), uint64(period), expiryRound, maxFee)
 	contractTestFixture.activeAddress = contract.GetAddress()
 	contractTestFixture.periodicPay = contract
@@ -1755,10 +1755,11 @@ func iClaimThePeriodicPayment() error {
 	if remainder != 0 {
 		txnFirstValid += remainder
 	}
-	stx, err = templates.GetPeriodicPaymentWithdrawalTransaction(contractTestFixture.periodicPay.GetProgram(), txnFirstValid, params.GenesisHash)
+	stx, err = templates.GetPeriodicPaymentWithdrawalTransaction(contractTestFixture.periodicPay.GetProgram(), txnFirstValid, params.Fee, params.GenesisHash)
 	if err != nil {
 		return err
 	}
+	lastRound = params.LastRound // used in send/checkTxn
 	return sendTxn()
 }
 
@@ -1778,8 +1779,13 @@ func aLimitOrderContractWithParameters(ratn, ratd, minTrade int) error {
 	return err
 }
 
+// godog misreads the step for this function, so provide a handler for when it does so
+func iCreateATransactionTransferringAmountAssetsFromCreatorToASecondAccount() error {
+	return createAssetTransferTransactionToSecondAccount(500000)
+}
+
 func iSwapAssetsForAlgos() error {
-	exp, err := kcl.ExportKey(handle, walletPswd, accounts[0])
+	exp, err := kcl.ExportKey(handle, walletPswd, accounts[1])
 	if err != nil {
 		return err
 	}
@@ -1792,12 +1798,16 @@ func iSwapAssetsForAlgos() error {
 	txnFirstValid := lastRound
 	txnLastValid := txnFirstValid + 3
 	contract := contractTestFixture.limitOrder.GetProgram()
-	microAlgoAmount := contractTestFixture.limitOrderMin
+	microAlgoAmount := contractTestFixture.limitOrderMin + 1 // just over the minimum
 	assetAmount := microAlgoAmount * contractTestFixture.limitOrderN / contractTestFixture.limitOrderD
+	assetAmount += 1 // assetAmount initialized to absolute minimum, will fail greater-than check, so increment by one for a better deal
 	stx, err = contractTestFixture.limitOrder.GetSwapAssetsTransaction(assetAmount, contract, secretKey, params.Fee, microAlgoAmount, txnFirstValid, txnLastValid, params.GenesisHash)
 	if err != nil {
 		return err
 	}
+	// hack to make checktxn work
+	txn = types.Transaction{}
+	backupTxnSender = contractTestFixture.limitOrder.GetAddress() // used in checktxn
 	return sendTxn()
 }
 

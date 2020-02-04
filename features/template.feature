@@ -47,13 +47,17 @@ Feature: Templates
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
     Then the transaction should go through
+    When I create a transaction transferring <amount> assets from creator to a second account
+    And I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
     When I fund the contract account
     And I swap assets for algos
     Then the transaction should go through
   
     Examples:
-      | total | ratn | ratd | min_trade |
-      | 1000000 | 2 | 3 | 1000 |
+      | total   | ratn | ratd | min_trade | amount
+      | 1000000 | 2 | 3 | 1000 | 500000
 
   Scenario Outline: Dynamic Fee
     Given a dynamic fee contract with amount <amt>
