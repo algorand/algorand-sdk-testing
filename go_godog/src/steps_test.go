@@ -1818,19 +1818,27 @@ func aDynamicFeeContractWithAmount(amount int) error {
 	}
 	lastRound = params.LastRound
 	txnFirstValid := lastRound
-	txnLastValid := txnFirstValid + 3
+	txnLastValid := txnFirstValid + 10
 	contractTestFixture.contractFundAmount = uint64(10 * amount)
 	contract, err := templates.MakeDynamicFee(accounts[1], accounts[0], uint64(amount), txnFirstValid, txnLastValid)
+
+	contractTestFixture.dynamicFee = contract
+	contractTestFixture.activeAddress = contract.GetAddress()
+	return err
+}
+
+func iSendTheDynamicFeeTransaction() error {
+	params, err := acl.SuggestedParams()
 	if err != nil {
 		return err
 	}
-	contractTestFixture.dynamicFee = contract
+	lastRound = params.LastRound
 	exp, err := kcl.ExportKey(handle, walletPswd, accounts[0])
 	if err != nil {
 		return err
 	}
 	secretKey := exp.PrivateKey
-	txn, lsig, err := templates.SignDynamicFee(contract.GetProgram(), secretKey, params.GenesisHash)
+	initialTxn, lsig, err := templates.SignDynamicFee(contractTestFixture.dynamicFee.GetProgram(), secretKey, params.GenesisHash)
 	if err != nil {
 		return err
 	}
@@ -1839,13 +1847,10 @@ func aDynamicFeeContractWithAmount(amount int) error {
 		return err
 	}
 	secretKeyTwo := exp.PrivateKey
-	groupTxnBytes, err = templates.GetDynamicFeeTransactions(txn, lsig, secretKeyTwo, params.Fee)
+	groupTxnBytes, err := templates.GetDynamicFeeTransactions(initialTxn, lsig, secretKeyTwo, params.Fee)
 	// hack to make checkTxn work
-	backupTxnSender = txn.Sender.String()
-	return err
-}
-
-func iSendTheDynamicFeeTransaction() error {
+	txn = initialTxn
+	// end hack to make checkTxn work
 	response, err := acl.SendRawTransaction(groupTxnBytes)
 	txid = response.TxID
 	fmt.Println(response)
