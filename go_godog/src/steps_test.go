@@ -1819,7 +1819,8 @@ func aDynamicFeeContractWithAmount(amount int) error {
 	lastRound = params.LastRound
 	txnFirstValid := lastRound
 	txnLastValid := txnFirstValid + 3
-	contract, err := templates.MakeDynamicFee(accounts[0], accounts[1], uint64(amount), txnFirstValid, txnLastValid)
+	contractTestFixture.contractFundAmount = uint64(10 * amount)
+	contract, err := templates.MakeDynamicFee(accounts[1], accounts[0], uint64(amount), txnFirstValid, txnLastValid)
 	if err != nil {
 		return err
 	}
@@ -1847,5 +1848,6 @@ func aDynamicFeeContractWithAmount(amount int) error {
 func iSendTheDynamicFeeTransaction() error {
 	response, err := acl.SendRawTransaction(groupTxnBytes)
 	txid = response.TxID
+	fmt.Println(response)
 	return err
 }
