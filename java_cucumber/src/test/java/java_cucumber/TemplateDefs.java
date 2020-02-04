@@ -1,15 +1,17 @@
 package java_cucumber;
 
+import com.algorand.algosdk.account.Account;
 import com.algorand.algosdk.algod.client.ApiException;
-import com.algorand.algosdk.algod.client.model.TransactionID;
-import com.algorand.algosdk.algod.client.model.TransactionParams;
-import com.algorand.algosdk.crypto.Address;
 import com.algorand.algosdk.crypto.Digest;
+import com.algorand.algosdk.crypto.LogicsigSignature;
 import com.algorand.algosdk.kmd.client.model.SignTransactionRequest;
 import com.algorand.algosdk.logic.Logic;
 import com.algorand.algosdk.templates.ContractTemplate;
+import com.algorand.algosdk.templates.HTLC;
 import com.algorand.algosdk.templates.Split;
+import com.algorand.algosdk.transaction.SignedTransaction;
 import com.algorand.algosdk.transaction.Transaction;
+import com.algorand.algosdk.util.Digester;
 import com.algorand.algosdk.util.Encoder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import cucumber.api.java.en.Given;
@@ -18,11 +20,14 @@ import cucumber.api.java.en.When;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class TemplateDefs {
     Stepdefs base;
 
-    ContractTemplate split;
+    ContractTemplate contract;
+    String htlcPreImage;
+    Long contractFundAmount;
 
 
     public TemplateDefs(Stepdefs base) {
@@ -33,7 +38,7 @@ public class TemplateDefs {
     public void a_split_contract_with_ratio_to_and_minimum_payment(Integer ratn, Integer ratd, Integer minPay) throws ApiException, NoSuchAlgorithmException {
         base.getParams();
 
-        split = Split.MakeSplit(
+        contract = Split.MakeSplit(
                 base.getAddress(0),
                 base.getAddress(1),
                 base.getAddress(2),
@@ -42,6 +47,7 @@ public class TemplateDefs {
                 base.params.getLastRound().add(BigInteger.valueOf(1000)).intValue(),
                 minPay,
                 2000);
+        contractFundAmount = 100000000L;
     }
 
     @When("I fund the contract account")
@@ -50,8 +56,8 @@ public class TemplateDefs {
 
         Transaction txn = new Transaction(
                 base.getAddress(0),
-                split.address,
-                10000000,
+                contract.address,
+                contractFundAmount,
                 base.params.getLastRound().longValue(),
                 base.params.getLastRound().add(BigInteger.valueOf(1000)).longValue(),
                 "",
@@ -70,7 +76,7 @@ public class TemplateDefs {
         base.getParams();
 
         // Read inputs to compute a valid split.
-        Logic.ProgramData data = Logic.readProgram(split.program, null);
+        Logic.ProgramData data = Logic.readProgram(contract.program, null);
         int ratd = data.intBlock.get(5);
         int ratn = data.intBlock.get(6);
         int minTrade = data.intBlock.get(7);
@@ -78,7 +84,7 @@ public class TemplateDefs {
         int amt2 = minTrade * ratd;
 
         byte[] transactions = Split.GetSendFundsTransaction(
-                split,
+                contract,
                 amt1,
                 amt2,
                 base.params.getLastRound().intValue(),
@@ -86,8 +92,46 @@ public class TemplateDefs {
                 1,
                 new Digest(base.params.getGenesishashb64()));
 
-        base.pk = split.address;
+        base.pk = contract.address;
         base.txid = base.acl.rawTransaction(transactions).getTxId();
-        base.lastRound = base.params.getLastRound();
     }
+
+    @Given("an HTLC contract with hash preimage {string}")
+    public void an_HTLC_contract_with_hash_preimage(String string) throws NoSuchAlgorithmException {
+        byte[] hashImage = Digester.digest(string.getBytes());
+
+        htlcPreImage = Encoder.encodeToBase64(hashImage);
+
+        contract = HTLC.MakeHTLC(
+                base.getAddress(0),
+                base.getAddress(1),
+                "sha256",
+                htlcPreImage,
+                100,
+                1000000);
+        contractFundAmount = 100000000L;
+    }
+
+    @When("I claim the algos")
+    public void i_claim_the_algos() throws IOException, ApiException, NoSuchAlgorithmException {
+        ArrayList<byte[]> args = new ArrayList<>();
+        //args.add(Encoder.decodeFromBase64(htlcPreImage));
+        args.add(htlcPreImage.getBytes());
+        LogicsigSignature lsig = new LogicsigSignature(contract.program, args);
+        base.txn = new Transaction(
+                contract.address,
+                base.getAddress(0),
+                BigInteger.valueOf(0),
+                BigInteger.valueOf(12345),
+                base.params.getLastRound(),
+                base.params.getLastRound().add(BigInteger.valueOf(1000)),
+                "",
+                new Digest(base.params.getGenesishashb64()));
+        Account.setFeeByFeePerByte(base.txn, BigInteger.valueOf(30));
+        base.stx = new SignedTransaction(base.txn, lsig);
+        base.pk = contract.address;
+        System.out.println(Encoder.encodeToBase64(Encoder.encodeToMsgPack(base.stx)));
+        base.txid = base.acl.rawTransaction(Encoder.encodeToMsgPack(base.stx)).getTxId();
+    }
+
 }

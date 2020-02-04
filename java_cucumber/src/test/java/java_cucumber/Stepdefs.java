@@ -1075,7 +1075,7 @@ public class Stepdefs {
 
         Transaction tx = Transaction.createAssetTransferTransaction(
                 new Address(this.creator), // sender source address
-                new Address(this.addresses.get(1)),
+                getAddress(1),
                 new Address(),
                 BigInteger.valueOf(int1),
                 params.getFee(), // transaction fee
@@ -1087,7 +1087,7 @@ public class Stepdefs {
                 this.assetID);
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
-        this.pk = new Address(this.addresses.get(0));
+        this.pk = getAddress(0);
     }
 
     @Then("the creator should have {int} assets remaining")
@@ -1119,7 +1119,7 @@ public class Stepdefs {
         getParams();
 
         Transaction tx = Transaction.createAssetAcceptTransaction(
-                new Address(this.addresses.get(1)),
+                getAddress(1),
                 params.getFee(), // transaction fee
                 params.getLastRound(), // first valid round
                 params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
@@ -1129,7 +1129,7 @@ public class Stepdefs {
                 this.assetID);
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
-        this.pk = new Address(this.addresses.get(1));
+        this.pk = getAddress(1);
     }
 
     @Then("I send the kmd-signed transaction")
@@ -1143,8 +1143,8 @@ public class Stepdefs {
         getParams();
 
         Transaction tx = Transaction.createAssetFreezeTransaction(
-                new Address(this.addresses.get(0)), // transaction sender
-                new Address(this.addresses.get(1)), // account to freeze
+                getAddress(0), // transaction sender
+                getAddress(1), // account to freeze
                 true, // freeze state
                 params.getFee(), // transaction fee
                 params.getLastRound(), // first valid round
@@ -1154,7 +1154,7 @@ public class Stepdefs {
                 this.assetID);
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
-        this.pk = new Address(this.addresses.get(0));
+        this.pk = getAddress(0);
     }
 
     @When("I create a transaction transferring {int} assets from a second account to creator")
@@ -1162,8 +1162,8 @@ public class Stepdefs {
         getParams();
 
         Transaction tx = Transaction.createAssetTransferTransaction(
-                new Address(this.addresses.get(1)),
-                new Address(this.creator), // sender source address                
+                getAddress(1),
+                new Address(this.creator), // sender source address
                 new Address(),
                 BigInteger.valueOf(int1),
                 params.getFee(), // transaction fee
@@ -1175,7 +1175,7 @@ public class Stepdefs {
                 this.assetID);
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
-        this.pk = new Address(this.addresses.get(1));
+        this.pk = getAddress(1);
     }
 
     @When("I create an un-freeze transaction targeting the second account")
@@ -1184,8 +1184,8 @@ public class Stepdefs {
         getParams();
 
         Transaction tx = Transaction.createAssetFreezeTransaction(
-                new Address(this.addresses.get(0)), // transaction sender
-                new Address(this.addresses.get(1)), // account to freeze
+                getAddress(0), // transaction sender
+                getAddress(1), // account to freeze
                 false, // freeze state
                 params.getFee(), // transaction fee
                 params.getLastRound(), // first valid round
@@ -1195,7 +1195,7 @@ public class Stepdefs {
                 this.assetID);
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
-        this.pk = new Address(this.addresses.get(0));
+        this.pk = getAddress(0);
     }
 
     @Given("default-frozen asset creation transaction with total issuance {int}")
@@ -1232,9 +1232,9 @@ public class Stepdefs {
         getParams();
 
         Transaction tx = Transaction.createAssetRevokeTransaction(
-                new Address(this.addresses.get(0)), // transaction sender
-                new Address(this.addresses.get(1)), // revoked from
-                new Address(this.addresses.get(0)), // asset receiver
+                getAddress(0), // transaction sender
+                getAddress(1), // revoked from
+                getAddress(0), // asset receiver
                 BigInteger.valueOf(int1),
                 params.getFee(), // transaction fee
                 params.getLastRound(), // first valid round
@@ -1245,6 +1245,6 @@ public class Stepdefs {
                 this.assetID);
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
-        this.pk = new Address(this.addresses.get(0));
+        this.pk = getAddress(0);
     }
 }
