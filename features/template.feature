@@ -1,9 +1,11 @@
+@templates
 Feature: Templates
   Background:
     Given an algod client
     And a kmd client
     And wallet information
-
+    And contract test fixture
+  
   Scenario Outline: Split
     Given a split contract with ratio <ratn> to <ratd> and minimum payment <min_pay>
     When I fund the contract account
@@ -33,9 +35,10 @@ Feature: Templates
     Examples:
       | wd_window | period |
       | 999 | 2 |
-  
+
   Scenario Outline: Limit Order
-    Given default asset creation transaction with total issuance <total>
+    Given asset test fixture
+    And default asset creation transaction with total issuance <total>
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
     Then the transaction should go through
@@ -45,14 +48,18 @@ Feature: Templates
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
     Then the transaction should go through
+    When I create a transaction transferring <amount> assets from creator to a second account
+    And I sign the transaction with kmd
+    And I send the kmd-signed transaction
+    Then the transaction should go through
     When I fund the contract account
     And I swap assets for algos
     Then the transaction should go through
-  
-    Examples:
-      | total | ratn | ratd | min_trade |
-      | 1000000 | 2 | 3 | 1000 |
 
+    Examples:
+      | total   | ratn | ratd | min_trade | amount |
+      | 1000000 | 2 | 3 | 1000 | 500000 |
+  
   Scenario Outline: Dynamic Fee
     Given a dynamic fee contract with amount <amt>
     When I send the dynamic fee transactions
@@ -61,4 +68,3 @@ Feature: Templates
     Examples:
       | amt |
       | 12345 |
-    
