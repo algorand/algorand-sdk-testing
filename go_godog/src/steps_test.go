@@ -1638,8 +1638,8 @@ func aSplitContractWithRatioToAndMinimumPayment(ratn, ratd, minPay int) error {
 	c, err := templates.MakeSplit(owner, receivers[0], receivers[1], uint64(ratn), uint64(ratd), expiryRound, uint64(minPay), maxFee)
 	contractTestFixture.split = c
 	contractTestFixture.activeAddress = c.GetAddress()
-	// add enough to evenly split, plus a flat 2000 to pay for txn fees
-	contractTestFixture.contractFundAmount = uint64(minPay*(ratd+ratn)) + 2000
+	// add much more than enough to evenly split
+	contractTestFixture.contractFundAmount = uint64(minPay*(ratd+ratn)) * 10
 	return err
 }
 
@@ -1833,16 +1833,11 @@ func iSendTheDynamicFeeTransaction() error {
 		return err
 	}
 	lastRound = params.LastRound
-	exp, err := kcl.ExportKey(handle, walletPswd, accounts[0])
+	initialTxn, lsig, err := templates.SignDynamicFee(contractTestFixture.dynamicFee.GetProgram(), params.GenesisHash)
 	if err != nil {
 		return err
 	}
-	secretKey := exp.PrivateKey
-	initialTxn, lsig, err := templates.SignDynamicFee(contractTestFixture.dynamicFee.GetProgram(), secretKey, params.GenesisHash)
-	if err != nil {
-		return err
-	}
-	exp, err = kcl.ExportKey(handle, walletPswd, accounts[1])
+	exp, err := kcl.ExportKey(handle, walletPswd, accounts[1])
 	if err != nil {
 		return err
 	}
@@ -1853,6 +1848,5 @@ func iSendTheDynamicFeeTransaction() error {
 	// end hack to make checkTxn work
 	response, err := acl.SendRawTransaction(groupTxnBytes)
 	txid = response.TxID
-	fmt.Println(response)
 	return err
 }
