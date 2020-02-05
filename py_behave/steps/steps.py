@@ -795,9 +795,8 @@ def fund_contract(context):
 
 @when("I claim the algos")
 def claim_algos(context):
-    context.ltxn = template.HTLC.get_transaction(context.template.get_program(), base64.b64encode(context.preimage), context.accounts[1], context.params["lastRound"], context.params["lastRound"] + 1000, context.params["genesishashb64"], 0)
+    context.ltxn = template.HTLC.get_transaction(context.template.get_program(), base64.b64encode(context.preimage), context.params["lastRound"], context.params["lastRound"] + 1000, context.params["genesishashb64"], 0)
     context.txn = context.ltxn.transaction
-    print(encoding.msgpack_encode(encoding.msgpack_decode(encoding.msgpack_encode(context.ltxn))))
     context.acl.send_transaction(context.ltxn)
     
 

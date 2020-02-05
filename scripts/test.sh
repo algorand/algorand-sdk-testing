@@ -197,7 +197,7 @@ else
         then
             behave -f progress2
         else
-            behave --tags=templates -f progress2
+            behave --tags=-crosstest -f progress2
         fi
         pyexitcode=$?
         cd ..
