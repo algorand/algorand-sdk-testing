@@ -1752,9 +1752,7 @@ func iClaimThePeriodicPayment() error {
 	}
 	txnFirstValid := params.LastRound
 	remainder := txnFirstValid % contractTestFixture.periodicPayPeriod
-	if remainder != 0 {
-		txnFirstValid += remainder
-	}
+	txnFirstValid += remainder
 	stx, err = templates.GetPeriodicPaymentWithdrawalTransaction(contractTestFixture.periodicPay.GetProgram(), txnFirstValid, params.Fee, params.GenesisHash)
 	if err != nil {
 		return err
