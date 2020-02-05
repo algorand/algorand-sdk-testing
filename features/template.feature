@@ -1,4 +1,3 @@
-@templates
 Feature: Templates
   Background:
     Given an algod client
