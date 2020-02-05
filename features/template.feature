@@ -56,8 +56,8 @@ Feature: Templates
     Then the transaction should go through
 
     Examples:
-      | total   | ratn | ratd | min_trade | amount
-      | 1000000 | 2 | 3 | 1000 | 500000
+      | total   | ratn | ratd | min_trade | amount |
+      | 1000000 | 2 | 3 | 1000 | 500000 |
 
   Scenario Outline: Dynamic Fee
     Given a dynamic fee contract with amount <amt>
