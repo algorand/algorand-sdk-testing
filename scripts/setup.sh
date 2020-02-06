@@ -24,7 +24,7 @@ esac
 go get github.com/DATA-DOG/godog/cmd/godog
 if $go
 then
-    go get -u github.com/algorand/go-algorand-sdk/...@evan/template_hotfix
+    go get -u github.com/algorand/go-algorand-sdk/...@develop
     go generate github.com/algorand/go-algorand-sdk/...
 fi
 
@@ -82,6 +82,6 @@ source "$SCRIPTPATH/config_future"
 
 mkdir ~/inst
 # this is the link for linux; change this if on mac or windows
-curl -L https://algorand-releases.s3.amazonaws.com/channel/nightly/install_nightly_darwin-amd64_1.0.288.tar.gz -o ~/inst/installer.tar.gz
+curl -L https://algorand-releases.s3.amazonaws.com/channel/nightly/install_nightly_linux-amd64_1.0.288.tar.gz -o ~/inst/installer.tar.gz
 tar -xf ~/inst/installer.tar.gz -C ~/inst
 ~/inst/update.sh -i -c $CHANNEL -p $BIN_DIR -d $BIN_DIR/data -n
