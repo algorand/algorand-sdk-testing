@@ -61,7 +61,6 @@ Feature: Templates
 
   Scenario Outline: Dynamic Fee
     Given a dynamic fee contract with amount <amt>
-    When I fund the contract account
     And I send the dynamic fee transactions
     Then the transaction should go through
     
