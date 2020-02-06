@@ -1818,7 +1818,7 @@ func aDynamicFeeContractWithAmount(amount int) error {
 	txnFirstValid := lastRound
 	txnLastValid := txnFirstValid + 10
 	contractTestFixture.contractFundAmount = uint64(10 * amount)
-	contract, err := templates.MakeDynamicFee(accounts[1], accounts[0], uint64(amount), txnFirstValid, txnLastValid)
+	contract, err := templates.MakeDynamicFee(accounts[1], "", uint64(amount), txnFirstValid, txnLastValid)
 
 	contractTestFixture.dynamicFee = contract
 	contractTestFixture.activeAddress = contract.GetAddress()
@@ -1831,11 +1831,16 @@ func iSendTheDynamicFeeTransaction() error {
 		return err
 	}
 	lastRound = params.LastRound
-	initialTxn, lsig, err := templates.SignDynamicFee(contractTestFixture.dynamicFee.GetProgram(), params.GenesisHash)
+	exp, err := kcl.ExportKey(handle, walletPswd, accounts[0])
 	if err != nil {
 		return err
 	}
-	exp, err := kcl.ExportKey(handle, walletPswd, accounts[1])
+	secretKeyOne := exp.PrivateKey
+	initialTxn, lsig, err := templates.SignDynamicFee(contractTestFixture.dynamicFee.GetProgram(), secretKeyOne, params.GenesisHash)
+	if err != nil {
+		return err
+	}
+	exp, err = kcl.ExportKey(handle, walletPswd, accounts[1])
 	if err != nil {
 		return err
 	}
