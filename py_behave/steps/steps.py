@@ -10,8 +10,10 @@ from algosdk import wallet
 from algosdk import auction
 from algosdk import util
 from algosdk import constants
+from algosdk import template
 import os
 from datetime import datetime
+import hashlib
 
 
 @when("I create a wallet")
@@ -264,6 +266,8 @@ def algod_client(context):
     algod_address = "http://" + open(data_dir_path + "algod.net",
                                      "r").read().strip("\n")
     context.acl = algod.AlgodClient(algod_token, algod_address)
+    if context.acl.status()["lastRound"] < 2:
+        context.acl.status_after_block(2)
 
 
 @given("wallet information")
@@ -742,7 +746,7 @@ def freeze_txn(context):
 
 
 @When("I create an un-freeze transaction targeting the second account")
-def freeze_txn(context):
+def unfreeze_txn(context):
     params = context.acl.suggested_params()
     last_round = params["lastRound"]
     gh = params["genesishashb64"]
@@ -757,3 +761,93 @@ def revoke_txn(context, amount):
     context.txn = transaction.AssetTransferTxn(context.pk, 10, last_round, last_round+1000, gh, context.pk, int(amount), context.asset_index, revocation_target=context.rcv)
 
 
+@given("a split contract with ratio {ratn} to {ratd} and minimum payment {min_pay}")
+def split_contract(context, ratn, ratd, min_pay):
+    context.params = context.acl.suggested_params()
+    context.template = template.Split(context.accounts[0], context.accounts[1], context.accounts[2], int(ratn), int(ratd), context.params["lastRound"]+1000, int(min_pay), 20000)
+    context.fund_amt = int(2*context.template.min_pay*(int(ratn)+int(ratd))/int(ratn))
+
+
+@when("I send the split transactions")
+def send_split(context):
+    amt = context.fund_amt//2
+    txns = context.template.get_split_funds_transaction(context.template.get_program(), amt, 0, context.params["lastRound"], context.params["lastRound"]+500, context.params["genesishashb64"])
+    context.txn = txns[0].transaction
+    context.acl.send_transactions(txns)
+
+
+@given('an HTLC contract with hash preimage "{preimage}"')
+def htlc_contract(context, preimage):
+    context.preimage = bytes(preimage, "ascii")
+    context.params = context.acl.suggested_params()
+    h = base64.b64encode(hashlib.sha256(context.preimage).digest()).decode()
+    context.fund_amt = 1000000
+    context.template = template.HTLC(context.accounts[0], context.accounts[1], "sha256", h, context.params["lastRound"]+1000, 2000)
+
+
+@when("I fund the contract account")
+def fund_contract(context):
+    context.txn = transaction.PaymentTxn(context.accounts[0], 0, context.params["lastRound"], context.params["lastRound"]+1000, context.params["genesishashb64"], context.template.get_address(), context.fund_amt)
+    context.txn = context.wallet.sign_transaction(context.txn)
+    context.acl.send_transaction(context.txn)
+    context.acl.status_after_block(context.acl.status()["lastRound"]+3)
+
+
+@when("I claim the algos")
+def claim_algos(context):
+    context.ltxn = template.HTLC.get_transaction(context.template.get_program(), base64.b64encode(context.preimage), context.params["lastRound"], context.params["lastRound"] + 1000, context.params["genesishashb64"], 0)
+    context.txn = context.ltxn.transaction
+    context.acl.send_transaction(context.ltxn)
+    
+
+@given("a periodic payment contract with withdrawing window {wd_window} and period {period}")
+def periodic_pay_contract(context, wd_window, period):
+    context.params = context.acl.suggested_params()
+    context.template = template.PeriodicPayment(context.accounts[1], 12345, int(wd_window),
+                                                int(period), 2000, context.params["lastRound"]+1000)
+    context.fund_amt = 1000000
+
+
+@when("I claim the periodic payment")
+def claim_periodic(context):
+    fv = context.params["lastRound"]//context.template.period * context.template.period
+    ltxn = context.template.get_withdrawal_transaction(context.template.get_program(), fv, context.params["genesishashb64"], 0)
+    context.txn = ltxn.transaction
+    context.acl.send_transaction(ltxn)
+
+
+@given("contract test fixture")
+def contract_fixture(context):
+    pass
+
+
+@given("a limit order contract with parameters {ratn} {ratd} {min_trade}")
+def limit_order_contract(context, ratn, ratd, min_trade):
+    context.params = context.acl.suggested_params()
+    context.ratn = int(ratn)
+    context.ratd = int(ratd)
+    context.template = template.LimitOrder(context.accounts[1], context.asset_index, int(ratn), int(ratd), context.params["lastRound"]+1000, 2000, int(min_trade))
+    context.sk = context.wallet.export_key(context.accounts[0])
+    context.fund_amt = max(2*int(min_trade), 1000000)
+    context.rcv = context.accounts[1]
+
+@when("I swap assets for algos")
+def swap_assets(context):
+    context.txns = context.template.get_swap_assets_transactions(context.template.get_program(), 12345, int(12345*context.ratd/context.ratn), context.sk, context.params["lastRound"], context.params["lastRound"] + 1000, context.params["genesishashb64"], 0)
+    context.txn = context.txns[0].transaction
+    context.acl.send_transactions(context.txns)
+
+
+@given("a dynamic fee contract with amount {amt}")
+def dynamic_fee_contract(context, amt):
+    context.params = context.acl.suggested_params()
+    context.sk = context.wallet.export_key(context.accounts[0])
+    context.template = template.DynamicFee(context.accounts[1], int(amt), context.params["lastRound"], context.params["lastRound"]+1000)
+    txn, lsig = context.template.sign_dynamic_fee(context.sk, context.params["genesishashb64"])
+    context.txns = context.template.get_transactions(txn, lsig, context.wallet.export_key(context.accounts[2]), 0)
+    context.txn = context.txns[0].transaction
+
+
+@when("I send the dynamic fee transactions")
+def send_dynamic_fee(context):
+    context.acl.send_transactions(context.txns)
