@@ -4,6 +4,7 @@ Feature: Templates
     And a kmd client
     And wallet information
     And contract test fixture
+
   
   Scenario Outline: Split
     Given a split contract with ratio <ratn> to <ratd> and minimum payment <min_pay>
@@ -67,3 +68,4 @@ Feature: Templates
     Examples:
       | amt |
       | 12345 |
+

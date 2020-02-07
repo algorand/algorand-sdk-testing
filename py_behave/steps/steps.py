@@ -768,6 +768,7 @@ def split_contract(context, ratn, ratd, min_pay):
     context.fund_amt = int(2*context.template.min_pay*(int(ratn)+int(ratd))/int(ratn))
 
 
+
 @when("I send the split transactions")
 def send_split(context):
     amt = context.fund_amt//2
@@ -806,6 +807,7 @@ def periodic_pay_contract(context, wd_window, period):
     context.template = template.PeriodicPayment(context.accounts[1], 12345, int(wd_window),
                                                 int(period), 2000, context.params["lastRound"]+1000)
     context.fund_amt = 1000000
+
 
 
 @when("I claim the periodic payment")
