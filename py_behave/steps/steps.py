@@ -765,17 +765,15 @@ def revoke_txn(context, amount):
 def split_contract(context, ratn, ratd, min_pay):
     context.params = context.acl.suggested_params()
     context.template = template.Split(context.accounts[0], context.accounts[1], context.accounts[2], int(ratn), int(ratd), context.params["lastRound"]+1000, int(min_pay), 20000)
-    context.fund_amt = int(context.template.min_pay*2*context.template.ratd/context.template.ratn)
+    context.fund_amt = int(2*context.template.min_pay*(int(ratn)+int(ratd))/int(ratn))
+
 
 
 @when("I send the split transactions")
 def send_split(context):
-    amt = context.template.min_pay*2*context.template.ratd/context.template.ratn
-    txns = context.template.get_send_funds_transaction(context.fund_amt, 0, context.params["lastRound"], context.params["lastRound"]+500, context.params["genesishashb64"])
-    context.txn = txns[0]
-    print(context.accounts)
-    print(encoding.msgpack_encode(context.txn))
-    print(encoding.msgpack_encode(txns[1]))
+    amt = context.fund_amt//2
+    txns = context.template.get_split_funds_transaction(context.template.get_program(), amt, 0, context.params["lastRound"], context.params["lastRound"]+500, context.params["genesishashb64"])
+    context.txn = txns[0].transaction
     context.acl.send_transactions(txns)
 
 
@@ -798,13 +796,10 @@ def fund_contract(context):
 
 @when("I claim the algos")
 def claim_algos(context):
-    lsig = transaction.LogicSig(context.template.get_program(), [context.preimage])
-    context.txn = transaction.PaymentTxn(context.template.get_address(), 0, context.params["lastRound"], context.params["lastRound"] + 1000, context.params["genesishashb64"], context.accounts[0], 12345)
-    context.ltxn = transaction.LogicSigTransaction(context.txn, lsig)
-    print(encoding.msgpack_encode(context.ltxn))
+    context.ltxn = template.HTLC.get_transaction(context.template.get_program(), base64.b64encode(context.preimage), context.params["lastRound"], context.params["lastRound"] + 1000, context.params["genesishashb64"], 0)
+    context.txn = context.ltxn.transaction
     context.acl.send_transaction(context.ltxn)
     
-
 
 @given("a periodic payment contract with withdrawing window {wd_window} and period {period}")
 def periodic_pay_contract(context, wd_window, period):
@@ -813,12 +808,19 @@ def periodic_pay_contract(context, wd_window, period):
                                                 int(period), 2000, context.params["lastRound"]+1000)
     context.fund_amt = 1000000
 
+
+
 @when("I claim the periodic payment")
 def claim_periodic(context):
     fv = context.params["lastRound"]//context.template.period * context.template.period
     ltxn = context.template.get_withdrawal_transaction(context.template.get_program(), fv, context.params["genesishashb64"], 0)
     context.txn = ltxn.transaction
     context.acl.send_transaction(ltxn)
+
+
+@given("contract test fixture")
+def contract_fixture(context):
+    pass
 
 
 @given("a limit order contract with parameters {ratn} {ratd} {min_trade}")
@@ -851,6 +853,3 @@ def dynamic_fee_contract(context, amt):
 @when("I send the dynamic fee transactions")
 def send_dynamic_fee(context):
     context.acl.send_transactions(context.txns)
-    
-
-
