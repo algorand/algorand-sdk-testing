@@ -22,9 +22,8 @@ case "$1" in
 esac
 
 go get github.com/DATA-DOG/godog/cmd/godog
-if !$go
+if ! $go
 then
-    go env
     go get -u -v github.com/algorand/go-algorand-sdk/...
     go generate github.com/algorand/go-algorand-sdk/...
 fi
@@ -37,6 +36,7 @@ else
     cd /opt/pyenv/plugins/python-build/../..
     git pull origin master
     cd -
+    pyenv install --list
     pyenv install 3.7.1 --skip-existing
     pyenv global 3.7.1
     pip3 install "git+https://github.com/algorand/py-algorand-sdk@develop" -q
