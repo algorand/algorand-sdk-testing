@@ -22,8 +22,9 @@ case "$1" in
 esac
 
 go get github.com/DATA-DOG/godog/cmd/godog
-if $go
+if !$go
 then
+    go env
     go get -u -v github.com/algorand/go-algorand-sdk/...
     go generate github.com/algorand/go-algorand-sdk/...
 fi
