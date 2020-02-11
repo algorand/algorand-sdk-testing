@@ -33,9 +33,7 @@ import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import cucumber.api.junit.Cucumber;
 import org.junit.Assert;
-import org.junit.runner.RunWith;
 import org.threeten.bp.LocalDate;
 
 import java.util.List;
@@ -53,8 +51,9 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.Collections;
 
+import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(Cucumber.class)
+
 public class Stepdefs {
     TransactionParams params;
     SignedTransaction stx;
@@ -660,10 +659,10 @@ public class Stepdefs {
     @Then("the transaction should go through")
     public void checkTxn() throws ApiException, InterruptedException{
         String ans = acl.pendingTransactionInformation(txid).getFrom();
-        Assert.assertTrue(ans.equals(pk.toString()));
+        assertThat(pk.toString()).isEqualTo(ans);
         acl.waitForBlock(lastRound.add(BigInteger.valueOf(2)));
-        Assert.assertTrue(acl.transactionInformation(pk.toString(), txid).getFrom().equals(pk.toString()));
-        Assert.assertTrue(acl.transaction(txid).getFrom().equals(pk.toString()));
+        assertThat(acl.transactionInformation(pk.toString(), txid).getFrom()).isEqualTo(pk.toString());
+        assertThat(acl.transaction(txid).getFrom()).isEqualTo(pk.toString());
     }
 
     @Then("I can get the transaction by ID")
@@ -764,6 +763,15 @@ public class Stepdefs {
         Assert.assertEquals(stxold, stxnew);
     }
 
+    public void setExportKey(Address addr) throws com.algorand.algosdk.kmd.client.ApiException, NoSuchAlgorithmException {
+        ExportKeyRequest req = new ExportKeyRequest();
+        req.setAddress(addr.toString());
+        req.setWalletHandleToken(handle);
+        req.setWalletPassword(walletPswd);
+        sk = kcl.exportKey(req).getPrivateKey();
+        account = new Account(Arrays.copyOfRange(sk, 0, 32));
+    }
+
     @Then("I do my part")
     public void signSaveTxn() throws IOException, JsonProcessingException, NoSuchAlgorithmException, com.algorand.algosdk.kmd.client.ApiException, Exception{
         String path = System.getProperty("user.dir");
@@ -776,12 +784,7 @@ public class Stepdefs {
         inputStream.close();
 
         txn = Encoder.decodeFromMsgPack(data, Transaction.class);
-        ExportKeyRequest req = new ExportKeyRequest();
-        req.setAddress(txn.sender.toString());
-        req.setWalletHandleToken(handle);
-        req.setWalletPassword(walletPswd);
-        sk = kcl.exportKey(req).getPrivateKey();
-        account = new Account(Arrays.copyOfRange(sk, 0, 32));
+        setExportKey(txn.sender);
 
         stx = account.signTransaction(txn);
         data = Encoder.encodeToMsgPack(stx);
