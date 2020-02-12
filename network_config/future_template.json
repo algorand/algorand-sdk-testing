@@ -16,7 +16,7 @@
             {
                 "Name": "Wallet3",
                 "Stake": 40,
-                "Online": true
+                "Online": false
             },
             {
                 "Name": "Wallet4",
