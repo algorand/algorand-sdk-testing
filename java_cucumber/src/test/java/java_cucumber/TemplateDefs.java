@@ -2,6 +2,7 @@ package java_cucumber;
 
 import com.algorand.algosdk.algod.client.ApiException;
 import com.algorand.algosdk.crypto.Digest;
+import com.algorand.algosdk.crypto.LogicsigSignature;
 import com.algorand.algosdk.kmd.client.model.SignTransactionRequest;
 import com.algorand.algosdk.templates.*;
 import com.algorand.algosdk.transaction.SignedTransaction;
@@ -11,8 +12,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -33,6 +36,9 @@ public class TemplateDefs {
     Integer limitRatN;
     Integer limitRatD;
     Integer limitMinTrade;
+
+    File dynamicFeeLsig;
+    File dynamicFeeTxn;
 
     Long contractFundAmount = 100000000L;
 
@@ -82,7 +88,7 @@ public class TemplateDefs {
         splitNumerator = ratn;
         splitDenominator = ratd;
         splitMinPay = minPay;
-        contractFundAmount = Math.round(2.0 * Double.valueOf(minPay) * (Double.valueOf(ratn + ratd) / Double.valueOf(ratn)));
+        contractFundAmount = 1000000000L;
     }
 
     @When("I send the split transactions")
@@ -183,9 +189,9 @@ public class TemplateDefs {
                 base.params.getLastRound().intValue() + 1000,
                 minTrade,
                 2000);
-        contractFundAmount = 2L * minTrade * 100000;
+        contractFundAmount = 10000000L;
 
-        base.setExportKey(base.getAddress(0));
+        base.exportKeyAndSetAccount(base.getAddress(0));
     }
 
     @When("I swap assets for algos")
@@ -201,8 +207,49 @@ public class TemplateDefs {
                 base.params.getLastRound().intValue() + 3,
                 new Digest(base.params.getGenesishashb64()),
                 0);
+
        base.pk = contract.address;
-       //base.pk = base.account.getAddress();
        base.txid = base.acl.rawTransaction(txns).getTxId();
     }
+
+    @Given("a dynamic fee contract with amount {int}")
+    public void a_dynamic_fee_contract_with_amount(Integer amount) throws NoSuchAlgorithmException, com.algorand.algosdk.kmd.client.ApiException, IOException, ApiException {
+        base.getParams();
+
+        contract = DynamicFee.MakeDynamicFee(
+                base.getAddress(1),
+                amount,
+                base.params.getLastRound().intValue(),
+                base.params.getLastRound().intValue() + 10,
+                null);
+
+        base.exportKeyAndSetAccount(base.getAddress(0));
+        DynamicFee.SignedDynamicFee sdf = DynamicFee.SignDynamicFee(
+                contract,
+                base.account,
+                new Digest(base.params.getGenesishashb64()));
+
+        this.dynamicFeeLsig = File.createTempFile("dynamicFeeLsig", ".lsig");
+        this.dynamicFeeTxn = File.createTempFile("dynamicFeeTxn", ".lsig");
+
+        Files.write(this.dynamicFeeLsig.toPath(), Encoder.encodeToMsgPack(sdf.lsig));
+        Files.write(this.dynamicFeeTxn.toPath(), Encoder.encodeToMsgPack(sdf.txn));
+    }
+
+    @When("I send the dynamic fee transactions")
+    public void i_send_the_dynamic_fee_transactions() throws IOException, NoSuchAlgorithmException, com.algorand.algosdk.kmd.client.ApiException, ApiException {
+        LogicsigSignature lsig = Encoder.decodeFromMsgPack(Files.readAllBytes(this.dynamicFeeLsig.toPath()), LogicsigSignature.class);
+        Transaction txn = Encoder.decodeFromMsgPack(Files.readAllBytes(this.dynamicFeeTxn.toPath()), Transaction.class);
+
+        base.exportKeyAndSetAccount(base.getAddress(2));
+        byte[] transactions = DynamicFee.MakeReimbursementTransactions(
+                txn,
+                lsig,
+                base.account,
+                0);
+
+        base.pk = base.getAddress(2);
+        base.txid = base.acl.rawTransaction(transactions).getTxId();
+    }
+
 }

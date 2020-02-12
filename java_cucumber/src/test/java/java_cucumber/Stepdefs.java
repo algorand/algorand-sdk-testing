@@ -129,14 +129,28 @@ public class Stepdefs {
         }
     }
 
-    protected TransactionParams getParams() {
+    /**
+     * Convenience method to prepare the parameter object.
+     */
+    protected void getParams() {
         try {
             params = acl.transactionParams();
             lastRound = params.getLastRound();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return params;
+    }
+
+    /**
+     * Convenience method to export a key and initialize an account to use for signing.
+     */
+    public void exportKeyAndSetAccount(Address addr) throws com.algorand.algosdk.kmd.client.ApiException, NoSuchAlgorithmException {
+        ExportKeyRequest req = new ExportKeyRequest();
+        req.setAddress(addr.toString());
+        req.setWalletHandleToken(handle);
+        req.setWalletPassword(walletPswd);
+        sk = kcl.exportKey(req).getPrivateKey();
+        account = new Account(Arrays.copyOfRange(sk, 0, 32));
     }
 
     @When("I create a wallet")
@@ -763,15 +777,6 @@ public class Stepdefs {
         Assert.assertEquals(stxold, stxnew);
     }
 
-    public void setExportKey(Address addr) throws com.algorand.algosdk.kmd.client.ApiException, NoSuchAlgorithmException {
-        ExportKeyRequest req = new ExportKeyRequest();
-        req.setAddress(addr.toString());
-        req.setWalletHandleToken(handle);
-        req.setWalletPassword(walletPswd);
-        sk = kcl.exportKey(req).getPrivateKey();
-        account = new Account(Arrays.copyOfRange(sk, 0, 32));
-    }
-
     @Then("I do my part")
     public void signSaveTxn() throws IOException, JsonProcessingException, NoSuchAlgorithmException, com.algorand.algosdk.kmd.client.ApiException, Exception{
         String path = System.getProperty("user.dir");
@@ -784,7 +789,7 @@ public class Stepdefs {
         inputStream.close();
 
         txn = Encoder.decodeFromMsgPack(data, Transaction.class);
-        setExportKey(txn.sender);
+        exportKeyAndSetAccount(txn.sender);
 
         stx = account.signTransaction(txn);
         data = Encoder.encodeToMsgPack(stx);
