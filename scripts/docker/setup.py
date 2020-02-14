@@ -163,11 +163,6 @@ def setup_algod(config_file):
     """
     Download and install algod.
     """
-    # mkdir -p ~/inst
-    # curl -L https://algorand-releases.s3.amazonaws.com/channel/nightly/install_nightly_linux-amd64_1.0.288.tar.gz -o ~/inst/installer.tar.gz
-    # tar -xf ~/inst/installer.tar.gz -C ~/inst
-    # ~/inst/update.sh -i -c $CHANNEL -p $BIN_DIR -d $BIN_DIR/data -n
-    
     # Parse config file...
     with open(config_file) as f:
         l = [line.split("=") for line in f.readlines()]
@@ -175,7 +170,7 @@ def setup_algod(config_file):
     home = expanduser('~')
     os.makedirs("%s/inst" % home, exist_ok=True)
     print('downloading updater...')
-    url='https://algorand-releases.s3.amazonaws.com/channel/nightly/install_nightly_linux-amd64_1.0.288.tar.gz'
+    url='https://algorand-releases.s3.amazonaws.com/channel/stable/install_stable_linux-amd64_2.0.4.tar.gz'
     updater_tar='%s/inst/installer.tar.gz' % home
     filedata = urllib.request.urlretrieve(url, updater_tar)
     tar = tarfile.open(updater_tar)
