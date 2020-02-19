@@ -21,7 +21,7 @@ case "$1" in
         ;;
 esac
 
-go get github.com/DATA-DOG/godog/cmd/godog
+go get github.com/cucumber/godog/cmd/godog/...
 if ! $go
 then
     export GO111MODULE=on
