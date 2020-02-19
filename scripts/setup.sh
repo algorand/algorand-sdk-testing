@@ -24,7 +24,6 @@ esac
 
 if ! $go
 then
-    export GO111MODULE=on
     go get -u github.com/algorand/go-algorand-sdk/...
     go generate github.com/algorand/go-algorand-sdk/...
 fi
