@@ -30,7 +30,7 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y maven default-jdk
 
 # Install Go dependencies
-ARG GOLANG_VERSION=1.12.16
+ARG GOLANG_VERSION=1.13.8
 RUN curl https://dl.google.com/go/go${GOLANG_VERSION}.linux-amd64.tar.gz -o $HOME/go.tar.gz
 RUN tar -xvf $HOME/go.tar.gz -C /usr/local
 ENV GOROOT /usr/local/go
