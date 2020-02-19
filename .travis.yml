@@ -1,7 +1,7 @@
 dist: bionic
 language: go
 python:
-  - "1.13"
+  - "1.13.8"
 
 install:
   - scripts/setup.sh

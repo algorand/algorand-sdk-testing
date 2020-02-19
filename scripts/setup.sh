@@ -22,10 +22,11 @@ case "$1" in
 esac
 
 go get github.com/cucumber/godog/cmd/godog/...
+go version
 if ! $go
 then
-    export GO111MODULE=on
     go get -u github.com/algorand/go-algorand-sdk/...@develop
+    go generate github.com/algorand/go-algorand-sdk/...
 fi
 
 
