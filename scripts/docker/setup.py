@@ -107,13 +107,13 @@ def setup_go(config):
     """
     Setup go cucumber environment.
     """
-    # go get github.com/DATA-DOG/godog/cmd/godog
+    # go get github.com/cucumber/godog/cmd/godog
     # if ! $go
     # then
     #     go get -u github.com/algorand/go-algorand-sdk/...
     #     go generate github.com/algorand/go-algorand-sdk/...
     # fi
-    subprocess.check_call(['go get github.com/DATA-DOG/godog/cmd/godog'], shell=True)
+    subprocess.check_call(['go get github.com/cucumber/godog/cmd/godog'], shell=True)
     #subprocess.check_call(['go get -u %s/...' % config['source']], shell=True)
     #subprocess.check_call(['go generate %s/...' % config['source']], shell=True)
     pass
