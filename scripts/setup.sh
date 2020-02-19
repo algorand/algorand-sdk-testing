@@ -21,13 +21,20 @@ case "$1" in
         ;;
 esac
 
-go get github.com/cucumber/godog/cmd/godog/...
+
 go version
 if ! $go
 then
+    export GO111MODULE=on
+    GOLANG_VERSION=1.13.8
+    rm -r /usr/local/go
+    curl https://dl.google.com/go/go${GOLANG_VERSION}.linux-amd64.tar.gz -o $HOME/go.tar.gz
+    tar -xvf $HOME/go.tar.gz -C /usr/local
+
     go get -u github.com/algorand/go-algorand-sdk/...@develop
     go generate github.com/algorand/go-algorand-sdk/...
 fi
+go get github.com/cucumber/godog/cmd/godog/...
 
 
 if $py
