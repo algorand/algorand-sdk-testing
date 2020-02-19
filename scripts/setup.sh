@@ -24,6 +24,7 @@ esac
 go get github.com/DATA-DOG/godog/cmd/godog
 if ! $go
 then
+    export GO111MODULE=on
     go get -u github.com/algorand/go-algorand-sdk/...@develop
 fi
 
