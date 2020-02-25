@@ -83,6 +83,7 @@ def txn_params(context, fee, fv, lv, gh, to, close, amt, gen, note):
     context.gh = gh
     context.to = to
     context.amt = int(amt)
+    context.params = transaction.SuggestedParams(context.fee, context.fv, context.lv, context.gh, gen)
     if close == "none":
         context.close = None
     else:
@@ -106,7 +107,7 @@ def mn_for_sk(context, mn):
 
 @when('I create the payment transaction')
 def create_paytxn(context):
-    context.txn = transaction.PaymentTxn(context.pk, context.fee, context.fv, context.lv, context.gh, context.to, context.amt, context.close, context.note, context.gen)
+    context.txn = transaction.PaymentTxn(context.pk, context.params, context.to, context.amt, context.close, context.note)
 
 
 @given('multisig addresses "{addresses}"')
@@ -117,7 +118,7 @@ def msig_addresses(context, addresses):
 
 @when("I create the multisig payment transaction")
 def create_msigpaytxn(context):
-    context.txn = transaction.PaymentTxn(context.msig.address(), context.fee, context.fv, context.lv, context.gh, context.to, context.amt, context.close, context.note, context.gen)
+    context.txn = transaction.PaymentTxn(context.msig.address(), context.params, context.to, context.amt, context.close, context.note)
     context.mtx = transaction.MultisigTransaction(context.txn, context.msig)
 
 
@@ -133,6 +134,7 @@ def sign_with_sk(context):
 
 @then('the signed transaction should equal the golden "{golden}"')
 def equal_golden(context, golden):
+    print(encoding.msgpack_encode(context.stx))
     assert encoding.msgpack_encode(context.stx) == golden
 
 
@@ -282,25 +284,25 @@ def wallet_info(context):
 @given('default transaction with parameters {amt} "{note}"')
 def default_txn(context, amt, note):
     params = context.acl.suggested_params()
-    context.last_round = params["lastRound"]
+    context.last_round = params.first
     if note == "none":
         note = None
     else:
         note = base64.b64decode(note)
-    context.txn = transaction.PaymentTxn(context.accounts[0], params["fee"], context.last_round, context.last_round+1000, params["genesishashb64"], context.accounts[1], int(amt), note=note, gen=params["genesisID"])
+    context.txn = transaction.PaymentTxn(context.accounts[0], params, context.accounts[1], int(amt), note=note)
     context.pk = context.accounts[0]
 
 
 @given('default multisig transaction with parameters {amt} "{note}"')
 def default_msig_txn(context, amt, note):
     params = context.acl.suggested_params()
-    context.last_round = params["lastRound"]
+    context.last_round = params.first
     if note == "none":
         note = None
     else:
         note = base64.b64decode(note)
     context.msig = transaction.Multisig(1, 1, context.accounts)
-    context.txn = transaction.PaymentTxn(context.msig.address(), params["fee"], context.last_round, context.last_round + 1000, params["genesishashb64"], context.accounts[1], int(amt), note=note, gen=params["genesisID"])
+    context.txn = transaction.PaymentTxn(context.msig.address(), params, context.accounts[1], int(amt), note=note)
     context.mtx = transaction.MultisigTransaction(context.txn, context.msig)
     context.pk = context.accounts[0]
 
@@ -436,7 +438,7 @@ def suggested_params(context):
 
 @then("the fee in the suggested params should equal the suggested fee")
 def check_suggested(context):
-    assert context.params["fee"] == context.fee
+    assert context.params.fee == context.fee
 
 
 @when("I create a bid")
@@ -499,7 +501,8 @@ def sk_to_mn(context):
 
 @when("I create the flat fee payment transaction")
 def create_paytxn_flat_fee(context):
-    context.txn = transaction.PaymentTxn(context.pk, context.fee, context.fv, context.lv, context.gh, context.to, context.amt, context.close, context.note, context.gen, flat_fee=True)
+    context.params.flat_fee = True
+    context.txn = transaction.PaymentTxn(context.pk, context.params, context.to, context.amt, context.close, context.note)
 
 
 @given('encoded multisig transaction "{mtx}"')
@@ -580,6 +583,12 @@ def keyreg_txn_params(context, fee, fv, lv, gh, votekey, selkey, votefst, votels
     context.votefst = int(votefst)
     context.votelst = int(votelst)
     context.votekd = int(votekd)
+    if gen == "none":
+        context.gen = None
+    else:
+        context.gen = gen
+    context.params = transaction.SuggestedParams(context.fee, context.fv, context.lv, context.gh, context.gen)
+
     if note == "none":
         context.note = None
     else:
@@ -592,8 +601,8 @@ def keyreg_txn_params(context, fee, fv, lv, gh, votekey, selkey, votefst, votels
 
 @when("I create the key registration transaction")
 def create_keyreg_txn(context):
-    context.txn = transaction.KeyregTxn(context.pk, context.fee, context.fv, context.lv, context.gh, context.votekey, 
-                                        context.selkey, context.votefst, context.votelst, context.votekd, context.note, context.gen)
+    context.txn = transaction.KeyregTxn(context.pk, context.params, context.votekey, 
+                                        context.selkey, context.votefst, context.votelst, context.votekd, context.note)
 
 
 @when('I get recent transactions, limited by {cnt} transactions')
@@ -606,11 +615,12 @@ def step_impl(context, cnt):
 def default_asset_creation_txn(context, total):
     context.total = int(total)
     params = context.acl.suggested_params()
-    context.last_round = params["lastRound"]
+    context.last_round = params.first
     context.pk = context.accounts[0]
     asset_name = "asset"
     unit_name = "unit"
-    context.txn = transaction.AssetConfigTxn(context.pk, 1, context.last_round, context.last_round + 100, params["genesishashb64"], total=context.total,
+    params.fee = 1
+    context.txn = transaction.AssetConfigTxn(context.pk, params, total=context.total,
                         default_frozen=False, unit_name=unit_name, asset_name=asset_name, manager=context.pk, 
                         reserve=context.pk, freeze=context.pk, clawback=context.pk)
 
@@ -634,11 +644,12 @@ def default_asset_creation_txn(context, total):
 def default_asset_creation_txn(context, total):
     context.total = int(total)
     params = context.acl.suggested_params()
-    context.last_round = params["lastRound"]
+    context.last_round = params.first
     context.pk = context.accounts[0]
     asset_name = "asset"
     unit_name = "unit"
-    context.txn = transaction.AssetConfigTxn(context.pk, 1, context.last_round, context.last_round + 100, params["genesishashb64"], total=context.total,
+    params.fee = 1
+    context.txn = transaction.AssetConfigTxn(context.pk, params, total=context.total,
                         default_frozen=True, unit_name=unit_name, asset_name=asset_name, manager=context.pk, 
                         reserve=context.pk, freeze=context.pk, clawback=context.pk)
 
@@ -683,9 +694,7 @@ def asset_info_match(context):
 
 @When("I create an asset destroy transaction")
 def create_asset_destroy_txn(context):
-    lastRound = context.acl.status()["lastRound"]
-    gh = context.acl.suggested_params()["genesishashb64"]
-    context.txn = transaction.AssetConfigTxn(context.pk, 0, lastRound, lastRound+100, gh=gh , index=context.asset_index, strict_empty_address_check=False)
+    context.txn = transaction.AssetConfigTxn(context.pk, context.acl.suggested_params(), index=context.asset_index, strict_empty_address_check=False)
 
 
 @Then("I should be unable to get the asset info")
@@ -700,9 +709,7 @@ def err_asset_info(context):
 
 @When("I create a no-managers asset reconfigure transaction")
 def no_manager_txn(context):
-    lastRound = context.acl.status()["lastRound"]
-    gh = context.acl.suggested_params()["genesishashb64"]
-    context.txn = transaction.AssetConfigTxn(context.pk, 0, lastRound, lastRound+100, gh=gh , index=context.asset_index, reserve=context.pk, clawback=context.pk, freeze=context.pk, strict_empty_address_check=False)
+    context.txn = transaction.AssetConfigTxn(context.pk, context.acl.suggested_params(), index=context.asset_index, reserve=context.pk, clawback=context.pk, freeze=context.pk, strict_empty_address_check=False)
 
     context.expected_asset_info["managerkey"] = ""
 
@@ -710,25 +717,19 @@ def no_manager_txn(context):
 @When("I create a transaction for a second account, signalling asset acceptance")
 def accept_asset_txn(context):
     params = context.acl.suggested_params()
-    last_round = params["lastRound"]
-    gh = params["genesishashb64"]
-    context.txn = transaction.AssetTransferTxn(context.rcv, 10, last_round, last_round+1000, gh, context.rcv, 0, context.asset_index)
+    context.txn = transaction.AssetTransferTxn(context.rcv, params, context.rcv, 0, context.asset_index)
 
 
 @When("I create a transaction transferring {amount} assets from creator to a second account")
 def transfer_assets(context, amount):
     params = context.acl.suggested_params()
-    last_round = params["lastRound"]
-    gh = params["genesishashb64"]
-    context.txn = transaction.AssetTransferTxn(context.pk, 10, last_round, last_round+1000, gh, context.rcv, int(amount), context.asset_index)
+    context.txn = transaction.AssetTransferTxn(context.pk, params, context.rcv, int(amount), context.asset_index)
 
 
 @When("I create a transaction transferring {amount} assets from a second account to creator")
 def transfer_assets(context, amount):
     params = context.acl.suggested_params()
-    last_round = params["lastRound"]
-    gh = params["genesishashb64"]
-    context.txn = transaction.AssetTransferTxn(context.rcv, 10, last_round, last_round+1000, gh, context.pk, int(amount), context.asset_index)
+    context.txn = transaction.AssetTransferTxn(context.rcv, params, context.pk, int(amount), context.asset_index)
 
 
 @Then("the creator should have {exp_balance} assets remaining")
@@ -740,31 +741,25 @@ def check_asset_balance(context, exp_balance):
 @When("I create a freeze transaction targeting the second account")
 def freeze_txn(context):
     params = context.acl.suggested_params()
-    last_round = params["lastRound"]
-    gh = params["genesishashb64"]
-    context.txn = transaction.AssetFreezeTxn(context.pk, 10, last_round, last_round+1000, gh, context.asset_index, context.rcv, True)
+    context.txn = transaction.AssetFreezeTxn(context.pk, params, context.asset_index, context.rcv, True)
 
 
 @When("I create an un-freeze transaction targeting the second account")
 def unfreeze_txn(context):
     params = context.acl.suggested_params()
-    last_round = params["lastRound"]
-    gh = params["genesishashb64"]
-    context.txn = transaction.AssetFreezeTxn(context.pk, 10, last_round, last_round+1000, gh, context.asset_index, context.rcv, False)
+    context.txn = transaction.AssetFreezeTxn(context.pk, params, context.asset_index, context.rcv, False)
 
 
 @when("I create a transaction revoking {amount} assets from a second account to creator")
 def revoke_txn(context, amount):
     params = context.acl.suggested_params()
-    last_round = params["lastRound"]
-    gh = params["genesishashb64"]
-    context.txn = transaction.AssetTransferTxn(context.pk, 10, last_round, last_round+1000, gh, context.pk, int(amount), context.asset_index, revocation_target=context.rcv)
+    context.txn = transaction.AssetTransferTxn(context.pk, params, context.pk, int(amount), context.asset_index, revocation_target=context.rcv)
 
 
 @given("a split contract with ratio {ratn} to {ratd} and minimum payment {min_pay}")
 def split_contract(context, ratn, ratd, min_pay):
     context.params = context.acl.suggested_params()
-    context.template = template.Split(context.accounts[0], context.accounts[1], context.accounts[2], int(ratn), int(ratd), context.params["lastRound"]+1000, int(min_pay), 20000)
+    context.template = template.Split(context.accounts[0], context.accounts[1], context.accounts[2], int(ratn), int(ratd), context.params.last, int(min_pay), 20000)
     context.fund_amt = int(2*context.template.min_pay*(int(ratn)+int(ratd))/int(ratn))
 
 
@@ -772,7 +767,7 @@ def split_contract(context, ratn, ratd, min_pay):
 @when("I send the split transactions")
 def send_split(context):
     amt = context.fund_amt//2
-    txns = context.template.get_split_funds_transaction(context.template.get_program(), amt, 0, context.params["lastRound"], context.params["lastRound"]+500, context.params["genesishashb64"])
+    txns = context.template.get_split_funds_transaction(context.template.get_program(), amt, context.params)
     context.txn = txns[0].transaction
     context.acl.send_transactions(txns)
 
@@ -783,12 +778,12 @@ def htlc_contract(context, preimage):
     context.params = context.acl.suggested_params()
     h = base64.b64encode(hashlib.sha256(context.preimage).digest()).decode()
     context.fund_amt = 1000000
-    context.template = template.HTLC(context.accounts[0], context.accounts[1], "sha256", h, context.params["lastRound"]+1000, 2000)
+    context.template = template.HTLC(context.accounts[0], context.accounts[1], "sha256", h, context.params.last, 2000)
 
 
 @when("I fund the contract account")
 def fund_contract(context):
-    context.txn = transaction.PaymentTxn(context.accounts[0], 0, context.params["lastRound"], context.params["lastRound"]+1000, context.params["genesishashb64"], context.template.get_address(), context.fund_amt)
+    context.txn = transaction.PaymentTxn(context.accounts[0], context.params, context.template.get_address(), context.fund_amt)
     context.txn = context.wallet.sign_transaction(context.txn)
     context.acl.send_transaction(context.txn)
     context.acl.status_after_block(context.acl.status()["lastRound"]+3)
@@ -796,7 +791,7 @@ def fund_contract(context):
 
 @when("I claim the algos")
 def claim_algos(context):
-    context.ltxn = template.HTLC.get_transaction(context.template.get_program(), base64.b64encode(context.preimage), context.params["lastRound"], context.params["lastRound"] + 1000, context.params["genesishashb64"], 0)
+    context.ltxn = template.HTLC.get_transaction(context.template.get_program(), base64.b64encode(context.preimage), context.params)
     context.txn = context.ltxn.transaction
     context.acl.send_transaction(context.ltxn)
     
@@ -805,15 +800,15 @@ def claim_algos(context):
 def periodic_pay_contract(context, wd_window, period):
     context.params = context.acl.suggested_params()
     context.template = template.PeriodicPayment(context.accounts[1], 12345, int(wd_window),
-                                                int(period), 2000, context.params["lastRound"]+1000)
+                                                int(period), 2000, int(context.params.last))
     context.fund_amt = 1000000
 
 
 
 @when("I claim the periodic payment")
 def claim_periodic(context):
-    fv = context.params["lastRound"]//context.template.period * context.template.period
-    ltxn = context.template.get_withdrawal_transaction(context.template.get_program(), fv, context.params["genesishashb64"], 0)
+    fv = context.params.first//context.template.period * context.template.period
+    ltxn = context.template.get_withdrawal_transaction(context.template.get_program(), context.params)
     context.txn = ltxn.transaction
     context.acl.send_transaction(ltxn)
 
@@ -828,14 +823,14 @@ def limit_order_contract(context, ratn, ratd, min_trade):
     context.params = context.acl.suggested_params()
     context.ratn = int(ratn)
     context.ratd = int(ratd)
-    context.template = template.LimitOrder(context.accounts[1], context.asset_index, int(ratn), int(ratd), context.params["lastRound"]+1000, 2000, int(min_trade))
+    context.template = template.LimitOrder(context.accounts[1], context.asset_index, int(ratn), int(ratd), context.params.last, 2000, int(min_trade))
     context.sk = context.wallet.export_key(context.accounts[0])
     context.fund_amt = max(2*int(min_trade), 1000000)
     context.rcv = context.accounts[1]
 
 @when("I swap assets for algos")
 def swap_assets(context):
-    context.txns = context.template.get_swap_assets_transactions(context.template.get_program(), 12345, int(12345*context.ratd/context.ratn), context.sk, context.params["lastRound"], context.params["lastRound"] + 1000, context.params["genesishashb64"], 0)
+    context.txns = context.template.get_swap_assets_transactions(context.template.get_program(), 12345, int(12345*context.ratd/context.ratn), context.sk, context.params)
     context.txn = context.txns[0].transaction
     context.acl.send_transactions(context.txns)
 
@@ -844,8 +839,8 @@ def swap_assets(context):
 def dynamic_fee_contract(context, amt):
     context.params = context.acl.suggested_params()
     context.sk = context.wallet.export_key(context.accounts[0])
-    context.template = template.DynamicFee(context.accounts[1], int(amt), context.params["lastRound"], context.params["lastRound"]+1000)
-    txn, lsig = context.template.sign_dynamic_fee(context.sk, context.params["genesishashb64"])
+    context.template = template.DynamicFee(context.accounts[1], int(amt), context.params)
+    txn, lsig = context.template.sign_dynamic_fee(context.sk)
     context.txns = context.template.get_transactions(txn, lsig, context.wallet.export_key(context.accounts[2]), 0)
     context.txn = context.txns[0].transaction
 
