@@ -2,7 +2,12 @@ const assert = require('assert');
 const { Before, Given, When, Then, setDefaultTimeout } = require('cucumber');
 const algosdk = require("algosdk")
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-const address = require("algosdk/src/encoding/address")
+const address = require("algosdk/src/encoding/address");
+const splitTemplate = require("algosdk/src/logicTemplates/split");
+const htlcTemplate = require("algosdk/src/logicTemplates/htlc");
+const periodicPayTemplate = require("algosdk/src/logicTemplates/periodicpayment");
+const limitOrderTemplate = require("algosdk/src/logicTemplates/limitorder");
+const dynamicFeeTemplate = require("algosdk/src/logicTemplates/dynamicfee");
 const fs = require('fs');
 const path = require("path")
 const maindir = path.dirname(path.dirname(path.dirname(__dirname)))
@@ -983,10 +988,6 @@ When('I create an asset destroy transaction', async function () {
     this.lv = this.fv + 1000;
     this.note = undefined;
     this.gh = this.params.genesishashb64;
-    let manager = undefined;
-    let reserve = undefined;
-    let freeze = undefined;
-    let clawback = undefined;
     let genesisID = "";
     let type = "acfg";
 
@@ -1203,4 +1204,211 @@ When('I create a transaction revoking {int} assets from a second account to crea
     this.txn = this.assetTestFixture.lastTxn;
     this.lastRound = this.params.lastRound;
     this.pk = this.assetTestFixture.creator;
+});
+
+Given('contract test fixture', function () {
+    this.contractTestFixture = {
+        "split": undefined,
+        "htlc": undefined,
+        "periodicPay": undefined,
+        "limitOrder": undefined,
+        "dynamicFee": undefined,
+        "activeAddress": "",
+        "htlcPreimage": "",
+        "limitOrderN": 0,
+        "limitOrderD": 0,
+        "limitOrderMin": 0,
+        "splitRat1": 0,
+        "splitRat2": 0,
+        "splitMin": 0,
+        "contractFundAmount": 0,
+        "periodicPayPeriod": 0
+    };
+});
+
+When('I fund the contract account', async function () {
+    let amount = this.contractTestFixture.contractFundAmount;
+    let from = this.accounts[0];
+    let to = this.contractTestFixture.activeAddress;
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.lastRound = this.params.lastRound;
+    this.note = undefined;
+    this.gh = this.params.genesishashb64;
+    this.txn = {
+        "from": from,
+        "to": to,
+        "fee": this.fee,
+        "amount": amount,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "note": this.note,
+        "genesisHash": this.gh,
+        "type": "pay"
+    };
+    stxKmd = await this.kcl.signTransaction(this.handle, this.wallet_pswd, this.txn);
+    this.txid = await this.acl.sendRawTransaction(this.stxKmd);
+    this.txid = this.txid.txId;
+    await this.acl.statusAfterBlock(this.lastRound + 2);
+    info = await this.acl.transactionInformation(from, this.txid);
+    assert.deepStrictEqual(true, "type" in info);
+    info = await this.acl.transactionById(this.txid);
+    assert.deepStrictEqual(true, "type" in info);
+});
+
+Given('a split contract with ratio {int} to {int} and minimum payment {int}', function (rat2, rat1, minPay) {
+    let owner = this.accounts[0];
+    let receivers = [this.accounts[0], this.accounts[1]];
+    let expiryRound = 100;
+    let maxFee = 5000000;
+    this.contractTestFixture.splitRat1 = parseInt(rat1);
+    this.contractTestFixture.splitRat2 = parseInt(rat2);
+    this.contractTestFixture.splitMin = parseInt(minPay);
+    this.contractTestFixture.split = new splitTemplate.Split(owner, receivers[0], receivers[1], this.contractTestFixture.splitRat1, this.contractTestFixture.splitRat2, expiryRound, this.contractTestFixture.splitMin, maxFee)
+    this.contractTestFixture.activeAddress = this.contractTestfixture.split.getAddress();
+    this.contractTestFixture.contractFundAmount = minPay * (rat1 + rat2) * 10
+});
+
+
+When('I send the split transactions', async function () {
+    let contractCode = this.contractTestfixture.split.getProgram();
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.lastRound = this.params.lastRound;
+    let amount = this.contractTestFixture.splitMin * (this.contractTestFixture.splitRat1 + this.contractTestFixture.splitRat2);
+    let txnBytes = splitTemplate.getSplitFundsTransaction(contractCode, amount, this.fv, this.lv, this.fee, this.params.genesishashb64);
+    this.txid = await this.acl.sendRawTransaction(txnBytes);
+    this.txid = this.txid.txId;
+    this.pk = this.contractTestFixture.activeAddress;
+});
+
+Given('an HTLC contract with hash preimage {string}', function (preimageStringB64) {
+    // Write code here that turns the phrase above into concrete actions
+    this.contractTestFixture.htlcPreimage = preimageStringB64;
+    let preimageBytes = Buffer.from(preimageStringB64, 'base64');
+    let hash = sha256.create();
+    hash.update(preimageBytes);
+    let hashB64String = Buffer.from(hash.hex(), 'hex').toString('base64');
+    let hashFn = "sha256";
+    let owner = this.accounts[0];
+    let receiver = this.accounts[1];
+    let expiryRound = 100;
+    let maxFee = 1000000;
+    this.contractTestFixture.htlc = new htlcTemplate.HTLC(owner, receiver, hashFn, hashB64String, expiryRound, maxFee);
+    this.contractTestFixture.activeAddress = this.contractTestfixture.htlc.getAddress();
+    this.contractTestFixture.contractFundAmount = 100000000;
+});
+
+When('I claim the algos', async function () {
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.lastRound = this.params.lastRound;
+    let payTxn = {
+        "from": this.contractTestfixture.htlc.getAddress(),
+        "to": this.accounts[1],
+        "closeRemainderTo": this.accounts[1],
+        "fee": this.fee,
+        "amount": 0,
+        "firstRound": this.fv,
+        "lastRound": this.lv,
+        "genesisHash": this.params.genesishashb64,
+        "type": "pay"
+    };
+    let txnBytes = htlcTemplate.signTransactionWithHTLCUnlock(this.contractTestFixture.htlc.getProgram(), payTxn, this.contractTestFixture.htlcPreimage);
+    this.txid = await this.acl.sendRawTransaction(txnBytes);
+    this.txid = this.txid.txId;
+    this.pk = this.contractTestFixture.activeAddress;
+});
+
+Given('a periodic payment contract with withdrawing window {int} and period {int}', function (withdrawWindow, period) {
+    let receiver = this.accounts[0];
+    let amount = 10000000;
+    let expiryRound = 100;
+    let maxFee = 1000000000000;
+    this.contractTestFixture.periodicPay = new periodicPayTemplate.PeriodicPayment(receiver, amount, parseInt(withdrawWindow), parseInt(period), expiryRound, maxFee, undefined)
+    this.contractTestFixture.activeAddress = this.contractTestfixture.periodicPay.getAddress();
+    this.contractTestFixture.contractFundAmount = amount * 10;
+    this.contractTestFixture.periodicPayPeriod = parseInt(period);
+});
+
+When('I claim the periodic payment', async function () {
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.lastRound = this.params.lastRound;
+    this.gh = this.params.genesishashb64;
+    let txnBytes = periodicPayTemplate.getPeriodicPaymentWithdrawalTransaction(this.contractTestFixture.periodicPay.getProgram(), this.fv, this.fee, this.gh);
+    this.txid = await this.acl.sendRawTransaction(txnBytes);
+    this.txid = this.txid.txId;
+    this.pk = this.contractTestFixture.activeAddress;
+});
+
+Given('a limit order contract with parameters {int} {int} {int}', function (ratn, ratd, minTrade) {
+    let maxFee = 100000;
+    let expiryRound = 100;
+    this.contractTestFixture.limitOrderN = parseInt(ratn);
+    this.contractTestFixture.limitOrderD = parseInt(ratd);
+    this.contractTestFixture.limitOrderMin = parseInt(minTrade);
+    this.contractTestFixture.contractFundAmount = 2 * parseInt(minTrade);
+    if (contractTestFixture.contractFundAmount < 1000000) {
+        contractTestFixture.contractFundAmount = 1000000;
+    }
+    let assetid = this.assetTestFixture.index;
+    this.contractTestFixture.limitOrder = new limitOrderTemplate.LimitOrder(this.accounts[0], assetid, parseInt(ratn), parseInt(ratd), expiryRound, parseInt(minTrade), maxFee);
+    this.contractTestFixture.activeAddress = this.contractTestFixture.limitOrder.getAddress();
+});
+
+When('I swap assets for algos', async function () {
+    let response = await this.kcl.exportKey(this.handle, this.wallet_pswd, this.accounts[1]);
+    let secretKey = response.private_key;
+    let microAlgoAmount = this.contractTestFixture.limitOrderMin + 1; // just over the minimum
+    let assetAmount = microAlgoAmount * this.contractTestFixture.limitOrderN / this.contractTestFixture.limitOrderD;
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.lastRound = this.params.lastRound;
+    this.gh = this.params.genesishashb64;
+    let txnBytes = limitOrderTemplate.getSwapAssetsTransaction(this.contractTestFixture.periodicPay.getProgram(), assetAmount, microAlgoAmount, secretKey, this.fee, this.fv, this.lv, this.gh);
+    this.txid = await this.acl.sendRawTransaction(txnBytes);
+    this.txid = this.txid.txId;
+    this.pk = this.contractTestFixture.activeAddress;
+});
+
+Given('a dynamic fee contract with amount {int}', async function (amount) {
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.lastRound = this.params.lastRound;
+    this.gh = this.params.genesishashb64;
+    this.contractTestFixture.contractFundAmount = parseInt(amount);
+    this.contractTestFixture.dynamicFee = new dynamicFeeTemplate.DynamicFee(this.accounts[1], parseInt(amount), this.fv, this.lv); // intentionally leave optional args undefined
+    this.contractTestFixture.activeAddress = this.contractTestFixture.dynamicFee.getAddress();
+});
+
+Given('I send the dynamic fee transactions', async function () {
+    this.params = await this.acl.getTransactionParams();
+    this.fee = this.params.fee;
+    this.fv = this.params.lastRound;
+    this.lv = this.fv + 1000;
+    this.lastRound = this.params.lastRound;
+    this.gh = this.params.genesishashb64;
+
+    let firstResponse = await this.kcl.exportKey(this.handle, this.wallet_pswd, this.accounts[0]);
+    let secretKeyZero = firstResponse.private_key;
+    let txnAndLsig = dynamicFeeTemplate.signDynamicFee(this.contractTestFixture.dynamicFee.getProgram(), secretKeyZero, this.gh);
+    let secondResponse = await this.kcl.exportKey(this.handle, this.wallet_pswd, this.accounts[1]);
+    let secretKeyOne = secondResponse.private_key;
+    let txnBytes = dynamicFeeTemplate.getDynamicFeeTransactions(txnAndLsig.txn, txnAndLsig.lsig, secretKeyOne, this.fee);
+    this.txid = await this.acl.sendRawTransaction(txnBytes);
+    this.txid = this.txid.txId;
+    this.pk = this.accounts[0];
 });
