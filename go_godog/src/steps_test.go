@@ -1704,9 +1704,15 @@ func iFundTheContractAccount() error {
 // used in HTLC
 func iClaimTheAlgosHTLC() error {
 	preImage := contractTestFixture.htlcPreImage
-	preImageAsBytes := []byte(preImage)
-	preImageAsBase64 := base64.StdEncoding.EncodeToString(preImageAsBytes)
+	preImageAsArgument := []byte(preImage)
+	args := make([][]byte, 1)
+	args[0] = preImageAsArgument
 	receiver := accounts[1] // was set as receiver in setup step
+	var blankMultisig crypto.MultisigAccount
+	lsig, err := crypto.MakeLogicSig(contractTestFixture.htlc.GetProgram(), args, nil, blankMultisig)
+	if err != nil {
+		return err
+	}
 	params, err := acl.SuggestedParams()
 	if err != nil {
 		return err
@@ -1717,7 +1723,8 @@ func iClaimTheAlgosHTLC() error {
 	if err != nil {
 		return err
 	}
-	txid, stx, err = templates.SignTransactionWithHTLCUnlock(contractTestFixture.htlc.GetProgram(), txn, preImageAsBase64)
+	txn.Receiver = types.Address{} //txn must have no receiver but MakePayment disallows this.
+	txid, stx, err = crypto.SignLogicsigTransaction(lsig, txn)
 	if err != nil {
 		return err
 	}
