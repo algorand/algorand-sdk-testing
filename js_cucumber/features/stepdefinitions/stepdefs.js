@@ -1391,6 +1391,9 @@ Given('a dynamic fee contract with amount {int}', async function (amount) {
     this.params = await this.acl.getTransactionParams();
     this.fee = this.params.fee;
     this.fv = this.params.lastRound;
+    if (this.fv == 0) {
+        this.fv = 1 ;
+    }
     this.lv = this.fv + 1000;
     this.lastRound = this.params.lastRound;
     this.gh = this.params.genesishashb64;
@@ -1403,16 +1406,20 @@ Given('I send the dynamic fee transactions', async function () {
     this.params = await this.acl.getTransactionParams();
     this.fee = this.params.fee;
     this.fv = this.params.lastRound;
+    if (this.fv == 0) {
+        this.fv = 1 ;
+    }
+    console.log(this.fv);
     this.lv = this.fv + 1000;
     this.lastRound = this.params.lastRound;
     this.gh = this.params.genesishashb64;
 
     let firstResponse = await this.kcl.exportKey(this.handle, this.wallet_pswd, this.accounts[0]);
-    let secretKeyZero = firstResponse.private_key;
-    let txnAndLsig = dynamicFeeTemplate.signDynamicFee(this.contractTestFixture.dynamicFee.getProgram(), secretKeyZero, this.gh);
+    let secretKeyOne = firstResponse.private_key;
+    let txnAndLsig = dynamicFeeTemplate.signDynamicFee(this.contractTestFixture.dynamicFee.getProgram(), secretKeyOne, this.gh);
     let secondResponse = await this.kcl.exportKey(this.handle, this.wallet_pswd, this.accounts[1]);
-    let secretKeyOne = secondResponse.private_key;
-    let txnBytes = dynamicFeeTemplate.getDynamicFeeTransactions(txnAndLsig.txn, txnAndLsig.lsig, secretKeyOne, this.fee);
+    let secretKeyTwo = secondResponse.private_key;
+    let txnBytes = dynamicFeeTemplate.getDynamicFeeTransactions(txnAndLsig.txn, txnAndLsig.lsig, secretKeyTwo, this.fee);
     this.txid = await this.acl.sendRawTransaction(txnBytes);
     this.txid = this.txid.txId;
     this.pk = this.accounts[0];
