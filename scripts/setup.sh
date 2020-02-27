@@ -37,9 +37,9 @@ else
     git pull origin master
     cd -
     pyenv install --list
-    pyenv install 3.7.1
+    pyenv install 3.7.1 --skip-existing
     pyenv global 3.7.1
-    pip3 install git+https://github.com/algorand/py-algorand-sdk/ -q
+    pip3 install "git+https://github.com/algorand/py-algorand-sdk@develop" -q
 fi
 pip3 install behave -q
 
@@ -82,6 +82,6 @@ source "$SCRIPTPATH/config_future"
 
 mkdir ~/inst
 # this is the link for linux; change this if on mac or windows
-curl -L https://algorand-releases.s3.amazonaws.com/channel/nightly/install_nightly_darwin-amd64_1.0.288.tar.gz -o ~/inst/installer.tar.gz
+curl -L https://algorand-releases.s3.amazonaws.com/channel/stable/install_stable_linux-amd64_2.0.4.tar.gz -o ~/inst/installer.tar.gz
 tar -xf ~/inst/installer.tar.gz -C ~/inst
 ~/inst/update.sh -i -c $CHANNEL -p $BIN_DIR -d $BIN_DIR/data -n
