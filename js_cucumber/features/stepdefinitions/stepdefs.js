@@ -1283,11 +1283,8 @@ When('I send the split transactions', async function () {
     this.lv = this.fv + 1000;
     this.lastRound = this.params.lastRound;
     let amount = this.contractTestFixture.splitMin * (this.contractTestFixture.splitRat1 + this.contractTestFixture.splitRat2);
-    console.log("about to getsplitfunds");
     let txnBytes = splitTemplate.getSplitFundsTransaction(contractCode, amount, this.fv, this.lv, this.fee, this.params.genesishashb64);
-    console.log("about to sendraw");
     this.txid = await this.acl.sendRawTransaction(txnBytes);
-    console.log("success on sendraw");
     this.txid = this.txid.txId;
     this.pk = this.contractTestFixture.activeAddress;
 });
