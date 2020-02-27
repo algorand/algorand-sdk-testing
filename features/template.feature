@@ -67,4 +67,3 @@ Feature: Templates
     Examples:
       | amt |
       | 12345 |
-    
