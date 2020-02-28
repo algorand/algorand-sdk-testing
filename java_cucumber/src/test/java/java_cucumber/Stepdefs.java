@@ -32,6 +32,7 @@ import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import org.junit.Assert;
 import org.threeten.bp.LocalDate;
 
@@ -50,8 +51,11 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.Collections;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class Stepdefs {
+    TransactionParams params;
     SignedTransaction stx;
     SignedTransaction[] stxs;
     byte[] stxBytes;
@@ -84,7 +88,7 @@ public class Stepdefs {
     NodeStatus status;
     NodeStatus statusAfter;
     List<byte[]> pks;
-    List<String> accounts;
+    List<String> addresses;
     BigInteger lastRound;
     boolean err;
     BigInteger microalgos;
@@ -109,6 +113,45 @@ public class Stepdefs {
     String assetUnitName = "coins";
     Transaction.AssetParams expectedParams = null;
     AssetParams queriedParams = new AssetParams();
+
+    protected Address getAddress(int i) {
+        if (addresses == null) {
+            throw new RuntimeException("Addresses not initialized, must use given 'wallet information'");
+        }
+        if (addresses.size() < i || addresses.size() == 0) {
+            throw new RuntimeException("Not enough addresses, you may need to update the network template.");
+        }
+        try {
+            return new Address(addresses.get(i));
+        } catch (Exception e) {
+            // Lets not bother recovering from this one 🔥
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Convenience method to prepare the parameter object.
+     */
+    protected void getParams() {
+        try {
+            params = acl.transactionParams();
+            lastRound = params.getLastRound();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Convenience method to export a key and initialize an account to use for signing.
+     */
+    public void exportKeyAndSetAccount(Address addr) throws com.algorand.algosdk.kmd.client.ApiException, NoSuchAlgorithmException {
+        ExportKeyRequest req = new ExportKeyRequest();
+        req.setAddress(addr.toString());
+        req.setWalletHandleToken(handle);
+        req.setWalletPassword(walletPswd);
+        sk = kcl.exportKey(req).getPrivateKey();
+        account = new Account(Arrays.copyOfRange(sk, 0, 32));
+    }
 
     @When("I create a wallet")
     public void createWallet() throws com.algorand.algosdk.kmd.client.ApiException {
@@ -558,46 +601,44 @@ public class Stepdefs {
         handle = kcl.initWalletHandleToken(tokenreq).getWalletHandleToken();
         ListKeysRequest req = new ListKeysRequest();
         req.setWalletHandleToken(handle);
-        accounts = kcl.listKeysInWallet(req).getAddresses();
-        pk = new Address(accounts.get(0));
+        addresses = kcl.listKeysInWallet(req).getAddresses();
+        pk = getAddress(0);
     }
 
     @Given("default transaction with parameters {int} {string}")
     public void defaultTxn(int amt, String note) throws ApiException, NoSuchAlgorithmException{
-        TransactionParams params = acl.transactionParams();
-        lastRound = params.getLastRound();
+        getParams();
         if (note.equals("none")){
             this.note = null;
         } else{
             this.note = Encoder.decodeFromBase64(note);
         }
         txn = new Transaction(
-                    new Address(accounts.get(0)),
+                    getAddress(0),
                     params.getFee(),
                     params.getLastRound(),
                     params.getLastRound().add(BigInteger.valueOf(1000)),
                     this.note,
                     BigInteger.valueOf(amt),
-                    new Address(accounts.get(1)),
+                    getAddress(1),
                     params.getGenesisID(),
                     new Digest(params.getGenesishashb64())
             );
         Account.setFeeByFeePerByte(txn, txn.fee);
-        pk = new Address(accounts.get(0));
+        pk = getAddress(0);
     }
 
     @Given("default multisig transaction with parameters {int} {string}")
     public void defaultMsigTxn(int amt, String note) throws ApiException, NoSuchAlgorithmException{
-        TransactionParams params = acl.transactionParams();
-        lastRound = params.getLastRound();
+        getParams();
         if (note.equals("none")){
             this.note = null;
         } else{
             this.note = Encoder.decodeFromBase64(note);
         }
-        Ed25519PublicKey[] addrlist = new Ed25519PublicKey[accounts.size()];
-        for(int x = 0; x < accounts.size(); x++){
-            addrlist[x] = new Ed25519PublicKey((new Address(accounts.get(x))).getBytes());
+        Ed25519PublicKey[] addrlist = new Ed25519PublicKey[addresses.size()];
+        for(int x = 0; x < addresses.size(); x++){
+            addrlist[x] = new Ed25519PublicKey((getAddress(x)).getBytes());
         }
         msig = new MultisigAddress(1, 1, Arrays.asList(addrlist));
         txn = new Transaction(
@@ -607,12 +648,12 @@ public class Stepdefs {
                     params.getLastRound().add(BigInteger.valueOf(1000)),
                     this.note,
                     BigInteger.valueOf(amt),
-                    new Address(accounts.get(1)),
+                    getAddress(1),
                     params.getGenesisID(),
                     new Digest(params.getGenesishashb64())
             );
         Account.setFeeByFeePerByte(txn, txn.fee);
-        pk = new Address(accounts.get(0));
+        pk = getAddress(0);
     }
 
     @When("I send the transaction")
@@ -632,10 +673,10 @@ public class Stepdefs {
     @Then("the transaction should go through")
     public void checkTxn() throws ApiException, InterruptedException{
         String ans = acl.pendingTransactionInformation(txid).getFrom();
-        Assert.assertTrue(ans.equals(pk.toString()));
+        assertThat(pk.toString()).isEqualTo(ans);
         acl.waitForBlock(lastRound.add(BigInteger.valueOf(2)));
-        Assert.assertTrue(acl.transactionInformation(pk.toString(), txid).getFrom().equals(pk.toString()));
-        Assert.assertTrue(acl.transaction(txid).getFrom().equals(pk.toString()));
+        assertThat(acl.transactionInformation(pk.toString(), txid).getFrom()).isEqualTo(pk.toString());
+        assertThat(acl.transaction(txid).getFrom()).isEqualTo(pk.toString());
     }
 
     @Then("I can get the transaction by ID")
@@ -748,12 +789,7 @@ public class Stepdefs {
         inputStream.close();
 
         txn = Encoder.decodeFromMsgPack(data, Transaction.class);
-        ExportKeyRequest req = new ExportKeyRequest();
-        req.setAddress(txn.sender.toString());
-        req.setWalletHandleToken(handle);
-        req.setWalletPassword(walletPswd);
-        sk = kcl.exportKey(req).getPrivateKey();
-        account = new Account(Arrays.copyOfRange(sk, 0, 32));
+        exportKeyAndSetAccount(txn.sender);
 
         stx = account.signTransaction(txn);
         data = Encoder.encodeToMsgPack(stx);
@@ -774,17 +810,17 @@ public class Stepdefs {
 
     @Then("I get transactions by address and round")
     public void txnsByAddrRound() throws ApiException{
-        Assert.assertTrue(acl.transactions(accounts.get(0), BigInteger.valueOf(1), acl.getStatus().getLastRound(), null, null, BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
+        Assert.assertTrue(acl.transactions(addresses.get(0), BigInteger.valueOf(1), acl.getStatus().getLastRound(), null, null, BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
     }
 
     @Then("I get transactions by address only")
     public void txnsByAddrOnly() throws ApiException{
-        Assert.assertTrue(acl.transactions(accounts.get(0), null, null, null, null, BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
+        Assert.assertTrue(acl.transactions(addresses.get(0), null, null, null, null, BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
     }
 
     @Then("I get transactions by address and date")
     public void txnsByAddrDate() throws ApiException{
-        Assert.assertTrue(acl.transactions(accounts.get(0), null, null, LocalDate.now(), LocalDate.now(), BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
+        Assert.assertTrue(acl.transactions(addresses.get(0), null, null, LocalDate.now(), LocalDate.now(), BigInteger.valueOf(10)).getTransactions() instanceof List<?>);
     }
 
     @Then("I get pending transactions")
@@ -926,7 +962,7 @@ public class Stepdefs {
 
     @Then("I get account information")
     public void accInfo() throws ApiException {
-        acl.accountInformation(accounts.get(0));
+        acl.accountInformation(addresses.get(0));
     }
 
     @Then("I can get account information")
@@ -941,7 +977,7 @@ public class Stepdefs {
 
     @When("I get recent transactions, limited by {int} transactions")
     public void i_get_recent_transactions_limited_by_count(int cnt) throws ApiException {
-        Assert.assertTrue(acl.transactions(accounts.get(0), null, null, null, null, BigInteger.valueOf(cnt)).getTransactions() instanceof List<?>);
+        Assert.assertTrue(acl.transactions(addresses.get(0), null, null, null, null, BigInteger.valueOf(cnt)).getTransactions() instanceof List<?>);
     }
 
     @Given("asset test fixture")
@@ -951,17 +987,16 @@ public class Stepdefs {
 
     @Given("default asset creation transaction with total issuance {int}")
     public void default_asset_creation_transaction_with_total_issuance(Integer assetTotal) throws NoSuchAlgorithmException, ApiException, InvalidKeySpecException {
-        TransactionParams params = acl.transactionParams();
-        lastRound = params.getLastRound();
-        
+        getParams();
+
         Transaction tx = Transaction.createAssetCreateTransaction(
-                new Address(accounts.get(0)), // sender source address
-                acl.transactionParams().getFee(), // transaction fee
-                acl.transactionParams().getLastRound(), // first valid round 
-                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                getAddress(0), // sender source address
+                params.getFee(), // transaction fee
+                params.getLastRound(), // first valid round
+                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
                 this.note,
-                acl.transactionParams().getGenesisID(),
-                new Digest(acl.transactionParams().getGenesishashb64()),
+                params.getGenesisID(),
+                new Digest(params.getGenesishashb64()),
                 BigInteger.valueOf(assetTotal),
                 0,
                 false, // defaultFrozen
@@ -969,12 +1004,12 @@ public class Stepdefs {
                 this.assetName,
                 "", //url
                 null, //metadatahash
-                new Address(accounts.get(0)), // manager
-                new Address(accounts.get(0)), // reserve
-                new Address(accounts.get(0)), // freeze
-                new Address(accounts.get(0))); // clawback
+                getAddress(0), // manager
+                getAddress(0), // reserve
+                getAddress(0), // freeze
+                getAddress(0)); // clawback
         Account.setFeeByFeePerByte(tx, tx.fee);
-        this.creator = accounts.get(0);
+        this.creator = addresses.get(0);
         this.txn = tx;
         this.expectedParams = tx.assetParams;
     }
@@ -994,17 +1029,16 @@ public class Stepdefs {
 
     @When("I create a no-managers asset reconfigure transaction")
     public void i_create_a_no_managers_asset_reconfigure_transaction() throws NoSuchAlgorithmException, ApiException, InvalidKeySpecException {
-        TransactionParams params = acl.transactionParams();
-        lastRound = params.getLastRound();
+        getParams();
 
         Transaction tx = Transaction.createAssetConfigureTransaction(
                 new Address(this.creator), // sender source address
-                acl.transactionParams().getFee(), // transaction fee
-                acl.transactionParams().getLastRound(), // first valid round 
-                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                params.getFee(), // transaction fee
+                params.getLastRound(), // first valid round
+                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
                 this.note,
-                acl.transactionParams().getGenesisID(),
-                new Digest(acl.transactionParams().getGenesishashb64()),
+                params.getGenesisID(),
+                new Digest(params.getGenesishashb64()),
                 this.assetID,
                 new Address(this.creator), // manager
                 new Address(), // reserve
@@ -1017,16 +1051,15 @@ public class Stepdefs {
 
     @When("I create an asset destroy transaction")
     public void i_create_an_asset_destroy_transaction() throws NoSuchAlgorithmException, ApiException, InvalidKeySpecException {
-        TransactionParams params = acl.transactionParams();
-        lastRound = params.getLastRound();
+        getParams();
 
         Transaction tx = Transaction.createAssetDestroyTransaction(
                 new Address(this.creator), // sender source address
-                acl.transactionParams().getFee(), // transaction fee
-                acl.transactionParams().getLastRound(), // first valid round 
-                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                params.getFee(), // transaction fee
+                params.getLastRound(), // first valid round
+                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
                 this.note,
-                new Digest(acl.transactionParams().getGenesishashb64()),
+                new Digest(params.getGenesishashb64()),
                 this.assetID);
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
@@ -1046,24 +1079,23 @@ public class Stepdefs {
 
     @When("I create a transaction transferring {int} assets from creator to a second account")
     public void i_create_a_transaction_transferring_assets_from_creator_to_a_second_account(Integer int1) throws NoSuchAlgorithmException, ApiException, InvalidKeySpecException {
-        TransactionParams params = acl.transactionParams();
-        lastRound = params.getLastRound();
+        getParams();
 
         Transaction tx = Transaction.createAssetTransferTransaction(
                 new Address(this.creator), // sender source address
-                new Address(this.accounts.get(1)),
+                getAddress(1),
                 new Address(),
                 BigInteger.valueOf(int1),
-                acl.transactionParams().getFee(), // transaction fee
-                acl.transactionParams().getLastRound(), // first valid round 
-                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                params.getFee(), // transaction fee
+                params.getLastRound(), // first valid round
+                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
                 this.note,
-                acl.transactionParams().getGenesisID(),
-                new Digest(acl.transactionParams().getGenesishashb64()),
+                params.getGenesisID(),
+                new Digest(params.getGenesishashb64()),
                 this.assetID);
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
-        this.pk = new Address(this.accounts.get(0));
+        this.pk = getAddress(0);
     }
 
     @Then("the creator should have {int} assets remaining")
@@ -1092,22 +1124,20 @@ public class Stepdefs {
 
     @Then("I create a transaction for a second account, signalling asset acceptance")
     public void i_create_a_transaction_for_a_second_account_signalling_asset_acceptance() throws ApiException, NoSuchAlgorithmException {
-        
-        TransactionParams params = acl.transactionParams();
-        lastRound = params.getLastRound();
+        getParams();
 
         Transaction tx = Transaction.createAssetAcceptTransaction(
-                new Address(this.accounts.get(1)),
-                acl.transactionParams().getFee(), // transaction fee
-                acl.transactionParams().getLastRound(), // first valid round 
-                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                getAddress(1),
+                params.getFee(), // transaction fee
+                params.getLastRound(), // first valid round
+                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
                 this.note,
-                acl.transactionParams().getGenesisID(),
-                new Digest(acl.transactionParams().getGenesishashb64()),
+                params.getGenesisID(),
+                new Digest(params.getGenesishashb64()),
                 this.assetID);
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
-        this.pk = new Address(this.accounts.get(1));
+        this.pk = getAddress(1);
     }
 
     @Then("I send the kmd-signed transaction")
@@ -1118,80 +1148,76 @@ public class Stepdefs {
     @When("I create a freeze transaction targeting the second account")
     public void i_create_a_freeze_transaction_targeting_the_second_account() throws NoSuchAlgorithmException, ApiException, com.algorand.algosdk.kmd.client.ApiException {
         this.renewHandle(); // to avoid handle expired error
-        TransactionParams params = acl.transactionParams();
-        lastRound = params.getLastRound();
+        getParams();
 
         Transaction tx = Transaction.createAssetFreezeTransaction(
-                new Address(this.accounts.get(0)), // transaction sender
-                new Address(this.accounts.get(1)), // account to freeze
+                getAddress(0), // transaction sender
+                getAddress(1), // account to freeze
                 true, // freeze state
-                acl.transactionParams().getFee(), // transaction fee
-                acl.transactionParams().getLastRound(), // first valid round 
-                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                params.getFee(), // transaction fee
+                params.getLastRound(), // first valid round
+                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
                 this.note,
-                new Digest(acl.transactionParams().getGenesishashb64()),
+                new Digest(params.getGenesishashb64()),
                 this.assetID);
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
-        this.pk = new Address(this.accounts.get(0));
+        this.pk = getAddress(0);
     }
 
     @When("I create a transaction transferring {int} assets from a second account to creator")
     public void i_create_a_transaction_transferring_assets_from_a_second_account_to_creator(Integer int1) throws ApiException, NoSuchAlgorithmException {
-        TransactionParams params = acl.transactionParams();
-        lastRound = params.getLastRound();
+        getParams();
 
         Transaction tx = Transaction.createAssetTransferTransaction(
-                new Address(this.accounts.get(1)),
-                new Address(this.creator), // sender source address                
+                getAddress(1),
+                new Address(this.creator), // sender source address
                 new Address(),
                 BigInteger.valueOf(int1),
-                acl.transactionParams().getFee(), // transaction fee
-                acl.transactionParams().getLastRound(), // first valid round 
-                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                params.getFee(), // transaction fee
+                params.getLastRound(), // first valid round
+                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
                 this.note,
-                acl.transactionParams().getGenesisID(),
-                new Digest(acl.transactionParams().getGenesishashb64()),
+                params.getGenesisID(),
+                new Digest(params.getGenesishashb64()),
                 this.assetID);
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
-        this.pk = new Address(this.accounts.get(1));
+        this.pk = getAddress(1);
     }
 
     @When("I create an un-freeze transaction targeting the second account")
     public void i_create_an_un_freeze_transaction_targeting_the_second_account() throws ApiException, NoSuchAlgorithmException, com.algorand.algosdk.kmd.client.ApiException  {
         this.renewHandle(); // to avoid handle expired error
-        TransactionParams params = acl.transactionParams();
-        lastRound = params.getLastRound();
+        getParams();
 
         Transaction tx = Transaction.createAssetFreezeTransaction(
-                new Address(this.accounts.get(0)), // transaction sender
-                new Address(this.accounts.get(1)), // account to freeze
+                getAddress(0), // transaction sender
+                getAddress(1), // account to freeze
                 false, // freeze state
-                acl.transactionParams().getFee(), // transaction fee
-                acl.transactionParams().getLastRound(), // first valid round 
-                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                params.getFee(), // transaction fee
+                params.getLastRound(), // first valid round
+                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
                 this.note,
-                new Digest(acl.transactionParams().getGenesishashb64()),
+                new Digest(params.getGenesishashb64()),
                 this.assetID);
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
-        this.pk = new Address(this.accounts.get(0));
+        this.pk = getAddress(0);
     }
 
     @Given("default-frozen asset creation transaction with total issuance {int}")
     public void default_frozen_asset_creation_transaction_with_total_issuance(Integer int1) throws ApiException, NoSuchAlgorithmException {
-        TransactionParams params = acl.transactionParams();
-        lastRound = params.getLastRound();
-        
+        getParams();
+
         Transaction tx = Transaction.createAssetCreateTransaction(
-                new Address(accounts.get(0)), // sender source address
-                acl.transactionParams().getFee(), // transaction fee
-                acl.transactionParams().getLastRound(), // first valid round 
-                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                getAddress(0), // sender source address
+                params.getFee(), // transaction fee
+                params.getLastRound(), // first valid round
+                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
                 this.note,
-                acl.transactionParams().getGenesisID(),
-                new Digest(acl.transactionParams().getGenesishashb64()),
+                params.getGenesisID(),
+                new Digest(params.getGenesishashb64()),
                 BigInteger.valueOf(int1),
                 0,
                 true, // defaultFrozen
@@ -1199,36 +1225,34 @@ public class Stepdefs {
                 this.assetName,
                 "", //url
                 null, //metadatahash
-                new Address(accounts.get(0)), // manager
-                new Address(accounts.get(0)), // reserve
-                new Address(accounts.get(0)), // freeze
-                new Address(accounts.get(0))); // clawback
+                getAddress(0), // manager
+                getAddress(0), // reserve
+                getAddress(0), // freeze
+                getAddress(0)); // clawback
         Account.setFeeByFeePerByte(tx, tx.fee);
-        this.creator = accounts.get(0);
+        this.creator = addresses.get(0);
         this.txn = tx;
         this.expectedParams = tx.assetParams;
     }
 
     @When("I create a transaction revoking {int} assets from a second account to creator")
     public void i_create_a_transaction_revoking_assets_from_a_second_account_to_creator(Integer int1) throws ApiException, NoSuchAlgorithmException {
-        TransactionParams params = acl.transactionParams();
-        lastRound = params.getLastRound();
+        getParams();
 
         Transaction tx = Transaction.createAssetRevokeTransaction(
-                new Address(this.accounts.get(0)), // transaction sender
-                new Address(this.accounts.get(1)), // revoked from
-                new Address(this.accounts.get(0)), // asset receiver
+                getAddress(0), // transaction sender
+                getAddress(1), // revoked from
+                getAddress(0), // asset receiver
                 BigInteger.valueOf(int1),
-                acl.transactionParams().getFee(), // transaction fee
-                acl.transactionParams().getLastRound(), // first valid round 
-                acl.transactionParams().getLastRound().add(BigInteger.valueOf(1000)), // last valid round
+                params.getFee(), // transaction fee
+                params.getLastRound(), // first valid round
+                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
                 this.note,
-                acl.transactionParams().getGenesisID(),
-                new Digest(acl.transactionParams().getGenesishashb64()),
+                params.getGenesisID(),
+                new Digest(params.getGenesishashb64()),
                 this.assetID);
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.txn = tx;
-        this.pk = new Address(this.accounts.get(0));
+        this.pk = getAddress(0);
     }
-
 }
