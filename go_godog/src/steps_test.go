@@ -17,8 +17,6 @@ import (
 
 	"path/filepath"
 
-	"github.com/DATA-DOG/godog"
-	"github.com/DATA-DOG/godog/colors"
 	"github.com/algorand/go-algorand-sdk/auction"
 	"github.com/algorand/go-algorand-sdk/client/algod"
 	"github.com/algorand/go-algorand-sdk/client/algod/models"
@@ -29,6 +27,8 @@ import (
 	"github.com/algorand/go-algorand-sdk/templates"
 	"github.com/algorand/go-algorand-sdk/transaction"
 	"github.com/algorand/go-algorand-sdk/types"
+	"github.com/cucumber/godog"
+	"github.com/cucumber/godog/colors"
 )
 
 var txn types.Transaction
