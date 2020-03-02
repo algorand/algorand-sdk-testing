@@ -63,7 +63,7 @@ var pk string
 var accounts []string
 var e bool
 var lastRound uint64
-var sugParams models.TransactionParams
+var sugParams models.SuggestedParams
 var sugFee models.TransactionFee
 var bid types.Bid
 var sbid types.NoteField
