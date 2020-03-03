@@ -1643,7 +1643,7 @@ func iSendTheSplitTransactions() error {
 		return err
 	}
 	lastRound = params.LastRound + 5
-	txnBytes, err := templates.GetSplitFundsTransaction(contractTestFixture.split.GetProgram(), amount, firstRound, lastRound, params.Fee, params.GenesisHash)
+	txnBytes, err := templates.GetSplitFundsTransaction(contractTestFixture.split.GetProgram(), amount, )
 	if err != nil {
 		return err
 	}
@@ -1791,7 +1791,7 @@ func iSwapAssetsForAlgos() error {
 	microAlgoAmount := contractTestFixture.limitOrderMin + 1 // just over the minimum
 	assetAmount := microAlgoAmount * contractTestFixture.limitOrderN / contractTestFixture.limitOrderD
 	assetAmount += 1 // assetAmount initialized to absolute minimum, will fail greater-than check, so increment by one for a better deal
-	stx, err = contractTestFixture.limitOrder.GetSwapAssetsTransaction(assetAmount, contract, secretKey, params.Fee, microAlgoAmount, txnFirstValid, txnLastValid, params.GenesisHash)
+	stx, err = contractTestFixture.limitOrder.GetSwapAssetsTransaction(assetAmount, microAlgoAmount, contract, secretKey, )
 	if err != nil {
 		return err
 	}
