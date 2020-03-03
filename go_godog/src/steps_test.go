@@ -1165,7 +1165,7 @@ func createTxnFlat() error {
 		GenesisHash:     gh,
 		FirstRoundValid: types.Round(fv),
 		LastRoundValid:  types.Round(lv),
-		FlatFee:         false,
+		FlatFee:         true,
 	}
 	txn, err = transaction.MakePaymentTxn(a.String(), to, amt, note, close, paramsToUse)
 	if err != nil {
