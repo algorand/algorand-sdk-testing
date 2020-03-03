@@ -5,7 +5,6 @@ Feature: Templates
     And wallet information
     And contract test fixture
 
-  
   Scenario Outline: Split
     Given a split contract with ratio <ratn> to <ratd> and minimum payment <min_pay>
     When I fund the contract account
@@ -59,13 +58,12 @@ Feature: Templates
     Examples:
       | total   | ratn | ratd | min_trade | amount |
       | 1000000 | 2 | 3 | 1000 | 500000 |
-  
+
   Scenario Outline: Dynamic Fee
     Given a dynamic fee contract with amount <amt>
-    When I send the dynamic fee transactions
+    And I send the dynamic fee transactions
     Then the transaction should go through
     
     Examples:
       | amt |
       | 12345 |
-
