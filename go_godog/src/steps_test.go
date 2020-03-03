@@ -63,7 +63,7 @@ var pk string
 var accounts []string
 var e bool
 var lastRound uint64
-var sugParams models.SuggestedParams
+var sugParams types.SuggestedParams
 var sugFee models.TransactionFee
 var bid types.Bid
 var sbid types.NoteField
@@ -394,7 +394,15 @@ func mnForSk(mn string) error {
 
 func createTxn() error {
 	var err error
-	txn, err = transaction.MakePaymentTxn(a.String(), to, amt, note, close, )
+	paramsToUse := types.SuggestedParams{
+		Fee:             types.MicroAlgos(fee),
+		GenesisID:       gen,
+		GenesisHash:     gh,
+		FirstRoundValid: types.Round(fv),
+		LastRoundValid:  types.Round(lv),
+		FlatFee:         false,
+	}
+	txn, err = transaction.MakePaymentTxn(a.String(), to, amt, note, close, paramsToUse)
 	if err != nil {
 		return err
 	}
@@ -421,9 +429,16 @@ func msigAddresses(addresses string) error {
 
 func createMsigTxn() error {
 	var err error
-
+	paramsToUse := types.SuggestedParams{
+		Fee:             types.MicroAlgos(fee),
+		GenesisID:       gen,
+		GenesisHash:     gh,
+		FirstRoundValid: types.Round(fv),
+		LastRoundValid:  types.Round(lv),
+		FlatFee:         false,
+	}
 	msigaddr, _ := msig.Address()
-	txn, err = transaction.MakePaymentTxn(msigaddr.String(), to, amt, note, close, )
+	txn, err = transaction.MakePaymentTxn(msigaddr.String(), to, amt, note, close, paramsToUse)
 	if err != nil {
 		return err
 	}
@@ -756,8 +771,8 @@ func defaultTxn(iamt int, inote string) error {
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound
-	txn, err = transaction.MakePaymentTxn(accounts[0], accounts[1], amt, note, "", )
+	lastRound = uint64(params.FirstRoundValid)
+	txn, err = transaction.MakePaymentTxn(accounts[0], accounts[1], amt, note, "", params)
 	return err
 }
 
@@ -796,12 +811,12 @@ func defaultMsigTxn(iamt int, inote string) error {
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound
+	lastRound = uint64(params.FirstRoundValid)
 	addr, err := msig.Address()
 	if err != nil {
 		return err
 	}
-	txn, err = transaction.MakePaymentTxn(addr.String(), accounts[1], amt, note, "", )
+	txn, err = transaction.MakePaymentTxn(addr.String(), accounts[1], amt, note, "", params)
 	if err != nil {
 		return err
 	}
@@ -995,8 +1010,8 @@ func createSaveTxn() error {
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound
-	txn, err = transaction.MakePaymentTxn(accounts[0], accounts[1], amt, note, "", )
+	lastRound = uint64(params.FirstRoundValid)
+	txn, err = transaction.MakePaymentTxn(accounts[0], accounts[1], amt, note, "", params)
 	if err != nil {
 		return err
 	}
@@ -1059,7 +1074,7 @@ func suggestedFee() error {
 }
 
 func checkSuggested() error {
-	if sugParams.Fee != sugFee.Fee {
+	if uint64(sugParams.Fee) != sugFee.Fee {
 		return fmt.Errorf("suggested fee from params should be equal to suggested fee")
 	}
 	return nil
@@ -1144,7 +1159,15 @@ func mdkToMn() error {
 
 func createTxnFlat() error {
 	var err error
-	txn, err = transaction.MakePaymentTxnWithFlatFee(a.String(), to, fee, amt, fv, lv, note, close, gen, gh)
+	paramsToUse := types.SuggestedParams{
+		Fee:             types.MicroAlgos(fee),
+		GenesisID:       gen,
+		GenesisHash:     gh,
+		FirstRoundValid: types.Round(fv),
+		LastRoundValid:  types.Round(lv),
+		FlatFee:         false,
+	}
+	txn, err = transaction.MakePaymentTxn(a.String(), to, amt, note, close, paramsToUse)
 	if err != nil {
 		return err
 	}
@@ -1250,8 +1273,15 @@ func keyregTxnParams(ifee, ifv, ilv int, igh, ivotekey, iselkey string, ivotefst
 }
 
 func createKeyregTxn() (err error) {
-	strGh := base64.StdEncoding.EncodeToString(gh)
-	txn, err = transaction.MakeKeyRegTxn(a.String(), note,, votekey, selkey, votefst, votelst, votekd)
+	paramsToUse := types.SuggestedParams{
+		Fee:             types.MicroAlgos(fee),
+		GenesisID:       gen,
+		GenesisHash:     gh,
+		FirstRoundValid: types.Round(fv),
+		LastRoundValid:  types.Round(lv),
+		FlatFee:         false,
+	}
+	txn, err = transaction.MakeKeyRegTxn(a.String(), note, paramsToUse, votekey, selkey, votefst, votelst, votekd)
 	if err != nil {
 		return err
 	}
@@ -1302,13 +1332,9 @@ func assetCreateTxnHelper(issuance int, frozenState bool) error {
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound
-	firstRound := lastRound
-	lastRoundValid := firstRound + 1000
+	lastRound = uint64(params.FirstRoundValid)
 	assetNote := []byte(nil)
 	assetIssuance := uint64(issuance)
-	genesisID := params.GenesisID
-	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
 	manager := creator
 	reserve := creator
 	freeze := creator
@@ -1317,7 +1343,7 @@ func assetCreateTxnHelper(issuance int, frozenState bool) error {
 	assetName := assetTestFixture.AssetName
 	url := assetTestFixture.AssetURL
 	metadataHash := assetTestFixture.AssetMetadataHash
-	assetCreateTxn, err := transaction.MakeAssetCreateTxn(creator, assetNote,, assetIssuance, 0, frozenState, manager, reserve, freeze, clawback, unitName, assetName, url, metadataHash)
+	assetCreateTxn, err := transaction.MakeAssetCreateTxn(creator, assetNote, params, assetIssuance, 0, frozenState, manager, reserve, freeze, clawback, unitName, assetName, url, metadataHash)
 	assetTestFixture.LastTransactionIssued = assetCreateTxn
 	txn = assetCreateTxn
 	assetTestFixture.ExpectedParams = convertTransactionAssetParamsToModelsAssetParam(assetCreateTxn.AssetParams)
@@ -1340,17 +1366,13 @@ func createNoManagerAssetReconfigure() error {
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound
-	firstRound := lastRound
-	lastRoundValid := firstRound + 1000
+	lastRound = uint64(params.FirstRoundValid)
 	assetNote := []byte(nil)
-	genesisID := params.GenesisID
-	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
 	reserve := ""
 	freeze := ""
 	clawback := ""
 	manager := creator // if this were "" as well, this wouldn't be a reconfigure txn, it would be a destroy txn
-	assetReconfigureTxn, err := transaction.MakeAssetConfigTxn(creator, assetNote,, assetTestFixture.AssetIndex, manager, reserve, freeze, clawback, false)
+	assetReconfigureTxn, err := transaction.MakeAssetConfigTxn(creator, assetNote, params, assetTestFixture.AssetIndex, manager, reserve, freeze, clawback, false)
 	assetTestFixture.LastTransactionIssued = assetReconfigureTxn
 	txn = assetReconfigureTxn
 	// update expected params
@@ -1366,13 +1388,9 @@ func createAssetDestroy() error {
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound
-	firstRound := lastRound
-	lastRoundValid := firstRound + 1000
+	lastRound = uint64(params.FirstRoundValid)
 	assetNote := []byte(nil)
-	genesisID := params.GenesisID
-	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
-	assetDestroyTxn, err := transaction.MakeAssetDestroyTxn(creator, assetNote,, assetTestFixture.AssetIndex)
+	assetDestroyTxn, err := transaction.MakeAssetDestroyTxn(creator, assetNote, params, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetDestroyTxn
 	txn = assetDestroyTxn
 	// update expected params
@@ -1501,13 +1519,9 @@ func createAssetAcceptanceForSecondAccount() error {
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound
-	firstRound := lastRound
-	lastRoundValid := firstRound + 1000
+	lastRound = uint64(params.FirstRoundValid)
 	assetNote := []byte(nil)
-	genesisID := params.GenesisID
-	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
-	assetAcceptanceTxn, err := transaction.MakeAssetAcceptanceTxn(accountToUse, assetNote,, assetTestFixture.AssetIndex)
+	assetAcceptanceTxn, err := transaction.MakeAssetAcceptanceTxn(accountToUse, assetNote, params, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
 	txn = assetAcceptanceTxn
 	return err
@@ -1522,13 +1536,9 @@ func createAssetTransferTransactionToSecondAccount(amount int) error {
 	}
 	sendAmount := uint64(amount)
 	closeAssetsTo := ""
-	lastRound = params.LastRound
-	firstRound := lastRound
-	lastRoundValid := firstRound + 1000
+	lastRound = uint64(params.FirstRoundValid)
 	assetNote := []byte(nil)
-	genesisID := params.GenesisID
-	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
-	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(creator, recipient, sendAmount, assetNote,, closeAssetsTo, assetTestFixture.AssetIndex)
+	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(creator, recipient, sendAmount, assetNote, params, closeAssetsTo, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
 	txn = assetAcceptanceTxn
 	return err
@@ -1543,13 +1553,9 @@ func createAssetTransferTransactionFromSecondAccountToCreator(amount int) error 
 	}
 	sendAmount := uint64(amount)
 	closeAssetsTo := ""
-	lastRound = params.LastRound
-	firstRound := lastRound
-	lastRoundValid := firstRound + 1000
+	lastRound = uint64(params.FirstRoundValid)
 	assetNote := []byte(nil)
-	genesisID := params.GenesisID
-	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
-	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(sender, recipient, sendAmount, assetNote,, closeAssetsTo, assetTestFixture.AssetIndex)
+	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(sender, recipient, sendAmount, assetNote, params, closeAssetsTo, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
 	txn = assetAcceptanceTxn
 	return err
@@ -1562,13 +1568,9 @@ func freezeTransactionHelper(target string, setting bool) error {
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound
-	firstRound := lastRound
-	lastRoundValid := firstRound + 1000
+	lastRound = uint64(params.FirstRoundValid)
 	assetNote := []byte(nil)
-	genesisID := params.GenesisID
-	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
-	assetFreezeOrUnfreezeTxn, err := transaction.MakeAssetFreezeTxn(assetTestFixture.Creator, assetNote,, assetTestFixture.AssetIndex, target, setting)
+	assetFreezeOrUnfreezeTxn, err := transaction.MakeAssetFreezeTxn(assetTestFixture.Creator, assetNote, params, assetTestFixture.AssetIndex, target, setting)
 	assetTestFixture.LastTransactionIssued = assetFreezeOrUnfreezeTxn
 	txn = assetFreezeOrUnfreezeTxn
 	return err
@@ -1587,14 +1589,10 @@ func createRevocationTransaction(amount int) error {
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound
-	firstRound := lastRound
-	lastRoundValid := firstRound + 1000
+	lastRound = uint64(params.FirstRoundValid)
 	revocationAmount := uint64(amount)
 	assetNote := []byte(nil)
-	genesisID := params.GenesisID
-	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
-	assetRevokeTxn, err := transaction.MakeAssetRevocationTxn(assetTestFixture.Creator, accounts[1], revocationAmount, assetTestFixture.Creator, assetNote,, assetTestFixture.AssetIndex)
+	assetRevokeTxn, err := transaction.MakeAssetRevocationTxn(assetTestFixture.Creator, accounts[1], revocationAmount, assetTestFixture.Creator, assetNote, params, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetRevokeTxn
 	txn = assetRevokeTxn
 	return err
@@ -1637,13 +1635,12 @@ func aSplitContractWithRatioToAndMinimumPayment(ratn, ratd, minPay int) error {
 
 func iSendTheSplitTransactions() error {
 	amount := contractTestFixture.splitMin * (contractTestFixture.splitN + contractTestFixture.splitD)
-	firstRound := uint64(1)
 	params, err := acl.SuggestedParams()
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound + 5
-	txnBytes, err := templates.GetSplitFundsTransaction(contractTestFixture.split.GetProgram(), amount, )
+	lastRound = uint64(params.FirstRoundValid)
+	txnBytes, err := templates.GetSplitFundsTransaction(contractTestFixture.split.GetProgram(), amount, params)
 	if err != nil {
 		return err
 	}
@@ -1677,8 +1674,8 @@ func iFundTheContractAccount() error {
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound
-	txn, err = transaction.MakePaymentTxn(accounts[0], contractTestFixture.activeAddress, amount, nil, "", )
+	lastRound = uint64(params.FirstRoundValid)
+	txn, err = transaction.MakePaymentTxn(accounts[0], contractTestFixture.activeAddress, amount, nil, "", params)
 	if err != nil {
 		return err
 	}
@@ -1709,9 +1706,8 @@ func iClaimTheAlgosHTLC() error {
 	if err != nil {
 		return err
 	}
-	firstRound := params.LastRound
-	lastRound = params.LastRound + 5
-	txn, err = transaction.MakePaymentTxnWithFlatFee(contractTestFixture.activeAddress, receiver, params.Fee, 0, firstRound, lastRound, nil, receiver, "", params.GenesisHash)
+	lastRound = uint64(params.FirstRoundValid)
+	txn, err = transaction.MakePaymentTxn(contractTestFixture.activeAddress, receiver, 0, nil, receiver, params)
 	if err != nil {
 		return err
 	}
@@ -1742,14 +1738,14 @@ func iClaimThePeriodicPayment() error {
 	if err != nil {
 		return err
 	}
-	txnFirstValid := params.LastRound
+	txnFirstValid := uint64(params.FirstRoundValid)
 	remainder := txnFirstValid % contractTestFixture.periodicPayPeriod
 	txnFirstValid += remainder
-	stx, err = templates.GetPeriodicPaymentWithdrawalTransaction(contractTestFixture.periodicPay.GetProgram(), txnFirstValid, params.Fee, params.GenesisHash)
+	stx, err = templates.GetPeriodicPaymentWithdrawalTransaction(contractTestFixture.periodicPay.GetProgram(), txnFirstValid, uint64(params.Fee), params.GenesisHash)
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound // used in send/checkTxn
+	lastRound = uint64(params.FirstRoundValid) // used in send/checkTxn
 	return sendTxn()
 }
 
@@ -1784,14 +1780,12 @@ func iSwapAssetsForAlgos() error {
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound
-	txnFirstValid := lastRound
-	txnLastValid := txnFirstValid + 3
+	lastRound = uint64(params.FirstRoundValid)
 	contract := contractTestFixture.limitOrder.GetProgram()
 	microAlgoAmount := contractTestFixture.limitOrderMin + 1 // just over the minimum
 	assetAmount := microAlgoAmount * contractTestFixture.limitOrderN / contractTestFixture.limitOrderD
 	assetAmount += 1 // assetAmount initialized to absolute minimum, will fail greater-than check, so increment by one for a better deal
-	stx, err = contractTestFixture.limitOrder.GetSwapAssetsTransaction(assetAmount, microAlgoAmount, contract, secretKey, )
+	stx, err = contractTestFixture.limitOrder.GetSwapAssetsTransaction(assetAmount, microAlgoAmount, contract, secretKey, params)
 	if err != nil {
 		return err
 	}
@@ -1806,7 +1800,7 @@ func aDynamicFeeContractWithAmount(amount int) error {
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound
+	lastRound = uint64(params.FirstRoundValid)
 	txnFirstValid := lastRound
 	txnLastValid := txnFirstValid + 10
 	contractTestFixture.contractFundAmount = uint64(10 * amount)
@@ -1822,7 +1816,7 @@ func iSendTheDynamicFeeTransaction() error {
 	if err != nil {
 		return err
 	}
-	lastRound = params.LastRound
+	lastRound = uint64(params.FirstRoundValid)
 	exp, err := kcl.ExportKey(handle, walletPswd, accounts[0])
 	if err != nil {
 		return err
@@ -1837,7 +1831,7 @@ func iSendTheDynamicFeeTransaction() error {
 		return err
 	}
 	secretKeyTwo := exp.PrivateKey
-	groupTxnBytes, err := templates.GetDynamicFeeTransactions(initialTxn, lsig, secretKeyTwo, params.Fee)
+	groupTxnBytes, err := templates.GetDynamicFeeTransactions(initialTxn, lsig, secretKeyTwo, uint64(params.Fee))
 	// hack to make checkTxn work
 	txn = initialTxn
 	// end hack to make checkTxn work
