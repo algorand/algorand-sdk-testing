@@ -394,7 +394,7 @@ func mnForSk(mn string) error {
 
 func createTxn() error {
 	var err error
-	txn, err = transaction.MakePaymentTxn(a.String(), to, fee, amt, fv, lv, note, close, gen, gh)
+	txn, err = transaction.MakePaymentTxn(a.String(), to, amt, note, close, )
 	if err != nil {
 		return err
 	}
@@ -423,7 +423,7 @@ func createMsigTxn() error {
 	var err error
 
 	msigaddr, _ := msig.Address()
-	txn, err = transaction.MakePaymentTxn(msigaddr.String(), to, fee, amt, fv, lv, note, close, gen, gh)
+	txn, err = transaction.MakePaymentTxn(msigaddr.String(), to, amt, note, close, )
 	if err != nil {
 		return err
 	}
@@ -757,7 +757,7 @@ func defaultTxn(iamt int, inote string) error {
 		return err
 	}
 	lastRound = params.LastRound
-	txn, err = transaction.MakePaymentTxn(accounts[0], accounts[1], params.Fee, amt, params.LastRound, params.LastRound+1000, note, "", params.GenesisID, params.GenesisHash)
+	txn, err = transaction.MakePaymentTxn(accounts[0], accounts[1], amt, note, "", )
 	return err
 }
 
@@ -801,7 +801,7 @@ func defaultMsigTxn(iamt int, inote string) error {
 	if err != nil {
 		return err
 	}
-	txn, err = transaction.MakePaymentTxn(addr.String(), accounts[1], params.Fee, amt, params.LastRound, params.LastRound+1000, note, "", params.GenesisID, params.GenesisHash)
+	txn, err = transaction.MakePaymentTxn(addr.String(), accounts[1], amt, note, "", )
 	if err != nil {
 		return err
 	}
@@ -996,7 +996,7 @@ func createSaveTxn() error {
 		return err
 	}
 	lastRound = params.LastRound
-	txn, err = transaction.MakePaymentTxn(accounts[0], accounts[1], params.Fee, amt, params.LastRound, params.LastRound+1000, note, "", params.GenesisID, params.GenesisHash)
+	txn, err = transaction.MakePaymentTxn(accounts[0], accounts[1], amt, note, "", )
 	if err != nil {
 		return err
 	}
@@ -1251,7 +1251,7 @@ func keyregTxnParams(ifee, ifv, ilv int, igh, ivotekey, iselkey string, ivotefst
 
 func createKeyregTxn() (err error) {
 	strGh := base64.StdEncoding.EncodeToString(gh)
-	txn, err = transaction.MakeKeyRegTxn(a.String(), fee, fv, lv, note, gen, strGh, votekey, selkey, votefst, votelst, votekd)
+	txn, err = transaction.MakeKeyRegTxn(a.String(), note,, votekey, selkey, votefst, votelst, votekd)
 	if err != nil {
 		return err
 	}
@@ -1317,7 +1317,7 @@ func assetCreateTxnHelper(issuance int, frozenState bool) error {
 	assetName := assetTestFixture.AssetName
 	url := assetTestFixture.AssetURL
 	metadataHash := assetTestFixture.AssetMetadataHash
-	assetCreateTxn, err := transaction.MakeAssetCreateTxn(creator, 10, firstRound, lastRoundValid, assetNote, genesisID, genesisHash, assetIssuance, 0, frozenState, manager, reserve, freeze, clawback, unitName, assetName, url, metadataHash)
+	assetCreateTxn, err := transaction.MakeAssetCreateTxn(creator, assetNote,, assetIssuance, 0, frozenState, manager, reserve, freeze, clawback, unitName, assetName, url, metadataHash)
 	assetTestFixture.LastTransactionIssued = assetCreateTxn
 	txn = assetCreateTxn
 	assetTestFixture.ExpectedParams = convertTransactionAssetParamsToModelsAssetParam(assetCreateTxn.AssetParams)
@@ -1350,8 +1350,7 @@ func createNoManagerAssetReconfigure() error {
 	freeze := ""
 	clawback := ""
 	manager := creator // if this were "" as well, this wouldn't be a reconfigure txn, it would be a destroy txn
-	assetReconfigureTxn, err := transaction.MakeAssetConfigTxn(creator, 10, firstRound, lastRoundValid, assetNote,
-		genesisID, genesisHash, assetTestFixture.AssetIndex, manager, reserve, freeze, clawback, false)
+	assetReconfigureTxn, err := transaction.MakeAssetConfigTxn(creator, assetNote,, assetTestFixture.AssetIndex, manager, reserve, freeze, clawback, false)
 	assetTestFixture.LastTransactionIssued = assetReconfigureTxn
 	txn = assetReconfigureTxn
 	// update expected params
@@ -1373,8 +1372,7 @@ func createAssetDestroy() error {
 	assetNote := []byte(nil)
 	genesisID := params.GenesisID
 	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
-	assetDestroyTxn, err := transaction.MakeAssetDestroyTxn(creator, 10, firstRound, lastRoundValid,
-		assetNote, genesisID, genesisHash, assetTestFixture.AssetIndex)
+	assetDestroyTxn, err := transaction.MakeAssetDestroyTxn(creator, assetNote,, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetDestroyTxn
 	txn = assetDestroyTxn
 	// update expected params
@@ -1509,8 +1507,7 @@ func createAssetAcceptanceForSecondAccount() error {
 	assetNote := []byte(nil)
 	genesisID := params.GenesisID
 	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
-	assetAcceptanceTxn, err := transaction.MakeAssetAcceptanceTxn(accountToUse, 10, firstRound,
-		lastRoundValid, assetNote, genesisID, genesisHash, assetTestFixture.AssetIndex)
+	assetAcceptanceTxn, err := transaction.MakeAssetAcceptanceTxn(accountToUse, assetNote,, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
 	txn = assetAcceptanceTxn
 	return err
@@ -1531,8 +1528,7 @@ func createAssetTransferTransactionToSecondAccount(amount int) error {
 	assetNote := []byte(nil)
 	genesisID := params.GenesisID
 	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
-	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(creator, recipient, closeAssetsTo, sendAmount,
-		10, firstRound, lastRoundValid, assetNote, genesisID, genesisHash, assetTestFixture.AssetIndex)
+	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(creator, recipient, sendAmount, assetNote,, closeAssetsTo, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
 	txn = assetAcceptanceTxn
 	return err
@@ -1553,8 +1549,7 @@ func createAssetTransferTransactionFromSecondAccountToCreator(amount int) error 
 	assetNote := []byte(nil)
 	genesisID := params.GenesisID
 	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
-	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(sender, recipient, closeAssetsTo, sendAmount,
-		10, firstRound, lastRoundValid, assetNote, genesisID, genesisHash, assetTestFixture.AssetIndex)
+	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(sender, recipient, sendAmount, assetNote,, closeAssetsTo, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
 	txn = assetAcceptanceTxn
 	return err
@@ -1573,8 +1568,7 @@ func freezeTransactionHelper(target string, setting bool) error {
 	assetNote := []byte(nil)
 	genesisID := params.GenesisID
 	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
-	assetFreezeOrUnfreezeTxn, err := transaction.MakeAssetFreezeTxn(assetTestFixture.Creator, 10, firstRound, lastRoundValid,
-		assetNote, genesisID, genesisHash, assetTestFixture.AssetIndex, target, setting)
+	assetFreezeOrUnfreezeTxn, err := transaction.MakeAssetFreezeTxn(assetTestFixture.Creator, assetNote,, assetTestFixture.AssetIndex, target, setting)
 	assetTestFixture.LastTransactionIssued = assetFreezeOrUnfreezeTxn
 	txn = assetFreezeOrUnfreezeTxn
 	return err
@@ -1600,9 +1594,7 @@ func createRevocationTransaction(amount int) error {
 	assetNote := []byte(nil)
 	genesisID := params.GenesisID
 	genesisHash := base64.StdEncoding.EncodeToString(params.GenesisHash)
-	assetRevokeTxn, err := transaction.MakeAssetRevocationTxn(assetTestFixture.Creator, accounts[1],
-		assetTestFixture.Creator, revocationAmount, 10, firstRound, lastRoundValid, assetNote,
-		genesisID, genesisHash, assetTestFixture.AssetIndex)
+	assetRevokeTxn, err := transaction.MakeAssetRevocationTxn(assetTestFixture.Creator, accounts[1], revocationAmount, assetTestFixture.Creator, assetNote,, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetRevokeTxn
 	txn = assetRevokeTxn
 	return err
@@ -1686,7 +1678,7 @@ func iFundTheContractAccount() error {
 		return err
 	}
 	lastRound = params.LastRound
-	txn, err = transaction.MakePaymentTxn(accounts[0], contractTestFixture.activeAddress, params.Fee, amount, lastRound, lastRound+5, nil, "", "", params.GenesisHash)
+	txn, err = transaction.MakePaymentTxn(accounts[0], contractTestFixture.activeAddress, amount, nil, "", )
 	if err != nil {
 		return err
 	}
