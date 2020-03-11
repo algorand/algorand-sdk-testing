@@ -41,15 +41,8 @@ def setup_algod(config_file):
     tar.extractall(path='%s/inst' % home)
     subprocess.check_call(['%s/inst/update.sh -i -c %s -p %s -d %s/data -n' % (home, d['CHANNEL'], d['BIN_DIR'], d['BIN_DIR'])], shell=True)
 
-def setup_files():
-    subprocess.check_call(['rm -rf temp'], shell=True)
-    subprocess.check_call(['rm -rf %s' % (sdk.default_dirs['features_dir'],)], shell=True)
-    subprocess.check_call(['cp %s/sdk.py temp/docker' % (sdk.default_dirs["docker"],)], shell=True)
-    subprocess.check_call(['mv temp/features %s' % (sdk.default_dirs['features_dir'],)], shell=True)
-
 
 if __name__ == '__main__':
     args = parser.parse_args()
     sdk.setup_sdk()
     setup_algod(args.algod_config)
-    setup_files()
