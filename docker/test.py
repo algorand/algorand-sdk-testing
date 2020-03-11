@@ -74,13 +74,6 @@ def start_network(bin_dir, network_dir, config, template):
     # $BIN_DIR/goal network start -r $NETWORK_DIR
     subprocess.check_call(['%s/goal network start -r %s' % (bin_dir, network_dir)], shell=True)
 
-    # if $cross
-    # then
-    #     mkdir temp
-    # fi
-
-
-
 
 if __name__ == '__main__':
     args = parser.parse_args()
