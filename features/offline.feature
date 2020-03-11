@@ -23,17 +23,6 @@ Feature: Offline
     | mn                                                                                                                                                                   |
     | advice pudding treat near rule blouse same whisper inner electric quit surface sunny dismiss leader blood seat clown cost exist hospital century reform able sponsor |
 
-  Scenario Outline: Sign transaction
-    Given payment transaction parameters <fee> <fv> <lv> "<gh>" "<to>" "<close>" <amt> "<gen>" "<note>"
-    And mnemonic for private key "<mn>"
-    When I create the payment transaction
-    And I sign the transaction with the private key
-    Then the signed transaction should equal the golden "<golden>"
-
-    Examples: 
-    | fee | fv    | lv    | gh                                           | to                                                         | close                                                      | amt  | gen          | note         | mn                                                                                                                                                                   | golden                                                                                                                                                                                                                                                                                                                                                                                                       |
-    | 4   | 12466 | 13466 | JgsgCaCTqIaLeVhyL6XlRu3n7Rfk2FxMeK+wRSaQ7dI= | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI | IDUTJEUIEVSMXTU4LGTJWZ2UE2E6TIODUKU6UW3FU3UKIQQ77RLUBBBFLA | 1000 | devnet-v33.0 | 6gAVR0Nsv5Y= | advice pudding treat near rule blouse same whisper inner electric quit surface sunny dismiss leader blood seat clown cost exist hospital century reform able sponsor | gqNzaWfEQPhUAZ3xkDDcc8FvOVo6UinzmKBCqs0woYSfodlmBMfQvGbeUx3Srxy3dyJDzv7rLm26BRv9FnL2/AuT7NYfiAWjdHhui6NhbXTNA+ilY2xvc2XEIEDpNJKIJWTLzpxZpptnVCaJ6aHDoqnqW2Wm6KRCH/xXo2ZlZc0EmKJmds0wsqNnZW6sZGV2bmV0LXYzMy4womdoxCAmCyAJoJOohot5WHIvpeVG7eftF+TYXEx4r7BFJpDt0qJsds00mqRub3RlxAjqABVHQ2y/lqNyY3bEIHts4k/rW6zAsWTinCIsV/X2PcOH1DkEglhBHF/hD3wCo3NuZMQg5/D4TQaBHfnzHI2HixFV9GcdUaGFwgCQhmf0SVhwaKGkdHlwZaNwYXk= |
-
   Scenario Outline: Sign transaction with flat fee
     Given payment transaction parameters <fee> <fv> <lv> "<gh>" "<to>" "<close>" <amt> "<gen>" "<note>"
     And mnemonic for private key "<mn>"
@@ -97,14 +86,3 @@ Feature: Offline
     | 123456789016 |
     | 123456789017 |
   
-  Scenario Outline: Create key registration transaction
-    Given key registration transaction parameters <fee> <fv> <lv> "<gh>" "<votekey>" "<selkey>" <votefst> <votelst> <votekd> "<gen>" "<note>"
-    And mnemonic for private key "<mn>"
-    When I create the key registration transaction
-    And I sign the transaction with the private key
-    Then the signed transaction should equal the golden "<golden>"
-
-    Examples:
-    | fee | fv    | lv    | gh                                           | votekey                                      | selkey                                       | votefst | votelst | votekd | gen          | note         | mn                                                                                                                                                                   | golden                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-    | 4   | 12466 | 13466 | JgsgCaCTqIaLeVhyL6XlRu3n7Rfk2FxMeK+wRSaQ7dI= | JgsgCaCTqIaLeVhyL6XlRu3n7Rfk2FxMeK+wRSaQ7dI= | JgsgCaCTqIaLeVhyL6XlRu3n7Rfk2FxMeK+wRSaQ7dI= | 100     | 102     | 1234   | devnet-v33.0 | X4Bl4wQ9rCo= | advice pudding treat near rule blouse same whisper inner electric quit surface sunny dismiss leader blood seat clown cost exist hospital century reform able sponsor | gqNzaWfEQCzedNPqrhDsDBMY9vktJhaXjbJ2MJqr6Opt7Xae1uNQPVczCPin3feuk9YqhmmmLVNbzOgAS6nRh+K8MhgF+AKjdHhujaNmZWXNBQyiZnbNMLKjZ2VurGRldm5ldC12MzMuMKJnaMQgJgsgCaCTqIaLeVhyL6XlRu3n7Rfk2FxMeK+wRSaQ7dKibHbNNJqkbm90ZcQIX4Bl4wQ9rCqmc2Vsa2V5xCAmCyAJoJOohot5WHIvpeVG7eftF+TYXEx4r7BFJpDt0qNzbmTEIOfw+E0GgR358xyNh4sRVfRnHVGhhcIAkIZn9ElYcGihpHR5cGWma2V5cmVnp3ZvdGVmc3RkpnZvdGVrZM0E0qd2b3Rla2V5xCAmCyAJoJOohot5WHIvpeVG7eftF+TYXEx4r7BFJpDt0qd2b3RlbHN0Zg== |
-    | 5   | 19    | 345   | JgsgCaCTqIaLeVhyL6XlRu3n7Rfk2FxMeK+wRSaQ7dI= | oImqaSLjuZj63/bNSAjd+eAh5JROOJ6j1cY4eGaJGX4= | uw62NBVKGAtqJ03XdSlcNtO6eq5rXbDMEMVGLbDzMN8= | 123     | 1000    | 65     | none         | none         | advice pudding treat near rule blouse same whisper inner electric quit surface sunny dismiss leader blood seat clown cost exist hospital century reform able sponsor | gqNzaWfEQNi9HHxsOAUwjXOHgpsEJvpe+b6hjLjIoWM9P389HMZ4RWZSB8uVvk1Kg+e52NvxTI3Vm9+Vl9W+dATm3m55ZAOjdHhui6NmZWXNBaWiZnYTomdoxCAmCyAJoJOohot5WHIvpeVG7eftF+TYXEx4r7BFJpDt0qJsds0BWaZzZWxrZXnEILsOtjQVShgLaidN13UpXDbTunqua12wzBDFRi2w8zDfo3NuZMQg5/D4TQaBHfnzHI2HixFV9GcdUaGFwgCQhmf0SVhwaKGkdHlwZaZrZXlyZWendm90ZWZzdHumdm90ZWtkQad2b3Rla2V5xCCgiappIuO5mPrf9s1ICN354CHklE44nqPVxjh4ZokZfqd2b3RlbHN0zQPo                                                 |

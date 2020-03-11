@@ -130,8 +130,9 @@ def setup_javascript(config):
     #     npm install $TRAVIS_BUILD_DIR --silent
     # fi
     # popd
-    subprocess.check_call(['npm install %s --silent' % config['source']], shell=True, cwd=config['cucumber'])
-    # subprocess.check_call(['npm install --silent'], shell=True, cwd=config['cucumber'])
+    subprocess.check_call(['npm install --silent'], shell=True, cwd=config['cucumber'])
+    subprocess.check_call(['npm install %s --silent' % config['source']], shell=True)
+    pass
 
 
 def setup_python(config):

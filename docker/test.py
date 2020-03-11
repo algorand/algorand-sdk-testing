@@ -117,9 +117,12 @@ def start_network(sdk_dir, bin_dir, network_dir, config, template):
 
 def run_java_tests(JAVA):
     sys.stdout.flush()
-    #subprocess.check_call(['mvn test -Dcucumber.options="--tags \\"not @crosstest\\""'], shell=True, cwd=JAVA['cucumber'])
+    subprocess.check_call(['cat pom.xml'], shell=True, cwd=JAVA['cucumber'])
+    subprocess.check_call(['mvn test -Dcucumber.options="--tags \\"not @crosstest\\""'], shell=True, cwd=JAVA['cucumber'])
+    subprocess.check_call(['cat pom.xml'], shell=True, cwd=JAVA['cucumber'])
+
     #subprocess.check_call(['mvn test -Dcucumber.options="--tags @template"'], shell=True, cwd=JAVA['cucumber'])
-    subprocess.check_call(['mvn test -Dcucumber.options="/opt/sdk-testing/features/template.feature"'], shell=True, cwd=JAVA['cucumber'])
+    # subprocess.check_call(['mvn test -Dcucumber.options="/opt/sdk-testing/features/template.feature"'], shell=True, cwd=JAVA['cucumber'])
 
 
 if __name__ == '__main__':
