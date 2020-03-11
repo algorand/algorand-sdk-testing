@@ -44,7 +44,6 @@ def setup_algod(config_file):
 def setup_files():
     subprocess.check_call(['rm -rf temp'], shell=True)
     subprocess.check_call(['rm -rf %s' % (sdk.default_dirs['features_dir'],)], shell=True)
-    subprocess.check_call(['git clone --single-branch --branch michelle/test https://github.com/algorand/algorand-sdk-testing.git temp'], shell=True)
     subprocess.check_call(['cp %s/sdk.py temp/docker' % (sdk.default_dirs["docker"],)], shell=True)
     subprocess.check_call(['mv temp/features %s' % (sdk.default_dirs['features_dir'],)], shell=True)
 
