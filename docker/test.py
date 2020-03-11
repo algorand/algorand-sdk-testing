@@ -95,8 +95,8 @@ if __name__ == '__main__':
         os.environ[k] = v
     os.environ['NETWORK_DIR'] = args.network_dir
 
-    template = join(sdk.default_dirs['temp'], 'network_config', d['TEMPLATE'])
-    config = join(sdk.default_dirs['temp'], 'network_config', 'config.json')
+    template = join(sdk.default_dirs['source'], 'temp', 'network_config', d['TEMPLATE'])
+    config = join(sdk.default_dirs['source'], 'temp', 'network_config', 'config.json')
 
     try:
         start_network(d['BIN_DIR'], args.network_dir, config, template)
