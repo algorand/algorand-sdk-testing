@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sdk
 import argparse
 import git
 import os
@@ -9,49 +10,13 @@ import subprocess
 import sys
 import tarfile
 import time
-import urllib.request
 from os.path import expanduser, join
 
 parser = argparse.ArgumentParser(description='Install SDKs according to the configuration, either some default or override with a commit hash / local mount.')
 
 # Environment config.
 parser.add_argument('--algod-config', required=True, help='Path to algod config file.')
-parser.add_argument('--sdk-testing', required=True, help='Path to SDK Testing repo root.')
 parser.add_argument('--network-dir', required=True, help='Path to create network.')
-
-# Tests.
-parser.add_argument('--java', dest='java', required=False, action='store_true', help='Flag to enable java tests.')
-parser.add_argument('--javascript', dest='javascript', required=False, action='store_true', help='Flag to enable javascript tests.')
-parser.add_argument('--python', dest='python', required=False, action='store_true', help='Flag to enable python tests.')
-parser.add_argument('--go', dest='go', required=False, action='store_true', help='Flag to enable go tests.')
-
-parser.set_defaults(java=False)
-parser.set_defaults(javascript=False)
-parser.set_defaults(python=False)
-parser.set_defaults(go=False)
-
-JAVA = { 
-    'features_dir': '/opt/sdk-testing/java_cucumber/src/test/resources/java_cucumber',
-    'cucumber': '/opt/sdk-testing/java_cucumber',
-    'url': 'https://github.com/algorand/java-algorand-sdk.git',
-    'source': '/opt/sdk_java'
-}
-
-JAVASCRIPT = {
-    'features_dir': '/opt/sdk-testing/js_cucumber/features',
-    'cucumber': '/opt/sdk-testing/js_cucumber'
-}
-
-GO = {
-    'features_dir': '/opt/sdk-testing/go_godoc/src/features',
-    'cucumber': '/opt/sdk-testing/go_godog'
-}
-
-PYTHON = {
-    'features_dir': '/opt/sdk-testing/py_behave',
-    'cucumber': '/opt/sdk-testing/py_behave'
-}
-
 
 def copy_files(src, dst):
     """
@@ -85,7 +50,7 @@ def cleanup_network(bin_dir, network_dir):
         shutil.rmtree(args.network_dir)
 
 
-def start_network(sdk_dir, bin_dir, network_dir, config, template):
+def start_network(bin_dir, network_dir, config, template):
     """
     Create and start a private network, sets NODE_DIR and KMD_DIR environment variables.
     """
@@ -115,14 +80,6 @@ def start_network(sdk_dir, bin_dir, network_dir, config, template):
     # fi
 
 
-def run_java_tests(JAVA):
-    sys.stdout.flush()
-    subprocess.check_call(['cat pom.xml'], shell=True, cwd=JAVA['cucumber'])
-    subprocess.check_call(['mvn test -Dcucumber.options="--tags \\"not @crosstest\\""'], shell=True, cwd=JAVA['cucumber'])
-    subprocess.check_call(['cat pom.xml'], shell=True, cwd=JAVA['cucumber'])
-
-    #subprocess.check_call(['mvn test -Dcucumber.options="--tags @template"'], shell=True, cwd=JAVA['cucumber'])
-    # subprocess.check_call(['mvn test -Dcucumber.options="/opt/sdk-testing/features/template.feature"'], shell=True, cwd=JAVA['cucumber'])
 
 
 if __name__ == '__main__':
@@ -138,20 +95,13 @@ if __name__ == '__main__':
         os.environ[k] = v
     os.environ['NETWORK_DIR'] = args.network_dir
 
-    features_dir = join(args.sdk_testing, 'features')
-
-    copy_files(features_dir, JAVA['features_dir'])
-    copy_files(features_dir, JAVASCRIPT['features_dir'])
-    copy_files(features_dir, PYTHON['features_dir'])
-    copy_files(features_dir, GO['features_dir'])
-
-    template = join(args.sdk_testing, 'network_config', d['TEMPLATE'])
-    config = join(args.sdk_testing, 'network_config', 'config.json')
+    template = join(sdk.default_dirs['temp'], 'network_config', d['TEMPLATE'])
+    config = join(sdk.default_dirs['temp'], 'network_config', 'config.json')
 
     try:
-        start_network(args.sdk_testing, d['BIN_DIR'], args.network_dir, config, template)
+        start_network(d['BIN_DIR'], args.network_dir, config, template)
 
-        run_java_tests(JAVA)
+        sdk.test_sdk()
     except subprocess.CalledProcessError as e:
         print('An error occurred while running tests!')
         print(e)
