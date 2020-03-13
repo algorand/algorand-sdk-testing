@@ -285,25 +285,36 @@ public class Stepdefs {
 
     @When("I create the payment transaction")
     public void createPaytxn() throws NoSuchAlgorithmException, JsonProcessingException, IOException{
-        txn = new Transaction(
-                    pk,
-                    fee,
-                    fv,
-                    lv,
-                    note,
-                    gen,
-                    gh,
-                    amt,
-                    to,
-                    close
-            );
-        Account.setFeeByFeePerByte(txn, txn.fee);
+        txn = Transaction.PaymentTransactionBuilder()
+                .sender(pk)
+                .fee(fee)
+                .firstValid(fv)
+                .lastValid(lv)
+                .note(note)
+                .genesisID(gen)
+                .genesisHash(gh)
+                .amount(amt)
+                .receiver(to)
+                .closeRemainderTo(close)
+                .build();
     }
 
     @When("I create the key registration transaction")
     public void createKeyregTxn() throws NoSuchAlgorithmException, JsonProcessingException, IOException{
-        txn = new Transaction(pk, fee, fv, lv, note, gen, gh, votepk, vrfpk, votefst, votelst, votekd);
-        Account.setFeeByFeePerByte(txn, txn.fee);
+        txn = Transaction.KeyRegistrationTransactionBuilder()
+                .sender(pk)
+                .fee(fee)
+                .firstValid(fv)
+                .lastValid(lv)
+                .note(note)
+                .genesisID(gen)
+                .genesisHash(gh)
+                .participationPublicKey(votepk)
+                .selectionPublicKey(vrfpk)
+                .voteFirst(votefst)
+                .voteLast(votelst)
+                .voteKeyDilution(votekd)
+                .build();
     }
 
     @Given("multisig addresses {string}")
@@ -319,19 +330,18 @@ public class Stepdefs {
 
     @When("I create the multisig payment transaction")
     public void createMsigTxn() throws NoSuchAlgorithmException{
-        txn = new Transaction(
-            new Address(msig.toString()),
-            fee,
-            fv,
-            lv,
-            note,
-            gen,
-            gh,
-            amt,
-            to,
-            close
-        );
-        Account.setFeeByFeePerByte(txn, txn.fee);
+        txn = Transaction.PaymentTransactionBuilder()
+                .sender(msig.toString())
+                .fee(fee)
+                .firstValid(fv)
+                .lastValid(lv)
+                .note(note)
+                .genesisID(gen)
+                .genesisHash(gh)
+                .amount(amt)
+                .receiver(to)
+                .closeRemainderTo(close)
+                .build();
     }
 
     @When("I sign the multisig transaction with the private key")
@@ -613,18 +623,13 @@ public class Stepdefs {
         } else{
             this.note = Encoder.decodeFromBase64(note);
         }
-        txn = new Transaction(
-                    getAddress(0),
-                    params.getFee(),
-                    params.getLastRound(),
-                    params.getLastRound().add(BigInteger.valueOf(1000)),
-                    this.note,
-                    BigInteger.valueOf(amt),
-                    getAddress(1),
-                    params.getGenesisID(),
-                    new Digest(params.getGenesishashb64())
-            );
-        Account.setFeeByFeePerByte(txn, txn.fee);
+        txn = Transaction.PaymentTransactionBuilder()
+                .sender(getAddress(0))
+                .suggestedParams(params)
+                .note(this.note)
+                .amount(amt)
+                .receiver(getAddress(1))
+                .build();
         pk = getAddress(0);
     }
 
@@ -641,18 +646,13 @@ public class Stepdefs {
             addrlist[x] = new Ed25519PublicKey((getAddress(x)).getBytes());
         }
         msig = new MultisigAddress(1, 1, Arrays.asList(addrlist));
-        txn = new Transaction(
-                    new Address(msig.toString()),
-                    params.getFee(),
-                    params.getLastRound(),
-                    params.getLastRound().add(BigInteger.valueOf(1000)),
-                    this.note,
-                    BigInteger.valueOf(amt),
-                    getAddress(1),
-                    params.getGenesisID(),
-                    new Digest(params.getGenesishashb64())
-            );
-        Account.setFeeByFeePerByte(txn, txn.fee);
+        txn = Transaction.PaymentTransactionBuilder()
+                .sender(msig.toString())
+                .suggestedParams(params)
+                .note(this.note)
+                .amount(amt)
+                .receiver(getAddress(1))
+                .build();
         pk = getAddress(0);
     }
 
@@ -905,18 +905,18 @@ public class Stepdefs {
 
     @When("I create the flat fee payment transaction")
     public void createPaytxnFlat() throws NoSuchAlgorithmException{
-        txn = new Transaction(
-                    pk,
-                    fee,
-                    fv,
-                    lv,
-                    note,
-                    gen,
-                    gh,
-                    amt,
-                    to,
-                    close
-            );    
+        txn = Transaction.PaymentTransactionBuilder()
+                .sender(pk)
+                .flatFee(fee)
+                .firstValid(fv)
+                .lastValid(lv)
+                .note(note)
+                .genesisID(gen)
+                .genesisHash(gh)
+                .amount(amt)
+                .receiver(to)
+                .closeRemainderTo(close)
+                .build();
     }
 
     @Given("encoded multisig transaction {string}")

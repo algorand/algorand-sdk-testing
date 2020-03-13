@@ -47,19 +47,20 @@ public class TemplateDefs {
         this.base = base;
     }
 
+    @Given("contract test fixture")
+    public void contract_test_fixture() {
+    }
+
     // Shared across contracts.
     @When("I fund the contract account")
     public void i_fund_the_contract_account() throws JsonProcessingException, com.algorand.algosdk.kmd.client.ApiException, ApiException, InterruptedException {
         base.getParams();
-
-        Transaction txn = new Transaction(
-                base.getAddress(0),
-                contract.address,
-                contractFundAmount,
-                base.params.getLastRound().longValue(),
-                base.params.getLastRound().add(BigInteger.valueOf(1000)).longValue(),
-                "",
-                new Digest(base.params.getGenesishashb64()));
+        Transaction txn = Transaction.PaymentTransactionBuilder()
+                .sender(base.getAddress(0))
+                .receiver(contract.address)
+                .amount(contractFundAmount)
+                .suggestedParams(base.params)
+                .build();
 
         SignTransactionRequest req = new SignTransactionRequest();
         req.setTransaction(Encoder.encodeToMsgPack(txn));
