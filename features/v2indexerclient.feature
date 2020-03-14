@@ -1,4 +1,4 @@
-Feature: Indexer v2
+Feature: Indexer Client v2
   Background:
     Given an indexer client pointing at a mock server
 
