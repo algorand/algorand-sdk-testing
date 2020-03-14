@@ -989,26 +989,20 @@ public class Stepdefs {
     public void default_asset_creation_transaction_with_total_issuance(Integer assetTotal) throws NoSuchAlgorithmException, ApiException, InvalidKeySpecException {
         getParams();
 
-        Transaction tx = Transaction.createAssetCreateTransaction(
-                getAddress(0), // sender source address
-                params.getFee(), // transaction fee
-                params.getLastRound(), // first valid round
-                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
-                this.note,
-                params.getGenesisID(),
-                new Digest(params.getGenesishashb64()),
-                BigInteger.valueOf(assetTotal),
-                0,
-                false, // defaultFrozen
-                this.assetUnitName,
-                this.assetName,
-                "", //url
-                null, //metadatahash
-                getAddress(0), // manager
-                getAddress(0), // reserve
-                getAddress(0), // freeze
-                getAddress(0)); // clawback
-        Account.setFeeByFeePerByte(tx, tx.fee);
+        Transaction tx = Transaction.AssetCreateTransactionBuilder()
+                .sender(getAddress(0))
+                .suggestedParams(params)
+                .note(this.note)
+                .assetTotal(assetTotal)
+                .assetDecimals(0)
+                .assetName(this.assetName)
+                .assetUnitName(this.assetUnitName)
+                .manager(getAddress(0))
+                .reserve(getAddress(0))
+                .clawback(getAddress(0))
+                .freeze(getAddress(0))
+                .build();
+
         this.creator = addresses.get(0);
         this.txn = tx;
         this.expectedParams = tx.assetParams;
@@ -1031,20 +1025,14 @@ public class Stepdefs {
     public void i_create_a_no_managers_asset_reconfigure_transaction() throws NoSuchAlgorithmException, ApiException, InvalidKeySpecException {
         getParams();
 
-        Transaction tx = Transaction.createAssetConfigureTransaction(
-                new Address(this.creator), // sender source address
-                params.getFee(), // transaction fee
-                params.getLastRound(), // first valid round
-                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
-                this.note,
-                params.getGenesisID(),
-                new Digest(params.getGenesishashb64()),
-                this.assetID,
-                new Address(this.creator), // manager
-                new Address(), // reserve
-                new Address(), // freeze
-                new Address(), false); // clawback
-        Account.setFeeByFeePerByte(tx, tx.fee);
+        Transaction tx = Transaction.AssetConfigureTransactionBuilder()
+                .sender(this.creator)
+                .suggestedParams(params)
+                .note(this.note)
+                .assetIndex(this.assetID)
+                .manager(this.creator)
+                .strictEmptyAddressChecking(false)
+                .build();
         this.txn = tx;
         this.expectedParams = tx.assetParams;        
     }
@@ -1053,15 +1041,12 @@ public class Stepdefs {
     public void i_create_an_asset_destroy_transaction() throws NoSuchAlgorithmException, ApiException, InvalidKeySpecException {
         getParams();
 
-        Transaction tx = Transaction.createAssetDestroyTransaction(
-                new Address(this.creator), // sender source address
-                params.getFee(), // transaction fee
-                params.getLastRound(), // first valid round
-                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
-                this.note,
-                new Digest(params.getGenesishashb64()),
-                this.assetID);
-        Account.setFeeByFeePerByte(tx, tx.fee);
+        Transaction tx = Transaction.AssetDestroyTransactionBuilder()
+                .sender(this.creator)
+                .suggestedParams(this.params)
+                .note(this.note)
+                .assetIndex(this.assetID)
+                .build();
         this.txn = tx;
         this.expectedParams = tx.assetParams;     
     }
@@ -1081,19 +1066,14 @@ public class Stepdefs {
     public void i_create_a_transaction_transferring_assets_from_creator_to_a_second_account(Integer int1) throws NoSuchAlgorithmException, ApiException, InvalidKeySpecException {
         getParams();
 
-        Transaction tx = Transaction.createAssetTransferTransaction(
-                new Address(this.creator), // sender source address
-                getAddress(1),
-                new Address(),
-                BigInteger.valueOf(int1),
-                params.getFee(), // transaction fee
-                params.getLastRound(), // first valid round
-                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
-                this.note,
-                params.getGenesisID(),
-                new Digest(params.getGenesishashb64()),
-                this.assetID);
-        Account.setFeeByFeePerByte(tx, tx.fee);
+        Transaction tx = Transaction.AssetTransferTransactionBuilder()
+                .sender(this.creator)
+                .assetReceiver(getAddress(1))
+                .assetAmount(int1)
+                .suggestedParams(this.params)
+                .note(this.note)
+                .assetIndex(this.assetID)
+                .build();
         this.txn = tx;
         this.pk = getAddress(0);
     }
@@ -1126,16 +1106,12 @@ public class Stepdefs {
     public void i_create_a_transaction_for_a_second_account_signalling_asset_acceptance() throws ApiException, NoSuchAlgorithmException {
         getParams();
 
-        Transaction tx = Transaction.createAssetAcceptTransaction(
-                getAddress(1),
-                params.getFee(), // transaction fee
-                params.getLastRound(), // first valid round
-                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
-                this.note,
-                params.getGenesisID(),
-                new Digest(params.getGenesishashb64()),
-                this.assetID);
-        Account.setFeeByFeePerByte(tx, tx.fee);
+        Transaction tx = Transaction.AssetAcceptTransactionBuilder()
+                .acceptingAccount(getAddress(1))
+                .suggestedParams(this.params)
+                .note(this.note)
+                .assetIndex(this.assetID)
+                .build();
         this.txn = tx;
         this.pk = getAddress(1);
     }
@@ -1150,17 +1126,14 @@ public class Stepdefs {
         this.renewHandle(); // to avoid handle expired error
         getParams();
 
-        Transaction tx = Transaction.createAssetFreezeTransaction(
-                getAddress(0), // transaction sender
-                getAddress(1), // account to freeze
-                true, // freeze state
-                params.getFee(), // transaction fee
-                params.getLastRound(), // first valid round
-                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
-                this.note,
-                new Digest(params.getGenesishashb64()),
-                this.assetID);
-        Account.setFeeByFeePerByte(tx, tx.fee);
+        Transaction tx = Transaction.AssetFreezeTransactionBuilder()
+                .sender(getAddress(0))
+                .freezeTarget(getAddress(1))
+                .freezeState(true)
+                .assetIndex(this.assetID)
+                .note(this.note)
+                .suggestedParams(this.params)
+                .build();
         this.txn = tx;
         this.pk = getAddress(0);
     }
@@ -1169,19 +1142,14 @@ public class Stepdefs {
     public void i_create_a_transaction_transferring_assets_from_a_second_account_to_creator(Integer int1) throws ApiException, NoSuchAlgorithmException {
         getParams();
 
-        Transaction tx = Transaction.createAssetTransferTransaction(
-                getAddress(1),
-                new Address(this.creator), // sender source address
-                new Address(),
-                BigInteger.valueOf(int1),
-                params.getFee(), // transaction fee
-                params.getLastRound(), // first valid round
-                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
-                this.note,
-                params.getGenesisID(),
-                new Digest(params.getGenesishashb64()),
-                this.assetID);
-        Account.setFeeByFeePerByte(tx, tx.fee);
+        Transaction tx = Transaction.AssetTransferTransactionBuilder()
+                .sender(getAddress(1))
+                .assetReceiver(this.creator)
+                .assetAmount(int1)
+                .note(this.note)
+                .assetIndex(this.assetID)
+                .suggestedParams(this.params)
+                .build();
         this.txn = tx;
         this.pk = getAddress(1);
     }
@@ -1191,17 +1159,14 @@ public class Stepdefs {
         this.renewHandle(); // to avoid handle expired error
         getParams();
 
-        Transaction tx = Transaction.createAssetFreezeTransaction(
-                getAddress(0), // transaction sender
-                getAddress(1), // account to freeze
-                false, // freeze state
-                params.getFee(), // transaction fee
-                params.getLastRound(), // first valid round
-                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
-                this.note,
-                new Digest(params.getGenesishashb64()),
-                this.assetID);
-        Account.setFeeByFeePerByte(tx, tx.fee);
+        Transaction tx = Transaction.AssetFreezeTransactionBuilder()
+                .sender(getAddress(0))
+                .freezeTarget(getAddress(1))
+                .freezeState(false)
+                .assetIndex(this.assetID)
+                .note(this.note)
+                .suggestedParams(this.params)
+                .build();
         this.txn = tx;
         this.pk = getAddress(0);
     }
@@ -1210,25 +1175,20 @@ public class Stepdefs {
     public void default_frozen_asset_creation_transaction_with_total_issuance(Integer int1) throws ApiException, NoSuchAlgorithmException {
         getParams();
 
-        Transaction tx = Transaction.createAssetCreateTransaction(
-                getAddress(0), // sender source address
-                params.getFee(), // transaction fee
-                params.getLastRound(), // first valid round
-                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
-                this.note,
-                params.getGenesisID(),
-                new Digest(params.getGenesishashb64()),
-                BigInteger.valueOf(int1),
-                0,
-                true, // defaultFrozen
-                this.assetUnitName,
-                this.assetName,
-                "", //url
-                null, //metadatahash
-                getAddress(0), // manager
-                getAddress(0), // reserve
-                getAddress(0), // freeze
-                getAddress(0)); // clawback
+        Transaction tx = Transaction.AssetCreateTransactionBuilder()
+                .sender(getAddress(0))
+                .suggestedParams(this.params)
+                .note(this.note)
+                .assetTotal(int1)
+                .assetDecimals(0)
+                .defaultFrozen(true)
+                .assetName(this.assetName)
+                .assetUnitName(this.assetUnitName)
+                .manager(getAddress(0))
+                .reserve(getAddress(0))
+                .freeze(getAddress(0))
+                .clawback(getAddress(0))
+                .build();
         Account.setFeeByFeePerByte(tx, tx.fee);
         this.creator = addresses.get(0);
         this.txn = tx;
@@ -1239,19 +1199,15 @@ public class Stepdefs {
     public void i_create_a_transaction_revoking_assets_from_a_second_account_to_creator(Integer int1) throws ApiException, NoSuchAlgorithmException {
         getParams();
 
-        Transaction tx = Transaction.createAssetRevokeTransaction(
-                getAddress(0), // transaction sender
-                getAddress(1), // revoked from
-                getAddress(0), // asset receiver
-                BigInteger.valueOf(int1),
-                params.getFee(), // transaction fee
-                params.getLastRound(), // first valid round
-                params.getLastRound().add(BigInteger.valueOf(1000)), // last valid round
-                this.note,
-                params.getGenesisID(),
-                new Digest(params.getGenesishashb64()),
-                this.assetID);
-        Account.setFeeByFeePerByte(tx, tx.fee);
+        Transaction tx = Transaction.AssetClawbackTransactionBuilder()
+                .sender(getAddress(0))
+                .assetClawbackFrom(getAddress(1))
+                .assetReceiver(getAddress(0))
+                .assetAmount(int1)
+                .assetIndex(this.assetID)
+                .note(this.note)
+                .suggestedParams(this.params)
+                .build();
         this.txn = tx;
         this.pk = getAddress(0);
     }
