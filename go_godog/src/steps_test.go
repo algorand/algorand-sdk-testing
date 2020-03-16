@@ -25,9 +25,9 @@ import (
 	"github.com/algorand/go-algorand-sdk/client/kmd"
 	"github.com/algorand/go-algorand-sdk/crypto"
 	"github.com/algorand/go-algorand-sdk/encoding/msgpack"
+	"github.com/algorand/go-algorand-sdk/future"
 	"github.com/algorand/go-algorand-sdk/mnemonic"
 	"github.com/algorand/go-algorand-sdk/templates"
-	"github.com/algorand/go-algorand-sdk/transaction"
 	"github.com/algorand/go-algorand-sdk/types"
 	"github.com/cucumber/godog"
 	"github.com/cucumber/godog/colors"
@@ -407,7 +407,7 @@ func createTxn() error {
 		LastRoundValid:  types.Round(lv),
 		FlatFee:         false,
 	}
-	txn, err = transaction.MakePaymentTxn(a.String(), to, amt, note, close, paramsToUse)
+	txn, err = future.MakePaymentTxn(a.String(), to, amt, note, close, paramsToUse)
 	if err != nil {
 		return err
 	}
@@ -443,7 +443,7 @@ func createMsigTxn() error {
 		FlatFee:         false,
 	}
 	msigaddr, _ := msig.Address()
-	txn, err = transaction.MakePaymentTxn(msigaddr.String(), to, amt, note, close, paramsToUse)
+	txn, err = future.MakePaymentTxn(msigaddr.String(), to, amt, note, close, paramsToUse)
 	if err != nil {
 		return err
 	}
@@ -772,12 +772,12 @@ func defaultTxn(iamt int, inote string) error {
 
 	amt = uint64(iamt)
 	pk = accounts[0]
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
 	lastRound = uint64(params.FirstRoundValid)
-	txn, err = transaction.MakePaymentTxn(accounts[0], accounts[1], amt, note, "", params)
+	txn, err = future.MakePaymentTxn(accounts[0], accounts[1], amt, note, "", params)
 	return err
 }
 
@@ -812,7 +812,7 @@ func defaultMsigTxn(iamt int, inote string) error {
 	if err != nil {
 		return err
 	}
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
@@ -821,7 +821,7 @@ func defaultMsigTxn(iamt int, inote string) error {
 	if err != nil {
 		return err
 	}
-	txn, err = transaction.MakePaymentTxn(addr.String(), accounts[1], amt, note, "", params)
+	txn, err = future.MakePaymentTxn(addr.String(), accounts[1], amt, note, "", params)
 	if err != nil {
 		return err
 	}
@@ -1011,12 +1011,12 @@ func createSaveTxn() error {
 
 	amt = 100000
 	pk = accounts[0]
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
 	lastRound = uint64(params.FirstRoundValid)
-	txn, err = transaction.MakePaymentTxn(accounts[0], accounts[1], amt, note, "", params)
+	txn, err = future.MakePaymentTxn(accounts[0], accounts[1], amt, note, "", params)
 	if err != nil {
 		return err
 	}
@@ -1068,7 +1068,7 @@ func txnsPending() error {
 
 func suggestedParams() error {
 	var err error
-	sugParams, err = acl.SuggestedParams()
+	sugParams, err = acl.BuildSuggestedParams()
 	return err
 }
 
@@ -1172,7 +1172,7 @@ func createTxnFlat() error {
 		LastRoundValid:  types.Round(lv),
 		FlatFee:         true,
 	}
-	txn, err = transaction.MakePaymentTxn(a.String(), to, amt, note, close, paramsToUse)
+	txn, err = future.MakePaymentTxn(a.String(), to, amt, note, close, paramsToUse)
 	if err != nil {
 		return err
 	}
@@ -1286,7 +1286,7 @@ func createKeyregTxn() (err error) {
 		LastRoundValid:  types.Round(lv),
 		FlatFee:         false,
 	}
-	txn, err = transaction.MakeKeyRegTxn(a.String(), note, paramsToUse, votekey, selkey, votefst, votelst, votekd)
+	txn, err = future.MakeKeyRegTxn(a.String(), note, paramsToUse, votekey, selkey, votefst, votelst, votekd)
 	if err != nil {
 		return err
 	}
@@ -1333,7 +1333,7 @@ func assetCreateTxnHelper(issuance int, frozenState bool) error {
 	accountToUse := accounts[0]
 	assetTestFixture.Creator = accountToUse
 	creator := assetTestFixture.Creator
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
@@ -1348,7 +1348,7 @@ func assetCreateTxnHelper(issuance int, frozenState bool) error {
 	assetName := assetTestFixture.AssetName
 	url := assetTestFixture.AssetURL
 	metadataHash := assetTestFixture.AssetMetadataHash
-	assetCreateTxn, err := transaction.MakeAssetCreateTxn(creator, assetNote, params, assetIssuance, 0, frozenState, manager, reserve, freeze, clawback, unitName, assetName, url, metadataHash)
+	assetCreateTxn, err := future.MakeAssetCreateTxn(creator, assetNote, params, assetIssuance, 0, frozenState, manager, reserve, freeze, clawback, unitName, assetName, url, metadataHash)
 	assetTestFixture.LastTransactionIssued = assetCreateTxn
 	txn = assetCreateTxn
 	assetTestFixture.ExpectedParams = convertTransactionAssetParamsToModelsAssetParam(assetCreateTxn.AssetParams)
@@ -1367,7 +1367,7 @@ func defaultAssetCreateTxnWithDefaultFrozen(issuance int) error {
 
 func createNoManagerAssetReconfigure() error {
 	creator := assetTestFixture.Creator
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
@@ -1377,7 +1377,7 @@ func createNoManagerAssetReconfigure() error {
 	freeze := ""
 	clawback := ""
 	manager := creator // if this were "" as well, this wouldn't be a reconfigure txn, it would be a destroy txn
-	assetReconfigureTxn, err := transaction.MakeAssetConfigTxn(creator, assetNote, params, assetTestFixture.AssetIndex, manager, reserve, freeze, clawback, false)
+	assetReconfigureTxn, err := future.MakeAssetConfigTxn(creator, assetNote, params, assetTestFixture.AssetIndex, manager, reserve, freeze, clawback, false)
 	assetTestFixture.LastTransactionIssued = assetReconfigureTxn
 	txn = assetReconfigureTxn
 	// update expected params
@@ -1389,13 +1389,13 @@ func createNoManagerAssetReconfigure() error {
 
 func createAssetDestroy() error {
 	creator := assetTestFixture.Creator
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
 	lastRound = uint64(params.FirstRoundValid)
 	assetNote := []byte(nil)
-	assetDestroyTxn, err := transaction.MakeAssetDestroyTxn(creator, assetNote, params, assetTestFixture.AssetIndex)
+	assetDestroyTxn, err := future.MakeAssetDestroyTxn(creator, assetNote, params, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetDestroyTxn
 	txn = assetDestroyTxn
 	// update expected params
@@ -1520,13 +1520,13 @@ func theCreatorShouldHaveAssetsRemaining(expectedBal int) error {
 
 func createAssetAcceptanceForSecondAccount() error {
 	accountToUse := accounts[1]
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
 	lastRound = uint64(params.FirstRoundValid)
 	assetNote := []byte(nil)
-	assetAcceptanceTxn, err := transaction.MakeAssetAcceptanceTxn(accountToUse, assetNote, params, assetTestFixture.AssetIndex)
+	assetAcceptanceTxn, err := future.MakeAssetAcceptanceTxn(accountToUse, assetNote, params, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
 	txn = assetAcceptanceTxn
 	return err
@@ -1535,7 +1535,7 @@ func createAssetAcceptanceForSecondAccount() error {
 func createAssetTransferTransactionToSecondAccount(amount int) error {
 	recipient := accounts[1]
 	creator := assetTestFixture.Creator
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
@@ -1543,7 +1543,7 @@ func createAssetTransferTransactionToSecondAccount(amount int) error {
 	closeAssetsTo := ""
 	lastRound = uint64(params.FirstRoundValid)
 	assetNote := []byte(nil)
-	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(creator, recipient, sendAmount, assetNote, params, closeAssetsTo, assetTestFixture.AssetIndex)
+	assetAcceptanceTxn, err := future.MakeAssetTransferTxn(creator, recipient, sendAmount, assetNote, params, closeAssetsTo, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
 	txn = assetAcceptanceTxn
 	return err
@@ -1552,7 +1552,7 @@ func createAssetTransferTransactionToSecondAccount(amount int) error {
 func createAssetTransferTransactionFromSecondAccountToCreator(amount int) error {
 	recipient := assetTestFixture.Creator
 	sender := accounts[1]
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
@@ -1560,7 +1560,7 @@ func createAssetTransferTransactionFromSecondAccountToCreator(amount int) error 
 	closeAssetsTo := ""
 	lastRound = uint64(params.FirstRoundValid)
 	assetNote := []byte(nil)
-	assetAcceptanceTxn, err := transaction.MakeAssetTransferTxn(sender, recipient, sendAmount, assetNote, params, closeAssetsTo, assetTestFixture.AssetIndex)
+	assetAcceptanceTxn, err := future.MakeAssetTransferTxn(sender, recipient, sendAmount, assetNote, params, closeAssetsTo, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetAcceptanceTxn
 	txn = assetAcceptanceTxn
 	return err
@@ -1569,13 +1569,13 @@ func createAssetTransferTransactionFromSecondAccountToCreator(amount int) error 
 // sets up a freeze transaction, with freeze state `setting` against target account `target`
 // assumes creator is asset freeze manager
 func freezeTransactionHelper(target string, setting bool) error {
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
 	lastRound = uint64(params.FirstRoundValid)
 	assetNote := []byte(nil)
-	assetFreezeOrUnfreezeTxn, err := transaction.MakeAssetFreezeTxn(assetTestFixture.Creator, assetNote, params, assetTestFixture.AssetIndex, target, setting)
+	assetFreezeOrUnfreezeTxn, err := future.MakeAssetFreezeTxn(assetTestFixture.Creator, assetNote, params, assetTestFixture.AssetIndex, target, setting)
 	assetTestFixture.LastTransactionIssued = assetFreezeOrUnfreezeTxn
 	txn = assetFreezeOrUnfreezeTxn
 	return err
@@ -1590,14 +1590,14 @@ func createUnfreezeTransactionTargetingSecondAccount() error {
 }
 
 func createRevocationTransaction(amount int) error {
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
 	lastRound = uint64(params.FirstRoundValid)
 	revocationAmount := uint64(amount)
 	assetNote := []byte(nil)
-	assetRevokeTxn, err := transaction.MakeAssetRevocationTxn(assetTestFixture.Creator, accounts[1], revocationAmount, assetTestFixture.Creator, assetNote, params, assetTestFixture.AssetIndex)
+	assetRevokeTxn, err := future.MakeAssetRevocationTxn(assetTestFixture.Creator, accounts[1], revocationAmount, assetTestFixture.Creator, assetNote, params, assetTestFixture.AssetIndex)
 	assetTestFixture.LastTransactionIssued = assetRevokeTxn
 	txn = assetRevokeTxn
 	return err
@@ -1640,7 +1640,7 @@ func aSplitContractWithRatioToAndMinimumPayment(ratn, ratd, minPay int) error {
 
 func iSendTheSplitTransactions() error {
 	amount := contractTestFixture.splitMin * (contractTestFixture.splitN + contractTestFixture.splitD)
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
@@ -1675,12 +1675,12 @@ func anHTLCContractWithHashPreimage(preImage string) error {
 func iFundTheContractAccount() error {
 	// send the requested money to c.address
 	amount := contractTestFixture.contractFundAmount
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
 	lastRound = uint64(params.FirstRoundValid)
-	txn, err = transaction.MakePaymentTxn(accounts[0], contractTestFixture.activeAddress, amount, nil, "", params)
+	txn, err = future.MakePaymentTxn(accounts[0], contractTestFixture.activeAddress, amount, nil, "", params)
 	if err != nil {
 		return err
 	}
@@ -1707,12 +1707,12 @@ func iClaimTheAlgosHTLC() error {
 	if err != nil {
 		return err
 	}
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
 	lastRound = uint64(params.FirstRoundValid)
-	txn, err = transaction.MakePaymentTxn(contractTestFixture.activeAddress, receiver, 0, nil, receiver, params)
+	txn, err = future.MakePaymentTxn(contractTestFixture.activeAddress, receiver, 0, nil, receiver, params)
 	if err != nil {
 		return err
 	}
@@ -1739,7 +1739,7 @@ func aPeriodicPaymentContractWithWithdrawingWindowAndPeriod(withdrawWindow, peri
 }
 
 func iClaimThePeriodicPayment() error {
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
@@ -1781,7 +1781,7 @@ func iSwapAssetsForAlgos() error {
 		return err
 	}
 	secretKey := exp.PrivateKey
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
@@ -1801,7 +1801,7 @@ func iSwapAssetsForAlgos() error {
 }
 
 func aDynamicFeeContractWithAmount(amount int) error {
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
@@ -1817,7 +1817,7 @@ func aDynamicFeeContractWithAmount(amount int) error {
 }
 
 func iSendTheDynamicFeeTransaction() error {
-	params, err := acl.SuggestedParams()
+	params, err := acl.BuildSuggestedParams()
 	if err != nil {
 		return err
 	}
