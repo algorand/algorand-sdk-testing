@@ -1849,7 +1849,7 @@ var assetHolderResponseHoldings []models.MiniAssetHolding
 var assetHolderResponseValidRound uint64
 
 func getAssetHolderMockResponse(jsonfile string) error {
-	//set up mock handler: return json in jsonfile whenever any GET /assets/{asset-id}/balances is called
+	//set up mock handler: return json in jsonfile no matter what. could add additional validation that the incoming request looked right.
 	mockIndexerServer = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write(loadMockJson(jsonfile))
