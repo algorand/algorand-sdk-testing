@@ -2,51 +2,65 @@ Feature: Indexer Client v2
   Background:
     Given a mocked indexer client
 
-  Scenario Outline: GetAssetHolders json check
-    When we make any GetAssetHolders call, return mock response <jsonfile>
-    Then the parsed GetAssetHolders response should be valid on round <roundNum>, and contain an array of len <len> and element number <idx> should have frozen state <frozenState>
+  Scenario Outline: LookupAssetBalances json check
+    When we make any LookupAssetBalances call, return mock response <jsonfile>
+    Then the parsed LookupAssetBalances response should be valid on round <roundNum>, and contain an array of len <len> and element number <idx> should have address <address> amount <amount> and frozen state <frozenState>
     Examples:
-      |jsonfile                |roundNum|len|idx|frozenState|
-      |getassetholders_case1   |1       |0  |0  |0          |
-      |getassetholders_case2   |2       |1  |0  |1          |
-      |getassetholders_case3   |100     |100|50 |0          |
+      |jsonfile                |roundNum|len|idx|address|amount|frozenState|
+      |getassetholders_case1   |1       |0  |0  |0      |0     |          0|
+      |getassetholders_case2   |2       |1  |0  |1      |0     |          0|
+      |getassetholders_case3   |100     |100|50 |0      |0     |0          |
 
-  Scenario: GetAssetTransactions json check
-    When I get the asset transactions for asset id <id> with options <limit> <minRound> <maxRound> <afterTime> <beforeTime> <currencyGreaterThan> <currencyLessThan>
-    Then the most recent response should match <jsonfile>
-    |id|limit|minRound|maxRound|afterTime|beforeTime|offset|currencyGreaterThan|currencyLessThan|jsonfile|
-    |0 |0    |0       |0       |0        |0         |0     |0                  |0               |TODO|
+  Scenario Outline: LookupAssetTransactions json check
+    When we make any LookupAssetTransactions call, return mock response <jsonfile>
+    Then the parsed LookupAssetTransactions response should be valid on round <roundNum>, and contain an array of len <len> and element number <idx> should have sender <sender>
+    Examples:
+      |jsonfile|roundNum|len|idx|sender|
 
-  Scenario: GetTransactionsByAccount json check
-    When I get the transactions for account <account> with options <minRound> <maxRound> <beforeTime> <afterTime> <assetid> <offset> <limit> <algosGreaterThan> <algosLessThan>
-    Then the most recent response should match <jsonfile>
-    |account|minRound|maxRound|beforeTime|afterTime|assetid|offset|limit|algosGreaterThan|algosLessThan|jsonfile|
-    |TODO   |0       |0       |0         |0        |0      |0     |0    |0               |0            |TODO    |
+  Scenario Outline: LookupAccountTransactions json check
+    When we make any LookupAccountTransactions call, return mock response <jsonfile>
+    Then the parsed LookupAccountTransactions response should be valid on round <roundNum>, and contain an array of len <len> and element number <idx> should have sender <sender>
+    Examples:
+      |jsonfile|roundNum|len|idx|sender|
 
-  Scenario: GetBlock json check
-    When I get the block for round number <round>
-    Then the most recent response should match <jsonfile>
-    |round|jsonfile|
-    |1    |TODO    |
+  Scenario Outline: LookupBlock json check
+    When we make any LookupBlock call, return mock response <jsonfile>
+    Then the parsed LookupBlock response should have proposer <proposer>
+    Examples:
+      |jsonfile|proposer|
+      |TODO    |TODO    |
 
-  Scenario: GetAccountInfo json check
-    When I get account info for account <account> with option <round>
-    Then the most recent response should match <jsonfile>
-    |account|round|jsonfile|
-    |TODO   |0    |TODO    |
+  Scenario Outline: LookupAccountByID json check
+    When we make any LookupAccountByID call, return mock response <jsonfile>
+    Then the parsed LookupAccountByID response should have address <address>
+    Examples:
+      |jsonfile|address|
+      |TODO    |TODO    |
 
-  Scenario: SearchAccounts json check
-    When I search accounts with options <assetid> <assetParams> <limit> <algosGreaterThan> <algosLessThan> <addressGreaterThan>
-    Then the most recent response should match <jsonfile>
+  Scenario Outline: LookupAssetByID json check
+    When we make any LookupAssetByID call, return mock response <jsonfile>
+    Then the parsed LookupAssetByID response should have index <index>
+    Examples:
+      |jsonfile|index  |
+      |TODO    |TODO   |
 
-  Scenario: SearchTransactions json check
-    When I search transactions with options <notePrefix> <txType> <sigType> <transactionID> <round> <offset> <minRound> <maxRound> <assetID> <format> <limit> <beforeTime> <afterTime> <algosGreaterThan> <algosLessThan>
-    Then the most recent response should match <jsonfile>
-    |notePrefix|txType|sigType|transactionID|round|offset|minRound|maxRound|assetID|format|limit|beforeTime|afterTime|algosGreaterThan|algosLessThan|jsonfile|
-    |TODO      |TODO  |TODO   |TODO         |0    |0     |0       |0       |0      |TODO  |0    |0         |0        |0               |0            |TODO    |
+  Scenario Outline: SearchAccounts json check
+    When we make any SearchAccounts call, return mock response <jsonfile>
+    Then the parsed SearchAccounts response should be valid on round <roundNum> and the array should be of len <len> and the element at index <index> should have address <address>
+    Examples:
+      |jsonfile|roundNum  | len | index | address |
+      |TODO    |0         |0    |0      |TODO     |
 
-  Scenario: SearchAssets json check
-    When I search assets with options <assetGreaterThan> <limit> <creator> <name> <unit> <assetID>
-    Then the most recent response should match <jsonfile>
-    |assetGreaterThan|limit|creator|name|unit|assetID|jsonfile|
-    |0               |0    |TODO   |TODO|TODO|0      |TODO    |
+  Scenario Outline: SearchForTransactions json check
+    When we make any SearchForTransactions call, return mock response <jsonfile>
+    Then the parsed SearchForTransactions response should be valid on round <roundNum> and the array should be of len <len> and the element at index <index> should have sender <sender>
+    Examples:
+      |jsonfile|roundNum  | len | index | sender  |
+      |TODO    |0         |0    |0      |TODO     |
+
+  Scenario Outline: SearchForAssets json check
+    When we make any SearchForAssets call, return mock response <jsonfile>
+    Then the parsed SearchForAssets response should be valid on round <roundNum> and the array should be of len <len> and the element at index <index> should have asset index <assetIndex>
+    Examples:
+      |jsonfile|roundNum  | len | index | assetIndex  |
+      |TODO    |0         |0    |0      | 0           |
