@@ -24,7 +24,7 @@ func IndexerContext(s *godog.Suite) {
 	s.Step(`^we make any LookupAccountByID call, return mock response "([^"]*)"$`, weMakeAnyLookupAccountByIDCallReturnMockResponse)
 	s.Step(`^the parsed LookupAccountByID response should have address "([^"]*)"$`, theParsedLookupAccountByIDResponseShouldHaveAddress)
 	s.Step(`^we make any LookupAssetByID call, return mock response "([^"]*)"$`, weMakeAnyLookupAssetByIDCallReturnMockResponse)
-	s.Step(`^the parsed LookupAssetByID response should have index TODO$`, theParsedLookupAssetByIDResponseShouldHaveIndexTODO)
+	s.Step(`^the parsed LookupAssetByID response should have index (\d+)$`, theParsedLookupAssetByIDResponseShouldHaveIndex)
 	s.Step(`^we make any SearchAccounts call, return mock response "([^"]*)"$`, weMakeAnySearchAccountsCallReturnMockResponse)
 	s.Step(`^the parsed SearchAccounts response should be valid on round (\d+) and the array should be of len (\d+) and the element at index (\d+) should have address "([^"]*)"$`, theParsedSearchAccountsResponseShouldBeValidOnRoundAndTheArrayShouldBeOfLenAndTheElementAtIndexShouldHaveAddress)
 	s.Step(`^we make any SearchForTransactions call, return mock response "([^"]*)"$`, weMakeAnySearchForTransactionsCallReturnMockResponse)
@@ -66,7 +66,6 @@ func weMakeAnyLookupAssetBalancesCallReturnMockResponse(jsonfile string) error {
 	if err != nil {
 		return err
 	}
-	// make the call
 	validRound, assetHolders, err = indexerClient.LookupAssetBalances(context.Background(), 0, models.LookupAssetBalancesParams{}, nil)
 	return err
 }
@@ -97,66 +96,201 @@ func theParsedLookupAssetBalancesResponseShouldBeValidOnRoundAndContainAnArrayOf
 	return nil
 }
 
-func weMakeAnyLookupAssetTransactionsCallReturnMockResponse(arg1 string) error {
-	return godog.ErrPending
+var transactions []models.Transaction
+
+func weMakeAnyLookupAssetTransactionsCallReturnMockResponse(jsonfile string) error {
+	mockIndexer, indexerClient, err := buildMockIndexerAndClient(jsonfile)
+	if mockIndexer != nil {
+		defer mockIndexer.Close()
+	}
+	if err != nil {
+		return err
+	}
+	validRound, transactions, err = indexerClient.LookupAssetTransactions(context.Background(), 0, models.LookupAssetTransactionsParams{}, nil)
+	return err
 }
 
-func theParsedLookupAssetTransactionsResponseShouldBeValidOnRoundAndContainAnArrayOfLenAndElementNumberShouldHaveSender(arg1, arg2, arg3 int, arg4 string) error {
-	return godog.ErrPending
+func theParsedLookupAssetTransactionsResponseShouldBeValidOnRoundAndContainAnArrayOfLenAndElementNumberShouldHaveSender(roundNum, length, idx int, sender string) error {
+	if uint64(roundNum) != validRound {
+		return fmt.Errorf("roundNum %d mismatched with validRound %d", roundNum, validRound)
+	}
+	if len(transactions) != length {
+		return fmt.Errorf("len(transactions) %d mismatched with length %d", len(transactions), length)
+	}
+	examinedTransaction := transactions[idx]
+	if examinedTransaction.Sender != sender {
+		return fmt.Errorf("examinedTransaction.Sender %s mismatched with expected sender %s", examinedTransaction.Sender, sender)
+	}
+	return nil
 }
 
-func weMakeAnyLookupAccountTransactionsCallReturnMockResponse(arg1 string) error {
-	return godog.ErrPending
+func weMakeAnyLookupAccountTransactionsCallReturnMockResponse(jsonfile string) error {
+	mockIndexer, indexerClient, err := buildMockIndexerAndClient(jsonfile)
+	if mockIndexer != nil {
+		defer mockIndexer.Close()
+	}
+	if err != nil {
+		return err
+	}
+	validRound, transactions, err = indexerClient.LookupAccountTransactions(context.Background(), "", models.LookupAccountTransactionsParams{}, nil)
+	return err
 }
 
-func theParsedLookupAccountTransactionsResponseShouldBeValidOnRoundAndContainAnArrayOfLenAndElementNumberShouldHaveSender(arg1, arg2, arg3 int, arg4 string) error {
-	return godog.ErrPending
+func theParsedLookupAccountTransactionsResponseShouldBeValidOnRoundAndContainAnArrayOfLenAndElementNumberShouldHaveSender(roundNum, length, idx int, sender string) error {
+	if uint64(roundNum) != validRound {
+		return fmt.Errorf("roundNum %d mismatched with validRound %d", roundNum, validRound)
+	}
+	if len(transactions) != length {
+		return fmt.Errorf("len(transactions) %d mismatched with length %d", len(transactions), length)
+	}
+	examinedTransaction := transactions[idx]
+	if examinedTransaction.Sender != sender {
+		return fmt.Errorf("examinedTransaction.Sender %s mismatched with expected sender %s", examinedTransaction.Sender, sender)
+	}
+	return nil
 }
 
-func weMakeAnyLookupBlockCallReturnMockResponse(arg1 string) error {
-	return godog.ErrPending
+var foundBlock models.Block
+
+func weMakeAnyLookupBlockCallReturnMockResponse(jsonfile string) error {
+	mockIndexer, indexerClient, err := buildMockIndexerAndClient(jsonfile)
+	if mockIndexer != nil {
+		defer mockIndexer.Close()
+	}
+	if err != nil {
+		return err
+	}
+	foundBlock, err = indexerClient.LookupBlock(context.Background(), 0, nil)
+	return err
 }
 
-func theParsedLookupBlockResponseShouldHaveProposer(arg1 string) error {
-	return godog.ErrPending
+func theParsedLookupBlockResponseShouldHaveProposer(proposer string) error {
+	if foundBlock.Proposer != proposer {
+		return fmt.Errorf("block proposer %s mismatch with expected proposer %s", foundBlock.Proposer, proposer)
+	}
+	return nil
 }
 
-func weMakeAnyLookupAccountByIDCallReturnMockResponse(arg1 string) error {
-	return godog.ErrPending
+var foundAccount models.Account
+
+func weMakeAnyLookupAccountByIDCallReturnMockResponse(jsonfile string) error {
+	mockIndexer, indexerClient, err := buildMockIndexerAndClient(jsonfile)
+	if mockIndexer != nil {
+		defer mockIndexer.Close()
+	}
+	if err != nil {
+		return err
+	}
+	validRound, foundAccount, err = indexerClient.LookupAccountByID(context.Background(), "", models.LookupAccountByIDParams{}, nil)
+	return err
 }
 
-func theParsedLookupAccountByIDResponseShouldHaveAddress(arg1 string) error {
-	return godog.ErrPending
+func theParsedLookupAccountByIDResponseShouldHaveAddress(address string) error {
+	if foundAccount.Address != address {
+		return fmt.Errorf("lookup account address %s mismatch with expected address %s", foundAccount.Address, address)
+	}
+	return nil
 }
 
-func weMakeAnyLookupAssetByIDCallReturnMockResponse(arg1 string) error {
-	return godog.ErrPending
+var foundAsset models.Asset
+
+func weMakeAnyLookupAssetByIDCallReturnMockResponse(jsonfile string) error {
+	mockIndexer, indexerClient, err := buildMockIndexerAndClient(jsonfile)
+	if mockIndexer != nil {
+		defer mockIndexer.Close()
+	}
+	if err != nil {
+		return err
+	}
+	validRound, foundAsset, err = indexerClient.LookupAssetByID(context.Background(), 0, nil)
+	return err
 }
 
-func theParsedLookupAssetByIDResponseShouldHaveIndexTODO() error {
-	return godog.ErrPending
+func theParsedLookupAssetByIDResponseShouldHaveIndex(idx int) error {
+	if foundAsset.Index != uint64(idx) {
+		return fmt.Errorf("lookup asset index %d mismatch with expected index %d", foundAsset.Index, uint64(idx))
+	}
+	return nil
 }
 
-func weMakeAnySearchAccountsCallReturnMockResponse(arg1 string) error {
-	return godog.ErrPending
+var foundAccounts []models.Account
+
+func weMakeAnySearchAccountsCallReturnMockResponse(jsonfile string) error {
+	mockIndexer, indexerClient, err := buildMockIndexerAndClient(jsonfile)
+	if mockIndexer != nil {
+		defer mockIndexer.Close()
+	}
+	if err != nil {
+		return err
+	}
+	validRound, foundAccounts, err = indexerClient.SearchAccounts(context.Background(), models.SearchAccountsParams{}, nil)
+	return err
 }
 
-func theParsedSearchAccountsResponseShouldBeValidOnRoundAndTheArrayShouldBeOfLenAndTheElementAtIndexShouldHaveAddress(arg1, arg2, arg3 int, arg4 string) error {
-	return godog.ErrPending
+func theParsedSearchAccountsResponseShouldBeValidOnRoundAndTheArrayShouldBeOfLenAndTheElementAtIndexShouldHaveAddress(roundNum, length, idx int, address string) error {
+	if uint64(roundNum) != validRound {
+		return fmt.Errorf("roundNum %d mismatched with validRound %d", roundNum, validRound)
+	}
+	if len(foundAccounts) != length {
+		return fmt.Errorf("len(foundAccounts) %d mismatched with length %d", len(foundAccounts), length)
+	}
+	examinedAccount := foundAccounts[idx]
+	if examinedAccount.Address != address {
+		return fmt.Errorf("examinedAccount.Address %s mismatched with expected address %s", examinedAccount.Address, address)
+	}
+	return nil
 }
 
-func weMakeAnySearchForTransactionsCallReturnMockResponse(arg1 string) error {
-	return godog.ErrPending
+func weMakeAnySearchForTransactionsCallReturnMockResponse(jsonfile string) error {
+	mockIndexer, indexerClient, err := buildMockIndexerAndClient(jsonfile)
+	if mockIndexer != nil {
+		defer mockIndexer.Close()
+	}
+	if err != nil {
+		return err
+	}
+	validRound, transactions, err = indexerClient.SearchForTransactions(context.Background(), models.SearchForTransactionsParams{}, nil)
+	return err
 }
 
-func theParsedSearchForTransactionsResponseShouldBeValidOnRoundAndTheArrayShouldBeOfLenAndTheElementAtIndexShouldHaveSender(arg1, arg2, arg3 int, arg4 string) error {
-	return godog.ErrPending
+func theParsedSearchForTransactionsResponseShouldBeValidOnRoundAndTheArrayShouldBeOfLenAndTheElementAtIndexShouldHaveSender(roundNum, length, idx int, sender string) error {
+	if uint64(roundNum) != validRound {
+		return fmt.Errorf("roundNum %d mismatched with validRound %d", roundNum, validRound)
+	}
+	if len(transactions) != length {
+		return fmt.Errorf("len(transactions) %d mismatched with length %d", len(transactions), length)
+	}
+	examinedTransaction := transactions[idx]
+	if examinedTransaction.Sender != sender {
+		return fmt.Errorf("examinedTransaction.Sender %s mismatched with expected sender %s", examinedTransaction.Sender, sender)
+	}
+	return nil
 }
 
-func weMakeAnySearchForAssetsCallReturnMockResponse(arg1 string) error {
-	return godog.ErrPending
+var foundAssets []models.Asset
+
+func weMakeAnySearchForAssetsCallReturnMockResponse(jsonfile string) error {
+	mockIndexer, indexerClient, err := buildMockIndexerAndClient(jsonfile)
+	if mockIndexer != nil {
+		defer mockIndexer.Close()
+	}
+	if err != nil {
+		return err
+	}
+	validRound, foundAssets, err = indexerClient.SearchForAssets(context.Background(), models.SearchForAssetsParams{}, nil)
+	return err
 }
 
-func theParsedSearchForAssetsResponseShouldBeValidOnRoundAndTheArrayShouldBeOfLenAndTheElementAtIndexShouldHaveAssetIndex(arg1, arg2, arg3, arg4 int) error {
-	return godog.ErrPending
+func theParsedSearchForAssetsResponseShouldBeValidOnRoundAndTheArrayShouldBeOfLenAndTheElementAtIndexShouldHaveAssetIndex(roundNum, length, idx, assetIndex int) error {
+	if uint64(roundNum) != validRound {
+		return fmt.Errorf("roundNum %d mismatched with validRound %d", roundNum, validRound)
+	}
+	if len(foundAssets) != length {
+		return fmt.Errorf("len(foundAssets) %d mismatched with length %d", len(foundAssets), length)
+	}
+	examinedAsset := foundAssets[idx]
+	if examinedAsset.Index != uint64(assetIndex) {
+		return fmt.Errorf("examinedAsset.Index %s mismatched with expected index %s", examinedAsset.Index, uint64(assetIndex))
+	}
+	return nil
 }
