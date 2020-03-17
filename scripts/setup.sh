@@ -24,7 +24,7 @@ esac
 
 if ! $go
 then
-    go get -u github.com/algorand/go-algorand-sdk/...@develop
+    go get -u github.com/algorand/go-algorand-sdk/...@evan/indexersupport
     go generate github.com/algorand/go-algorand-sdk/...
 fi
 go get github.com/cucumber/godog/cmd/godog/...

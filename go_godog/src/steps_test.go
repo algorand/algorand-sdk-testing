@@ -9,8 +9,6 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
-	"net/http"
-	"net/http/httptest"
 	"os"
 	"reflect"
 	"strings"
@@ -129,6 +127,7 @@ func TestMain(m *testing.M) {
 
 	status := godog.RunWithOptions("godogs", func(s *godog.Suite) {
 		FeatureContext(s)
+		IndexerContext(s)
 	}, opt)
 
 	if st := m.Run(); st > status {
@@ -258,9 +257,6 @@ func FeatureContext(s *godog.Suite) {
 	s.Step(`^I send the dynamic fee transactions$`, iSendTheDynamicFeeTransaction)
 	s.Step("contract test fixture", createContractTestFixture)
 	s.Step(`^I create a transaction transferring <amount> assets from creator to a second account$`, iCreateATransactionTransferringAmountAssetsFromCreatorToASecondAccount) // provide handler for when godog misreads
-
-	s.Step(`^we make any GetAssetHolders call, return mock response ([^"]*)$`, getAssetHolderMockResponse)
-	s.Step(`^the parsed GetAssetHolders response should be valid on round (\d+), and contain an array of len (\d+) and element number (\d+) should have frozen state (\d+)$`, compareAssetHolderMockResponse)
 
 	s.BeforeScenario(func(interface{}) {
 		stxObj = types.SignedTxn{}
@@ -1843,30 +1839,4 @@ func iSendTheDynamicFeeTransaction() error {
 	response, err := acl.SendRawTransaction(groupTxnBytes)
 	txid = response.TxID
 	return err
-}
-
-var assetHolderResponseHoldings []models.MiniAssetHolding
-var assetHolderResponseValidRound uint64
-
-func getAssetHolderMockResponse(jsonfile string) error {
-	//set up mock handler: return json in jsonfile no matter what. could add additional validation that the incoming request looked right.
-	mockIndexerServer = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusOK)
-		w.Write(loadMockJson(jsonfile))
-	}))
-
-	assetHolderResponseValidRound, assetHolderResponseHoldings, err = indexerClient.GetAssetHolder(0, client.GetAssetHoldingParams{})
-	return err
-}
-
-func compareAssetHolderMockResponse(expectedValidRound, expectedArrayLen, holdingIndex, holdingState int) error {
-	if uint64(expectedValidRound) != assetHolderResponseValidRound {
-		return fmt.Errorf("parsed round %d does not match expected valid round %d", assetHolderResponseValidRound, expectedValidRound)
-	}
-	if expectedArrayLen != len(assetHolderResponseHoldings) {
-		return fmt.Errorf("parsed array len %d does not match expected array len %d", expectedArrayLen, len(assetHolderResponseHoldings))
-	}
-	if assetHolderResponseHoldings[holdingIndex].isFrozen != bool(holdingState) { //can't actually do that bool cast but leave it as pseudo for now
-		return fmt.Errorf("asset holding at index %d was in frozen state %v, expected %v", holdingIndex, assetHolderResponseHoldings[holdingIndex].isFrozen, bool(holdingState))
-	}
 }
