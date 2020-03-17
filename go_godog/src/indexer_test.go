@@ -1,11 +1,18 @@
 package main
 
 import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/http/httptest"
+
+	"github.com/algorand/go-algorand-sdk/client/indexer"
+	"github.com/algorand/go-algorand-sdk/client/indexer/models"
+
 	"github.com/cucumber/godog"
 )
 
 func IndexerContext(s *godog.Suite) {
-	s.Step(`^a mocked indexer client$`, aMockedIndexerClient)
 	s.Step(`^we make any LookupAssetBalances call, return mock response "([^"]*)"$`, weMakeAnyLookupAssetBalancesCallReturnMockResponse)
 	s.Step(`^the parsed LookupAssetBalances response should be valid on round (\d+), and contain an array of len (\d+) and element number (\d+) should have address "([^"]*)" amount (\d+) and frozen state (\d+)$`, theParsedLookupAssetBalancesResponseShouldBeValidOnRoundAndContainAnArrayOfLenAndElementNumberShouldHaveAddressAmountAndFrozenState)
 	s.Step(`^we make any LookupAssetTransactions call, return mock response "([^"]*)"$`, weMakeAnyLookupAssetTransactionsCallReturnMockResponse)
@@ -29,16 +36,65 @@ func IndexerContext(s *godog.Suite) {
 	})
 }
 
-func aMockedIndexerClient() error {
-	return godog.ErrPending
+func loadMockJson(filename string) ([]byte, error) {
+	// TODO EJR where should the mockjsons be stored? or should the feature file just hold the full path somehow
+	return nil, nil
 }
 
-func weMakeAnyLookupAssetBalancesCallReturnMockResponse(arg1 string) error {
-	return godog.ErrPending
+func buildMockIndexerAndClient(jsonfile string) (*httptest.Server, indexer.Client, error) {
+	jsonBytes, err := loadMockJson(jsonfile)
+	if err != nil {
+		return nil, indexer.Client{}, err
+	}
+	mockIndexer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write(jsonBytes)
+	}))
+	noToken := ""
+	indexerClient, err := indexer.MakeClient(mockIndexer.URL, noToken)
+	return mockIndexer, indexerClient, err
 }
 
-func theParsedLookupAssetBalancesResponseShouldBeValidOnRoundAndContainAnArrayOfLenAndElementNumberShouldHaveAddressAmountAndFrozenState(arg1, arg2, arg3 int, arg4 string, arg5, arg6 int) error {
-	return godog.ErrPending
+var validRound uint64
+var assetHolders []models.MiniAssetHolding
+
+func weMakeAnyLookupAssetBalancesCallReturnMockResponse(jsonfile string) error {
+	mockIndexer, indexerClient, err := buildMockIndexerAndClient(jsonfile)
+	if mockIndexer != nil {
+		defer mockIndexer.Close()
+	}
+	if err != nil {
+		return err
+	}
+	// make the call
+	validRound, assetHolders, err = indexerClient.LookupAssetBalances(context.Background(), 0, models.LookupAssetBalancesParams{}, nil)
+	return err
+}
+
+func theParsedLookupAssetBalancesResponseShouldBeValidOnRoundAndContainAnArrayOfLenAndElementNumberShouldHaveAddressAmountAndFrozenState(roundNum, length, idx int, address string, amount, frozenState int) error {
+	if uint64(roundNum) != validRound {
+		return fmt.Errorf("roundNum %d mismatched with validRound %d", roundNum, validRound)
+	}
+	if len(assetHolders) != length {
+		return fmt.Errorf("len(assetHolders) %d mismatched with length %d", len(assetHolders), length)
+	}
+	examinedHolder := assetHolders[idx]
+	var expectedFrozenState bool
+	if frozenState == 0 {
+		expectedFrozenState = false
+	} else {
+		expectedFrozenState = true
+	}
+	if examinedHolder.IsFrozen != expectedFrozenState {
+		return fmt.Errorf("examinedHolder.IsFrozen %v mismatched with expectedFrozenState %v", examinedHolder.IsFrozen, expectedFrozenState)
+	}
+	if examinedHolder.Address != address {
+		return fmt.Errorf("examinedHolder.Address %s mismatched with expected address %s", examinedHolder.Address, address)
+	}
+	if examinedHolder.Amount != uint64(amount) {
+		return fmt.Errorf("examinedHolder.Amount %d mismatched with expected amount %s", examinedHolder.Amount, uint64(amount))
+	}
+	return nil
 }
 
 func weMakeAnyLookupAssetTransactionsCallReturnMockResponse(arg1 string) error {

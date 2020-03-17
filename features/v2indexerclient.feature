@@ -1,6 +1,4 @@
 Feature: Indexer Client v2
-  Background:
-    Given a mocked indexer client
 
   Scenario Template: LookupAssetBalances json check
     When we make any LookupAssetBalances call, return mock response "<jsonfile>"
