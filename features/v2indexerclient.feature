@@ -42,7 +42,7 @@ Feature: Indexer Client v2
     Then the parsed LookupAssetByID response should have index <index>
     Examples:
       |jsonfile|index  |
-      |TODO    |TODO   |
+      |TODO    |0      |
 
   Scenario Template: SearchAccounts json check
     When we make any SearchAccounts call, return mock response "<jsonfile>"
