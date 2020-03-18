@@ -95,8 +95,8 @@ if __name__ == '__main__':
         start_network(d['BIN_DIR'], args.network_dir, config, template)
 
         sdk.test_sdk()
-    except subprocess.CalledProcessError as e:
-        print('An error occurred while running tests!')
-        print(e)
-
-    cleanup_network(d['BIN_DIR'], args.network_dir)
+    # except subprocess.CalledProcessError as e:
+    #     print('An error occurred while running tests!')
+    #     print(e)
+    finally:
+        cleanup_network(d['BIN_DIR'], args.network_dir)
