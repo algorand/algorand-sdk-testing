@@ -1,51 +1,78 @@
 Feature: Algod REST API v2
-  Background:
-    Given an algod client pointing at a mock server
 
-  Scenario: Shutdown
-    When I call algodclient Shutdown with option <timeout>
-    Then the most recent error should be nil
+  #TODO ejr there's no response, what's the recommended test? 
+  Scenario Template: Shutdown
+    When we make any Shutdown call, return mock response "<jsonfile>"
+    Examples:
+      |jsonfile|
+      |TODO    |
 
-  Scenario: Register Participation Keys
-    When I register participation keys with account <account> and options <fee> <keyDilution> <roundLastValid> <noWait>
-    Then the most recent error should be nil
+  #TODO ejr there's no response, what's the recommended test?
+  Scenario Template: Register Participation Keys
+    When we make any Register Participation Keys call, return mock response "<jsonfile>"
+    Examples:
+      |jsonfile|
+      |TODO    |
 
-  Scenario: Pending Transaction Information
-    When I get pending transaction information about txid <txid>
-    Then the most recent error should be nil
+  Scenario Template: Pending Transaction Information
+    When we make any Pending Transaction Information call, return mock response "<jsonfile>"
+    Then the parsed Pending Transaction Information response should have sender "<sender>"
+    Examples:
+      |jsonfile|sender|
+      |TODO    |TODO  |
 
-  Scenario: Send Raw Transaction
-    When I send raw transaction with b64 transaction <b64tx>
-    Then the most recent error should be nil
+  Scenario Template: Send Raw Transaction
+    When we make any Send Raw Transaction call, return mock response "<jsonfile>"
+    Then the parsed Send Raw Transaction response should have txid "<txid>"
+    Examples:
+      |jsonfile|txid|
+      |TODO    |TODO|
 
-  Scenario: Pending Transactions By Address
-    When I get pending transactions for address <address> with max <max>
-    Then the most recent error should be nil
+  Scenario Template: Pending Transactions By Address
+    When we make any Pending Transactions By Address call, return mock response "<jsonfile>"
+    Then the parsed Pending Transactions By Address response should contain an array of len <len> and element number <idx> should have sender "<sender>"
+    Examples:
+      |jsonfile|len|idx|sender|
+      |TODO    |0  |0  |TODO  |
 
-  Scenario: Node Status
-    When I get node status
-    Then the most recent error should be nil
+  Scenario Template: Node Status
+    When we make any Node Status call, return mock response "<jsonfile>"
+    Then the parsed Node Status response should have a last round of <roundNum>
+    Examples:
+      |jsonfile|roundNum|
+      |TODO    |0       |
 
-  Scenario: Ledger Supply
-    When I get the ledger supply
-    Then the most recent error should be nil
+  Scenario Template: Ledger Supply
+    When we make any Ledger Supply call, return mock response "<jsonfile>"
+    Then the parsed Ledger Supply response should have totalMoney <tot> onlineMoney <online> on round <roundNum>
+    Examples:
+      |jsonfile|tot|online|roundNum|
+      |TODO    |0  |0     |0       |
 
-  Scenario: Status After Block
-    When I get the node status after block <round>
-    Then the most recent error should be nil
+  Scenario Template: Status After Block
+    When we make any Status After Block call, return mock response "<jsonfile>"
+    Then the parsed Status After Block response should have a last round of <roundNum>
+    Examples:
+      |jsonfile|roundNum|
+      |TODO    |0       |
 
-  Scenario: Account Information
-    When I get account information about address <address>
-    Then the most recent error should be nil
+  Scenario Template: Account Information
+    When we make any Account Information call, return mock response "<jsonfile>"
+    Then the parsed Account Information response should have address "<address>"
+    Examples:
+      |jsonfile|address|
+      |TODO    |TODO   |
 
-  Scenario: Get Block
-    When I get block for round <round>
-    Then the most recent error should be nil
+  Scenario Template: Get Block
+    When we make any Get Block call, return mock response "<jsonfile>"
+    Then the parsed Get Block response should have proposer "<proposer>"
+    Examples:
+      |jsonfile|proposer|
+      |TODO    |TODO    |
 
-  Scenario: Pending Transactions
-    When I get pending transactions with maximum <max>
-    Then the most recent error should be nil
-
-  Scenario: Suggested Transaction Parameters
-    When I get the suggested transaction parameters
-    Then the most recent error should be nil
+  Scenario Template: Suggested Transaction Parameters
+    When we make any Suggested Transaction Parameters call, return mock response "<jsonfile>"
+    Then the parsed Suggested Transaction Parameters response should have first round valid of <roundNum>
+    Examples:
+      |jsonfile|roundNum|
+      |TODO    |0       |

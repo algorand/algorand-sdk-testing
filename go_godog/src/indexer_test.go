@@ -20,7 +20,7 @@ func IndexerContext(s *godog.Suite) {
 	s.Step(`^we make any LookupAccountTransactions call, return mock response "([^"]*)"$`, weMakeAnyLookupAccountTransactionsCallReturnMockResponse)
 	s.Step(`^the parsed LookupAccountTransactions response should be valid on round (\d+), and contain an array of len (\d+) and element number (\d+) should have sender "([^"]*)"$`, theParsedLookupAccountTransactionsResponseShouldBeValidOnRoundAndContainAnArrayOfLenAndElementNumberShouldHaveSender)
 	s.Step(`^we make any LookupBlock call, return mock response "([^"]*)"$`, weMakeAnyLookupBlockCallReturnMockResponse)
-	s.Step(`^the parsed LookupBlock response should have proposer "([^"]*)"$`, theParsedLookupBlockResponseShouldHaveProposer)
+	s.Step(`^the parsed LookupBlock response should have round "([^"]*)"$`, theParsedLookupBlockResponseShouldHaveRound)
 	s.Step(`^we make any LookupAccountByID call, return mock response "([^"]*)"$`, weMakeAnyLookupAccountByIDCallReturnMockResponse)
 	s.Step(`^the parsed LookupAccountByID response should have address "([^"]*)"$`, theParsedLookupAccountByIDResponseShouldHaveAddress)
 	s.Step(`^we make any LookupAssetByID call, return mock response "([^"]*)"$`, weMakeAnyLookupAssetByIDCallReturnMockResponse)
@@ -91,7 +91,7 @@ func theParsedLookupAssetBalancesResponseShouldBeValidOnRoundAndContainAnArrayOf
 		return fmt.Errorf("examinedHolder.Address %s mismatched with expected address %s", examinedHolder.Address, address)
 	}
 	if examinedHolder.Amount != uint64(amount) {
-		return fmt.Errorf("examinedHolder.Amount %d mismatched with expected amount %s", examinedHolder.Amount, uint64(amount))
+		return fmt.Errorf("examinedHolder.Amount %d mismatched with expected amount %d", examinedHolder.Amount, uint64(amount))
 	}
 	return nil
 }
@@ -164,9 +164,9 @@ func weMakeAnyLookupBlockCallReturnMockResponse(jsonfile string) error {
 	return err
 }
 
-func theParsedLookupBlockResponseShouldHaveProposer(proposer string) error {
-	if foundBlock.Proposer != proposer {
-		return fmt.Errorf("block proposer %s mismatch with expected proposer %s", foundBlock.Proposer, proposer)
+func theParsedLookupBlockResponseShouldHaveRound(round int) error {
+	if foundBlock.Round != uint64(round) {
+		return fmt.Errorf("block round %d mismatch with expected round %d", foundBlock.Round, round)
 	}
 	return nil
 }
@@ -290,7 +290,7 @@ func theParsedSearchForAssetsResponseShouldBeValidOnRoundAndTheArrayShouldBeOfLe
 	}
 	examinedAsset := foundAssets[idx]
 	if examinedAsset.Index != uint64(assetIndex) {
-		return fmt.Errorf("examinedAsset.Index %s mismatched with expected index %s", examinedAsset.Index, uint64(assetIndex))
+		return fmt.Errorf("examinedAsset.Index %d mismatched with expected index %d", examinedAsset.Index, uint64(assetIndex))
 	}
 	return nil
 }
