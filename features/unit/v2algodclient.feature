@@ -1,13 +1,11 @@
 Feature: Algod REST API v2
 
-  #TODO ejr there's no response, what's the recommended test? 
   Scenario Template: Shutdown
     When we make any Shutdown call, return mock response "<jsonfile>" and expect error string to contain "<err>"
     Examples:
       |jsonfile|err|
       |TODO    |nil|
 
-  #TODO ejr there's no response, what's the recommended test?
   Scenario Template: Register Participation Keys
     When we make any Register Participation Keys call, return mock response "<jsonfile>" and expect error string to contain "<err>"
     Examples:
