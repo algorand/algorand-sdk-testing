@@ -25,6 +25,15 @@ Feature: Algod REST API v2
       |jsonfiles|directory|err|sender|
       |TODO     |         |nil|TODO  |
 
+  Scenario Template: Pending Transactions Information
+    Given mock http responses in "<jsonfiles>" loaded from "<directory>"
+    When we make any Pending Transactions Information call
+    Then expect error string to contain "<err>"
+    And the parsed Pending Transactions Information response should have sender "<sender>"
+    Examples:
+      |jsonfiles|directory|err|sender|
+      |TODO     |         |nil|TODO  |
+
   Scenario Template: Send Raw Transaction
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Send Raw Transaction call
