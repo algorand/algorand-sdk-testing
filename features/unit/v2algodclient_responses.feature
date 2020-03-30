@@ -1,6 +1,6 @@
 Feature: Algod REST API v2
 
-  Scenario Template: Shutdown
+  Scenario Template: Shutdown response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Shutdown call
     Then expect error string to contain "<err>"
@@ -8,7 +8,7 @@ Feature: Algod REST API v2
       |jsonfiles|directory|err|
       |TODO     |         |nil|
 
-  Scenario Template: Register Participation Keys
+  Scenario Template: Register Participation Keys response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Register Participation Keys call
     Then expect error string to contain "<err>"
@@ -16,7 +16,7 @@ Feature: Algod REST API v2
       |jsonfiles|directory|err|
       |TODO     |         |nil|
 
-  Scenario Template: Pending Transaction Information
+  Scenario Template: Pending Transaction Information response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Pending Transaction Information call
     Then expect error string to contain "<err>"
@@ -25,7 +25,7 @@ Feature: Algod REST API v2
       |jsonfiles|directory|err|sender|
       |TODO     |         |nil|TODO  |
 
-  Scenario Template: Pending Transactions Information
+  Scenario Template: Pending Transactions Information response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Pending Transactions Information call
     Then expect error string to contain "<err>"
@@ -34,7 +34,7 @@ Feature: Algod REST API v2
       |jsonfiles|directory|err|sender|
       |TODO     |         |nil|TODO  |
 
-  Scenario Template: Send Raw Transaction
+  Scenario Template: Send Raw Transaction response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Send Raw Transaction call
     Then expect error string to contain "<err>"
@@ -43,7 +43,7 @@ Feature: Algod REST API v2
       |jsonfiles|directory|err|txid|
       |TODO     |         |nil|TODO|
 
-  Scenario Template: Pending Transactions By Address
+  Scenario Template: Pending Transactions By Address response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Pending Transactions By Address call
     Then expect error string to contain "<err>"
@@ -52,7 +52,7 @@ Feature: Algod REST API v2
       |jsonfiles|directory|err|len|idx|sender|
       |TODO     |         |nil|0  |0  |TODO  |
 
-  Scenario Template: Node Status
+  Scenario Template: Node Status response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Node Status call
     Then expect error string to contain "<err>"
@@ -61,7 +61,7 @@ Feature: Algod REST API v2
       |jsonfiles|directory|err|roundNum|
       |TODO     |         |nil|0       |
 
-  Scenario Template: Ledger Supply
+  Scenario Template: Ledger Supply response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Ledger Supply call
     Then expect error string to contain "<err>"
@@ -70,7 +70,7 @@ Feature: Algod REST API v2
       |jsonfiles|directory|err|tot|online|roundNum|
       |TODO     |         |nil|0  |0     |0       |
 
-  Scenario Template: Status After Block
+  Scenario Template: Status After Block response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Status After Block call
     Then expect error string to contain "<err>"
@@ -79,7 +79,7 @@ Feature: Algod REST API v2
       |jsonfiles|directory|err|roundNum|
       |TODO     |         |nil|0       |
 
-  Scenario Template: Account Information
+  Scenario Template: Account Information response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Account Information call
     Then expect error string to contain "<err>"
@@ -88,7 +88,7 @@ Feature: Algod REST API v2
       |jsonfiles|directory|err|address|
       |TODO     |         |nil|TODO   |
 
-  Scenario Template: Get Block
+  Scenario Template: Get Block response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Get Block call
     Then expect error string to contain "<err>"
@@ -97,7 +97,7 @@ Feature: Algod REST API v2
       |jsonfiles|directory|err|proposer|
       |TODO     |         |nil|TODO    |
 
-  Scenario Template: Suggested Transaction Parameters
+  Scenario Template: Suggested Transaction Parameters response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Suggested Transaction Parameters call
     Then expect error string to contain "<err>"

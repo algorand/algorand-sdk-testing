@@ -1,6 +1,6 @@
 Feature: Indexer Client v2
 
-  Scenario Template: LookupAssetBalances json check
+  Scenario Template: LookupAssetBalances response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any LookupAssetBalances call
     Then expect error string to contain "<err>"
@@ -9,7 +9,7 @@ Feature: Indexer Client v2
       |jsonfile                |directory|err|roundNum|len|idx|address|amount|frozenState|
       |getassetholders_case1   |         |nil|1       |0  |0  |0      |0     |          0|
 
-  Scenario Template: LookupAssetTransactions json check
+  Scenario Template: LookupAssetTransactions response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any LookupAssetTransactions call
     Then expect error string to contain "<err>"
@@ -18,7 +18,7 @@ Feature: Indexer Client v2
       |jsonfiles|directory|err|roundNum|len|idx|sender|
       |TODO     |         |nil|0       |0  |0  |TODO  |
 
-  Scenario Template: LookupAccountTransactions json check
+  Scenario Template: LookupAccountTransactions response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any LookupAccountTransactions call
     Then expect error string to contain "<err>"
@@ -27,7 +27,7 @@ Feature: Indexer Client v2
       |jsonfiles|directory|err|roundNum|len|idx|sender|
       |TODO     |         |nil|0       |0  |0  |TODO  |
     
-  Scenario Template: LookupBlock json check
+  Scenario Template: LookupBlock response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any LookupBlock call
     Then expect error string to contain "<err>"
@@ -36,7 +36,7 @@ Feature: Indexer Client v2
       |jsonfiles|directory|err|proposer|
       |TODO     |         |nil|TODO    |
 
-  Scenario Template: LookupAccountByID json check
+  Scenario Template: LookupAccountByID response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any LookupAccountByID call
     Then expect error string to contain "<err>"
@@ -45,7 +45,7 @@ Feature: Indexer Client v2
       |jsonfiles|directory|err|address|
       |TODO     |         |nil|TODO    |
 
-  Scenario Template: LookupAssetByID json check
+  Scenario Template: LookupAssetByID response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any LookupAssetByID call
     Then expect error string to contain "<err>"
@@ -54,7 +54,7 @@ Feature: Indexer Client v2
       |jsonfiles|directory|err|index  |
       |TODO     |         |nil|0      |
 
-  Scenario Template: SearchAccounts json check
+  Scenario Template: SearchAccounts response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any SearchAccounts call
     Then expect error string to contain "<err>"
@@ -63,7 +63,7 @@ Feature: Indexer Client v2
       |jsonfiles|directory|err|roundNum  | len | index | address |
       |TODO     |         |nil|0         |0    |0      |TODO     |
 
-  Scenario Template: SearchForTransactions json check
+  Scenario Template: SearchForTransactions response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any SearchForTransactions call
     Then expect error string to contain "<err>"
@@ -72,7 +72,7 @@ Feature: Indexer Client v2
       |jsonfiles|directory|err|roundNum  | len | index | sender  |
       |TODO     |         |nil|0         |0    |0      |TODO     |
 
-  Scenario Template: SearchForAssets json check
+  Scenario Template: SearchForAssets response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any SearchForAssets call
     Then expect error string to contain "<err>"
