@@ -4,10 +4,10 @@ Feature: Indexer Client v2
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any LookupAssetBalances call
     Then expect error string to contain "<err>"
-    And the parsed LookupAssetBalances response should be valid on round <roundNum>, and contain an array of len <len> and element number <idx> should have address "<address>" amount <amount> and frozen state <frozenState>
+    And the parsed LookupAssetBalances response should be valid on round <roundNum>, and contain an array of len <len> and element number <idx> should have address "<address>" amount <amount> and frozen state "<frozenState>"
     Examples:
-      |jsonfile                |directory|err|roundNum|len|idx|address|amount|frozenState|
-      |getassetholders_case1   |         |nil|1       |0  |0  |0      |0     |          0|
+      |jsonfiles               |directory|err|roundNum|len|idx|address|amount|frozenState|
+      |getassetholders_case1   |         |nil|1       |0  |0  |0      |0     |      false|
 
   Scenario Template: LookupAssetTransactions response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
