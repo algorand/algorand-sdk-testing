@@ -1,4 +1,6 @@
 Feature: Indexer Client v2
+  Background:
+    Given mock server recording request paths
 
   Scenario Template: LookupAssetBalances path
     When we make a Lookup Asset Balances call against asset index <index> with limit <limit> afterAddress "<afterAddress>" round <round> currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan>
