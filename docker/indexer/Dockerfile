@@ -3,5 +3,10 @@ FROM ubuntu:19.10
 ENV DEBIAN_FRONTEND noninteractive
 
 COPY indexer /tmp/indexer
+COPY docker/indexer/setup.py /tmp/setup.py
+COPY docker/indexer/setup.sh /tmp/setup.sh
+COPY docker/indexer/e2edata.tar.bz2
 
-CMD ["/bin/bash", "-c", "/tmp/indexer daemon -P \"host=indexer-db port=5432 user=algorand password=harness dbname=postgres sslmode=disable\""]
+RUN tar -jxf /tmp/e2edata.tar.bz2 -C /tmp
+
+CMD ["/tmp/setup.sh"]

@@ -50,6 +50,16 @@ def setup_algod(d):
     subprocess.check_call(['%s/inst/update.sh -i -c %s -p %s -d %s/data -n' % (home, d['CHANNEL'], d['BIN_DIR'], d['BIN_DIR'])], shell=True)
 
 
+def algod_directories(network_dir):
+    """ returns (data_dir, kmd_dir) """
+    data_dir=join(network_dir, 'Node')
+
+    kmd_dir = [filename for filename in os.listdir(data_dir) if filename.startswith('kmd')][0]
+    kmd_dir=join(data_dir, kmd_dir)
+
+    return data_dir, kmd_dir
+
+
 def create_network(bin_dir, network_dir, template, token, algod_port, kmd_port):
     """
     Create a private network.
@@ -58,15 +68,13 @@ def create_network(bin_dir, network_dir, template, token, algod_port, kmd_port):
     if os.path.exists(args.network_dir):
         shutil.rmtree(args.network_dir)
 
-
     # $BIN_DIR/goal network create -n testnetwork -r $NETWORK_DIR -t network_config/$TEMPLATE
     subprocess.check_call(['%s/goal network create -n testnetwork -r %s -t %s' % (bin_dir, network_dir, template)], shell=True)
+    node_dir, kmd_dir = algod_directories(network_dir)
+
+    # TODO: Delete this?
     # INDEXER_DIR=$(ls -d $NETWORK_DIR/Node/testnetwork*)
-    node_dir=join(network_dir, 'Node')
     indexer_dir = [join(node_dir, filename) for filename in os.listdir(node_dir) if filename.startswith('testnetwork')][0]
-    # KMD_DIR=$(ls -d $NETWORK_DIR/Node/kmd*)
-    kmd_dir = [filename for filename in os.listdir(node_dir) if filename.startswith('kmd')][0]
-    kmd_dir = join(node_dir, kmd_dir)
 
     # Set tokens
     with open(join(node_dir, 'algod.token'), 'w') as f:
@@ -82,9 +90,14 @@ def create_network(bin_dir, network_dir, template, token, algod_port, kmd_port):
 
 
 def start_network(bin_dir, network_dir):
-
+    """ 
     # $BIN_DIR/goal network start -r $NETWORK_DIR
+
+    kmd start runs forever, so this command never returns.
+    """
+    data_dir, kmd_dir = algod_directories(network_dir)
     subprocess.check_call(['%s/goal network start -r %s' % (bin_dir, network_dir)], shell=True)
+    subprocess.check_call(['%s/kmd start -t 0 -d %s' % (bin_dir, kmd_dir)], shell=True)
 
 
 def install_handler(d, args):
