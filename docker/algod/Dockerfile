@@ -1,13 +1,5 @@
 FROM ubuntu:19.10
 
-RUN if [ ${OSTYPE} = Linux ] && [ ${USER_ID:-0} -ne 0 ] && [ ${GROUP_ID:-0} -ne 0 ]; then \
-    groupadd -g ${GROUP_ID} algorand &&\
-    useradd -l -u ${USER_ID} -g algorand algorand &&\
-    chown --changes --silent --no-dereference --recursive \
-          --from=33:33 ${USER_ID}:${GROUP_ID} \
-        /opt \
-;fi
-
 ENV DEBIAN_FRONTEND noninteractive
 
 # Basic dependencies
