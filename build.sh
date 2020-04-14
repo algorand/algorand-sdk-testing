@@ -16,5 +16,5 @@ pushd $rootdir
 #  -p 60000:60000 \
 #  sdk-testing:latest
 
-docker-compose rm --force && docker-compose up --build
-#docker-compose rm --force && docker-compose up --build --force-recreate --no-deps
+#docker-compose rm --force && docker-compose up --build
+docker-compose rm --force && docker-compose up --build --force-recreate --no-deps
