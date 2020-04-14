@@ -9,6 +9,8 @@ services:
     ports:
       - 60001:60001
       - 60000:60000
+    networks:
+      - sdk-harness
   indexer:
     image: "sdk-harness-indexer"
     build:
@@ -17,6 +19,8 @@ services:
     ports:
       - 59999:8980
     restart: unless-stopped
+    networks:
+      - sdk-harness
   indexer-db:
     image: "postgres"
     environment:
@@ -25,3 +29,8 @@ services:
       PGDATA: /data/postgres
     ports:
       - 60002:5432
+    networks:
+      - sdk-harness
+
+networks:
+  sdk-harness:

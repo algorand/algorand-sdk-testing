@@ -5,16 +5,8 @@ set -e
 rootdir=`dirname $0`
 pushd $rootdir
 
-#time docker build -t sdk-testing-indexer -f docker/indexer/Dockerfile "$(pwd)"
-#docker run -it \
-#  -p 59999:8980 \
-#  sdk-testing-indexer
+# Make sure the state is reset.
+docker-compose rm --force
 
-#time docker build -t sdk-testing -f docker/main/Dockerfile "$(pwd)"
-#docker run -it  \
-#  -p 60001:60001 \
-#  -p 60000:60000 \
-#  sdk-testing:latest
-
-#docker-compose rm --force && docker-compose up --build
-docker-compose rm --force && docker-compose up --build --force-recreate --no-deps -d
+# Uses --force-recreate to ensure that nightly version is updated.
+docker-compose up --build --force-recreate --no-deps -d
