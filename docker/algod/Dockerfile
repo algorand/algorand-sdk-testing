@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y apt-utils curl git git-core bsdmainutil
 COPY config_future /tmp/config
 COPY network_config/config.json /tmp/config.json
 COPY network_config/template.json /tmp/template.json
-COPY docker/setup.py /tmp/setup.py
+COPY docker/algod/setup.py /tmp/setup.py
 
 RUN python3 /tmp/setup.py install\
  --algod-config /tmp/config \
