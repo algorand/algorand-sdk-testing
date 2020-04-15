@@ -1,3 +1,4 @@
+@v2
 Feature: Indexer Client v2
   Background:
     Given mock server recording request paths
@@ -45,11 +46,11 @@ Feature: Indexer Client v2
       |TODO|0    |
 
   Scenario Outline: SearchAccounts path
-    When we make a Search Accounts call with assetID <index> limit <limit> currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> and afterAddress "<afterAddress>"
+    When we make a Search Accounts call with assetID <index> limit <limit> currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> and block <block>
     Then expect the path used to be "<path>"
     Examples:
-      |path   | index | afterAddress| limit | currencyGreaterThan | currencyLessThan|
-      |TODO   | 0     | TODO        | 0     | 0                   | 0               |
+      |path   | index | block | limit | currencyGreaterThan | currencyLessThan|
+      |TODO   | 0     | 0        | 0     | 0                   | 0               |
 
   Scenario Outline: SearchForTransactions path
     When we make a Search For Transactions call with account "<account>" NotePrefix "<notePrefixB64>" TxType "<txType>" SigType "<sigType>" txid "<txidB64>" round <round> minRound <minRound> maxRound <maxRound> limit <limit> beforeTime <beforeTime> afterTime <afterTime> currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> assetIndex <index> addressRole "<addressRole>" ExcluseCloseTo "<excludeCloseTo>"
