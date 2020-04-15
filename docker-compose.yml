@@ -21,16 +21,21 @@ services:
     restart: unless-stopped
     networks:
       - sdk-harness
+    environment:
+      DATABASE_NAME: dataset1
+
   indexer-db:
     image: "postgres"
+    volumes:
+      - ./docker/indexer/init-scripts:/docker-entrypoint-initdb.d
+    ports:
+      - 5433:5432
+    networks:
+      - sdk-harness
     environment:
       POSTGRES_USER: algorand
       POSTGRES_PASSWORD: harness
-      PGDATA: /data/postgres
-    ports:
-      - 60002:5432
-    networks:
-      - sdk-harness
+      POSTGRES_MULTIPLE_DATABASES: dataset1
 
 networks:
   sdk-harness:
