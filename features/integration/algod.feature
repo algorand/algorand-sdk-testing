@@ -1,3 +1,4 @@
+@algod
 Feature: Algod
   Background:
     Given an algod client

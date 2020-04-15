@@ -1,3 +1,4 @@
+@assets
 Feature: Assets
   Background:
     Given an algod client
