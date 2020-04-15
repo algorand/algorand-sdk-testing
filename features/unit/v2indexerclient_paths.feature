@@ -46,10 +46,10 @@ Feature: Indexer Client v2
       |TODO|0    |
 
   Scenario Outline: SearchAccounts path
-    When we make a Search Accounts call with assetID <index> limit <limit> currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> and block <block>
+    When we make a Search Accounts call with assetID <index> limit <limit> currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> and round <block>
     Then expect the path used to be "<path>"
     Examples:
-      |path   | index | block | limit | currencyGreaterThan | currencyLessThan|
+      |path   | index | round | limit | currencyGreaterThan | currencyLessThan|
       |TODO   | 0     | 0        | 0     | 0                   | 0               |
 
   Scenario Outline: SearchForTransactions path
