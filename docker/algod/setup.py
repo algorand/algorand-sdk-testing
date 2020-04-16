@@ -32,9 +32,6 @@ start.add_argument('--never-exit', default=False, action='store_true', help='In 
 pp = pprint.PrettyPrinter(indent=4)
 
 
-class IllegalArgumentError(ValueError):
-    pass
-
 def setup_algod(d):
     """
     Download and install algod.
@@ -51,7 +48,9 @@ def setup_algod(d):
 
 
 def algod_directories(network_dir):
-    """ returns (data_dir, kmd_dir) """
+    """
+    Compute data/kmd directories.
+    """
     data_dir=join(network_dir, 'Node')
 
     kmd_dir = [filename for filename in os.listdir(data_dir) if filename.startswith('kmd')][0]
@@ -71,10 +70,6 @@ def create_network(bin_dir, network_dir, template, token, algod_port, kmd_port):
     # $BIN_DIR/goal network create -n testnetwork -r $NETWORK_DIR -t network_config/$TEMPLATE
     subprocess.check_call(['%s/goal network create -n testnetwork -r %s -t %s' % (bin_dir, network_dir, template)], shell=True)
     node_dir, kmd_dir = algod_directories(network_dir)
-
-    # TODO: Delete this?
-    # INDEXER_DIR=$(ls -d $NETWORK_DIR/Node/testnetwork*)
-    indexer_dir = [join(node_dir, filename) for filename in os.listdir(node_dir) if filename.startswith('testnetwork')][0]
 
     # Set tokens
     with open(join(node_dir, 'algod.token'), 'w') as f:
@@ -101,13 +96,17 @@ def start_network(bin_dir, network_dir):
 
 
 def install_handler(d, args):
-    """ install subcommand """
+    """ 
+    install subcommand - create and configure the network.
+    """
     setup_algod(d)
     create_network(d['BIN_DIR'], args.network_dir, args.network_template, args.network_token, args.algod_port, args.kmd_port)
 
 
 def start_handler(d, args):
-    """ start subcommand """
+    """
+    start subcommand - start algod + kmd
+    """
     start_network(d['BIN_DIR'], args.network_dir)
 
     while args.never_exit:

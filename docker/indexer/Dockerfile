@@ -2,8 +2,8 @@ FROM ubuntu:19.10
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ADD https://algorand-testdata.s3.amazonaws.com/indexer/indexer /tmp/indexer
-RUN chmod +x /tmp/indexer
+ADD https://algorand-testdata.s3.amazonaws.com/indexer/algorand-indexer /tmp/algorand-indexer
+RUN chmod +x /tmp/algorand-indexer
 
 COPY docker/indexer/setup.sh /tmp/setup.sh
 COPY docker/indexer/e2edata.tar.bz2 /tmp/e2edata.tar.bz2
