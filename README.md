@@ -11,6 +11,12 @@ To add new scenarios, either add to an existing feature file or create a new one
 ## How to run tests
 A run_docker.sh file is included in each of the SDKs to pull files and run the tests in a docker container. Just call it from the project root (i.e. for py-algorand-sdk, do ./test/cucumber/docker/run_docker.sh)
 
+Specifically the driver script should:
+1. clone `algorand-sdk-testing`.
+2. copy supported feature files from the `features` directory into the SDK.
+3. build and start the test environment by calling `./scripts/up.sh`
+4. launch an SDK container using `--network host` which runs the cucumber test suite.
+
 ## Adding a new SDK
 1. Write all the mappings from gherkin to the new SDK
 2. Add a Dockerfile, run_docker.sh, and sdk.py file for SDK specific testing procedures (see any existing Algorand SDK as an example)

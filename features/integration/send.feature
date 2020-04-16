@@ -1,3 +1,4 @@
+@send
 Feature: Sending transactions
   Background: 
     Given an algod client
