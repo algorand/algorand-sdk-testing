@@ -24,6 +24,13 @@ Feature: Algod REST API v2
       |path | txid| max|
       |TODO | TODO| 0  |
 
+  Scenario Outline: Pending Transactions Information
+    When we make a Pending Transactions Information call with max <max>
+    Then expect the path used to be "<path>"
+    Examples:
+      |path | max|
+      |TODO | 0  |
+
   Scenario Outline: Pending Transactions By Address
     When we make a Pending Transactions By Address call against account "<account>" and max <max>
     Then expect the path used to be "<path>"
@@ -32,7 +39,6 @@ Feature: Algod REST API v2
       |TODO | TODO   | 0  |
 
   Scenario Outline: Status After Block
-    Given mock server recording request paths
     When we make a Status after Block call with round <round>
     Then expect the path used to be "<path>"
     Examples:
