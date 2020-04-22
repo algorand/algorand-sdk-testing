@@ -5,16 +5,16 @@ Feature: Algod REST API v2
     When we make any Shutdown call
     Then expect error string to contain "<err>"
     Examples:
-      |jsonfiles|directory|err|
-      |TODO     |         |nil|
+      |jsonfiles |directory                  |err|
+      |empty.json|v2algodclient_responsejsons|nil|
 
   Scenario Outline: Register Participation Keys response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Register Participation Keys call
     Then expect error string to contain "<err>"
     Examples:
-      |jsonfiles|directory|err|
-      |TODO     |         |nil|
+      |jsonfiles |directory                  |err|
+      |empty.json|v2algodclient_responsejsons|nil|
 
   Scenario Outline: Pending Transaction Information response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
@@ -58,8 +58,8 @@ Feature: Algod REST API v2
     Then expect error string to contain "<err>"
     And the parsed Node Status response should have a last round of <roundNum>
     Examples:
-      |jsonfiles|directory|err|roundNum|
-      |TODO     |         |nil|0       |
+      |jsonfiles       |directory                    |err|roundNum|
+      |status.json     | v2algodclient_responsejsons |nil|6222190       |
 
   Scenario Outline: Ledger Supply response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
@@ -67,8 +67,8 @@ Feature: Algod REST API v2
     Then expect error string to contain "<err>"
     And the parsed Ledger Supply response should have totalMoney <tot> onlineMoney <online> on round <roundNum>
     Examples:
-      |jsonfiles|directory|err|tot|online|roundNum|
-      |TODO     |         |nil|0  |0     |0       |
+      |jsonfiles        |directory                  |err|tot             |online          |roundNum|
+      |ledgerSupply.json|v2algodclient_responsejsons|nil|3093025985939942|2189181532333805|6222141 |
 
   Scenario Outline: Status After Block response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
@@ -76,8 +76,8 @@ Feature: Algod REST API v2
     Then expect error string to contain "<err>"
     And the parsed Status After Block response should have a last round of <roundNum>
     Examples:
-      |jsonfiles|directory|err|roundNum|
-      |TODO     |         |nil|0       |
+      |jsonfiles       |directory                    |err|roundNum|
+      |status.json     | v2algodclient_responsejsons |nil|6222190       |
 
   Scenario Outline: Account Information response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
@@ -85,8 +85,8 @@ Feature: Algod REST API v2
     Then expect error string to contain "<err>"
     And the parsed Account Information response should have address "<address>"
     Examples:
-      |jsonfiles|directory|err|address|
-      |TODO     |         |nil|TODO   |
+      |jsonfiles              |directory                  |err|address|
+      |accountInformation.json|v2algodclient_responsejsons|nil|ALGORANDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIN5DNAU   |
 
   Scenario Outline: Get Block response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
@@ -94,8 +94,8 @@ Feature: Algod REST API v2
     Then expect error string to contain "<err>"
     And the parsed Get Block response should have rewards pool "<pool>"
     Examples:
-      |jsonfiles|directory|err|pool    |
-      |TODO     |         |nil|TODO    |
+      |jsonfiles |directory                  |err|pool    |
+      |block.json|v2algodclient_responsejsons|nil|/v////////////////////////////////////////8=|
 
   Scenario Outline: Suggested Transaction Parameters response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
@@ -103,5 +103,5 @@ Feature: Algod REST API v2
     Then expect error string to contain "<err>"
     And the parsed Suggested Transaction Parameters response should have first round valid of <roundNum>
     Examples:
-      |jsonfiles|directory|err|roundNum|
-      |TODO     |         |nil|0       |
+      |jsonfiles           |directory                   |err|roundNum|
+      |suggestedParams.json| v2algodclient_responsejsons|nil|6222155|
