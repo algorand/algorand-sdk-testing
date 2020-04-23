@@ -147,7 +147,7 @@ Feature: Indexer Dataset 1
   #  When I use <indexer> to search for transactions with <limit>, "<note-prefix>", "<tx-type>", "<sig-type>", "<tx-id>", <round>, <min-round>, <max-round>, <asset-id>, "<before-time>", "<after-time>", <currency-gt>, <currency-lt>, "<address>", "<address-role>", "<exclude-close-to>"  and token "<token>"
   #
   Scenario Outline: /transactions?note-prefix
-    When I use <indexer> to search for transactions with 0, "<note-prefix>", "", "", "", 0, 0, 0, 0, "", "", 0, 0, "", "", ""  and token ""
+    When I use <indexer> to search for transactions with 0, "<note-prefix>", "", "", "", 0, 0, 0, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
 
     Examples:
@@ -157,7 +157,7 @@ Feature: Indexer Dataset 1
       | 1       | 1111        | 0    |                                                      |
 
   Scenario Outline: /transactions?tx-type=<tx-type>
-    When I use <indexer> to search for transactions with 0, "", "<tx-type>", "", "", 0, 0, 0, 0, "", "", 0, 0, "", "", ""  and token ""
+    When I use <indexer> to search for transactions with 0, "", "<tx-type>", "", "", 0, 0, 0, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
     And Every transaction has tx-type "<tx-type>"
 
@@ -170,7 +170,7 @@ Feature: Indexer Dataset 1
       | 1       | afrz    | 0    |                                                      |
 
   Scenario Outline: /transactions?sig-type=<sig-type>
-    When I use <indexer> to search for transactions with 0, "", "", "<sig-type>", "", 0, 0, 0, 0, "", "", 0, 0, "", "", ""  and token ""
+    When I use <indexer> to search for transactions with 0, "", "", "<sig-type>", "", 0, 0, 0, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
     And Every transaction has sig-type "<sig-type>"
 
@@ -181,7 +181,7 @@ Feature: Indexer Dataset 1
       | 1       | msig     | 0    |                                                      |
 
   Scenario Outline: /transactions?tx-id=<txid>
-    When I use <indexer> to search for transactions with 0, "", "", "", "<txid>", 0, 0, 0, 0, "", "", 0, 0, "", "", ""  and token ""
+    When I use <indexer> to search for transactions with 0, "", "", "", "<txid>", 0, 0, 0, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
 
     Examples:
@@ -191,7 +191,7 @@ Feature: Indexer Dataset 1
       | 1       | 1   | BS2A3W2O6GKNLPOYKCTKJO72HJVAKSJKMOFC4AEGOGBL45DVSYFA |
 
   Scenario Outline: /transactions?round=<round>
-    When I use <indexer> to search for transactions with 0, "", "", "", "", <round>, 0, 0, 0, "", "", 0, 0, "", "", ""  and token ""
+    When I use <indexer> to search for transactions with 0, "", "", "", "", <round>, 0, 0, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
     And Every transaction has round <round>
 
@@ -202,7 +202,7 @@ Feature: Indexer Dataset 1
       | 1       | 30    | 2   | SLEJ5ELZR6734TDSOPRNXFZTUIS6TTF3H433SSPIDBXVV6POFPHQ |
 
   Scenario Outline: /transactions?min-round=<min-round>
-    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, <min-round>, 0, 0, "", "", 0, 0, "", "", ""  and token ""
+    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, <min-round>, 0, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
     And Every transaction has round >= <min-round>
 
@@ -213,7 +213,7 @@ Feature: Indexer Dataset 1
       | 1       | 30        | 2   | SLEJ5ELZR6734TDSOPRNXFZTUIS6TTF3H433SSPIDBXVV6POFPHQ |
 
   Scenario Outline: /transactions?max-round=<max-round>
-    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, <max-round>, 0, "", "", 0, 0, "", "", ""  and token ""
+    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, <max-round>, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
     And Every transaction has round <= <max-round>
 
@@ -225,7 +225,7 @@ Feature: Indexer Dataset 1
 
 
   Scenario Outline: /transactions?max-round=<max-round>
-    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, <max-round>, 0, "", "", 0, 0, "", "", ""  and token ""
+    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, <max-round>, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
     And Every transaction has round <= <max-round>
 
@@ -236,7 +236,7 @@ Feature: Indexer Dataset 1
       | 1       | 30        | 49  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
 
   Scenario Outline: /transactions?asset-id=<asset-id>
-    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, <asset-id>, "", "", 0, 0, "", "", ""  and token ""
+    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, <asset-id>, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
     And Every transaction works with asset-id <asset-id>
 
@@ -245,7 +245,7 @@ Feature: Indexer Dataset 1
       | 1       | 9        | 7   | 2GMT4WWIYZFDB5MTXNZFOTCWNCSBVKASQNLQ2SDI3ANBCFTVHPCA |
 
   Scenario Outline: /transactions?before-time=<before>
-    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "<before>", "", 0, 0, "", "", ""  and token ""
+    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "<before>", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
     And Every transaction is older than "<before>"
 
@@ -256,7 +256,7 @@ Feature: Indexer Dataset 1
       | 1       | 2021-03-31T19:47:49Z | 49  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
 
   Scenario Outline: /transactions?after-time=<after>
-    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "", "<after>", 0, 0, "", "", ""  and token ""
+    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "", "<after>", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
     And Every transaction is newer than "<after>"
 
@@ -266,26 +266,65 @@ Feature: Indexer Dataset 1
       | 1       | 2020-03-31T19:48:49Z | 14  | 3NL6W7SVU2FEPVCB773OZFFJYUGINF7EYBGJBIDFOZZBDVPHPF5Q |
       | 1       | 2029-01-01T01:01:01Z | 0   |                                                      |
 
-# all the fixins
-#  Scenario Outline: note prefix - /transactions
-#  #  When I use <indexer> to search for transactions with <limit>, "<note-prefix>", "<tx-type>", "<sig-type>", "<tx-id>", <round>, <min-round>, <max-round>, <asset-id>, "<before-time>", "<after-time>", <currency-gt>, <currency-lt>, "<address>", "<address-role>", "<exclude-close-to>"  and token "<token>"
-#    When I use <indexer> to search for transactions with <limit>, "<note-prefix>", "<tx-type>", "<sig-type>", "<tx-id>", <round>, <min-round>, <max-round>, <asset-id>, "<before-time>", "<after-time>", <currency-gt>, <currency-lt>, "<address>", "<address-role>", "<exclude-close-to>"  and token "<token>"
-#
-#  Examples:
-#  | indexer | limit | note-prefix | tx-type | sig-type | tx-id | round | min-round | max-round | asset-id | before-time | after-time | currency-gt | currency-lt | address | address-role | exclude-close-to |
-#  | 1       | 0     |             |         |          |       | 0     | 0         | 0         | 0        |             |            | 0           | 0           |         |              |                  |
+  Scenario Outline: /transactions?currency-gt=<currency-gt>&currency-lt=<currency-lt>
+    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "", "", <currency-gt>, <currency-lt>, "", "", "" and token ""
+    Then there are <num> transactions in the response, the first is "<txid>".
+    And Every transaction moves between <currency-gt> and <currency-lt> currency
 
-  # All the fixins
-  #| indexer | limit | note-prefix | tx-type | sig-type | tx-id | round | min-round | max-round | asset-id | before-time | after-time | currency-gt | currency-lt | address | address-role | exclude-close-to | token |
+    Examples:
+      | indexer | currency-gt | currency-lt | num | txid                                                 |
+      | 1       | 0           | 10          | 2   | EKC5XZ6J2NN3APZABUOTFEXVHXMKZKUXTF4NFV625OLRTEKYH46Q |
+      | 1       | 1           | 0           | 34  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
+      | 1       | 10000       | 1000000     | 2   | WEUXWWPN7LBKS276Q7G4FBJMD5BZAHWBFUFFIE6ZV52QDLPPE7HA |
 
+  Scenario Outline: /transactions?asset-id=<asset-id>&currency-gt=<currency-gt>&currency-lt=<currency-lt>
+    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, <asset-id>, "", "", <currency-gt>, <currency-lt>, "", "", "" and token ""
+    Then there are <num> transactions in the response, the first is "<txid>".
+    And Every transaction moves between <currency-gt> and <currency-lt> currency
+
+    Examples:
+      | indexer | asset-id | currency-gt | currency-lt | num | txid                                                 |
+      | 1       | 9        | 1           | 0           | 3   | ZDYUHC4VSMTO4P747JXPAWXIP55QJXUMBW6LKNNC2TTFCC6VHNEQ |
+      | 1       | 9        | 0           | 100000000   | 2   | ZDYUHC4VSMTO4P747JXPAWXIP55QJXUMBW6LKNNC2TTFCC6VHNEQ |
+      | 1       | 9        | 1000000     | 100000000   | 1   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
+
+  Scenario Outline: account filter /transactions?address=<address>&address-role=<address-role>&exclude-close-to=<exclude-close-to>
+    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "", "", 0, 0, "<address>", "<address-role>", "<exclude-close-to>" and token ""
+    Then there are <num> transactions in the response, the first is "<txid>".
+
+  Examples:
+  | indexer | address                                                    | address-role | exclude-close-to | num | txid                                                 |
+  | 1       | TFZP2BHL7LZ4ZLN7FGW2EN5V23DNMYWPIMN55ASNY2FEGM66STNSBMFKSA |              |                  | 8   | MH2GOC765TAK6UKEH6TDJ42QWTB4W46S4W3WI2QWNQ5VWHMXCIMQ |
+  | 1       | TFZP2BHL7LZ4ZLN7FGW2EN5V23DNMYWPIMN55ASNY2FEGM66STNSBMFKSA | sender       |                  | 6   | MH2GOC765TAK6UKEH6TDJ42QWTB4W46S4W3WI2QWNQ5VWHMXCIMQ |
+  | 1       | TFZP2BHL7LZ4ZLN7FGW2EN5V23DNMYWPIMN55ASNY2FEGM66STNSBMFKSA | receiver     |                  | 2   | ZITQV77OVTA6EIONROACGBG3UMJAIBUMURJEQIB5DIXLPQAQOXFA |
+  | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 |              |                  | 13  | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
+  | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | receiver     |                  | 6   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
+  | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | receiver     | true             | 3   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
+  | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | sender       |                  | 7   | QTAOMHCLPBLWX6OB7Y3TNLCA5XS23U53MCFZG6MKI535BLNQAI4Q |
 
   #
   # /accounts/{account-id}/transactions - same as /transactions but the validation just ensures that all results include the specified account
   #
+  Scenario Outline: /accounts/<account-id>/transactions
+    When I use <indexer> to search for all "<account-id>" transactions
+    Then there are <num> transactions in the response, the first is "<txid>".
+
+  Examples:
+    | indexer | account-id                                                 | num | txid                                                 |
+    | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 13  | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
+    | 1       | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | 4   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
+
 
   #
   # /assets/{asset-id}/transactions - same as /transactions but the validation just ensures that all results are asset xfer's for the specified asset.
   #
+  Scenario Outline: /assets/<asset-id>/transactions
+    When I use <indexer> to search for all <asset-id> asset transactions
+    Then there are <num> transactions in the response, the first is "<txid>".
+
+    Examples:
+      | indexer | asset-id | num | txid                                                 |
+      | 1       | 9        | 7   | 2GMT4WWIYZFDB5MTXNZFOTCWNCSBVKASQNLQ2SDI3ANBCFTVHPCA |
 
   #
   # /assets
