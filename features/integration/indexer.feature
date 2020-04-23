@@ -251,7 +251,9 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | before               | num | txid                                                 |
-      | 1       | 2020-03-31T19:47:49Z | 0   | 2GMT4WWIYZFDB5MTXNZFOTCWNCSBVKASQNLQ2SDI3ANBCFTVHPCA |
+      | 1       | 2020-03-31T19:47:49Z | 0   |                                                      |
+      | 1       | 2020-03-31T19:48:49Z | 35  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
+      | 1       | 2021-03-31T19:47:49Z | 49  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
 
   Scenario Outline: /transactions?after-time=<after>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "", "<after>", 0, 0, "", "", ""  and token ""
@@ -260,7 +262,9 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | after                | num | txid                                                 |
-      | 1       | 2019-01-01T01:01:01Z | 49  | TOVLLWKZ4QPKPX4772TOMI3L6QKWMFPI6OFN5CUCSCMBVJONXUEQ |
+      | 1       | 2019-01-01T01:01:01Z | 49  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
+      | 1       | 2020-03-31T19:48:49Z | 14  | 3NL6W7SVU2FEPVCB773OZFFJYUGINF7EYBGJBIDFOZZBDVPHPF5Q |
+      | 1       | 2029-01-01T01:01:01Z | 0   |                                                      |
 
 # all the fixins
 #  Scenario Outline: note prefix - /transactions
