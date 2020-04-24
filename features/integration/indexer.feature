@@ -2,8 +2,8 @@
 Feature: Indexer Dataset 1
 
   For all queries, parameters will not be set for default values as defined by:
-  * Numeric inputs: 0
-  * String inputs: ""
+    * Numeric inputs: 0
+    * String inputs: ""
 
   Background:
     Given indexer client 1 at "localhost" port 59999 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -25,7 +25,7 @@ Feature: Indexer Dataset 1
   # /accounts/{account-id}
   #
   Scenario Outline: has asset - /account/<account>
-    When I use <indexer> to lookup account "<account>"
+    When I use <indexer> to lookup account "<account>" at round 0
     Then The account has <num> assets, the first is asset <index> has a frozen status of "<frozen>" and amount <units>.
 
     Examples:
@@ -34,7 +34,7 @@ Feature: Indexer Dataset 1
       | 1       | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | 1   | 9     | false  | 68663000     |
 
   Scenario Outline: creator - /account/<account>
-    When I use <indexer> to lookup account "<account>"
+    When I use <indexer> to lookup account "<account>" at round 0
     Then The account created <num> assets, the first is asset <index> is named "<name>" with a total amount of <total> "<unit>"
 
     Examples:
@@ -42,13 +42,38 @@ Feature: Indexer Dataset 1
       | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 1   | 9     | bogocoin | 1000000000000 | bogo |
 
   Scenario Outline: lookup - /account/<account>
-    When I use <indexer> to lookup account "<account>"
-    Then The account has <μalgos> μalgos and <num> assets
+    When I use <indexer> to lookup account "<account>" at round 0
+    Then The account has <μalgos> μalgos and <num> assets, 0 has 0
 
     Examples:
       | indexer | account                                                    | μalgos           | num |
       | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 999899126000     | 1   |
       | 1       | FROJFIFQRARWEHOL6GR3MBFCDJY76CPF3UY55HM3PCK42AD5HA5SKKXLLA | 4992999999993000 | 0   |
+
+  #
+  # /accounts/{account-id} - at round (rollback test)
+  #
+  Scenario Outline: rewind - /accounts/{account-id}?round=<round>
+    When I use <indexer> to lookup account "<account>" at round <round>
+    Then The account has <μalgos> μalgos and <num> assets, <asset-id> has <asset-amount>
+
+    Examples:
+      | indexer | account                                                    | round | μalgos        | num | asset-id | asset-amount  |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 351   | 999899126000  | 1   | 9        | 999931337000  |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 30    | 999899126000  | 1   | 9        | 999931337000  |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 29    | 999898989000  | 1   | 9        | 999900000000  |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 27    | 999998990000  | 1   | 9        | 999900000000  |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 25    | 999998991000  | 1   | 9        | 1000000000000 |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 21    | 999999992000  | 1   | 9        | 1000000000000 |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 19    | 999998995000  | 1   | 9        | 1000000000000 |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 17    | 999998995000  | 1   | 9        | 999999000000  |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 15    | 999998996000  | 1   | 9        | 1000000000000 |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 11    | 999999997000  | 1   | 9        | 1000000000000 |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 9     | 999899998000  | 1   | 9        | 1000000000000 |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 6     | 999999999000  | 1   | 9        | 1000000000000 |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 4     | 1000000000000 | 1   | 9        | 0             |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 2     | 0             | 1   | 9        | 0             |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 1     | 0             | 1   | 9        | 0             |
 
   #
   # /assets/{asset-id}
@@ -65,7 +90,7 @@ Feature: Indexer Dataset 1
   # /assets/{asset-id}/balances
   #
   Scenario Outline: balances - /assets/<asset-id>/balances?gt=<currency-gt>&lt=<currency-lt>&limit=<limit>
-    When I use <indexer> to lookup asset balances for <asset-id> with <currency-gt>, <currency-lt>, <limit>
+    When I use <indexer> to lookup asset balances for <asset-id> with <currency-gt>, <currency-lt>, <limit> and token ""
     Then There are <num-accounts> with the asset, the first is "<account>" has "<is-frozen>" and <amount>
 
     Examples:
@@ -75,6 +100,18 @@ Feature: Indexer Dataset 1
       | 1       | 9        | 0           | 0           | 1     | 1            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
       | 1       | 9        | 68663000    | 0           | 0     | 1            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
       | 1       | 9        | 0           | 68663001    | 0     | 1            | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | false     | 68663000     |
+
+
+  Scenario Outline: /assets/{asset-id}/balances?next=token
+    When I use <indexer> to lookup asset balances for <asset-id> with <currency-gt>, <currency-lt>, <limit> and token ""
+    And I get the next page using <indexer> to lookup asset balances for <asset-id> with <currency-gt>, <currency-lt>, <limit>
+    Then There are <num-accounts> with the asset, the first is "<account>" has "<is-frozen>" and <amount>
+
+    Examples:
+      | indexer | asset-id | currency-gt | currency-lt | limit | num-accounts | account                                                    | is-frozen | amount   |
+      | 1       | 9        | 0           | 0           | 1     | 1            | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | false     | 68663000 |
+
+    #####################
 
   #
   # /accounts
@@ -292,15 +329,15 @@ Feature: Indexer Dataset 1
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "", "", 0, 0, "<address>", "<address-role>", "<exclude-close-to>" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
 
-  Examples:
-  | indexer | address                                                    | address-role | exclude-close-to | num | txid                                                 |
-  | 1       | TFZP2BHL7LZ4ZLN7FGW2EN5V23DNMYWPIMN55ASNY2FEGM66STNSBMFKSA |              |                  | 8   | MH2GOC765TAK6UKEH6TDJ42QWTB4W46S4W3WI2QWNQ5VWHMXCIMQ |
-  | 1       | TFZP2BHL7LZ4ZLN7FGW2EN5V23DNMYWPIMN55ASNY2FEGM66STNSBMFKSA | sender       |                  | 6   | MH2GOC765TAK6UKEH6TDJ42QWTB4W46S4W3WI2QWNQ5VWHMXCIMQ |
-  | 1       | TFZP2BHL7LZ4ZLN7FGW2EN5V23DNMYWPIMN55ASNY2FEGM66STNSBMFKSA | receiver     |                  | 2   | ZITQV77OVTA6EIONROACGBG3UMJAIBUMURJEQIB5DIXLPQAQOXFA |
-  | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 |              |                  | 13  | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
-  | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | receiver     |                  | 6   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
-  | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | receiver     | true             | 3   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
-  | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | sender       |                  | 7   | QTAOMHCLPBLWX6OB7Y3TNLCA5XS23U53MCFZG6MKI535BLNQAI4Q |
+    Examples:
+      | indexer | address                                                    | address-role | exclude-close-to | num | txid                                                 |
+      | 1       | TFZP2BHL7LZ4ZLN7FGW2EN5V23DNMYWPIMN55ASNY2FEGM66STNSBMFKSA |              |                  | 8   | MH2GOC765TAK6UKEH6TDJ42QWTB4W46S4W3WI2QWNQ5VWHMXCIMQ |
+      | 1       | TFZP2BHL7LZ4ZLN7FGW2EN5V23DNMYWPIMN55ASNY2FEGM66STNSBMFKSA | sender       |                  | 6   | MH2GOC765TAK6UKEH6TDJ42QWTB4W46S4W3WI2QWNQ5VWHMXCIMQ |
+      | 1       | TFZP2BHL7LZ4ZLN7FGW2EN5V23DNMYWPIMN55ASNY2FEGM66STNSBMFKSA | receiver     |                  | 2   | ZITQV77OVTA6EIONROACGBG3UMJAIBUMURJEQIB5DIXLPQAQOXFA |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 |              |                  | 13  | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | receiver     |                  | 6   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | receiver     | true             | 3   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | sender       |                  | 7   | QTAOMHCLPBLWX6OB7Y3TNLCA5XS23U53MCFZG6MKI535BLNQAI4Q |
 
   #
   # /accounts/{account-id}/transactions - same as /transactions but the validation just ensures that all results include the specified account
@@ -309,10 +346,10 @@ Feature: Indexer Dataset 1
     When I use <indexer> to search for all "<account-id>" transactions
     Then there are <num> transactions in the response, the first is "<txid>".
 
-  Examples:
-    | indexer | account-id                                                 | num | txid                                                 |
-    | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 13  | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
-    | 1       | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | 4   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
+    Examples:
+      | indexer | account-id                                                 | num | txid                                                 |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 13  | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
+      | 1       | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | 4   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
 
 
   #
@@ -327,22 +364,44 @@ Feature: Indexer Dataset 1
       | 1       | 9        | 7   | 2GMT4WWIYZFDB5MTXNZFOTCWNCSBVKASQNLQ2SDI3ANBCFTVHPCA |
 
   #
+  # /transaction paging
+  #
+  Scenario Outline: /transactions?limit=<limit>&next=token
+    When I use <indexer> to search for transactions with <limit>, "", "", "", "", 0, 0, <max-round>, 0, "", "", 0, 0, "", "", "" and token ""
+    And I get the next page using <indexer> to search for transactions with <limit> and <max-round>
+    And I get the next page using <indexer> to search for transactions with <limit> and <max-round>
+    And I get the next page using <indexer> to search for transactions with <limit> and <max-round>
+    And I get the next page using <indexer> to search for transactions with <limit> and <max-round>
+    Then there are <num> transactions in the response, the first is "<txid>".
+
+    Examples:
+      | indexer | limit | max-round | num | txid                                                 |
+      | 1       | 1     | 10        | 1   | YRH3PDYGJU6W7TYCAOT3ZCQICBKBMAT3WHIKAKFNXBZWXOEQZXNA |
+      | 1       | 5     | 10        | 5   | RUR4DPTCTEIB2RNIXFCQPPD6HCHWZK2SZJKEUEDOQQ54MMQ2IW5Q |
+
+  #
   # /assets
   #
+  Scenario Outline: /assets
+    When I use <indexer> to search for assets with 0, <asset-id-in>, "<creator>", "<name>", "<unit>", and token ""
+    Then there are <num> assets in the response, the first is <asset-id-out>.
 
-  #
-  # /accounts - at round (rollback test)
-  #
-
-  # Rollback tests
-  #  - account
-  #  - others?
+    Examples:
+      | indexer | asset-id-in | creator                                                    | name     | unit | num | asset-id-out |
+      | 1       | 0           |                                                            |          |      | 1   | 9            |
+      | 1       | 8           |                                                            |          |      | 0   | 0            |
+      | 1       | 9           |                                                            |          |      | 1   | 9            |
+      | 1       | 0           |                                                            | bogocoin |      | 1   | 9            |
+      | 1       | 0           |                                                            | BoGoCoIn |      | 1   | 9            |
+      | 1       | 0           |                                                            |   GoCo   |      | 1   | 9            |
+      | 1       | 0           |                                                            |          | bogo | 1   | 9            |
+      | 1       | 0           |                                                            |          | boGO | 1   | 9            |
+      | 1       | 0           |                                                            |          |  oG  | 1   | 9            |
+      | 1       | 0           | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 |          |      | 1   | 9            |
+      | 1       | 0           |                                                            | none     |      | 0   | 9            |
 
   # Paging tests:
-  #  - transactions
-  #  - assets
-  #  - asset balances?
-  #  - accounts (done)
+  #  - assets (our test dataset only has 1 asset)
 
   # Error/edge cases (mixed up min/max, ...?)
   #  - No results
