@@ -1,3 +1,4 @@
+@auction
 Feature: Auction
   Scenario: Encode and decode a bid
     When I create a bid
