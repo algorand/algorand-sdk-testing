@@ -1,3 +1,4 @@
+@unit
 Feature: Offline
   Scenario: Encode and decode addresses
     When I generate a key

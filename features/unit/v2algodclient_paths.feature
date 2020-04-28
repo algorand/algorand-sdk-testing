@@ -34,6 +34,13 @@ Feature: Algod REST API v2
       |/v2/transactions/pending?format=msgpack | 0  | msgpack |
       |/v2/transactions/pending?max=1&format=msgpack | 1  | msgpack |
 
+  Scenario Outline: Pending Transactions Information
+    When we make a Pending Transactions Information call with max <max>
+    Then expect the path used to be "<path>"
+    Examples:
+      |path | max|
+      |TODO | 0  |
+
   Scenario Outline: Pending Transactions By Address
     When we make a Pending Transactions By Address call against account "<account>" and max <max> and format "<format>"
     Then expect the path used to be "<path>"

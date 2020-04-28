@@ -3,7 +3,7 @@ Feature: Indexer Client v2
     Given mock server recording request paths
 
   Scenario Outline: LookupAssetBalances path
-    When we make a Lookup Asset Balances call against asset index <index> with limit <limit> afterAddress "<afterAddress>" round <round> currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan>
+    When we make a Lookup Asset Balances call against asset index <index> with limit <limit> nextToken "<nextToken>" round <round> currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan>
     Then expect the path used to be "<path>"
     Examples:
       |path                  | index |limit| round | currencyGreaterThan | currencyLessThan|
@@ -71,3 +71,4 @@ Feature: Indexer Client v2
       |path                                                                                                                         | limit | index | creator                                                    | name      | unit     |
       |/assets?limit=30&asset-id=22&creator=PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI&name=assetname&unit=unitname | 30    | 22    | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI | assetname | unitname |
       |/assets                                                                                                                      | 0     | 0     | none                                                       | none      | none     |
+

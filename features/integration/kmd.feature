@@ -1,3 +1,4 @@
+@kmd
 Feature: KMD
   Background:
     Given a kmd client
