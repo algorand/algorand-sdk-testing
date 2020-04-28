@@ -62,3 +62,4 @@ Feature: Algod REST API v2
     Examples:
       |path | round| format |
       |/v2/blocks/0?format=msgpack | 0    | msgpack |
+
