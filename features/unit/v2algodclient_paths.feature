@@ -20,14 +20,14 @@ Feature: Algod REST API v2
   #     |/v2/register-participation-keys/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q?fee=1001&key-dilution=23&round-last-valid=12345&no-wait=true  | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q    | 1001   | 23        | 12345         | true |
 
   Scenario Outline: Pending Transaction Information
-    When we make a Pending Transaction Information against txid "<txid>"
+    When we make a Pending Transaction Information against txid "<txid>" with format "<format>"
     Then expect the path used to be "<path>"
     Examples:
       |path | txid| format |
       |/v2/transactions/pending/5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ?format=msgpack | 5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ| msgpack |
 
   Scenario Outline: Pending Transaction Information
-    When we make a Pending Transaction Information with max <max>
+    When we make a Pending Transaction Information with max <max> and format "<format>"
     Then expect the path used to be "<path>"
     Examples:
       |path | max| format |
@@ -35,7 +35,7 @@ Feature: Algod REST API v2
       |/v2/transactions/pending?max=1&format=msgpack | 1  | msgpack |
 
   Scenario Outline: Pending Transactions By Address
-    When we make a Pending Transactions By Address call against account "<account>" and max <max>
+    When we make a Pending Transactions By Address call against account "<account>" and max <max> and format "<format>"
     Then expect the path used to be "<path>"
     Examples:
       |path | account| max | format |
@@ -57,7 +57,7 @@ Feature: Algod REST API v2
       |/v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q   |
 
   Scenario Outline: Get Block
-    When we make a Get Block call against block number <round>
+    When we make a Get Block call against block number <round> with format "<format>"
     Then expect the path used to be "<path>"
     Examples:
       |path | round| format |
