@@ -1,3 +1,4 @@
+@indexer
 Feature: Indexer Client v2
 
   Scenario Outline: LookupAssetBalances response
