@@ -6,9 +6,9 @@ Feature: Indexer Client v2
     When we make a Lookup Asset Balances call against asset index <index> with limit <limit> afterAddress "<afterAddress>" round <round> currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan>
     Then expect the path used to be "<path>"
     Examples:
-      |path                  | index |limit| round | currencyGreaterThan | currencyLessThan|
-      |/assets/100/balances  | 100   |  0 | 0   | 0                  | 0              |
-      |/assets/100/balances?limit=1&round=2&currency-greater-than=3&currency-less-than=4  | 100   |  1 | 2   | 3                  | 4              |
+      |path                  | index |limit| round | currencyGreaterThan | currencyLessThan| afterAddress |
+      |/assets/100/balances  | 100   |  0 | 0   | 0                  | 0              |                   |
+      |/assets/100/balances?limit=1&round=2&currency-greater-than=3&currency-less-than=4  | 100   |  1 | 2   | 3                  | 4              | |
 
   Scenario Outline: LookupAssetTransactions path
     When we make a Lookup Asset Transactions call against asset index <index> with NotePrefix "<notePrefixB64>" TxType "<txType>" SigType "<sigType>" txid "<txid>" round <round> minRound <minRound> maxRound <maxRound> limit <limit> beforeTime "<beforeTime>" afterTime "<afterTime>" currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> address "<address>" addressRole "<addressRole>" ExcluseCloseTo "<excludeCloseTo>"
