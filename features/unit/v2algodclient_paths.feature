@@ -32,7 +32,7 @@ Feature: Algod REST API v2
     Examples:
       |path | max| format |
       |/v2/transactions/pending?format=msgpack | 0  | msgpack |
-      |/v2/transactions/pending?max=1&format=msgpack | 1  | msgpack |
+      |/v2/transactions/pending?format=msgpack&max=1 | 1  | msgpack |
 
   Scenario Outline: Pending Transactions By Address
     When we make a Pending Transactions By Address call against account "<account>" and max <max> and format "<format>"
@@ -40,7 +40,7 @@ Feature: Algod REST API v2
     Examples:
       |path | account| max | format |
       |/v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/transactions/pending?format=msgpack | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q   | 0  | msgpack |
-      |/v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/transactions/pending?max=1&format=msgpack | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q   | 1  | msgpack |
+      |/v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/transactions/pending?format=msgpack&max=1 | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q   | 1  | msgpack |
 
   Scenario Outline: Status After Block
     When we make a Status after Block call with round <round>
