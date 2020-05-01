@@ -90,7 +90,7 @@ Feature: Indexer Client v2
       |/accounts?asset-id=23                                                                          | 23    | 0     | 0     | 0                   | 0               |
       |/accounts?currency-greater-than=1000                                                           | 0     | 0     | 0     | 1000                | 0               |
       |/accounts?currency-less-than=100000000                                                         | 0     | 0     | 0     | 0                   | 100000000       |
-      |/accounts?limit=50                                                                             | 0     | 0     | 50    |                     | 0               |
+      |/accounts?limit=50                                                                             | 0     | 0     | 50    | 0                   | 0               |
       |/accounts?round=15                                                                             | 0     | 15    | 0     | 0                   | 0               |
 
   Scenario Outline: SearchForTransactions path
@@ -123,7 +123,7 @@ Feature: Indexer Client v2
       |path                                                                                                                         | limit | index | creator                                                    | name      | unit     |
       |/assets                                                                                                                      | 0     | 0     |                                                            |           |          |
       |/assets?asset-id=22                                                                                                          | 0     | 22    |                                                            |           |          |
-      |/assets?creator=PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI&limit=30&name=assetname&unit=unitname             | 0     | 0     | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |           |          |
+      |/assets?creator=PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI                                                   | 0     | 0     | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |           |          |
       |/assets?limit=30                                                                                                             | 30    | 0     |                                                            |           |          |
       |/assets?name=assetname                                                                                                       | 0     | 0     |                                                            | assetname |          |
       |/assets?unit=unitname                                                                                                        | 0     | 0     |                                                            |           | unitname |
