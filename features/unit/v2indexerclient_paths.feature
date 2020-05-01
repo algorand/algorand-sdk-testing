@@ -49,7 +49,7 @@ Feature: Indexer Client v2
       |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?before-time=2019-10-12T07:20:50.52Z | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   |    |      |  | 0  |   0     | 0       | 0    | 2019-10-12T07:20:50.52Z |  | 0                  | 0         | 0   |      | false           |
       |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?currency-greater-than=12  | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 12                  | 0         | 0   |      | false           |
       |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?currency-less-than=10000000   | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 10000000         | 0   |      | false           |
-      |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?exclude-close-to=true | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   |      | true      #this one     |
+      |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?exclude-close-to=true | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   |      | true     |
       |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?limit=60  | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   |    |      |  | 0  |   0     | 0       | 60    |  |  | 0                  | 0         | 0   |      | false           |
       |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?max-round=52  | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   |    |      |  | 0  |   0     | 52       | 0    |  |  | 0                  | 0         | 0   |      | false           |
       |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?min-round=51  | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   |    |      |  | 0  |   51     | 0       | 0    |  |  | 0                  | 0         | 0   |      | false           |
@@ -87,11 +87,11 @@ Feature: Indexer Client v2
     Examples:
       |path                                                                                           | index | round | limit | currencyGreaterThan | currencyLessThan|
       |/accounts                                                                                      | 0     | 0     | 0     | 0                   | 0               |
-      |/accounts?asset-id=23                                                                          | 23    | 0    | 0     | 0                   | 0               |
-      |/accounts?currency-greater-than=1000                                                           | 0     | 15   | 0     | 0                   | 0               |
-      |/accounts?currency-less-than=100000000                                                         | 0     | 0    | 50    | 0                   | 0               |
-      |/accounts?limit=50                                                                             | 0     | 0    | 0     | 1000                | 0               |
-      |/accounts?round=15                                                                             | 0     | 0    | 0     | 0                   | 100000000       |
+      |/accounts?asset-id=23                                                                          | 23    | 0     | 0     | 0                   | 0               |
+      |/accounts?currency-greater-than=1000                                                           | 0     | 0     | 0     | 1000                | 0               |
+      |/accounts?currency-less-than=100000000                                                         | 0     | 0     | 0     | 0                   | 100000000       |
+      |/accounts?limit=50                                                                             | 0     | 0     | 50    |                     | 0               |
+      |/accounts?round=15                                                                             | 0     | 15    | 0     | 0                   | 0               |
 
   Scenario Outline: SearchForTransactions path
     When we make a Search For Transactions call with account "<account>" NotePrefix "<notePrefixB64>" TxType "<txType>" SigType "<sigType>" txid "<txid>" round <round> minRound <minRound> maxRound <maxRound> limit <limit> beforeTime "<beforeTime>" afterTime "<afterTime>" currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> assetIndex <index> addressRole "<addressRole>" ExcluseCloseTo "<excludeCloseTo>"
@@ -100,14 +100,14 @@ Feature: Indexer Client v2
       |path            | account                                                    | notePrefixB64 | txType | sigType | txid                                                 | round| minRound | maxRound | limit | beforeTime              | afterTime               | currencyGreaterThan | currencyLessThan | index | addressRole | excludeCloseTo |
       |/transactions   |                                                            |                |        |         |                                                     | 0    |   0      | 0        | 0     |                          |                        | 0                   | 0                | 0     |             | false          |
       |/transactions?address=PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |  |    |      |         | 0    | 0        | 0        | 0     |                         |                         | 0                   | 0                | 0     |             | false          |
-      |/transactions?address-role=sender|  |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   | sender      |            |
+      |/transactions?address-role=sender|  |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   | sender      |  false  |
       |/transactions?after-time=2019-10-13T07:20:50.52Z |  |   |    |      |  | 0  |   0     | 0       | 0    |  | 2019-10-13T07:20:50.52Z | 0                  | 0         | 0   |       | false           |
-      |/transactions?asset-id=100 |  |   |    |      |  | 0  |   0     | 0       | 0    |  | 0 | 0                  | 0         | 100   |       | false           |
+      |/transactions?asset-id=100 |  |   |    |      |  | 0  |   0     | 0       | 0    |  |   | 0                  | 0         | 100   |       | false           |
       |/transactions?before-time=2019-10-12T07:20:50.52Z |  |   |    |      |  | 0  |   0     | 0       | 0    | 2019-10-12T07:20:50.52Z | | 0                  | 0         | 0   |       | false           |
       |/transactions?currency-greater-than=12 |  |   |    |      |  | 0  |   0     | 0       | 0    | |  | 12                  | 0         | 0   |       | false           |
       |/transactions?currency-less-than=10000000 |  |   |    |      |  | 0  |   0     | 0       | 0    | |  | 0                  | 10000000         | 0   |       | false           |
       |/transactions?exclude-close-to=true  |  |   |    |      |  | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       | true           |
-      |/transactions?limit=60 |  |   |    |      |  | 0  |   0     | 0       | 60    | |  | 0                  | 0         | 0   |       |            |
+      |/transactions?limit=60 |  |   |    |      |  | 0  |   0     | 0       | 60    | |  | 0                  | 0         | 0   |       |    false     |
       |/transactions?max-round=52  |  |   |    |      |  | 0  |   0     | 52       | 0    | |  | 0                  | 0         | 0   |       | false           |
       |/transactions?min-round=51   |  |   |    |      |  | 0  |   51     | 0       | 0    | |  | 0                  | 0         | 0   |       | false           |
       |/transactions?note-prefix=6gAVR0Nsv5Y= |  | 6gAVR0Nsv5Y=  |    |      |  | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       | false           |
