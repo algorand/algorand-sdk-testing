@@ -95,7 +95,7 @@ Feature: Algod REST API v2
     And the parsed Get Block response should have rewards pool "<pool>"
     Examples:
       |jsonfiles   |directory                  |err|pool    |
-      |block.base64|v2algodclient_responsejsons|nil|/v////////////////////////////////////////8=|
+      |block.base64|v2algodclient_responsejsons|nil|//////////////////////////////////////////8=|
 
   Scenario Outline: Suggested Transaction Parameters response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
