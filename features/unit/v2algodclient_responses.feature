@@ -1,21 +1,5 @@
 Feature: Algod REST API v2
 
-  Scenario Outline: Shutdown response
-    Given mock http responses in "<jsonfiles>" loaded from "<directory>"
-    When we make any Shutdown call
-    Then expect error string to contain "<err>"
-    Examples:
-      |jsonfiles |directory                  |err|
-      |empty.json|v2algodclient_responsejsons|nil|
-
-  Scenario Outline: Register Participation Keys response
-    Given mock http responses in "<jsonfiles>" loaded from "<directory>"
-    When we make any Register Participation Keys call
-    Then expect error string to contain "<err>"
-    Examples:
-      |jsonfiles |directory                  |err|
-      |empty.json|v2algodclient_responsejsons|nil|
-
   Scenario Outline: Pending Transaction Information response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Pending Transaction Information call
