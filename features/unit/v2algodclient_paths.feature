@@ -3,22 +3,6 @@ Feature: Algod REST API v2
     Given mock server recording request paths
   # SendRaw, Status, Supply, SuggestedParams, and PendingTransactionsInformation omitted - the path never mutates, they're constant
 
-  Scenario Outline: Shutdown
-    When we make a Shutdown call with timeout <timeout>
-    Then expect the path used to be "<path>"
-    Examples:
-      |path                   | timeout |
-      |/v2/shutdown           | 0 |
-      |/v2/shutdown?timeout=1 | 1 |
-
-  # Scenario Outline: Register Participation Keys
-  #   When we make a Register Participation Keys call against account "<account>" fee <fee> dilution <dilution> lastvalidround <lastvalid> and nowait "<nowait>"
-  #   Then expect the path used to be "<path>"
-  #   Examples:
-  #     |path                                                                                        | account                                                       | fee | dilution | lastvalid | nowait|
-  #     |/v2/register-participation-keys/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q  | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q    | 0   | 0        | 0         | false |
-  #     |/v2/register-participation-keys/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q?fee=1001&key-dilution=23&round-last-valid=12345&no-wait=true  | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q    | 1001   | 23        | 12345         | true |
-
   Scenario Outline: Pending Transaction Information
     When we make a Pending Transaction Information against txid "<txid>" with format "<format>"
     Then expect the path used to be "<path>"
