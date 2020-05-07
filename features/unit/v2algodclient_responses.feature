@@ -1,3 +1,4 @@
+@unit
 Feature: Algod REST API v2
 
   Scenario Outline: Pending Transaction Information response

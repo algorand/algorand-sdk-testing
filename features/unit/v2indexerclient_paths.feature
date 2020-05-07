@@ -1,4 +1,5 @@
 @indexer
+@unit
 Feature: Indexer Client v2
   Background:
     Given mock server recording request paths
