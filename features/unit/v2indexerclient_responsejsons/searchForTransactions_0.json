@@ -151,7 +151,6 @@
     "receiver-rewards" : 0,
     "round-time" : 1560638479,
     "sender" : "IVCEEIH2Q32DZNRTS5XFVEFFAQGERNZHHQT6S4UPY7ORJMHIQDSTX7YM4E",
-    "sig-type" : "sig",
     "sender-rewards" : 0,
     "signature" : {
       "multisig" : {
@@ -219,7 +218,6 @@
     "receiver-rewards" : 0,
     "round-time" : 1560638628,
     "sender" : "IVCEEIH2Q32DZNRTS5XFVEFFAQGERNZHHQT6S4UPY7ORJMHIQDSTX7YM4E",
-    "sig-type" : "sig",
     "sender-rewards" : 0,
     "signature" : {
       "multisig" : {
@@ -306,7 +304,6 @@
     "receiver-rewards" : 0,
     "round-time" : 1560638654,
     "sender" : "IVCEEIH2Q32DZNRTS5XFVEFFAQGERNZHHQT6S4UPY7ORJMHIQDSTX7YM4E",
-    "sig-type" : "sig",
     "sender-rewards" : 0,
     "signature" : {
       "multisig" : {
@@ -350,7 +347,6 @@
     "receiver-rewards" : 0,
     "round-time" : 1560638668,
     "sender" : "IVCEEIH2Q32DZNRTS5XFVEFFAQGERNZHHQT6S4UPY7ORJMHIQDSTX7YM4E",
-    "sig-type" : "sig",
     "sender-rewards" : 0,
     "signature" : {
       "multisig" : {
@@ -394,7 +390,6 @@
     "receiver-rewards" : 0,
     "round-time" : 1560638683,
     "sender" : "IVCEEIH2Q32DZNRTS5XFVEFFAQGERNZHHQT6S4UPY7ORJMHIQDSTX7YM4E",
-    "sig-type" : "sig",
     "sender-rewards" : 0,
     "signature" : {
       "multisig" : {
