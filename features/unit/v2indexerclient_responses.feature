@@ -1,6 +1,6 @@
 @indexer
 @unit
-Feature: Indexer Client v2
+Feature: Indexer Client v2 Responses
 
   Scenario Outline: LookupAssetBalances response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"

@@ -1,6 +1,6 @@
 @unit
 @algod
-Feature: Algod REST API v2
+Feature: Algod REST API v2 Responses
 
   Scenario Outline: Pending Transaction Information response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
