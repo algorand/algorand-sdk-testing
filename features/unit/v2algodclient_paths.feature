@@ -1,4 +1,5 @@
 @unit
+@algod
 Feature: Algod REST API v2
   Background:
     Given mock server recording request paths
