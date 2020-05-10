@@ -17,6 +17,13 @@ Feature: Sending transactions
     And I sign the transaction with the private key
     And I send the transaction
     Then the transaction should go through
+    Given default transaction with parameters <amt> "<note>"
+    When I get the private key
+    And I add a rekeyTo field with the private key algorand address
+    And mnemonic for private key "<mn>"
+    And I sign the transaction with the private key
+    And I send the transaction
+    Then the transaction should go through
 
     Examples:
       | amt | note | rekeyTo | mn |
