@@ -35,7 +35,7 @@ Feature: Indexer Client v2 Paths
       |/assets/100/transactions?note-prefix=6gAVR0Nsv5Y%3D | 100   | 6gAVR0Nsv5Y=  |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
       |/assets/100/transactions?round=102  | 100   |   |    |      |  | 102  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
       |/assets/100/transactions?sig-type=sig | 100   |   |    | sig     |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
-      |/assets/100/transactions?tx-id=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A  | 100   |   |    |      | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
+      |/assets/100/transactions?txid=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A  | 100   |   |    |      | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
       |/assets/100/transactions?tx-type=acfg  | 100   |   | acfg   |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
 
   Scenario Outline: LookupAccountTransactions path
@@ -57,7 +57,7 @@ Feature: Indexer Client v2 Paths
       |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?note-prefix=6gAVR0Nsv5Y%3D   | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI | 6gAVR0Nsv5Y=  |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   |      | false           |
       |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?round=102   | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   |    |      |  | 102  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   |      | false           |
       |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?sig-type=sig   | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   |    | sig     |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   |      | false           |
-      |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?tx-id=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A   | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   |    |      | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   |      | false           |
+      |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?txid=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A   | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   |    |      | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   |      | false           |
       |/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?tx-type=acfg   | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   | acfg   |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   |      | false           |
 
   Scenario Outline: LookupBlock path
