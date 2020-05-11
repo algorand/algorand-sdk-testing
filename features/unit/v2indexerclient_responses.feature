@@ -18,7 +18,7 @@ Feature: Indexer Client v2 Responses
     And the parsed LookupAssetTransactions response should be valid on round <roundNum>, and contain an array of len <len> and element number <idx> should have sender "<sender>"
     Examples:
       |jsonfiles                     |directory                    |err|roundNum|len    |idx|sender|
-      |lookupAssetTransactions_0.json|v2indexerclient_responsejsons||6222957 |30339  |0  |ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY  |
+      |lookupAssetTransactions_0.json|v2indexerclient_responsejsons||6222957 |39  |0  |ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY  |
 
   Scenario Outline: LookupAccountTransactions response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
