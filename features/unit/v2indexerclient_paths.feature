@@ -28,7 +28,6 @@ Feature: Indexer Client v2 Paths
       |/assets/100/transactions?before-time=2019-10-12T07:20:50.52Z  | 100   |   |    |      |  | 0  |   0     | 0       | 0    | 2019-10-12T07:20:50.52Z |  | 0                  | 0         |  |      |            |
       |/assets/100/transactions?currency-greater-than=12  | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 12                  | 0         |  |      |            |
       |/assets/100/transactions?currency-less-than=10000000 | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 10000000         |  |      |            |
-      |/assets/100/transactions?exclude-close-to=true  | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      | true           |
       |/assets/100/transactions?limit=60  | 100   |   |    |      |  | 0  |   0     | 0       | 60    |  |  | 0                  | 0         |  |      |            |
       |/assets/100/transactions?max-round=52 | 100   |   |    |      |  | 0  |   0     | 52       | 0    |  |  | 0                  | 0         |  |      |            |
       |/assets/100/transactions?min-round=51  | 100   |   |    |      |  | 0  |   51     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
