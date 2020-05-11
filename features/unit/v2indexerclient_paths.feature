@@ -20,23 +20,23 @@ Feature: Indexer Client v2 Paths
     Then expect the path used to be "<path>"
     Examples:
       |path   | index | notePrefixB64 | txType | sigType | txid                                                 | round| minRound | maxRound | limit | beforeTime              | afterTime               | currencyGreaterThan | currencyLessThan | address                                                    | addressRole | excludeCloseTo |
-      |/assets/0/transactions  | 0     |           |    |     |                                                  | 0    |   0      | 0        | 0     |                     |                     | 0                   | 0                |                                                        |         | false          |
-      |/assets/100/transactions  | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      | false           |
-      |/assets/100/transactions?address=PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI  | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |      | false           |
-      |/assets/100/transactions?address-role=sender  | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  | sender     | false           |
-      |/assets/100/transactions?after-time=2019-10-13T07:20:50.52Z  | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  | 2019-10-13T07:20:50.52Z | 0                  | 0         |  |      | false           |
-      |/assets/100/transactions?before-time=2019-10-12T07:20:50.52Z  | 100   |   |    |      |  | 0  |   0     | 0       | 0    | 2019-10-12T07:20:50.52Z |  | 0                  | 0         |  |      | false           |
-      |/assets/100/transactions?currency-greater-than=12  | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 12                  | 0         |  |      | false           |
-      |/assets/100/transactions?currency-less-than=10000000 | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 10000000         |  |      | false           |
+      |/assets/0/transactions  | 0     |           |    |     |                                                  | 0    |   0      | 0        | 0     |                     |                     | 0                   | 0                |                                                        |         |           |
+      |/assets/100/transactions  | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
+      |/assets/100/transactions?address=PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI  | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |      |            |
+      |/assets/100/transactions?address-role=sender  | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  | sender     |            |
+      |/assets/100/transactions?after-time=2019-10-13T07:20:50.52Z  | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  | 2019-10-13T07:20:50.52Z | 0                  | 0         |  |      |            |
+      |/assets/100/transactions?before-time=2019-10-12T07:20:50.52Z  | 100   |   |    |      |  | 0  |   0     | 0       | 0    | 2019-10-12T07:20:50.52Z |  | 0                  | 0         |  |      |            |
+      |/assets/100/transactions?currency-greater-than=12  | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 12                  | 0         |  |      |            |
+      |/assets/100/transactions?currency-less-than=10000000 | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 10000000         |  |      |            |
       |/assets/100/transactions?exclude-close-to=true  | 100   |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      | true           |
-      |/assets/100/transactions?limit=60  | 100   |   |    |      |  | 0  |   0     | 0       | 60    |  |  | 0                  | 0         |  |      | false           |
-      |/assets/100/transactions?max-round=52 | 100   |   |    |      |  | 0  |   0     | 52       | 0    |  |  | 0                  | 0         |  |      | false           |
-      |/assets/100/transactions?min-round=51  | 100   |   |    |      |  | 0  |   51     | 0       | 0    |  |  | 0                  | 0         |  |      | false           |
-      |/assets/100/transactions?note-prefix=6gAVR0Nsv5Y= | 100   | 6gAVR0Nsv5Y=  |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      | false           |
-      |/assets/100/transactions?round=102  | 100   |   |    |      |  | 102  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      | false           |
-      |/assets/100/transactions?sig-type=sig | 100   |   |    | sig     |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      | false           |
-      |/assets/100/transactions?tx-id=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A  | 100   |   |    |      | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      | false           |
-      |/assets/100/transactions?tx-type=acfg  | 100   |   | acfg   |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      | false           |
+      |/assets/100/transactions?limit=60  | 100   |   |    |      |  | 0  |   0     | 0       | 60    |  |  | 0                  | 0         |  |      |            |
+      |/assets/100/transactions?max-round=52 | 100   |   |    |      |  | 0  |   0     | 52       | 0    |  |  | 0                  | 0         |  |      |            |
+      |/assets/100/transactions?min-round=51  | 100   |   |    |      |  | 0  |   51     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
+      |/assets/100/transactions?note-prefix=6gAVR0Nsv5Y= | 100   | 6gAVR0Nsv5Y=  |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
+      |/assets/100/transactions?round=102  | 100   |   |    |      |  | 102  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
+      |/assets/100/transactions?sig-type=sig | 100   |   |    | sig     |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
+      |/assets/100/transactions?tx-id=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A  | 100   |   |    |      | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
+      |/assets/100/transactions?tx-type=acfg  | 100   |   | acfg   |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
 
   Scenario Outline: LookupAccountTransactions path
     When we make a Lookup Account Transactions call against account "<account>" with NotePrefix "<notePrefixB64>" TxType "<txType>" SigType "<sigType>" txid "<txid>" round <round> minRound <minRound> maxRound <maxRound> limit <limit> beforeTime "<beforeTime>" afterTime "<afterTime>" currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> assetIndex <index> addressRole "<addressRole>" ExcluseCloseTo "<excludeCloseTo>"
