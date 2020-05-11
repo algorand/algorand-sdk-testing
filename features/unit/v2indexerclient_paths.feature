@@ -96,23 +96,23 @@ Feature: Indexer Client v2 Paths
     Then expect the path used to be "<path>"
     Examples:
       |path            | account                                                    | notePrefixB64 | txType | sigType | txid                                                 | round| minRound | maxRound | limit | beforeTime              | afterTime               | currencyGreaterThan | currencyLessThan | index | addressRole | excludeCloseTo |
-      |/transactions   |                                                            |                |        |         |                                                     | 0    |   0      | 0        | 0     |                          |                        | 0                   | 0                | 0     |             | false          |
-      |/transactions?address=PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |  |    |      |         | 0    | 0        | 0        | 0     |                         |                         | 0                   | 0                | 0     |             | false          |
-      |/transactions?address-role=sender|  |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   | sender      |  false  |
-      |/transactions?after-time=2019-10-13T07:20:50.52Z |  |   |    |      |  | 0  |   0     | 0       | 0    |  | 2019-10-13T07:20:50.52Z | 0                  | 0         | 0   |       | false           |
-      |/transactions?asset-id=100 |  |   |    |      |  | 0  |   0     | 0       | 0    |  |   | 0                  | 0         | 100   |       | false           |
-      |/transactions?before-time=2019-10-12T07:20:50.52Z |  |   |    |      |  | 0  |   0     | 0       | 0    | 2019-10-12T07:20:50.52Z | | 0                  | 0         | 0   |       | false           |
-      |/transactions?currency-greater-than=12 |  |   |    |      |  | 0  |   0     | 0       | 0    | |  | 12                  | 0         | 0   |       | false           |
-      |/transactions?currency-less-than=10000000 |  |   |    |      |  | 0  |   0     | 0       | 0    | |  | 0                  | 10000000         | 0   |       | false           |
+      |/transactions   |                                                            |                |        |         |                                                     | 0    |   0      | 0        | 0     |                          |                        | 0                   | 0                | 0     |             |           |
+      |/transactions?address=PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |  |    |      |         | 0    | 0        | 0        | 0     |                         |                         | 0                   | 0                | 0     |             |           |
+      |/transactions?address-role=sender|  |   |    |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   | sender      |    |
+      |/transactions?after-time=2019-10-13T07:20:50.52Z |  |   |    |      |  | 0  |   0     | 0       | 0    |  | 2019-10-13T07:20:50.52Z | 0                  | 0         | 0   |       |            |
+      |/transactions?asset-id=100 |  |   |    |      |  | 0  |   0     | 0       | 0    |  |   | 0                  | 0         | 100   |       |            |
+      |/transactions?before-time=2019-10-12T07:20:50.52Z |  |   |    |      |  | 0  |   0     | 0       | 0    | 2019-10-12T07:20:50.52Z | | 0                  | 0         | 0   |       |            |
+      |/transactions?currency-greater-than=12 |  |   |    |      |  | 0  |   0     | 0       | 0    | |  | 12                  | 0         | 0   |       |            |
+      |/transactions?currency-less-than=10000000 |  |   |    |      |  | 0  |   0     | 0       | 0    | |  | 0                  | 10000000         | 0   |       |            |
       |/transactions?exclude-close-to=true  |  |   |    |      |  | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       | true           |
-      |/transactions?limit=60 |  |   |    |      |  | 0  |   0     | 0       | 60    | |  | 0                  | 0         | 0   |       |    false     |
-      |/transactions?max-round=52  |  |   |    |      |  | 0  |   0     | 52       | 0    | |  | 0                  | 0         | 0   |       | false           |
-      |/transactions?min-round=51   |  |   |    |      |  | 0  |   51     | 0       | 0    | |  | 0                  | 0         | 0   |       | false           |
-      |/transactions?note-prefix=6gAVR0Nsv5Y%3D |  | 6gAVR0Nsv5Y=  |    |      |  | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       | false           |
-      |/transactions?round=102 |  |   |    |      |  | 102  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       | false           |
-      |/transactions?sig-type=sig   |  |   |    | sig     |  | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       | false           |
-      |/transactions?tx-type=acfg |  |   | acfg   |      |  | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       | false           |
-      |/transactions?txid=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A   |  |   |    |      | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       | false           |
+      |/transactions?limit=60 |  |   |    |      |  | 0  |   0     | 0       | 60    | |  | 0                  | 0         | 0   |       |         |
+      |/transactions?max-round=52  |  |   |    |      |  | 0  |   0     | 52       | 0    | |  | 0                  | 0         | 0   |       |            |
+      |/transactions?min-round=51   |  |   |    |      |  | 0  |   51     | 0       | 0    | |  | 0                  | 0         | 0   |       |            |
+      |/transactions?note-prefix=6gAVR0Nsv5Y%3D |  | 6gAVR0Nsv5Y=  |    |      |  | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       |            |
+      |/transactions?round=102 |  |   |    |      |  | 102  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       |            |
+      |/transactions?sig-type=sig   |  |   |    | sig     |  | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       |            |
+      |/transactions?tx-type=acfg |  |   | acfg   |      |  | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       |            |
+      |/transactions?txid=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A   |  |   |    |      | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       |            |
 
   Scenario Outline: SearchForAssets path
     When we make a SearchForAssets call with limit <limit> creator "<creator>" name "<name>" unit "<unit>" index <index>
