@@ -1,4 +1,6 @@
-Feature: Algod REST API v2
+@unit
+@algod
+Feature: Algod REST API v2 Paths
   Background:
     Given mock server recording request paths
   # SendRaw, Status, Supply, SuggestedParams, and PendingTransactionsInformation omitted - the path never mutates, they're constant
