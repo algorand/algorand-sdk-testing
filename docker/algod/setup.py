@@ -108,9 +108,6 @@ def start_handler(args):
     """
     start_network(args.bin_dir, args.network_dir)
 
-    while args.never_exit:
-        time.sleep(1)
-
 
 if __name__ == '__main__':
     install.set_defaults(func=install_handler)

@@ -20,4 +20,4 @@ RUN python3 /tmp/docker/algod/setup.py install \
  --kmd-port 60001
 
 # Start algod
-CMD ["/usr/bin/env", "bash", "-c", "python3 /tmp/docker/algod/setup.py start --bin-dir \"$HOME/node\" --channel \"nightly\" --network-dir \"/opt/testnetwork\"]
+CMD ["/usr/bin/env", "bash", "-c", "python3 /tmp/docker/algod/setup.py start --bin-dir \"$HOME/node\" --channel \"nightly\" --network-dir \"/opt/testnetwork\""]
