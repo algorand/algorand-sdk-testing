@@ -15,7 +15,8 @@ parser = argparse.ArgumentParser(description='Install, configure, and start algo
 
 # Shared parameters
 base_parser = argparse.ArgumentParser(add_help=False)
-base_parser.add_argument('--algod-config', required=True, help='Path to algod config file.')
+base_parser.add_argument('--bin-dir', required=True, help='Location to install algod binaries.')
+base_parser.add_argument('--channel', required=True, help='Channel to install, nightly is a good option.')
 base_parser.add_argument('--network-dir', required=True, help='Path to create network.')
 
 subparsers = parser.add_subparsers()
@@ -27,12 +28,10 @@ install.add_argument('--algod-port', required=True, help='Port to use for algod.
 install.add_argument('--kmd-port', required=True, help='Port to use for kmd.')
 
 start = subparsers.add_parser('start', parents=[base_parser], help='Start the network.')
-start.add_argument('--never-exit', default=False, action='store_true', help='In some cases it is usefull to have this script hang forever instead of exiting. Thats what this flag does.')
 
 pp = pprint.PrettyPrinter(indent=4)
 
-
-def setup_algod(d):
+def setup_algod(bin_dir, channel):
     """
     Download and install algod.
     """
@@ -44,7 +43,7 @@ def setup_algod(d):
     filedata = urllib.request.urlretrieve(url, updater_tar)
     tar = tarfile.open(updater_tar)
     tar.extractall(path='%s/inst' % home)
-    subprocess.check_call(['%s/inst/update.sh -i -c %s -p %s -d %s/data -n' % (home, d['CHANNEL'], d['BIN_DIR'], d['BIN_DIR'])], shell=True)
+    subprocess.check_call(['%s/inst/update.sh -i -c %s -p %s -d %s/data -n' % (home, channel, bin_dir, bin_dir)], shell=True)
 
 
 def algod_directories(network_dir):
@@ -95,22 +94,19 @@ def start_network(bin_dir, network_dir):
     subprocess.check_call(['%s/kmd start -t 0 -d %s' % (bin_dir, kmd_dir)], shell=True)
 
 
-def install_handler(d, args):
+def install_handler(args):
     """ 
     install subcommand - create and configure the network.
     """
-    setup_algod(d)
-    create_network(d['BIN_DIR'], args.network_dir, args.network_template, args.network_token, args.algod_port, args.kmd_port)
+    setup_algod(args.bin_dir, args.channel)
+    create_network(args.bin_dir, args.network_dir, args.network_template, args.network_token, args.algod_port, args.kmd_port)
 
 
-def start_handler(d, args):
+def start_handler(args):
     """
     start subcommand - start algod + kmd
     """
-    start_network(d['BIN_DIR'], args.network_dir)
-
-    while args.never_exit:
-        time.sleep(1)
+    start_network(args.bin_dir, args.network_dir)
 
 
 if __name__ == '__main__':
@@ -118,10 +114,4 @@ if __name__ == '__main__':
     start.set_defaults(func=start_handler)
 
     args = parser.parse_args()
-
-    # Parse config file...
-    with open(args.algod_config) as f:
-        l = [line.split('=') for line in f.readlines()]
-        d = {key.strip(): value.strip().strip('\"') for key, value in l}
-
-    args.func(d, args)
+    args.func(args)
