@@ -6,12 +6,13 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /opt
 RUN apt-get update && apt-get install -y apt-utils curl git git-core bsdmainutils python3
 
-# Copy scripts into the container.
+# Copy everything into the container.
 COPY . /tmp
 
 # Install and configure algod.
-RUN python3 /tmp/docker/algod/setup.py install\
- --algod-config /tmp/config_future \
+RUN python3 /tmp/docker/algod/setup.py install \
+ --bin-dir "$HOME/node" \
+ --channel "nightly" \
  --network-dir /opt/testnetwork \
  --network-template /tmp/network_config/template.json \
  --network-token aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
@@ -19,4 +20,4 @@ RUN python3 /tmp/docker/algod/setup.py install\
  --kmd-port 60001
 
 # Start algod
-CMD ["/usr/bin/env", "bash", "-c", "python3 /tmp/docker/algod/setup.py start --algod-config /tmp/config_future --network-dir /opt/testnetwork --never-exit"]
+CMD ["/usr/bin/env", "bash", "-c", "python3 /tmp/docker/algod/setup.py start --bin-dir \"$HOME/node\" --channel \"nightly\" --network-dir \"/opt/testnetwork\"]

@@ -1,3 +1,0 @@
-CHANNEL="nightly"
-TEMPLATE="future_template.json"
-BIN_DIR="$HOME/node"
