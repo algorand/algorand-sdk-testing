@@ -1,4 +1,5 @@
 @rekey
+@unit
 Feature: Rekey
   Scenario Outline: Create and sign a rekeying transaction
     Given payment transaction parameters <fee> <fv> <lv> "<gh>" "<to>" "<close>" <amt> "<gen>" "<note>"
