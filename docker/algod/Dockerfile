@@ -14,7 +14,7 @@ RUN python3 /tmp/docker/algod/setup.py install \
  --bin-dir "$HOME/node" \
  --channel "nightly" \
  --network-dir /opt/testnetwork \
- --network-template /tmp/network_config/template.json \
+ --network-template /tmp/network_config/future_template.json \
  --network-token aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
  --algod-port 60000 \
  --kmd-port 60001
