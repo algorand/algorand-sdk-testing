@@ -8,6 +8,14 @@ Feature: Indexer Dataset 1
   Background:
     Given indexer client 1 at "localhost" port 59999 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
+  Scenario Outline: /health
+    When I use <indexer> to check the services health
+    Then I receive status code <status>
+
+    Examples:
+      | indexer | status |
+      | 1       | 200    |
+
   #
   # /blocks/{round-number}
   #
