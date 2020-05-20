@@ -3,6 +3,7 @@ version: '3'
 services:
   algod:
     image: "sdk-harness-algod"
+    container_name: sdk-harness-algod
     build:
       context: .
       dockerfile: ./docker/algod/Dockerfile
@@ -13,6 +14,7 @@ services:
       - sdk-harness
   indexer:
     image: "sdk-harness-indexer"
+    container_name: sdk-harness-indexer
     build:
       context: .
       dockerfile: ./docker/indexer/Dockerfile
@@ -26,6 +28,7 @@ services:
 
   indexer-db:
     image: "postgres"
+    container_name: sdk-harness-postgres
     volumes:
       - ./docker/indexer/init-scripts:/docker-entrypoint-initdb.d
     ports:

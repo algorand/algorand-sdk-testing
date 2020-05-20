@@ -2,7 +2,7 @@
 set -e
 
 rootdir=`dirname $0`
-pushd $rootdir/..
+pushd $rootdir/.. > /dev/null
 
 # Make sure it isn't running
 ./scripts/down.sh
