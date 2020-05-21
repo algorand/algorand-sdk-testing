@@ -42,21 +42,23 @@ When a test fails, the cucumber libraries we use print the code snippets which s
 
 ## Running tests
 
-A script is included in each of the SDKs to pull files from this repository and run the tests in a docker container. Just call it from the project root. For example [py-algorand-sdk](https://github.com/algorand/py-algorand-sdk) has [run_docker.sh](https://github.com/algorand/py-algorand-sdk/blob/develop/run_integration.sh), and [java-algorand-sdk](https://github.com/algorand/java-algorand-sdk) has [run_integration_tests.sh](https://github.com/algorand/java-algorand-sdk/blob/develop/run_integration_tests.sh).
+The SDKs come with a Makefile to coordinate running the cucumber test suites. There are 3 main targets:
+* **unit**: runs all of the short unit tests.
+* **integration**: runs all integration tests.
+* **docker-test**: installs feature file dependencies, starts the test environment, and runs the SDK tests in a docker container.
 
-At a high level, each driver script should:
+At a high level, the **docker-test** target is required to:
 1. clone `algorand-sdk-testing`.
 2. copy supported feature files from the `features` directory into the SDK.
 3. build and start the test environment by calling `./scripts/up.sh`
 4. launch an SDK container using `--network host` which runs the cucumber test suite.
 
-This script should be executed as part of the CI process.
-
-
 ## Running tests during development
 This will vary by SDK. By calling **up.sh** the environment is available to the integration tests, and tests can be run locally with an IDE or debugger. This is often significantly faster than waiting for the entire test suite to run.
 
 Some of the tests are stateful and will require restarting the environment before re-running the test.
+
+Once the test environment is running you can use `make unit` and `make integration` to run tests.
 
 # Integration test environment
 
