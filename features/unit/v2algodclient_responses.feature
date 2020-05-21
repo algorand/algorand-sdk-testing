@@ -1,5 +1,5 @@
 @unit
-@algod
+@unit.algod
 Feature: Algod REST API v2 Responses
 
   Scenario Outline: Pending Transaction Information response
