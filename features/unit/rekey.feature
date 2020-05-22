@@ -1,4 +1,4 @@
-@rekey
+@unit.rekey
 @unit
 Feature: Rekey
   Scenario Outline: Create and sign a rekeying transaction
