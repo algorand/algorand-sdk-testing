@@ -83,9 +83,6 @@ Feature: Indexer Client v2 Responses
       |jsonfiles                  |directory                     |err|roundNum   | len | index | assetIndex  |
       |searchForAssets_0.json     |v2indexerclient_responsejsons ||6222956    |3    |0      | 5           |
 
-@unit
-@unit.indexer.rekey
-Feature:
   Scenario Outline: SearchForAccounts response, authorizing address
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any SearchAccounts call
