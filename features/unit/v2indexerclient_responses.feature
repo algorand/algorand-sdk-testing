@@ -82,3 +82,21 @@ Feature: Indexer Client v2 Responses
     Examples:
       |jsonfiles                  |directory                     |err|roundNum   | len | index | assetIndex  |
       |searchForAssets_0.json     |v2indexerclient_responsejsons ||6222956    |3    |0      | 5           |
+
+  @unit.indexer.rekey
+  Scenario Outline: SearchForAccounts response, authorizing address
+    Given mock http responses in "<jsonfiles>" loaded from "<directory>"
+    When we make any SearchAccounts call
+    Then the re-serialized object equals the response in "<jsonfiles>" loaded from "<directory>"
+    Examples:
+      |jsonfiles                |directory                      |
+      |searchForAccounts_0.json |  v2indexerclient_responsejsons|
+
+  @unit.indexer.rekey
+  Scenario Outline: SearchForTransactions response, rekey-to
+    Given mock http responses in "<jsonfiles>" loaded from "<directory>"
+    When we make any SearchForTransactions call
+    Then the re-serialized object equals the response in "<jsonfiles>" loaded from "<directory>"
+    Examples:
+      |jsonfiles                    |directory                    |
+      |searchForTransactions_0.json |v2indexerclient_responsejsons|
