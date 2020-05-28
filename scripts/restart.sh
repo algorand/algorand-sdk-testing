@@ -2,8 +2,10 @@
 
 # This script is useful for development to quickly restart the
 # environment for another round of tests.
+set -e
 
-# This should run only after up.sh and before down.sh
+rootdir=`dirname $0`
+pushd $rootdir/.. > /dev/null
 
 # Use this script for the following situation(s):
 
@@ -16,5 +18,3 @@
 docker-compose down
 docker-compose rm --force
 docker-compose up -d
-
-
