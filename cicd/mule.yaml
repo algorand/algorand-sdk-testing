@@ -1,0 +1,47 @@
+tasks:
+
+- task: Echo
+  message: !timestamp
+
+# Algod tasks
+- task: shell.docker.Build
+  name: algod
+  arch: amd64
+  image: algorand/algorand-sdk-testing-algod
+  tags: 
+    - algorand/algorand-sdk-testing-algod:{{ Echo.outputs.message }}
+    - algorand/algorand-sdk-testing-algod:latest
+  dockerFilePath: cicd/docker/algod/Dockerfile
+  dependencies: Echo
+- task: shell.docker.Push
+  name: algod
+  dependencies: Echo
+  images: 
+    - algorand/algorand-sdk-testing-algod:{{ Echo.outputs.message }}
+    - algorand/algorand-sdk-testing-algod:latest
+
+# Indexer tasks
+- task: shell.docker.Build
+  name: indexer
+  arch: amd64
+  dependencies: Echo
+  tags: 
+    - algorand/algorand-sdk-testing-indexer:{{ Echo.outputs.message }}
+    - algorand/algorand-sdk-testing-indexer:latest
+  dockerFilePath: cicd/docker/indexer/Dockerfile
+- task: shell.docker.Push
+  name: indexer
+  dependencies: Echo
+  images:
+    - algorand/algorand-sdk-testing-indexer:{{ Echo.outputs.message }}
+    - algorand/algorand-sdk-testing-indexer:latest
+
+jobs:
+  # Linux amd64 jobs
+  archive-linux-amd64-images:
+    tasks:
+      - shell.docker.Build.algod
+      - shell.docker.Push.algod
+      - shell.docker.Build.indexer
+      - shell.docker.Push.indexer
+
