@@ -52,6 +52,7 @@ tasks:
   command: tar cfz dist/algorand-sdk-testing-latest.tar.gz test docker-compose.yml
 - task: s3.UploadFiles
   name: harness
+  preserveDirs: true
   dependencies: Echo.timestamp
   bucketName: algorand-sdk-testing
   globSpec: 
