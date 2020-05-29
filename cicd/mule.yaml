@@ -1,6 +1,8 @@
 tasks:
 
 - task: Echo
+  quiet: true
+  name: timestamp
   message: !timestamp
 
 # Algod tasks
@@ -9,39 +11,85 @@ tasks:
   arch: amd64
   image: algorand/algorand-sdk-testing-algod
   tags: 
-    - algorand/algorand-sdk-testing-algod:{{ Echo.outputs.message }}
+    - algorand/algorand-sdk-testing-algod:{{ Echo.timestamp.outputs.message }}
     - algorand/algorand-sdk-testing-algod:latest
   dockerFilePath: cicd/docker/algod/Dockerfile
-  dependencies: Echo
+  dependencies: Echo.timestamp
 - task: shell.docker.Push
   name: algod
-  dependencies: Echo
+  dependencies: Echo.timestamp
   images: 
-    - algorand/algorand-sdk-testing-algod:{{ Echo.outputs.message }}
+    - algorand/algorand-sdk-testing-algod:{{ Echo.timestamp.outputs.message }}
     - algorand/algorand-sdk-testing-algod:latest
 
 # Indexer tasks
 - task: shell.docker.Build
   name: indexer
   arch: amd64
-  dependencies: Echo
+  dependencies: Echo.timestamp
   tags: 
-    - algorand/algorand-sdk-testing-indexer:{{ Echo.outputs.message }}
+    - algorand/algorand-sdk-testing-indexer:{{ Echo.timestamp.outputs.message }}
     - algorand/algorand-sdk-testing-indexer:latest
   dockerFilePath: cicd/docker/indexer/Dockerfile
 - task: shell.docker.Push
   name: indexer
-  dependencies: Echo
+  dependencies: Echo.timestamp
   images:
-    - algorand/algorand-sdk-testing-indexer:{{ Echo.outputs.message }}
+    - algorand/algorand-sdk-testing-indexer:{{ Echo.timestamp.outputs.message }}
     - algorand/algorand-sdk-testing-indexer:latest
 
+# Harness tasks
+- task: shell.Shell
+  name: dist-folder
+  command: mkdir -p dist
+  dependencies: Echo.timestamp
+- task: shell.Shell
+  name: package-with-timestamp
+  command: tar cfz dist/algorand-sdk-testing-{{ Echo.timestamp.outputs.message }}.tar.gz test docker-compose.yml
+  dependencies: Echo.timestamp
+- task: shell.Shell
+  name: package-with-latest
+  command: tar cfz dist/algorand-sdk-testing-latest.tar.gz test docker-compose.yml
+- task: s3.UploadFiles
+  name: harness
+  dependencies: Echo.timestamp
+  bucketName: algorand-sdk-testing
+  globSpec: 
+    - dist/algorand-sdk-testing-{{ Echo.timestamp.outputs.message }}.tar.gz
+    - dist/algorand-sdk-testing-latest.tar.gz
+- task: Echo
+  name: local-dev-help
+  dependencies: Echo.timestamp
+  message: |
+    Run the following to use this version of algorand-sdk-testing in your sdk tests:
+
+      export ALGORAND_SDK_TESTING_HARNESS_PATH=`pwd`/dist/algorand-sdk-testing-latest.tar.gz
+
 jobs:
-  # Linux amd64 jobs
+  # Mule jobs for local development
+  build-local-harness:
+    tasks:
+      - shell.Shell.dist-folder
+      - shell.Shell.package-with-latest
+      - Echo.local-dev-help
+  build-local-images:
+    tasks:
+      - shell.docker.Build.algod
+      - shell.docker.Build.indexer
+
+
+
+  # Mule jobs for Jenkins
   archive-linux-amd64-images:
     tasks:
       - shell.docker.Build.algod
       - shell.docker.Push.algod
       - shell.docker.Build.indexer
       - shell.docker.Push.indexer
-
+  archive-linux-amd64-harness:
+    tasks:
+      - shell.Shell.dist-folder
+      - shell.Shell.package-with-timestamp
+      - shell.Shell.package-with-latest
+      - s3.UploadFiles.harness
+      
