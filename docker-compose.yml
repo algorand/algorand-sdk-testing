@@ -2,22 +2,16 @@ version: '3'
 
 services:
   algod:
-    image: "sdk-harness-algod"
+    image: algorand/algorand-sdk-testing-algod:latest
     container_name: sdk-harness-algod
-    build:
-      context: .
-      dockerfile: ./docker/algod/Dockerfile
     ports:
       - 60001:60001
       - 60000:60000
     networks:
       - sdk-harness
   indexer:
-    image: "sdk-harness-indexer"
+    image: algorand/algorand-sdk-testing-indexer:latest
     container_name: sdk-harness-indexer
-    build:
-      context: .
-      dockerfile: ./docker/indexer/Dockerfile
     ports:
       - 59999:8980
     restart: unless-stopped
@@ -25,12 +19,9 @@ services:
       - sdk-harness
     environment:
       DATABASE_NAME: dataset1
-
-  indexer-db:
+  postgres:
     image: "postgres"
     container_name: sdk-harness-postgres
-    volumes:
-      - ./docker/indexer/init-scripts:/docker-entrypoint-initdb.d
     ports:
       - 5433:5432
     networks:
