@@ -1,4 +1,3 @@
-http://localhost:8980/accounts?currency-less-than=10000000000&round=5975733&asset-id=979&limit=2&currency-greater-than=100000000&next=AABKF2BFMRR2OFS5HIIULF5CISPKFFV5RYFM2YTPCRWTBKPWKTOKWTSOME
 {
   "accounts" : [ {
     "address" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
@@ -258,6 +257,7 @@ http://localhost:8980/accounts?currency-less-than=10000000000&round=5975733&asse
         "url" : ""
       }
     } ],
+    "auth-addr" : "PRIC4GIQTJFD2SZIEQGAYBV2KUJ7YQR3EV3KSOZKLOHPDNRDXXVWMHDAQA",
     "pending-rewards" : 385576,
     "rewards" : 0,
     "round" : 6222956,
