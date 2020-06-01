@@ -1,9 +1,9 @@
 @unit
-@unit.indexer
 Feature: Indexer Client v2 Paths
   Background:
     Given mock server recording request paths
 
+  @unit.indexer
   Scenario Outline: LookupAssetBalances path
     When we make a Lookup Asset Balances call against asset index <index> with limit <limit> afterAddress "<afterAddress>" round <round> currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan>
     Then expect the path used to be "<path>"
@@ -15,6 +15,7 @@ Feature: Indexer Client v2 Paths
       |/v2/assets/100/balances?currency-greater-than=3 | 100   |  0 | 0   | 3                  | 0              | |
       |/v2/assets/100/balances?currency-less-than=4 | 100   |  0 | 0   | 0                  | 4              | |
 
+  @unit.indexer
   Scenario Outline: LookupAssetTransactions path
     When we make a Lookup Asset Transactions call against asset index <index> with NotePrefix "<notePrefixB64>" TxType "<txType>" SigType "<sigType>" txid "<txid>" round <round> minRound <minRound> maxRound <maxRound> limit <limit> beforeTime "<beforeTime>" afterTime "<afterTime>" currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> address "<address>" addressRole "<addressRole>" ExcluseCloseTo "<excludeCloseTo>"
     Then expect the path used to be "<path>"
@@ -37,6 +38,7 @@ Feature: Indexer Client v2 Paths
       |/v2/assets/100/transactions?txid=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A  | 100   |   |    |      | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
       |/v2/assets/100/transactions?tx-type=acfg  | 100   |   | acfg   |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         |  |      |            |
 
+  @unit.indexer
   Scenario Outline: LookupAccountTransactions path
     When we make a Lookup Account Transactions call against account "<account>" with NotePrefix "<notePrefixB64>" TxType "<txType>" SigType "<sigType>" txid "<txid>" round <round> minRound <minRound> maxRound <maxRound> limit <limit> beforeTime "<beforeTime>" afterTime "<afterTime>" currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> assetIndex <index>
     Then expect the path used to be "<path>"
@@ -57,6 +59,7 @@ Feature: Indexer Client v2 Paths
       |/v2/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?txid=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A   | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   |    |      | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   |
       |/v2/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI/transactions?tx-type=acfg   | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI |   | acfg   |      |  | 0  |   0     | 0       | 0    |  |  | 0                  | 0         | 0   |
 
+  @unit.indexer
   Scenario Outline: LookupBlock path
     When we make a Lookup Block call against round <round>
     Then expect the path used to be "<path>"
@@ -64,6 +67,7 @@ Feature: Indexer Client v2 Paths
       |path     |round|
       |/v2/blocks/3|3    |
 
+  @unit.indexer
   Scenario Outline: LookupAccountByID path
     When we make a Lookup Account by ID call against account "<account>" with round <round>
     Then expect the path used to be "<path>"
@@ -72,6 +76,7 @@ Feature: Indexer Client v2 Paths
       |/v2/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI          |PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI| 0   |
       |/v2/accounts/PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI?round=15 |PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI| 15  |
 
+  @unit.indexer
   Scenario Outline: LookupAssetByID path
     When we make a Lookup Asset by ID call against asset index <index>
     Then expect the path used to be "<path>"
@@ -79,6 +84,7 @@ Feature: Indexer Client v2 Paths
       |path      |index|
       |/v2/assets/15|15   |
 
+  @unit.indexer
   Scenario Outline: SearchAccounts path
     When we make a Search Accounts call with assetID <index> limit <limit> currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> and round <round>
     Then expect the path used to be "<path>"
@@ -91,6 +97,7 @@ Feature: Indexer Client v2 Paths
       |/v2/accounts?limit=50                                                                             | 0     | 0     | 50    | 0                   | 0               |
       |/v2/accounts?round=15                                                                             | 0     | 15    | 0     | 0                   | 0               |
 
+  @unit.indexer
   Scenario Outline: SearchForTransactions path
     When we make a Search For Transactions call with account "<account>" NotePrefix "<notePrefixB64>" TxType "<txType>" SigType "<sigType>" txid "<txid>" round <round> minRound <minRound> maxRound <maxRound> limit <limit> beforeTime "<beforeTime>" afterTime "<afterTime>" currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> assetIndex <index> addressRole "<addressRole>" ExcluseCloseTo "<excludeCloseTo>"
     Then expect the path used to be "<path>"
@@ -114,6 +121,7 @@ Feature: Indexer Client v2 Paths
       |/v2/transactions?tx-type=acfg |  |   | acfg   |      |  | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       |            |
       |/v2/transactions?txid=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A   |  |   |    |      | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       |            |
 
+  @unit.indexer
   Scenario Outline: SearchForAssets path
     When we make a SearchForAssets call with limit <limit> creator "<creator>" name "<name>" unit "<unit>" index <index>
     Then expect the path used to be "<path>"

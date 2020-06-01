@@ -1,7 +1,7 @@
 @unit
-@unit.indexer
 Feature: Indexer Client v2 Responses
 
+  @unit.indexer
   Scenario Outline: LookupAssetBalances response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any LookupAssetBalances call
@@ -11,6 +11,7 @@ Feature: Indexer Client v2 Responses
       |jsonfiles                 |directory                    |err|roundNum      |len |idx|address                                                         |amount      |frozenState|
       |lookupAssetBalances_0.json|v2indexerclient_responsejsons||6222956       |22  |1  |B2IID7Y54ROV2H6OXO3IXVSF64CBJ2GLEKCHYE2ZZE63RBMROO5FARL4IQ      |4900000     |      false|
 
+  @unit.indexer
   Scenario Outline: LookupAssetTransactions response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any LookupAssetTransactions call
@@ -20,6 +21,7 @@ Feature: Indexer Client v2 Responses
       |jsonfiles                     |directory                    |err|roundNum|len    |idx|sender|
       |lookupAssetTransactions_0.json|v2indexerclient_responsejsons||6222957 |39  |0  |ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY  |
 
+  @unit.indexer
   Scenario Outline: LookupAccountTransactions response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any LookupAccountTransactions call
@@ -29,6 +31,7 @@ Feature: Indexer Client v2 Responses
       |jsonfiles                       |directory                       |err|roundNum      |len|idx|sender|
       |lookupAccountTransactions_0.json|  v2indexerclient_responsejsons ||6222956       |0  |0  | N/A  |
     
+  @unit.indexer
   Scenario Outline: LookupBlock response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any LookupBlock call
@@ -38,6 +41,7 @@ Feature: Indexer Client v2 Responses
       |jsonfiles          |directory                      |err|prevHash|
       |lookupBlock_0.json | v2indexerclient_responsejsons ||jIYt/5YlDB/fzOoLIZXKwCD9e9Y37YXoz3umPCoo7Rw=    |
 
+  @unit.indexer
   Scenario Outline: LookupAccountByID response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any LookupAccountByID call
@@ -47,6 +51,7 @@ Feature: Indexer Client v2 Responses
       |jsonfiles                |directory                      |err|address|
       |lookupAccountByID_0.json | v2indexerclient_responsejsons ||BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE    |
 
+  @unit.indexer
   Scenario Outline: LookupAssetByID response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any LookupAssetByID call
@@ -56,6 +61,7 @@ Feature: Indexer Client v2 Responses
       |jsonfiles               |directory                      |err|index  |
       |lookupAssetByID_0.json  | v2indexerclient_responsejsons ||163650|
 
+  @unit.indexer
   Scenario Outline: SearchAccounts response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any SearchAccounts call
@@ -65,6 +71,7 @@ Feature: Indexer Client v2 Responses
       |jsonfiles                |directory                      |err|roundNum  | len | index | address |
       |searchForAccounts_0.json |  v2indexerclient_responsejsons||6222956   |1    |0      |BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE|
 
+  @unit.indexer
   Scenario Outline: SearchForTransactions response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any SearchForTransactions call
@@ -74,6 +81,7 @@ Feature: Indexer Client v2 Responses
       |jsonfiles                    |directory                    |err|roundNum        | len  | index | sender                                                        |
       |searchForTransactions_0.json |v2indexerclient_responsejsons||6222958         |10    |0      |I3345FUQQ2GRBHFZQPLYQQX5HJMMRZMABCHRLWV6RCJYC6OO4MOLEUBEGU     |
 
+  @unit.indexer
   Scenario Outline: SearchForAssets response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any SearchForAssets call
