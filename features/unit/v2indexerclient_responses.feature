@@ -98,7 +98,7 @@ Feature: Indexer Client v2 Responses
     And the parsed SearchAccounts response should be valid on round <roundNum> and the array should be of len <len> and the element at index <index> should have authorizing address "<authaddr>"
     Examples:
       |jsonfiles                |directory                      |err|roundNum  | len | index | authaddr |
-      |searchForAccounts_0.json |  v2indexerclient_responsejsons||6222956   |1    |0      |PRIC4GIQTJFD2SZIEQGAYBV2KUJ7YQR3EV3KSOZKLOHPDNRDXXVWMHDAQA|
+      |searchForAccounts_1.json |  v2indexerclient_responsejsons||6222956   |1    |0      |PRIC4GIQTJFD2SZIEQGAYBV2KUJ7YQR3EV3KSOZKLOHPDNRDXXVWMHDAQA|
 
   @unit.indexer.rekey
   Scenario Outline: SearchForTransactions response, rekey-to
@@ -107,4 +107,4 @@ Feature: Indexer Client v2 Responses
     And the parsed SearchForTransactions response should be valid on round <roundNum> and the array should be of len <len> and the element at index <index> should have rekey-to "<rekeyto>"
     Examples:
       |jsonfiles                    |directory                    |err|roundNum        | len  | index | rekeyto |
-      |searchForTransactions_0.json |v2indexerclient_responsejsons||6222958         |10    |1      |PRIC4GIQTJFD2SZIEQGAYBV2KUJ7YQR3EV3KSOZKLOHPDNRDXXVWMHDAQA     |
+      |searchForTransactions_1.json |v2indexerclient_responsejsons||6222958         |10    |1      |PRIC4GIQTJFD2SZIEQGAYBV2KUJ7YQR3EV3KSOZKLOHPDNRDXXVWMHDAQA     |
