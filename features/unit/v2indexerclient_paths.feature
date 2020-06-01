@@ -165,3 +165,23 @@ Feature: Indexer Client v2 Paths
     Examples:
       |path            | account                                                    | notePrefixB64 | txType | sigType | txid                                                 | round| minRound | maxRound | limit | beforeTime              | afterTime               | currencyGreaterThan | currencyLessThan | index | addressRole | excludeCloseTo | rekeyTo |
       |/v2/transactions?rekey-to=true   |  |   |    |      |  | 0  |   0     | 0       | 0    | |  | 0                  | 0         | 0   |       |            |                                                                                            true|
+
+  @unit.applications
+  Scenario Outline: SearchForApplications path
+    When we make a SearchForApplications call with <application-id> and <round>
+    Then we expect the path used to be "<path>"
+
+    Examples:
+      | path                                  | application-id  | round |
+      | /v2/applications?application-id=1234  | 1234            | 0     |
+      | /v2/applications?round=9001           | 0               | 9001  |
+
+  @unit.applications
+  Scenario Outline: LookupApplications path
+    When we make a LookupApplications call with <application-id> and <round>
+    Then we expect the path used to be "<path>"
+
+    Examples:
+      | path                             | application-id  | round |
+      | /v2/applications/1234            | 1234            | 0     |
+      | /v2/applications/4567?round=9999 | 4567            | 9999  |
