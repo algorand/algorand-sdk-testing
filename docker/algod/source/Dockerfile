@@ -3,7 +3,7 @@ FROM golang:1.13.12
 ARG URL=https://github.com/algorand/go-algorand
 ARG BRANCH=master
 
-RUN echo "Branch: ${BRANCH}"
+RUN echo "Installing from source. ${URL} -- ${BRANCH}"
 ENV BIN_DIR="$GOPATH/bin"
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -20,8 +20,6 @@ RUN git clone --single-branch --branch "${BRANCH}" "${URL}" && \
     cd go-algorand && \
     ./scripts/configure_dev.sh && \
     make install
-
-RUN goal -v
 
 # Configure private network
 RUN python3 /tmp/docker/algod/setup.py configure \
