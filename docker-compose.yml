@@ -6,7 +6,7 @@ services:
     container_name: sdk-harness-algod
     build:
       context: .
-      dockerfile: "./docker/algod/${TYPE}/Dockerfile"
+      dockerfile: "./docker/algod/${TYPE:-channel}/Dockerfile"
       args:
         # This is used with TYPE="channel" to override the channel.
         CHANNEL: "nightly"
