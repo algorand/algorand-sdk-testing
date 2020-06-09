@@ -6,7 +6,14 @@ services:
     container_name: sdk-harness-algod
     build:
       context: .
-      dockerfile: ./docker/algod/Dockerfile
+      dockerfile: "./docker/algod/${TYPE}/Dockerfile"
+      args:
+        # This is used with TYPE="channel" to override the channel.
+        CHANNEL: "nightly"
+        
+        # This is used with TYPE="source" to override the git information.
+        URL: "https://github.com/algorand/go-algorand"
+        BRANCH: "master"
     ports:
       - 60001:60001
       - 60000:60000
@@ -17,6 +24,7 @@ services:
     container_name: sdk-harness-indexer
     build:
       context: .
+      # TODO: Add type option to indexer for building by source
       dockerfile: ./docker/indexer/Dockerfile
     ports:
       - 59999:8980

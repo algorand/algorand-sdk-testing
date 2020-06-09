@@ -1,6 +1,11 @@
 FROM ubuntu:19.10
 
+ARG CHANNEL=nightly
+ENV BIN_DIR="$HOME/node"
+
 ENV DEBIAN_FRONTEND noninteractive
+
+RUN echo "Installing from channel: ${CHANNEL}"
 
 # Basic dependencies.
 ENV HOME /opt
@@ -9,10 +14,13 @@ RUN apt-get update && apt-get install -y apt-utils curl git git-core bsdmainutil
 # Copy everything into the container.
 COPY . /tmp
 
-# Install and configure algod.
+# Install algod binaries from a channel.
 RUN python3 /tmp/docker/algod/setup.py install \
- --bin-dir "$HOME/node" \
- --channel "nightly" \
+ --bin-dir "${BIN_DIR}" \
+ --channel "${CHANNEL}"
+
+RUN python3 /tmp/docker/algod/setup.py configure \
+ --bin-dir "${BIN_DIR}" \
  --network-dir /opt/testnetwork \
  --network-template /tmp/network_config/future_template.json \
  --network-token aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
@@ -20,4 +28,4 @@ RUN python3 /tmp/docker/algod/setup.py install \
  --kmd-port 60001
 
 # Start algod
-CMD ["/usr/bin/env", "bash", "-c", "python3 /tmp/docker/algod/setup.py start --bin-dir \"$HOME/node\" --channel \"nightly\" --network-dir \"/opt/testnetwork\""]
+CMD ["/usr/bin/env", "bash", "-c", "python3 /tmp/docker/algod/setup.py start --bin-dir \"$BIN_DIR\" --network-dir \"/opt/testnetwork\""]
