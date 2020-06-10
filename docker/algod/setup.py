@@ -16,22 +16,25 @@ parser = argparse.ArgumentParser(description='Install, configure, and start algo
 # Shared parameters
 base_parser = argparse.ArgumentParser(add_help=False)
 base_parser.add_argument('--bin-dir', required=True, help='Location to install algod binaries.')
-base_parser.add_argument('--channel', required=True, help='Channel to install, nightly is a good option.')
-base_parser.add_argument('--network-dir', required=True, help='Path to create network.')
 
 subparsers = parser.add_subparsers()
 
-install = subparsers.add_parser('install', parents=[base_parser], help='Install the network.')
-install.add_argument('--network-template', required=True, help='Path to private network template file.')
-install.add_argument('--network-token', required=True, help='Valid token to use for algod/kmd.')
-install.add_argument('--algod-port', required=True, help='Port to use for algod.')
-install.add_argument('--kmd-port', required=True, help='Port to use for kmd.')
+install = subparsers.add_parser('install', parents=[base_parser], help='Install the binaries.')
+install.add_argument('--channel', required=True, help='Channel to install, nightly and beta are good options.')
+
+configure = subparsers.add_parser('configure', parents=[base_parser], help='Configure private network for SDK.')
+configure.add_argument('--network-template', required=True, help='Path to private network template file.')
+configure.add_argument('--network-token', required=True, help='Valid token to use for algod/kmd.')
+configure.add_argument('--algod-port', required=True, help='Port to use for algod.')
+configure.add_argument('--kmd-port', required=True, help='Port to use for kmd.')
+configure.add_argument('--network-dir', required=True, help='Path to create network.')
 
 start = subparsers.add_parser('start', parents=[base_parser], help='Start the network.')
+start.add_argument('--network-dir', required=True, help='Path to create network.')
 
 pp = pprint.PrettyPrinter(indent=4)
 
-def setup_algod(bin_dir, channel):
+def install_algod_binaries(bin_dir, channel):
     """
     Download and install algod.
     """
@@ -98,7 +101,12 @@ def install_handler(args):
     """ 
     install subcommand - create and configure the network.
     """
-    setup_algod(args.bin_dir, args.channel)
+    install_algod_binaries(args.bin_dir, args.channel)
+
+def configure_handler(args):
+    """
+    configure subcommand - configure a private network using the installed binaries.
+    """
     create_network(args.bin_dir, args.network_dir, args.network_template, args.network_token, args.algod_port, args.kmd_port)
 
 
@@ -111,6 +119,7 @@ def start_handler(args):
 
 if __name__ == '__main__':
     install.set_defaults(func=install_handler)
+    configure.set_defaults(func=configure_handler)
     start.set_defaults(func=start_handler)
 
     args = parser.parse_args()
