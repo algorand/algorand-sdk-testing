@@ -9,7 +9,7 @@ Feature: Applications
    Scenario: Use every applications feature in one scenario, do it!
       # Make these tests 'standalone'.
       # This should create a new, random account and save the public/private key for future steps to use.
-      Given I create and fund a transient new account with 100000000 microalgos.
+      Given I create a new transient account and fund it with 100000000 microalgos.
       # Create application
       # depends on the transient account, and also the application id.
       # Use suggested params
