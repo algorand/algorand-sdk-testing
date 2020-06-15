@@ -9,11 +9,11 @@ services:
       dockerfile: "./docker/algod/${TYPE:-channel}/Dockerfile"
       args:
         # This is used with TYPE="channel" to override the channel.
-        CHANNEL: "nightly"
+        CHANNEL: "${CHANNEL:-nightly}"
         
         # This is used with TYPE="source" to override the git information.
-        URL: "https://github.com/algorand/go-algorand"
-        BRANCH: "master"
+        URL: "${URL:-https://github.com/algorand/go-algorand}"
+        BRANCH: "${BRANCH:-master}"
     ports:
       - 60001:60001
       - 60000:60000
