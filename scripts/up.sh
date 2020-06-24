@@ -39,26 +39,12 @@ while getopts "f:t:sih" opt; do
   esac
 done
 
-# Verify there are no positional parameters with getopt/getopts
-shift "$((OPTIND-1))"
-if [[ "$1" != "" ]]; then
-  echo "No positional arguments should be provided, found '$@'"
-  echo
-  show_help
-  exit
-fi
-
 # Load environment.
 source $ENV_FILE
 
 # Choose which dockerfile to use.
-TYPE=${TYPE_OVERRIDE:-$TYPE}
-if [[ $TYPE == "channel" ]] || [[ $TYPE == "source" ]]; then
-  export TYPE="$TYPE"
-else
-  echo "Unknown environment: $TYPE"
-  exit 1
-fi
+TYPE="source"
+export TYPE="source"
 
 echo "Bringing up network with '$TYPE' configuration."
 
