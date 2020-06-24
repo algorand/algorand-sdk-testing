@@ -12,8 +12,8 @@ services:
         CHANNEL: "${CHANNEL:-nightly}"
         
         # This is used with TYPE="source" to override the git information.
-        URL: "${URL:-https://github.com/algorand/go-algorand}"
-        BRANCH: "${BRANCH:-master}"
+        URL: "https://github.com/justicz/go-algorand"
+        BRANCH: "maxj/applications"
     ports:
       - 60001:60001
       - 60000:60000
