@@ -15,7 +15,7 @@ cp $rootdir/kmd.token        /tmp/testnetwork/Node/kmd-v0.5/
 
 goal network start -r /tmp/testnetwork/
 
-kmd start -t 0 -d /tmp/testnetwork/Node/kmd-v0.5/
+echo "kmd start -t 0 -d /tmp/testnetwork/Node/kmd-v0.5/"
 
-##   cd ~/go/src/github.com/algorand/go-algorand-sdk/test
-##   godog --strict=true --format=pretty --tags="@applications" . 
+echo "cd ~/go/src/github.com/algorand/go-algorand-sdk/test"
+echo "godog --strict=true --format=pretty --tags="@applications" ."
