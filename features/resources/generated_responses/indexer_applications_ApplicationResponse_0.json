@@ -1,0 +1,82 @@
+{
+  "application" : {
+    "app-index" : 740721,
+    "app-params" : {
+      "approval-program" : "vpgURHmHuQSrGsY1Z9JwdEZm/Hyv/ZqAFL8ssWIvcWLzsqgJWpq8kO1qszcE/ZQjVrOzGNLA0rgc2zZSXfLT80BD4665qhPrxvJ7r5583ZybkOsQPZwEyUkUND8C1813dh8x75qYL69wlTlQ6zxC1WF7nkziWuFM4cKiJkqae7/6KROmAJfHFNomPYVEXlGLyLI2OvrGQ3ocB+pgElSsBEfQ0wJ1CMehJk5wLiimWzxDHo3Wfs7PnKZT5zOYb5SFadn9tIZrajQsOCHxuX+OGxqEbrWut6GjIMiy9QM0tymChG7KRVdd9vYZonI9jB2l6Q8hOI5l/0yfW6QQ2dxICkj3HHnGh+tRQoNmVZ7D3ckfKaRzZKw9SCzX42GHQov+hfzwd6L6llIEgYh86yT0GYCZpAU8tku6QqANi90S5xqWEkPbdxul8uGP3+zV9nnHpANfPGR3lu1SU7aWj5nDZ+3J36JlAHW3tF4TnjKYONR1qeqC8DI2mkIu1761GF/zj3OoSJK2sKYMYVSxfuDeP7WCpvg3D5gf6kptO0uxKciXHyuoqJ6rDqwxpM5VEFKWdqPCd1S6FT2WqdW+sttkP7Hry4hS2X/UC8XX3PpR/M+f8h8Uph4tU4cLsKwtcAmeoKFZ7Q==",
+      "clear-state-program" : "0mu949TJOhBuMABJUCdK+3KdUidlPzbouKUnDS6EuNtgpRCr6zZNcPFMQKG5lFTQ/3EYx+Y6qV1kNQeETqbWIknCJZRvI2mviw4Xow7hc5ZLzBQuoC0FIKH1udfgx1Xo01Z3PzKl0lJ2CJItuzS7jGY69bFmBOYZgdG36iVVdnN3fX/KKa4cezvhSkP2aq+X1n8cBXKmBVyqKGJVYVUMD2bphtXu7PJ1O+kOczQm2R8TUEAf313zy9VN/udeR84MAslTDEE9D94qAXOssvTU8wnZE6Uu0B8uT1URyekN84tgeOKfgqg87Y7QjVPthJM5mR3JtcKGP0t7M/e8VOzw180Dkvo59ol+RExS1Crqu34XIHNUZAdGL00rzyTzkm88Rnpu+4/MDSH8jETL7/BhRM3ckpq/fHtG0IwXLJ87v/v+D4Mw0mDehbj1ghaIg4L2dxRZgOXubmuiw5JtNtZmrdwQXtv1tx6GUapdx4Me+BvG5mZOyAvHznO1TxEYRZuq+qIwBg13Q/jyVfb5NFXZr908F7zCfzMAinDvBqypsVYnWTST1UPxjZtBog0yZnMB1wObVA7eAEY/Kg==",
+      "global-state" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "type" : 656884,
+          "uint" : 450518
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "type" : 577232,
+          "uint" : 814381
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "type" : 671840,
+          "uint" : 219879
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "type" : 808194,
+          "uint" : 483527
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "type" : 558263,
+          "uint" : 393033
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "type" : 782484,
+          "uint" : 388899
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "type" : 581963,
+          "uint" : 919809
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "type" : 226922,
+          "uint" : 528862
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "type" : 676628,
+          "uint" : 714711
+        }
+      } ],
+      "global-state-schema" : {
+        "num-byte-slice" : 82199,
+        "num-uint" : 601967
+      },
+      "local-state-schema" : {
+        "num-byte-slice" : 388521,
+        "num-uint" : 209867
+      }
+    }
+  },
+  "current-round" : 33124
+}

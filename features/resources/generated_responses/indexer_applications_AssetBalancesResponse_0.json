@@ -1,0 +1,33 @@
+{
+  "balances" : [ {
+    "address" : "4457NAN2BXXLO3Q6BDCETSLZTMCNTUQB5SGYZIRSOL543ULGXK4W3LIJHA",
+    "amount" : 366167,
+    "is-frozen" : true
+  }, {
+    "address" : "TTUTXPJTPX5SBUURFO65Q55344R3S2YEMZVP7BWTBTWBB56FDDS3ETWZRI",
+    "amount" : 475708,
+    "is-frozen" : false
+  }, {
+    "address" : "33ICQOVJWTVGQV5XAOYKK4XKUJETPDVLK4WGSCGM5SBW4R6BISMTOPP2ZE",
+    "amount" : 155329,
+    "is-frozen" : false
+  }, {
+    "address" : "MGN736WYL6XQ7TGULNJURG4QT6QDGADVUMS2DW65HWKUNF7QQT75KM2QEA",
+    "amount" : 71965,
+    "is-frozen" : true
+  }, {
+    "address" : "NMK4IHY7FHMPNP4TCZZY4HHBYCPA6LBNDEORUB7MUF7WHN34UBT6Z2A53Y",
+    "amount" : 849092,
+    "is-frozen" : false
+  }, {
+    "address" : "Z6DEHZK2LOWR2GYSCDKEOTZD5GT7J3BG4VSMI6OWEC4H2NURA4I4BCHFAY",
+    "amount" : 625530,
+    "is-frozen" : false
+  }, {
+    "address" : "OKOPBKO7UKWBMYBF5IJE4N332Z2FTI4INQHNPXK4LNMYYV3PYSZYGR5XXE",
+    "amount" : 62498,
+    "is-frozen" : true
+  } ],
+  "current-round" : 120653,
+  "next-token" : "oZSrqon3hT7qQqrHNUle"
+}
