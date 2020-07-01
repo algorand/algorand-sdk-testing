@@ -91,3 +91,12 @@ Feature: Algod REST API v2 Responses
     Examples:
       |jsonfiles           |directory                   |err|roundNum|
       |suggestedParams.json| v2algodclient_responsejsons||6222155|
+
+  @unit.dryrun
+  Scenario Outline: Dryrun response
+    Given mock http responses in "<jsonfiles>" loaded from "<directory>"
+    When we make any Dryrun call
+    And the parsed Dryrun Response should have global delta <key> with <action>
+    Examples:
+      | jsonfiles           | directory                   | key        | action |
+      | dryrunResponse.json | v2algodclient_responsejsons | "Creator"  | 2      |
