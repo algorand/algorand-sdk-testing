@@ -1,20 +1,20 @@
 {
   "asset" : {
-    "index" : 716802,
+    "index" : 25555,
     "params" : {
       "clawback" : "oZSrqon3hT7qQqrHNUle",
       "creator" : "oZSrqon3hT7qQqrHNUle",
-      "decimals" : 599917,
+      "decimals" : 961832,
       "default-frozen" : false,
       "freeze" : "oZSrqon3hT7qQqrHNUle",
       "manager" : "oZSrqon3hT7qQqrHNUle",
-      "metadata-hash" : "pzcPcXRKvz29cqpO",
+      "metadata-hash" : "nk6X6N6lcacYmDT89lgUJmklu8j10VMnTMLxju+UZtPEQWqyY9aBC7GuVj9esqgVFzv8YJ5nvcau/KsFKcStybQJAlsxwJVZE0ck6D/FiZ5fwS4r9KLBDjjMGSvshxI+EPCy733M2vBm9LsIbsavBPakKC3Wh9qWdVqk3ccowxG/Y4p3cFp+LrU6ISXUUyqFFoiPulb7toIRbH3knlXqu23dbMelCbM/cUdsDu8CNZ/8bqBoOzY6uWAhQmkoGu7CCNRb8a3UJMLvOQjyUT/fXGh8kO1+Bwew2EYFDnIlJ5lEwdXljvvl4+X7QfogeWGcIL6Yv9DmQEOSNSNPWmDKlRg2ggpAvh4L8ampg5WjeaRsCf/3E9dsnM1DgaoU1P5fP/+b/S/nCQ0SjAgZfQNpf5vnrXbdGJzea8Ua2KngWSe4Wct5vCUIoy2e7R27TW2xfpItg/isSilznP05c8M7ckc3YlK8ONQbiagSTsQVz+DoABAw5Kabho1ZGIyjbcYf8ZIszPfoIT5T6Bv+IYzf7jQDIpZUT92Eiew=",
       "name" : "oZSrqon3hT7qQqrHNUle",
       "reserve" : "oZSrqon3hT7qQqrHNUle",
-      "total" : 821772,
+      "total" : 62686,
       "unit-name" : "oZSrqon3hT7qQqrHNUle",
       "url" : "oZSrqon3hT7qQqrHNUle"
     }
   },
-  "current-round" : 757581
+  "current-round" : 31235
 }
