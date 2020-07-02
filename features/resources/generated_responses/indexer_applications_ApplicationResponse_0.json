@@ -3,53 +3,32 @@
     "app-params" : {
       "approval-program" : "oZSrqon3hT7qQqrHNUle",
       "clear-state-program" : "oZSrqon3hT7qQqrHNUle",
-      "creator" : "O2KAX52HO5SXRXYI4SDKUBIC2HJWNFAN2A7M2RHN4RE76Z6554JMY67L6A",
+      "creator" : "54DYSRI7PAKGB6FVQBWZN5UOXASHTYGRNTC3CVWVF6MTCLAK7CM2DB6KJ4",
       "global-state" : [ {
         "key" : "oZSrqon3hT7qQqrHNUle",
         "value" : {
           "bytes" : "oZSrqon3hT7qQqrHNUle",
-          "type" : 910647,
-          "uint" : 448127
+          "type" : 613840,
+          "uint" : 747518
         }
       }, {
         "key" : "oZSrqon3hT7qQqrHNUle",
         "value" : {
           "bytes" : "oZSrqon3hT7qQqrHNUle",
-          "type" : 679436,
-          "uint" : 250395
-        }
-      }, {
-        "key" : "oZSrqon3hT7qQqrHNUle",
-        "value" : {
-          "bytes" : "oZSrqon3hT7qQqrHNUle",
-          "type" : 77374,
-          "uint" : 714423
-        }
-      }, {
-        "key" : "oZSrqon3hT7qQqrHNUle",
-        "value" : {
-          "bytes" : "oZSrqon3hT7qQqrHNUle",
-          "type" : 845856,
-          "uint" : 341276
-        }
-      }, {
-        "key" : "oZSrqon3hT7qQqrHNUle",
-        "value" : {
-          "bytes" : "oZSrqon3hT7qQqrHNUle",
-          "type" : 529665,
-          "uint" : 724856
+          "type" : 519745,
+          "uint" : 146686
         }
       } ],
       "global-state-schema" : {
-        "num-byte-slice" : 62181,
-        "num-uint" : 205965
+        "num-byte-slice" : 169540,
+        "num-uint" : 285150
       },
       "local-state-schema" : {
-        "num-byte-slice" : 247263,
-        "num-uint" : 276985
+        "num-byte-slice" : 217315,
+        "num-uint" : 233767
       }
     },
-    "id" : 667749
+    "id" : 300089
   },
-  "current-round" : 59393
+  "current-round" : 16335
 }

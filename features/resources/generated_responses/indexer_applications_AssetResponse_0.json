@@ -1,20 +1,20 @@
 {
   "asset" : {
-    "index" : 965051,
+    "index" : 716802,
     "params" : {
       "clawback" : "oZSrqon3hT7qQqrHNUle",
       "creator" : "oZSrqon3hT7qQqrHNUle",
-      "decimals" : 205936,
+      "decimals" : 599917,
       "default-frozen" : false,
       "freeze" : "oZSrqon3hT7qQqrHNUle",
       "manager" : "oZSrqon3hT7qQqrHNUle",
-      "metadata-hash" : "GkSTEhA4YdN03AQMsO/+2USgeiREDEkqJXuHUnPFOirckBFTJikdJdom+Mq+MPwX5Jl7YVymDIxClxU3eOE=",
+      "metadata-hash" : "pzcPcXRKvz29cqpO",
       "name" : "oZSrqon3hT7qQqrHNUle",
       "reserve" : "oZSrqon3hT7qQqrHNUle",
-      "total" : 247054,
+      "total" : 821772,
       "unit-name" : "oZSrqon3hT7qQqrHNUle",
       "url" : "oZSrqon3hT7qQqrHNUle"
     }
   },
-  "current-round" : 795950
+  "current-round" : 757581
 }

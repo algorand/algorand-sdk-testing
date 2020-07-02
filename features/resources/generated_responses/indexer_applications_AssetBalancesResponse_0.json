@@ -1,37 +1,33 @@
 {
   "balances" : [ {
-    "address" : "4T4WQCIBISU3QF7DRGX3LWHX3KL7JWY42VCIXTVYRY6Z6V77USQFPK4TXY",
-    "amount" : 522907,
+    "address" : "YEW5VOU6EXLIVBCZTT4KCGOQ4LF5ANIJDLCIBKBJXGOVHVEKZNEHECQ6PY",
+    "amount" : 209436,
     "is-frozen" : true
   }, {
-    "address" : "EVFXIDYPQKGEHOFARPAJVGOOGESKRB66LT4FBNX23OPIF7RC5BS6SVNN5E",
-    "amount" : 804667,
+    "address" : "ULGIQX3J2ZM62AZEQJXUQAAHQHJKX3UW63W2IML3QNCVKNWXIQUY6L2TOE",
+    "amount" : 279745,
+    "is-frozen" : false
+  }, {
+    "address" : "OW2FZC3Z3HP3PUMLFMONHUH5YCTXXWMXR64GB5MVCQYY6F66T6RYCLPVJA",
+    "amount" : 63298,
     "is-frozen" : true
   }, {
-    "address" : "MWUJ5WRKDLW6Y4JRPWI472Q3EZ5OAZ5W72LUSOEEZ5Y2AAJUQHKADJAXJU",
-    "amount" : 113913,
+    "address" : "YRHJ7QTBFHDBY7HO5GTN2LJGTZAN42GN5253XFA3W4FWI65MNSK45TZDME",
+    "amount" : 461901,
     "is-frozen" : false
   }, {
-    "address" : "SV2TBHCCINRQ2VWR6SS57AOE3KTD4GK5MKXN7XTJKAQU2Y4R467SVK5NLE",
-    "amount" : 64731,
-    "is-frozen" : true
-  }, {
-    "address" : "CNK3WAR3F6MNU7GPJR44P4N4XA7LKWRPUHZS6QWDGW7PXV42QBDYFFBS4U",
-    "amount" : 557244,
+    "address" : "DPX7VV42CR4IVKYCWFG6ZUF6KFJ3OT3NYISCW622M5XLSTTIPO5QJOADAM",
+    "amount" : 274072,
     "is-frozen" : false
   }, {
-    "address" : "HNBGZ4BUK3WSHH6QQZTIHK3AJJUROHQ3RTGYL7I4SZMKHG5ERDFBQGP6DY",
-    "amount" : 322167,
+    "address" : "CLRRCS4FTXE4TSTANLXLH7TIGJENZY2YN7TFJEDWLGLPTK7S7ATWDPRKHQ",
+    "amount" : 663433,
     "is-frozen" : false
   }, {
-    "address" : "BOHZ25IQSYTHDG2ZBTWQFAYGKB2S5AYJKRLUMCDCSOC7Z2EW4P36U3WTSY",
-    "amount" : 361044,
-    "is-frozen" : false
-  }, {
-    "address" : "RVIQU4C6R2Y2Q6FYZKKP3VZIVUEINLHGISMPLFX63YFPGHHZA5XRJGSSMQ",
-    "amount" : 759688,
+    "address" : "FYRY3BVNQMQF22RNLTWETIYT5KFHGJTCZULKDASGGOAEH7AN2EX3KK2ICU",
+    "amount" : 216293,
     "is-frozen" : false
   } ],
-  "current-round" : 805676,
+  "current-round" : 218009,
   "next-token" : "oZSrqon3hT7qQqrHNUle"
 }
