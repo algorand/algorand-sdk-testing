@@ -25,7 +25,7 @@ Feature: v2 REST Client Responses
       | algod_applications_PostTransactionsResponse_0.json      | 200    | algod   | RawTransaction            |
       | algod_applications_SupplyResponse_0.json                | 200    | algod   | GetSupply                 |
       | algod_applications_TransactionParametersResponse_0.json | 200    | algod   | TransactionParams         |
-      | algod_applications_ErrorResponse_0.json                 | 200    | algod   | any                       |
+      | algod_applications_ErrorResponse_0.json                 | 500    | algod   | any                       |
       # These ones failed to generate, figure out why in the responses generator.
       # ApplicationResponse         GetApplicationByID
       # AssetResponse               GetAssetByID
