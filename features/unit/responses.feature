@@ -8,7 +8,7 @@ Feature: v2 REST Client Responses
     Then the parsed response should equal the mock response.
     Examples:
       | jsonfile                                          | status | client  | endpoint                  |
-      | indexer_applications_AccountResponse_0.json       | 200    | indexer | lookupAcocuntByID         |
+      | indexer_applications_AccountResponse_0.json       | 200    | indexer | lookupAccountByID         |
       | indexer_applications_AccountsResponse_0           | 200    | indexer | searchForAccounts         |
       | indexer_applications_ApplicationResponse_0.json   | 200    | indexer | lookupApplicationByID     |
       | indexer_applications_ApplicationsResponse_0.json  | 200    | indexer | searchForApplications     |
