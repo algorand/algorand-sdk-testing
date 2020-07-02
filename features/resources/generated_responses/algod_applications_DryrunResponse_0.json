@@ -1,0 +1,3665 @@
+{
+  "error" : "oZSrqon3hT7qQqrHNUle",
+  "txns" : [ {
+    "app-call-messages" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "app-call-trace" : [ {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 238085,
+      "pc" : 662300,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 214023,
+        "uint" : 297650
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 395154,
+        "uint" : 846138
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 354570,
+        "uint" : 153898
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 725583,
+        "uint" : 322075
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 601950,
+        "uint" : 880877
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 347084,
+        "uint" : 377823
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 134781,
+        "uint" : 827365
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 781649,
+        "uint" : 861709
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 922395,
+        "uint" : 379854
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 470547,
+        "uint" : 238224
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 789186,
+        "uint" : 996983
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 829266,
+        "uint" : 950350
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 582752,
+        "uint" : 500149
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 665204,
+        "uint" : 411466
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 348184,
+        "uint" : 603607
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 820775,
+        "uint" : 815448
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 701846,
+        "uint" : 410657
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 886058,
+        "uint" : 817399
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 51337,
+        "uint" : 401931
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 377120,
+      "pc" : 817324,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 768618,
+        "uint" : 445261
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 884851,
+        "uint" : 620991
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 486829,
+        "uint" : 943021
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 736592,
+        "uint" : 778130
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 725314,
+        "uint" : 873905
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 608835,
+        "uint" : 633646
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 451224,
+        "uint" : 831959
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 789337,
+        "uint" : 971985
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 162752,
+        "uint" : 193636
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 963223,
+        "uint" : 707309
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 697729,
+        "uint" : 231090
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 572263,
+        "uint" : 485978
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 226288,
+        "uint" : 540594
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 588288,
+        "uint" : 39626
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 743977,
+        "uint" : 856725
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 743388,
+        "uint" : 869291
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 835541,
+        "uint" : 9175
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 442302,
+        "uint" : 431444
+      } ]
+    } ],
+    "disassembly" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "global-delta" : [ {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 828765,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 312621
+      }
+    } ],
+    "local-deltas" : [ {
+      "address" : "CDMKIVCMGEFQ26JJ52776L2GYZLRPEV4HJ7MLRZRJCB2YGM3PUVY6IDNEE",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 680365,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 574062
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 213033,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 65024
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 464326,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 876544
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 797785,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 651972
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 31539,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 708287
+        }
+      } ]
+    }, {
+      "address" : "XML5J4RAJQNK2CMIVLM4LFDJK3FSD6EZYAHWZYKCTVCW5AX6HK52SHMVHI",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 242136,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 722714
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 143073,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 335775
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 810622,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 77891
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 422256,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 528906
+        }
+      } ]
+    }, {
+      "address" : "SANPFIOK2OKN6XYI6QRRGNNPX7G5UXDT4DCHQWJQYE4OQMLDVP2NQSTG4U",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 671366,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 528691
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 693772,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 257774
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 9173,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 457835
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 255756,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 532765
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 696484,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 99833
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 361604,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 424107
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 339249,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 538141
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 981725,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 375622
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 845235,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 537753
+        }
+      } ]
+    }, {
+      "address" : "Y67APU7RUKMX2WJLBV3Y23B7PY7GTBJBX7YVMPHEG23LHYUKOVUZHS7MSI",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 173245,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 59491
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 459699,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 711090
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 19151,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 8865
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 843418,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 976395
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 274591,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 439365
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 645344,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 331222
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 888195,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 696387
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 917990,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 541701
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 207739,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 478202
+        }
+      } ]
+    }, {
+      "address" : "3LZ2W7YKDUE24KP6DQTES2TGAUDKCFGLNDSHECZBRTRFXNVKBH4I5RTWYA",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 253746,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 866366
+        }
+      } ]
+    }, {
+      "address" : "5SHE52FQBTYVSXSR7ULDMBZTHIRYRPANZVZV6FISVR72UZHQYIVZZSFJQE",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 599880,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 385119
+        }
+      } ]
+    }, {
+      "address" : "NFHHTDY45ZNLMBXPT772CCSY34HAOFWFVJDQ5JYD2VIZ6AWYMYUMO2AMNA",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 825390,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 60551
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 203143,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 684401
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 896141,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 309231
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 979552,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 458959
+        }
+      } ]
+    } ],
+    "logic-sig-messages" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "logic-sig-trace" : [ {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 329840,
+      "pc" : 756571,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 378921,
+        "uint" : 465609
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 551897,
+        "uint" : 435899
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 665407,
+        "uint" : 225059
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 676497,
+        "uint" : 109062
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 830312,
+        "uint" : 575508
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 511938,
+        "uint" : 277215
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 831607,
+        "uint" : 156142
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 972726,
+        "uint" : 34354
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 442880,
+        "uint" : 869493
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 669681,
+        "uint" : 226905
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 362683,
+        "uint" : 743811
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 60102,
+        "uint" : 572838
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 992090,
+        "uint" : 662397
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 264714,
+        "uint" : 140560
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 378190,
+        "uint" : 588672
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 750271,
+      "pc" : 572274,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 890673,
+        "uint" : 684312
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 179952,
+        "uint" : 461699
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 517832,
+        "uint" : 684931
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 10717,
+        "uint" : 351118
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 275144,
+        "uint" : 50360
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 912693,
+        "uint" : 345619
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 224777,
+        "uint" : 853090
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 281179,
+        "uint" : 604529
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 960742,
+      "pc" : 978787,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 329473,
+        "uint" : 740692
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 203298,
+        "uint" : 341481
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 768523,
+        "uint" : 325481
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 693249,
+        "uint" : 319518
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 201794,
+        "uint" : 784510
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 710025,
+        "uint" : 676265
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 636177,
+        "uint" : 260120
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 732428,
+        "uint" : 920558
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 667439,
+        "uint" : 521961
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 638470,
+        "uint" : 717648
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 326778,
+        "uint" : 637170
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 732148,
+        "uint" : 326650
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 197276,
+        "uint" : 908791
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 776996,
+        "uint" : 506228
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 547593,
+      "pc" : 972828,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 287471,
+        "uint" : 466474
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 112096,
+        "uint" : 152638
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 340075,
+        "uint" : 444260
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 71990,
+        "uint" : 211684
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 825698,
+      "pc" : 339138,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 697096,
+        "uint" : 69082
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 863322,
+        "uint" : 184656
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 611324,
+        "uint" : 626224
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 696017,
+        "uint" : 319134
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 498073,
+        "uint" : 695379
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 543718,
+        "uint" : 161359
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 611415,
+        "uint" : 402046
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 946212,
+        "uint" : 481598
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 872885,
+        "uint" : 666017
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 311195,
+        "uint" : 104080
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 303164,
+        "uint" : 645305
+      } ]
+    } ]
+  }, {
+    "app-call-messages" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "app-call-trace" : [ {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 785476,
+      "pc" : 55323,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 531435,
+        "uint" : 867808
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 90705,
+        "uint" : 440959
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 33615,
+        "uint" : 131111
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 516763,
+        "uint" : 416804
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 227474,
+        "uint" : 122592
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 571799,
+        "uint" : 419842
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 421257,
+        "uint" : 468923
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 854846,
+        "uint" : 434570
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 738052,
+        "uint" : 403198
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 55472,
+        "uint" : 107220
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 446751,
+        "uint" : 870742
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 975806,
+        "uint" : 608938
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 451518,
+        "uint" : 11357
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 826519,
+        "uint" : 498015
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 312871,
+      "pc" : 812557,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 177499,
+        "uint" : 86506
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 540010,
+        "uint" : 801664
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 868164,
+        "uint" : 444523
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 913663,
+        "uint" : 357276
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 754712,
+        "uint" : 491597
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 641024,
+        "uint" : 658285
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 525917,
+        "uint" : 781437
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 941774,
+        "uint" : 143758
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 307247,
+        "uint" : 722136
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 120155,
+        "uint" : 300408
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 790330,
+        "uint" : 326049
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 665296,
+        "uint" : 102527
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 125604,
+        "uint" : 672021
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 846399,
+        "uint" : 203927
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 510857,
+        "uint" : 750364
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 674029,
+        "uint" : 164407
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 417269,
+        "uint" : 610097
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 380426,
+        "uint" : 434282
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 213595,
+        "uint" : 196713
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 24076,
+      "pc" : 943389,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 390608,
+        "uint" : 433895
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 80790,
+        "uint" : 727146
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 250418,
+        "uint" : 423851
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 340740,
+        "uint" : 493000
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 305717,
+        "uint" : 543993
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 913137,
+        "uint" : 599035
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 817827,
+        "uint" : 958371
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 813027,
+        "uint" : 828742
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 995424,
+        "uint" : 968642
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 622878,
+        "uint" : 514220
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 69096,
+        "uint" : 484741
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 332982,
+        "uint" : 789770
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 906930,
+      "pc" : 690693,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 186941,
+        "uint" : 717576
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 855587,
+        "uint" : 417495
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 167363,
+        "uint" : 644581
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 134595,
+      "pc" : 98504,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 528843,
+        "uint" : 280263
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 322869,
+        "uint" : 68767
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 954240,
+        "uint" : 548502
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 951810,
+        "uint" : 968460
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 393772,
+        "uint" : 521198
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 762900,
+        "uint" : 801805
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 905254,
+        "uint" : 19225
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 279010,
+        "uint" : 676366
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 981575,
+        "uint" : 210016
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 498507,
+        "uint" : 363674
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 950413,
+      "pc" : 201696,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 63407,
+        "uint" : 173276
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 640118,
+        "uint" : 357846
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 245199,
+        "uint" : 693630
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 679735,
+        "uint" : 483676
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 556425,
+        "uint" : 612605
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 194145,
+      "pc" : 338347,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 33762,
+        "uint" : 512352
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 189837,
+        "uint" : 601784
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 315300,
+        "uint" : 334682
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 590575,
+        "uint" : 660962
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 450739,
+      "pc" : 404290,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 668099,
+        "uint" : 293546
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 99628,
+        "uint" : 946808
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 850742,
+        "uint" : 762803
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 520186,
+        "uint" : 406035
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 781619,
+        "uint" : 858774
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 655308,
+        "uint" : 79712
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 870679,
+        "uint" : 613826
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 115266,
+        "uint" : 92848
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 489362,
+        "uint" : 844853
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 854441,
+        "uint" : 184231
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 419377,
+      "pc" : 138169,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 817944,
+        "uint" : 235100
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 502631,
+        "uint" : 26900
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 528527,
+        "uint" : 979947
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 840506,
+        "uint" : 23295
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 313002,
+        "uint" : 102370
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 986047,
+        "uint" : 372063
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 35938,
+        "uint" : 8587
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 20775,
+        "uint" : 330471
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 245230,
+      "pc" : 504001,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 218730,
+        "uint" : 825456
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 949818,
+        "uint" : 191398
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 950324,
+        "uint" : 989510
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 701730,
+        "uint" : 422024
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 593203,
+        "uint" : 821076
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 855093,
+        "uint" : 769438
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 448854,
+        "uint" : 106982
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 535372,
+        "uint" : 305339
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 28877,
+        "uint" : 362057
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 880434,
+        "uint" : 17884
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 79047,
+        "uint" : 248087
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 125301,
+        "uint" : 765512
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 596862,
+        "uint" : 674846
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 125013,
+        "uint" : 346775
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 693468,
+        "uint" : 496593
+      } ]
+    } ],
+    "disassembly" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "global-delta" : [ {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 28026,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 501044
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 715625,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 856748
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 738385,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 248567
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 742546,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 460269
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 352477,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 444293
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 932834,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 908352
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 879116,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 395641
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 161561,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 95105
+      }
+    } ],
+    "local-deltas" : [ {
+      "address" : "BK6CK4OCZ4M2YHCQFLVSFJAQVK7TJRPLLO3GADMKSW5EDFTTTBXCQ4DAAU",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 294835,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 665283
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 25134,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 666361
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 566190,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 270029
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 449634,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 219305
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 840122,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 435781
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 904529,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 409484
+        }
+      } ]
+    } ],
+    "logic-sig-messages" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "logic-sig-trace" : [ {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 328776,
+      "pc" : 161909,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 427324,
+        "uint" : 514056
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 708087,
+        "uint" : 372281
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 562784,
+        "uint" : 921580
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 203637,
+        "uint" : 452987
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 265507,
+        "uint" : 364786
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 351842,
+        "uint" : 299855
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 96395,
+        "uint" : 450102
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 181878,
+        "uint" : 235132
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 165290,
+        "uint" : 333864
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 166400,
+      "pc" : 416597,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 139342,
+        "uint" : 973385
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 684503,
+        "uint" : 187167
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 160437,
+        "uint" : 320294
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 946351,
+        "uint" : 159297
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 704157,
+      "pc" : 794184,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 684070,
+        "uint" : 417586
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 580917,
+        "uint" : 204976
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 129391,
+        "uint" : 184333
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 974719,
+        "uint" : 15356
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 284169,
+        "uint" : 444378
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 910167,
+        "uint" : 443977
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 621403,
+        "uint" : 755139
+      } ]
+    } ]
+  }, {
+    "app-call-messages" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "app-call-trace" : [ {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 191005,
+      "pc" : 359363,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 550225,
+        "uint" : 624374
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 217071,
+        "uint" : 436124
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 936208,
+        "uint" : 463208
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 115738,
+        "uint" : 272516
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 235612,
+        "uint" : 593590
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 454836,
+        "uint" : 162505
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 853488,
+        "uint" : 465932
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 54947,
+        "uint" : 948243
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 117724,
+        "uint" : 821366
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 403123,
+        "uint" : 415834
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 472771,
+        "uint" : 690247
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 483161,
+        "uint" : 255020
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 394261,
+        "uint" : 768573
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 893747,
+        "uint" : 329534
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 413306,
+        "uint" : 70012
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 123571,
+        "uint" : 301301
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 152054,
+      "pc" : 870579,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 113313,
+        "uint" : 705975
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 676701,
+        "uint" : 254745
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 667902,
+        "uint" : 300964
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 290618,
+        "uint" : 667490
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 132136,
+        "uint" : 633759
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 387531,
+        "uint" : 318041
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 291992,
+      "pc" : 459644,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 235600,
+        "uint" : 878019
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 448678,
+        "uint" : 161765
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 677336,
+        "uint" : 39308
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 685223,
+        "uint" : 230701
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 343242,
+        "uint" : 653603
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 897950,
+        "uint" : 637184
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 423995,
+      "pc" : 30598,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 15341,
+        "uint" : 615046
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 45656,
+        "uint" : 418499
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 287182,
+        "uint" : 48297
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 824124,
+        "uint" : 803366
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 114807,
+        "uint" : 339278
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 685459,
+        "uint" : 785854
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 654472,
+        "uint" : 827700
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 794724,
+        "uint" : 56115
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 520703,
+        "uint" : 901397
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 350994,
+        "uint" : 251830
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 186136,
+        "uint" : 437206
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 539009,
+        "uint" : 648889
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 972866,
+      "pc" : 897245,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 124916,
+        "uint" : 24123
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 407819,
+        "uint" : 261362
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 732279,
+        "uint" : 566603
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 486318,
+        "uint" : 918166
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 77933,
+        "uint" : 277164
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 50848,
+        "uint" : 908834
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 691211,
+        "uint" : 706005
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 368204,
+        "uint" : 123918
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 526179,
+        "uint" : 614373
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 784808,
+        "uint" : 138773
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 145193,
+        "uint" : 629374
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 587569,
+        "uint" : 575460
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 3978,
+        "uint" : 678525
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 433748,
+        "uint" : 43942
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 715286,
+        "uint" : 120461
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 902788,
+      "pc" : 778261,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 425320,
+        "uint" : 629361
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 503863,
+        "uint" : 630979
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 645926,
+        "uint" : 837483
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 302073,
+        "uint" : 203700
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 378306,
+        "uint" : 431395
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 537714,
+        "uint" : 713325
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 431569,
+        "uint" : 792429
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 498205,
+      "pc" : 323238,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 930796,
+        "uint" : 378997
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 555545,
+        "uint" : 992663
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 547827,
+        "uint" : 225120
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 408487,
+        "uint" : 222261
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 69817,
+        "uint" : 115385
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 421912,
+        "uint" : 486375
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 317161,
+        "uint" : 449209
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 932480,
+        "uint" : 568002
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 454145,
+        "uint" : 171196
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 16455,
+        "uint" : 62732
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 406278,
+        "uint" : 477276
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 537049,
+        "uint" : 302529
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 596441,
+        "uint" : 310811
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 481753,
+        "uint" : 485227
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 331922,
+        "uint" : 713417
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 144736,
+        "uint" : 816107
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 653784,
+      "pc" : 479049,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 629351,
+        "uint" : 604624
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 655222,
+        "uint" : 383223
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 652021,
+        "uint" : 335776
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 64289,
+        "uint" : 444121
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 369586,
+        "uint" : 522911
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 725750,
+        "uint" : 23226
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 594419,
+        "uint" : 802203
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 187517,
+        "uint" : 744141
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 640851,
+        "uint" : 369669
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 605564,
+        "uint" : 339707
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 769597,
+        "uint" : 756409
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 645691,
+        "uint" : 21089
+      } ]
+    } ],
+    "disassembly" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "global-delta" : [ {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 278026,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 767767
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 655494,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 306419
+      }
+    } ],
+    "local-deltas" : [ {
+      "address" : "IMSQAGXPAYOBTCU6B7RW7JK5ZJJGIQIP72Q553YS33YGK6HSQA5P6PLBC4",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 603917,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 429648
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 179311,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 593502
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 28991,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 353677
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 910768,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 579638
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 456271,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 716208
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 437099,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 882846
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 708857,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 212905
+        }
+      } ]
+    }, {
+      "address" : "4II2QG7AUTKZE5ZMOGCAUZLX5UJKAFCPACVAZJG6TS3CVFLTJDVOZZCTCM",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 957830,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 478124
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 544248,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 886589
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 307941,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 290195
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 333291,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 470347
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 418898,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 44927
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 684933,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 501785
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 326258,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 757939
+        }
+      } ]
+    }, {
+      "address" : "WR4PVQKUEDGQDAJDRVTAGUCP2X5OFVRALZDDAZNK27WLVZ6VEMWOBRP7FI",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 805754,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 138444
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 475787,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 409304
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 61744,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 65273
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 886793,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 75328
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 857086,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 723447
+        }
+      } ]
+    }, {
+      "address" : "DPE2FKSG2COXFP7CENXK5SEJLJZ7RBL2MCZOSQCPZUQK7B5V6I4QJMPTVU",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 936657,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 185772
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 367964,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 351313
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 549669,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 239831
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 868519,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 926830
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 526132,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 828338
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 109042,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 374287
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 251863,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 720029
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 585796,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 311840
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 832167,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 733536
+        }
+      } ]
+    }, {
+      "address" : "PK6YT2LB4FUL2G7OQJ4JER3WWFFZRITE5VZLD4WPOOKQ4EVSNQKR7GQNVA",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 828882,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 49668
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 477508,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 697350
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 614270,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 702705
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 899534,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 756296
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 543027,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 391197
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 564057,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 796729
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 205598,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 875389
+        }
+      } ]
+    }, {
+      "address" : "ZPXNYKDQYNTA6VCJXLO4G24IEZLYU5RNP5VUIBKHARUTNQSMFAEIEY537Y",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 318831,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 243349
+        }
+      } ]
+    }, {
+      "address" : "ZDM5J23W6PUAYUIDHG2EQL4D7U3OI2LFVTJQCF4SR6BXBB6GTJH5I6CCYA",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 560451,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 73787
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 359424,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 2580
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 662446,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 77270
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 566500,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 156830
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 362309,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 223609
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 987661,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 122918
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 860979,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 171979
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 339736,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 662962
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 873784,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 915957
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 558426,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 148609
+        }
+      } ]
+    }, {
+      "address" : "OHZGYWED5NLOKZ2CFXASPXQ7ETJO5FU2HG3GVRKJLQ3XRQK5UV465ZODIU",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 842706,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 702641
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 522824,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 494035
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 561090,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 803557
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 936919,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 881128
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 209950,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 991673
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 384987,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 62437
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 326469,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 899220
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 670652,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 16262
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 987157,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 313479
+        }
+      } ]
+    } ],
+    "logic-sig-messages" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "logic-sig-trace" : [ {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 352374,
+      "pc" : 371195,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 795943,
+        "uint" : 411664
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 298680,
+        "uint" : 906090
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 393643,
+        "uint" : 877852
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 261012,
+        "uint" : 761195
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 619379,
+        "uint" : 165336
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 140598,
+        "uint" : 183398
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 578324,
+        "uint" : 403462
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 745733,
+        "uint" : 221707
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 4010,
+        "uint" : 550387
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 956445,
+        "uint" : 224591
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 724299,
+        "uint" : 447072
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 869905,
+        "uint" : 338189
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 104243,
+        "uint" : 114604
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 80147,
+        "uint" : 984166
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 388990,
+        "uint" : 949916
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 15947,
+      "pc" : 786767,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 585511,
+        "uint" : 145104
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 446002,
+        "uint" : 673601
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 461982,
+        "uint" : 677459
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 350689,
+        "uint" : 677536
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 410615,
+        "uint" : 246107
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 89012,
+        "uint" : 95029
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 707818,
+      "pc" : 813965,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 878901,
+        "uint" : 281535
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 531414,
+        "uint" : 733519
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 242390,
+        "uint" : 901365
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 26328,
+        "uint" : 375605
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 900614,
+        "uint" : 584265
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 907655,
+        "uint" : 842967
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 681062,
+        "uint" : 415481
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 737856,
+        "uint" : 491166
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 461319,
+        "uint" : 641247
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 491942,
+        "uint" : 777838
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 734172,
+        "uint" : 268541
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 552237,
+        "uint" : 391079
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 906954,
+        "uint" : 760713
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 124390,
+        "uint" : 522278
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 833450,
+        "uint" : 415746
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 984941,
+      "pc" : 196083,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 800398,
+        "uint" : 201366
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 788908,
+        "uint" : 461453
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 448954,
+        "uint" : 437982
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 54922,
+        "uint" : 225643
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 361551,
+        "uint" : 501891
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 585803,
+        "uint" : 986899
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 90735,
+        "uint" : 469570
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 729075,
+        "uint" : 529607
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 538063,
+        "uint" : 575671
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 96108,
+        "uint" : 467546
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 755523,
+        "uint" : 89852
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 338583,
+        "uint" : 42251
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 266286,
+        "uint" : 609293
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 817769,
+        "uint" : 459068
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 147372,
+        "uint" : 605155
+      } ]
+    } ]
+  }, {
+    "app-call-messages" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "app-call-trace" : [ {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 230051,
+      "pc" : 658069,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 918792,
+        "uint" : 446963
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 48363,
+        "uint" : 187101
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 462919,
+        "uint" : 398337
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 916799,
+        "uint" : 246666
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 918221,
+        "uint" : 973845
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 687098,
+        "uint" : 137534
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 233346,
+        "uint" : 399533
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 932070,
+        "uint" : 156237
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 566886,
+        "uint" : 253543
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 518440,
+        "uint" : 71953
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 123983,
+        "uint" : 957087
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 349899,
+        "uint" : 708562
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 261594,
+      "pc" : 216694,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 546273,
+        "uint" : 6908
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 977285,
+        "uint" : 677290
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 985398,
+        "uint" : 331103
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 558340,
+        "uint" : 169887
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 908711,
+        "uint" : 240635
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 463584,
+      "pc" : 571788,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 239622,
+        "uint" : 876093
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 632600,
+        "uint" : 176769
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 697860,
+        "uint" : 756654
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 378729,
+        "uint" : 147739
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 235679,
+        "uint" : 482526
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 106319,
+        "uint" : 391758
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 810676,
+        "uint" : 598293
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 921082,
+        "uint" : 773219
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 742481,
+        "uint" : 434340
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 979683,
+        "uint" : 828529
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 811062,
+      "pc" : 450741,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 288919,
+        "uint" : 844675
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 616977,
+        "uint" : 278439
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 286702,
+        "uint" : 51739
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 397630,
+        "uint" : 21899
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 373731,
+      "pc" : 302760,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 135921,
+        "uint" : 787112
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 208259,
+        "uint" : 572965
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 218390,
+        "uint" : 106336
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 291896,
+        "uint" : 328944
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 536592,
+        "uint" : 35400
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 348571,
+        "uint" : 337168
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 255516,
+        "uint" : 690093
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 504360,
+        "uint" : 987997
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 193159,
+        "uint" : 173245
+      } ]
+    } ],
+    "disassembly" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "global-delta" : [ {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 873855,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 703160
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 863114,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 936140
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 236626,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 853229
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 672408,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 224086
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 363149,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 566020
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 474423,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 791078
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 286072,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 638062
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 910728,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 111233
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 89359,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 441794
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 267766,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 633560
+      }
+    } ],
+    "local-deltas" : [ {
+      "address" : "S2HIE7PMWQYAVQYQRYHL26JFUXSQVL6IJQBH4CDJ2LFY7YEAOHPA2J7DYM",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 23200,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 376086
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 718656,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 25984
+        }
+      } ]
+    }, {
+      "address" : "M2BNTD35VQO7ZDPZEENEFMTWACK433KHGJIEBL2VRLQ24QR5WDS426RR3M",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 776585,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 961535
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 771840,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 666181
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 796010,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 744668
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 365417,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 534357
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 526283,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 92330
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 616116,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 806351
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 600924,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 211426
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 7039,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 108532
+        }
+      } ]
+    }, {
+      "address" : "J3NZHZQJFHRW5F4A5VV4RZU6SVYFDVEOHAYZOKQLILCDGB2T4FYN4IMWT4",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 246402,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 395070
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 732617,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 868948
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 303250,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 232415
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 645671,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 388762
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 337601,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 670462
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 89775,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 185157
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 798446,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 794178
+        }
+      } ]
+    } ],
+    "logic-sig-messages" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "logic-sig-trace" : [ {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 522244,
+      "pc" : 889554,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 714220,
+        "uint" : 559165
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 550072,
+        "uint" : 93708
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 455517,
+        "uint" : 404615
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 153168,
+        "uint" : 623462
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 961232,
+        "uint" : 668995
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 666156,
+        "uint" : 15055
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 283946,
+        "uint" : 418248
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 672043,
+      "pc" : 486338,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 259556,
+        "uint" : 5
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 583627,
+        "uint" : 219247
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 827455,
+        "uint" : 47452
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 465181,
+        "uint" : 199360
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 147300,
+        "uint" : 809086
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 846456,
+        "uint" : 990984
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 422810,
+        "uint" : 179716
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 163974,
+        "uint" : 810104
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 657267,
+        "uint" : 910584
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 385037,
+        "uint" : 117012
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 362082,
+      "pc" : 514215,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 518880,
+        "uint" : 523146
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 535046,
+        "uint" : 970516
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 710687,
+        "uint" : 478386
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 313984,
+        "uint" : 928798
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 438054,
+        "uint" : 516053
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 677341,
+        "uint" : 42519
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 682075,
+        "uint" : 416919
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 600720,
+        "uint" : 342894
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 260815,
+        "uint" : 472849
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 496897,
+        "uint" : 765302
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 511181,
+        "uint" : 95013
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 806045,
+        "uint" : 304639
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 660877,
+        "uint" : 586831
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 157472,
+        "uint" : 446164
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 20166,
+        "uint" : 330069
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 231039,
+        "uint" : 756848
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 434986,
+      "pc" : 208680,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 536215,
+        "uint" : 537635
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 214593,
+        "uint" : 84784
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 690295,
+        "uint" : 24923
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 625990,
+        "uint" : 33374
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 454425,
+        "uint" : 828472
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 764884,
+        "uint" : 495175
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 299780,
+        "uint" : 440933
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 749551,
+        "uint" : 478338
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 64814,
+        "uint" : 426508
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 668548,
+        "uint" : 117603
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 515104,
+        "uint" : 848918
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 634980,
+        "uint" : 267301
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 858966,
+        "uint" : 329677
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 79778,
+        "uint" : 644782
+      } ]
+    } ]
+  }, {
+    "app-call-messages" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "app-call-trace" : [ {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 468414,
+      "pc" : 858949,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 942074,
+        "uint" : 692708
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 486124,
+        "uint" : 234715
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 678376,
+        "uint" : 38546
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 914408,
+        "uint" : 634846
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 451596,
+        "uint" : 157553
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 682468,
+        "uint" : 783081
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 39518,
+        "uint" : 669959
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 560602,
+        "uint" : 690836
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 662718,
+        "uint" : 500526
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 717230,
+        "uint" : 433538
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 947070,
+        "uint" : 219482
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 905046,
+        "uint" : 970372
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 671266,
+      "pc" : 211631,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 516424,
+        "uint" : 883270
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 512893,
+        "uint" : 419215
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 295839,
+        "uint" : 142623
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 779737,
+        "uint" : 256920
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 999081,
+        "uint" : 982233
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 535641,
+        "uint" : 690730
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 358495,
+        "uint" : 513440
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 234898,
+        "uint" : 492669
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 495355,
+        "uint" : 106194
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 865915,
+        "uint" : 678794
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 813074,
+        "uint" : 623934
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 678460,
+        "uint" : 723397
+      } ]
+    } ],
+    "disassembly" : [ "oZSrqon3hT7qQqrHNUle", "oZSrqon3hT7qQqrHNUle" ],
+    "global-delta" : [ {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 94347,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 944430
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 483171,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 968647
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 274639,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 888878
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 37856,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 425169
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 65492,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 144996
+      }
+    }, {
+      "key" : "oZSrqon3hT7qQqrHNUle",
+      "value" : {
+        "action" : 30468,
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "uint" : 896082
+      }
+    } ],
+    "local-deltas" : [ {
+      "address" : "4QO35XRB66VJBFAWN4KBDTEUGUZMIGBKVR4KA6BY24TMVVV74W7F26VEH4",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 921174,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 789250
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 779010,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 643662
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 185576,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 84934
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 977010,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 87969
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 902460,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 770981
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 415091,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 506138
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 505474,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 579813
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 589901,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 432405
+        }
+      } ]
+    }, {
+      "address" : "MMZNLL2JXQGPMRWANORPTARYMBALG5AC4E3CIFHA2CUOHNW5BPDGQU6HIM",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 828482,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 316472
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 540926,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 344010
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 141514,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 293354
+        }
+      } ]
+    }, {
+      "address" : "ZR2SWRAG4HJ62R4KFMP6IRICG4TXQOPW54RWBPDRONCRT2JXDK7RQFHIFQ",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 65777,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 307672
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 683473,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 129660
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 411512,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 814250
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 942877,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 33110
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 703169,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 275553
+        }
+      } ]
+    }, {
+      "address" : "KCH7CWLXQKDD7GJDQUWTEH5JOSLMJN7YCXJCQELD4HCPNDP5VSPDXNPYNA",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 923229,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 600199
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 944662,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 859849
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 593224,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 271300
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 79956,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 683463
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 352887,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 557491
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 409013,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 421991
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 829413,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 964208
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 988,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 748193
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 602089,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 395003
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 733196,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 431422
+        }
+      } ]
+    }, {
+      "address" : "ULUGSSPTJNFGEZ4MBJSDZITZ3TOWDJHMUCPSIUGAWZD4P54TOWJDAPU4OA",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 642139,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 435043
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 407500,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 297563
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 97311,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 687799
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 626220,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 234425
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 256704,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 61068
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 196485,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 378113
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 739682,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 284398
+        }
+      } ]
+    }, {
+      "address" : "MN4YUCYX5B5PYEYIPJOSMPFNJOFWKNWARGNMSLATHFAOEHQBI4BXVK3VSU",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 586598,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 180729
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 439537,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 878074
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 591894,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 766728
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 52803,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 413644
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 438569,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 102789
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 395883,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 538122
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 979491,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 205593
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 166240,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 962319
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 213798,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 50563
+        }
+      } ]
+    }, {
+      "address" : "COMLSTUGDXKDDZQ55AFYNE4IMPOS27QIBD3KAUWBNZ4UU4P6NBXNFDRQL4",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 704904,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 836023
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 443676,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 23692
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 574920,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 741995
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 559093,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 118612
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 700088,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 69357
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 945628,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 779492
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 386412,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 13359
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 896446,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 304146
+        }
+      } ]
+    }, {
+      "address" : "EIERU26RKRLJ6PF7CIAMXOAA6RKK5CBDQXQY4GH5VOLYLYUYOROEK4X34I",
+      "delta" : [ {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 739755,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 19174
+        }
+      }, {
+        "key" : "oZSrqon3hT7qQqrHNUle",
+        "value" : {
+          "action" : 688995,
+          "bytes" : "oZSrqon3hT7qQqrHNUle",
+          "uint" : 276609
+        }
+      } ]
+    } ],
+    "logic-sig-messages" : [ "oZSrqon3hT7qQqrHNUle" ],
+    "logic-sig-trace" : [ {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 684162,
+      "pc" : 682488,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 817160,
+        "uint" : 788508
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 918689,
+        "uint" : 335272
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 592333,
+        "uint" : 170011
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 442634,
+        "uint" : 255554
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 796628,
+        "uint" : 32764
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 3767,
+        "uint" : 191326
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 578885,
+        "uint" : 227023
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 567826,
+        "uint" : 862679
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 30810,
+        "uint" : 868235
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 167575,
+        "uint" : 342775
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 961739,
+        "uint" : 956494
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 17706,
+        "uint" : 246577
+      } ]
+    }, {
+      "error" : "oZSrqon3hT7qQqrHNUle",
+      "line" : 241321,
+      "pc" : 889546,
+      "scratch" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 672431,
+        "uint" : 778165
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 382894,
+        "uint" : 502866
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 652974,
+        "uint" : 892947
+      } ],
+      "stack" : [ {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 628451,
+        "uint" : 366942
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 636782,
+        "uint" : 322261
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 283313,
+        "uint" : 847594
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 24349,
+        "uint" : 804923
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 220808,
+        "uint" : 188629
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 294544,
+        "uint" : 44373
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 592944,
+        "uint" : 291775
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 98358,
+        "uint" : 421337
+      }, {
+        "bytes" : "oZSrqon3hT7qQqrHNUle",
+        "type" : 2387,
+        "uint" : 127432
+      } ]
+    } ]
+  } ]
+}
