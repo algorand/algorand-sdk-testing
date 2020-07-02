@@ -1,20 +1,20 @@
 {
   "asset" : {
-    "index" : 632125,
+    "index" : 965051,
     "params" : {
-      "clawback" : "HL2BBW3DB33J5NHSHWBT6II6SWBGR7O32TLFFQEMTGLIUCIBK5ZI2ESHEY",
-      "creator" : "H7HD5RIWK2KONBNVAP53AGZ6VGKKG6ZRJ4DZFLIPHNZIPPRFMJAZYGGLEY",
-      "decimals" : 742063,
+      "clawback" : "oZSrqon3hT7qQqrHNUle",
+      "creator" : "oZSrqon3hT7qQqrHNUle",
+      "decimals" : 205936,
       "default-frozen" : false,
-      "freeze" : "2LUAQASMYLOSU26NA676HA3BSGTDGADNCBEABVRYF5WYXO3VX7DAHUGZQY",
-      "manager" : "YMFRPZO4WWJDVBQZTGUX7SVYWBBJXSICNFE62TV5BMZMETR4F5QNA2TQ4U",
-      "metadata-hash" : "JKMn076M1I2jL2q75gac2WnM40KaEKMrUBXECFzfu1IfuN1kuN36VUxkFNrOKURM7ur9PZzRAdDPj0M=",
+      "freeze" : "oZSrqon3hT7qQqrHNUle",
+      "manager" : "oZSrqon3hT7qQqrHNUle",
+      "metadata-hash" : "GkSTEhA4YdN03AQMsO/+2USgeiREDEkqJXuHUnPFOirckBFTJikdJdom+Mq+MPwX5Jl7YVymDIxClxU3eOE=",
       "name" : "oZSrqon3hT7qQqrHNUle",
-      "reserve" : "RG5QAXFU2I2ITW5DCLLHZRTRZFMVEJRKS56KXBHW3ITBGCBI5US46QSLF4",
-      "total" : 362105,
+      "reserve" : "oZSrqon3hT7qQqrHNUle",
+      "total" : 247054,
       "unit-name" : "oZSrqon3hT7qQqrHNUle",
       "url" : "oZSrqon3hT7qQqrHNUle"
     }
   },
-  "current-round" : 978305
+  "current-round" : 795950
 }

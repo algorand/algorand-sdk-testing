@@ -2,10 +2,10 @@
 @unit.responses
 Feature: v2 REST Client Responses
 
-  Scenario Outline:
+  Scenario Outline: <client>: <endpoint> - <jsonfile>
     Given mock http responses in "<jsonfile>" loaded from "generated_responses" with status <status>.
     When we make any "<client>" call to "<endpoint>".
-    Then the parsed response should equal "<jsonfile>".
+    Then the parsed response should equal the mock response.
     Examples:
       | jsonfile                                          | status | client  | endpoint                  |
       | indexer_applications_AccountResponse_0.json       | 200    | indexer | lookupAcocuntByID         |
