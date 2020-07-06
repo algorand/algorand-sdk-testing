@@ -25,10 +25,9 @@ Feature: v2 REST Client Responses
       | algod_applications_PostTransactionsResponse_0.json      | 200    | algod   | RawTransaction            |
       | algod_applications_SupplyResponse_0.json                | 200    | algod   | GetSupply                 |
       | algod_applications_TransactionParametersResponse_0.json | 200    | algod   | TransactionParams         |
+      | algod_applications_ApplicationResponse_0.json           | 200    | algod   | GetApplicationByID        |
+      | algod_applications_AssetResponse_0.json                 | 200    | algod   | GetAssetByID              |
       | algod_applications_ErrorResponse_0.json                 | 500    | algod   | any                       |
-      # These ones failed to generate, figure out why in the responses generator.
-      # ApplicationResponse         GetApplicationByID
-      # AssetResponse               GetAssetByID
       # This one should be msp encoded...
       #| algod_applications_BlockResponse_0.json                 | 200    | algod   | GetBlock                  |
       # These are missing, and should be msp encoded...
