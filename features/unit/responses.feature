@@ -21,7 +21,7 @@ Feature: v2 REST Client Responses
       | indexer_applications_ErrorResponse_0.json               | 500    | indexer | any                       |
       | algod_applications_NodeStatusResponse_0.json            | 200    | algod   | GetStatus                 |
       | algod_applications_NodeStatusResponse_0.json            | 200    | algod   | WaitForBlock              |
-      | algod_applications_PostCompileResponse_0.json           | 200    | algod   | TealCompile               |
+      | algod_applications_CompileResponse_0.json               | 200    | algod   | TealCompile               |
       | algod_applications_PostTransactionsResponse_0.json      | 200    | algod   | RawTransaction            |
       | algod_applications_SupplyResponse_0.json                | 200    | algod   | GetSupply                 |
       | algod_applications_TransactionParametersResponse_0.json | 200    | algod   | TransactionParams         |
