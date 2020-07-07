@@ -49,3 +49,18 @@ Feature: Algod REST API v2 Paths
       |path | round| format |
       |/v2/blocks/0?format=msgpack | 0    | msgpack |
 
+  @unit.applications
+  Scenario Outline: GetAssetByID
+    When we make a GetAssetByID call for assetID <asset-id>
+    Then expect the path used to be "<path>"
+    Examples:
+      |path            | asset-id |
+      |/v2/assets/1234 | 1234     |
+
+  @unit.applications
+  Scenario Outline: GetApplicationByID
+    When we make a GetAssetByID call for applicationID <application-id>
+    Then expect the path used to be "<path>"
+    Examples:
+      |path                  | application-id |
+      |/v2/applications/1234 | 1234           |
