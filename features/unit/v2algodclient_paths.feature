@@ -59,7 +59,7 @@ Feature: Algod REST API v2 Paths
 
   @unit.applications
   Scenario Outline: GetApplicationByID
-    When we make a GetAssetByID call for applicationID <application-id>
+    When we make a GetApplicationByID call for applicationID <application-id>
     Then expect the path used to be "<path>"
     Examples:
       |path                  | application-id |
