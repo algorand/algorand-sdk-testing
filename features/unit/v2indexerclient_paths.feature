@@ -169,7 +169,7 @@ Feature: Indexer Client v2 Paths
   @unit.applications
   Scenario Outline: SearchForApplications path
     When we make a SearchForApplications call with applicationID <application-id>
-    Then we expect the path used to be "<path>"
+    Then expect the path used to be "<path>"
 
     Examples:
       | path                                  | application-id  |
@@ -178,7 +178,7 @@ Feature: Indexer Client v2 Paths
   @unit.applications
   Scenario Outline: LookupApplications path
     When we make a LookupApplications call with applicationID <application-id>
-    Then we expect the path used to be "<path>"
+    Then expect the path used to be "<path>"
 
     Examples:
       | path                             | application-id  |
