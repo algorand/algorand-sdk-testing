@@ -105,7 +105,7 @@ Feature: Algod REST API v2 Responses
   Scenario Outline: Dryrun response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Dryrun call
-    And the parsed Dryrun Response should have global delta <key> with <action>
+    Then the parsed Dryrun Response should have global delta <key> with <action>
     Examples:
       | jsonfiles           | directory                   | key        | action |
       | dryrunResponse.json | v2algodclient_responsejsons | "Creator"  | 2      |
