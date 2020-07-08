@@ -13,9 +13,14 @@ cp $rootdir/config.json      /tmp/testnetwork/Node/
 cp $rootdir/kmd_config.json  /tmp/testnetwork/Node/kmd-v0.5/
 cp $rootdir/kmd.token        /tmp/testnetwork/Node/kmd-v0.5/
 
+echo "********  cd ~/go/src/github.com/algorand/go-algorand-sdk/test"
+echo "********  godog --strict=true --format=pretty --tags="@applications" ."
+
+
 goal network start -r /tmp/testnetwork/
 
-echo "kmd start -t 0 -d /tmp/testnetwork/Node/kmd-v0.5/"
+killall kmd
+kmd start -t 0 -d /tmp/testnetwork/Node/kmd-v0.5/
 
 echo "cd ~/go/src/github.com/algorand/go-algorand-sdk/test"
-echo "godog --strict=true --format=pretty --tags="@applications" ."
+echo "godog --no-colors --strict=true --format=pretty --tags="@applications" ."
