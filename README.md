@@ -19,7 +19,7 @@ Full featured Algorand SDKs have 6 major components. Depending on the compatibil
 5. TEAL Utilities
 6. Testing
 
-![SDK Overview](docs/SDK Components.png)
+![SDK Overview](docs/SDK%20Components.png)
 
 ### REST Client
 
@@ -105,7 +105,7 @@ Once the test environment is running you can use `make unit` and `make integrati
 
 Docker compose is used to manage several containers which work together to provide the test environment. Currently that includes algod, kmd, indexer and a postgres database. The services run on specific ports with specific API tokens. Refer to [docker-compose.yml](docker-compose.yml) and the [docker](docker/) directory for how this is configured.
 
-![Integration Test Environment](docs/SDK Test Environment.png)
+![Integration Test Environment](docs/SDK%20Test%20Environment.png)
 
 ## Start the test environment
 
