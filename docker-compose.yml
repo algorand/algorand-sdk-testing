@@ -12,20 +12,25 @@ services:
         CHANNEL: "${CHANNEL:-nightly}"
         
         # This is used with TYPE="source" to override the git information.
-        URL: "${URL:-https://github.com/algorand/go-algorand}"
-        BRANCH: "${BRANCH:-master}"
+        URL: "${ALGOD_URL:-https://github.com/algorand/go-algorand}"
+        BRANCH: "${ALGOD_BRANCH:-master}"
     ports:
       - 60001:60001
       - 60000:60000
     networks:
       - sdk-harness
-  indexer:
-    image: "sdk-harness-indexer"
-    container_name: sdk-harness-indexer
+
+  # develop branch dataset1
+  indexer-release:
+    image: "sdk-harness-indexer-release"
+    container_name: sdk-harness-indexer-release
     build:
       context: .
-      # TODO: Add type option to indexer for building by source
       dockerfile: ./docker/indexer/Dockerfile
+      args:
+        URL: "https://github.com/algorand/indexer"
+        BRANCH: "develop"
+        #SHA: "d5bbaf6190d27118fd8823194b4053fb01859f13"
     ports:
       - 59999:8980
     restart: unless-stopped
@@ -33,6 +38,24 @@ services:
       - sdk-harness
     environment:
       DATABASE_NAME: dataset1
+
+  # Applications Branch using dataset2
+  indexer-applications:
+    image: "sdk-harness-indexer-applications"
+    container_name: sdk-harness-indexer-applications
+    build:
+      context: .
+      dockerfile: ./docker/indexer/Dockerfile
+      args:
+        URL: "https://github.com/brianolson/indexer"
+        BRANCH: "app2"
+    ports:
+      - 59998:8980
+    restart: unless-stopped
+    networks:
+      - sdk-harness
+    environment:
+      DATABASE_NAME: dataset2
 
   indexer-db:
     image: "postgres"
@@ -46,7 +69,7 @@ services:
     environment:
       POSTGRES_USER: algorand
       POSTGRES_PASSWORD: harness
-      POSTGRES_MULTIPLE_DATABASES: dataset1
+      POSTGRES_MULTIPLE_DATABASES: dataset1, dataset2
 
 networks:
   sdk-harness:
