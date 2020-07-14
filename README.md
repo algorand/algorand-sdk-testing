@@ -1,40 +1,71 @@
 # algorand-sdk-testing
-Testing framework for Algorand SDKs
+Testing files for Algorand SDKs
 
-## How to write tests
-Tests in this framework consist of two things -- a feature file and some code snippets that map the text in the feature file to specific functions. A feature file contains several scenarios (which you can think of as tests) and each scenario is made up of steps. As an example, see [wallet.feature](https://github.com/algorand/algorand-sdk-testing/blob/master/py_behave/wallet.feature), line 7, which gets mapped to the first function in [steps.py](https://github.com/algorand/algorand-sdk-testing/blob/master/py_behave/steps/steps.py). This works similarly in other languages. Sometimes information needs to be passed between different steps of a single scenario or test; in Python, this is done by using the context object that is passed into each function. 
+# About
 
-Some tests are scenario outlines; which basically means you can run that particularly test with different parameters by adding lines to the examples table below the scenario (see [multisig.feature](https://github.com/algorand/algorand-sdk-testing/blob/master/py_behave/wallet.feature)). These are pretty easy to add to; just make sure the inputs are in the right format. 
+The files in this repository are used for testing the different Algorand SDK implementations. By writing the tests once and sharing them amongst the SDKs we are able to increase the coverage of our tests, and avoid rewriting similar tests over and over again. In addition to test cases, we have a standard test environment which is managed by docker.
 
-To add new scenarios, either add to an existing feature file or create a new one. Then write the mapping from the English step statements to functions in each language so that all the SDKs are tested on the new scenario.
+To define tests we use [cucumber](https://cucumber.io/), and feature files written with [gherkin syntax](https://cucumber.io/docs/gherkin/reference/). Each SDK is responsible for finding a framework which can use these files. There are implementations for [many popular programming languages](https://cucumber.io/docs/installation/).
 
-Step function locations: 
+We have different feature files for unit and integration tests. The unit tests should be run as a normal part of development to quickly identify bugs and regressions. Integration tests on the other hand take much longer to run and require a special test environment. The test environment is made up of multiple services and managed with [docker compose](https://docs.docker.com/compose/).
 
-- [steps_test.go](https://github.com/algorand/algorand-sdk-testing/blob/master/go_godog/src/steps_test.go)
-- [Stepdefs.java](https://github.com/algorand/algorand-sdk-testing/blob/master/java_cucumber/src/test/java/java_cucumber/Stepdefs.java)
-- [stepdefs.js](https://github.com/algorand/algorand-sdk-testing/blob/master/js_cucumber/features/stepdefinitions/stepdefs.js)
-- [steps.py](https://github.com/algorand/algorand-sdk-testing/blob/master/py_behave/steps/steps.py)
+# How to write tests
 
-## How to run tests
-1. Clone the repo
-2. Run scripts/setup.sh to install dependencies (comment out the dependencies you already have)
-3. Run scripts/test.sh
+Tests consist of two things -- the feature files defined in this repository and some code snippets that map the text in the feature files to specific functions. The implementation process will vary by programming language and isn't covered here, [refer to the relevant documentation](https://cucumber.io/docs/installation/) for setting up a new SDK.
 
-## About the scripts
-The scripts have language flags to choose which SDK to test. The only script you should actually use flags for is test.sh; the others have tags so that travis builds in the SDK repos can specify what setups are needed. If you need to run tests locally, follow the the "How to run tests" section above. Lastly, don't run sdkupdate.sh, as that exists solely for the purpose of enabling travis builds in other repos. 
+## Tags
 
-## Updating an SDK
-1. Update as normal and commit; this will grab the tests from this repo and run them as part of the SDK's travis build
+We use [tags](https://cucumber.io/docs/cucumber/api/#tags), and a simple directory structure, to organize our feature files. All cucumber implementations should allow specifying one or more tags to include, or exclude, when running tests.
 
-## Adding a new SDK
-1. Write all the mappings from gherkin to the new SDK under a new directory (cpp_cucumber if it's the C++ SDK and the tool is called cucumber)
-2. Add setup/installation procedure in setup.sh
-3. Add a line to copy feature files from the features directory so all of the feature files are the same in test.sh
-4. Add corresponding code for running tests in test.sh 
-5. Preferably test all of these before committing changes
-6. Add sdkupdate.sh to new SDK and call it in .travis.yml
+## Unit tests
 
-## Things to be careful of: 
-- If you use libraries that are not already used by the SDKs themselves, make sure to add them to setup.sh 
-- godog does not reset variables between tests, so make sure that you are referencing something that was set in a previous step of the current scenario
-- If you are testing locally, check every so often that you have the latest versions of the SDKs
+All unit tests should be tagged with `@unit` so that unit tests can be run together during development for quick regression tests. For example, to run unit tests with java a tag filter is provided as follows:
+```
+~$ mvn test -Dcucumber.filter.tags="@unit"
+```
+
+This command will vary by cucumber implementation, the specific framework documentation should be referenced for details.
+
+## Adding a new test
+
+When adding a new test to an existing feature file, or a new feature file, a new tag should be created which describes that test. For example, the **templates** feature file has a corresponding `@templates` tag. By adding a new tag for each feature we are able to add new tests to this repository without breaking the SDKs.
+
+In order for this to work, each SDK maintains a whitelist of tags which have been implemented.
+
+If a new feature file is created, the tag would go at the top of the file. If a new scenario is added the tag would go right above the scenario.
+
+## Implementing tests in the SDK
+
+The code snippets (or step definitions) live in the SDKs. Each SDK has a script which is able to clone this repository, and copy the tests into the correct locations.
+
+When a test fails, the cucumber libraries we use print the code snippets which should be included in the SDK test code. The code snippets are empty functions which should be implemented according to the tests requirements. In many cases some state needs to be modified and stored outside of the functions in order to implement the test. Exactly how this state is managed is up to the developer. Refer to the [cucumber documentation for tips](https://cucumber.io/docs/cucumber/state/) about managing state. There may be better documentation in the specific cucumber language library you're using.
+
+## Running tests
+
+The SDKs come with a Makefile to coordinate running the cucumber test suites. There are 3 main targets:
+* **unit**: runs all of the short unit tests.
+* **integration**: runs all integration tests.
+* **docker-test**: installs feature file dependencies, starts the test environment, and runs the SDK tests in a docker container.
+
+At a high level, the **docker-test** target is required to:
+1. clone `algorand-sdk-testing`.
+2. copy supported feature files from the `features` directory into the SDK.
+3. build and start the test environment by calling `./scripts/up.sh`
+4. launch an SDK container using `--network host` which runs the cucumber test suite.
+
+## Running tests during development
+This will vary by SDK. By calling **up.sh** the environment is available to the integration tests, and tests can be run locally with an IDE or debugger. This is often significantly faster than waiting for the entire test suite to run.
+
+Some of the tests are stateful and will require restarting the environment before re-running the test.
+
+Once the test environment is running you can use `make unit` and `make integration` to run tests.
+
+# Integration test environment
+
+Docker compose is used to manage several containers which work together to provide the test environment. Currently that includes algod, kmd, indexer and a postgres database. The services run on specific ports with specific API tokens. Refer to [docker-compose.yml](docker-compose.yml) and the [docker](docker/) directory for how this is configured.
+
+## Start the test environment
+
+There are a number of [scripts](scripts/) to help with managing the test environment. The names should help you understand what they do, but to get started simply run **up.sh** to bring up a new environment, and **down.sh** to shut it down.
+
+When starting the environment we avoid using the cache intentionally. It uses the go-algorand nightly build, and we want to ensure that the containers are always running against the most recent nightly build. In the future these scripts should be improved, but for now we completely avoid using cached docker containers to ensure that we don't accidentally run against a stale environment.
