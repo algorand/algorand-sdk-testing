@@ -1,1 +1,10 @@
-{ "GossipFanout": 1, "EndpointAddress": "127.0.0.1:60000", "DNSBootstrapID": "", "EnableProfiler": true, "IncomingConnectionsLimit": 0, "Archival":true, "isIndexerActive":true }
+{
+    "GossipFanout": 1,
+    "EndpointAddress": "127.0.0.1:60000",
+    "DNSBootstrapID": "",
+    "EnableProfiler": true,
+    "IncomingConnectionsLimit": 0,
+    "Archival":true,
+    "isIndexerActive":true,
+    "EnableDeveloperAPI":true
+}
