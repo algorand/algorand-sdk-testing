@@ -1,13 +1,26 @@
-FROM ubuntu:19.10
+FROM golang:1.13.12-alpine
+
+ARG URL=https://github.com/algorand/indexer
+ARG BRANCH=master
+ARG SHA=""
+
+RUN echo "Installing from source. ${URL} -- ${BRANCH} -- ${SHA}"
+
+RUN apk add --no-cache git bzip2 make bash
+
+# Install indexer binaries.
+RUN git clone --single-branch --branch "${BRANCH}" "${URL}" /opt/indexer
+ENV HOME /opt/indexer
+WORKDIR /opt/indexer
+RUN if [ "${SHA}" != "" ]; then echo "Checking out ${SHA}" && git checkout "${SHA}"; fi
+RUN make
+RUN cp cmd/algorand-indexer/algorand-indexer /tmp
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ADD https://algorand-testdata.s3.amazonaws.com/indexer/algorand-indexer /tmp/algorand-indexer
-RUN chmod +x /tmp/algorand-indexer
-
 COPY docker/indexer/setup.sh /tmp/setup.sh
-COPY docker/indexer/e2edata.tar.bz2 /tmp/e2edata.tar.bz2
+COPY docker/indexer/data/* /tmp/
 
-RUN tar -jxf /tmp/e2edata.tar.bz2 -C /tmp
+RUN ls -lh /tmp
 
 CMD ["/tmp/setup.sh"]

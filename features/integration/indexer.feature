@@ -197,8 +197,8 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | note-prefix | num  | txid                                                 |
-      | 1       | XQ==        | 2    | TOVLLWKZ4QPKPX4772TOMI3L6QKWMFPI6OFN5CUCSCMBVJONXUEQ |
-      | 1       | VA==        | 3    | DWE64HOPXBLDWTD3XL6VCNQSEZTXW2TCLZ6JNMNE5VL5UV67IDDQ |
+      | 1       | XQ==        | 2    | U2KNU7B55LZU6SWX66VHIZMJT4OX6YMNCIKBLV4BLYVTBCU3ZW2A |
+      | 1       | VA==        | 3    | IMFJQCCF5T2DOVSKHP2NHDKV5A2VGVIW24LNQUBDOH33UMIE545Q |
       | 1       | 1111        | 0    |                                                      |
 
   Scenario Outline: /transactions?tx-type=<tx-type>
@@ -208,10 +208,10 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | tx-type | num  | txid                                                 |
-      | 1       | pay     | 41   | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
-      | 1       | keyreg  | 1    | DLMAHOBTYQ4PMUKN4OEOV6VGFOPRASEFJKDROE6BUVB7SGMUDC5A |
-      | 1       | acfg    | 1    | 2GMT4WWIYZFDB5MTXNZFOTCWNCSBVKASQNLQ2SDI3ANBCFTVHPCA |
-      | 1       | axfer   | 6    | EPACZZGMIXHV3YABCDNXSSZRG7BQX2XNPUHOME2QCUQB4ABG3VSQ |
+      | 1       | pay     | 41   | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
+      | 1       | keyreg  | 1    | HG3DLU47GVRCLIG3SIHM6TTWINUN7VOKKAJWZRYZQA4NDO7PNXMA |
+      | 1       | acfg    | 1    | KGG5ZGQQ57Y2ZDH5CFRYMJODPJ4TVIQBAPKT3HK3PIS6A6K4T5GQ |
+      | 1       | axfer   | 6    | IIWBLLEXCFDQQHENIU2JBXSFDNNHLO5C2M5PE3UIHQ3YXN2TWRUA |
       | 1       | afrz    | 0    |                                                      |
 
   Scenario Outline: /transactions?sig-type=<sig-type>
@@ -221,8 +221,8 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | sig-type | num  | txid                                                 |
-      | 1       | sig      | 25   | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
-      | 1       | lsig     | 24   | BS2A3W2O6GKNLPOYKCTKJO72HJVAKSJKMOFC4AEGOGBL45DVSYFA |
+      | 1       | sig      | 25   | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
+      | 1       | lsig     | 24   | SPRRY5NZETQFP3C7MHEDURQRUUC5JVESSRXRXVJAHENZ6OJJKMXQ |
       | 1       | msig     | 0    |                                                      |
 
   Scenario Outline: /transactions?tx-id=<txid>
@@ -232,8 +232,8 @@ Feature: Indexer Dataset 1
     Examples:
       | indexer | num | txid                                                 |
       | 1       | 0   | DN7MBMCL5JQ3PFUQS7TMX5AH4EEKOBJVDUF4TCV6WERATKFLQF4M |
-      | 1       | 1   | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
-      | 1       | 1   | BS2A3W2O6GKNLPOYKCTKJO72HJVAKSJKMOFC4AEGOGBL45DVSYFA |
+      | 1       | 1   | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
+      | 1       | 1   | SPRRY5NZETQFP3C7MHEDURQRUUC5JVESSRXRXVJAHENZ6OJJKMXQ |
 
   Scenario Outline: /transactions?round=<round>
     When I use <indexer> to search for transactions with 0, "", "", "", "", <round>, 0, 0, 0, "", "", 0, 0, "", "", "" and token ""
@@ -242,9 +242,9 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | round | num | txid                                                 |
-      | 1       | 10    | 2   | FY54CQLUAPJIHEIIG32EX7BMCHCS4LKQVTORIZ2BZ7RPWFR4HDIQ |
-      | 1       | 22    | 3   | STLE5SLDUVKBVCMNCWXQ32QBC43YGFFJTQVCT3QSAG6MP6P3OB2A |
-      | 1       | 30    | 2   | SLEJ5ELZR6734TDSOPRNXFZTUIS6TTF3H433SSPIDBXVV6POFPHQ |
+      | 1       | 10    | 2   | TF5YEFGB7AQT4ZXVGBEY76TGV7D2QF4HMSGAVGUJE764ZIGXS3NQ |
+      | 1       | 22    | 3   | DWSC3DPKFU7TIPMOVJZM25XYBUNJQASGVDYS7QREO33UEA6FYSNA |
+      | 1       | 30    | 2   | 5UWAFFNPPECDJHAYYRRLE3WIWGO2WVH4LZMPLVQBS4E76UERRATA |
 
   Scenario Outline: /transactions?min-round=<min-round>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, <min-round>, 0, 0, "", "", 0, 0, "", "", "" and token ""
@@ -253,9 +253,9 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | min-round | num | txid                                                 |
-      | 1       | 10        | 25  | FY54CQLUAPJIHEIIG32EX7BMCHCS4LKQVTORIZ2BZ7RPWFR4HDIQ |
-      | 1       | 22        | 10  | STLE5SLDUVKBVCMNCWXQ32QBC43YGFFJTQVCT3QSAG6MP6P3OB2A |
-      | 1       | 30        | 2   | SLEJ5ELZR6734TDSOPRNXFZTUIS6TTF3H433SSPIDBXVV6POFPHQ |
+      | 1       | 10        | 25  | TF5YEFGB7AQT4ZXVGBEY76TGV7D2QF4HMSGAVGUJE764ZIGXS3NQ |
+      | 1       | 22        | 10  | DWSC3DPKFU7TIPMOVJZM25XYBUNJQASGVDYS7QREO33UEA6FYSNA |
+      | 1       | 30        | 2   | 5UWAFFNPPECDJHAYYRRLE3WIWGO2WVH4LZMPLVQBS4E76UERRATA |
 
   Scenario Outline: /transactions?max-round=<max-round>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, <max-round>, 0, "", "", 0, 0, "", "", "" and token ""
@@ -264,9 +264,9 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | max-round | num | txid                                                 |
-      | 1       | 10        | 26  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
-      | 1       | 22        | 42  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
-      | 1       | 30        | 49  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
+      | 1       | 10        | 26  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
+      | 1       | 22        | 42  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
+      | 1       | 30        | 49  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
 
 
   Scenario Outline: /transactions?max-round=<max-round>
@@ -276,9 +276,9 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | max-round | num | txid                                                 |
-      | 1       | 10        | 26  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
-      | 1       | 22        | 42  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
-      | 1       | 30        | 49  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
+      | 1       | 10        | 26  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
+      | 1       | 22        | 42  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
+      | 1       | 30        | 49  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
 
   Scenario Outline: /transactions?asset-id=<asset-id>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, <asset-id>, "", "", 0, 0, "", "", "" and token ""
@@ -287,7 +287,7 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | asset-id | num | txid                                                 |
-      | 1       | 9        | 7   | 2GMT4WWIYZFDB5MTXNZFOTCWNCSBVKASQNLQ2SDI3ANBCFTVHPCA |
+      | 1       | 9        | 7   | KGG5ZGQQ57Y2ZDH5CFRYMJODPJ4TVIQBAPKT3HK3PIS6A6K4T5GQ |
 
   Scenario Outline: /transactions?before-time=<before>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "<before>", "", 0, 0, "", "", "" and token ""
@@ -297,8 +297,8 @@ Feature: Indexer Dataset 1
     Examples:
       | indexer | before               | num | txid                                                 |
       | 1       | 2020-03-31T19:47:49Z | 0   |                                                      |
-      | 1       | 2020-03-31T19:48:49Z | 35  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
-      | 1       | 2021-03-31T19:47:49Z | 49  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
+      | 1       | 2020-03-31T19:48:49Z | 35  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
+      | 1       | 2021-03-31T19:47:49Z | 49  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
 
   Scenario Outline: /transactions?after-time=<after>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "", "<after>", 0, 0, "", "", "" and token ""
@@ -307,8 +307,8 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | after                | num | txid                                                 |
-      | 1       | 2019-01-01T01:01:01Z | 49  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
-      | 1       | 2020-03-31T19:48:49Z | 14  | 3NL6W7SVU2FEPVCB773OZFFJYUGINF7EYBGJBIDFOZZBDVPHPF5Q |
+      | 1       | 2019-01-01T01:01:01Z | 49  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
+      | 1       | 2020-03-31T19:48:49Z | 14  | GLEDN6PCACB6WI72ABZ34CEAIXZCZQ7HLVZI7SLWIR46JHUHXQJA |
       | 1       | 2029-01-01T01:01:01Z | 0   |                                                      |
 
   Scenario Outline: /transactions?currency-gt=<currency-gt>&currency-lt=<currency-lt>
@@ -318,9 +318,9 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | currency-gt | currency-lt | num | txid                                                 |
-      | 1       | 0           | 10          | 2   | EKC5XZ6J2NN3APZABUOTFEXVHXMKZKUXTF4NFV625OLRTEKYH46Q |
-      | 1       | 1           | 0           | 34  | 4M3TJFAN4RSZF6O5OI2KKX3IQGCH36MH7KVT27PVGJITW5ZN4AHQ |
-      | 1       | 10000       | 1000000     | 2   | WEUXWWPN7LBKS276Q7G4FBJMD5BZAHWBFUFFIE6ZV52QDLPPE7HA |
+      | 1       | 0           | 10          | 2   | TK3KPYVH7CCDMGG4TP66HGQTJKA2ETCECEBEQ4QXFTLQZZR6XVMA |
+      | 1       | 1           | 0           | 34  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
+      | 1       | 10000       | 1000000     | 2   | VUOIU472GVEML5AS22TP5GSBIEITZFRZWVXVQQ7UD33QR7A5K3ZA |
 
   Scenario Outline: /transactions?asset-id=<asset-id>&currency-gt=<currency-gt>&currency-lt=<currency-lt>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, <asset-id>, "", "", <currency-gt>, <currency-lt>, "", "", "" and token ""
@@ -329,9 +329,9 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | asset-id | currency-gt | currency-lt | num | txid                                                 |
-      | 1       | 9        | 1           | 0           | 3   | ZDYUHC4VSMTO4P747JXPAWXIP55QJXUMBW6LKNNC2TTFCC6VHNEQ |
-      | 1       | 9        | 0           | 100000000   | 2   | ZDYUHC4VSMTO4P747JXPAWXIP55QJXUMBW6LKNNC2TTFCC6VHNEQ |
-      | 1       | 9        | 1000000     | 100000000   | 1   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
+      | 1       | 9        | 1           | 0           | 3   | E36LBI7IN5OJGEFWKPCEQ2L436DFYHKAMEMASZXEVMP64F76HVNA |
+      | 1       | 9        | 0           | 100000000   | 2   | E36LBI7IN5OJGEFWKPCEQ2L436DFYHKAMEMASZXEVMP64F76HVNA |
+      | 1       | 9        | 1000000     | 100000000   | 1   | 3BMTOZIYGTS3XS33MXDZO6UMNUTJOLFC3527ONBCVAHY3IMEWSUA |
 
   Scenario Outline: account filter /transactions?address=<address>&address-role=<address-role>&exclude-close-to=<exclude-close-to>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "", "", 0, 0, "<address>", "<address-role>", "<exclude-close-to>" and token ""
@@ -339,13 +339,13 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | address                                                    | address-role | exclude-close-to | num | txid                                                 |
-      | 1       | TFZP2BHL7LZ4ZLN7FGW2EN5V23DNMYWPIMN55ASNY2FEGM66STNSBMFKSA |              |                  | 8   | MH2GOC765TAK6UKEH6TDJ42QWTB4W46S4W3WI2QWNQ5VWHMXCIMQ |
-      | 1       | TFZP2BHL7LZ4ZLN7FGW2EN5V23DNMYWPIMN55ASNY2FEGM66STNSBMFKSA | sender       |                  | 6   | MH2GOC765TAK6UKEH6TDJ42QWTB4W46S4W3WI2QWNQ5VWHMXCIMQ |
-      | 1       | TFZP2BHL7LZ4ZLN7FGW2EN5V23DNMYWPIMN55ASNY2FEGM66STNSBMFKSA | receiver     |                  | 2   | ZITQV77OVTA6EIONROACGBG3UMJAIBUMURJEQIB5DIXLPQAQOXFA |
-      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 |              |                  | 13  | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
-      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | receiver     |                  | 6   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
-      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | receiver     | true             | 3   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
-      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | sender       |                  | 7   | QTAOMHCLPBLWX6OB7Y3TNLCA5XS23U53MCFZG6MKI535BLNQAI4Q |
+      | 1       | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA |              |                  | 4   | 3BMTOZIYGTS3XS33MXDZO6UMNUTJOLFC3527ONBCVAHY3IMEWSUA |
+      | 1       | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | sender       |                  | 2   | 3BMTOZIYGTS3XS33MXDZO6UMNUTJOLFC3527ONBCVAHY3IMEWSUA |
+      | 1       | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | receiver     |                  | 3   | 53CGXAKDKMPOXQHMFK5CFZAYP3KJLD3LMG3DFZBVIT6XR7O3ATVA |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 |              |                  | 13  | 3BMTOZIYGTS3XS33MXDZO6UMNUTJOLFC3527ONBCVAHY3IMEWSUA |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | receiver     |                  | 6   | 3BMTOZIYGTS3XS33MXDZO6UMNUTJOLFC3527ONBCVAHY3IMEWSUA |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | receiver     | true             | 3   | 3BMTOZIYGTS3XS33MXDZO6UMNUTJOLFC3527ONBCVAHY3IMEWSUA |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | sender       |                  | 7   | UIMZOGVGZYQQIXIGZ3QJBL3TPP2P5T4GUMMFG5HCA7MFQSPYR6QA |
 
   #
   # /accounts/{account-id}/transactions - same as /transactions but the validation just ensures that all results include the specified account
@@ -356,8 +356,8 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | account-id                                                 | num | txid                                                 |
-      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 13  | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
-      | 1       | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | 4   | IYKCAANQMJETV5FAYGVB2U5MEP7SP6IOV652DNCBR2EKOSTETRQA |
+      | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 13  | 3BMTOZIYGTS3XS33MXDZO6UMNUTJOLFC3527ONBCVAHY3IMEWSUA |
+      | 1       | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | 4   | 3BMTOZIYGTS3XS33MXDZO6UMNUTJOLFC3527ONBCVAHY3IMEWSUA |
 
 
   #
@@ -369,7 +369,7 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | asset-id | num | txid                                                 |
-      | 1       | 9        | 7   | 2GMT4WWIYZFDB5MTXNZFOTCWNCSBVKASQNLQ2SDI3ANBCFTVHPCA |
+      | 1       | 9        | 7   | KGG5ZGQQ57Y2ZDH5CFRYMJODPJ4TVIQBAPKT3HK3PIS6A6K4T5GQ |
 
   #
   # /transaction paging
@@ -384,8 +384,8 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | limit | max-round | num | txid                                                 |
-      | 1       | 1     | 10        | 1   | YRH3PDYGJU6W7TYCAOT3ZCQICBKBMAT3WHIKAKFNXBZWXOEQZXNA |
-      | 1       | 5     | 10        | 5   | RUR4DPTCTEIB2RNIXFCQPPD6HCHWZK2SZJKEUEDOQQ54MMQ2IW5Q |
+      | 1       | 1     | 10        | 1   | QW2BAFU3JR7YDKDHG6BDAFJZTY7V7XBMZKHUGX2CBUG3PKHGAVMA |
+      | 1       | 5     | 10        | 5   | KHTHBNR3MVPNVLGMHPDO73N6FL43WBQHPMW2PFY2LQIAQJZF77FA |
 
   #
   # /assets

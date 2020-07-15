@@ -12,27 +12,77 @@ services:
         CHANNEL: "${CHANNEL:-nightly}"
         
         # This is used with TYPE="source" to override the git information.
-        URL: "${URL:-https://github.com/algorand/go-algorand}"
-        BRANCH: "${BRANCH:-master}"
+        URL: "${ALGOD_URL:-https://github.com/algorand/go-algorand}"
+        BRANCH: "${ALGOD_BRANCH:-master}"
     ports:
       - 60001:60001
       - 60000:60000
     networks:
       - sdk-harness
-  indexer:
-    image: "sdk-harness-indexer"
-    container_name: sdk-harness-indexer
+    volumes:
+      - genesis-file:/genesis-file
+
+  # Live indexer instance connected to algod
+  indexer-live:
+    image: "sdk-harness-indexer-live"
+    container_name: sdk-harness-indexer-live
     build:
       context: .
-      # TODO: Add type option to indexer for building by source
       dockerfile: ./docker/indexer/Dockerfile
+      args:
+        URL: "https://github.com/algorand/indexer"
+        BRANCH: "develop"
+    ports:
+      - 60002:8980
+    restart: unless-stopped
+    networks:
+      - sdk-harness
+    environment:
+      TYPE: "live"
+      CONNECTION_STRING: "host=indexer-db port=5432 user=algorand password=harness dbname=live sslmode=disable"
+    volumes:
+      - genesis-file:/genesis-file
+
+  # develop branch dataset1
+  indexer-release:
+    image: "sdk-harness-indexer-release"
+    container_name: sdk-harness-indexer-release
+    build:
+      context: .
+      dockerfile: ./docker/indexer/Dockerfile
+      args:
+        URL: "https://github.com/algorand/indexer"
+        BRANCH: "master"
+        #SHA: "d5bbaf6190d27118fd8823194b4053fb01859f13"
     ports:
       - 59999:8980
     restart: unless-stopped
     networks:
       - sdk-harness
     environment:
-      DATABASE_NAME: dataset1
+      TYPE: "snapshot"
+      SNAPSHOT_FILE: /tmp/dataset1.tar.bz2
+      CONNECTION_STRING: "host=indexer-db port=5432 user=algorand password=harness dbname=dataset1 sslmode=disable"
+
+  # Applications Branch using dataset2
+  indexer-applications:
+    image: "sdk-harness-indexer-applications"
+    container_name: sdk-harness-indexer-applications
+    build:
+      context: .
+      dockerfile: ./docker/indexer/Dockerfile
+      args:
+        URL: "https://github.com/brianolson/indexer"
+        BRANCH: "app2"
+    ports:
+      - 59998:8980
+    restart: unless-stopped
+    networks:
+      - sdk-harness
+    environment:
+      TYPE: "snapshot"
+      SNAPSHOT_FILE: /tmp/dataset2.tar.bz2
+      CONNECTION_STRING: "host=indexer-db port=5432 user=algorand password=harness dbname=dataset2 sslmode=disable"
 
   indexer-db:
     image: "postgres"
@@ -46,7 +96,10 @@ services:
     environment:
       POSTGRES_USER: algorand
       POSTGRES_PASSWORD: harness
-      POSTGRES_MULTIPLE_DATABASES: dataset1
+      POSTGRES_MULTIPLE_DATABASES: live, dataset1, dataset2
 
 networks:
   sdk-harness:
+
+volumes:
+  genesis-file:

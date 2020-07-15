@@ -31,6 +31,7 @@ configure.add_argument('--network-dir', required=True, help='Path to create netw
 
 start = subparsers.add_parser('start', parents=[base_parser], help='Start the network.')
 start.add_argument('--network-dir', required=True, help='Path to create network.')
+start.add_argument('--copy-genesis-to', required=False, help='Copy the genesis to a given folder.')
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -114,6 +115,16 @@ def start_handler(args):
     """
     start subcommand - start algod + kmd
     """
+    # Optionally copy the genesis file to shared location before starting.
+    if args.copy_genesis_to is not None:
+        print('copying genesis file...')
+        node_dir, _ = algod_directories(args.network_dir)
+        genesis_file = join(node_dir, 'genesis.json')
+        dest = join(args.copy_genesis_to, 'genesis.json')
+        shutil.copyfile(genesis_file, dest)
+    else:
+        print('Not copying genesis file...')
+
     start_network(args.bin_dir, args.network_dir)
 
 

@@ -26,6 +26,7 @@ RUN python3 /tmp/docker/algod/setup.py configure \
  --network-token aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
  --algod-port 60000 \
  --kmd-port 60001
+ 
 
 # Start algod
-CMD ["/usr/bin/env", "bash", "-c", "python3 /tmp/docker/algod/setup.py start --bin-dir \"$BIN_DIR\" --network-dir \"/opt/testnetwork\""]
+CMD ["/usr/bin/env", "bash", "-c", "python3 /tmp/docker/algod/setup.py start --bin-dir \"$BIN_DIR\" --network-dir \"/opt/testnetwork\" --copy-genesis-to \"/genesis-file\""]

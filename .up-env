@@ -1,8 +1,8 @@
-export TYPE="source"
+export TYPE="channel"
 
 # Used when TYPE=channel
 export CHANNEL="nightly"
 
 # Used when TYPE=source
-export URL="https://github.com/justicz/go-algorand"
-export BRANCH="maxj/applications"
+export ALGOD_URL="https://github.com/justicz/go-algorand"
+export ALGOD_BRANCH="maxj/applications"
