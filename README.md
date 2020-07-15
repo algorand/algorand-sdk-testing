@@ -9,6 +9,71 @@ To define tests we use [cucumber](https://cucumber.io/), and feature files writt
 
 We have different feature files for unit and integration tests. The unit tests should be run as a normal part of development to quickly identify bugs and regressions. Integration tests on the other hand take much longer to run and require a special test environment. The test environment is made up of multiple services and managed with [docker compose](https://docs.docker.com/compose/).
 
+# Test Descriptions
+
+| tag                 | description |
+| @algod              | General tests against algod REST endpoints. |
+| @applications       | Submit all types of application transactions. |
+| @assets             | Submit all types of asset transactions. |
+| @compile            | Test the algod compile endpoint. |
+| @dryrun             | Test the algod dryrun endpoint. |
+| @indexer            | Test all types of indexer queries and parameters against a static dataset. |
+| @kmd                | Test the kmd REST endpoints. |
+| @send               | Test the ability to submit transactions to algod. |
+| @templates          | Integration tests for the TEAL template utilities. |
+| @unit               | Select all unit tests. |
+| @unit.algod         | Algod REST API unit tests. |
+| @unit.applications  | Application endpoints added to Algod and Indexer. |
+| @unit.dryrun        | Dryrun endpoint added to Algod. |
+| @unit.indexer       | Indexer REST API unit tests. |
+| @unit.indexer.rekey | Rekey endpoints added to Algod and Indexer |
+| @unit.offline       | The first unit tests we wrote for cucumber. |
+| @unit.transactions  | Transaction golden tests. |
+| @unit.rekey         | Rekey Transaction golden tests. |
+| @unit.responses     | REST Client Response serialization tests. |
+| @unit.tealsign      | Test TEAL signature utilities. |
+
+# SDK Overview
+
+Full featured Algorand SDKs have 6 major components. Depending on the compatibility level, certain components may be missing. The components include:
+1. REST Clients
+2. Transaction Utilities
+3. Encoding Utilities
+4. Crypto Utilities
+5. TEAL Utilities
+6. Testing
+
+![SDK Overview](docs/SDK%20Components.png)
+
+### REST Client
+
+The most basic functionality includes the REST clients for communicating with **algod** and **indexer**. These interfaces are defined by OpenAPI specifications:
+- algod v1 / indexer v1 (generated at build time at **daemon/algod/api/swagger.json**)
+- kmd v1 (generated at build time at **daemon/kmd/api/swagger.json**)
+- [algod v2](https://github.com/algorand/go-algorand/blob/master/daemon/algod/api/algod.oas2.json)
+- [indexer v2](https://github.com/algorand/indexer/blob/develop/api/indexer.oas2.json)
+
+### Transaction Utilities
+
+One of the basic features of an Algorand SDK is the ability to construct all types of Algorand transactions. This includes simple transactions [of all types](https://developer.algorand.org/docs/reference/transactions/) and the tooling to configure things like [leases](https://developer.algorand.org/docs/reference/transactions/#common-fields-header-and-type) and [atomic transfers (group transactions)](https://developer.algorand.org/docs/features/atomic_transfers/#group-transactions)
+
+### Encoding Utilities
+
+In order to ensure transactions are compact and can hash consistently, there are some special encoding requirements. The SDKs must provide utilities to work with these encodings. Algorand uses MessagePack as a compact binary-encoded JSON alternative, and fields with default values are excluded from the encoded object. Additionally to ensure consistent hashes, the fields must be alphebatized.
+
+### Crypto Utilities
+
+All things related to crypto to make it easier for developers to work with the blockchain. This includes standard things like ED25519 signing, up through Algorand specific LogicSig and MultiSig utilities. There are also some convenience methods for converting Mnemonics.
+
+### TEAL Utilities
+
+Everything related to working with [TEAL](https://developer.algorand.org/docs/reference/teal/specification/#transaction-execution-approval-language-teal). This includes some utilities for parsing and validating compiled teal programs as well as a number of [templates](https://developer.algorand.org/docs/reference/teal/templates/delegate_keyreg/) which implement a number of common and useful use cases with TEAL programs.
+
+### Testing
+
+Each SDK has a number of unit tests specific to that particular SDK. The details of SDK-specific unit tests are up to the developers discretion. There are also a large number of cucumber integration tests stored in this repository which cover various unit-style tests and many integration tests. To assist with working in this environment each SDK must provide tooling to download and install the cucumber files, and a Dockerfile which configures an environment suitable for building the SDK and running the tests, and 3 makefile targets: `make unit`, `make integration`, and `make docker-test`. The rest of this document relates to details about the Cucumber test.
+
+
 # How to write tests
 
 Tests consist of two things -- the feature files defined in this repository and some code snippets that map the text in the feature files to specific functions. The implementation process will vary by programming language and isn't covered here, [refer to the relevant documentation](https://cucumber.io/docs/installation/) for setting up a new SDK.
@@ -64,8 +129,11 @@ Once the test environment is running you can use `make unit` and `make integrati
 
 Docker compose is used to manage several containers which work together to provide the test environment. Currently that includes algod, kmd, indexer and a postgres database. The services run on specific ports with specific API tokens. Refer to [docker-compose.yml](docker-compose.yml) and the [docker](docker/) directory for how this is configured.
 
+![Integration Test Environment](docs/SDK%20Test%20Environment.png)
+
 ## Start the test environment
 
 There are a number of [scripts](scripts/) to help with managing the test environment. The names should help you understand what they do, but to get started simply run **up.sh** to bring up a new environment, and **down.sh** to shut it down.
 
 When starting the environment we avoid using the cache intentionally. It uses the go-algorand nightly build, and we want to ensure that the containers are always running against the most recent nightly build. In the future these scripts should be improved, but for now we completely avoid using cached docker containers to ensure that we don't accidentally run against a stale environment.
+
