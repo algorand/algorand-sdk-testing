@@ -9,6 +9,30 @@ To define tests we use [cucumber](https://cucumber.io/), and feature files writt
 
 We have different feature files for unit and integration tests. The unit tests should be run as a normal part of development to quickly identify bugs and regressions. Integration tests on the other hand take much longer to run and require a special test environment. The test environment is made up of multiple services and managed with [docker compose](https://docs.docker.com/compose/).
 
+# Test Descriptions
+
+| tag                 | description |
+| @algod              | General tests against algod REST endpoints. |
+| @applications       | Submit all types of application transactions. |
+| @assets             | Submit all types of asset transactions. |
+| @compile            | Test the algod compile endpoint. |
+| @dryrun             | Test the algod dryrun endpoint. |
+| @indexer            | Test all types of indexer queries and parameters against a static dataset. |
+| @kmd                | Test the kmd REST endpoints. |
+| @send               | Test the ability to submit transactions to algod. |
+| @templates          | Integration tests for the TEAL template utilities. |
+| @unit               | Select all unit tests. |
+| @unit.algod         | Algod REST API unit tests. |
+| @unit.applications  | Application endpoints added to Algod and Indexer. |
+| @unit.dryrun        | Dryrun endpoint added to Algod. |
+| @unit.indexer       | Indexer REST API unit tests. |
+| @unit.indexer.rekey | Rekey endpoints added to Algod and Indexer |
+| @unit.offline       | The first unit tests we wrote for cucumber. |
+| @unit.transactions  | Transaction golden tests. |
+| @unit.rekey         | Rekey Transaction golden tests. |
+| @unit.responses     | REST Client Response serialization tests. |
+| @unit.tealsign      | Test TEAL signature utilities. |
+
 # SDK Overview
 
 Full featured Algorand SDKs have 6 major components. Depending on the compatibility level, certain components may be missing. The components include:
@@ -112,3 +136,4 @@ Docker compose is used to manage several containers which work together to provi
 There are a number of [scripts](scripts/) to help with managing the test environment. The names should help you understand what they do, but to get started simply run **up.sh** to bring up a new environment, and **down.sh** to shut it down.
 
 When starting the environment we avoid using the cache intentionally. It uses the go-algorand nightly build, and we want to ensure that the containers are always running against the most recent nightly build. In the future these scripts should be improved, but for now we completely avoid using cached docker containers to ensure that we don't accidentally run against a stale environment.
+

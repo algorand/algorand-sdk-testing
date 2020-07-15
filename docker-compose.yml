@@ -52,7 +52,7 @@ services:
       dockerfile: ./docker/indexer/Dockerfile
       args:
         URL: "https://github.com/algorand/indexer"
-        BRANCH: "develop"
+        BRANCH: "master"
         #SHA: "d5bbaf6190d27118fd8823194b4053fb01859f13"
     ports:
       - 59999:8980
@@ -61,7 +61,7 @@ services:
       - sdk-harness
     environment:
       TYPE: "snapshot"
-      SNAPSHOT_FILE: /tmp/dataset1.tar.gz
+      SNAPSHOT_FILE: /tmp/dataset1.tar.bz2
       CONNECTION_STRING: "host=indexer-db port=5432 user=algorand password=harness dbname=dataset1 sslmode=disable"
 
   # Applications Branch using dataset2
@@ -81,7 +81,7 @@ services:
       - sdk-harness
     environment:
       TYPE: "snapshot"
-      SNAPSHOT_FILE: /tmp/dataset2.tar.gz
+      SNAPSHOT_FILE: /tmp/dataset2.tar.bz2
       CONNECTION_STRING: "host=indexer-db port=5432 user=algorand password=harness dbname=dataset2 sslmode=disable"
 
   indexer-db:
