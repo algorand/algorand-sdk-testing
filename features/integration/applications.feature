@@ -72,20 +72,20 @@ Feature: Applications
 
 
    @applications.verified
-   Scenario: Use every applications feature in one scenario, do it!
+   Scenario Outline: <state-location> test - Use every applications feature!
       # Make these tests 'standalone'.
       # This should create a new, random account and save the public/private key for future steps to use.
       Given I create a new transient account and fund it with 100000000 microalgos.
       # Create application
       # depends on the transient account, and also the application id.
       # Use suggested params
-      And I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/one.teal.tok", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 0, local-bytes 1, local-ints 0, app-args "", foreign-apps "", app-accounts ""
+      And I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/one.teal.tok", clear-program "programs/one.teal.tok", global-bytes <global-bytes>, global-ints 0, local-bytes <local-bytes>, local-ints 0, app-args "", foreign-apps "", app-accounts ""
       # If error is an empty string, there should be no error.
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       And I remember the new application ID.
       # Update approval program to 'loccheck'
-      And I build an application transaction with the transient account, the current application, suggested params, operation "update", approval-program "programs/loccheck.teal.tok", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", app-accounts ""
+      And I build an application transaction with the transient account, the current application, suggested params, operation "update", approval-program "<program>", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", app-accounts ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       # OptIn - with error (missing argument)
@@ -98,6 +98,8 @@ Feature: Applications
       And I build an application transaction with the transient account, the current application, suggested params, operation "optin", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:hello", foreign-apps "", app-accounts ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
+      # App should be listed in created apps list with schema settings, with no local/global state.
+      Then The transient account should have the created app "true" and total schema byte-slices 1 and uints 0, the application "<state-location>" state contains key "" with value ""
       # Call with args 'str:write' to put the application in write mode
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:write", foreign-apps "", app-accounts ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
@@ -109,8 +111,8 @@ Feature: Applications
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:check,str:bar", foreign-apps "", app-accounts ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      #TODO: query account information and check data? Cannot add this until we update the REST API.
-      Then The application should have some metadata: in created apps "true", if created then apps total schema byte-slices 1 and uints 0, contain key "foo" with value "bar"
+      # Local state should now include foo bar
+      Then The transient account should have the created app "true" and total schema byte-slices 1 and uints 0, the application "<state-location>" state contains key "foo" with value "bar"
       # Closeout with args 'str:hello' for approval program
       And I build an application transaction with the transient account, the current application, suggested params, operation "closeout", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:hello", foreign-apps "", app-accounts ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
@@ -119,8 +121,8 @@ Feature: Applications
       And I build an application transaction with the transient account, the current application, suggested params, operation "optin", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:write", foreign-apps "", app-accounts ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      #TODO: query account information and check data? Cannot add this until we update the REST API.
-      Then The application should have some metadata: in created apps "true", if created then apps total schema byte-slices 1 and uints 0, contain key "foo" with value "bar"
+      # The key/value should still be there.
+      Then The transient account should have the created app "true" and total schema byte-slices 1 and uints 0, the application "<state-location>" state contains key "foo" with value "bar"
       # Call with args 'str:check,str:bar', another test to do something with the application
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:check,str:bar", foreign-apps "", app-accounts ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
@@ -135,5 +137,10 @@ Feature: Applications
       # Clear with no args should succeed.
       And I build an application transaction with the transient account, the current application, suggested params, operation "clear", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", app-accounts ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
-      #TODO: query account information and check data? Cannot add this until we update the REST API.
-      Then The application should have some metadata: in created apps "true", if created then apps total schema byte-slices 1 and uints 0, contain key "foo" with value "bar"
+      # Verify that the data has been removed from the total schema and the app list.
+      Then The transient account should have the created app "false" and total schema byte-slices 0 and uints 0, the application "<state-location>" state contains key "" with value ""
+
+    Examples:
+      | program                     | state-location | global-bytes | local-bytes |
+      | programs/loccheck.teal.tok  | local          | 0            | 1           |
+      | programs/globcheck.teal.tok | global         | 1            | 0           |
