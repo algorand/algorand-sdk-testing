@@ -72,8 +72,8 @@ services:
       context: .
       dockerfile: ./docker/indexer/Dockerfile
       args:
-        URL: "https://github.com/brianolson/indexer"
-        BRANCH: "app2"
+        URL: "https://github.com/algorand/indexer"
+        BRANCH: "will/fix-non-required-field"
     ports:
       - 59998:8980
     restart: unless-stopped

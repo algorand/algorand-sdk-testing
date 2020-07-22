@@ -70,7 +70,7 @@ docker-compose rm --force
 
 # When developing, it's often useful to skip the build phase.
 if [[ $SKIP_BUILD -eq 0 ]]; then
-  docker-compose build --no-cache
+  docker-compose build --no-cache --parallel
 fi
 
 docker-compose up $DAEMON_FLAG
