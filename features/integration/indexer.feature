@@ -468,7 +468,7 @@ Feature: Indexer Dataset 1
   @indexer.applications
   Scenario Outline: /transactions?everything
     #When I use <indexer> to search for transactions with <limit>, "<note-prefix>", "<tx-type>", "<sig-type>", "<tx-id>", <round>, <min-round>, <max-round>, <asset-id>, "<before-time>", "<after-time>", <currency-gt>, <currency-lt>, "<address>", "<address-role>", "<exclude-close-to>", <application-id> and token "<token>"
-    When I use 0 to search for transactions with <limit>, "", "", "", "", 0, 0, 0, 0, "", "", 0, 0, "", "", "", <application-id> and token ""
+    When I use <indexer> to search for transactions with <limit>, "", "", "", "", 0, 0, 0, 0, "", "", 0, 0, "", "", "", <application-id> and token ""
     Then the parsed response should equal "<jsonfile>".
 
     Examples:
