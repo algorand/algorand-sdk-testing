@@ -438,14 +438,7 @@ Feature: Indexer Dataset 1
       | 1       | 0           |                                                            |          |  oG  | 1   | 9            |
       | 1       | 0           | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 |          |      | 1   | 9            |
       | 1       | 0           |                                                            | none     |      | 0   | 9            |
-
-  # Paging tests:
-  #  - assets (our test dataset only has 1 asset)
-
-  # Error/edge cases (mixed up min/max, ...?)
-  #  - No results
-  #  - Invalid parameters (invalid enum)
-  #  - Mixed up min/max
+  
   @indexer.applications
   Scenario Outline: /applications?id=<application-id>&limit=<limit>&next=<token>
     When I use <indexer> to search for applications with <limit>, <application-id>, and token "<token>"
@@ -467,3 +460,26 @@ Feature: Indexer Dataset 1
       | indexer | application-id |  jsonfile                                                         |
       | 2       | 22             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_22.json      |
       | 2       | 70             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_70.json      |
+
+  #
+  # /transactions
+  #  When I use <indexer> to search for transactions with <limit>, "<note-prefix>", "<tx-type>", "<sig-type>", "<tx-id>", <round>, <min-round>, <max-round>, <asset-id>, "<before-time>", "<after-time>", <currency-gt>, <currency-lt>, "<address>", "<address-role>", "<exclude-close-to>" and token "<token>"
+  #
+  @indexer.applications
+  Scenario Outline: /transactions?everything
+    #When I use <indexer> to search for transactions with <limit>, "<note-prefix>", "<tx-type>", "<sig-type>", "<tx-id>", <round>, <min-round>, <max-round>, <asset-id>, "<before-time>", "<after-time>", <currency-gt>, <currency-lt>, "<address>", "<address-role>", "<exclude-close-to>", <application-id> and token "<token>"
+    When I use 0 to search for transactions with <limit>, "", "", "", "", 0, 0, 0, 0, "", "", 0, 0, "", "", "", <application-id> and token ""
+    Then the parsed response should equal "<jsonfile>".
+
+    Examples:
+      | indexer | limit | application-id | jsonfile                               |
+      | 2       | 0     | 70             | indexer_v2_tx_search_app_70.json       |
+      | 2       | 3     | 70             | indexer_v2_tx_search_app_70_lim_3.json |
+
+  # Paging tests:
+  #  - assets (our test dataset only has 1 asset)
+
+  # Error/edge cases (mixed up min/max, ...?)
+  #  - No results
+  #  - Invalid parameters (invalid enum)
+  #  - Mixed up min/max
