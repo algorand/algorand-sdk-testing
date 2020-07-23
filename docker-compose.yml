@@ -73,7 +73,7 @@ services:
       dockerfile: ./docker/indexer/Dockerfile
       args:
         URL: "https://github.com/algorand/indexer"
-        BRANCH: "will/fix-non-required-field"
+        BRANCH: "develop"
     ports:
       - 59998:8980
     restart: unless-stopped
