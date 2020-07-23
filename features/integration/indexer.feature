@@ -1,4 +1,4 @@
-Feature: Indexer Dataset 1
+Feature: Indexer Integration Tests
 
   For all queries, parameters will not be set for default values as defined by:
     * Numeric inputs: 0
