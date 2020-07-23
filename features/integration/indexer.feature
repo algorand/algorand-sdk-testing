@@ -447,7 +447,7 @@ Feature: Indexer Dataset 1
   #  - Invalid parameters (invalid enum)
   #  - Mixed up min/max
   @indexer.applications
-  Scenario Outline: /applications
+  Scenario Outline: /applications?id=<application-id>&limit=<limit>&next=<token>
     When I use <indexer> to search for applications with <limit>, <application-id>, and token "<token>"
     Then the parsed response should equal "<jsonfile>".
 
