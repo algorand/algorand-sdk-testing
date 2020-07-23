@@ -12,6 +12,7 @@ We have different feature files for unit and integration tests. The unit tests s
 # Test Descriptions
 
 | tag                   | description |
+| --------------------- | ----------- |
 | @algod                | General tests against algod REST endpoints. |
 | @applications         | Submit all types of application transactions. |
 | @assets               | Submit all types of asset transactions. |

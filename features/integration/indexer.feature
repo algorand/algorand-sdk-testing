@@ -457,13 +457,12 @@ Feature: Indexer Integration Tests
     Then the parsed response should equal "<jsonfile>".
 
     Examples:
-      | indexer | application-id |  jsonfile                                                         |
-      | 2       | 22             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_22.json      |
-      | 2       | 70             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_70.json      |
+      | indexer | application-id |  jsonfile                                                    |
+      | 2       | 22             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_22.json |
+      | 2       | 70             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_70.json |
 
   #
   # /transactions
-  #  When I use <indexer> to search for transactions with <limit>, "<note-prefix>", "<tx-type>", "<sig-type>", "<tx-id>", <round>, <min-round>, <max-round>, <asset-id>, "<before-time>", "<after-time>", <currency-gt>, <currency-lt>, "<address>", "<address-role>", "<exclude-close-to>" and token "<token>"
   #
   @indexer.applications
   Scenario Outline: /transactions?everything
@@ -472,10 +471,9 @@ Feature: Indexer Integration Tests
     Then the parsed response should equal "<jsonfile>".
 
     Examples:
-      | indexer | limit | application-id | jsonfile                               |
+      | indexer | limit | application-id | jsonfile                                                             |
       | 2       | 0     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70.json       |
       | 2       | 3     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70_lim_3.json |
-
 
   @indexer.applications
   Scenario Outline: /accounts?asset-id=<asset-id>&limit=<limit>&gt=<currency-gt>&lt=<currency-lt>&auth-addr=<auth-addr>&app-id=<application-id>
