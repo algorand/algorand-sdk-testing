@@ -473,8 +473,8 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | limit | application-id | jsonfile                               |
-      | 2       | 0     | 70             | indexer_v2_tx_search_app_70.json       |
-      | 2       | 3     | 70             | indexer_v2_tx_search_app_70_lim_3.json |
+      | 2       | 0     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70.json       |
+      | 2       | 3     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70_lim_3.json |
 
   # Paging tests:
   #  - assets (our test dataset only has 1 asset)
