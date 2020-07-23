@@ -464,4 +464,4 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | application-id |  jsonfile                                                         |
-      | 2       | 22             |  v2indexerclient_responsejsons/indexer_v2_app_search_22.json      |
+      | 2       | 22             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_22.json      |
