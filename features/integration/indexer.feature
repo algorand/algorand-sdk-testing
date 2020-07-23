@@ -452,10 +452,10 @@ Feature: Indexer Dataset 1
     Then the parsed response should equal "<jsonfile>".
 
     Examples:
-      | indexer | application-id | limit | token | jsonfile                                                           |
-      | 2       | 22             | 0     |       | v2indexerclient_responsejsons/indexer_v2_applications_22.json      |
-      | 2       | 0              | 3     |       | v2indexerclient_responsejsons/indexer_v2_applications_limit_3.json |
-      | 2       | 0              | 1     | 25    | v2indexerclient_responsejsons/indexer_v2_applications_next_25.json |
+      | indexer | application-id | limit | token | jsonfile                                                         |
+      | 2       | 22             | 0     |       | v2indexerclient_responsejsons/indexer_v2_app_search_22.json      |
+      | 2       | 0              | 3     |       | v2indexerclient_responsejsons/indexer_v2_app_search_limit_3.json |
+      | 2       | 0              | 1     | 25    | v2indexerclient_responsejsons/indexer_v2_app_search_next_25.json |
 
   @indexer.applications
   Scenario Outline: /applications/<application-id>
@@ -463,5 +463,5 @@ Feature: Indexer Dataset 1
     Then the parsed response should equal "<jsonfile>".
 
     Examples:
-      | indexer | application-id |  jsonfile                                                           |
-      | 2       | 22             |  v2indexerclient_responsejsons/indexer_v2_applications_22.json      |
+      | indexer | application-id |  jsonfile                                                         |
+      | 2       | 22             |  v2indexerclient_responsejsons/indexer_v2_app_search_22.json      |
