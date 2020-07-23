@@ -15,3 +15,5 @@ curl "localhost:59998/v2/applications/70"                > indexer_v2_app_lookup
 
 curl "localhost:59998/v2/transactions?application-id=70"         > indexer_v2_tx_search_app_70.json
 curl "localhost:59998/v2/transactions?application-id=70&limit=3" > indexer_v2_tx_search_app_70_lim_3.json
+
+curl "localhost:59998/v2/accounts?application-id=70"    > indexer_v2_acct_search_app_70.json

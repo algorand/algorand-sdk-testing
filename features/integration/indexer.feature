@@ -476,6 +476,16 @@ Feature: Indexer Dataset 1
       | 2       | 0     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70.json       |
       | 2       | 3     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70_lim_3.json |
 
+
+  @indexer.applications
+  Scenario Outline: /accounts?asset-id=<asset-id>&limit=<limit>&gt=<currency-gt>&lt=<currency-lt>&auth-addr=<auth-addr>&app-id=<application-id>
+    When I use <indexer> to search for an account with 0, 0, 0, 0, "", <application-id> and token ""
+    Then the parsed response should equal "<jsonfile>".
+
+    Examples:
+      | indexer | application-id | jsonfile                                                         |
+      | 2       | 70             | v2indexerclient_responsejsons/indexer_v2_acct_search_app_70.json |
+
   # Paging tests:
   #  - assets (our test dataset only has 1 asset)
 
