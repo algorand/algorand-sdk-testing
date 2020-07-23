@@ -453,7 +453,7 @@ Feature: Indexer Dataset 1
 
     Examples:
       | indexer | application-id | limit | token | jsonfile                                                           |
-      | 2       | 22             | 0     |       | v2indexerclient_responsejsons/indexer_v2_applications_77.json      |
+      | 2       | 22             | 0     |       | v2indexerclient_responsejsons/indexer_v2_applications_22.json      |
       | 2       | 0              | 3     |       | v2indexerclient_responsejsons/indexer_v2_applications_limit_3.json |
       | 2       | 0              | 1     | 25    | v2indexerclient_responsejsons/indexer_v2_applications_next_25.json |
 
