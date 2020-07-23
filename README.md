@@ -21,6 +21,7 @@ We have different feature files for unit and integration tests. The unit tests s
 | @dryrun                | Test the algod dryrun endpoint. |
 | @dryrun.testing        | Test the testing harness that relies on dryrun endpoint. |
 | @indexer               | Test all types of indexer queries and parameters against a static dataset. |
+| @indexer.applications  | Endpoints and parameters added to support applications. |
 | @kmd                   | Test the kmd REST endpoints. |
 | @send                  | Test the ability to submit transactions to algod. |
 | @templates             | Integration tests for the TEAL template utilities. |
@@ -35,6 +36,7 @@ We have different feature files for unit and integration tests. The unit tests s
 | @unit.rekey            | Rekey Transaction golden tests. |
 | @unit.responses        | REST Client Response serialization tests. |
 | @unit.tealsign         | Test TEAL signature utilities. |
+
 
 # SDK Overview
 

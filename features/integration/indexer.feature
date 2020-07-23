@@ -1,5 +1,4 @@
-@indexer
-Feature: Indexer Dataset 1
+Feature: Indexer Integration Tests
 
   For all queries, parameters will not be set for default values as defined by:
     * Numeric inputs: 0
@@ -7,7 +6,9 @@ Feature: Indexer Dataset 1
 
   Background:
     Given indexer client 1 at "localhost" port 59999 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    Given indexer client 2 at "localhost" port 59998 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
+  @indexer
   Scenario Outline: /health
     When I use <indexer> to check the services health
     Then I receive status code <status>
@@ -19,6 +20,7 @@ Feature: Indexer Dataset 1
   #
   # /blocks/{round-number}
   #
+  @indexer
   Scenario Outline: /blocks/<number>
     When I use <indexer> to lookup block <number>
     Then The block was confirmed at <timestamp>, contains <num> transactions, has the previous block hash "<hash>"
@@ -32,6 +34,7 @@ Feature: Indexer Dataset 1
   #
   # /accounts/{account-id}
   #
+  @indexer
   Scenario Outline: has asset - /account/<account>
     When I use <indexer> to lookup account "<account>" at round 0
     Then The account has <num> assets, the first is asset <index> has a frozen status of "<frozen>" and amount <units>.
@@ -41,6 +44,7 @@ Feature: Indexer Dataset 1
       | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 1   | 9     | false  | 999931337000 |
       | 1       | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | 1   | 9     | false  | 68663000     |
 
+  @indexer
   Scenario Outline: creator - /account/<account>
     When I use <indexer> to lookup account "<account>" at round 0
     Then The account created <num> assets, the first is asset <index> is named "<name>" with a total amount of <total> "<unit>"
@@ -49,6 +53,7 @@ Feature: Indexer Dataset 1
       | indexer | account                                                    | num | index | name     | total         | unit |
       | 1       | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 1   | 9     | bogocoin | 1000000000000 | bogo |
 
+  @indexer
   Scenario Outline: lookup - /account/<account>
     When I use <indexer> to lookup account "<account>" at round 0
     Then The account has <μalgos> μalgos and <num> assets, 0 has 0
@@ -61,6 +66,7 @@ Feature: Indexer Dataset 1
   #
   # /accounts/{account-id} - at round (rollback test)
   #
+  @indexer
   Scenario Outline: rewind - /accounts/{account-id}?round=<round>
     When I use <indexer> to lookup account "<account>" at round <round>
     Then The account has <μalgos> μalgos and <num> assets, <asset-id> has <asset-amount>
@@ -86,6 +92,7 @@ Feature: Indexer Dataset 1
   #
   # /assets/{asset-id}
   #
+  @indexer
   Scenario Outline: lookup - /assets/<asset-id>
     When I use <indexer> to lookup asset <asset-id>
     Then The asset found has: "<name>", "<units>", "<creator>", <decimals>, "<default-frozen>", <total>, "<clawback>"
@@ -97,6 +104,7 @@ Feature: Indexer Dataset 1
   #
   # /assets/{asset-id}/balances
   #
+  @indexer
   Scenario Outline: balances - /assets/<asset-id>/balances?gt=<currency-gt>&lt=<currency-lt>&limit=<limit>
     When I use <indexer> to lookup asset balances for <asset-id> with <currency-gt>, <currency-lt>, <limit> and token ""
     Then There are <num-accounts> with the asset, the first is "<account>" has "<is-frozen>" and <amount>
@@ -110,6 +118,7 @@ Feature: Indexer Dataset 1
       | 1       | 9        | 0           | 68663001    | 0     | 1            | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | false     | 68663000     |
 
 
+  @indexer
   Scenario Outline: /assets/{asset-id}/balances?next=token
     When I use <indexer> to lookup asset balances for <asset-id> with <currency-gt>, <currency-lt>, <limit> and token ""
     And I get the next page using <indexer> to lookup asset balances for <asset-id> with <currency-gt>, <currency-lt>, <limit>
@@ -124,6 +133,7 @@ Feature: Indexer Dataset 1
   #
   # /accounts
   #
+  @indexer
   Scenario Outline: general - /accounts?asset-id=<asset-id>&limit=<limit>&gt=<currency-gt>&lt=<currency-lt>
     When I use <indexer> to search for an account with <asset-id>, <limit>, <currency-gt>, <currency-lt> and token ""
     Then There are <num>, the first has <pending-rewards>, <rewards-base>, <rewards>, <without-rewards>, "<address>", <amount>, "<status>", "<type>"
@@ -142,6 +152,7 @@ Feature: Indexer Dataset 1
   #
   # /accounts - online
   #
+  @indexer
   Scenario Outline: online - /accounts?asset-id=<asset-id>&limit=<limit>&gt=<currency-gt>&lt=<currency-lt>
     When I use <indexer> to search for an account with <asset-id>, <limit>, <currency-gt>, <currency-lt> and token ""
     Then The first account is online and has "<address>", <key-dilution>, <first-valid>, <last-valid>, "<vote-key>", "<selection-key>"
@@ -157,6 +168,7 @@ Feature: Indexer Dataset 1
   #
   # /accounts - paging
   #
+  @indexer
   Scenario Outline: paging - /accounts?asset-id=<asset-id>&limit=<limit>&gt=<currency-gt>&lt=<currency-lt>
     When I use <indexer> to search for an account with <asset-id>, <limit>, <currency-gt>, <currency-lt> and token ""
     Then I get the next page using <indexer> to search for an account with <asset-id>, <limit>, <currency-gt> and <currency-lt>
@@ -172,6 +184,7 @@ Feature: Indexer Dataset 1
   #
   # /accounts - paging multiple times
   #
+  @indexer
   Scenario Outline: paging 6 times - /accounts?asset-id=<asset-id>&limit=<limit>&gt=<currency-gt>&lt=<currency-lt>
     When I use <indexer> to search for an account with <asset-id>, <limit>, <currency-gt>, <currency-lt> and token ""
     Then I get the next page using <indexer> to search for an account with <asset-id>, <limit>, <currency-gt> and <currency-lt>
@@ -191,6 +204,7 @@ Feature: Indexer Dataset 1
   # /transactions
   #  When I use <indexer> to search for transactions with <limit>, "<note-prefix>", "<tx-type>", "<sig-type>", "<tx-id>", <round>, <min-round>, <max-round>, <asset-id>, "<before-time>", "<after-time>", <currency-gt>, <currency-lt>, "<address>", "<address-role>", "<exclude-close-to>"  and token "<token>"
   #
+  @indexer
   Scenario Outline: /transactions?note-prefix
     When I use <indexer> to search for transactions with 0, "<note-prefix>", "", "", "", 0, 0, 0, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -201,6 +215,7 @@ Feature: Indexer Dataset 1
       | 1       | VA==        | 3    | IMFJQCCF5T2DOVSKHP2NHDKV5A2VGVIW24LNQUBDOH33UMIE545Q |
       | 1       | 1111        | 0    |                                                      |
 
+  @indexer
   Scenario Outline: /transactions?tx-type=<tx-type>
     When I use <indexer> to search for transactions with 0, "", "<tx-type>", "", "", 0, 0, 0, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -214,6 +229,7 @@ Feature: Indexer Dataset 1
       | 1       | axfer   | 6    | IIWBLLEXCFDQQHENIU2JBXSFDNNHLO5C2M5PE3UIHQ3YXN2TWRUA |
       | 1       | afrz    | 0    |                                                      |
 
+  @indexer
   Scenario Outline: /transactions?sig-type=<sig-type>
     When I use <indexer> to search for transactions with 0, "", "", "<sig-type>", "", 0, 0, 0, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -225,6 +241,7 @@ Feature: Indexer Dataset 1
       | 1       | lsig     | 24   | SPRRY5NZETQFP3C7MHEDURQRUUC5JVESSRXRXVJAHENZ6OJJKMXQ |
       | 1       | msig     | 0    |                                                      |
 
+  @indexer
   Scenario Outline: /transactions?tx-id=<txid>
     When I use <indexer> to search for transactions with 0, "", "", "", "<txid>", 0, 0, 0, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -235,6 +252,7 @@ Feature: Indexer Dataset 1
       | 1       | 1   | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
       | 1       | 1   | SPRRY5NZETQFP3C7MHEDURQRUUC5JVESSRXRXVJAHENZ6OJJKMXQ |
 
+  @indexer
   Scenario Outline: /transactions?round=<round>
     When I use <indexer> to search for transactions with 0, "", "", "", "", <round>, 0, 0, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -246,6 +264,7 @@ Feature: Indexer Dataset 1
       | 1       | 22    | 3   | DWSC3DPKFU7TIPMOVJZM25XYBUNJQASGVDYS7QREO33UEA6FYSNA |
       | 1       | 30    | 2   | 5UWAFFNPPECDJHAYYRRLE3WIWGO2WVH4LZMPLVQBS4E76UERRATA |
 
+  @indexer
   Scenario Outline: /transactions?min-round=<min-round>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, <min-round>, 0, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -257,6 +276,7 @@ Feature: Indexer Dataset 1
       | 1       | 22        | 10  | DWSC3DPKFU7TIPMOVJZM25XYBUNJQASGVDYS7QREO33UEA6FYSNA |
       | 1       | 30        | 2   | 5UWAFFNPPECDJHAYYRRLE3WIWGO2WVH4LZMPLVQBS4E76UERRATA |
 
+  @indexer
   Scenario Outline: /transactions?max-round=<max-round>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, <max-round>, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -269,6 +289,7 @@ Feature: Indexer Dataset 1
       | 1       | 30        | 49  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
 
 
+  @indexer
   Scenario Outline: /transactions?max-round=<max-round>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, <max-round>, 0, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -280,6 +301,7 @@ Feature: Indexer Dataset 1
       | 1       | 22        | 42  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
       | 1       | 30        | 49  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
 
+  @indexer
   Scenario Outline: /transactions?asset-id=<asset-id>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, <asset-id>, "", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -289,6 +311,7 @@ Feature: Indexer Dataset 1
       | indexer | asset-id | num | txid                                                 |
       | 1       | 9        | 7   | KGG5ZGQQ57Y2ZDH5CFRYMJODPJ4TVIQBAPKT3HK3PIS6A6K4T5GQ |
 
+  @indexer
   Scenario Outline: /transactions?before-time=<before>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "<before>", "", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -300,6 +323,7 @@ Feature: Indexer Dataset 1
       | 1       | 2020-03-31T19:48:49Z | 35  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
       | 1       | 2021-03-31T19:47:49Z | 49  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
 
+  @indexer
   Scenario Outline: /transactions?after-time=<after>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "", "<after>", 0, 0, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -311,6 +335,7 @@ Feature: Indexer Dataset 1
       | 1       | 2020-03-31T19:48:49Z | 14  | GLEDN6PCACB6WI72ABZ34CEAIXZCZQ7HLVZI7SLWIR46JHUHXQJA |
       | 1       | 2029-01-01T01:01:01Z | 0   |                                                      |
 
+  @indexer
   Scenario Outline: /transactions?currency-gt=<currency-gt>&currency-lt=<currency-lt>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "", "", <currency-gt>, <currency-lt>, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -322,6 +347,7 @@ Feature: Indexer Dataset 1
       | 1       | 1           | 0           | 34  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
       | 1       | 10000       | 1000000     | 2   | VUOIU472GVEML5AS22TP5GSBIEITZFRZWVXVQQ7UD33QR7A5K3ZA |
 
+  @indexer
   Scenario Outline: /transactions?asset-id=<asset-id>&currency-gt=<currency-gt>&currency-lt=<currency-lt>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, <asset-id>, "", "", <currency-gt>, <currency-lt>, "", "", "" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -333,6 +359,7 @@ Feature: Indexer Dataset 1
       | 1       | 9        | 0           | 100000000   | 2   | E36LBI7IN5OJGEFWKPCEQ2L436DFYHKAMEMASZXEVMP64F76HVNA |
       | 1       | 9        | 1000000     | 100000000   | 1   | 3BMTOZIYGTS3XS33MXDZO6UMNUTJOLFC3527ONBCVAHY3IMEWSUA |
 
+  @indexer
   Scenario Outline: account filter /transactions?address=<address>&address-role=<address-role>&exclude-close-to=<exclude-close-to>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, 0, "", "", 0, 0, "<address>", "<address-role>", "<exclude-close-to>" and token ""
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -350,6 +377,7 @@ Feature: Indexer Dataset 1
   #
   # /accounts/{account-id}/transactions - same as /transactions but the validation just ensures that all results include the specified account
   #
+  @indexer
   Scenario Outline: /accounts/<account-id>/transactions
     When I use <indexer> to search for all "<account-id>" transactions
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -363,6 +391,7 @@ Feature: Indexer Dataset 1
   #
   # /assets/{asset-id}/transactions - same as /transactions but the validation just ensures that all results are asset xfer's for the specified asset.
   #
+  @indexer
   Scenario Outline: /assets/<asset-id>/transactions
     When I use <indexer> to search for all <asset-id> asset transactions
     Then there are <num> transactions in the response, the first is "<txid>".
@@ -374,6 +403,7 @@ Feature: Indexer Dataset 1
   #
   # /transaction paging
   #
+  @indexer
   Scenario Outline: /transactions?limit=<limit>&next=token
     When I use <indexer> to search for transactions with <limit>, "", "", "", "", 0, 0, <max-round>, 0, "", "", 0, 0, "", "", "" and token ""
     And I get the next page using <indexer> to search for transactions with <limit> and <max-round>
@@ -390,6 +420,7 @@ Feature: Indexer Dataset 1
   #
   # /assets
   #
+  @indexer
   Scenario Outline: /assets
     When I use <indexer> to search for assets with 0, <asset-id-in>, "<creator>", "<name>", "<unit>", and token ""
     Then there are <num> assets in the response, the first is <asset-id-out>.
@@ -407,6 +438,51 @@ Feature: Indexer Dataset 1
       | 1       | 0           |                                                            |          |  oG  | 1   | 9            |
       | 1       | 0           | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 |          |      | 1   | 9            |
       | 1       | 0           |                                                            | none     |      | 0   | 9            |
+  
+  @indexer.applications
+  Scenario Outline: /applications?id=<application-id>&limit=<limit>&next=<token>
+    When I use <indexer> to search for applications with <limit>, <application-id>, and token "<token>"
+    Then the parsed response should equal "<jsonfile>".
+
+    Examples:
+      | indexer | application-id | limit | token | jsonfile                                                         |
+      | 2       | 22             | 0     |       | v2indexerclient_responsejsons/indexer_v2_app_search_22.json      |
+      | 2       | 70             | 0     |       | v2indexerclient_responsejsons/indexer_v2_app_search_70.json      |
+      | 2       | 0              | 3     |       | v2indexerclient_responsejsons/indexer_v2_app_search_limit_3.json |
+      | 2       | 0              | 1     | 25    | v2indexerclient_responsejsons/indexer_v2_app_search_next_25.json |
+
+  @indexer.applications
+  Scenario Outline: /applications/<application-id>
+    When I use <indexer> to lookup application with <application-id>
+    Then the parsed response should equal "<jsonfile>".
+
+    Examples:
+      | indexer | application-id |  jsonfile                                                    |
+      | 2       | 22             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_22.json |
+      | 2       | 70             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_70.json |
+
+  #
+  # /transactions
+  #
+  @indexer.applications
+  Scenario Outline: /transactions?everything
+    #When I use <indexer> to search for transactions with <limit>, "<note-prefix>", "<tx-type>", "<sig-type>", "<tx-id>", <round>, <min-round>, <max-round>, <asset-id>, "<before-time>", "<after-time>", <currency-gt>, <currency-lt>, "<address>", "<address-role>", "<exclude-close-to>", <application-id> and token "<token>"
+    When I use <indexer> to search for transactions with <limit>, "", "", "", "", 0, 0, 0, 0, "", "", 0, 0, "", "", "", <application-id> and token ""
+    Then the parsed response should equal "<jsonfile>".
+
+    Examples:
+      | indexer | limit | application-id | jsonfile                                                             |
+      | 2       | 0     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70.json       |
+      | 2       | 3     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70_lim_3.json |
+
+  @indexer.applications
+  Scenario Outline: /accounts?asset-id=<asset-id>&limit=<limit>&gt=<currency-gt>&lt=<currency-lt>&auth-addr=<auth-addr>&app-id=<application-id>
+    When I use <indexer> to search for an account with 0, 0, 0, 0, "", <application-id> and token ""
+    Then the parsed response should equal "<jsonfile>".
+
+    Examples:
+      | indexer | application-id | jsonfile                                                         |
+      | 2       | 70             | v2indexerclient_responsejsons/indexer_v2_acct_search_app_70.json |
 
   # Paging tests:
   #  - assets (our test dataset only has 1 asset)
