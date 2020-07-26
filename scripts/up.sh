@@ -13,6 +13,7 @@ DAEMON_FLAG="-d"
 SKIP_BUILD=0
 SHOW_HELP=0
 ENV_FILE=".up-env"
+PARALLEL="--parallel"
 
 show_help() {
   echo "Manage bringing up the SDK test environment."
@@ -26,16 +27,18 @@ show_help() {
   echo "  -s         Skip rebuilding the docker image."
   echo "  -i         Start the docker environment in interactive mode."
   echo "  -h         Provide this help information."
+  echo "  -p         Disable parallel build mode. Probably only useful when editing the test environment."
 }
 
 # Parse arguments
-while getopts "f:t:sih" opt; do
+while getopts "pf:t:sih" opt; do
   case "$opt" in
     f) ENV_FILE=$OPTARG; ;;
     i) unset DAEMON_FLAG; ;;
     s) SKIP_BUILD=1; ;;
     t) TYPE_OVERRIDE=$OPTARG; ;;
     h) show_help; exit 0 ;;
+    p) unset PARALLEL; ;; 
   esac
 done
 
@@ -70,7 +73,7 @@ docker-compose rm --force
 
 # When developing, it's often useful to skip the build phase.
 if [[ $SKIP_BUILD -eq 0 ]]; then
-  docker-compose build --no-cache --parallel
+  docker-compose build --no-cache $PARALLEL
 fi
 
 docker-compose up $DAEMON_FLAG
