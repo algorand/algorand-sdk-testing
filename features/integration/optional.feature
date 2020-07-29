@@ -11,9 +11,10 @@ Feature: Optional Tests (Algod Testing)
   @optional
   Scenario Outline: Pending Information has ApplyData
       # Create app
-      Given I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "<program>", clear-program "programs/one.teal.tok", global-bytes <global-bytes>, global-ints 0, local-bytes <local-bytes>, local-ints 0, app-args "", foreign-apps "", app-accounts ""
+      Given I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "<program>", clear-program "programs/one.teal.tok", global-bytes <global-bytes>, global-ints 0, local-bytes <local-bytes>, local-ints 0, app-args "str:hello", foreign-apps "", app-accounts ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
+      And I remember the new application ID.
       # Optin
       And I build an application transaction with the transient account, the current application, suggested params, operation "optin", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:hello", foreign-apps "", app-accounts ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
