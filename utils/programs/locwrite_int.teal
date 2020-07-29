@@ -1,0 +1,12 @@
+#pragma version 2
+// write to sender's account
+int 0
+// Key is "foo"    
+byte base64 Zm9v    
+
+// Value is ApplicationArgs 0
+txna ApplicationArgs 0
+btoi
+
+// Write it    
+app_local_put
