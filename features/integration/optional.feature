@@ -18,8 +18,8 @@ Feature: Optional Tests (Algod Testing)
       Then the confirmed pending transaction by ID should have a "<state-location>" state change for "Zm9v" to "<value>"
 
     Examples:
-      | program                     | state-location | global-bytes | global-ints | local-bytes | local-ints | arg       | value    |
-      | programs/globwrite.teal.tok | global         | 1            | 0           | 0           | 0          | str:hello | aGVsbG8= |
-      | programs/globwrite.teal.tok | global         | 0            | 1           | 0           | 0          | int:90000 | 90000    |
-      | programs/locwrite.teal.tok  | local          | 0            | 0           | 1           | 0          | str:hello | aGVsbG8= |
-      | programs/locwrite.teal.tok  | local          | 0            | 0           | 0           | 1          | int:90000 | 90000    |
+      | program                         | state-location | global-bytes | global-ints | local-bytes | local-ints | arg       | value    |
+      | programs/globwrite.teal.tok     | global         | 1            | 0           | 0           | 0          | str:hello | aGVsbG8= |
+      | programs/globwrite_int.teal.tok | global         | 0            | 1           | 0           | 0          | int:90000 | 90000    |
+      | programs/locwrite.teal.tok      | local          | 0            | 0           | 1           | 0          | str:hello | aGVsbG8= |
+      | programs/locwrite_int.teal.tok  | local          | 0            | 0           | 0           | 1          | int:90000 | 90000    |
