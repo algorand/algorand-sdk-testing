@@ -5,7 +5,7 @@
 rootdir=$(dirname "$0")
 pushd "$rootdir"/.. > /dev/null || exit
 
-EXCLUSIONS=("@algod" "@unit" "@optional")
+EXCLUSIONS=("@algod" "@unit" "@applications.evaldelta")
 
 isExcluded () {
   local e

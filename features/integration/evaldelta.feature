@@ -1,7 +1,7 @@
-Feature: Optional Tests (Algod Testing)
-  # These are optional for the SDKs to implement
-  # because their primary purpose is testing algod
-  #
+Feature: EvalDelta
+  # These are optional for the SDKs to implement because
+  # their primary purpose is testing algod / indexer
+
    Background:
       Given a kmd client
       And wallet information
@@ -9,8 +9,8 @@ Feature: Optional Tests (Algod Testing)
       And I create a new transient account and fund it with 100000000 microalgos.
       And indexer client 3 at "localhost" port 60002 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
-  @optional
-  Scenario Outline:Algod Apply Data (<state-location>)
+  @applications.evaldelta
+  Scenario Outline:Set '<arg>' in <state-location> state
       # Create app
       Given I build an application transaction with the transient account, the current application, suggested params, operation "create_optin", approval-program "<program>", clear-program "programs/one.teal.tok", global-bytes <global-bytes>, global-ints <global-ints>, local-bytes <local-bytes>, local-ints <local-ints>, app-args "<arg>", foreign-apps "", app-accounts ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
