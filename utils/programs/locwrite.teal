@@ -6,7 +6,7 @@ byte base64 Zm9v
 txna ApplicationArgs 0
 
 // Write it
-app_global_put
+app_local_put
 
 int 1
 return
