@@ -32,5 +32,5 @@ Feature: Optional Tests (Algod Testing)
 
     Examples:
       | program                     | state-location | global-bytes | local-bytes |
-      | programs/locwrite.teal.tok  | local          | 0            | 1           |
-      | programs/globwrite.teal.tok | global         | 1            | 0           |
+      | programs/loccheck.teal.tok  | local          | 0            | 1           |
+      | programs/globcheck.teal.tok | global         | 1            | 0           |
