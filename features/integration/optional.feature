@@ -16,7 +16,7 @@ Feature: Optional Tests (Algod Testing)
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       Then the unconfirmed pending transaction by ID should have no apply data fields.
       And I wait for the transaction to be confirmed.
-      Then the confirmed pending transaction by ID should have a "<state-location>" state change for "Zm9v" to "<value>", indexer should also confirm this.
+      Then the confirmed pending transaction by ID should have a "<state-location>" state change for "Zm9v" to "<value>", indexer 3 should also confirm this.
 
     Examples:
       | program                         | state-location | global-bytes | global-ints | local-bytes | local-ints | arg       | value    |
