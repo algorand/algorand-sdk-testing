@@ -14,7 +14,6 @@ We have different feature files for unit and integration tests. The unit tests s
 | tag                    | description |
 | ---------------------- | ----------- |
 | @algod                 | General tests against algod REST endpoints. |
-| @applications          | Submit all types of application transactions. |
 | @applications.verified | Submit all types of application transactions and verify account state. |
 | @assets                | Submit all types of asset transactions. |
 | @compile               | Test the algod compile endpoint. |
