@@ -7,6 +7,7 @@ Feature: Optional Tests (Algod Testing)
       And wallet information
       And an algod v2 client connected to "localhost" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       And I create a new transient account and fund it with 100000000 microalgos.
+      And indexer client 3 at "localhost" port 60002 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
   @optional
   Scenario Outline:Algod Apply Data (<state-location>)
@@ -15,7 +16,7 @@ Feature: Optional Tests (Algod Testing)
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       Then the unconfirmed pending transaction by ID should have no apply data fields.
       And I wait for the transaction to be confirmed.
-      Then the confirmed pending transaction by ID should have a "<state-location>" state change for "Zm9v" to "<value>"
+      Then the confirmed pending transaction by ID should have a "<state-location>" state change for "Zm9v" to "<value>", indexer should also confirm this.
 
     Examples:
       | program                         | state-location | global-bytes | global-ints | local-bytes | local-ints | arg       | value    |
