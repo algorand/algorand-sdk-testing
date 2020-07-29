@@ -10,3 +10,6 @@ btoi
 
 // Write it    
 app_local_put
+
+int 1
+return
