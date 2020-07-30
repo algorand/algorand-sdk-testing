@@ -46,7 +46,7 @@ Feature: Applications
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       # Local state should now include foo bar
-      Then The transient account should have the created app "true" and total schema byte-slices 1 and uints 0, the application "<state-location>" state contains key "foo" with value "bar"
+      Then The transient account should have the created app "true" and total schema byte-slices 1 and uints 0, the application "<state-location>" state contains key "Zm9v" with value "YmFy"
       # Closeout with args 'str:hello' for approval program
       And I build an application transaction with the transient account, the current application, suggested params, operation "closeout", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:hello", foreign-apps "", app-accounts ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
@@ -56,7 +56,7 @@ Feature: Applications
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       # The key/value should still be there.
-      Then The transient account should have the created app "true" and total schema byte-slices 1 and uints 0, the application "<state-location>" state contains key "foo" with value "bar"
+      Then The transient account should have the created app "true" and total schema byte-slices 1 and uints 0, the application "<state-location>" state contains key "Zm9v" with value "YmFy"
       # Call with args 'str:check,str:bar', another test to do something with the application
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:check,str:bar", foreign-apps "", app-accounts ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
