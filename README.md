@@ -19,7 +19,7 @@ We have different feature files for unit and integration tests. The unit tests s
 | @assets                | Submit all types of asset transactions. |
 | @compile               | Test the algod compile endpoint. |
 | @dryrun                | Test the algod dryrun endpoint. |
-| @dryrun.testing        | Test the testing harness that relies on dryrun endpoint. |
+| @dryrun.testing        | Test the testing harness that relies on dryrun endpoint. Python only. |
 | @indexer               | Test all types of indexer queries and parameters against a static dataset. |
 | @indexer.applications  | Endpoints and parameters added to support applications. |
 | @kmd                   | Test the kmd REST endpoints. |
