@@ -21,6 +21,9 @@ Feature: v2 REST Client Responses
       | indexer_applications_TransactionsResponse_1.json        | 200    | indexer | lookupAccountTransactions |
       | indexer_applications_TransactionsResponse_1.json        | 200    | indexer | lookupAssetTransactions   |
       | indexer_applications_TransactionsResponse_1.json        | 200    | indexer | searchForTransactions     |
+      | indexer_applications_TransactionsResponse_2.json        | 200    | indexer | lookupAccountTransactions |
+      | indexer_applications_TransactionsResponse_2.json        | 200    | indexer | lookupAssetTransactions   |
+      | indexer_applications_TransactionsResponse_2.json        | 200    | indexer | searchForTransactions     |
       | indexer_applications_ErrorResponse_0.json               | 500    | indexer | any                       |
       | algod_applications_NodeStatusResponse_0.json            | 200    | algod   | GetStatus                 |
       | algod_applications_NodeStatusResponse_0.json            | 200    | algod   | WaitForBlock              |
