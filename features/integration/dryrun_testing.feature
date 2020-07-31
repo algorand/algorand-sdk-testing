@@ -35,9 +35,9 @@ Feature: Dryrun Testing
     Given dryrun test case with <program> of type <kind>
     Then global delta assert with <key>, <value> and <action> is failed
     Scenarios:
-      | program                     | kind     | key        | action | value  |
+      | program                     | kind     | key            | action | value  |
       | "programs/globalwrite.teal" | "clearp" | "Ynl0ZXNrZXk=" | 1      | "test" |
-      | "programs/globalwrite.teal" | "approv" | "aW50a2V5"   | 2      | "12"   |
+      | "programs/globalwrite.teal" | "approv" | "aW50a2V5"     | 2      | "12"   |
 
   Scenario Outline: Dryrun test case with local state delta assert succeed
     Given dryrun test case with <program> of type <kind>
