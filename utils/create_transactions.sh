@@ -122,13 +122,14 @@ cd ..
 echo "Examples:"
 header
 
-app_create_row "${ACCOUNT_1}" "programs/loccheck.teal.tok" "programs/one.teal.tok" 1 0 1 0 "str:test" 5555,6666 "" "$NO_ACCOUNT" 1234 9000 9010
-app_create_row "${ACCOUNT_1}" "programs/zero.teal.tok" "programs/one.teal.tok" 1 0 1 0 "str:test" "" "" "$ONE_ACCOUNT" 1234 9000 9010
+app_create_row "${ACCOUNT_1}" "programs/loccheck.teal.tok" "programs/one.teal.tok"  1 0 1 0 "str:test" 5555,6666 ""        "$NO_ACCOUNT"  1234 9000 9010
+app_create_row "${ACCOUNT_1}" "programs/zero.teal.tok"     "programs/one.teal.tok"  1 0 1 0 "str:test" ""        ""        "$ONE_ACCOUNT" 1234 9000 9010
+app_create_row "${ACCOUNT_1}" "programs/one.teal.tok"      "programs/zero.teal.tok" 1 0 1 0 "str:test" 5555,6666 1000,2000 "$NO_ACCOUNT"  1234 9000 9010
+app_create_row "${ACCOUNT_1}" "programs/one.teal.tok"      "programs/zero.teal.tok" 1 0 1 0 "str:test" 5555,6666 3000      "$NO_ACCOUNT"  1234 9000 9010
 
-app_update_row 123 "${ACCOUNT_1}" "programs/one.teal.tok" "programs/zero.teal.tok" "str:test" 5555,6666 "" "$NO_ACCOUNT" 1234 9000 9010
-app_update_row 456 "${ACCOUNT_1}" "programs/zero.teal.tok" "programs/loccheck.teal.tok" "str:test" "" "" "$ONE_ACCOUNT" 1234 9000 9010
+app_update_row 456 "${ACCOUNT_1}" "programs/zero.teal.tok" "programs/loccheck.teal.tok" "str:test" ""        ""        "$ONE_ACCOUNT" 1234 9000 9010
 app_update_row 456 "${ACCOUNT_1}" "programs/zero.teal.tok" "programs/loccheck.teal.tok" "str:test" 5555,6666 1000,2000 "$ONE_ACCOUNT" 1234 9000 9010
-app_update_row 456 "${ACCOUNT_1}" "programs/zero.teal.tok" "programs/loccheck.teal.tok" "str:test" 5555,6666 3000 "$TWO_ACCOUNT" 1234 9000 9010
+app_update_row 456 "${ACCOUNT_1}" "programs/zero.teal.tok" "programs/loccheck.teal.tok" "str:test" 5555,6666 3000      "$TWO_ACCOUNT" 1234 9000 9010
 
 app_row call "${ACCOUNT_1}" 100 "str:test" 5555,6666 "" "$TWO_ACCOUNTS" 1234 9000 9010
 app_row call "${ACCOUNT_1}" 100 "str:test" "" "" "$NO_ACCOUNTS" 1234 9000 9010
