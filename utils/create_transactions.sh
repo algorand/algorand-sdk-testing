@@ -3,13 +3,14 @@
 # Create cucumber example tables for app transactions
 #
 # Must have an applications-enabled version of goal on the path, and any running node.
+#
+# hint: pipe output into 'column -t' to almost get the column alignmnet correct
 
 
 # this is mandatory, 'goal app' currently only supports looking up fee/first-valid/last-valid
-DATA_DIR="/home/will/algorand/networks/applications-test/Node"
+DATA_DIR="/home/will/algorand/networks/test/Node"
 ACCOUNT_1=BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4
 ACCOUNT_MNEMONIC="awful drop leaf tennis indoor begin mandate discover uncle seven only coil atom any hospital uncover make any climb actor armed measure need above hundred"
-
 
 NO_ACCOUNTS=
 ONE_ACCOUNT="AAZFG7YLUHOQ73J7UR7TPJA634OIDL5GIEURTW2QXN7VBRI7BDZCVN6QTI"
@@ -31,8 +32,7 @@ while true; do
 done
 
 header() {
-  echo "Examples:"
-  echo "  | operation | application-id | sender | approval-prog-file | clear-prog-file | global-bytes | global-ints | local-bytes | local-ints | app-args | foreign-apps | app-accounts | fee | first-valid | last-valid | genesis-hash | golden |"
+  echo "  | operation | application-id | sender | approval-prog-file | clear-prog-file | global-bytes | global-ints | local-bytes | local-ints | app-args | foreign-apps | foreign-assets | app-accounts | fee | first-valid | last-valid | genesis-hash | golden |"
 }
 
 app_row() {
@@ -41,11 +41,12 @@ app_row() {
     --app-id "$3" \
     --app-arg "$4" \
     --foreign-app "${5}" \
-    --app-account "${6}" \
-    --fee "$7" \
-    --firstvalid "${8}" \
-    --lastvalid "${9}" \
-    --note "${10}" \
+    --foreign-asset "${6}" \
+    --app-account "${7}" \
+    --fee "${8}" \
+    --firstvalid "${9}" \
+    --lastvalid "${10}" \
+    --note "" \
     -o tmp.txn \
     -d "${DATA_DIR}"
 
@@ -53,7 +54,7 @@ app_row() {
   GOLDEN=$(base64 -w 0 < tmp.stxn)
   rm tmp.txn tmp.stxn
 
-  echo "  | $1        | $3             | $2     |                    |                 | 0            | 0           | 0           | 0          | $4       | $5           | $6           | $7  | $8          | $9         | genesis-hash-here | ${GOLDEN} |"
+  echo "  | $1        | $3             | $2     |                    |                 | 0            | 0           | 0           | 0          | $4       | $5           | $6           | $7  | $8          | $9         | ${10}  | genesis-hash-here | ${GOLDEN} |"
 
   unset GOLDEN
 }
@@ -69,11 +70,12 @@ app_create_row() {
     --local-ints "$7" \
     --app-arg "$8" \
     --foreign-app "${9}" \
-    --app-account "${10}" \
-    --fee "${11}" \
-    --firstvalid "${12}" \
-    --lastvalid "${13}" \
-    --note "${14}" \
+    --foreign-asset "${10}" \
+    --app-account "${11}" \
+    --fee "${12}" \
+    --firstvalid "${13}" \
+    --lastvalid "${14}" \
+    --note "" \
     -o tmp.txn \
     -d "${DATA_DIR}"
 
@@ -81,13 +83,12 @@ app_create_row() {
   GOLDEN=$(base64 -w 0 < tmp.stxn)
   rm tmp.txn tmp.stxn
 
-  echo " | create | 0 | $1 | $2 | $3 | $4 | $5 | $6 | $7 | $8 | $9 | ${10} | ${11} | ${12} | ${13} | genesis-hash-here | ${GOLDEN} |"
+  echo " | create | 0 | $1 | $2 | $3 | $4 | $5 | $6 | $7 | $8 | $9 | ${10} | ${11} | ${12} | ${13} | ${14} | genesis-hash-here | ${GOLDEN} |"
 
   unset GOLDEN
 }
 
 app_update_row() {
-  echo "Accounts: $7"
   goal app update \
     --app-id "$1" \
     --from "$2" \
@@ -95,11 +96,12 @@ app_update_row() {
     --clear-prog-raw "$4" \
     --app-arg "$5" \
     --foreign-app "${6}" \
-    --app-account "${7}" \
-    --fee "${8}" \
-    --firstvalid "${9}" \
-    --lastvalid "${10}" \
-    --note "${11}" \
+    --foreign-asset "${7}" \
+    --app-account "${8}" \
+    --fee "${9}" \
+    --firstvalid "${10}" \
+    --lastvalid "${11}" \
+    --note "" \
     -o tmp.txn \
     -d "${DATA_DIR}"
 
@@ -107,29 +109,42 @@ app_update_row() {
   GOLDEN=$(base64 -w 0 < tmp.stxn)
   rm tmp.txn tmp.stxn
 
-  echo " | update | $1 | $2 | $3 | $4 | 0  | 0  | 0  | 0  | $5 | $6 | ${7} | ${8} | ${9} | ${10} | genesis-hash-here | ${GOLDEN} |"
+  echo " | update | $1 | $2 | $3 | $4 | 0  | 0  | 0  | 0  | $5 | $6 | ${7} | ${8} | ${9} | ${10} | ${11} | genesis-hash-here | ${GOLDEN} |"
 
   unset GOLDEN
 }
 
 cd programs
-goal clerk compile *teal
+goal clerk compile *teal > /dev/null
 cd ..
 
+echo "Examples:"
 header
 
-app_create_row "${ACCOUNT_1}" "programs/loccheck.teal.tok" "programs/one.teal.tok" 1 0 1 0 "str:test" 5555,6666 "$NO_ACCOUNT" 1234 9000 9010 ""
-app_create_row "${ACCOUNT_1}" "programs/zero.teal.tok" "programs/one.teal.tok" 1 0 1 0 "str:test" "" "$ONE_ACCOUNT" 1234 9000 9010 ""
-app_update_row 123 "${ACCOUNT_1}" "programs/one.teal.tok" "programs/zero.teal.tok" "str:test" 5555,6666 "$NO_ACCOUNT" 1234 9000 9010 ""
-app_update_row 456 "${ACCOUNT_1}" "programs/zero.teal.tok" "programs/loccheck.teal.tok" "str:test" "" "$ONE_ACCOUNT" 1234 9000 9010 ""
+app_create_row "${ACCOUNT_1}" "programs/loccheck.teal.tok" "programs/one.teal.tok" 1 0 1 0 "str:test" 5555,6666 "" "$NO_ACCOUNT" 1234 9000 9010
+app_create_row "${ACCOUNT_1}" "programs/zero.teal.tok" "programs/one.teal.tok" 1 0 1 0 "str:test" "" "" "$ONE_ACCOUNT" 1234 9000 9010
 
-app_row call "${ACCOUNT_1}" 100 "str:test" 5555,6666 "$TWO_ACCOUNTS" 1234 9000 9010 ""
-app_row call "${ACCOUNT_1}" 100 "str:test" "" "$NO_ACCOUNTS" 1234 9000 9010 ""
-app_row optin "${ACCOUNT_1}" 100 "str:test" 5555,6666 "$TWO_ACCOUNTS" 1234 9000 9010 ""
-app_row optin "${ACCOUNT_1}" 100 "str:test" "" "$NO_ACCOUNTS" 1234 9000 9010 ""
-app_row clear "${ACCOUNT_1}" 100 "str:test" 5555,6666 "$TWO_ACCOUNTS" 1234 9000 9010 ""
-app_row clear "${ACCOUNT_1}" 100 "str:test" "" "$NO_ACCOUNTS" 1234 9000 9010 ""
-app_row closeout "${ACCOUNT_1}" 100 "str:test" 5555,6666 "$TWO_ACCOUNTS" 1234 9000 9010 ""
-app_row closeout "${ACCOUNT_1}" 100 "str:test" "" "$NO_ACCOUNTS" 1234 9000 9010 ""
-app_row delete "${ACCOUNT_1}" 100 "str:test" 5555,6666 "$TWO_ACCOUNTS" 1234 9000 9010 ""
-app_row delete "${ACCOUNT_1}" 100 "str:test" "" "$NO_ACCOUNTS" 1234 9000 9010 ""
+app_update_row 123 "${ACCOUNT_1}" "programs/one.teal.tok" "programs/zero.teal.tok" "str:test" 5555,6666 "" "$NO_ACCOUNT" 1234 9000 9010
+app_update_row 456 "${ACCOUNT_1}" "programs/zero.teal.tok" "programs/loccheck.teal.tok" "str:test" "" "" "$ONE_ACCOUNT" 1234 9000 9010
+app_update_row 456 "${ACCOUNT_1}" "programs/zero.teal.tok" "programs/loccheck.teal.tok" "str:test" 5555,6666 1000,2000 "$ONE_ACCOUNT" 1234 9000 9010
+app_update_row 456 "${ACCOUNT_1}" "programs/zero.teal.tok" "programs/loccheck.teal.tok" "str:test" 5555,6666 3000 "$TWO_ACCOUNT" 1234 9000 9010
+
+app_row call "${ACCOUNT_1}" 100 "str:test" 5555,6666 "" "$TWO_ACCOUNTS" 1234 9000 9010
+app_row call "${ACCOUNT_1}" 100 "str:test" "" "" "$NO_ACCOUNTS" 1234 9000 9010
+app_row call "${ACCOUNT_1}" 100 "str:test" 5555,6666 7777,8888 "$TWO_ACCOUNTS" 1234 9000 9010
+
+app_row optin "${ACCOUNT_1}" 100 "str:test" 5555,6666 "" "$TWO_ACCOUNTS" 1234 9000 9010
+app_row optin "${ACCOUNT_1}" 100 "str:test" "" "" "$NO_ACCOUNTS" 1234 9000 9010
+app_row optin "${ACCOUNT_1}" 100 "str:test" 5555,6666 7777,8888 "$TWO_ACCOUNTS" 1234 9000 9010
+
+app_row clear "${ACCOUNT_1}" 100 "str:test" 5555,6666 "" "$TWO_ACCOUNTS" 1234 9000 9010
+app_row clear "${ACCOUNT_1}" 100 "str:test" "" "" "$NO_ACCOUNTS" 1234 9000 9010
+app_row clear "${ACCOUNT_1}" 100 "str:test" 5555,6666 7777,8888 "$TWO_ACCOUNTS" 1234 9000 9010
+
+app_row closeout "${ACCOUNT_1}" 100 "str:test" 5555,6666 "" "$TWO_ACCOUNTS" 1234 9000 9010
+app_row closeout "${ACCOUNT_1}" 100 "str:test" "" "" "$NO_ACCOUNTS" 1234 9000 9010
+app_row closeout "${ACCOUNT_1}" 100 "str:test" 5555,6666 7777,8888 "$TWO_ACCOUNTS" 1234 9000 9010
+
+app_row delete "${ACCOUNT_1}" 100 "str:test" 5555,6666 "" "$TWO_ACCOUNTS" 1234 9000 9010
+app_row delete "${ACCOUNT_1}" 100 "str:test" "" "" "$NO_ACCOUNTS" 1234 9000 9010
+app_row delete "${ACCOUNT_1}" 100 "str:test" 5555,6666 7777,8888 "$TWO_ACCOUNTS" 1234 9000 9010
