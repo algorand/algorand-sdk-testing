@@ -5,6 +5,7 @@
 # Must have an applications-enabled version of goal on the path, and any running node.
 #
 # hint: pipe output into 'column -t' to almost get the column alignmnet correct
+#       even better might be to pipe it into 'column -t -s\|' and to add the bar back in
 
 
 # this is mandatory, 'goal app' currently only supports looking up fee/first-valid/last-valid
