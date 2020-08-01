@@ -9,5 +9,5 @@ docker-compose down
 containers=$(docker ps -a -f name="sdk-harness" -q)
 if [ ! -z "$containers" ]; then
   docker kill $containers || true
-  #docker rm $containers
+  docker rm $containers || true
 fi
