@@ -37,6 +37,7 @@ Feature: v2 REST Client Responses
 
     @unit.responses.messagepack
     Examples:
+      | jsonfile                                                | status | client  | endpoint                        |
       | algod_applications_PendingTransactionResponse_0.base64  | 200    | algod   | PendingTransactionInformation   |
       | algod_applications_PendingTransactionResponse_1.base64  | 200    | algod   | PendingTransactionInformation   |
       | algod_applications_PendingTransactionsResponse_0.base64 | 200    | algod   | GetPendingTransactions          |
