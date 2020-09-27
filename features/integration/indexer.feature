@@ -288,19 +288,6 @@ Feature: Indexer Integration Tests
       | 1       | 22        | 42  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
       | 1       | 30        | 49  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
 
-
-  @indexer
-  Scenario Outline: /transactions?max-round=<max-round>
-    When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, <max-round>, 0, "", "", 0, 0, "", "", "" and token ""
-    Then there are <num> transactions in the response, the first is "<txid>".
-    And Every transaction has round <= <max-round>
-
-    Examples:
-      | indexer | max-round | num | txid                                                 |
-      | 1       | 10        | 26  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
-      | 1       | 22        | 42  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
-      | 1       | 30        | 49  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
-
   @indexer
   Scenario Outline: /transactions?asset-id=<asset-id>
     When I use <indexer> to search for transactions with 0, "", "", "", "", 0, 0, 0, <asset-id>, "", "", 0, 0, "", "", "" and token ""
