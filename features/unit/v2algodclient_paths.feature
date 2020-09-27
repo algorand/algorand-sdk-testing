@@ -13,7 +13,7 @@ Feature: Algod REST API v2 Paths
       |/v2/transactions/pending/5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ?format=msgpack | 5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ| msgpack |
 
   @unit.algod
-  Scenario Outline: Pending Transaction Information
+  Scenario Outline: Pending Transaction Information2
     When we make a Pending Transaction Information with max <max> and format "<format>"
     Then expect the path used to be "<path>"
     Examples:
