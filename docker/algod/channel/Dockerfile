@@ -1,4 +1,4 @@
-FROM ubuntu:19.10
+FROM ubuntu:20.10
 
 ARG CHANNEL=nightly
 ENV BIN_DIR="$HOME/node"
