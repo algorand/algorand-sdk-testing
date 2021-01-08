@@ -104,7 +104,7 @@ services:
     environment:
       TYPE: "snapshot"
       SNAPSHOT_FILE: /tmp/dataset1.tar.bz2
-      CONNECTION_STRING: "host=indexer-db port=5432 user=algorand password=harness dbname=dataset1-2 sslmode=disable"
+      CONNECTION_STRING: "host=indexer-db port=5432 user=algorand password=harness dbname=dataset1_2 sslmode=disable"
 
   # Create/Delete/Rewards Branch using dataset2
   indexer-23x-2:
@@ -125,7 +125,7 @@ services:
     environment:
       TYPE: "snapshot"
       SNAPSHOT_FILE: /tmp/dataset2.tar.bz2
-      CONNECTION_STRING: "host=indexer-db port=5432 user=algorand password=harness dbname=dataset2-2 sslmode=disable"
+      CONNECTION_STRING: "host=indexer-db port=5432 user=algorand password=harness dbname=dataset2_2 sslmode=disable"
 
   indexer-db:
     image: "postgres"
@@ -139,7 +139,7 @@ services:
     environment:
       POSTGRES_USER: algorand
       POSTGRES_PASSWORD: harness
-      POSTGRES_MULTIPLE_DATABASES: live, dataset1, dataset2, dataset1-2, dataset2-2
+      POSTGRES_MULTIPLE_DATABASES: live, dataset1, dataset2, dataset1_2, dataset2_2
 
 networks:
   sdk-harness:
