@@ -85,10 +85,10 @@ services:
       SNAPSHOT_FILE: /tmp/dataset2.tar.bz2
       CONNECTION_STRING: "host=indexer-db port=5432 user=algorand password=harness dbname=dataset2 sslmode=disable"
 
-  # Create/Delete/Rewards Branch using dataset2
-  indexer-23x-2:
-    image: "sdk-harness-indexer-23x"
-    container_name: sdk-harness-indexer-23x
+  # Create/Delete/Rewards Branch using dataset1
+  indexer-23x-1:
+    image: "sdk-harness-indexer-23x-1"
+    container_name: sdk-harness-indexer-23x-1
     build:
       context: .
       dockerfile: ./docker/indexer/Dockerfile
@@ -103,8 +103,29 @@ services:
       - sdk-harness
     environment:
       TYPE: "snapshot"
+      SNAPSHOT_FILE: /tmp/dataset1.tar.bz2
+      CONNECTION_STRING: "host=indexer-db port=5432 user=algorand password=harness dbname=dataset1-2 sslmode=disable"
+
+  # Create/Delete/Rewards Branch using dataset2
+  indexer-23x-2:
+    image: "sdk-harness-indexer-23x-2"
+    container_name: sdk-harness-indexer-23x-2
+    build:
+      context: .
+      dockerfile: ./docker/indexer/Dockerfile
+      args:
+        URL: "https://github.com/algorand/indexer"
+        BRANCH: "master"
+        SHA: "a849ec0c8b7c6683a9518ac28005205bf11a7e59"
+    ports:
+      - 59996:8980
+    restart: unless-stopped
+    networks:
+      - sdk-harness
+    environment:
+      TYPE: "snapshot"
       SNAPSHOT_FILE: /tmp/dataset2.tar.bz2
-      CONNECTION_STRING: "host=indexer-db port=5432 user=algorand password=harness dbname=dataset2 sslmode=disable"
+      CONNECTION_STRING: "host=indexer-db port=5432 user=algorand password=harness dbname=dataset2-2 sslmode=disable"
 
   indexer-db:
     image: "postgres"
@@ -118,7 +139,7 @@ services:
     environment:
       POSTGRES_USER: algorand
       POSTGRES_PASSWORD: harness
-      POSTGRES_MULTIPLE_DATABASES: live, dataset1, dataset2
+      POSTGRES_MULTIPLE_DATABASES: live, dataset1, dataset2, dataset1-2, dataset2-2
 
 networks:
   sdk-harness:
