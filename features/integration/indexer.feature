@@ -7,6 +7,8 @@ Feature: Indexer Integration Tests
   Background:
     Given indexer client 1 at "localhost" port 59999 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     Given indexer client 2 at "localhost" port 59998 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    Given indexer client 3 at "localhost" port 59997 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    Given indexer client 4 at "localhost" port 59996 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
   @indexer
   Scenario Outline: /health
@@ -116,6 +118,11 @@ Feature: Indexer Integration Tests
       | 1       | 9        | 0           | 0           | 1     | 1            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
       | 1       | 9        | 68663000    | 0           | 0     | 1            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
       | 1       | 9        | 0           | 68663001    | 0     | 1            | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | false     | 68663000     |
+      # these pick up deleted asset balances in dataset 1 + 2.3.x.
+      #| 3       | 9        | 0           | 0           | 0     | 2            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
+      #| 3       | 9        | 0           | 0           | 1     | 1            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
+      #| 3       | 9        | 0           | 0           | 1     | 1            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
+      #| 3       | 9        | 0           | 68663001    | 0     | 1            | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | false     | 68663000     |
 
 
   @indexer
@@ -127,6 +134,8 @@ Feature: Indexer Integration Tests
     Examples:
       | indexer | asset-id | currency-gt | currency-lt | limit | num-accounts | account                                                    | is-frozen | amount   |
       | 1       | 9        | 0           | 0           | 1     | 1            | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | false     | 68663000 |
+      # this picks up a deleted asset balance
+      #| 3       | 9        | 1           | 0           | 1     | 1            | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | false     | 68663000 |
 
     #####################
 
@@ -148,6 +157,8 @@ Feature: Indexer Integration Tests
       | 1       | 9        | 0     | 68663000    | 0           | 1   | 0               | 0            | 0       | 999899126000    | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 999899126000 | Offline | sig  |
       | 1       | 9        | 0     | 0           | 68663001    | 1   | 0               | 0            | 0       | 998000          | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | 998000       | Offline | lsig |
       | 1       | 0        | 0     | 798999      | 799001      | 1   | 0               | 0            | 0       | 799000          | RRHDAJKO5HQBLHPCVK6K7U54LENDIP2JKM3RNRYX2G254VUXBRQD35CK4E | 799000       | Offline | msig |
+      # this picks up a deleted account
+      | 3       | 9        | 0     | 1           | 68663001    | 1   | 0               | 0            | 0       | 998000          | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | 998000       | Offline | lsig |
 
   #
   # /accounts - online
