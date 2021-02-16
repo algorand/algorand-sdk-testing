@@ -17,3 +17,4 @@ int 1
 byte "byteskey"
 byte b64 dGVzdA==
 app_local_put
+int 1
