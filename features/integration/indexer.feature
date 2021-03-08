@@ -7,7 +7,9 @@ Feature: Indexer Integration Tests
   Background:
     Given indexer client 1 at "localhost" port 59999 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     Given indexer client 2 at "localhost" port 59998 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    # Indexer 2.3.x Dataset 1
     Given indexer client 3 at "localhost" port 59997 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    # Indexer 2.3.x Dataset 2
     Given indexer client 4 at "localhost" port 59996 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
   @indexer
@@ -448,6 +450,13 @@ Feature: Indexer Integration Tests
       | 2       | 70             | 0     |       | v2indexerclient_responsejsons/indexer_v2_app_search_70.json      |
       | 2       | 0              | 3     |       | v2indexerclient_responsejsons/indexer_v2_app_search_limit_3.json |
       | 2       | 0              | 1     | 25    | v2indexerclient_responsejsons/indexer_v2_app_search_next_25.json |
+    @231
+    Examples:
+      | indexer | application-id | limit | token | jsonfile                                                         |
+      | 2       | 22             | 0     |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_22.json      |
+      | 2       | 70             | 0     |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_70.json      |
+      | 2       | 0              | 3     |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_limit_3.json |
+      | 2       | 0              | 1     | 25    | v23x_indexerclient_responsejsons/indexer_v2_app_search_next_25.json |
 
   @indexer.applications
   Scenario Outline: /applications/<application-id>
@@ -458,6 +467,11 @@ Feature: Indexer Integration Tests
       | indexer | application-id |  jsonfile                                                    |
       | 2       | 22             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_22.json |
       | 2       | 70             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_70.json |
+    @231
+    Examples:
+      | indexer | application-id |  jsonfile                                                    |
+      | 2       | 22             |  v23x_indexerclient_responsejsons/indexer_v2_app_lookup_22.json |
+      | 2       | 70             |  v23x_indexerclient_responsejsons/indexer_v2_app_lookup_70.json |
 
   #
   # /transactions
@@ -472,6 +486,11 @@ Feature: Indexer Integration Tests
       | indexer | limit | application-id | jsonfile                                                             |
       | 2       | 0     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70.json       |
       | 2       | 3     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70_lim_3.json |
+    @231
+    Examples:
+      | indexer | limit | application-id | jsonfile                                                             |
+      | 2       | 0     | 70             | v23x_indexerclient_responsejsons/indexer_v2_tx_search_app_70.json       |
+      | 2       | 3     | 70             | v23x_indexerclient_responsejsons/indexer_v2_tx_search_app_70_lim_3.json |
 
   @indexer.applications
   Scenario Outline: /accounts?asset-id=<asset-id>&limit=<limit>&gt=<currency-gt>&lt=<currency-lt>&auth-addr=<auth-addr>&app-id=<application-id>
@@ -481,6 +500,11 @@ Feature: Indexer Integration Tests
     Examples:
       | indexer | application-id | jsonfile                                                         |
       | 2       | 70             | v2indexerclient_responsejsons/indexer_v2_acct_search_app_70.json |
+    @231
+    Examples:
+      | indexer | application-id | jsonfile                                                         |
+      | 2       | 70             | v23x_indexerclient_responsejsons/indexer_v2_acct_search_app_70.json |
+
 
   # Paging tests:
   #  - assets (our test dataset only has 1 asset)
