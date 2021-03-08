@@ -453,7 +453,7 @@ Feature: Indexer Integration Tests
 
   @indexer.231
   Scenario Outline: /applications?id=<application-id>&limit=<limit>&next=<token>
-    When I use <indexer> to search for applications with <limit>, <application-id>, <include-all> and token "<token>"
+    When I use <indexer> to search for applications with <limit>, <application-id>, "<include-all>" and token "<token>"
     Then the parsed response should equal "<jsonfile>".
     Examples:
       | indexer | application-id | limit | include-all | token | jsonfile                                                                |
@@ -478,7 +478,7 @@ Feature: Indexer Integration Tests
 
   @indexer.231
   Scenario Outline: /applications/<application-id>
-    When I use <indexer> to lookup application with <application-id> and <include-all>
+    When I use <indexer> to lookup application with <application-id> and "<include-all>"
     Then the parsed response should equal "<jsonfile>".
     Examples:
       | indexer | application-id | include-all | jsonfile                                                           |
@@ -514,7 +514,7 @@ Feature: Indexer Integration Tests
 
   @indexer.231
   Scenario Outline: /accounts?asset-id=<asset-id>&limit=<limit>&gt=<currency-gt>&lt=<currency-lt>&auth-addr=<auth-addr>&app-id=<application-id>
-    When I use <indexer> to search for an account with 0, 0, 0, 0, "", <application-id>, <include-all> and token ""
+    When I use <indexer> to search for an account with 0, 0, 0, 0, "", <application-id>, "<include-all>" and token ""
     Then the parsed response should equal "<jsonfile>".
     Examples:
       | indexer | application-id | include-all | jsonfile                                                                |
