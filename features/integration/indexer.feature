@@ -450,13 +450,21 @@ Feature: Indexer Integration Tests
       | 2       | 70             | 0     |       | v2indexerclient_responsejsons/indexer_v2_app_search_70.json      |
       | 2       | 0              | 3     |       | v2indexerclient_responsejsons/indexer_v2_app_search_limit_3.json |
       | 2       | 0              | 1     | 25    | v2indexerclient_responsejsons/indexer_v2_app_search_next_25.json |
-    @231
+
+  @indexer.231
+  Scenario Outline: /applications?id=<application-id>&limit=<limit>&next=<token>
+    When I use <indexer> to search for applications with <limit>, <application-id>, <include-all> and token "<token>"
+    Then the parsed response should equal "<jsonfile>".
     Examples:
-      | indexer | application-id | limit | token | jsonfile                                                         |
-      | 4       | 22             | 0     |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_22.json      |
-      | 4       | 70             | 0     |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_70.json      |
-      | 4       | 0              | 3     |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_limit_3.json |
-      | 4       | 0              | 1     | 25    | v23x_indexerclient_responsejsons/indexer_v2_app_search_next_25.json |
+      | indexer | application-id | limit | include-all | token | jsonfile                                                                |
+      | 4       | 22             | 0     | false       |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_22.json          |
+      | 4       | 70             | 0     | false       |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_70.json          |
+      | 4       | 0              | 3     | false       |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_limit_3.json     |
+      | 4       | 0              | 1     | false       | 25    | v23x_indexerclient_responsejsons/indexer_v2_app_search_next_25.json     |
+      | 4       | 22             | 0     | true        |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_22_all.json      |
+      | 4       | 70             | 0     | true        |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_70_all.json      |
+      | 4       | 0              | 3     | true        |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_limit_3_all.json |
+      | 4       | 0              | 1     | true        | 25    | v23x_indexerclient_responsejsons/indexer_v2_app_search_next_25_all.json |
 
   @indexer.applications
   Scenario Outline: /applications/<application-id>
@@ -467,11 +475,17 @@ Feature: Indexer Integration Tests
       | indexer | application-id |  jsonfile                                                    |
       | 2       | 22             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_22.json |
       | 2       | 70             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_70.json |
-    @231
+
+  @indexer.231
+  Scenario Outline: /applications/<application-id>
+    When I use <indexer> to lookup application with <application-id> and <include-all>
+    Then the parsed response should equal "<jsonfile>".
     Examples:
-      | indexer | application-id |  jsonfile                                                    |
-      | 4       | 22             |  v23x_indexerclient_responsejsons/indexer_v2_app_lookup_22.json |
-      | 4       | 70             |  v23x_indexerclient_responsejsons/indexer_v2_app_lookup_70.json |
+      | indexer | application-id | include-all | jsonfile                                                           |
+      | 4       | 22             | false       | v23x_indexerclient_responsejsons/indexer_v2_app_lookup_22.json     |
+      | 4       | 70             | false       | v23x_indexerclient_responsejsons/indexer_v2_app_lookup_70.json     |
+      | 4       | 22             | true        | v23x_indexerclient_responsejsons/indexer_v2_app_lookup_22_all.json |
+      | 4       | 70             | true        | v23x_indexerclient_responsejsons/indexer_v2_app_lookup_70_all.json |
 
   #
   # /transactions
@@ -483,12 +497,9 @@ Feature: Indexer Integration Tests
     Then the parsed response should equal "<jsonfile>".
 
     Examples:
-      | indexer | limit | application-id | jsonfile                                                             |
-      | 2       | 0     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70.json       |
-      | 2       | 3     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70_lim_3.json |
-    @231
-    Examples:
-      | indexer | limit | application-id | jsonfile                                                             |
+      | indexer | limit | application-id | jsonfile                                                                |
+      | 2       | 0     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70.json          |
+      | 2       | 3     | 70             | v2indexerclient_responsejsons/indexer_v2_tx_search_app_70_lim_3.json    |
       | 4       | 0     | 70             | v23x_indexerclient_responsejsons/indexer_v2_tx_search_app_70.json       |
       | 4       | 3     | 70             | v23x_indexerclient_responsejsons/indexer_v2_tx_search_app_70_lim_3.json |
 
@@ -500,10 +511,15 @@ Feature: Indexer Integration Tests
     Examples:
       | indexer | application-id | jsonfile                                                         |
       | 2       | 70             | v2indexerclient_responsejsons/indexer_v2_acct_search_app_70.json |
-    @231
+
+  @indexer.231
+  Scenario Outline: /accounts?asset-id=<asset-id>&limit=<limit>&gt=<currency-gt>&lt=<currency-lt>&auth-addr=<auth-addr>&app-id=<application-id>
+    When I use <indexer> to search for an account with 0, 0, 0, 0, "", <application-id>, <include-all> and token ""
+    Then the parsed response should equal "<jsonfile>".
     Examples:
-      | indexer | application-id | jsonfile                                                         |
-      | 4       | 70             | v23x_indexerclient_responsejsons/indexer_v2_acct_search_app_70.json |
+      | indexer | application-id | include-all | jsonfile                                                                |
+      | 4       | 70             | false       | v23x_indexerclient_responsejsons/indexer_v2_acct_search_app_70.json     |
+      | 4       | 70             | true        | v23x_indexerclient_responsejsons/indexer_v2_acct_search_app_70_all.json |
 
 
   # Paging tests:
