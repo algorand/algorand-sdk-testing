@@ -453,10 +453,10 @@ Feature: Indexer Integration Tests
     @231
     Examples:
       | indexer | application-id | limit | token | jsonfile                                                         |
-      | 2       | 22             | 0     |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_22.json      |
-      | 2       | 70             | 0     |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_70.json      |
-      | 2       | 0              | 3     |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_limit_3.json |
-      | 2       | 0              | 1     | 25    | v23x_indexerclient_responsejsons/indexer_v2_app_search_next_25.json |
+      | 4       | 22             | 0     |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_22.json      |
+      | 4       | 70             | 0     |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_70.json      |
+      | 4       | 0              | 3     |       | v23x_indexerclient_responsejsons/indexer_v2_app_search_limit_3.json |
+      | 4       | 0              | 1     | 25    | v23x_indexerclient_responsejsons/indexer_v2_app_search_next_25.json |
 
   @indexer.applications
   Scenario Outline: /applications/<application-id>
@@ -470,8 +470,8 @@ Feature: Indexer Integration Tests
     @231
     Examples:
       | indexer | application-id |  jsonfile                                                    |
-      | 2       | 22             |  v23x_indexerclient_responsejsons/indexer_v2_app_lookup_22.json |
-      | 2       | 70             |  v23x_indexerclient_responsejsons/indexer_v2_app_lookup_70.json |
+      | 4       | 22             |  v23x_indexerclient_responsejsons/indexer_v2_app_lookup_22.json |
+      | 4       | 70             |  v23x_indexerclient_responsejsons/indexer_v2_app_lookup_70.json |
 
   #
   # /transactions
@@ -489,8 +489,8 @@ Feature: Indexer Integration Tests
     @231
     Examples:
       | indexer | limit | application-id | jsonfile                                                             |
-      | 2       | 0     | 70             | v23x_indexerclient_responsejsons/indexer_v2_tx_search_app_70.json       |
-      | 2       | 3     | 70             | v23x_indexerclient_responsejsons/indexer_v2_tx_search_app_70_lim_3.json |
+      | 4       | 0     | 70             | v23x_indexerclient_responsejsons/indexer_v2_tx_search_app_70.json       |
+      | 4       | 3     | 70             | v23x_indexerclient_responsejsons/indexer_v2_tx_search_app_70_lim_3.json |
 
   @indexer.applications
   Scenario Outline: /accounts?asset-id=<asset-id>&limit=<limit>&gt=<currency-gt>&lt=<currency-lt>&auth-addr=<auth-addr>&app-id=<application-id>
@@ -503,7 +503,7 @@ Feature: Indexer Integration Tests
     @231
     Examples:
       | indexer | application-id | jsonfile                                                         |
-      | 2       | 70             | v23x_indexerclient_responsejsons/indexer_v2_acct_search_app_70.json |
+      | 4       | 70             | v23x_indexerclient_responsejsons/indexer_v2_acct_search_app_70.json |
 
 
   # Paging tests:
