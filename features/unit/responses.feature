@@ -54,16 +54,33 @@ Feature: REST Client Responses
       | indexer_applications_TransactionsResponse_2.json        | generated_responses_231 | 200    | indexer | lookupAccountTransactions       |
       | indexer_applications_TransactionsResponse_2.json        | generated_responses_231 | 200    | indexer | lookupAssetTransactions         |
       | indexer_applications_TransactionsResponse_2.json        | generated_responses_231 | 200    | indexer | searchForTransactions           |
+      | algod_NodeStatusResponse_0.json                         | generated_responses_231 | 200    | algod   | GetStatus                       |
+      | algod_NodeStatusResponse_0.json                         | generated_responses_231 | 200    | algod   | WaitForBlock                    |
+      | algod_CompileResponse_0.json                            | generated_responses_231 | 200    | algod   | TealCompile                     |
+      | algod_DryrunResponse_0.json                             | generated_responses_231 | 200    | algod   | DryRun                          |
+      | algod_PostTransactionsResponse_0.json                   | generated_responses_231 | 200    | algod   | RawTransaction                  |
+      | algod_ProofResponse.json                                | generated_responses_231 | 200    | algod   | Proof                           |
+      | algod_SupplyResponse_0.json                             | generated_responses_231 | 200    | algod   | GetSupply                       |
+      | algod_TransactionParametersResponse_0.json              | generated_responses_231 | 200    | algod   | TransactionParams               |
 
     @unit.responses.messagepack
     Examples:
-      | jsonfile                                                | status | client  | endpoint                        |
-      | algod_applications_PendingTransactionResponse_0.base64  | 200    | algod   | PendingTransactionInformation   |
-      | algod_applications_PendingTransactionResponse_1.base64  | 200    | algod   | PendingTransactionInformation   |
-      | algod_applications_PendingTransactionsResponse_0.base64 | 200    | algod   | GetPendingTransactions          |
-      | algod_applications_PendingTransactionsResponse_1.base64 | 200    | algod   | GetPendingTransactions          |
-      | algod_applications_PendingTransactionsResponse_0.base64 | 200    | algod   | GetPendingTransactionsByAddress |
-      | algod_applications_PendingTransactionsResponse_1.base64 | 200    | algod   | GetPendingTransactionsByAddress |
+      | jsonfile                                                | response-folder     | status | client  | endpoint                        |
+      | algod_applications_PendingTransactionResponse_0.base64  | generated_responses | 200    | algod   | PendingTransactionInformation   |
+      | algod_applications_PendingTransactionResponse_1.base64  | generated_responses | 200    | algod   | PendingTransactionInformation   |
+      | algod_applications_PendingTransactionsResponse_0.base64 | generated_responses | 200    | algod   | GetPendingTransactions          |
+      | algod_applications_PendingTransactionsResponse_1.base64 | generated_responses | 200    | algod   | GetPendingTransactions          |
+      | algod_applications_PendingTransactionsResponse_0.base64 | generated_responses | 200    | algod   | GetPendingTransactionsByAddress |
+      | algod_applications_PendingTransactionsResponse_1.base64 | generated_responses | 200    | algod   | GetPendingTransactionsByAddress |
+
+    @unit.responses.messagepack.231
+    Examples:
+      | jsonfile                                   | response-folder         | status | client  | endpoint                        |
+      | algod_PendingTransactionResponse_0.base64  | generated_responses_231 | 200    | algod   | PendingTransactionInformation   |
+      | algod_PendingTransactionsResponse_0.base64 | generated_responses_231 | 200    | algod   | GetPendingTransactions          |
+      | algod_PendingTransactionsResponse_1.base64 | generated_responses_231 | 200    | algod   | GetPendingTransactions          |
+      | algod_PendingTransactionsResponse_0.base64 | generated_responses_231 | 200    | algod   | GetPendingTransactionsByAddress |
+      | algod_PendingTransactionsResponse_1.base64 | generated_responses_231 | 200    | algod   | GetPendingTransactionsByAddress |
       # -- These are missing proper response objects, so they were not generated.
       # GetBlock
       # health check
