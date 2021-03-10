@@ -94,8 +94,9 @@ services:
       dockerfile: ./docker/indexer/Dockerfile
       args:
         URL: "https://github.com/algorand/indexer"
-        BRANCH: "master"
-        SHA: "a849ec0c8b7c6683a9518ac28005205bf11a7e59"
+        # TODO: Set back to master when include-all makes it to master.
+        BRANCH: "develop"
+        SHA: "cf93e3acacdf6fde9afd0b6b24fa0fde723ff43b"
     ports:
       - 59997:8980
     restart: unless-stopped
@@ -115,8 +116,9 @@ services:
       dockerfile: ./docker/indexer/Dockerfile
       args:
         URL: "https://github.com/algorand/indexer"
-        BRANCH: "master"
-        SHA: "a849ec0c8b7c6683a9518ac28005205bf11a7e59"
+        # TODO: Set back to master + SHA when include-all makes it to master.
+        BRANCH: "develop"
+        SHA: "cf93e3acacdf6fde9afd0b6b24fa0fde723ff43b"
     ports:
       - 59996:8980
     restart: unless-stopped
