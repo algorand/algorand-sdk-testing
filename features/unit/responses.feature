@@ -64,6 +64,7 @@ Feature: REST Client Responses
       | algod_TransactionParametersResponse_0.json              | generated_responses_231 | 200    | algod   | TransactionParams               |
 
     @unit.responses.genesis
+    Examples:
       | jsonfile                                                | response-folder         | status | client  | endpoint                        |
       | algod_GetGenesisResponse_0.json                         | generated_responses_231 | 200    | algod   | GetGenesis                     |
 
