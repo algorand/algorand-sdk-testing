@@ -38,6 +38,7 @@ We have different feature files for unit and integration tests. The unit tests s
 | @unit.tealsign                  | Test TEAL signature utilities. |
 | @indexer.231                    | REST Client Integration Tests for Indexer 2.3.1+ |
 | @unit.responses.231             | REST Client Unit Tests for Indexer 2.3.1+ |
+| @unit.responses.genesis         | REST Client Unit Tests for GetGenesis endpoint |
 | @unit.responses.messagepack.231 | REST Client MessagePack Unit Tests for Indexer 2.3.1+ |
 
 
