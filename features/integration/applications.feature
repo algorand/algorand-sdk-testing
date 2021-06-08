@@ -10,6 +10,9 @@ Feature: Applications
       # Make these tests 'standalone'.
       # This should create a new, random account and save the public/private key for future steps to use.
       Given I create a new transient account and fund it with 100000000 microalgos.
+      # Application create with extra pages should succeed with expected message. 
+      And I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/big_app_program.teal.tok", clear-program "programs/big_app_program.teal.tok", global-bytes <global-bytes>, global-ints 0, local-bytes <local-bytes>, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 3
+      And I sign and submit the transaction, saving the txid. If there is an error it is "logic eval error: pc=704 dynamic cost budget of 700 exceeded".
       # Create application
       # depends on the transient account, and also the application id.
       # Use suggested params
@@ -74,9 +77,6 @@ Feature: Applications
       And I wait for the transaction to be confirmed.
       # Verify that the data has been removed from the total schema and the app list.
       Then The transient account should have the created app "false" and total schema byte-slices 0 and uints 0, the application "<state-location>" state contains key "" with value ""
-      # Application create with extra pages should succeed with expected message. 
-      And I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/big_app_program.teal.tok", clear-program "programs/big_app_program.teal.tok", global-bytes <global-bytes>, global-ints 0, local-bytes <local-bytes>, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 3
-      And I sign and submit the transaction, saving the txid. If there is an error it is "logic eval error: pc=704 dynamic cost budget of 700 exceeded".
 
       Examples:
          | program                     | state-location | global-bytes | local-bytes |
