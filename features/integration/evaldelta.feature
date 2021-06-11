@@ -12,7 +12,7 @@ Feature: EvalDelta
   @applications.evaldelta
   Scenario Outline:Set '<arg>' in <state-location> state
       # Create app
-      Given I build an application transaction with the transient account, the current application, suggested params, operation "create_optin", approval-program "<program>", clear-program "programs/one.teal.tok", global-bytes <global-bytes>, global-ints <global-ints>, local-bytes <local-bytes>, local-ints <local-ints>, app-args "<arg>", foreign-apps "", foreign-assets "", app-accounts ""
+      Given I build an application transaction with the transient account, the current application, suggested params, operation "create_optin", approval-program "<program>", clear-program "programs/one.teal.tok", global-bytes <global-bytes>, global-ints <global-ints>, local-bytes <local-bytes>, local-ints <local-ints>, app-args "<arg>", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       Then the unconfirmed pending transaction by ID should have no apply data fields.
       And I wait for the transaction to be confirmed.
