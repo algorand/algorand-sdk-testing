@@ -7,10 +7,10 @@ Feature: Transaction fee test
   Scenario Outline: Fee Test
     When I build an application transaction with operation "<operation>", application-id <application-id>, sender "<sender>", approval-program "<approval-prog-file>", clear-program "<clear-prog-file>", global-bytes <global-bytes>, global-ints <global-ints>, local-bytes <local-bytes>, local-ints <local-ints>, app-args "<app-args>", foreign-apps "<foreign-apps>", foreign-assets "<foreign-assets>", app-accounts "<app-accounts>", fee <fee>, first-valid <first-valid>, last-valid <last-valid>, genesis-hash "<genesis-hash>", extra-pages <extra-pages>
     And sign the transaction
-    And fee field is in txn
+    Then fee field is in txn
     When I build an application transaction with operation "<operation>", application-id <application-id>, sender "<sender>", approval-program "<approval-prog-file>", clear-program "<clear-prog-file>", global-bytes <global-bytes>, global-ints <global-ints>, local-bytes <local-bytes>, local-ints <local-ints>, app-args "<app-args>", foreign-apps "<foreign-apps>", foreign-assets "<foreign-assets>", app-accounts "<app-accounts>", first-valid <first-valid>, last-valid <last-valid>, genesis-hash "<genesis-hash>", extra-pages <extra-pages>
     And sign the transaction
-    And fee field not in txn
+    Then fee field not in txn
 
     Examples:
       | operation | application-id | sender                                                     | approval-prog-file         | clear-prog-file            | global-bytes | global-ints | local-bytes | local-ints | app-args  | foreign-apps | foreign-assets | app-accounts                                                                                                          | fee  | first-valid | last-valid | genesis-hash      | golden                |extra-pages                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
