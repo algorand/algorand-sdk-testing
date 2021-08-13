@@ -6,7 +6,7 @@ ARG SHA=""
 
 RUN echo "Installing from source. ${URL} -- ${BRANCH} -- ${SHA}"
 
-RUN apk update && apk add --no-cache --update\
+RUN apk update && apk add --no-cache --update \
         alpine-sdk git bzip2 make bash libtool autoconf automake boost-dev musl-dev
 
 # Install indexer binaries.
