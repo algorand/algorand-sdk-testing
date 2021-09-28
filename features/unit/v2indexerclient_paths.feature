@@ -183,3 +183,13 @@ Feature: Indexer Client v2 Paths
     Examples:
       | path                             | application-id  |
       | /v2/applications/1234            | 1234            |
+
+  @unit.applications.logs
+  Scenario Outline: LookupApplicationLogsByID path
+    When we make a LookupApplicationLogsByID call with applicationID <application-id> limit <limit> minRound <minRound> maxRound <maxRound> nextToken "<nextToken>" sender "<senderAddr>" and txID "<txid>"
+    Then expect the path used to be "<path>"
+
+    Examples:
+      | path                                                                                                                                                                                                          | application-id  | limit | minRound | maxRound | nextToken | senderAddr                                                 | txid                                                 |
+      | /v2/applications/1234/logs                                                                                                                                                                                    | 1234            | 0     | 0        | 0        |           |                                                            |                                                      |
+      | /v2/applications/1234/logs?limit=4&min-round=100&max-round=120&next=TOKEN&sender-address=PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI&txid=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 1234            | 4     | 100      | 120      | TOKEN     | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A |
