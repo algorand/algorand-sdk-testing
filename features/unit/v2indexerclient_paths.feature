@@ -184,7 +184,7 @@ Feature: Indexer Client v2 Paths
       | path                             | application-id  |
       | /v2/applications/1234            | 1234            |
 
-  @unit.applications.logs
+  @unit.indexer.logs
   Scenario Outline: LookupApplicationLogsByID path
     When we make a LookupApplicationLogsByID call with applicationID <application-id> limit <limit> minRound <minRound> maxRound <maxRound> nextToken "<nextToken>" sender "<senderAddr>" and txID "<txid>"
     Then expect the path used to be "<path>"

@@ -31,6 +31,7 @@ We have different feature files for unit and integration tests. The unit tests s
 | @unit.dryrun                    | Dryrun endpoint added to Algod. |
 | @unit.indexer                   | Indexer REST API unit tests. |
 | @unit.indexer.rekey             | Rekey endpoints added to Algod and Indexer |
+| @unit.indexer.logs              | Application logs endpoints added Indexer |
 | @unit.offline                   | The first unit tests we wrote for cucumber. |
 | @unit.transactions              | Transaction golden tests. |
 | @unit.rekey                     | Rekey Transaction golden tests. |
