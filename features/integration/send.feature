@@ -33,7 +33,7 @@ Feature: Sending transactions
   @send.keyregtxn
   Scenario Outline: Sending key registration transactions
     Given default V2 key registration transaction "<type>"
-    And I get the private key
+    When I get the private key
     And I sign the transaction with the private key
     And I send the transaction
     Then the transaction should go through
@@ -42,4 +42,4 @@ Feature: Sending transactions
     | type |
     | online |
     | offline |
-    | nonparticipation|
+    | nonparticipation |
