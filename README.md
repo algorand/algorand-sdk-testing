@@ -33,7 +33,8 @@ We have different feature files for unit and integration tests. The unit tests s
 | @unit.indexer.rekey             | Rekey endpoints added to Algod and Indexer |
 | @unit.indexer.logs              | Application logs endpoints added to Indexer. |
 | @unit.offline                   | The first unit tests we wrote for cucumber. |
-| @unit.transactions              | Transaction golden tests. |
+| @unit.transactions              | Transaction encoding tests. |
+| @unit.transactions.keyreg       | Keyreg encoding tests. |
 | @unit.rekey                     | Rekey Transaction golden tests. |
 | @unit.responses                 | REST Client Response serialization tests. |
 | @unit.tealsign                  | Test TEAL signature utilities. |
