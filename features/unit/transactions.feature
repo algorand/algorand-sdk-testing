@@ -1,9 +1,9 @@
-@unit.transactions
 @unit
 Feature: Transaction encoding
   Background:
     Given a signing account with address "BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4" and mnemonic "awful drop leaf tennis indoor begin mandate discover uncle seven only coil atom any hospital uncover make any climb actor armed measure need above hundred"
 
+  @unit.transactions
   Scenario Outline: Application Transaction Tests (<operation>)
     When I build an application transaction with operation "<operation>", application-id <application-id>, sender "<sender>", approval-program "<approval-prog-file>", clear-program "<clear-prog-file>", global-bytes <global-bytes>, global-ints <global-ints>, local-bytes <local-bytes>, local-ints <local-ints>, app-args "<app-args>", foreign-apps "<foreign-apps>", foreign-assets "<foreign-assets>", app-accounts "<app-accounts>", fee <fee>, first-valid <first-valid>, last-valid <last-valid>, genesis-hash "<genesis-hash>", extra-pages <extra-pages>
     And sign the transaction
