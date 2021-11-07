@@ -1,0 +1,16 @@
+{
+    "name":"add",
+    "args":[
+        {
+            "name":"",
+            "type":"uint32"
+        },
+        {
+            "name":"",
+            "type":"uint32"
+        }
+    ],
+    "returns":{
+        "type":"uint32"
+    }
+}
