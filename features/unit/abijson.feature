@@ -54,3 +54,12 @@ Feature: AbiJson
       | methodsig                            | methodselector |
       | add(uint32,uint32)uint32             | 3e1e52bd       |
 
+  Scenario Outline: Serialize Interface into json 
+    When I create the Method object from "<methodsig>"
+    And I create an Interface object from the Method object with "<name>"
+    And I serialize the Interface object into json
+    Then the produced json should equal "<jsonfile>" loaded from "<directory>"
+
+    Examples:
+      | methodsig                | name      | jsonfile       | directory         |
+      | add(uint32,uint32)uint32 | interface | interface.json | abi_responsejsons |
