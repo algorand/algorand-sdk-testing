@@ -52,5 +52,5 @@ Feature: AbiJson
 
     Examples:
       | methodsig                            | methodselector |
-      | add(uint32,uint32)uint32             | 3e1e52bd"      |
+      | add(uint32,uint32)uint32             | 3e1e52bd       |
 
