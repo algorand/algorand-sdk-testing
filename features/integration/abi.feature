@@ -14,7 +14,7 @@ Feature: ABI Interaction
     And I wait for the transaction to be confirmed.
     And I remember the new application ID.
     # Create a pay transaction, create a TransactionSigner, and add it to the composer
-    When I build a payment transaction with sender "BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4", receiver "BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4", amount 100001.
+    When I build a payment transaction with sender "BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4", receiver "BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4", amount 100001
     And I remember the payment transaction.
     And I make a transaction signer for the signing account.
     And I remember the transaction signer.
@@ -27,7 +27,7 @@ Feature: ABI Interaction
     And I clone the composer.
     # Create a payment method call with an address argument, and add it to the composer
     And I build a method with signature "<method-signature>".
-    And I add a method call with the signing account, the current application, suggested params, operation "call", current signer, app-args "<app-args>".
+    And I add a method call with the signing account, the current application, suggested params, operation "call", current transaction signer, app-args "<app-args>".
     # Build the group in the composer
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
