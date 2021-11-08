@@ -1,5 +1,6 @@
 #pragma version 5
 intcblock 1 0
+bytecblock 0x151f7c75
 txn ApplicationID
 intc_1 // 0
 ==
@@ -28,7 +29,7 @@ txn OnCompletion
 intc_1 // NoOp
 ==
 txna ApplicationArgs 0
-pushbytes 0x2eb51c32 // 0x2eb51c32
+pushbytes 0x535a47ba // 0x535a47ba
 ==
 &&
 bnz main_l6
@@ -58,20 +59,22 @@ return
 sub0: // add
 store 1
 store 0
+bytec_0 // 0x151f7c75
 load 0
 btoi
 load 1
 btoi
 +
 itob
+concat
 log
 retsub
 sub1: // empty
-pushbytes 0x00000000 // 0x00000000
+bytec_0 // 0x151f7c75
 log
 retsub
 sub2: // payment
 store 2
-pushbytes 0x80 // 0x80
+pushbytes 0x151f7c7580 // 0x151f7c7580
 log
 retsub
