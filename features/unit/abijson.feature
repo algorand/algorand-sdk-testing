@@ -46,3 +46,11 @@ Feature: AbiJson
       | add(uint32,uint32)uint32             | 1        |
       | txcalls(pay,bool,pay,axfer,byte)void | 4        |
 
+  Scenario Outline: Check method selector from Method
+    When I create the Method object from "<methodsig>"
+    Then the method selector should be "<methodselector>"
+
+    Examples:
+      | methodsig                            | methodselector |
+      | add(uint32,uint32)uint32             | 3e1e52bd"      |
+
