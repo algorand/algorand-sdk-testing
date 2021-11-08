@@ -37,3 +37,12 @@ Feature: AbiJson
       | name  | methoddesc  | firstargtype | firstdesc   | secondargtype | seconddesc  | returntype | jsonfile                      | directory         |
       | add   | description | uint32       | description | uint32        | description | uint32     | addMethodWithDescription.json | abi_responsejsons |
 
+  Scenario Outline: Check txn count of Method
+    When I create the Method object from "<methodsig>"
+    Then the txn count should be <txncount>
+
+    Examples:
+      | methodsig                            | txncount |
+      | add(uint32,uint32)uint32             | 1        |
+      | txcalls(pay,bool,pay,axfer,byte)void | 4        |
+
