@@ -13,7 +13,7 @@ txn OnCompletion
 intc_1 // NoOp
 ==
 txna ApplicationArgs 0
-pushbytes 0x8aa3b61f // 0x8aa3b61f
+pushbytes 0xfe6bdf69 // 0xfe6bdf69
 ==
 &&
 bnz main_l8

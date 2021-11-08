@@ -22,7 +22,7 @@ Feature: ABI Interaction
     
     Examples:
       | app-args                                              | returns |
-      | [hex:8aa3b61f,hex:0000000000000001,hex:0000000000000001]  | 151f7c7500000000000000000000000000000002 |
+      | [hex:fe6bdf69,hex:0000000000000001,hex:0000000000000001]  | 151f7c750000000000000002 |
       | [hex:e395f262]  | 151f7c75 |
       | [hex:535a47ba, addr:BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4]  | 151f7c75 |
 
