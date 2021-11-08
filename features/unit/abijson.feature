@@ -63,3 +63,13 @@ Feature: AbiJson
     Examples:
       | methodsig                | name      | jsonfile       | directory         |
       | add(uint32,uint32)uint32 | interface | interface.json | abi_responsejsons |
+
+  Scenario Outline: Serialize Contract into json 
+    When I create the Method object from "<methodsig>"
+    And I create a Contract object from the Method object with "<name>" and <appId>
+    And I serialize the Contract object into json
+    Then the produced json should equal "<jsonfile>" loaded from "<directory>"
+
+    Examples:
+      | methodsig                | name     | appId | jsonfile       | directory         |
+      | add(uint32,uint32)uint32 | contract | 123   | contract.json | abi_responsejsons |
