@@ -19,4 +19,21 @@ Feature: AbiJson
       | name  | firstargtype | secondargtype | returntype | jsonfile       | directory         |
       | add   | uint32       | uint32        | uint32     | addMethod.json | abi_responsejsons |
 
+  Scenario Outline: Create and serialize Method object into json with arg names
+    When I create the Method object with "<name>" "<firstargname>" "<firstargtype>" "<secondargname>" "<secondargtype>" "<returntype>"
+    And I serialize the Method object into json
+    Then the produced json should equal "<jsonfile>" loaded from "<directory>"
+
+    Examples:
+      | name  | firstargname | firstargtype | secondargname | secondargtype | returntype | jsonfile                   | directory         |
+      | add   | first        | uint32       | second        | uint32        | uint32     | addMethodWithArgNames.json | abi_responsejsons |
+
+  Scenario Outline: Create and serialize Method object into json with description
+    When I create the Method object with "<name>" "<methoddesc>" "<firstargtype>" "<firstdesc>" "<secondargtype>" "<seconddesc>" "<returntype>"
+    And I serialize the Method object into json
+    Then the produced json should equal "<jsonfile>" loaded from "<directory>"
+
+    Examples:
+      | name  | methoddesc  | firstargtype | firstdesc   | secondargtype | seconddesc  | returntype | jsonfile                      | directory         |
+      | add   | description | uint32       | description | uint32        | description | uint32     | addMethodWithDescription.json | abi_responsejsons |
 
