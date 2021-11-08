@@ -19,8 +19,14 @@ Feature: ABI Interaction
     And I make a transaction signer for the signing account.
     And I remember the transaction signer.
     And I add the current transaction and current transaction signer to the composer.
+    # Try signing and compare the golden with the signed transaction
+    And I gather signatures with the composer.
+    Then The composer should have a status of "SIGNED".
+    And The signature should equal "dH6P7cTDI91JxHqi5E5056ty30cCwqzJpdCMKHD6WZo4kPB5nGq3aNrc1KBLYfWjyw2GEshjOoY7nSmGDkJLBQ==".
+    # Clone the composer and build with a method call
+    And I clone the composer.
     # Create a payment method call with an address argument, and add it to the composer
-    And I build a method with signature "payment(pay,address)bool".
+    And I build a method with signature "<method-signature>".
     And I add a method call with the signing account, the current application, suggested params, operation "call", current signer, app-args "<app-args>".
     # Build the group in the composer
     And I build the transaction group with the composer. If there is an error it is "".

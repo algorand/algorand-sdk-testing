@@ -35,6 +35,18 @@ Feature: Transaction encoding
       | delete        | 100             | BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4     |                    |                 | 0            | 0           | 0           | 0          | str:test       |            |            |   | 1234          | 9000         | 9010  | Mf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464M= | gqNzaWfEQM26fXCfQ8Ay/uwsOya/8iJ9J9DIAfTOus2KXduNgxB195ABBCjniPNramFogzTpkmoK6s+Whj+6gpDzj1ZoFwGjdHhuiaRhcGFhkcQEdGVzdKRhcGFuBaRhcGlkZKNmZWXNBNKiZnbNIyiiZ2jEIDH9Ies45BCBGT7TTN87K4Poh0BUtH2cYYK+8N+SOOuDomx2zSMyo3NuZMQgCfvSdiwI+Gxa5r9t16epAd5mdddQ4H6MXHaYZH224f2kdHlwZaRhcHBs | 0 |
       | delete        | 100             | BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4     |                    |                 | 0            | 0           | 0           | 0          | str:test       | 5555,6666           | 7777,8888           | AAVDEAJ3NIYOG7XCRBKCJ3T5PUCVL2XASOP3NGX4NPPZ3UX6477PBG6E4Q,AADQIC4PMKRTFMHAAXYAFSGAUULDI2ABBIYVQJ6GZ5JHY6DJPHTU2SPHYM  | 1234          | 9000         | 9010  | Mf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464M= | gqNzaWfEQNRuI7jjkY7nVUFd+weVjF9vL80VLDDhOZTZ7Iu6gPpvMzgiaKhRWPw2GdvdggqyqAp6R71B0iNItmTKcS6ZhAmjdHhujKRhcGFhkcQEdGVzdKRhcGFuBaRhcGFzks0eYc0iuKRhcGF0ksQgACoyATtqMON+4ohUJO59fQVV6uCTn7aa/GvfndL+5/7EIAAHBAuPYqMysOAF8ALIwKUWNGgBCjFYJ8bPUnx4aXnnpGFwZmGSzRWzzRoKpGFwaWRko2ZlZc0E0qJmds0jKKJnaMQgMf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464OibHbNIzKjc25kxCAJ+9J2LAj4bFrmv23Xp6kB3mZ111Dgfoxcdphkfbbh/aR0eXBlpGFwcGw= | 0 |
       
+  @unit.transactions.payment
+  Scenario Outline: Payment Transaction Tests
+    Given suggested suggested transaction parameters fee <fee>, flat-fee "<flat-fee>", first-valid <first-valid>, last-valid <last-valid>, genesis-hash "<genesis-hash>", genesis-id "<genesis-id>"
+    When I build a payment transaction with sender "<sender>", receiver "<receiver>", amound <amount>
+    And sign the transaction
+    Then the base64 encoded signed transaction should equal "<golden>"
+    And the decoded transaction should equal the original
+
+    Examples:
+      | fee  | flat-fee | first-valid | last-valid | genesis-hash                                 | genesis-id  | sender                                                     | receiver                                                   | amount | golden |
+      | 1234 | true     | 9000        | 9010       | Mf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464M= | cucumbernet | BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4 | BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4 | 100001 | dH6P7cTDI91JxHqi5E5056ty30cCwqzJpdCMKHD6WZo4kPB5nGq3aNrc1KBLYfWjyw2GEshjOoY7nSmGDkJLBQ== |
+  
   @unit.transactions.keyreg
   Scenario Outline: Keyreg Transaction Tests
     Given suggested transaction parameters fee <fee>, flat-fee "<flat-fee>", first-valid <first-valid>, last-valid <last-valid>, genesis-hash "<genesis-hash>", genesis-id "<genesis-id>"
