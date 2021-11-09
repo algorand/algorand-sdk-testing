@@ -37,16 +37,16 @@ Feature: Transaction encoding
       
   @unit.transactions.payment
   Scenario Outline: Payment Transaction Tests
-    Given suggested suggested transaction parameters fee <fee>, flat-fee "<flat-fee>", first-valid <first-valid>, last-valid <last-valid>, genesis-hash "<genesis-hash>", genesis-id "<genesis-id>"
-    When I build a payment transaction with sender "<sender>", receiver "<receiver>", amount <amount>
+    Given suggested transaction parameters fee <fee>, flat-fee "<flat-fee>", first-valid <first-valid>, last-valid <last-valid>, genesis-hash "<genesis-hash>", genesis-id "<genesis-id>"
+    When I build a payment transaction with sender "<sender>", receiver "<receiver>", amount <amount>, close remainder to "<close_remainder_to>"
     And sign the transaction
     Then the base64 encoded signed transaction should equal "<golden>"
     And the decoded transaction should equal the original
     
     Examples:
-      | fee  | flat-fee | first-valid | last-valid | genesis-hash                                 | genesis-id  | sender                                                     | receiver                                                   | amount | golden |
-      | 1234 | true     | 9000        | 9010       | Mf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464M= | cucumbernet | BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4 | BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4 | 100001 | dH6P7cTDI91JxHqi5E5056ty30cCwqzJpdCMKHD6WZo4kPB5nGq3aNrc1KBLYfWjyw2GEshjOoY7nSmGDkJLBQ== |
-      | 1234 | true     | 9000        | 9010       | Mf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464M= | cucumbernet | BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4 | AAZFG7YLUHOQ73J7UR7TPJA634OIDL5GIEURTW2QXN7VBRI7BDZCVN6QTI | 100010 | xvM78XdwepdyalZH02bQlVe2DxYPKD9zPoEBFkBaTbnOLQaz/uG4FMJq5f7+ZIcWI1kX7ZJnetY/zItGVoeDAA== |
+      | fee  | flat-fee | first-valid | last-valid | genesis-hash                                 | genesis-id  | sender                                                     | receiver                                                   | amount | close_remainder_to | golden |
+      | 1234 | true     | 9000        | 9010       | Mf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464M= | cucumbernet | BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4 | BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4 | 100001 |                    | dH6P7cTDI91JxHqi5E5056ty30cCwqzJpdCMKHD6WZo4kPB5nGq3aNrc1KBLYfWjyw2GEshjOoY7nSmGDkJLBQ== |
+      | 1234 | true     | 9000        | 9010       | Mf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464M= | cucumbernet | BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4 | AAZFG7YLUHOQ73J7UR7TPJA634OIDL5GIEURTW2QXN7VBRI7BDZCVN6QTI | 100010 |                    | xvM78XdwepdyalZH02bQlVe2DxYPKD9zPoEBFkBaTbnOLQaz/uG4FMJq5f7+ZIcWI1kX7ZJnetY/zItGVoeDAA== |
   
   @unit.transactions.keyreg
   Scenario Outline: Keyreg Transaction Tests
