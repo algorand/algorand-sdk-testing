@@ -1,1 +1,1 @@
-{"name":"add","args":[{"type":"uint32"},{"type":"uint32"}],"returns":{"type":"uint32"}}
+{"name":"add","args":[{"type":"(uint32,uint32)"}],"returns":{"type":"(uint32,uint32)"}}
