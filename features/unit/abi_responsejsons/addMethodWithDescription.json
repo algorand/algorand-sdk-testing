@@ -1,1 +1,1 @@
-{"name":"add","desc":"description","args":[{"name":"","type":"uint32","desc":"description"},{"name":"","type":"uint32","desc":"description"}],"returns":{"type":"uint32"}}
+{"name":"add","desc":"description","args":[{"type":"uint32","desc":"description"},{"type":"uint32","desc":"description"}],"returns":{"type":"uint32"}}
