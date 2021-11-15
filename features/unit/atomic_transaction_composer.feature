@@ -12,7 +12,7 @@ Feature: Atomic Transaction Composer
     # Prepare a TransactionSigner
     When I make a transaction signer for the signing account.
     # Create a method call with an address argument, and add it to the composer
-    And I build a method with signature "<method-signature>".
+    And I create the Method object from method signature "<method-signature>"
     # Prepare method call arguments
     And I create a new method arguments array.
     And I append the encoded arguments "<app-args>" to the method arguments array.
@@ -40,7 +40,7 @@ Feature: Atomic Transaction Composer
     And I build a payment transaction with sender "BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4", receiver "BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4", amount 100001, close remainder to ""
     And I create a transaction with signer with the current transaction.
     # Create a method call with an address argument, and add it to the composer
-    And I build a method with signature "<method-signature>".
+    And I create the Method object from method signature "<method-signature>"
     # Prepare method call arguments
     And I create a new method arguments array.
     And I append the current transaction with signer to the method arguments array.

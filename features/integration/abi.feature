@@ -25,7 +25,7 @@ Feature: ABI Interaction
     # Clone the composer and build with a method call
     And I clone the composer.
     # Create a payment method call with an address argument, and add it to the composer
-    When I build a method with signature "<method-signature>".
+    When I create the Method object from method signature "<method-signature>"
     And I create a new method arguments array.
     And I append the encoded arguments "<app-args>" to the method arguments array.
     And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
@@ -60,7 +60,7 @@ Feature: ABI Interaction
     And I build a payment transaction with sender "transient", receiver "transient", amount 100001, close remainder to ""
     And I create a transaction with signer with the current transaction.
     # Create a payment method call with an address argument, and add it to the composer
-    And I build a method with signature "<method-signature>".
+    And I create the Method object from method signature "<method-signature>"
     And I create a new method arguments array.
     And I append the current transaction with signer to the method arguments array.
     And I append the encoded arguments "<app-args>" to the method arguments array.
