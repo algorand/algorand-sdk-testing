@@ -4,7 +4,6 @@ Feature: ABI Interaction
     Given an algod v2 client
     And a kmd client
     And wallet information
-    And a signing account with address "BH55E5RMBD4GYWXGX5W5PJ5JAHPGM5OXKDQH5DC4O2MGI7NW4H6VOE4CP4" and mnemonic "awful drop leaf tennis indoor begin mandate discover uncle seven only coil atom any hospital uncover make any climb actor armed measure need above hundred"
     And suggested transaction parameters from the algod v2 client
 
   Scenario Outline: AtomicTransactionComposer test
@@ -44,9 +43,9 @@ Feature: ABI Interaction
     And The app should have returned "<returns>".
 
     Examples:
-      | method-signature         | app-args                  | returns       |
-      | add(uint64,uint64)uint64 | AAAAAAAAAAE=,AAAAAAAAAAE= | AAAAAAAAAAI=  |
-      | empty()void              |                           |               |
+      | method-signature         | app-args                  | returns      |
+      | add(uint64,uint64)uint64 | AAAAAAAAAAE=,AAAAAAAAAAE= | AAAAAAAAAAI= |
+      | empty()void              |                           |              |
 
   Scenario Outline: AtomicTransactionComposer with transaction arguments test
     Given a new AtomicTransactionComposer
@@ -77,5 +76,5 @@ Feature: ABI Interaction
     And The app should have returned "<returns>".
 
     Examples:
-      | method-signature         | app-args                                     | returns  |
-      | payment(pay,address)bool | CfvSdiwI+Gxa5r9t16epAd5mdddQ4H6MXHaYZH224f0= | gA== |
+      | method-signature         | app-args                                     | returns |
+      | payment(pay,address)bool | CfvSdiwI+Gxa5r9t16epAd5mdddQ4H6MXHaYZH224f0= | gA==    |
