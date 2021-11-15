@@ -27,8 +27,9 @@ Feature: ABI Interaction
     And I clone the composer.
     # Create a payment method call with an address argument, and add it to the composer
     When I build a method with signature "<method-signature>".
-    And I prepare the method arguments with the app args "<app-args>".
-    And I add a method call with the transient account, the current application, suggested params, operation "call", current transaction signer, current method arguments.
+    And I create a new method arguments array.
+    And I append the encoded arguments "<app-args>" to the method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
     # Build the group in the composer
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
@@ -40,12 +41,12 @@ Feature: ABI Interaction
     # Check that the log contains the expected value.
     # Note that the <returns> is the exact log output, which is the base64 encoding
     # of the value, with the first four bytes being the hash of "return"
-    And The app should have returned "<returns>" in the log.
+    And The app should have returned "<returns>".
 
     Examples:
-      | method-signature         | app-args                  | returns          |
-      | add(uint64,uint64)uint64 | AAAAAAAAAAE=,AAAAAAAAAAE= | FR98dQAAAAAAAAAC |
-      | empty()void              |                           |                  |
+      | method-signature         | app-args                  | returns       |
+      | add(uint64,uint64)uint64 | AAAAAAAAAAE=,AAAAAAAAAAE= | AAAAAAAAAAI=  |
+      | empty()void              |                           |               |
 
   Scenario Outline: AtomicTransactionComposer with transaction arguments test
     Given a new AtomicTransactionComposer
@@ -61,8 +62,10 @@ Feature: ABI Interaction
     And I create a transaction with signer with the current transaction.
     # Create a payment method call with an address argument, and add it to the composer
     And I build a method with signature "<method-signature>".
-    And I prepare the method arguments with the current transaction with signer and the app args "<app-args>".
-    And I add a method call with the transient account, the current application, suggested params, operation "call", current transaction signer, current method arguments.
+    And I create a new method arguments array.
+    And I append the current transaction with signer to the method arguments array.
+    And I append the encoded arguments "<app-args>" to the method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
     # Build the group in the composer
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
@@ -71,8 +74,8 @@ Feature: ABI Interaction
     # Execute the group and check that the log contains the correct return value
     And I execute the current transaction group with the composer.
     Then The composer should have a status of "COMMITTED".
-    And The app should have returned "<returns>" in the log.
+    And The app should have returned "<returns>".
 
     Examples:
       | method-signature         | app-args                                     | returns  |
-      | payment(pay,address)bool | CfvSdiwI+Gxa5r9t16epAd5mdddQ4H6MXHaYZH224f0= | FR98dYA= |
+      | payment(pay,address)bool | CfvSdiwI+Gxa5r9t16epAd5mdddQ4H6MXHaYZH224f0= | gA== |

@@ -13,8 +13,10 @@ Feature: Atomic Transaction Composer
     When I make a transaction signer for the signing account.
     # Create a method call with an address argument, and add it to the composer
     And I build a method with signature "<method-signature>".
-    And I prepare the method arguments with the app args "<app-args>".
-    And I add a method call with the signing account, the current application, suggested params, operation "call", current transaction signer, current method arguments.
+    # Prepare method call arguments
+    And I create a new method arguments array.
+    And I append the encoded arguments "<app-args>" to the method arguments array.
+    And I add a method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
     # Build the group in the composer
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
@@ -39,8 +41,11 @@ Feature: Atomic Transaction Composer
     And I create a transaction with signer with the current transaction.
     # Create a method call with an address argument, and add it to the composer
     And I build a method with signature "<method-signature>".
-    And I prepare the method arguments with the current transaction with signer and the app args "<app-args>".
-    And I add a method call with the signing account, the current application, suggested params, operation "call", current transaction signer, current method arguments.
+    # Prepare method call arguments
+    And I create a new method arguments array.
+    And I append the current transaction with signer to the method arguments array.
+    And I append the encoded arguments "<app-args>" to the method arguments array.
+    And I add a method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
     # Build the group in the composer
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
