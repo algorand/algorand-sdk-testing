@@ -6,7 +6,7 @@ Feature: Dryrun Testing
   Scenario Outline: Dryrun test case with simple assert
     Given dryrun test case with <program> of type <kind>
     Then status assert of <status> is succeed
-      Scenarios:
+    Examples:
       | program                  | kind     | status   |
       | "programs/one.teal.tok"  | "lsig"   | "PASS"   |
       | "programs/one.teal.tok"  | "approv" | "PASS"   |
@@ -24,7 +24,7 @@ Feature: Dryrun Testing
   Scenario Outline: Dryrun test case with global state delta assert succeed
     Given dryrun test case with <program> of type <kind>
     Then global delta assert with <key>, <value> and <action> is succeed
-      Scenarios:
+    Examples:
       | program                     | kind     | key            | action | value      |
       | "programs/globalwrite.teal" | "approv" | "Ynl0ZXNrZXk=" | 1      | "dGVzdA==" |
       | "programs/globalwrite.teal" | "approv" | "aW50a2V5"     | 2      | "11"       |
@@ -34,7 +34,7 @@ Feature: Dryrun Testing
   Scenario Outline: Dryrun test case with global state delta assert failed
     Given dryrun test case with <program> of type <kind>
     Then global delta assert with <key>, <value> and <action> is failed
-      Scenarios:
+    Examples:
       | program                     | kind     | key            | action | value  |
       | "programs/globalwrite.teal" | "clearp" | "Ynl0ZXNrZXk=" | 1      | "test" |
       | "programs/globalwrite.teal" | "approv" | "aW50a2V5"     | 2      | "12"   |
@@ -42,7 +42,7 @@ Feature: Dryrun Testing
   Scenario Outline: Dryrun test case with local state delta assert succeed
     Given dryrun test case with <program> of type <kind>
     Then local delta assert for <addr> of accounts <index> with <key>, <value> and <action> is succeed
-      Scenarios:
+    Examples:
       | program                    | kind     | addr                                                         | index | key            | action | value      |
       | "programs/localwrite.teal" | "approv" | "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ" | 0     | "Ynl0ZXNrZXk=" | 1      | "dGVzdA==" |
       | "programs/localwrite.teal" | "approv" | "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ" | 0     | "aW50a2V5"     | 2      | "11"       |
