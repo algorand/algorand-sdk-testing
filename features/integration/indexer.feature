@@ -1,6 +1,6 @@
 Feature: Indexer Integration Tests
 
-  For all queries, parameters will not be set for default values as defined by:
+    For all queries, parameters will not be set for default values as defined by:
     * Numeric inputs: 0
     * String inputs: ""
 
@@ -120,11 +120,11 @@ Feature: Indexer Integration Tests
       | 1       | 9        | 0           | 0           | 1     | 1            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
       | 1       | 9        | 68663000    | 0           | 0     | 1            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
       | 1       | 9        | 0           | 68663001    | 0     | 1            | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | false     | 68663000     |
-      # these pick up deleted asset balances in dataset 1 + 2.3.x.
-      #| 3       | 9        | 0           | 0           | 0     | 2            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
-      #| 3       | 9        | 0           | 0           | 1     | 1            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
-      #| 3       | 9        | 0           | 0           | 1     | 1            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
-      #| 3       | 9        | 0           | 68663001    | 0     | 1            | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | false     | 68663000     |
+  # these pick up deleted asset balances in dataset 1 + 2.3.x.
+  #| 3       | 9        | 0           | 0           | 0     | 2            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
+  #| 3       | 9        | 0           | 0           | 1     | 1            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
+  #| 3       | 9        | 0           | 0           | 1     | 1            | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | false     | 999931337000 |
+  #| 3       | 9        | 0           | 68663001    | 0     | 1            | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | false     | 68663000     |
 
 
   @indexer
@@ -136,10 +136,10 @@ Feature: Indexer Integration Tests
     Examples:
       | indexer | asset-id | currency-gt | currency-lt | limit | num-accounts | account                                                    | is-frozen | amount   |
       | 1       | 9        | 0           | 0           | 1     | 1            | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | false     | 68663000 |
-      # this picks up a deleted asset balance
-      #| 3       | 9        | 1           | 0           | 1     | 1            | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | false     | 68663000 |
+  # this picks up a deleted asset balance
+  #| 3       | 9        | 1           | 0           | 1     | 1            | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | false     | 68663000 |
 
-    #####################
+  #####################
 
   #
   # /accounts
@@ -151,11 +151,11 @@ Feature: Indexer Integration Tests
 
     Examples:
       | indexer | asset-id | limit | currency-gt | currency-lt | num | pending-rewards | rewards-base | rewards | without-rewards | address                                                    | amount       | status  | type |
-  # These changed when adding 'ORDER BY' in the backend
-  #| 1       | 0        | 0     | 0           | 0           | 32  | 0               | 0            | 0       | 1000000         | XKWNJ6MDJWB5WEIARTAJI6GMCX3ETHBSM4OZ2NYACFEXHQJ2RHTC4SHH5A | 1000000      | Offline |      |
-  #| 1       | 0        | 10    | 0           | 0           | 10  | 0               | 0            | 0       | 1000000         | XKWNJ6MDJWB5WEIARTAJI6GMCX3ETHBSM4OZ2NYACFEXHQJ2RHTC4SHH5A | 1000000      | Offline |      |
-      | 1       | 0        | 0     | 0           | 0           | 32  | 0               | 0            | 0       | 0                | A5QNF7MATDBZHXVYROXVZ6WTWMMDGX5RPEUCYAQEINOS3LQUW7NQGUJ4OI | 0           | Offline | lsig |
-      | 1       | 0        | 10    | 0           | 0           | 10  | 0               | 0            | 0       | 0                | A5QNF7MATDBZHXVYROXVZ6WTWMMDGX5RPEUCYAQEINOS3LQUW7NQGUJ4OI | 0           | Offline | lsig |
+      # These changed when adding 'ORDER BY' in the backend
+      #| 1       | 0        | 0     | 0           | 0           | 32  | 0               | 0            | 0       | 1000000         | XKWNJ6MDJWB5WEIARTAJI6GMCX3ETHBSM4OZ2NYACFEXHQJ2RHTC4SHH5A | 1000000      | Offline |      |
+      #| 1       | 0        | 10    | 0           | 0           | 10  | 0               | 0            | 0       | 1000000         | XKWNJ6MDJWB5WEIARTAJI6GMCX3ETHBSM4OZ2NYACFEXHQJ2RHTC4SHH5A | 1000000      | Offline |      |
+      | 1       | 0        | 0     | 0           | 0           | 32  | 0               | 0            | 0       | 0               | A5QNF7MATDBZHXVYROXVZ6WTWMMDGX5RPEUCYAQEINOS3LQUW7NQGUJ4OI | 0            | Offline | lsig |
+      | 1       | 0        | 10    | 0           | 0           | 10  | 0               | 0            | 0       | 0               | A5QNF7MATDBZHXVYROXVZ6WTWMMDGX5RPEUCYAQEINOS3LQUW7NQGUJ4OI | 0            | Offline | lsig |
       | 1       | 9        | 0     | 68663000    | 0           | 1   | 0               | 0            | 0       | 999899126000    | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 | 999899126000 | Offline | sig  |
       | 1       | 9        | 0     | 0           | 68663001    | 1   | 0               | 0            | 0       | 998000          | ZBBRQD73JH5KZ7XRED6GALJYJUXOMBBP3X2Z2XFA4LATV3MUJKKMKG7SHA | 998000       | Offline | lsig |
       | 1       | 0        | 0     | 798999      | 799001      | 1   | 0               | 0            | 0       | 799000          | RRHDAJKO5HQBLHPCVK6K7U54LENDIP2JKM3RNRYX2G254VUXBRQD35CK4E | 799000       | Offline | msig |
@@ -173,8 +173,8 @@ Feature: Indexer Integration Tests
     Examples:
       | indexer | asset-id | limit | currency-gt      | currency-lt | address                                                    | key-dilution | first-valid | last-valid | vote-key                                     | selection-key                                |
       | 1       | 0        | 0     | 998999           | 999001      | NNFTUMXU5EMDOSFRGQ55TOGOJIS7P7POIDHJTQNQUBVVYJ6GCIPHOMAMQE | 10000        | 0           | 100        | h0wDwh1yhWiWu0S79wEiQaWXnNLCMjcce5MPeWPRQ/Q= | Ob0jBcHd0uh6nMjls6bOHlissWvPlINGiREJ+gaEOSg= |
-  # These changed when adding 'ORDER BY' in the backend
-  #| 1       | 0        | 0     | 4992999999992999 | 0           | FROJFIFQRARWEHOL6GR3MBFCDJY76CPF3UY55HM3PCK42AD5HA5SKKXLLA | 10000        | 0           | 3000000    | mQzj8cwerZh1QzdCR9WBteLQ6MQszzLP4MAjSi5wuD4= | NRnpzxRIGUnTICoPloP9eWU1W6OPksR0ReEDRTwzoYg= |
+      # These changed when adding 'ORDER BY' in the backend
+      #| 1       | 0        | 0     | 4992999999992999 | 0           | FROJFIFQRARWEHOL6GR3MBFCDJY76CPF3UY55HM3PCK42AD5HA5SKKXLLA | 10000        | 0           | 3000000    | mQzj8cwerZh1QzdCR9WBteLQ6MQszzLP4MAjSi5wuD4= | NRnpzxRIGUnTICoPloP9eWU1W6OPksR0ReEDRTwzoYg= |
       | 1       | 0        | 0     | 4992999999992999 | 0           | BYP7VVRIBDOOFKEYICNYIM43S6DW7RIZC73XNMKF3KT5YUITDDMH3W5D5Q | 10000        | 0           | 3000000    | 9OO2S7ikfESeDZg8Z9mrzdN2Lh52UBSVH9uD7XqQHhs= | BkTjDJB2Su5Fi9uwJTODkxpEjrhCJSYtF10m0ee6THU= |
 
 
@@ -190,9 +190,9 @@ Feature: Indexer Integration Tests
     Examples:
       | indexer | asset-id | limit | currency-gt | currency-lt | num | pending-rewards | rewards-base | rewards | without-rewards | address                                                    | amount       | status           | type |
       | 1       | 0        | 1     | 0           | 0           | 1   | 0               | 0            | 0       | 149234          | A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE | 149234       | NotParticipating |      |
-  # These changed when adding 'ORDER BY' in the backend
-  #| 1       | 0        | 10    | 0           | 0           | 10  | 0               | 0            | 0       | 99862000        | M7E3Z6MJ7LZT725IK3ZQ6YE64TUTVU6VPPHFMT3DSD5KRDYRE44BE6GY5A | 99862000     | Offline          | lsig |
-      | 1       | 0        | 10    | 0           | 0           | 10  | 0               | 0            | 0       |  999899996766   | LQU5S7HMDXLQUQD5BKIMPPZYK7LYXPC5AVGIWNVNTBVQHL3GCXFVXZFJ3A | 999899996766 | Offline          | sig  |
+      # These changed when adding 'ORDER BY' in the backend
+      #| 1       | 0        | 10    | 0           | 0           | 10  | 0               | 0            | 0       | 99862000        | M7E3Z6MJ7LZT725IK3ZQ6YE64TUTVU6VPPHFMT3DSD5KRDYRE44BE6GY5A | 99862000     | Offline          | lsig |
+      | 1       | 0        | 10    | 0           | 0           | 10  | 0               | 0            | 0       | 999899996766    | LQU5S7HMDXLQUQD5BKIMPPZYK7LYXPC5AVGIWNVNTBVQHL3GCXFVXZFJ3A | 999899996766 | Offline          | sig  |
 
   #
   # /accounts - paging multiple times
@@ -209,9 +209,9 @@ Feature: Indexer Integration Tests
     Then There are <num>, the first has <pending-rewards>, <rewards-base>, <rewards>, <without-rewards>, "<address>", <amount>, "<status>", "<type>"
 
     Examples:
-      | indexer | asset-id | limit | currency-gt | currency-lt | num | pending-rewards | rewards-base | rewards | without-rewards | address                                                    | amount       | status  | type |
-      | 1       | 0        | 1     | 0           | 0           | 1   | 0               | 0            | 0       | 0               | GP44P6YCVSRK4IYIEZYDYO5POY3QO5VTATZIMRI6DFLMO2EPK7GBBNQRCM | 0            | Offline | lsig |
-      | 1       | 0        | 2     | 0           | 0           | 2   | 0               | 0            | 0       | 999000          | NNFTUMXU5EMDOSFRGQ55TOGOJIS7P7POIDHJTQNQUBVVYJ6GCIPHOMAMQE | 999000       | Online | sig  |
+      | indexer | asset-id | limit | currency-gt | currency-lt | num | pending-rewards | rewards-base | rewards | without-rewards | address                                                    | amount | status  | type |
+      | 1       | 0        | 1     | 0           | 0           | 1   | 0               | 0            | 0       | 0               | GP44P6YCVSRK4IYIEZYDYO5POY3QO5VTATZIMRI6DFLMO2EPK7GBBNQRCM | 0      | Offline | lsig |
+      | 1       | 0        | 2     | 0           | 0           | 2   | 0               | 0            | 0       | 999000          | NNFTUMXU5EMDOSFRGQ55TOGOJIS7P7POIDHJTQNQUBVVYJ6GCIPHOMAMQE | 999000 | Online  | sig  |
 
   #
   # /transactions
@@ -223,10 +223,10 @@ Feature: Indexer Integration Tests
     Then there are <num> transactions in the response, the first is "<txid>".
 
     Examples:
-      | indexer | note-prefix | num  | txid                                                 |
-      | 1       | XQ==        | 2    | U2KNU7B55LZU6SWX66VHIZMJT4OX6YMNCIKBLV4BLYVTBCU3ZW2A |
-      | 1       | VA==        | 3    | IMFJQCCF5T2DOVSKHP2NHDKV5A2VGVIW24LNQUBDOH33UMIE545Q |
-      | 1       | 1111        | 0    |                                                      |
+      | indexer | note-prefix | num | txid                                                 |
+      | 1       | XQ==        | 2   | U2KNU7B55LZU6SWX66VHIZMJT4OX6YMNCIKBLV4BLYVTBCU3ZW2A |
+      | 1       | VA==        | 3   | IMFJQCCF5T2DOVSKHP2NHDKV5A2VGVIW24LNQUBDOH33UMIE545Q |
+      | 1       | 1111        | 0   |                                                      |
 
   @indexer
   Scenario Outline: /transactions?tx-type=<tx-type>
@@ -235,12 +235,12 @@ Feature: Indexer Integration Tests
     And Every transaction has tx-type "<tx-type>"
 
     Examples:
-      | indexer | tx-type | num  | txid                                                 |
-      | 1       | pay     | 41   | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
-      | 1       | keyreg  | 1    | HG3DLU47GVRCLIG3SIHM6TTWINUN7VOKKAJWZRYZQA4NDO7PNXMA |
-      | 1       | acfg    | 1    | KGG5ZGQQ57Y2ZDH5CFRYMJODPJ4TVIQBAPKT3HK3PIS6A6K4T5GQ |
-      | 1       | axfer   | 6    | IIWBLLEXCFDQQHENIU2JBXSFDNNHLO5C2M5PE3UIHQ3YXN2TWRUA |
-      | 1       | afrz    | 0    |                                                      |
+      | indexer | tx-type | num | txid                                                 |
+      | 1       | pay     | 41  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
+      | 1       | keyreg  | 1   | HG3DLU47GVRCLIG3SIHM6TTWINUN7VOKKAJWZRYZQA4NDO7PNXMA |
+      | 1       | acfg    | 1   | KGG5ZGQQ57Y2ZDH5CFRYMJODPJ4TVIQBAPKT3HK3PIS6A6K4T5GQ |
+      | 1       | axfer   | 6   | IIWBLLEXCFDQQHENIU2JBXSFDNNHLO5C2M5PE3UIHQ3YXN2TWRUA |
+      | 1       | afrz    | 0   |                                                      |
 
   @indexer
   Scenario Outline: /transactions?sig-type=<sig-type>
@@ -249,10 +249,10 @@ Feature: Indexer Integration Tests
     And Every transaction has sig-type "<sig-type>"
 
     Examples:
-      | indexer | sig-type | num  | txid                                                 |
-      | 1       | sig      | 25   | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
-      | 1       | lsig     | 24   | SPRRY5NZETQFP3C7MHEDURQRUUC5JVESSRXRXVJAHENZ6OJJKMXQ |
-      | 1       | msig     | 0    |                                                      |
+      | indexer | sig-type | num | txid                                                 |
+      | 1       | sig      | 25  | 3LC3FNFWZVKLOSQQLKTTAPHHWKKHEVJDWBVIWAMYP7MNQQHZP5BA |
+      | 1       | lsig     | 24  | SPRRY5NZETQFP3C7MHEDURQRUUC5JVESSRXRXVJAHENZ6OJJKMXQ |
+      | 1       | msig     | 0   |                                                      |
 
   @indexer
   Scenario Outline: /transactions?tx-id=<txid>
@@ -432,13 +432,13 @@ Feature: Indexer Integration Tests
       | 1       | 9           |                                                            |          |      | 1   | 9            |
       | 1       | 0           |                                                            | bogocoin |      | 1   | 9            |
       | 1       | 0           |                                                            | BoGoCoIn |      | 1   | 9            |
-      | 1       | 0           |                                                            |   GoCo   |      | 1   | 9            |
+      | 1       | 0           |                                                            | GoCo     |      | 1   | 9            |
       | 1       | 0           |                                                            |          | bogo | 1   | 9            |
       | 1       | 0           |                                                            |          | boGO | 1   | 9            |
-      | 1       | 0           |                                                            |          |  oG  | 1   | 9            |
+      | 1       | 0           |                                                            |          | oG   | 1   | 9            |
       | 1       | 0           | OSY2LBBSYJXOBAO6T5XGMGAJM77JVPQ7OLRR5J3HEPC3QWBTQZNWSEZA44 |          |      | 1   | 9            |
       | 1       | 0           |                                                            | none     |      | 0   | 9            |
-  
+
   @indexer.applications
   Scenario Outline: /applications?id=<application-id>&limit=<limit>&next=<token>
     When I use <indexer> to search for applications with <limit>, <application-id>, and token "<token>"
@@ -472,9 +472,9 @@ Feature: Indexer Integration Tests
     Then the parsed response should equal "<jsonfile>".
 
     Examples:
-      | indexer | application-id |  jsonfile                                                    |
-      | 2       | 22             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_22.json |
-      | 2       | 70             |  v2indexerclient_responsejsons/indexer_v2_app_lookup_70.json |
+      | indexer | application-id | jsonfile                                                    |
+      | 2       | 22             | v2indexerclient_responsejsons/indexer_v2_app_lookup_22.json |
+      | 2       | 70             | v2indexerclient_responsejsons/indexer_v2_app_lookup_70.json |
 
   @indexer.231
   Scenario Outline: /applications/<application-id>
@@ -522,10 +522,10 @@ Feature: Indexer Integration Tests
       | 4       | 70             | true        | v23x_indexerclient_responsejsons/indexer_v2_acct_search_app_70_all.json |
 
 
-  # Paging tests:
-  #  - assets (our test dataset only has 1 asset)
+# Paging tests:
+#  - assets (our test dataset only has 1 asset)
 
-  # Error/edge cases (mixed up min/max, ...?)
-  #  - No results
-  #  - Invalid parameters (invalid enum)
-  #  - Mixed up min/max
+# Error/edge cases (mixed up min/max, ...?)
+#  - No results
+#  - Invalid parameters (invalid enum)
+#  - Mixed up min/max

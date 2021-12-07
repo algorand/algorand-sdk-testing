@@ -26,7 +26,7 @@ Feature: Sending transactions
     Then the transaction should go through
 
     Examples:
-      | amt | note | rekeyTo | mn |
-      | 0   | X4Bl4wQ9rCo= | AAEHXUN5L4MJ6Y5O3RIIHST6BZHJ2RGMIHQKQK2K2W2CSHCABV3MFUFBGA | cute elevator romance type flight broccoli hub engage hundred brick add cage crouch turtle cake service heart cube like hidden dizzy lonely include abandon oven   |
+      | amt | note         | rekeyTo                                                    | mn                                                                                                                                                               |
+      | 0   | X4Bl4wQ9rCo= | AAEHXUN5L4MJ6Y5O3RIIHST6BZHJ2RGMIHQKQK2K2W2CSHCABV3MFUFBGA | cute elevator romance type flight broccoli hub engage hundred brick add cage crouch turtle cake service heart cube like hidden dizzy lonely include abandon oven |
 
 
