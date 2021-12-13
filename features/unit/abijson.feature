@@ -74,11 +74,13 @@ Feature: AbiJson
 
   Scenario Outline: Serialize Contract into json 
     When I create the Method object from method signature "<methodsig>"
-    And I create a Contract object from the Method object with name "<name>" and appId <appId>
+    And I create a Contract object from the Method object with name "<name>"
+    And I set the Contract's appID to <network1-app-id> for the network "<network1>"
+    And I set the Contract's appID to <network2-app-id> for the network "<network2>"
     And I serialize the Contract object into json
     Then the produced json should equal "<jsonfile>" loaded from "<directory>"
     And the deserialized json should equal the original Contract object
 
     Examples:
-      | methodsig                | name     | appId | jsonfile       | directory         |
-      | add(uint32,uint32)uint32 | contract | 123   | contract.json | abi_responsejsons |
+      | methodsig                | name     | network1                                     | network1-app-id | network2                                     | network2-app-id | jsonfile       | directory         |
+      | add(uint32,uint32)uint32 | contract | wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8= | 1234            | SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI= | 5678            | contract.json  | abi_responsejsons |
