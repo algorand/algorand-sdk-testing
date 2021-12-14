@@ -17,7 +17,7 @@ Feature: Assets
 
     Examples:
       | total |
-      | 1 |
+      | 1     |
 
   Scenario Outline: Asset reconfigure
     Given default asset creation transaction with total issuance <total>
@@ -36,7 +36,7 @@ Feature: Assets
 
     Examples:
       | total |
-      | 1 |
+      | 1     |
 
   Scenario Outline: Asset destroy
     Given default asset creation transaction with total issuance <total>
@@ -53,7 +53,7 @@ Feature: Assets
 
     Examples:
       | total |
-      | 1 |
+      | 1     |
 
   Scenario Outline: Asset acceptance
     Given default asset creation transaction with total issuance <total>
@@ -88,8 +88,8 @@ Feature: Assets
     And the creator should have <expected balance> assets remaining
 
     Examples:
-      | total | amount | expected balance  |
-      | 100   | 50     | 100               |
+      | total | amount | expected balance |
+      | 100   | 50     | 100              |
 
   Scenario Outline: Asset freeze and unfreeze
     Given default asset creation transaction with total issuance <total>
@@ -132,8 +132,8 @@ Feature: Assets
     And the creator should have <final expected balance> assets remaining
 
     Examples:
-      | total | amount | expected balance  | final expected balance |
-      | 100   | 50     | 50                | 100                    |
+      | total | amount | expected balance | final expected balance |
+      | 100   | 50     | 50               | 100                    |
 
   Scenario Outline: Frozen by default
     Given default-frozen asset creation transaction with total issuance <total>
@@ -160,8 +160,8 @@ Feature: Assets
     And the creator should have <final expected balance> assets remaining
 
     Examples:
-      | total | amount | expected balance   | final expected balance |
-      | 100   | 50     | 100                | 50                     |
+      | total | amount | expected balance | final expected balance |
+      | 100   | 50     | 100              | 50                     |
 
   Scenario Outline: Asset revocation
     Given default asset creation transaction with total issuance <total>
@@ -184,5 +184,5 @@ Feature: Assets
     And the creator should have <expected balance> assets remaining
 
     Examples:
-      | total | amount | expected balance  |
-      | 100   | 50     | 100               |
+      | total | amount | expected balance |
+      | 100   | 50     | 100              |

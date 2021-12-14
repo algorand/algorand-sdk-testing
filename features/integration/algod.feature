@@ -41,7 +41,7 @@ Feature: Algod
       | cnt |
       | 0   |
       | 1   |
-    
+
   Scenario: Suggested params
     When I get the suggested params
     And I get the suggested fee
