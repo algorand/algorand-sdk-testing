@@ -14,7 +14,7 @@ Feature: Templates
 
     Examples:
       | ratn | ratd | min_pay |
-      | 2  | 5  | 100000 |
+      | 2    | 5    | 100000  |
 
   Scenario Outline: HLTC
     Given an HTLC contract with hash preimage "<preimage>"
@@ -24,7 +24,7 @@ Feature: Templates
 
     Examples:
       | preimage |
-      | hello |
+      | hello    |
 
   Scenario Outline: Periodic Payment
     Given a periodic payment contract with withdrawing window <wd_window> and period <period>
@@ -34,7 +34,7 @@ Feature: Templates
 
     Examples:
       | wd_window | period |
-      | 999 | 2 |
+      | 999       | 2      |
 
   Scenario Outline: Limit Order
     Given asset test fixture
@@ -58,13 +58,13 @@ Feature: Templates
 
     Examples:
       | total   | ratn | ratd | min_trade | amount |
-      | 1000000 | 2 | 3 | 1000 | 500000 |
+      | 1000000 | 2    | 3    | 1000      | 500000 |
 
   Scenario Outline: Dynamic Fee
     Given a dynamic fee contract with amount <amt>
     And I send the dynamic fee transactions
     Then the transaction should go through
-    
+
     Examples:
-      | amt |
+      | amt   |
       | 12345 |

@@ -45,11 +45,11 @@ Feature: KMD
     And I sign the transaction with the private key
     And I sign the transaction with kmd
     Then the signed transaction should equal the kmd signed transaction
-  
+
     Examples:
-    | amt | note |
-    | 0   | X4Bl4wQ9rCo= |
-    | 1234523 | X4Bl4wQ9rCo= |
+      | amt     | note         |
+      | 0       | X4Bl4wQ9rCo= |
+      | 1234523 | X4Bl4wQ9rCo= |
 
   Scenario Outline: Import and export multisig
     Given multisig addresses "<addresses>"
@@ -61,8 +61,8 @@ Feature: KMD
     Then the multisig should not be in the wallet
 
     Examples:
-    | addresses |
-    | DN7MBMCL5JQ3PFUQS7TMX5AH4EEKOBJVDUF4TCV6WERATKFLQF4MQUPZTA BFRTECKTOOE7A5LHCF3TTEOH2A7BW46IYT2SX5VP6ANKEXHZYJY77SJTVM 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU |
+      | addresses                                                                                                                                                                        |
+      | DN7MBMCL5JQ3PFUQS7TMX5AH4EEKOBJVDUF4TCV6WERATKFLQF4MQUPZTA BFRTECKTOOE7A5LHCF3TTEOH2A7BW46IYT2SX5VP6ANKEXHZYJY77SJTVM 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU |
 
   Scenario Outline: Sign multisig both ways
     Given an algod client
@@ -71,8 +71,8 @@ Feature: KMD
     And I get the private key
     And I sign the multisig transaction with the private key
     Then the multisig transaction should equal the kmd signed multisig transaction
-    
+
     Examples:
-    | amt | note |
-    | 0   | X4Bl4wQ9rCo= |
-    | 1234523 | X4Bl4wQ9rCo= |
+      | amt     | note         |
+      | 0       | X4Bl4wQ9rCo= |
+      | 1234523 | X4Bl4wQ9rCo= |

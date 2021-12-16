@@ -11,7 +11,7 @@ Feature: ABI Interaction
     And I sign and submit the transaction, saving the txid. If there is an error it is "".
     And I wait for the transaction to be confirmed.
     And I remember the new application ID.
-  
+
   Scenario Outline: Method call execusion with other transactions
     Given a new AtomicTransactionComposer
     # Create a pay transaction, create a TransactionSigner, and add it to the composer
@@ -62,8 +62,8 @@ Feature: ABI Interaction
     And The app should have returned "<returns>".
 
     Examples:
-      | method-signature                                                                                     | app-args                                                                                                                                                                                                             | returns |
-      | empty()void                                                                                          |                                                                                                                                                                                                                      | |
+      | method-signature                                                                                     | app-args                                                                                                                                                                                                             | returns      |
+      | empty()void                                                                                          |                                                                                                                                                                                                                      |              |
       | add(uint64,uint64)uint64                                                                             | AAAAAAAAAAE=,AAAAAAAAAAI=                                                                                                                                                                                            | AAAAAAAAAAM= |
       | add(uint64,uint64)uint64                                                                             | //////////4=,AAAAAAAAAAE=                                                                                                                                                                                            | //////////8= |
       | referenceTest(account,application,account,asset,account,asset,asset,application,application)uint8[9] | Uabo7LuH+JfxYes3JwpJ4Fz3Kzoz5LYtZhWxaN8pa3g=,AAAAAAAAAAo=,Uabo7LuH+JfxYes3JwpJ4Fz3Kzoz5LYtZhWxaN8pa3g=,AAAAAAAAABQ=,1Hq2PnhdWWwQ3IvRrz0gZ8EZmoH68yc2DzLpab3P8uA=,AAAAAAAAABQ=,AAAAAAAAABU=,AAAAAAAAAAo=,AAAAAAAAAAs= | AQECAQECAAAB |
@@ -83,7 +83,7 @@ Feature: ABI Interaction
     Then The composer should have a status of "COMMITTED".
     # "hello Algorand Fan"
     And The app should have returned "ABJoZWxsbyBBbGdvcmFuZCBGYW4=".
-    
+
     Given a new AtomicTransactionComposer
     When I create the Method object from method signature "closeOut()string"
     And I create a new method arguments array.
@@ -96,7 +96,7 @@ Feature: ABI Interaction
     Then The composer should have a status of "COMMITTED".
     # "goodbye Algorand Fan"
     And The app should have returned "ABRnb29kYnllIEFsZ29yYW5kIEZhbg==".
-  
+
   Scenario: Method call delete execution
     Given I create a new transient account and fund it with 100000000 microalgos.
     And I make a transaction signer for the transient account.

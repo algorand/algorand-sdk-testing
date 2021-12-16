@@ -110,6 +110,8 @@ In order for this to work, each SDK maintains a whitelist of tags which have bee
 
 If a new feature file is created, the tag would go at the top of the file. If a new scenario is added the tag would go right above the scenario.
 
+If possible, please run a formatter on the file modified. There are several, including one built into VSCode Cucuber/Gherkin plugin. 
+
 ## Implementing tests in the SDK
 
 The code snippets (or step definitions) live in the SDKs. Each SDK has a script which is able to clone this repository, and copy the tests into the correct locations.
