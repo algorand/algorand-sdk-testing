@@ -7,12 +7,14 @@ Feature: AbiJson
     Then the produced json should equal "<jsonfile>" loaded from "<directory>"
 
     Examples:
-      | methodsig                           | jsonfile             | directory         |
-      | add(uint32,uint32)uint32            | addMethod.json       | abi_responsejsons |
-      | add(uint32,uint32)void              | addMethodVoid.json   | abi_responsejsons |
-      | add()uint32                         | addMethodNoArgs.json | abi_responsejsons |
-      | add((uint32,uint32))(uint32,uint32) | addMethodTuple.json  | abi_responsejsons |
-      | add(uint32,uint16)uint32            | addMethodUint16.json | abi_responsejsons |
+      | methodsig                                        | jsonfile                 | directory         |
+      | add(uint32,uint32)uint32                         | addMethod.json           | abi_responsejsons |
+      | add(uint32,uint32)void                           | addMethodVoid.json       | abi_responsejsons |
+      | add()uint32                                      | addMethodNoArgs.json     | abi_responsejsons |
+      | add((uint32,uint32))(uint32,uint32)              | addMethodTuple.json      | abi_responsejsons |
+      | add(uint32,uint16)uint32                         | addMethodUint16.json     | abi_responsejsons |
+      | referenceTest(account,application,asset)uint8[3] | referenceTestMethod.json | abi_responsejsons |
+      | txnTest(txn,pay,keyreg,acfg,axfer,afrz,appl)bool | txnTestMethod.json       | abi_responsejsons |
 
   Scenario Outline: Create and serialize Method object into json
     When I create the Method object with name "<name>" first argument type "<firstargtype>" second argument type "<secondargtype>" and return type "<returntype>"

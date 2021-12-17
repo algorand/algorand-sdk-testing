@@ -118,8 +118,6 @@ Feature: ABI Interaction
 
   Scenario Outline: Method call with pay txn execution
     Given a new AtomicTransactionComposer
-    And I create a new transient account and fund it with 100000000 microalgos.
-    When I make a transaction signer for the transient account.
     And I build a payment transaction with sender "transient", receiver "transient", amount 1000000, close remainder to ""
     And I create a transaction with signer with the current transaction.
     # Create a payment method call with an address argument, and add it to the composer
@@ -142,3 +140,45 @@ Feature: ABI Interaction
       | method-signature        | app-args     | returns |
       | payment(pay,uint64)bool | AAAAAAAPQkA= | gA==    |
       | payment(pay,uint64)bool | AAAAAAAPQkE= | AA==    |
+
+  Scenario: Multiple method calls in one atomic group
+    Given a new AtomicTransactionComposer
+
+    # optIn(string)string
+    When I create the Method object from method signature "optIn(string)string"
+    And I create a new method arguments array.
+    And I append the encoded arguments "AAxBbGdvcmFuZCBGYW4=" to the method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "optin", current transaction signer, current method arguments.
+
+    # payment(pay,uint64)bool
+    And I create the Method object from method signature "payment(pay,uint64)bool"
+    And I create a new method arguments array.
+    And I build a payment transaction with sender "transient", receiver "transient", amount 1234567, close remainder to ""
+    And I create a transaction with signer with the current transaction.
+    And I append the current transaction with signer to the method arguments array.
+    And I append the encoded arguments "AAAAAAAS1oc=" to the method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+    # empty()void
+    When I create the Method object from method signature "empty()void"
+    And I create a new method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+    # add(uint64,uint64)uint64
+    When I create the Method object from method signature "add(uint64,uint64)uint64"
+    And I create a new method arguments array.
+    And I append the encoded arguments "AAAAAAAAAAE=,AAAAAAAAAAI=" to the method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+    # closeOut()string
+    And I create the Method object from method signature "closeOut()string"
+    And I create a new method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "closeout", current transaction signer, current method arguments.
+
+    And I build the transaction group with the composer. If there is an error it is "".
+    Then The composer should have a status of "BUILT".
+    And I gather signatures with the composer.
+    Then The composer should have a status of "SIGNED".
+    And I execute the current transaction group with the composer.
+    Then The composer should have a status of "COMMITTED".
+    And The app should have returned "ABJoZWxsbyBBbGdvcmFuZCBGYW4=,gA==,,AAAAAAAAAAM=,ABRnb29kYnllIEFsZ29yYW5kIEZhbg==".
