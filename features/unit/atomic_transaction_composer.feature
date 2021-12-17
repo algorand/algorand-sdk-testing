@@ -37,6 +37,28 @@ Feature: Atomic Transaction Composer
       | 20     | appArgs(application,application,uint64,application,application)void                                                       | AB////////8=,AAAAAAAAArw=,AAAAAAAAABQ=,AAAAAAAAABQ=,AAAAAAAAArw=                                                                                                                                                                 | gqNzaWfEQC/v+Hm+QoC6z6jKsFxTXCGRGmvmzmnX64ENDVXXDXxZpRVs+7svbh1ReOveuD3z/KYNO2mAC+Y99NtQt/FtJwyjdHhuiqRhcGFhlsQETRzPlMQBAcQBAsQIAAAAAAAAABTEAQDEAQKkYXBmYZLPAB/////////NArykYXBpZBSjZmVlzQTSomZ2zSMoo2dlbqtjdWN1bWJlcm5ldKJnaMQgMf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464OibHbNIzKjc25kxCAJ+9J2LAj4bFrmv23Xp6kB3mZ111Dgfoxcdphkfbbh/aR0eXBlpGFwcGw=                                                                                                             |
       | 20     | assetArgs(asset,uint64,asset,asset,asset,asset)void                                                                       | AAAAAAAAAAc=,AAAAAAAAAAg=,AAAAAAAAAAg=,AAAAAAAAAAk=,AAAAAAAAAAk=,AB////////8=                                                                                                                                                    | gqNzaWfEQF7tHkJa/ZtxEoQVTRmZzHBWXtX0RlebnUkbABSuNv259w93HLu9Gl6QayW7LIUcbOfD/Bd0VvtNBuN5RQ/p2QijdHhuiqRhcGFhl8QEuMy5O8QBAMQIAAAAAAAAAAjEAQHEAQLEAQLEAQOkYXBhc5QHCAnPAB////////+kYXBpZBSjZmVlzQTSomZ2zSMoo2dlbqtjdWN1bWJlcm5ldKJnaMQgMf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464OibHbNIzKjc25kxCAJ+9J2LAj4bFrmv23Xp6kB3mZ111Dgfoxcdphkfbbh/aR0eXBlpGFwcGw=                                                                                                         |
 
+  Scenario Outline: Method call creation construction and signing
+    Given a new AtomicTransactionComposer
+    And suggested transaction parameters fee 1234, flat-fee "true", first-valid 9000, last-valid 9010, genesis-hash "Mf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464M=", genesis-id "cucumbernet"
+    And an application id 0
+    When I make a transaction signer for the signing account.
+    And I create the Method object from method signature "create(uint64)uint64"
+    And I create a new method arguments array.
+    And I append the encoded arguments "AAAAAAAAAAQ=" to the method arguments array.
+    And I add a method call with the signing account, the current application, suggested params, on complete "<on-complete>", current transaction signer, current method arguments, approval-program "programs/zero.teal.tok", clear-program "programs/one.teal.tok", global-bytes 2, global-ints 3, local-bytes 4, local-ints 5, extra-pages 1.
+    And I build the transaction group with the composer. If there is an error it is "".
+    Then The composer should have a status of "BUILT".
+    And I gather signatures with the composer.
+    Then The composer should have a status of "SIGNED".
+    And the base64 encoded signed transactions should equal "<goldens>"
+
+    Examples:
+      | on-complete | goldens                                                                                                                                                                                                                                                                                                                                                                                          |
+      | noop        | gqNzaWfEQEdsO0c7dmuFLDqdc1cGteNnAWh0gFhXXTtBTRYWClahGJ8v1zxJGJ9blWNfFIP8JCRiPnBHocBSIecVKTx4bQ6jdHhujaRhcGFhksQEQ0ZBAcQIAAAAAAAAAASkYXBhcMQFAiABACKkYXBlcAGkYXBnc4KjbmJzAqNudWkDpGFwbHOCo25icwSjbnVpBaRhcHN1xAUCIAEBIqNmZWXNBNKiZnbNIyijZ2Vuq2N1Y3VtYmVybmV0omdoxCAx/SHrOOQQgRk+00zfOyuD6IdAVLR9nGGCvvDfkjjrg6Jsds0jMqNzbmTEIAn70nYsCPhsWua/bdenqQHeZnXXUOB+jFx2mGR9tuH9pHR5cGWkYXBwbA==         |
+      | optin       | gqNzaWfEQBRX+Mk8mUzTD+g6lIdA9F+9vxEbV7NmENNxIstwuHgnBXhG3bM2w/fdKSKvy5RrCwMZVq8L2NQxMTvAU1qS2gejdHhujqRhcGFhksQEQ0ZBAcQIAAAAAAAAAASkYXBhbgGkYXBhcMQFAiABACKkYXBlcAGkYXBnc4KjbmJzAqNudWkDpGFwbHOCo25icwSjbnVpBaRhcHN1xAUCIAEBIqNmZWXNBNKiZnbNIyijZ2Vuq2N1Y3VtYmVybmV0omdoxCAx/SHrOOQQgRk+00zfOyuD6IdAVLR9nGGCvvDfkjjrg6Jsds0jMqNzbmTEIAn70nYsCPhsWua/bdenqQHeZnXXUOB+jFx2mGR9tuH9pHR5cGWkYXBwbA== |
+      | delete      | gqNzaWfEQLxlqhy12zkcCO1PBragfYqPx5aD90HKM/9vKx3uA4sgD9Rl7nVoeNAWA0axWwqkMJPyIzr3m2++KB2ujuiqdwWjdHhujqRhcGFhksQEQ0ZBAcQIAAAAAAAAAASkYXBhbgWkYXBhcMQFAiABACKkYXBlcAGkYXBnc4KjbmJzAqNudWkDpGFwbHOCo25icwSjbnVpBaRhcHN1xAUCIAEBIqNmZWXNBNKiZnbNIyijZ2Vuq2N1Y3VtYmVybmV0omdoxCAx/SHrOOQQgRk+00zfOyuD6IdAVLR9nGGCvvDfkjjrg6Jsds0jMqNzbmTEIAn70nYsCPhsWua/bdenqQHeZnXXUOB+jFx2mGR9tuH9pHR5cGWkYXBwbA== |
+      | update      | gqNzaWfEQE5k1S2terPuVH+dyngc5UhfmqM8weLwgR9Tsn7r2DFhY5PrZSyOxdTp6g/wu5Qz0/5jV2b+R5mqBiXwaZ+TUgCjdHhujqRhcGFhksQEQ0ZBAcQIAAAAAAAAAASkYXBhbgSkYXBhcMQFAiABACKkYXBlcAGkYXBnc4KjbmJzAqNudWkDpGFwbHOCo25icwSjbnVpBaRhcHN1xAUCIAEBIqNmZWXNBNKiZnbNIyijZ2Vuq2N1Y3VtYmVybmV0omdoxCAx/SHrOOQQgRk+00zfOyuD6IdAVLR9nGGCvvDfkjjrg6Jsds0jMqNzbmTEIAn70nYsCPhsWua/bdenqQHeZnXXUOB+jFx2mGR9tuH9pHR5cGWkYXBwbA== |
+
   Scenario Outline: Method call with pay txn construction and signing
     Given a new AtomicTransactionComposer
     And suggested transaction parameters fee 1234, flat-fee "true", first-valid 9000, last-valid 9010, genesis-hash "Mf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464M=", genesis-id "cucumbernet"

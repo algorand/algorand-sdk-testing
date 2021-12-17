@@ -116,6 +116,45 @@ Feature: ABI Interaction
     Then The composer should have a status of "COMMITTED".
     And The app should have returned "".
 
+  Scenario Outline: Method call create execution
+    Given I create a new transient account and fund it with 10000000 microalgos.
+    And I make a transaction signer for the transient account.
+    And a new AtomicTransactionComposer
+    And an application id 0
+    When I create the Method object from method signature "create(uint64)uint64"
+    And I create a new method arguments array.
+    And I append the encoded arguments "AAAAAAAAAAQ=" to the method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "<on-complete>", current transaction signer, current method arguments, approval-program "programs/abi_method_call.teal.tok", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, extra-pages 0.
+    And I build the transaction group with the composer. If there is an error it is "".
+    Then The composer should have a status of "BUILT".
+    And I gather signatures with the composer.
+    Then The composer should have a status of "SIGNED".
+    And I execute the current transaction group with the composer.
+    Then The composer should have a status of "COMMITTED".
+    And The app should have returned "AAAAAAAAAAg=".
+
+    Examples:
+      | on-complete |
+      | noop        |
+      | optin       |
+      | delete      |
+      | update      |
+
+  Scenario: Method call update execution
+    Given I create a new transient account and fund it with 10000000 microalgos.
+    And I make a transaction signer for the transient account.
+    And a new AtomicTransactionComposer
+    When I create the Method object from method signature "update()void"
+    And I create a new method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "update", current transaction signer, current method arguments, approval-program "programs/one.teal.tok", clear-program "programs/one.teal.tok".
+    And I build the transaction group with the composer. If there is an error it is "".
+    Then The composer should have a status of "BUILT".
+    And I gather signatures with the composer.
+    Then The composer should have a status of "SIGNED".
+    And I execute the current transaction group with the composer.
+    Then The composer should have a status of "COMMITTED".
+    And The app should have returned "".
+
   Scenario Outline: Method call with pay txn execution
     Given a new AtomicTransactionComposer
     And I build a payment transaction with sender "transient", receiver "transient", amount 1000000, close remainder to ""
