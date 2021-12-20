@@ -12,7 +12,7 @@ Feature: ABI Interaction
     And I wait for the transaction to be confirmed.
     And I remember the new application ID.
 
-  Scenario Outline: Method call execusion with other transactions
+  Scenario Outline: Method call execution with other transactions
     Given a new AtomicTransactionComposer
     # Create a pay transaction, create a TransactionSigner, and add it to the composer
     When I build a payment transaction with sender "transient", receiver "transient", amount 100001, close remainder to ""
