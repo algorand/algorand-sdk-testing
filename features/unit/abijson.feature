@@ -7,12 +7,14 @@ Feature: AbiJson
     Then the produced json should equal "<jsonfile>" loaded from "<directory>"
 
     Examples:
-      | methodsig                           | jsonfile             | directory         |
-      | add(uint32,uint32)uint32            | addMethod.json       | abi_responsejsons |
-      | add(uint32,uint32)void              | addMethodVoid.json   | abi_responsejsons |
-      | add()uint32                         | addMethodNoArgs.json | abi_responsejsons |
-      | add((uint32,uint32))(uint32,uint32) | addMethodTuple.json  | abi_responsejsons |
-      | add(uint32,uint16)uint32            | addMethodUint16.json | abi_responsejsons |
+      | methodsig                                        | jsonfile                 | directory         |
+      | add(uint32,uint32)uint32                         | addMethod.json           | abi_responsejsons |
+      | add(uint32,uint32)void                           | addMethodVoid.json       | abi_responsejsons |
+      | add()uint32                                      | addMethodNoArgs.json     | abi_responsejsons |
+      | add((uint32,uint32))(uint32,uint32)              | addMethodTuple.json      | abi_responsejsons |
+      | add(uint32,uint16)uint32                         | addMethodUint16.json     | abi_responsejsons |
+      | referenceTest(account,application,asset)uint8[3] | referenceTestMethod.json | abi_responsejsons |
+      | txnTest(txn,pay,keyreg,acfg,axfer,afrz,appl)bool | txnTestMethod.json       | abi_responsejsons |
 
   Scenario Outline: Create and serialize Method object into json
     When I create the Method object with name "<name>" first argument type "<firstargtype>" second argument type "<secondargtype>" and return type "<returntype>"
@@ -63,22 +65,24 @@ Feature: AbiJson
 
   Scenario Outline: Serialize Interface into json
     When I create the Method object from method signature "<methodsig>"
-    And I create an Interface object from the Method object with name "<name>"
+    And I create an Interface object from the Method object with name "<name>" and description "<description>"
     And I serialize the Interface object into json
     Then the produced json should equal "<jsonfile>" loaded from "<directory>"
     And the deserialized json should equal the original Interface object
 
     Examples:
-      | methodsig                | name      | jsonfile       | directory         |
-      | add(uint32,uint32)uint32 | interface | interface.json | abi_responsejsons |
+      | methodsig                | name             | description                  | jsonfile       | directory         |
+      | add(uint32,uint32)uint32 | ExampleInterface | This is an example interface | interface.json | abi_responsejsons |
 
   Scenario Outline: Serialize Contract into json
     When I create the Method object from method signature "<methodsig>"
-    And I create a Contract object from the Method object with name "<name>" and appId <appId>
+    And I create a Contract object from the Method object with name "<name>" and description "<description>"
+    And I set the Contract's appID to <network1-app-id> for the network "<network1>"
+    And I set the Contract's appID to <network2-app-id> for the network "<network2>"
     And I serialize the Contract object into json
     Then the produced json should equal "<jsonfile>" loaded from "<directory>"
     And the deserialized json should equal the original Contract object
 
     Examples:
-      | methodsig                | name     | appId | jsonfile      | directory         |
-      | add(uint32,uint32)uint32 | contract | 123   | contract.json | abi_responsejsons |
+      | methodsig                | name            | description                 | network1                                     | network1-app-id | network2                                     | network2-app-id | jsonfile      | directory         |
+      | add(uint32,uint32)uint32 | ExampleContract | This is an example contract | wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8= | 1234            | SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI= | 5678            | contract.json | abi_responsejsons |
