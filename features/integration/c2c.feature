@@ -47,26 +47,26 @@ Feature: Contract to Contract Interaction
       | add(uint64,uint64)uint64 | AAAAAAAAAAE=,AAAAAAAAAAI= | AAAAAAAAAAM= |
       | empty()void              |                           |              |
 
-  Scenario Outline: Method call noop execution
-    Given a new AtomicTransactionComposer
-    When I create the Method object from method signature "<method-signature>"
-    And I create a new method arguments array.
-    And I append the encoded arguments "<app-args>" to the method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
-    And I build the transaction group with the composer. If there is an error it is "".
-    Then The composer should have a status of "BUILT".
-    And I gather signatures with the composer.
-    Then The composer should have a status of "SIGNED".
-    And I execute the current transaction group with the composer.
-    Then The composer should have a status of "COMMITTED".
-    And The app should have returned "<returns>".
+# Scenario Outline: Method call noop execution
+#   Given a new AtomicTransactionComposer
+#   When I create the Method object from method signature "<method-signature>"
+#   And I create a new method arguments array.
+#   And I append the encoded arguments "<app-args>" to the method arguments array.
+#   And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+#   And I build the transaction group with the composer. If there is an error it is "".
+#   Then The composer should have a status of "BUILT".
+#   And I gather signatures with the composer.
+#   Then The composer should have a status of "SIGNED".
+#   And I execute the current transaction group with the composer.
+#   Then The composer should have a status of "COMMITTED".
+#   And The app should have returned "<returns>".
 
-    Examples:
-      | method-signature                                                                                     | app-args                                                                                                                                                                                                             | returns      |
-      | empty()void                                                                                          |                                                                                                                                                                                                                      |              |
-      | add(uint64,uint64)uint64                                                                             | AAAAAAAAAAE=,AAAAAAAAAAI=                                                                                                                                                                                            | AAAAAAAAAAM= |
-      | add(uint64,uint64)uint64                                                                             | //////////4=,AAAAAAAAAAE=                                                                                                                                                                                            | //////////8= |
-      | referenceTest(account,application,account,asset,account,asset,asset,application,application)uint8[9] | Uabo7LuH+JfxYes3JwpJ4Fz3Kzoz5LYtZhWxaN8pa3g=,AAAAAAAAAAo=,Uabo7LuH+JfxYes3JwpJ4Fz3Kzoz5LYtZhWxaN8pa3g=,AAAAAAAAABQ=,1Hq2PnhdWWwQ3IvRrz0gZ8EZmoH68yc2DzLpab3P8uA=,AAAAAAAAABQ=,AAAAAAAAABU=,AAAAAAAAAAo=,AAAAAAAAAAs= | AQECAQECAAAB |
+#   Examples:
+#     | method-signature                                                                                     | app-args                                                                                                                                                                                                             | returns      |
+#     | empty()void                                                                                          |                                                                                                                                                                                                                      |              |
+#     | add(uint64,uint64)uint64                                                                             | AAAAAAAAAAE=,AAAAAAAAAAI=                                                                                                                                                                                            | AAAAAAAAAAM= |
+#     | add(uint64,uint64)uint64                                                                             | //////////4=,AAAAAAAAAAE=                                                                                                                                                                                            | //////////8= |
+#     | referenceTest(account,application,account,asset,account,asset,asset,application,application)uint8[9] | Uabo7LuH+JfxYes3JwpJ4Fz3Kzoz5LYtZhWxaN8pa3g=,AAAAAAAAAAo=,Uabo7LuH+JfxYes3JwpJ4Fz3Kzoz5LYtZhWxaN8pa3g=,AAAAAAAAABQ=,1Hq2PnhdWWwQ3IvRrz0gZ8EZmoH68yc2DzLpab3P8uA=,AAAAAAAAABQ=,AAAAAAAAABU=,AAAAAAAAAAo=,AAAAAAAAAAs= | AQECAQECAAAB |
 
 # Scenario: Method call optin and closeout execution
 #   Given a new AtomicTransactionComposer
