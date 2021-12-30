@@ -2,13 +2,27 @@
 // Do not use in any applications that require real randomness
 
 #pragma version 5
+txn ApplicationID
+bz create       // yes, we can create this app
+
 txn ApplicationArgs 0
-byte 0x20663510 // selector for randInt(int)int
+method "randInt(int)(int,string)"
 ==
 bnz finish      // only calculate when calling the method
 
 global Round
 itob
+pushbytes "#"
+concat
+pushbytes "counter"
+app_global_get
+dup
+pushint 1
++
+app_global_push
+itob
+concat
+dup
 sha512_256
 pushint 0
 extract_uint64
@@ -20,5 +34,9 @@ swap
 concat
 log
 
+create:
+    pushbytes "counter"
+    pushint 0
+    app_global_put 
 finish:
     int 1
