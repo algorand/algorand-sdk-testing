@@ -1,6 +1,9 @@
 # algorand-sdk-testing
 Testing files for Algorand SDKs
 
+<!-- markdownlint-disable MD025 -->
+<!-- markdownlint-disable MD001 -->
+
 # About
 
 The files in this repository are used for testing the different Algorand SDK implementations. By writing the tests once and sharing them amongst the SDKs we are able to increase the coverage of our tests, and avoid rewriting similar tests over and over again. In addition to test cases, we have a standard test environment which is managed by docker.
