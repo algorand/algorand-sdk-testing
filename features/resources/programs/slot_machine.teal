@@ -1,22 +1,29 @@
 TODO: spin()(byte[3],byte[17],byte[17],byte[17])
+TODO: award(byte[3])uint64
+MAYBE TODO:
 TODO: _create(int,string[])void
 TODO: disallow updates, optins, etc.
 
 Input: None
 Output: 3 random bytes from each slot of slot machine as well as corresponding witnesses
 
-0. On creation, provide app_id and s_is params and set the following app global vars:
-    * "app_randElement":app_id
-    * itob(1):s_1
-    * itob(2):s_2
+0. On creation, provide app_id, s_i , (combo_j, award_j) params and set the following app global vars:
+    * RandomByte:app_id - global-int
+    * itob(1):s_1       - global-byte
+    * itob(2):s_2       - global-byte
     ...
-    * itob(n):s_n
+    * itob(n):s_n       - global-byte
+    
+    * combo_1:award_1   - global-int
+    * combo_2:award_1   - global-int
+    ...
+    * combo_m:award_m   - global-int
 
 (at runtime, you can figure out what n is with GlobalNumByteSlice)
 
 1. create variables "reels" and "witnesses" each containing ""
 2. for i = 1 to n:
-    c_i, w_i = randElement(s_n)
+    c_i, w_i = RandomByte.randElement(s_n)
     reels += c_i
     witnesses += w_i
 3. return reels + witnesses

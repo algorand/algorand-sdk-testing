@@ -5,9 +5,10 @@ TODO: disallow updates, optins, etc.
 Input: a string s such as "hello random"
 Output: a byte in s picked with index of uniform randomness
 
-0. On creation, save an appid in globals that will be used for generating randInt
+0. On creation, save an app_id in globals that will be used for generating randInt:
+    * FakeRandom:app_id
 
 1. n := len(s)
-2. r, w := randInt(n)
+2. r, w := FakeRandom.randInt(n)
 3. c := substring n n+1
 4. return c, w
