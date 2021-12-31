@@ -1,6 +1,8 @@
 // <<<< WARNING: For demo purposes only >>>>
 // Do not use in any applications that require unpredictable randomness
 
+// TODO: disallow updates, optins, etc.
+
 #pragma version 5
 txn ApplicationID
 bz create       // yes, we can create this app

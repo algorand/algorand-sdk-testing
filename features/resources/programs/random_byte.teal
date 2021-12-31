@@ -1,0 +1,13 @@
+TODO: randElement(string)(byte,byte[17)]
+TODO: _create(int)void
+TODO: disallow updates, optins, etc.
+
+Input: a string s such as "hello random"
+Output: a byte in s picked with index of uniform randomness
+
+0. On creation, save an appid in globals that will be used for generating randInt
+
+1. n := len(s)
+2. r, w := randInt(n)
+3. c := substring n n+1
+4. return c, w
