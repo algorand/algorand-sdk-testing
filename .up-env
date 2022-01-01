@@ -5,4 +5,4 @@ export CHANNEL="nightly"
 
 # Used when TYPE=source
 export ALGOD_URL="https://github.com/algorand/go-algorand"
-export ALGOD_BRANCH="master"
+export ALGOD_BRANCH="feature/contract-to-contract"
