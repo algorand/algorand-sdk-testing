@@ -1,5 +1,4 @@
 // TODO: randElement(string)(byte,byte[17)]
-// TODO: create(int)void
 // TODO: disallow updates, optins, etc.
 
 // Input: a string s such as "hello random"
@@ -13,9 +12,26 @@
 // 3. c := substring n n+1
 // 4. return c, w
 
-#pragma version 5
+#pragma version 6
 txn ApplicationID
 bz create
+
+txn ApplicationArgs 0
+method "randElement(string)(byte,byte[17)]"
+==
+bz finish
+
+itxn_begin
+    int appl;                                   itxn_field TypeEnum
+    pushbytes "FakeRandom"; app_global_get;     itxn_field ApplicationID
+    method "randInt(uint64)(uint64,byte[17])";  itxn_field ApplicationArgs
+    txn ApplicationArgs 1; len; itob;           itxn_field ApplicationArgs
+itxn_submit
+
+pushint 0; itxn NumLogs; 1; -;                  gtxnsas ApplicationArgs
+itxn Logs
+
+dup; pushbytes "debug logs received--->"; log; log
 
 err
 
@@ -27,6 +43,16 @@ create:
 
     pushbytes "FakeRandom"
     txn ApplicationArgs 1
+    btoi
+    
+    dup2
+    pushbytes "debug app_global_put--->"
+    log
+    itob
+    swap
+    log
+    log
+
     app_global_put
 
 finish:

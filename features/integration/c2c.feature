@@ -33,10 +33,16 @@ Feature: Contract to Contract Interaction
     # Build-up phase
 
     # randInt(42) -> (r, witnessString)
-    * I create the Method object from method signature "randInt(uint64)(uint64,byte[17])"
+    And I create the Method object from method signature "randInt(uint64)(uint64,byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "AAAAAAAAACo=" to the method arguments array.
     * I add a method call with the transient account, the 0th app, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+    # randElement("hello") -> (c, witnessString)
+    And I create the Method object from method signature "randElement(string)(byte,byte[17)]"
+    * I create a new method arguments array.
+    * I append the encoded arguments "aGVsbG8=" to the method arguments array.
+    * I add a method call with the transient account, the 1th app, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     # Composer finalization
     And I build the transaction group with the composer. If there is an error it is "".
