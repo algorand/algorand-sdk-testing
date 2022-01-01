@@ -1,14 +1,33 @@
-TODO: randElement(string)(byte,byte[17)]
-TODO: _create(int)void
-TODO: disallow updates, optins, etc.
+// TODO: randElement(string)(byte,byte[17)]
+// TODO: create(int)void
+// TODO: disallow updates, optins, etc.
 
-Input: a string s such as "hello random"
-Output: a byte in s picked with index of uniform randomness
+// Input: a string s such as "hello random"
+// Output: a byte in s picked with index of uniform randomness
 
-0. On creation, save an app_id in globals that will be used for generating randInt:
-    * FakeRandom:app_id
+// 0. On creation, save an app_id in globals that will be used for generating randInt:
+//     * FakeRandom:app_id
 
-1. n := len(s)
-2. r, w := FakeRandom.randInt(n)
-3. c := substring n n+1
-4. return c, w
+// 1. n := len(s)
+// 2. r, w := FakeRandom.randInt(n)
+// 3. c := substring n n+1
+// 4. return c, w
+
+#pragma version 5
+txn ApplicationID
+bz create
+
+err
+
+create:
+    txn ApplicationArgs 0
+    method "create(uint64)void"
+    ==
+    assert
+
+    pushbytes "FakeRandom"
+    txn ApplicationArgs 1
+    app_global_put
+
+finish:
+    int 1
