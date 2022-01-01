@@ -20,12 +20,6 @@ pushbytes "counter"
 app_global_get      
 dup
 
-dup
-itob
-pushbytes "debug get_counter (before incrementing) -->"
-log
-log
-
 pushint 1
 +
 pushbytes "counter"

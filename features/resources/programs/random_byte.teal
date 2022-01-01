@@ -23,15 +23,23 @@ bz finish
 
 itxn_begin
     int appl;                                   itxn_field TypeEnum
-    pushbytes "FakeRandom"; app_global_get;     itxn_field ApplicationID
-    method "randInt(uint64)(uint64,byte[17])";  itxn_field ApplicationArgs
+    pushbytes "FakeRandom"
+    app_global_get
+                                                itxn_field ApplicationID
+    method "randInt(uint64)(uint64,byte[17])"
+                                                itxn_field ApplicationArgs
     txn ApplicationArgs 1; len; itob;           itxn_field ApplicationArgs
 itxn_submit
 
-pushint 0; itxn NumLogs; 1; -;                  gtxnsas ApplicationArgs
-itxn Logs
+pushint 0; itxn NumLogs; 1; ==; assert
+
+itxna Logs 0
 
 dup; pushbytes "debug logs received--->"; log; log
+
+dup
+
+
 
 err
 

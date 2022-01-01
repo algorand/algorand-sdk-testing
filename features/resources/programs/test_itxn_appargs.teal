@@ -1,0 +1,6 @@
+#pragma version 6
+itxn_begin
+int 800
+bzero
+itxn_field ApplicationArgs
+int 1
