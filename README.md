@@ -46,24 +46,24 @@ These reside in the [unit features directory](features/unit)
 
 These reside in the [integration features directory](features/integration)
 
-| tag                    | description                                                                         |
-| ---------------------- | ----------------------------------------------------------------------------------- |
-| @abi                   | Test the Abstract Binary Interface (ABI) with atomic txn composition and execution. |
-| @algod                 | General tests against algod REST endpoints.                                         |
-| @auction               | Encode and decode bids for an auction.                                              |
-| @application.evaldelta | Test that eval delta fields are included in algod and indexer.                      |
-| @applications.verified | Submit all types of application transactions and verify account state.              |
-| @assets                | Submit all types of asset transactions.                                             |
-| @c2c                   | Test Contract to Contract invocations.                                              |
-| @compile               | Test the algod compile endpoint.                                                    |
-| @dryrun                | Test the algod dryrun endpoint.                                                     |
-| @dryrun.testing        | Test the testing harness that relies on dryrun endpoint. Python only.               |
-| @indexer               | Test all types of indexer queries and parameters against a static dataset.          |
-| @indexer.231           | REST Client Integration Tests for Indexer 2.3.1+                                    |
-| @indexer.applications  | Endpoints and parameters added to support applications.                             |
-| @kmd                   | Test the kmd REST endpoints.                                                        |
-| @rekey                 | Test the rekeying transactions.                                                     |
-| @send                  | Test the ability to submit transactions to algod.                                   |
+| tag                    | description                                                                            |
+| ---------------------- | -------------------------------------------------------------------------------------- |
+| @abi                   | Test the Application Binary Interface (ABI) with atomic txn composition and execution. |
+| @algod                 | General tests against algod REST endpoints.                                            |
+| @auction               | Encode and decode bids for an auction.                                                 |
+| @application.evaldelta | Test that eval delta fields are included in algod and indexer.                         |
+| @applications.verified | Submit all types of application transactions and verify account state.                 |
+| @assets                | Submit all types of asset transactions.                                                |
+| @c2c                   | Test Contract to Contract invocations.                                                 |
+| @compile               | Test the algod compile endpoint.                                                       |
+| @dryrun                | Test the algod dryrun endpoint.                                                        |
+| @dryrun.testing        | Test the testing harness that relies on dryrun endpoint. Python only.                  |
+| @indexer               | Test all types of indexer queries and parameters against a static dataset.             |
+| @indexer.231           | REST Client Integration Tests for Indexer 2.3.1+                                       |
+| @indexer.applications  | Endpoints and parameters added to support applications.                                |
+| @kmd                   | Test the kmd REST endpoints.                                                           |
+| @rekey                 | Test the rekeying transactions.                                                        |
+| @send                  | Test the ability to submit transactions to algod.                                      |
 
 # SDK Overview
 
