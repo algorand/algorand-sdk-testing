@@ -62,8 +62,8 @@ These reside in the [integration features directory](features/integration)
 | @indexer.231           | REST Client Integration Tests for Indexer 2.3.1+                                    |
 | @indexer.applications  | Endpoints and parameters added to support applications.                             |
 | @kmd                   | Test the kmd REST endpoints.                                                        |
-| @kmd                   | Test the kmd REST endpoints.                                                        |
 | @rekey                 | Test the rekeying transactions.                                                     |
+| @send                  | Test the ability to submit transactions to algod.                                   |
 
 # SDK Overview
 
