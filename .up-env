@@ -1,4 +1,4 @@
-export TYPE="channel"
+export TYPE="source"
 
 # Used when TYPE=channel
 export CHANNEL="nightly"
