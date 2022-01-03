@@ -33,14 +33,63 @@ txn ApplicationID
 bz create
 
 txn ApplicationArgs 0
-method "spin()(byte[3],byte[17],byte[17],byte[17])"
+method "spin(application,application)(byte[3],byte[17],byte[17],byte[17])"
 ==
 assert  // for now, only one method allowed
 
-// TODO... the loop
+byte "num_reels"
+app_global_get
+// >>> numReels
+
+dup
+assert // gotta spin something
+
+// spin reel2, then reel1 then reel0
+itxn_begin
+spin:
+    int 1
+    -
+    // >>> reelNum
+    dup
+    // >>> reelNum <-- reelNum
+
+    int appl
+    itxn_field TypeEnum
+
+    txn Applications 2  // RandomByte
+    itxn_field ApplicationID
+
+    method "randElement(string,application)(byte,byte[17])"
+    itxn_field ApplicationArgs
+
+    byte "reel"
+    swap
+    itob
+    // >>> reelNum <-- "reel" <-- itob(reelNum)
+    concat
+    app_global_get
+    // >> reelNum <-- reelContents
+    itxn_field ApplicationArgs
+
+    txn Applications 1 // FakeRandom
+    itxn_field Applications
+    
+    dup
+    // >>> reelNum <-- reelNum
+    bz submit
+itxn_next
+b spin
+
+submit:
+    int 0
+    ==
+    assert
+    // <<<EMPTY>>>
+itxn_submit
+
 
 create:
-    pushbytes "num_slots"
+    byte "num_reels"
     pushint 3
     app_global_put
 
