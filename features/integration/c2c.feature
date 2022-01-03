@@ -83,9 +83,10 @@ Feature: Contract to Contract Interaction
     # spin() -> (result, witness0, witness1, witness2)
     When I create the Method object from method signature "spin(application,application)(byte[3],byte[17],byte[17],byte[17])"
     * I create a new method arguments array.
-    * I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+# * I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
-    Then I build the transaction group with the composer. If there is an error it is "".
+# Then I build the transaction group with the composer. If there is an error it is "".
+
 # Then I gather signatures with the composer.
 # And I execute the current transaction group with the composer.
 # Then The composer should have a status of "COMMITTED".
