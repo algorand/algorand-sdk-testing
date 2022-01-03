@@ -21,7 +21,7 @@ itxn_begin
     int appl
     itxn_field TypeEnum
 
-    txn Applications 1
+    txn Applications 1 // FakeRandom
     itxn_field ApplicationID
 
     method "randInt(uint64)(uint64,byte[17])"
@@ -45,10 +45,10 @@ assert
 itxna Logs 0
 // >>> return|uint64|byte[17]|
 
-dup
-pushbytes "debug logs received--->"
-log
-log
+// dup
+// pushbytes "debug logs received--->"
+// log
+// log
 // >>> return|uint64|byte[17]|
 
 dup
