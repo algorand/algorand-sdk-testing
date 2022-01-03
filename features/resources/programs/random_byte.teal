@@ -1,11 +1,7 @@
-// TODO: randElement(string)(byte,byte[17)]
 // TODO: disallow updates, optins, etc.
 
 // Input: a string s such as "hello random"
 // Output: a byte in s picked with index of uniform randomness
-
-// 0. On creation, save an app_id in globals that will be used for generating randInt:
-//     * FakeRandom:app_id
 
 // 1. n := len(s)
 // 2. r, w := FakeRandom.randInt(n)
@@ -14,54 +10,81 @@
 
 #pragma version 6
 txn ApplicationID
-bz create
+bz finish  // creating ok
 
 txn ApplicationArgs 0
-method "randElement(string)(byte,byte[17)]"
+method "randElement(string,application)(byte,byte[17])"
 ==
-bz finish
+assert      // other than create, only the app call is allowed
 
 itxn_begin
-    int appl;                                   itxn_field TypeEnum
-    pushbytes "FakeRandom"
-    app_global_get
-                                                itxn_field ApplicationID
+    int appl
+    itxn_field TypeEnum
+
+    txn Applications 1
+    itxn_field ApplicationID
+
     method "randInt(uint64)(uint64,byte[17])"
-                                                itxn_field ApplicationArgs
-    txn ApplicationArgs 1; len; itob;           itxn_field ApplicationArgs
+    itxn_field ApplicationArgs
+
+    txn ApplicationArgs 1
+    len
+    pushint 2
+    -       // subtract 2 from length for encoding prefix
+    itob
+    itxn_field ApplicationArgs    
 itxn_submit
 
-pushint 0; itxn NumLogs; 1; ==; assert
+// assert a single log so we know where to look for return val:
+pushint 0
+itxn NumLogs
+pushint 1
+==
+assert
 
 itxna Logs 0
-
-dup; pushbytes "debug logs received--->"; log; log
+// >>> return|uint64|byte[17]|
 
 dup
+pushbytes "debug logs received--->"
+log
+log
+// >>> return|uint64|byte[17]|
 
+dup
+extract 12 0  // the witness
+swap
+// >>> byte[17] <-- return|uint64|byte[17]|
 
+extract 4 8   // the randInt
+btoi
+// >>> byte[17] <-- randInt
 
-err
+txn ApplicationArgs 1
+// >>> byte[17] <-- randInt <-- len|input_string
 
-create:
-    txn ApplicationArgs 0
-    method "create(uint64)void"
-    ==
-    assert
+extract 2 0   // the input string
+swap
+// >>> byte[17] <-- input_string <-- randInt
 
-    pushbytes "FakeRandom"
-    txn ApplicationArgs 1
-    btoi
-    
-    dup2
-    pushbytes "debug app_global_put--->"
-    log
-    itob
-    swap
-    log
-    log
+pushint 1
+extract3  
+// >>> byte[17] <-- randByte
 
-    app_global_put
+pushbytes 0x151f7c75  // return code
+swap
+// >>> byte[17] <-- return <-- randByte
+
+concat
+// >>> byte[17] <-- return|randByte
+
+swap
+concat
+// >>> return|randByte|byte[17]
+
+log
+// <<<EMPTY>>>
 
 finish:
     int 1
+    return
