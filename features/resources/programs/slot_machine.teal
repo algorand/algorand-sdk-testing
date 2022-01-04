@@ -67,10 +67,9 @@ spin:
     concat
     app_global_get
     // >> reelNum <-- reelContents
-    dup
-    pushbytes "dbg reel-->"
-    log
-    log
+
+    // pushbytes "reel"
+    // callsub debug
 
     dup
     len
@@ -78,6 +77,10 @@ spin:
     extract 6 0
     swap
     concat
+
+    // pushbytes "randElement input"
+    // callsub debug
+
     itxn_field ApplicationArgs
     // >>> reelNum
 
@@ -98,28 +101,67 @@ submit:
 itxn_submit
 
 gitxna 2 Logs 0
+
+// pushbytes "gitxna 2 Logs 0"
+// callsub debug
+
 // >>> return|randByte2|witness2
 callsub extract_element_and_witness
 // >>> randByte2 <-- witness2
 
+dup2
+pushbytes "witness2"
+callsub debug
+pop
+pushbytes "randByte2"
+callsub debug
+pop
+
+
 gitxna 1 Logs 0
+
+// pushbytes "gitxna 1 Logs 0"
+// callsub debug
+
 callsub extract_element_and_witness
 // >>> randByte2 <-- witness2 <-- randByte1 <-- witness1
 
+dup2
+pushbytes "witness1"
+callsub debug
+pop
+pushbytes "randByte1"
+callsub debug
+pop
+
+
 gitxna 0 Logs 0
+
+// pushbytes "gitxna 0 Logs 0"
+// callsub debug
+
 callsub extract_element_and_witness
 // >>> randByte2 <-- witness2 <-- randByte1 <-- witness1 <-- randByte0 <-- witness0
 
-uncover 2
-uncover 4
+dup2
+pushbytes "witness0"
+callsub debug
+pop
+pushbytes "randByte0"
+callsub debug
+pop
+
+// r2 w2 r1 w1 r0 w0
+uncover 2   // r2 w2 r1 r0 w0 w1
+uncover 4   // r2 r1 r0 w0 w1 w2
+concat      
+concat      // r2 r1 r0 w0w1w2
+uncover 1   // r2 r1 w0w1w2 r0
+uncover 2   // r2 w0w1w2 r0 r1
+uncover 3   // w0w1w2 r0 r1 r2
 concat
-concat
-// >>> randByte2 <-- randByte1 <-- randByte0 <-- witness0|witness1|witness2
-uncover 1
-uncover 2
-uncover 3
-concat
-concat
+concat      // w0w1w2 r0r1r2
+swap        // r0r1r2 w0w1w2
 concat
 // >>> witness2|witness1|witness0|randByte0|randByte1|randByte2
 byte 0x151f7c75
@@ -135,11 +177,26 @@ extract_element_and_witness:
     dup
     // ... return|byte|witness <-- return|byte|witness
     extract 4 1
+
+    // pushbytes "byte?"
+    // callsub debug
+
     // ... return|byte|witness <-- byte
     swap
     // ... byte <-- return|byte|witness
     extract 5 0
     // ... byte <-- witness
+    retsub
+
+debug: // assumes ... S[1] <-- S[0] == THE_VALUE <-- MESSAGE
+    pushbytes "dbg ["
+    swap
+    concat
+    pushbytes "] --->"
+    concat
+    log
+    dup     // ... THE_VALUE <-- THE_VALUE
+    log
     retsub
 
 create:
