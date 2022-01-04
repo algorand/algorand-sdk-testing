@@ -1,5 +1,6 @@
 // <<<< WARNING: For demo purposes only >>>>
-// Do not use in any applications that require unpredictable randomness
+// Do not use in any applications that require unpredictable randomness.
+// (As of Jan 2022) To achieve secure randomness, consider following an approach such as: https://github.com/ori-shem-tov/vrf-oracle
 
 // TODO: disallow updates, optins, etc.
 
