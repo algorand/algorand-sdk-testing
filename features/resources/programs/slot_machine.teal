@@ -162,12 +162,12 @@ uncover 3   // w0w1w2 r0 r1 r2
 concat
 concat      // w0w1w2 r0r1r2
 swap        // r0r1r2 w0w1w2
-concat
-// >>> witness2|witness1|witness0|randByte0|randByte1|randByte2
+concat      // r0r1r2w0w1w2
+
 byte 0x151f7c75
 swap
 concat
-log
+log         // return|randByte0|randByte1|randByte2|witness0|witness1|witness2
 
 int 1
 return

@@ -11,7 +11,7 @@ bz create       // yes, we can create this app
 txn ApplicationArgs 0
 method "randInt(uint64)(uint64,byte[17])"
 ==
-assert      // other than create, only the app call is allowed
+assert      // except for create, only allow calling method randInt()
 
 global Round
 itob
