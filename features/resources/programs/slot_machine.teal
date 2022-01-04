@@ -172,23 +172,19 @@ log         // return|randByte0|randByte1|randByte2|witness0|witness1|witness2
 int 1
 return
 
-extract_element_and_witness:
-    // ... return|byte|witness
-    dup
-    // ... return|byte|witness <-- return|byte|witness
-    extract 4 1
-
+extract_element_and_witness: 
+    // INPUT:      >>> ... return|byte|witness
+    dup             // ... return|byte|witness <-- return|byte|witness
+    extract 4 1     // ... return|byte|witness <-- byte
     // pushbytes "byte?"
     // callsub debug
-
-    // ... return|byte|witness <-- byte
-    swap
-    // ... byte <-- return|byte|witness
-    extract 5 0
-    // ... byte <-- witness
+    swap            // ... byte <-- return|byte|witness
+    extract 5 0     
     retsub
+    // OUTPUT:     >>> ... byte <-- witness
 
-debug: // assumes ... S[1] <-- S[0] == THE_VALUE <-- MESSAGE
+debug: 
+    // INPUT:  >>> ... S[1] <-- S[0] ( == THE_VALUE:byte[] <-- MESSAGE:byte[] )
     pushbytes "dbg ["
     swap
     concat
