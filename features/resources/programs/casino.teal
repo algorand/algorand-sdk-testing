@@ -1,8 +1,0 @@
-TODO: slotMachine(pay,pay)(uint64,byte[3]) or ideally slotMachine()(uint64,byte[3]) which:
-    * constructs pay: 1 algo -> casino
-    * calls: spin, w1, w2, w3 = SlotMachine.spin()
-    * calls: award = SlotMachine.award(spin)
-    * constructs: pay: sender -> casino for 1_000_000 µalgos
-    * if award > 0:
-        constructs: pay: casino -> sender for award µalgos
-    * returns: (award, spin)
