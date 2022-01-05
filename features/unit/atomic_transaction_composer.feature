@@ -16,7 +16,7 @@ Feature: Atomic Transaction Composer
     # Prepare method call arguments
     And I create a new method arguments array.
     And I append the encoded arguments "<app-args>" to the method arguments array.
-    And I add a method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
     # Build the group in the composer
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
@@ -44,7 +44,7 @@ Feature: Atomic Transaction Composer
     And I create the Method object from method signature "create(uint64)uint64"
     And I create a new method arguments array.
     And I append the encoded arguments "AAAAAAAAAAQ=" to the method arguments array.
-    And I add a method call with the signing account, the current application, suggested params, on complete "<on-complete>", current transaction signer, current method arguments, approval-program "programs/zero.teal.tok", clear-program "programs/one.teal.tok", global-bytes 2, global-ints 3, local-bytes 4, local-ints 5, extra-pages 1.
+    And I add a hash-deterministic method call with the signing account, the current application, suggested params, on complete "<on-complete>", current transaction signer, current method arguments, approval-program "programs/zero.teal.tok", clear-program "programs/one.teal.tok", global-bytes 2, global-ints 3, local-bytes 4, local-ints 5, extra-pages 1.
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
     And I gather signatures with the composer.
@@ -73,7 +73,7 @@ Feature: Atomic Transaction Composer
     And I create a new method arguments array.
     And I append the current transaction with signer to the method arguments array.
     And I append the encoded arguments "<app-args>" to the method arguments array.
-    And I add a method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
     # Build the group in the composer
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
@@ -109,7 +109,7 @@ Feature: Atomic Transaction Composer
     And I create a transaction with signer with the current transaction.
     And I append the current transaction with signer to the method arguments array.
 
-    And I add a method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
     # Build the group in the composer
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
@@ -134,7 +134,7 @@ Feature: Atomic Transaction Composer
     And I create the Method object from method signature "optIn(string)string"
     And I create a new method arguments array.
     And I append the encoded arguments "AAxBbGdvcmFuZCBGYW4=" to the method arguments array.
-    And I add a method call with the signing account, the current application, suggested params, on complete "optin", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the signing account, the current application, suggested params, on complete "optin", current transaction signer, current method arguments.
 
     # payment(pay,uint64)bool
     And I create the Method object from method signature "payment(pay,uint64)bool"
@@ -143,18 +143,18 @@ Feature: Atomic Transaction Composer
     And I create a transaction with signer with the current transaction.
     And I append the current transaction with signer to the method arguments array.
     And I append the encoded arguments "AAAAAAAS1oc=" to the method arguments array.
-    And I add a method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     # add(uint64,uint64)uint64
     When I create the Method object from method signature "add(uint64,uint64)uint64"
     And I create a new method arguments array.
     And I append the encoded arguments "AAAAAAAAAAE=,AAAAAAAAAAI=" to the method arguments array.
-    And I add a method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     # closeOut()string
     And I create the Method object from method signature "closeOut()string"
     And I create a new method arguments array.
-    And I add a method call with the signing account, the current application, suggested params, on complete "closeout", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the signing account, the current application, suggested params, on complete "closeout", current transaction signer, current method arguments.
 
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".

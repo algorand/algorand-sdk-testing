@@ -19,13 +19,13 @@ Feature: Contract to Contract Interaction
     When I create the Method object from method signature "randInt(uint64)(uint64,byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "AAAAAAAAACo=" to the method arguments array.
-    * I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    * I add a hash-nondeterministic method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     # randInt(1337) -> (r, witnessString)
     When I create the Method object from method signature "randInt(uint64)(uint64,byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "AAAAAAAABTk=" to the method arguments array.
-    * I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    * I add a hash-nondeterministic method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     Then I build the transaction group with the composer. If there is an error it is "".
     Then I gather signatures with the composer.
@@ -49,13 +49,13 @@ Feature: Contract to Contract Interaction
     When I create the Method object from method signature "randElement(string,application)(byte,byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "AAVoZWxsbw==,ctxAppIdx:0" to the method arguments array.
-    * I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    * I add a hash-nondeterministic method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     # randElement("goodbye",RandomByte) -> (c, witnessString)
     When I create the Method object from method signature "randElement(string,application)(byte,byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "AAdnb29kYnll,ctxAppIdx:0" to the method arguments array.
-    * I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    * I add a hash-nondeterministic method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     Then I build the transaction group with the composer. If there is an error it is "".
 
@@ -82,13 +82,13 @@ Feature: Contract to Contract Interaction
     When I create the Method object from method signature "spin(application,application)(byte[3],byte[17],byte[17],byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "ctxAppIdx:0,ctxAppIdx:1" to the method arguments array.
-    * I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    * I add a hash-nondeterministic method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     # Spin #2:
     When I create the Method object from method signature "spin(application,application)(byte[3],byte[17],byte[17],byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "ctxAppIdx:0,ctxAppIdx:1" to the method arguments array.
-    * I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    * I add a hash-nondeterministic method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     # Atomic Transaction Execution and Analysis
     Then I build the transaction group with the composer. If there is an error it is "".

@@ -28,7 +28,7 @@ Feature: ABI Interaction
     When I create the Method object from method signature "<method-signature>"
     And I create a new method arguments array.
     And I append the encoded arguments "<app-args>" to the method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
     # Build the group in the composer
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
@@ -52,7 +52,7 @@ Feature: ABI Interaction
     When I create the Method object from method signature "<method-signature>"
     And I create a new method arguments array.
     And I append the encoded arguments "<app-args>" to the method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
     And I gather signatures with the composer.
@@ -74,7 +74,7 @@ Feature: ABI Interaction
     And I create a new method arguments array.
     # "Algorand Fan"
     And I append the encoded arguments "AAxBbGdvcmFuZCBGYW4=" to the method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "optin", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the transient account, the current application, suggested params, on complete "optin", current transaction signer, current method arguments.
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
     And I gather signatures with the composer.
@@ -87,7 +87,7 @@ Feature: ABI Interaction
     Given a new AtomicTransactionComposer
     When I create the Method object from method signature "closeOut()string"
     And I create a new method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "closeout", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the transient account, the current application, suggested params, on complete "closeout", current transaction signer, current method arguments.
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
     And I gather signatures with the composer.
@@ -107,7 +107,7 @@ Feature: ABI Interaction
     And a new AtomicTransactionComposer
     When I create the Method object from method signature "delete()void"
     And I create a new method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "delete", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the transient account, the current application, suggested params, on complete "delete", current transaction signer, current method arguments.
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
     And I gather signatures with the composer.
@@ -124,7 +124,7 @@ Feature: ABI Interaction
     When I create the Method object from method signature "create(uint64)uint64"
     And I create a new method arguments array.
     And I append the encoded arguments "AAAAAAAAAAQ=" to the method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "<on-complete>", current transaction signer, current method arguments, approval-program "programs/abi_method_call.teal.tok", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, extra-pages 0.
+    And I add a hash-deterministic method call with the transient account, the current application, suggested params, on complete "<on-complete>", current transaction signer, current method arguments, approval-program "programs/abi_method_call.teal.tok", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, extra-pages 0.
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
     And I gather signatures with the composer.
@@ -146,7 +146,7 @@ Feature: ABI Interaction
     And a new AtomicTransactionComposer
     When I create the Method object from method signature "update()void"
     And I create a new method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "update", current transaction signer, current method arguments, approval-program "programs/one.teal.tok", clear-program "programs/one.teal.tok".
+    And I add a hash-deterministic method call with the transient account, the current application, suggested params, on complete "update", current transaction signer, current method arguments, approval-program "programs/one.teal.tok", clear-program "programs/one.teal.tok".
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
     And I gather signatures with the composer.
@@ -164,7 +164,7 @@ Feature: ABI Interaction
     And I create a new method arguments array.
     And I append the current transaction with signer to the method arguments array.
     And I append the encoded arguments "<app-args>" to the method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
     # Build the group in the composer
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
@@ -187,7 +187,7 @@ Feature: ABI Interaction
     When I create the Method object from method signature "optIn(string)string"
     And I create a new method arguments array.
     And I append the encoded arguments "AAxBbGdvcmFuZCBGYW4=" to the method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "optin", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the transient account, the current application, suggested params, on complete "optin", current transaction signer, current method arguments.
 
     # payment(pay,uint64)bool
     And I create the Method object from method signature "payment(pay,uint64)bool"
@@ -196,23 +196,23 @@ Feature: ABI Interaction
     And I create a transaction with signer with the current transaction.
     And I append the current transaction with signer to the method arguments array.
     And I append the encoded arguments "AAAAAAAS1oc=" to the method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     # empty()void
     When I create the Method object from method signature "empty()void"
     And I create a new method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     # add(uint64,uint64)uint64
     When I create the Method object from method signature "add(uint64,uint64)uint64"
     And I create a new method arguments array.
     And I append the encoded arguments "AAAAAAAAAAE=,AAAAAAAAAAI=" to the method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     # closeOut()string
     And I create the Method object from method signature "closeOut()string"
     And I create a new method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "closeout", current transaction signer, current method arguments.
+    And I add a hash-deterministic method call with the transient account, the current application, suggested params, on complete "closeout", current transaction signer, current method arguments.
 
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
