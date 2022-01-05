@@ -101,3 +101,5 @@ Feature: Contract to Contract Interaction
     And I can dig into the resulting atomic transaction execution tree with path "1,2,0"
     And I dig into the paths "0,0#0,1#0,2" of the resulting atomic transaction tree I see group ids and they are all the same
     And I can retrieve all inner transactions that were called from the atomic transaction with call graph "[{'spin(application,application)(byte[3],byte[17],byte[17],byte[17])':[{'appl':'appl'},{'appl':'appl'},{'appl':'appl'}]},{'spin(application,application)(byte[3],byte[17],byte[17],byte[17])':[{'appl':'appl'},{'appl':'appl'},{'appl':'appl'}]}]".
+    And Ze 0th atomic result for "spin()" satisfies the regex "^[@!-][@!-][@!-]$"
+    And Ze 1th atomic result for "spin()" satisfies the regex "^[@!-][@!-][@!-]$"
