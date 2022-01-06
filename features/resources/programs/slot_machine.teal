@@ -195,7 +195,9 @@ debug:
     log
     retsub
 
-create:
+create:     // TODO: would like to make this more dynamic. One thing holding me back is the
+            // absense of gitxnas which would make it possible to dynamically read 
+            // logs off the i'th innter transaction
     byte "num_reels"
     pushint 3
     app_global_put
