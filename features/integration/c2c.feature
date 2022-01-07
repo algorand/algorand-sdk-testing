@@ -77,14 +77,13 @@ Feature: Contract to Contract Interaction
 
     Given a new AtomicTransactionComposer
 
-    # 2 X spin() -> (result, witness0, witness1, witness2)
-    # First Spin:
+    # First spin() -> (result, witness0, witness1, witness2)
     When I create the Method object from method signature "spin(application,application)(byte[3],byte[17],byte[17],byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "ctxAppIdx:0,ctxAppIdx:1" to the method arguments array.
     * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
-    # Spin #2:
+    # Second spin() -> (result, witness0, witness1, witness2)
     When I create the Method object from method signature "spin(application,application)(byte[3],byte[17],byte[17],byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "ctxAppIdx:0,ctxAppIdx:1" to the method arguments array.
