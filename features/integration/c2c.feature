@@ -32,8 +32,8 @@ Feature: Contract to Contract Interaction
     And I execute the current transaction group with the composer.
     Then The composer should have a status of "COMMITTED".
     And The app should have returned ABI types "(uint64,byte[17]):(uint64,byte[17])".
-    And Ze 0th atomic result for randomInt(42) proves correct
-    And Ze 1th atomic result for randomInt(1337) proves correct
+    And The 0th atomic result for randomInt(42) proves correct
+    And The 1th atomic result for randomInt(1337) proves correct
     And I can retrieve all inner transactions that were called from the atomic transaction with call graph "['randInt(uint64)(uint64,byte[17])','randInt(uint64)(uint64,byte[17])']".
 
     ###### ------ app at context index 1: RandomByte ------ ######
@@ -63,8 +63,8 @@ Feature: Contract to Contract Interaction
     And I execute the current transaction group with the composer.
     Then The composer should have a status of "COMMITTED".
     And The app should have returned ABI types "(byte,byte[17]):(byte,byte[17])".
-    And Ze 0th atomic result for randElement("hello") proves correct
-    And Ze 1th atomic result for randElement("goodbye") proves correct
+    And The 0th atomic result for randElement("hello") proves correct
+    And The 1th atomic result for randElement("goodbye") proves correct
     And I can retrieve all inner transactions that were called from the atomic transaction with call graph "[{'randElement(string,application)(byte,byte[17])':'appl'},{'randElement(string,application)(byte,byte[17])':'appl'}]".
 
     ###### ----- app at context index 2: SlotMachine ----- ######
@@ -101,5 +101,5 @@ Feature: Contract to Contract Interaction
     And I can dig into the resulting atomic transaction execution tree with path "1,2,0"
     And I dig into the paths "0,0:0,1:0,2" of the resulting atomic transaction tree I see group ids and they are all the same
     And I can retrieve all inner transactions that were called from the atomic transaction with call graph "[{'spin(application,application)(byte[3],byte[17],byte[17],byte[17])':[{'appl':'appl'},{'appl':'appl'},{'appl':'appl'}]},{'spin(application,application)(byte[3],byte[17],byte[17],byte[17])':[{'appl':'appl'},{'appl':'appl'},{'appl':'appl'}]}]".
-    And Ze 0th atomic result for "spin()" satisfies the regex "^[@!-][@!-][@!-]$"
-    And Ze 1th atomic result for "spin()" satisfies the regex "^[@!-][@!-][@!-]$"
+    And The 0th atomic result for "spin()" satisfies the regex "^[@!-][@!-][@!-]$"
+    And The 1th atomic result for "spin()" satisfies the regex "^[@!-][@!-][@!-]$"
