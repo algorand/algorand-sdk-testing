@@ -103,3 +103,6 @@ Feature: Contract to Contract Interaction
     And I can retrieve all inner transactions that were called from the atomic transaction with call graph "[{'spin(application,application)(byte[3],byte[17],byte[17],byte[17])':[{'appl':'appl'},{'appl':'appl'},{'appl':'appl'}]},{'spin(application,application)(byte[3],byte[17],byte[17],byte[17])':[{'appl':'appl'},{'appl':'appl'},{'appl':'appl'}]}]".
     And The 0th atomic result for "spin()" satisfies the regex "^[@!-][@!-][@!-]$"
     And The 1th atomic result for "spin()" satisfies the regex "^[@!-][@!-][@!-]$"
+    And I can dig the 0th atomic result with path "inner-txns.0.inner-txns.0.global-state-delta.0.key" and see the eval delta field "Y291bnRlcg=="
+    And I can dig the 0th atomic result with path "inner-txns.0.inner-txns.0.global-state-delta.0.value.action" and see the eval delta field "2"
+    And I can dig the 0th atomic result with path "inner-txns.0.inner-txns.0.global-state-delta.0.value.uint" and see the eval delta field "5"
