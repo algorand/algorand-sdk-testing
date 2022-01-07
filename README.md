@@ -54,7 +54,7 @@ These reside in the [integration features directory](features/integration)
 | @application.evaldelta | Test that eval delta fields are included in algod and indexer.                         |
 | @applications.verified | Submit all types of application transactions and verify account state.                 |
 | @assets                | Submit all types of asset transactions.                                                |
-| @c2c                   | Test Contract to Contract invocations.                                                 |
+| @c2c                   | Test Contract to Contract invocations and injestion.                                   |
 | @compile               | Test the algod compile endpoint.                                                       |
 | @dryrun                | Test the algod dryrun endpoint.                                                        |
 | @dryrun.testing        | Test the testing harness that relies on dryrun endpoint. Python only.                  |
