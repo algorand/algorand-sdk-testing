@@ -101,7 +101,7 @@ All things related to crypto to make it easier for developers to work with the b
 
 ### TEAL Utilities
 
-Everything related to working with [TEAL](https://developer.algorand.org/docs/reference/teal/specification/#transaction-execution-approval-language-teal). This includes some utilities for parsing and validating compiled teal programs as well as a number of [templates](https://developer.algorand.org/docs/reference/teal/templates/delegate_keyreg/) which implement a number of common and useful use cases with TEAL programs.
+Everything related to working with [TEAL](https://developer.algorand.org/docs/reference/teal/specification/#transaction-execution-approval-language-teal). This includes some utilities for parsing and validating compiled TEAL programs.
 
 ### Testing
 
