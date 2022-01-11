@@ -15,13 +15,16 @@ Feature: Contract to Contract Interaction
     Given I remember the new application ID.
 
     Given a new AtomicTransactionComposer
+
     # randInt(42) -> (r, witnessString)
+    Given I add the nonce "Thing One"
     When I create the Method object from method signature "randInt(uint64)(uint64,byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "AAAAAAAAACo=" to the method arguments array.
     * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     # randInt(1337) -> (r, witnessString)
+    Given I add the nonce "Thing Two"
     When I create the Method object from method signature "randInt(uint64)(uint64,byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "AAAAAAAABTk=" to the method arguments array.
@@ -45,13 +48,16 @@ Feature: Contract to Contract Interaction
     And I fund the current application's address with 100000000 microalgos.
 
     Given a new AtomicTransactionComposer
+
     # randElement("hello",RandomByte) -> (c, witnessString)
+    Given I add the nonce "Thing One"
     When I create the Method object from method signature "randElement(string,application)(byte,byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "AAVoZWxsbw==,ctxAppIdx:0" to the method arguments array.
     * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     # randElement("goodbye",RandomByte) -> (c, witnessString)
+    Given I add the nonce "Thing Two"
     When I create the Method object from method signature "randElement(string,application)(byte,byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "AAdnb29kYnll,ctxAppIdx:0" to the method arguments array.
@@ -78,12 +84,14 @@ Feature: Contract to Contract Interaction
     Given a new AtomicTransactionComposer
 
     # First spin() -> (result, witness0, witness1, witness2)
+    Given I add the nonce "Thing One"
     When I create the Method object from method signature "spin(application,application)(byte[3],byte[17],byte[17],byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "ctxAppIdx:0,ctxAppIdx:1" to the method arguments array.
     * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     # Second spin() -> (result, witness0, witness1, witness2)
+    Given I add the nonce "Thing Two"
     When I create the Method object from method signature "spin(application,application)(byte[3],byte[17],byte[17],byte[17])"
     * I create a new method arguments array.
     * I append the encoded arguments "ctxAppIdx:0,ctxAppIdx:1" to the method arguments array.
