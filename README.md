@@ -69,15 +69,15 @@ These reside in the [integration features directory](features/integration)
 
 However, a few are not fully supported:
 
-| tag                             | SDK's which implement         |
-| ------------------------------- | ----------------------------- |
-| @indexer.rekey                  | missing from Python and JS    |
-| @unit.responses.genesis         | missing from Python, and Java |
-| @unit.responses.messagepack     | missing from Python           |
-| @unit.responses.messagepack.231 | missing from Python and JS    |
-| @unit.responses.messagepack     | missing from Python and JS    |
-| @dryrun.testing                 | Python only                   |
-| @unit.transactions.keyreg       | go only                       |
+| tag                             | SDK's which implement        |
+| ------------------------------- | ---------------------------- |
+| @dryrun.testing                 | Python only                  |
+| @indexer.rekey                  | missing from Python and JS   |
+| @unit.responses.genesis         | missing from Python and Java |
+| @unit.responses.messagepack     | missing from Python          |
+| @unit.responses.messagepack.231 | missing from Python and JS   |
+| @unit.responses.messagepack     | missing from Python and JS   |
+| @unit.transactions.keyreg       | go only                      |
 
 ## SDK Overview
 
