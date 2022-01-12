@@ -71,6 +71,7 @@ However, a few are not fully supported:
 
 | tag                             | SDK's which implement        |
 | ------------------------------- | ---------------------------- |
+| @application.evaldelta          | Java only                    |
 | @dryrun.testing                 | Python only                  |
 | @indexer.rekey                  | missing from Python and JS   |
 | @unit.responses.genesis         | missing from Python and Java |
