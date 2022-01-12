@@ -20,19 +20,20 @@ These reside in the [unit features directory](features/unit)
 | --------------------------------- | ----------------------------------------------------- |
 | @unit                             | Select all unit tests.                                |
 | @unit.abijson                     | ABI types and method encoding/decoding unit tests.    |
-| @unit.atomic_transaction_composer | ABI / atomic transaction construction unit tests.     |
 | @unit.algod                       | Algod REST API unit tests.                            |
 | @unit.applications                | Application endpoints added to Algod and Indexer.     |
+| @unit.atomic_transaction_composer | ABI / atomic transaction construction unit tests.     |
 | @unit.dryrun                      | Dryrun endpoint added to Algod.                       |
 | @unit.feetest                     | Fee transaction encoding tests.                       |
 | @unit.indexer                     | Indexer REST API unit tests.                          |
-| @unit.indexer.rekey               | Rekey endpoints added to Algod and Indexer            |
 | @unit.indexer.logs                | Application logs endpoints added to Indexer.          |
+| @unit.indexer.rekey               | Rekey endpoints added to Algod and Indexer            |
 | @unit.offline                     | The first unit tests we wrote for cucumber.           |
 | @unit.rekey                       | Rekey Transaction golden tests.                       |
 | @unit.responses                   | REST Client Response serialization tests.             |
 | @unit.responses.231               | REST Client Unit Tests for Indexer 2.3.1+             |
 | @unit.responses.genesis           | REST Client Unit Tests for GetGenesis endpoint        |
+| @unit.responses.messagepack       | REST Client MessagePack Unit Tests                    |
 | @unit.responses.messagepack.231   | REST Client MessagePack Unit Tests for Indexer 2.3.1+ |
 | @unit.tealsign                    | Test TEAL signature utilities.                        |
 | @unit.transactions                | Transaction encoding tests.                           |
@@ -47,10 +48,10 @@ These reside in the [integration features directory](features/integration)
 | ---------------------- | -------------------------------------------------------------------------------------- |
 | @abi                   | Test the Application Binary Interface (ABI) with atomic txn composition and execution. |
 | @algod                 | General tests against algod REST endpoints.                                            |
-| @auction               | Encode and decode bids for an auction.                                                 |
 | @application.evaldelta | Test that eval delta fields are included in algod and indexer.                         |
 | @applications.verified | Submit all types of application transactions and verify account state.                 |
 | @assets                | Submit all types of asset transactions.                                                |
+| @auction               | Encode and decode bids for an auction.                                                 |
 | @c2c                   | Test Contract to Contract invocations and injestion.                                   |
 | @compile               | Test the algod compile endpoint.                                                       |
 | @dryrun                | Test the algod dryrun endpoint.                                                        |
@@ -61,6 +62,22 @@ These reside in the [integration features directory](features/integration)
 | @kmd                   | Test the kmd REST endpoints.                                                           |
 | @rekey                 | Test the rekeying transactions.                                                        |
 | @send                  | Test the ability to submit transactions to algod.                                      |
+
+### Test Implementation Status
+
+#### Almost all the tags above are implemented by all 4 of our official SDK's
+
+However, a few are not fully supported:
+
+| tag                             | SDK's which implement         |
+| ------------------------------- | ----------------------------- |
+| @indexer.rekey                  | missing from Python and JS    |
+| @unit.responses.genesis         | missing from Python, and Java |
+| @unit.responses.messagepack     | missing from Python           |
+| @unit.responses.messagepack.231 | missing from Python and JS    |
+| @unit.responses.messagepack     | missing from Python and JS    |
+| @dryrun.testing                 | Python only                   |
+| @unit.transactions.keyreg       | go only                       |
 
 ## SDK Overview
 
