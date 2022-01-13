@@ -32,9 +32,14 @@ txn ApplicationID
 bz create
 
 txn ApplicationArgs 0
+method "setReels(string,string,string)void"
+==
+bnz set_reels
+
+txn ApplicationArgs 0
 method "spin(application,application)(byte[3],byte[17],byte[17],byte[17])"
 ==
-assert  // for now, only one method allowed
+assert  // only allowable methods: spin + set_reels
 
 byte "num_reels"
 app_global_get
@@ -227,3 +232,32 @@ create:     // TODO: would like to make this more dynamic. One thing holding me 
     // P(!!!) = 1/144, P(@@@) = 1/72
     // With respective prizes of 50 Algos & 40 Algos expected payoff is 0.903 Algos
     int 1
+    return
+
+set_reels:
+    byte "reel"
+    int 2
+    itob
+    concat
+    txn ApplicationArgs 1
+    extract 2 0     // string 1
+    app_global_put
+
+    byte "reel"
+    int 1
+    itob
+    concat
+    txn ApplicationArgs 2
+    extract 2 0     // string 2
+    app_global_put
+
+    byte "reel"
+    int 0
+    itob
+    concat
+    txn ApplicationArgs 3
+    extract 2 0     // string 3
+    app_global_put
+
+    int 1
+
