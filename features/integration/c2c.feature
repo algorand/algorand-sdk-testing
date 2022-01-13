@@ -110,3 +110,69 @@ Feature: Contract to Contract Interaction
     And I can dig the 0th atomic result with path "inner-txns.0.inner-txns.0.global-state-delta.0.key" and see the eval delta field "Y291bnRlcg=="
     And I can dig the 0th atomic result with path "inner-txns.0.inner-txns.0.global-state-delta.0.value.action" and see the eval delta field "2"
     And I can dig the 0th atomic result with path "inner-txns.0.inner-txns.0.global-state-delta.0.value.uint" and see the eval delta field "5"
+
+    # mix spins with setReels
+    Given a new AtomicTransactionComposer
+
+    # First spin() -> (result, witness0, witness1, witness2)
+    Given I add the nonce "Thing One"
+    When I create the Method object from method signature "spin(application,application)(byte[3],byte[17],byte[17],byte[17])"
+    * I create a new method arguments array.
+    * I append the encoded arguments "ctxAppIdx:0,ctxAppIdx:1" to the method arguments array.
+    * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+    # Second spin() -> (result, witness0, witness1, witness2)
+    Given I add the nonce "Thing Two"
+    When I create the Method object from method signature "spin(application,application)(byte[3],byte[17],byte[17],byte[17])"
+    * I create a new method arguments array.
+    * I append the encoded arguments "ctxAppIdx:0,ctxAppIdx:1" to the method arguments array.
+    * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+    # setReels("0123456789","abcdefg","HIJKLMNOP") -> void
+    Given I add the nonce "Thing Three"
+    When I create the Method object from method signature "setReels(string,string,string)void"
+    * I create a new method arguments array.
+    * I append the encoded arguments "AAowMTIzNDU2Nzg5,AAdhYmNkZWZn,AAlISUpLTE1OT1A=" to the method arguments array.
+    * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+
+    # Third spin() -> (result, witness0, witness1, witness2)
+    Given I add the nonce "Thing Four"
+    When I create the Method object from method signature "spin(application,application)(byte[3],byte[17],byte[17],byte[17])"
+    * I create a new method arguments array.
+    * I append the encoded arguments "ctxAppIdx:0,ctxAppIdx:1" to the method arguments array.
+    * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+    # Fourth spin() -> (result, witness0, witness1, witness2)
+    Given I add the nonce "Thing Five"
+    When I create the Method object from method signature "spin(application,application)(byte[3],byte[17],byte[17],byte[17])"
+    * I create a new method arguments array.
+    * I append the encoded arguments "ctxAppIdx:0,ctxAppIdx:1" to the method arguments array.
+    * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+
+    # Atomic Transaction Execution and Analysis
+    Then I build the transaction group with the composer. If there is an error it is "".
+    And I gather signatures with the composer.
+    And I execute the current transaction group with the composer.
+    And The composer should have a status of "COMMITTED".
+    And The app should have returned ABI types "(byte[3],byte[17],byte[17],byte[17]):(byte[3],byte[17],byte[17],byte[17]):void:(byte[3],byte[17],byte[17],byte[17]):(byte[3],byte[17],byte[17],byte[17])".
+    And I dig into the paths "0,0:0,1:0,2" of the resulting atomic transaction tree I see group ids and they are all the same
+    And I dig into the paths "4,0:4,1:4,2" of the resulting atomic transaction tree I see group ids and they are all the same
+    And I can retrieve all inner transactions that were called from the atomic transaction with call graph "[{'spin(application,application)(byte[3],byte[17],byte[17],byte[17])':[{'appl':'appl'},{'appl':'appl'},{'appl':'appl'}]},{'spin(application,application)(byte[3],byte[17],byte[17],byte[17])':[{'appl':'appl'},{'appl':'appl'},{'appl':'appl'}]},'setReels(string,string,string)void',{'spin(application,application)(byte[3],byte[17],byte[17],byte[17])':[{'appl':'appl'},{'appl':'appl'},{'appl':'appl'}]},{'spin(application,application)(byte[3],byte[17],byte[17],byte[17])':[{'appl':'appl'},{'appl':'appl'},{'appl':'appl'}]}]".
+    And The 0th atomic result for "spin()" satisfies the regex "^[@!-][@!-][@!-]$"
+    And The 1th atomic result for "spin()" satisfies the regex "^[@!-][@!-][@!-]$"
+    And The 3th atomic result for "spin()" satisfies the regex "^[0-9][a-g][H-P]$"
+    And The 4th atomic result for "spin()" satisfies the regex "^[0-9][a-g][H-P]$"
+    And I can dig the 0th atomic result with path "inner-txns.0.inner-txns.0.global-state-delta.0.key" and see the eval delta field "Y291bnRlcg=="
+    And I can dig the 0th atomic result with path "inner-txns.0.inner-txns.0.global-state-delta.0.value.action" and see the eval delta field "2"
+    And I can dig the 0th atomic result with path "inner-txns.0.inner-txns.0.global-state-delta.0.value.uint" and see the eval delta field "5"
+    And I can dig the 2th atomic result with path "global-state-delta.0.key" and see the eval delta field "cmVlbAAAAAAAAAAA"
+    And I can dig the 2th atomic result with path "global-state-delta.0.value.action" and see the eval delta field "1"
+    And I can dig the 2th atomic result with path "global-state-delta.0.value.bytes" and see the eval delta field "SElKS0xNTk9Q"
+    And I can dig the 2th atomic result with path "global-state-delta.2.key" and see the eval delta field "cmVlbAAAAAAAAAAC"
+    And I can dig the 2th atomic result with path "global-state-delta.2.value.action" and see the eval delta field "1"
+    And I can dig the 2th atomic result with path "global-state-delta.2.value.bytes" and see the eval delta field "MDEyMzQ1Njc4OQ=="
+    And I can dig the 4th atomic result with path "inner-txns.2.inner-txns.0.global-state-delta.0.key" and see the eval delta field "Y291bnRlcg=="
+    And I can dig the 4th atomic result with path "inner-txns.2.inner-txns.0.global-state-delta.0.value.action" and see the eval delta field "2"
+    And I can dig the 4th atomic result with path "inner-txns.2.inner-txns.0.global-state-delta.0.value.uint" and see the eval delta field "16"
