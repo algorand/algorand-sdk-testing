@@ -7,6 +7,7 @@ Feature: Contract to Contract Interaction
     * suggested transaction parameters from the algod v2 client
     * I create a new transient account and fund it with 100000000 microalgos.
     * I make a transaction signer for the transient account.
+    * I reset the array of application IDs to remember.
 
     ###### ------ app at context index 0: FakeRandom ------ ######
     When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/fake_random.teal", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 1, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0
