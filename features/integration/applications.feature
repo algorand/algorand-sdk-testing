@@ -3,7 +3,7 @@ Feature: Applications
       Given an algod client
       And a kmd client
       And wallet information
-      And an algod v2 client connected to "localhost" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      And an algod v2 client connected to "algod" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
    @applications.verified
    Scenario Outline: <state-location> test - Use every applications feature!

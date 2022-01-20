@@ -5,9 +5,9 @@ Feature: EvalDelta
   Background:
     Given a kmd client
     And wallet information
-    And an algod v2 client connected to "localhost" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    And an algod v2 client connected to "algod" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     And I create a new transient account and fund it with 100000000 microalgos.
-    And indexer client 3 at "localhost" port 60002 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    And indexer client 3 at "indexer-live" port 8980 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
   @applications.evaldelta
   Scenario Outline:Set '<arg>' in <state-location> state

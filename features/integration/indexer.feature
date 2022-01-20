@@ -5,12 +5,12 @@ Feature: Indexer Integration Tests
     * String inputs: ""
 
   Background:
-    Given indexer client 1 at "localhost" port 59999 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    Given indexer client 2 at "localhost" port 59998 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    Given indexer client 1 at "indexer-221-1" port 8980 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    Given indexer client 2 at "indexer-221-2" port 8980 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     # Indexer 2.3.x Dataset 1
-    Given indexer client 3 at "localhost" port 59997 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    Given indexer client 3 at "indexer-23x-1" port 8980 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     # Indexer 2.3.x Dataset 2
-    Given indexer client 4 at "localhost" port 59996 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    Given indexer client 4 at "indexer-23x-2" port 8980 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
   @indexer
   Scenario Outline: /health
