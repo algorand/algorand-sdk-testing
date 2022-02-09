@@ -135,7 +135,7 @@ services:
     volumes:
       - ./docker/indexer/init-scripts:/docker-entrypoint-initdb.d
     ports:
-      - 5433:5432
+      - 65432:5432
     networks:
       - sdk-harness
     environment:
