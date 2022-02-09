@@ -10,7 +10,7 @@ Feature: Contract to Contract Interaction
     * I reset the array of application IDs to remember.
 
     ###### ------ app at context index 0: FakeRandom ------ ######
-    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/fake_random.teal", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 1, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0
+    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/fake_random.teal", clear-program "programs/six.teal", global-bytes 0, global-ints 1, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0
     And I sign and submit the transaction, saving the txid. If there is an error it is "".
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
@@ -42,7 +42,7 @@ Feature: Contract to Contract Interaction
     And I can dig the 1th atomic result with path "txn.txn.type" and see the value "appl"
 
     ###### ------ app at context index 1: RandomByte ------ ######
-    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/random_byte.teal", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0
+    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/random_byte.teal", clear-program "programs/six.teal", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0
     And I sign and submit the transaction, saving the txid. If there is an error it is "".
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
@@ -80,7 +80,7 @@ Feature: Contract to Contract Interaction
     And I can dig the 1th atomic result with path "inner-txns.0.txn.txn.type" and see the value "appl"
 
     ###### ----- app at context index 2: SlotMachine ----- ######
-    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/slot_machine.teal", clear-program "programs/one.teal.tok", global-bytes 3, global-ints 1, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0
+    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/slot_machine.teal", clear-program "programs/six.teal", global-bytes 3, global-ints 1, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0
     And I sign and submit the transaction, saving the txid. If there is an error it is "".
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
