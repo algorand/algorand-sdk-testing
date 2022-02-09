@@ -1,8 +1,8 @@
-export TYPE="source"
+export TYPE="channel"
 
 # Used when TYPE=channel
 export CHANNEL="nightly"
 
 # Used when TYPE=source
 export ALGOD_URL="https://github.com/algorand/go-algorand"
-export ALGOD_BRANCH="feature/contract-to-contract"
+export ALGOD_BRANCH="master"
