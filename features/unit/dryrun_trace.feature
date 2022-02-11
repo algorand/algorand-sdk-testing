@@ -3,7 +3,7 @@ Feature: Dryrun Trace
 
     @unit.dryrun.trace.application
     Scenario Outline: Application Trace Tests
-        Given a "<dryrun-response-file>" and a "<txn-id>"
+        Given a dryrun response file "<dryrun-response-file>" and a transaction id "<txn-id>"
         When I call app trace
         Then the output should equal "<golden>"
 
