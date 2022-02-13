@@ -12,7 +12,8 @@ Feature: Applications
       Given I create a new transient account and fund it with 100000000 microalgos.
       # Application create with extra pages should succeed with expected message.
       And I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/big_app_program.teal.tok", clear-program "programs/big_app_program.teal.tok", global-bytes <global-bytes>, global-ints 0, local-bytes <local-bytes>, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 3
-      And I sign and submit the transaction, saving the txid. If there is an error it is "logic eval error: pc=704 dynamic cost budget exceeded, executing intc_1: remaining budget is 700 but program cost was 701".
+      And I sign and submit the transaction, saving the txid. If there is an error it is "logic eval error: pc=704 dynamic cost budget exceeded, executing intc_1: local program cost was 700. Details: pc=704, opcodes=intc_1 // 1".
+
       # Create application
       # depends on the transient account, and also the application id.
       # Use suggested params
@@ -21,8 +22,9 @@ Feature: Applications
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       And I remember the new application ID.
+      Then I get the account address for the current application and see that it matches the app id's hash
       # Update approval program to 'loccheck'
-      And I build an application transaction with the transient account, the current application, suggested params, operation "update", approval-program "<program>", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0
+      Given I build an application transaction with the transient account, the current application, suggested params, operation "update", approval-program "<program>", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       # OptIn - with error (missing argument)
