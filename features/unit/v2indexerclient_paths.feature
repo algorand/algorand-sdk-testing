@@ -5,13 +5,12 @@ Feature: Indexer Client v2 Paths
 
   @unit.indexer
   Scenario Outline: LookupAssetBalances path
-    When we make a Lookup Asset Balances call against asset index <index> with limit <limit> afterAddress "<afterAddress>" round <round> currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan>
+    When we make a Lookup Asset Balances call against asset index <index> with limit <limit> afterAddress "<afterAddress>" currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan>
     Then expect the path used to be "<path>"
     Examples:
       | path                                            | index | limit | round | currencyGreaterThan | currencyLessThan | afterAddress |
       | /v2/assets/100/balances                         | 100   | 0     | 0     | 0                   | 0                |              |
       | /v2/assets/100/balances?limit=1                 | 100   | 1     | 0     | 0                   | 0                |              |
-      | /v2/assets/100/balances?round=2                 | 100   | 0     | 2     | 0                   | 0                |              |
       | /v2/assets/100/balances?currency-greater-than=3 | 100   | 0     | 0     | 3                   | 0                |              |
       | /v2/assets/100/balances?currency-less-than=4    | 100   | 0     | 0     | 0                   | 4                |              |
 
