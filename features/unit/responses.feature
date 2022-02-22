@@ -63,6 +63,53 @@ Feature: REST Client Responses
       | algod_SupplyResponse_0.json                       | generated_responses_231 | 200    | algod   | GetSupply                 |
       | algod_TransactionParametersResponse_0.json        | generated_responses_231 | 200    | algod   | TransactionParams         |
 
+    @unit.responses.unlimited_assets
+    Examples:
+      | jsonfile                                                   | response-folder                      | status | client  | endpoint                         |
+      | indexer_applications_AccountResponse_0.json                | generated_responses_unlimited_assets | 200    | indexer | lookupAccountByID                |
+      | indexer_applications_AccountsResponse_0.json               | generated_responses_unlimited_assets | 200    | indexer | searchForAccounts                |
+      | indexer_applications_ApplicationLocalStatesResponse_0.json | generated_responses_unlimited_assets | 200    | indexer | lookupAccountAppLocalStates      |
+      | indexer_applications_ApplicationLogsResponse_0.json        | generated_responses_unlimited_assets | 200    | indexer | lookupApplicationLogsByID        |
+      | indexer_applications_ApplicationResponse_0.json            | generated_responses_unlimited_assets | 200    | indexer | lookupApplicationByID            |
+      | indexer_applications_ApplicationsResponse_0.json           | generated_responses_unlimited_assets | 200    | indexer | searchForApplications            |
+      | indexer_applications_ApplicationsResponse_0.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAccountCreatedApplications |
+      | indexer_applications_ApplicationsResponse_1.json           | generated_responses_unlimited_assets | 200    | indexer | searchForApplications            |
+      | indexer_applications_ApplicationsResponse_1.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAccountCreatedApplications |
+      | indexer_applications_AssetBalancesResponse_0.json          | generated_responses_unlimited_assets | 200    | indexer | lookupAssetBalances              |
+      | indexer_applications_AssetHoldingsResponse_0.json          | generated_responses_unlimited_assets | 200    | indexer | lookupAccountAssets              |
+      | indexer_applications_AssetResponse_0.json                  | generated_responses_unlimited_assets | 200    | indexer | lookupAssetByID                  |
+      | indexer_applications_AssetsResponse_0.json                 | generated_responses_unlimited_assets | 200    | indexer | searchForAssets                  |
+      | indexer_applications_AssetsResponse_0.json                 | generated_responses_unlimited_assets | 200    | indexer | lookupAccountCreatedAssets       |
+      | indexer_applications_AssetsResponse_1.json                 | generated_responses_unlimited_assets | 200    | indexer | searchForAssets                  |
+      | indexer_applications_AssetsResponse_1.json                 | generated_responses_unlimited_assets | 200    | indexer | lookupAccountCreatedAssets       |
+      | indexer_applications_TransactionResponse_0.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_1.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_2.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_3.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_4.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_5.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_6.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_7.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_8.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_9.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_10.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_11.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_12.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_13.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_14.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_15.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_16.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionResponse_17.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_applications_TransactionsResponse_0.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAccountTransactions        |
+      | indexer_applications_TransactionsResponse_0.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAssetTransactions          |
+      | indexer_applications_TransactionsResponse_0.json           | generated_responses_unlimited_assets | 200    | indexer | searchForTransactions            |
+      | indexer_applications_TransactionsResponse_1.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAccountTransactions        |
+      | indexer_applications_TransactionsResponse_1.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAssetTransactions          |
+      | indexer_applications_TransactionsResponse_1.json           | generated_responses_unlimited_assets | 200    | indexer | searchForTransactions            |
+      | indexer_applications_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAccountTransactions        |
+      | indexer_applications_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAssetTransactions          |
+      | indexer_applications_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | searchForTransactions            |
+
     @unit.responses.genesis
     Examples:
       | jsonfile                        | response-folder         | status | client | endpoint   |
