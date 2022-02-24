@@ -109,6 +109,15 @@ Feature: REST Client Responses
       | indexer_applications_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAccountTransactions        |
       | indexer_applications_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAssetTransactions          |
       | indexer_applications_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | searchForTransactions            |
+      | algod_applications_NodeStatusResponse_0.json               | generated_responses_unlimited_assets | 200    | algod   | GetStatus                        |
+      | algod_applications_NodeStatusResponse_0.json               | generated_responses_unlimited_assets | 200    | algod   | WaitForBlock                     |
+      | algod_applications_CompileResponse_0.json                  | generated_responses_unlimited_assets | 200    | algod   | TealCompile                      |
+      | algod_applications_PostTransactionsResponse_0.json         | generated_responses_unlimited_assets | 200    | algod   | RawTransaction                   |
+      | algod_applications_SupplyResponse_0.json                   | generated_responses_unlimited_assets | 200    | algod   | GetSupply                        |
+      | algod_applications_TransactionParametersResponse_0.json    | generated_responses_unlimited_assets | 200    | algod   | TransactionParams                |
+      | algod_applications_Application_0.json              | generated_responses_unlimited_assets | 200    | algod   | GetApplicationByID               |
+      | algod_applications_Asset_0.json                    | generated_responses_unlimited_assets | 200    | algod   | GetAssetByID                     |
+      | algod_applications_ErrorResponse_0.json                    | generated_responses_unlimited_assets | 500    | algod   | any                              |
 
     @unit.responses.genesis
     Examples:
