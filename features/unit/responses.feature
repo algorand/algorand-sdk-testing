@@ -109,15 +109,32 @@ Feature: REST Client Responses
       | indexer_applications_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAccountTransactions        |
       | indexer_applications_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAssetTransactions          |
       | indexer_applications_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | searchForTransactions            |
+      | algod_applications_Account_0.json                          | generated_responses_unlimited_assets | 200    | algod   | AccountInformation               |
+      | algod_applications_Account_2.json                          | generated_responses_unlimited_assets | 200    | algod   | AccountInformation               |
+      | algod_applications_AccountApplicationResponse_0.json       | generated_responses_unlimited_assets | 200    | algod   | AccountApplicationInformation    |
+      | algod_applications_AccountApplicationResponse_2.json       | generated_responses_unlimited_assets | 200    | algod   | AccountApplicationInformation    |
+      | algod_applications_AccountAssetResponse_0.json             | generated_responses_unlimited_assets | 200    | algod   | AccountAssetInformation          |
+      | algod_applications_AccountAssetResponse_2.json             | generated_responses_unlimited_assets | 200    | algod   | AccountAssetInformation          |
+      | algod_applications_Application_0.json                      | generated_responses_unlimited_assets | 200    | algod   | GetApplicationByID               |
+      | algod_applications_Application_1.json                      | generated_responses_unlimited_assets | 200    | algod   | GetApplicationByID               |
+      | algod_applications_Asset_0.json                            | generated_responses_unlimited_assets | 200    | algod   | GetAssetByID                     |
+      | algod_applications_Asset_1.json                            | generated_responses_unlimited_assets | 200    | algod   | GetAssetByID                     |
+      | algod_applications_CompileResponse_0.json                  | generated_responses_unlimited_assets | 200    | algod   | TealCompile                      |
+      | algod_applications_CompileResponse_1.json                  | generated_responses_unlimited_assets | 200    | algod   | TealCompile                      |
       | algod_applications_NodeStatusResponse_0.json               | generated_responses_unlimited_assets | 200    | algod   | GetStatus                        |
       | algod_applications_NodeStatusResponse_0.json               | generated_responses_unlimited_assets | 200    | algod   | WaitForBlock                     |
-      | algod_applications_CompileResponse_0.json                  | generated_responses_unlimited_assets | 200    | algod   | TealCompile                      |
+      | algod_applications_NodeStatusResponse_1.json               | generated_responses_unlimited_assets | 200    | algod   | GetStatus                        |
+      | algod_applications_NodeStatusResponse_1.json               | generated_responses_unlimited_assets | 200    | algod   | WaitForBlock                     |
+      | algod_applications_NodeStatusResponse_2.json               | generated_responses_unlimited_assets | 200    | algod   | GetStatus                        |
+      | algod_applications_NodeStatusResponse_2.json               | generated_responses_unlimited_assets | 200    | algod   | WaitForBlock                     |
+      | algod_applications_NodeStatusResponse_3.json               | generated_responses_unlimited_assets | 200    | algod   | GetStatus                        |
+      | algod_applications_NodeStatusResponse_3.json               | generated_responses_unlimited_assets | 200    | algod   | WaitForBlock                     |
       | algod_applications_PostTransactionsResponse_0.json         | generated_responses_unlimited_assets | 200    | algod   | RawTransaction                   |
+      | algod_applications_PostTransactionsResponse_1.json         | generated_responses_unlimited_assets | 200    | algod   | RawTransaction                   |
       | algod_applications_SupplyResponse_0.json                   | generated_responses_unlimited_assets | 200    | algod   | GetSupply                        |
+      | algod_applications_SupplyResponse_1.json                   | generated_responses_unlimited_assets | 200    | algod   | GetSupply                        |
       | algod_applications_TransactionParametersResponse_0.json    | generated_responses_unlimited_assets | 200    | algod   | TransactionParams                |
-      | algod_applications_Application_0.json              | generated_responses_unlimited_assets | 200    | algod   | GetApplicationByID               |
-      | algod_applications_Asset_0.json                    | generated_responses_unlimited_assets | 200    | algod   | GetAssetByID                     |
-      | algod_applications_ErrorResponse_0.json                    | generated_responses_unlimited_assets | 500    | algod   | any                              |
+      | algod_applications_TransactionParametersResponse_1.json    | generated_responses_unlimited_assets | 200    | algod   | TransactionParams                |
 
     @unit.responses.genesis
     Examples:
