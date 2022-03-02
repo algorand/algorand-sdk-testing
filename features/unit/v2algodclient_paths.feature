@@ -76,8 +76,8 @@ Feature: Algod REST API v2 Paths
     Then expect the path used to be "<path>"
     Examples:
       | path                         | account | exclude |
-      | /v2/accounts/abc             | abc     |         |
-      | /v2/accounts/abc?exclude=all | abc     | all     |
+      | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU             | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU     |         |
+      | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU?exclude=all | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU     | all     |
 
   @unit.algod.ledger_refactoring
   Scenario Outline: Account Asset Information
@@ -85,7 +85,7 @@ Feature: Algod REST API v2 Paths
     Then expect the path used to be "<path>"
     Examples:
       | path                        | account | asset-id |
-      | /v2/accounts/abc/assets/123 | abc     | 123      |
+      | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/assets/123 | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU     | 123      |
 
   @unit.algod.ledger_refactoring
   Scenario Outline: Account Application Information
@@ -93,4 +93,4 @@ Feature: Algod REST API v2 Paths
     Then expect the path used to be "<path>"
     Examples:
       | path                              | account | application-id |
-      | /v2/accounts/abc/applications/123 | abc     | 123            |
+      | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/applications/123 | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU     | 123            |
