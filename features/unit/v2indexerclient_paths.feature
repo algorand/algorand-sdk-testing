@@ -200,12 +200,12 @@ Feature: Indexer Client v2 Paths
 
     Examples:
       | path                                                                     | account-id | asset-id | include-all | limit | next |
-      | /v2/accounts/abc/assets                                                  | abc        | 0        | false       | 0     |      |
-      | /v2/accounts/abc/assets?asset-id=123                                     | abc        | 123      | false       | 0     |      |
-      | /v2/accounts/abc/assets?include-all=true                                 | abc        | 0        | true        | 0     |      |
-      | /v2/accounts/abc/assets?limit=123                                        | abc        | 0        | false       | 123   |      |
-      | /v2/accounts/abc/assets?next=def                                         | abc        | 0        | false       | 0     | def  |
-      | /v2/accounts/abc/assets?asset-id=123&include-all=true&limit=456&next=def | abc        | 123      | true        | 456   | def  |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets                                                  | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets?asset-id=123                                     | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123      | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets?include-all=true                                 | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | true        | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets?limit=123                                        | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 123   |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets?next=def                                         | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 0     | def  |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets?asset-id=123&include-all=true&limit=456&next=def | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123      | true        | 456   | def  |
 
   @unit.indexer.ledger_refactoring
   Scenario Outline: LookupAccountCreatedAssets path
@@ -214,12 +214,12 @@ Feature: Indexer Client v2 Paths
 
     Examples:
       | path                                                                             | account-id | asset-id | include-all | limit | next |
-      | /v2/accounts/abc/created-assets                                                  | abc        | 0        | false       | 0     |      |
-      | /v2/accounts/abc/created-assets?asset-id=123                                     | abc        | 123      | false       | 0     |      |
-      | /v2/accounts/abc/created-assets?include-all=true                                 | abc        | 0        | true        | 0     |      |
-      | /v2/accounts/abc/created-assets?limit=123                                        | abc        | 0        | false       | 123   |      |
-      | /v2/accounts/abc/created-assets?next=def                                         | abc        | 0        | false       | 0     | def  |
-      | /v2/accounts/abc/created-assets?asset-id=123&include-all=true&limit=456&next=def | abc        | 123      | true        | 456   | def  |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets                                                  | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets?asset-id=123                                     | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123      | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets?include-all=true                                 | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | true        | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets?limit=123                                        | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 123   |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets?next=def                                         | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 0     | def  |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets?asset-id=123&include-all=true&limit=456&next=def | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123      | true        | 456   | def  |
 
   @unit.indexer.ledger_refactoring
   Scenario Outline: LookupAccountAppLocalStates path
@@ -228,12 +228,12 @@ Feature: Indexer Client v2 Paths
 
     Examples:
       | path                                                                                     | account-id | application-id | include-all | limit | next |
-      | /v2/accounts/abc/apps-local-state                                                        | abc        | 0              | false       | 0     |      |
-      | /v2/accounts/abc/apps-local-state?application-id=123                                     | abc        | 123            | false       | 0     |      |
-      | /v2/accounts/abc/apps-local-state?include-all=true                                       | abc        | 0              | true        | 0     |      |
-      | /v2/accounts/abc/apps-local-state?limit=123                                              | abc        | 0              | false       | 123   |      |
-      | /v2/accounts/abc/apps-local-state?next=def                                               | abc        | 0              | false       | 0     | def  |
-      | /v2/accounts/abc/apps-local-state?application-id=123&include-all=true&limit=456&next=def | abc        | 123            | true        | 456   | def  |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state                                                        | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state?application-id=123                                     | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123            | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state?include-all=true                                       | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | true        | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state?limit=123                                              | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 123   |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state?next=def                                               | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 0     | def  |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state?application-id=123&include-all=true&limit=456&next=def | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123            | true        | 456   | def  |
 
   @unit.indexer.ledger_refactoring
   Scenario Outline: LookupAccountCreatedApplications path
@@ -242,12 +242,12 @@ Feature: Indexer Client v2 Paths
 
     Examples:
       | path                                                                                         | account-id | application-id | include-all | limit | next |
-      | /v2/accounts/abc/created-applications                                                        | abc        | 0              | false       | 0     |      |
-      | /v2/accounts/abc/created-applications?application-id=123                                     | abc        | 123            | false       | 0     |      |
-      | /v2/accounts/abc/created-applications?include-all=true                                       | abc        | 0              | true        | 0     |      |
-      | /v2/accounts/abc/created-applications?limit=123                                              | abc        | 0              | false       | 123   |      |
-      | /v2/accounts/abc/created-applications?next=def                                               | abc        | 0              | false       | 0     | def  |
-      | /v2/accounts/abc/created-applications?application-id=123&include-all=true&limit=456&next=def | abc        | 123            | true        | 456   | def  |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications                                                        | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications?application-id=123                                     | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123            | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications?include-all=true                                       | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | true        | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications?limit=123                                              | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 123   |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications?next=def                                               | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 0     | def  |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications?application-id=123&include-all=true&limit=456&next=def | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123            | true        | 456   | def  |
 
   @unit.indexer.ledger_refactoring
   Scenario Outline: SearchAccounts path
@@ -265,9 +265,9 @@ Feature: Indexer Client v2 Paths
     Then expect the path used to be "<path>"
     Examples:
       | path                                                                               | account | exclude                                             |
-      | /v2/accounts/abc?exclude=assets                                                    | abc     | assets                                              |
-      | /v2/accounts/abc?exclude=assets%2Ccreated-assets                                   | abc     | assets,created-assets                               |
-      | /v2/accounts/abc?exclude=assets%2Ccreated-assets%2Capps-local-state%2Ccreated-apps | abc     | assets,created-assets,apps-local-state,created-apps |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q?exclude=assets                                                    | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q     | assets                                              |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q?exclude=assets%2Ccreated-assets                                   | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q     | assets,created-assets                               |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q?exclude=assets%2Ccreated-assets%2Capps-local-state%2Ccreated-apps | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q     | assets,created-assets,apps-local-state,created-apps |
 
   @unit.indexer.ledger_refactoring
   Scenario Outline: SearchForApplications path
@@ -276,4 +276,4 @@ Feature: Indexer Client v2 Paths
 
     Examples:
       | path                         | creator |
-      | /v2/applications?creator=abc | abc     |
+      | /v2/applications?creator=7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q     |
