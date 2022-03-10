@@ -109,8 +109,6 @@ Feature: REST Client Responses
       | indexer_unlimited_aa_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAccountTransactions        |
       | indexer_unlimited_aa_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAssetTransactions          |
       | indexer_unlimited_aa_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | searchForTransactions            |
-      | indexer_unlimited_aa_AccountsErrorResponse_0.json          | generated_responses_unlimited_assets | 500    | indexer | any                              |
-      | indexer_unlimited_aa_AccountsErrorResponse_1.json          | generated_responses_unlimited_assets | 500    | indexer | any                              |
       | indexer_unlimited_aa_ErrorResponse_0.json                  | generated_responses_unlimited_assets | 500    | indexer | any                              |
       | indexer_unlimited_aa_ErrorResponse_1.json                  | generated_responses_unlimited_assets | 500    | indexer | any                              |
       | algod_unlimited_aa_Account_0.json                          | generated_responses_unlimited_assets | 200    | algod   | AccountInformation               |
@@ -139,8 +137,6 @@ Feature: REST Client Responses
       | algod_unlimited_aa_SupplyResponse_1.json                   | generated_responses_unlimited_assets | 200    | algod   | GetSupply                        |
       | algod_unlimited_aa_TransactionParametersResponse_0.json    | generated_responses_unlimited_assets | 200    | algod   | TransactionParams                |
       | algod_unlimited_aa_TransactionParametersResponse_1.json    | generated_responses_unlimited_assets | 200    | algod   | TransactionParams                |
-      | algod_unlimited_aa_AccountsErrorResponse_0.json            | generated_responses_unlimited_assets | 500    | algod   | any                              |
-      | algod_unlimited_aa_AccountsErrorResponse_1.json            | generated_responses_unlimited_assets | 500    | algod   | any                              |
       | algod_unlimited_aa_ErrorResponse_0.json                    | generated_responses_unlimited_assets | 500    | algod   | any                              |
       | algod_unlimited_aa_ErrorResponse_1.json                    | generated_responses_unlimited_assets | 500    | algod   | any                              |
       | algod_unlimited_aa_ErrorResponse_2.json                    | generated_responses_unlimited_assets | 500    | algod   | any                              |
