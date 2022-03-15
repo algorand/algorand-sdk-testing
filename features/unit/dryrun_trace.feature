@@ -8,6 +8,6 @@ Feature: Dryrun Trace
         Then the output should equal "<golden>"
 
         Examples:
-            | dryrun-response-file                                 | txn-id | golden                                          |
+            | dryrun-response-file                                 | txn-index | app-trace-file                                          |
             | v2algodclient_responsejsons/dryrunResponse.json      | 0      | v2algodclient_responsejsons/app_trace.txt       |
             | v2algodclient_responsejsons/largeDryrunResponse.json | 0      | v2algodclient_responsejsons/large_app_trace.txt |
