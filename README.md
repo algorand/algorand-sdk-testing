@@ -41,9 +41,6 @@ These reside in the [unit features directory](features/unit)
 | @unit.transactions.payment        | Payment encoding tests.                               |
 | @unit.dryrun.trace.application    | DryrunResult formatting tests.                        |
 
-    
-
-
 ### Integration Tests
 
 These reside in the [integration features directory](features/integration)
