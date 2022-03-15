@@ -10,3 +10,13 @@ Feature: Compile
       | program                 | status | result     | hash                                                         |
       | "programs/one.teal"     | 200    | "AiABASI=" | "YOE6C22GHCTKAN3HU4SE5PGIPN5UKXAJTXCQUPJ3KKF5HOAH646MKKCPDA" |
       | "programs/invalid.teal" | 400    | ""         | ""                                                           |
+
+
+  Scenario Outline: Teals compile to their associated binary
+    When I compile a teal program <teal>
+    Then base64 decoding the response is the same as the binary <program>
+    Examples:
+      | teal                            | program                             |
+      | "programs/one.teal"             | "programs/one.teal.tok"             |
+      | "programs/zero.teal"            | "programs/zero.teal.tok"            |
+      | "programs/abi_method_call.teal" | "programs/abi_method_call.teal.tok" |

@@ -5,15 +5,14 @@ Feature: Indexer Client v2 Paths
 
   @unit.indexer
   Scenario Outline: LookupAssetBalances path
-    When we make a Lookup Asset Balances call against asset index <index> with limit <limit> afterAddress "<afterAddress>" round <round> currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan>
+    When we make a Lookup Asset Balances call against asset index <index> with limit <limit> afterAddress "<afterAddress>" currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan>
     Then expect the path used to be "<path>"
     Examples:
-      | path                                            | index | limit | round | currencyGreaterThan | currencyLessThan | afterAddress |
-      | /v2/assets/100/balances                         | 100   | 0     | 0     | 0                   | 0                |              |
-      | /v2/assets/100/balances?limit=1                 | 100   | 1     | 0     | 0                   | 0                |              |
-      | /v2/assets/100/balances?round=2                 | 100   | 0     | 2     | 0                   | 0                |              |
-      | /v2/assets/100/balances?currency-greater-than=3 | 100   | 0     | 0     | 3                   | 0                |              |
-      | /v2/assets/100/balances?currency-less-than=4    | 100   | 0     | 0     | 0                   | 4                |              |
+      | path                                            | index | limit | currencyGreaterThan | currencyLessThan | afterAddress |
+      | /v2/assets/100/balances                         | 100   | 0     | 0                   | 0                |              |
+      | /v2/assets/100/balances?limit=1                 | 100   | 1     | 0                   | 0                |              |
+      | /v2/assets/100/balances?currency-greater-than=3 | 100   | 0     | 3                   | 0                |              |
+      | /v2/assets/100/balances?currency-less-than=4    | 100   | 0     | 0                   | 4                |              |
 
   @unit.indexer
   Scenario Outline: LookupAssetTransactions path
@@ -193,3 +192,88 @@ Feature: Indexer Client v2 Paths
       | path                                                                                                                                                                                                          | application-id | limit | minRound | maxRound | nextToken | senderAddr                                                 | txid                                                 |
       | /v2/applications/1234/logs                                                                                                                                                                                    | 1234           | 0     | 0        | 0        |           |                                                            |                                                      |
       | /v2/applications/1234/logs?limit=4&max-round=120&min-round=100&next=TOKEN&sender-address=PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI&txid=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 1234           | 4     | 100      | 120      | TOKEN     | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A |
+
+  @unit.indexer.ledger_refactoring
+  Scenario Outline: LookupAccountAssets path
+    When we make a LookupAccountAssets call with accountID "<account-id>" assetID <asset-id> includeAll "<include-all>" limit <limit> next "<next>"
+    Then expect the path used to be "<path>"
+
+    Examples:
+      | path                                                                     | account-id | asset-id | include-all | limit | next |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets                                                  | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets?asset-id=123                                     | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123      | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets?include-all=true                                 | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | true        | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets?limit=123                                        | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 123   |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets?next=def                                         | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 0     | def  |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets?asset-id=123&include-all=true&limit=456&next=def | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123      | true        | 456   | def  |
+
+  @unit.indexer.ledger_refactoring
+  Scenario Outline: LookupAccountCreatedAssets path
+    When we make a LookupAccountCreatedAssets call with accountID "<account-id>" assetID <asset-id> includeAll "<include-all>" limit <limit> next "<next>"
+    Then expect the path used to be "<path>"
+
+    Examples:
+      | path                                                                             | account-id | asset-id | include-all | limit | next |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets                                                  | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets?asset-id=123                                     | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123      | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets?include-all=true                                 | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | true        | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets?limit=123                                        | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 123   |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets?next=def                                         | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 0     | def  |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets?asset-id=123&include-all=true&limit=456&next=def | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123      | true        | 456   | def  |
+
+  @unit.indexer.ledger_refactoring
+  Scenario Outline: LookupAccountAppLocalStates path
+    When we make a LookupAccountAppLocalStates call with accountID "<account-id>" applicationID <application-id> includeAll "<include-all>" limit <limit> next "<next>"
+    Then expect the path used to be "<path>"
+
+    Examples:
+      | path                                                                                     | account-id | application-id | include-all | limit | next |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state                                                        | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state?application-id=123                                     | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123            | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state?include-all=true                                       | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | true        | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state?limit=123                                              | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 123   |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state?next=def                                               | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 0     | def  |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state?application-id=123&include-all=true&limit=456&next=def | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123            | true        | 456   | def  |
+
+  @unit.indexer.ledger_refactoring
+  Scenario Outline: LookupAccountCreatedApplications path
+    When we make a LookupAccountCreatedApplications call with accountID "<account-id>" applicationID <application-id> includeAll "<include-all>" limit <limit> next "<next>"
+    Then expect the path used to be "<path>"
+
+    Examples:
+      | path                                                                                         | account-id | application-id | include-all | limit | next |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications                                                        | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications?application-id=123                                     | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123            | false       | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications?include-all=true                                       | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | true        | 0     |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications?limit=123                                              | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 123   |      |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications?next=def                                               | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 0     | def  |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications?application-id=123&include-all=true&limit=456&next=def | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123            | true        | 456   | def  |
+
+  @unit.indexer.ledger_refactoring
+  Scenario Outline: SearchAccounts path
+    When we make a Search Accounts call with exclude "<exclude>"
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                                                                           | exclude                                             |
+      | /v2/accounts?exclude=assets                                                    | assets                                              |
+      | /v2/accounts?exclude=assets%2Ccreated-assets                                   | assets,created-assets                               |
+      | /v2/accounts?exclude=assets%2Ccreated-assets%2Capps-local-state%2Ccreated-apps | assets,created-assets,apps-local-state,created-apps |
+
+  @unit.indexer.ledger_refactoring
+  Scenario Outline: LookupAccountByID path
+    When we make a Lookup Account by ID call against account "<account>" with exclude "<exclude>"
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                                                                               | account | exclude                                             |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q?exclude=assets                                                    | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q     | assets                                              |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q?exclude=assets%2Ccreated-assets                                   | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q     | assets,created-assets                               |
+      | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q?exclude=assets%2Ccreated-assets%2Capps-local-state%2Ccreated-apps | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q     | assets,created-assets,apps-local-state,created-apps |
+
+  @unit.indexer.ledger_refactoring
+  Scenario Outline: SearchForApplications path
+    When we make a SearchForApplications call with creator "<creator>"
+    Then expect the path used to be "<path>"
+
+    Examples:
+      | path                         | creator |
+      | /v2/applications?creator=7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q     |

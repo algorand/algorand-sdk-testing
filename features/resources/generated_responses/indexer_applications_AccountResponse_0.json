@@ -403,37 +403,30 @@
     "assets" : [ {
       "amount" : 833959,
       "asset-id" : 909986,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 969794,
       "asset-id" : 110416,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 482106,
       "asset-id" : 119941,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 297590,
       "asset-id" : 707794,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 830370,
       "asset-id" : 774282,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 856356,
       "asset-id" : 827475,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 650751,
       "asset-id" : 571801,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     } ],
     "auth-addr" : "AKT27WL55XKLO2N5IVOB454B6BOKSR32BUZHMI7RM4L5VNESR2IISR7MEI",

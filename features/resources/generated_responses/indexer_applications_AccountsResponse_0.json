@@ -207,27 +207,22 @@
     "assets" : [ {
       "amount" : 582513,
       "asset-id" : 312502,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 142949,
       "asset-id" : 823192,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 988811,
       "asset-id" : 331860,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 966544,
       "asset-id" : 601841,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 900792,
       "asset-id" : 346152,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     } ],
     "auth-addr" : "YIDNEEDLXYIWPBYNITFBZORDY3V4E73WCUHYLJGXJRNQ7NZ7KF3BNCQKPE",
@@ -1111,37 +1106,30 @@
     "assets" : [ {
       "amount" : 256807,
       "asset-id" : 438363,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 284075,
       "asset-id" : 286172,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 173217,
       "asset-id" : 657195,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 796617,
       "asset-id" : 726922,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 589407,
       "asset-id" : 156996,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 960127,
       "asset-id" : 556919,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 73808,
       "asset-id" : 660751,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     } ],
     "auth-addr" : "5VAPWXFKSKJVXIZLJHLZPJOVTXVBGKTKB3BDIV2I5BUACZ7KS3R4TWUSWI",
@@ -2211,7 +2199,6 @@
     "assets" : [ {
       "amount" : 460364,
       "asset-id" : 371881,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     } ],
     "auth-addr" : "UQQONMLXLL5X44XSRVPPV4KKKMS3YSWR6YX5LGTPIIW46F5MKNJXRTMCVA",
@@ -2826,12 +2813,10 @@
     "assets" : [ {
       "amount" : 150015,
       "asset-id" : 358973,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 645431,
       "asset-id" : 550664,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     } ],
     "auth-addr" : "USXK6L5NHQYJVO6N45YBXHH4SVOTPRFBQLIGLZKP3JOOHNH5DJMJ5ILTDM",
@@ -3110,52 +3095,42 @@
     "assets" : [ {
       "amount" : 956902,
       "asset-id" : 238168,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 411760,
       "asset-id" : 679492,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 501964,
       "asset-id" : 356894,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 422260,
       "asset-id" : 83806,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 606842,
       "asset-id" : 632250,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 780720,
       "asset-id" : 55353,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 295671,
       "asset-id" : 572564,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 424575,
       "asset-id" : 812745,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 795735,
       "asset-id" : 941724,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 773479,
       "asset-id" : 325766,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     } ],
     "auth-addr" : "IXURACLSQNUDXZQNBCKVT3BTRFLLZ7XUZWZOZGUWTQWDTNAFLWGZL3PWAA",
@@ -3868,37 +3843,30 @@
     "assets" : [ {
       "amount" : 732916,
       "asset-id" : 80311,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 821244,
       "asset-id" : 394926,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 458005,
       "asset-id" : 695170,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 158629,
       "asset-id" : 435526,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 414175,
       "asset-id" : 616092,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 657038,
       "asset-id" : 722987,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 295387,
       "asset-id" : 124976,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     } ],
     "auth-addr" : "UO5IPZDT7CKJAV46QLE5KCIRPUCQUQAKPUEAGJBGOLQKXDXV3D4ZY4HR7A",
@@ -4169,32 +4137,26 @@
     "assets" : [ {
       "amount" : 422808,
       "asset-id" : 967014,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 410660,
       "asset-id" : 951174,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 54300,
       "asset-id" : 795843,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 832063,
       "asset-id" : 451719,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 884620,
       "asset-id" : 395214,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 577568,
       "asset-id" : 736991,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     } ],
     "auth-addr" : "H4RMYLC7E3OLOMLUDAMOXEELTTF5URXVEHJCCQGLPHU7K5JXKIQOTRZESE",
@@ -4939,52 +4901,42 @@
     "assets" : [ {
       "amount" : 778160,
       "asset-id" : 22318,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 843121,
       "asset-id" : 793615,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 671634,
       "asset-id" : 4076,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 257555,
       "asset-id" : 23414,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 321486,
       "asset-id" : 380425,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 396758,
       "asset-id" : 967240,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 619590,
       "asset-id" : 135957,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 897404,
       "asset-id" : 757208,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 462492,
       "asset-id" : 500077,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 206978,
       "asset-id" : 357641,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     } ],
     "auth-addr" : "TH2ZS3NWSWTMBUY7MFJFFCEZ3ZK3TE4GEX74UL3LIEW4AO5OLZWMQG64LA",
@@ -5845,17 +5797,14 @@
     "assets" : [ {
       "amount" : 816559,
       "asset-id" : 777396,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 868601,
       "asset-id" : 246179,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : true
     }, {
       "amount" : 122241,
       "asset-id" : 434513,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     } ],
     "auth-addr" : "U3TGRCTL4BYE4KPZXSCFZ7KYPFR33M7ZFHKAWNZK3LZE7UJRYT6552XKDE",
@@ -6629,12 +6578,10 @@
     "assets" : [ {
       "amount" : 889416,
       "asset-id" : 13260,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     }, {
       "amount" : 479586,
       "asset-id" : 931107,
-      "creator" : "oZSrqon3hT7qQqrHNUle",
       "is-frozen" : false
     } ],
     "auth-addr" : "B2RSFJXLB6QASCVTI4X3LL6HGA7R6P7UAAUDIKAMVHPOWGYOWD4ZKR2DJA",

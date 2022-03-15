@@ -63,6 +63,84 @@ Feature: REST Client Responses
       | algod_SupplyResponse_0.json                       | generated_responses_231 | 200    | algod   | GetSupply                 |
       | algod_TransactionParametersResponse_0.json        | generated_responses_231 | 200    | algod   | TransactionParams         |
 
+    @unit.responses.unlimited_assets
+    Examples:
+      | jsonfile                                                   | response-folder                      | status | client  | endpoint                         |
+      | indexer_unlimited_aa_AccountResponse_0.json                | generated_responses_unlimited_assets | 200    | indexer | lookupAccountByID                |
+      | indexer_unlimited_aa_AccountsResponse_0.json               | generated_responses_unlimited_assets | 200    | indexer | searchForAccounts                |
+      | indexer_unlimited_aa_ApplicationLocalStatesResponse_0.json | generated_responses_unlimited_assets | 200    | indexer | lookupAccountAppLocalStates      |
+      | indexer_unlimited_aa_ApplicationLogsResponse_0.json        | generated_responses_unlimited_assets | 200    | indexer | lookupApplicationLogsByID        |
+      | indexer_unlimited_aa_ApplicationResponse_0.json            | generated_responses_unlimited_assets | 200    | indexer | lookupApplicationByID            |
+      | indexer_unlimited_aa_ApplicationsResponse_0.json           | generated_responses_unlimited_assets | 200    | indexer | searchForApplications            |
+      | indexer_unlimited_aa_ApplicationsResponse_0.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAccountCreatedApplications |
+      | indexer_unlimited_aa_ApplicationsResponse_1.json           | generated_responses_unlimited_assets | 200    | indexer | searchForApplications            |
+      | indexer_unlimited_aa_ApplicationsResponse_1.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAccountCreatedApplications |
+      | indexer_unlimited_aa_AssetBalancesResponse_0.json          | generated_responses_unlimited_assets | 200    | indexer | lookupAssetBalances              |
+      | indexer_unlimited_aa_AssetHoldingsResponse_0.json          | generated_responses_unlimited_assets | 200    | indexer | lookupAccountAssets              |
+      | indexer_unlimited_aa_AssetResponse_0.json                  | generated_responses_unlimited_assets | 200    | indexer | lookupAssetByID                  |
+      | indexer_unlimited_aa_AssetsResponse_0.json                 | generated_responses_unlimited_assets | 200    | indexer | searchForAssets                  |
+      | indexer_unlimited_aa_AssetsResponse_0.json                 | generated_responses_unlimited_assets | 200    | indexer | lookupAccountCreatedAssets       |
+      | indexer_unlimited_aa_AssetsResponse_1.json                 | generated_responses_unlimited_assets | 200    | indexer | searchForAssets                  |
+      | indexer_unlimited_aa_AssetsResponse_1.json                 | generated_responses_unlimited_assets | 200    | indexer | lookupAccountCreatedAssets       |
+      | indexer_unlimited_aa_TransactionResponse_0.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_1.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_2.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_3.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_4.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_5.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_6.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_7.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_8.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_9.json            | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_10.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_11.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_12.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_13.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_14.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_15.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_16.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionResponse_17.json           | generated_responses_unlimited_assets | 200    | indexer | lookupTransaction                |
+      | indexer_unlimited_aa_TransactionsResponse_0.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAccountTransactions        |
+      | indexer_unlimited_aa_TransactionsResponse_0.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAssetTransactions          |
+      | indexer_unlimited_aa_TransactionsResponse_0.json           | generated_responses_unlimited_assets | 200    | indexer | searchForTransactions            |
+      | indexer_unlimited_aa_TransactionsResponse_1.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAccountTransactions        |
+      | indexer_unlimited_aa_TransactionsResponse_1.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAssetTransactions          |
+      | indexer_unlimited_aa_TransactionsResponse_1.json           | generated_responses_unlimited_assets | 200    | indexer | searchForTransactions            |
+      | indexer_unlimited_aa_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAccountTransactions        |
+      | indexer_unlimited_aa_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | lookupAssetTransactions          |
+      | indexer_unlimited_aa_TransactionsResponse_2.json           | generated_responses_unlimited_assets | 200    | indexer | searchForTransactions            |
+      | indexer_unlimited_aa_ErrorResponse_0.json                  | generated_responses_unlimited_assets | 500    | indexer | any                              |
+      | indexer_unlimited_aa_ErrorResponse_1.json                  | generated_responses_unlimited_assets | 500    | indexer | any                              |
+      | algod_unlimited_aa_Account_0.json                          | generated_responses_unlimited_assets | 200    | algod   | AccountInformation               |
+      | algod_unlimited_aa_Account_2.json                          | generated_responses_unlimited_assets | 200    | algod   | AccountInformation               |
+      | algod_unlimited_aa_AccountApplicationResponse_0.json       | generated_responses_unlimited_assets | 200    | algod   | AccountApplicationInformation    |
+      | algod_unlimited_aa_AccountApplicationResponse_2.json       | generated_responses_unlimited_assets | 200    | algod   | AccountApplicationInformation    |
+      | algod_unlimited_aa_AccountAssetResponse_0.json             | generated_responses_unlimited_assets | 200    | algod   | AccountAssetInformation          |
+      | algod_unlimited_aa_AccountAssetResponse_2.json             | generated_responses_unlimited_assets | 200    | algod   | AccountAssetInformation          |
+      | algod_unlimited_aa_Application_0.json                      | generated_responses_unlimited_assets | 200    | algod   | GetApplicationByID               |
+      | algod_unlimited_aa_Application_1.json                      | generated_responses_unlimited_assets | 200    | algod   | GetApplicationByID               |
+      | algod_unlimited_aa_Asset_0.json                            | generated_responses_unlimited_assets | 200    | algod   | GetAssetByID                     |
+      | algod_unlimited_aa_Asset_1.json                            | generated_responses_unlimited_assets | 200    | algod   | GetAssetByID                     |
+      | algod_unlimited_aa_CompileResponse_0.json                  | generated_responses_unlimited_assets | 200    | algod   | TealCompile                      |
+      | algod_unlimited_aa_CompileResponse_1.json                  | generated_responses_unlimited_assets | 200    | algod   | TealCompile                      |
+      | algod_unlimited_aa_NodeStatusResponse_0.json               | generated_responses_unlimited_assets | 200    | algod   | GetStatus                        |
+      | algod_unlimited_aa_NodeStatusResponse_0.json               | generated_responses_unlimited_assets | 200    | algod   | WaitForBlock                     |
+      | algod_unlimited_aa_NodeStatusResponse_1.json               | generated_responses_unlimited_assets | 200    | algod   | GetStatus                        |
+      | algod_unlimited_aa_NodeStatusResponse_1.json               | generated_responses_unlimited_assets | 200    | algod   | WaitForBlock                     |
+      | algod_unlimited_aa_NodeStatusResponse_2.json               | generated_responses_unlimited_assets | 200    | algod   | GetStatus                        |
+      | algod_unlimited_aa_NodeStatusResponse_2.json               | generated_responses_unlimited_assets | 200    | algod   | WaitForBlock                     |
+      | algod_unlimited_aa_NodeStatusResponse_3.json               | generated_responses_unlimited_assets | 200    | algod   | GetStatus                        |
+      | algod_unlimited_aa_NodeStatusResponse_3.json               | generated_responses_unlimited_assets | 200    | algod   | WaitForBlock                     |
+      | algod_unlimited_aa_PostTransactionsResponse_0.json         | generated_responses_unlimited_assets | 200    | algod   | RawTransaction                   |
+      | algod_unlimited_aa_PostTransactionsResponse_1.json         | generated_responses_unlimited_assets | 200    | algod   | RawTransaction                   |
+      | algod_unlimited_aa_SupplyResponse_0.json                   | generated_responses_unlimited_assets | 200    | algod   | GetSupply                        |
+      | algod_unlimited_aa_SupplyResponse_1.json                   | generated_responses_unlimited_assets | 200    | algod   | GetSupply                        |
+      | algod_unlimited_aa_TransactionParametersResponse_0.json    | generated_responses_unlimited_assets | 200    | algod   | TransactionParams                |
+      | algod_unlimited_aa_TransactionParametersResponse_1.json    | generated_responses_unlimited_assets | 200    | algod   | TransactionParams                |
+      | algod_unlimited_aa_ErrorResponse_0.json                    | generated_responses_unlimited_assets | 500    | algod   | any                              |
+      | algod_unlimited_aa_ErrorResponse_1.json                    | generated_responses_unlimited_assets | 500    | algod   | any                              |
+      | algod_unlimited_aa_ErrorResponse_2.json                    | generated_responses_unlimited_assets | 500    | algod   | any                              |
+
     @unit.responses.genesis
     Examples:
       | jsonfile                        | response-folder         | status | client | endpoint   |
