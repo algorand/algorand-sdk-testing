@@ -4,8 +4,7 @@ Feature: Dryrun Trace
     @unit.dryrun.trace.application
     Scenario Outline: Application Trace Tests
         Given a dryrun response file "<dryrun-response-file>" and a transaction at index "<txn-index>"
-        When I call app trace
-        Then the output should equal "<golden>"
+        Then calling app trace produces "<app-trace-file>"
 
         Examples:
             | dryrun-response-file                                 | txn-index | app-trace-file                                          |
