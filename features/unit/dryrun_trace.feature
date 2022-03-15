@@ -7,7 +7,7 @@ Feature: Dryrun Trace
         Then calling app trace produces "<app-trace-file>"
 
         Examples:
-            | dryrun-response-file                                 | txn-index | app-trace-file                                          |
-            | v2algodclient_responsejsons/dryrunResponse.json      | 0      | v2algodclient_responsejsons/app_trace.txt       |
-            | v2algodclient_responsejsons/largeDryrunResponse.json | 0      | v2algodclient_responsejsons/large_app_trace.txt |
-            | v2algodclient_responsejsons/errorDryrunResponse.json | 0      | v2algodclient_responsejsons/error_app_trace.txt |
+            | dryrun-response-file                                 | txn-index | app-trace-file                                  |
+            | v2algodclient_responsejsons/dryrunResponse.json      | 0         | v2algodclient_responsejsons/app_trace.txt       |
+            | v2algodclient_responsejsons/largeDryrunResponse.json | 0         | v2algodclient_responsejsons/large_app_trace.txt |
+            | v2algodclient_responsejsons/errorDryrunResponse.json | 0         | v2algodclient_responsejsons/error_app_trace.txt |

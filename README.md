@@ -39,6 +39,10 @@ These reside in the [unit features directory](features/unit)
 | @unit.transactions                | Transaction encoding tests.                           |
 | @unit.transactions.keyreg         | Keyreg encoding tests.                                |
 | @unit.transactions.payment        | Payment encoding tests.                               |
+| @unit.dryrun.trace.application    | DryrunResult formatting tests.                        |
+
+    
+
 
 ### Integration Tests
 
