@@ -146,7 +146,7 @@ Feature: ABI Interaction
     And a new AtomicTransactionComposer
     When I create the Method object from method signature "update()void"
     And I create a new method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "update", current transaction signer, current method arguments, approval-program "programs/one.teal.tok", clear-program "programs/one.teal.tok".
+    And I add a method call with the transient account, the current application, suggested params, on complete "update", current transaction signer, current method arguments, approval-program "programs/six.teal.tok", clear-program "programs/six.teal.tok".
     And I build the transaction group with the composer. If there is an error it is "".
     Then The composer should have a status of "BUILT".
     And I gather signatures with the composer.
