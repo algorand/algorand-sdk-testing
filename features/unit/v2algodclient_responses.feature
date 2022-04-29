@@ -81,6 +81,22 @@ Feature: Algod REST API v2 Responses
       | jsonfiles               | directory                   | err | address                                                    |
       | accountInformation.json | v2algodclient_responsejsons |     | ALGORANDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIN5DNAU |
 
+  # This test case should only be run in sdk's in which the min-balance field from the v2/accounts/{account} response can be mapped,
+  # hence the tag. Once all sdk's have been updated to take this change do the following:
+  # TODO
+  #  1. Delete this testcase
+  #  2. Add the min-balance field to the v2algodclient_responsejsons/accountInformation.json file
+  #  3. Delete the v2algodclient_responsejsons/accountInformationMinBalance.json file
+  @accounts.min-balance
+  Scenario Outline: Account Information response min-balance
+    Given mock http responses in "<jsonfiles>" loaded from "<directory>"
+    When we make any Account Information call
+    Then expect error string to contain "<err>"
+    And the parsed Account Information response should have address "<address>"
+    Examples:
+      | jsonfiles                         | directory                   | err | address                                                    |
+      | accountInformationMinBalance.json | v2algodclient_responsejsons |     | ALGORANDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIN5DNAU |
+
   @unit.algod
   Scenario Outline: Get Block response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
