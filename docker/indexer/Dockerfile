@@ -1,4 +1,4 @@
-FROM golang:1.13.12-alpine
+FROM golang:1.17-alpine
 
 ARG URL=https://github.com/algorand/indexer
 ARG BRANCH=master
