@@ -9892,7 +9892,6 @@
           ]
         }
       ],
-      "cost": 188,
       "disassembly": [
         "#pragma version 6",
         "intcblock 0 1337 1 7",
