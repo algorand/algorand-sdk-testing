@@ -93,6 +93,7 @@ Feature: Algod REST API v2 Responses
     When we make any Account Information call
     Then expect error string to contain "<err>"
     And the parsed Account Information response should have address "<address>"
+    And the parsed Account Information response should have min-balance 1377000
     Examples:
       | jsonfiles                         | directory                   | err | address                                                    |
       | accountInformationMinBalance.json | v2algodclient_responsejsons |     | ALGORANDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIN5DNAU |
