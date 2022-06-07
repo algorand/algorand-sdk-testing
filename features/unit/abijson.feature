@@ -86,3 +86,28 @@ Feature: AbiJson
     Examples:
       | methodsig                | name            | description                 | network1                                     | network1-app-id | network2                                     | network2-app-id | jsonfile      | directory         |
       | add(uint32,uint32)uint32 | ExampleContract | This is an example contract | wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8= | 1234            | SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI= | 5678            | contract.json | abi_responsejsons |
+
+
+  Scenario Outline: Get a method by name from Interface
+    When I create the Method object from method signature "<methodsig>"
+    And I create an Interface object from the Method object
+    And I get the method from the Interface by name "<name>"
+    Then the produced method signature should equal "<methodsig>"
+    And If there is an error it is equal to "<error>"
+
+    Examples:
+      | methodsig                | name | error |
+      | add(uint32,uint32)uint32 | add  |       |
+      | add(uint32,uint32)uint32 | sub  | found 0 methods |
+
+  Scenario Outline: Get a method by name from Contract
+    When I create the Method object from method signature "<methodsig>"
+    And I create a Contract object from the Method object
+    And I get the method from the Contract by name "<name>"
+    Then the produced method signature should equal "<methodsig>"
+    And If there is an error it is equal to "<error>"
+
+    Examples:
+      | methodsig                | name | error | 
+      | add(uint32,uint32)uint32 | add  |       |
+      | add(uint32,uint32)uint32 | sub  |  found 0 methods     |
