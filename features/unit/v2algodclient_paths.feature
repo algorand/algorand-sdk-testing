@@ -70,6 +70,16 @@ Feature: Algod REST API v2 Paths
       | path                  | application-id |
       | /v2/applications/1234 | 1234           |
 
+  @unit.applications
+  Scenario Outline: GetApplicationBoxByName
+    When we make a GetApplicationBoxByName call for applicationID <application-id> with box name <box-name>
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                                     | application-id | box-name     |
+      | /v2/applications/1234/boxes/hello        | 1234           | b64:aGVsbG8= |
+      | /v2/applications/1234/boxes/%FF          | 1234           | b64:/w==     |
+      | /v2/applications/1234/boxes/%F0%9F%92%A9 | 1234           | b64:8J+SqQ== | 
+
   @unit.algod.ledger_refactoring
   Scenario Outline: Account Information
     When we make an Account Information call against account "<account>" with exclude "<exclude>"
