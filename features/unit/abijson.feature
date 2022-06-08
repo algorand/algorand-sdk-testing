@@ -93,7 +93,7 @@ Feature: AbiJson
     And I create another Method object from method signature "<extramethod>"
     And I create an Interface object from the Method object
     And I get the method from the Interface by name "<name>"
-    Then the produced method signature should equal "<methodsig>" if there is an error it is equal to "<error>"
+    Then the produced method signature should equal "<methodsig>". If there is an error it begins with "<error>"
 
     Examples:
       | methodsig                | extramethod              | name | error           |
@@ -106,7 +106,7 @@ Feature: AbiJson
     And I create another Method object from method signature "<extramethod>"
     And I create a Contract object from the Method object
     And I get the method from the Contract by name "<name>"
-    Then the produced method signature should equal "<methodsig>" if there is an error it is "<error>"
+    Then the produced method signature should equal "<methodsig>". If there is an error it begins with "<error>"
 
     Examples:
       | methodsig                | extramethod              | name | error           |
