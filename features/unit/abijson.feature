@@ -90,22 +90,26 @@ Feature: AbiJson
 
   Scenario Outline: Get a method by name from Interface
     When I create the Method object from method signature "<methodsig>"
+    And I create another Method object from method signature "<extramethod>"
     And I create an Interface object from the Method object
     And I get the method from the Interface by name "<name>"
     Then the produced method signature should equal "<methodsig>" if there is an error it is equal to "<error>"
 
     Examples:
-      | methodsig                | name | error |
-      | add(uint32,uint32)uint32 | add  |       |
-      | add(uint32,uint32)uint32 | sub  | found 0 methods |
+      | methodsig                | extramethod              | name | error           |
+      | add(uint32,uint32)uint32 |                          | add  |                 |
+      | add(uint32,uint32)uint32 |                          | sub  | found 0 methods |
+      | add(uint32,uint32)uint32 | add(uint64,uint64)uint64 | add  | found 2 methods |
 
   Scenario Outline: Get a method by name from Contract
     When I create the Method object from method signature "<methodsig>"
+    And I create another Method object from method signature "<extramethod>"
     And I create a Contract object from the Method object
     And I get the method from the Contract by name "<name>"
     Then the produced method signature should equal "<methodsig>" if there is an error it is equal to "<error>"
 
     Examples:
-      | methodsig                | name | error | 
-      | add(uint32,uint32)uint32 | add  |       |
-      | add(uint32,uint32)uint32 | sub  |  found 0 methods     |
+      | methodsig                | extramethod              | name | error           |
+      | add(uint32,uint32)uint32 |                          | add  |                 |
+      | add(uint32,uint32)uint32 |                          | sub  | found 0 methods |
+      | add(uint32,uint32)uint32 | add(uint64,uint64)uint64 | add  | found 2 methods |
