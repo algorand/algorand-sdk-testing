@@ -72,7 +72,7 @@ Feature: Algod REST API v2 Paths
 
   @unit.applications
   Scenario Outline: GetApplicationBoxByName
-    When we make a GetApplicationBoxByName call for applicationID <application-id> with box name <box-name>
+    When we make a GetApplicationBoxByName call for applicationID <application-id> with box name "<box-name>"
     Then expect the path used to be "<path>"
     Examples:
       | path                                     | application-id | box-name     |
