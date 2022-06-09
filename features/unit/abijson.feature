@@ -89,9 +89,9 @@ Feature: AbiJson
 
 
   Scenario Outline: Get a method by name from Interface
-    When I create the Method object from method signature "<methodsig>"
-    And I create another Method object from method signature "<extramethod>"
-    And I create an Interface object from the Method object
+    When I append to my Method objects list in the case of a non-empty signature "<methodsig>"
+    And I append to my Method objects list in the case of a non-empty signature "<extramethod>"
+    And I create an Interface object from my Method objects list
     And I get the method from the Interface by name "<name>"
     Then the produced method signature should equal "<methodsig>". If there is an error it begins with "<error>"
 
