@@ -102,8 +102,8 @@ Feature: AbiJson
       | add(uint32,uint32)uint32 | add(uint64,uint64)uint64 | add  | found 2 methods |
 
   Scenario Outline: Get a method by name from Contract
-    When I create the Method object from method signature "<methodsig>"
-    And I create another Method object from method signature "<extramethod>"
+    When I append to my Method objects list in the case of a non-empty signature "<methodsig>"
+    And I append to my Method objects list in the case of a non-empty signature "<extramethod>"
     And I create a Contract object from my Method objects list
     And I get the method from the Contract by name "<name>"
     Then the produced method signature should equal "<methodsig>". If there is an error it begins with "<error>"
