@@ -78,7 +78,8 @@ Feature: Algod REST API v2 Paths
       | path                                     | application-id | box-name     |
       | /v2/applications/1234/boxes/hello        | 1234           | b64:aGVsbG8= |
       | /v2/applications/1234/boxes/%FF          | 1234           | b64:/w==     |
-      | /v2/applications/1234/boxes/%F0%9F%92%A9 | 1234           | b64:8J+SqQ== | 
+      | /v2/applications/1234/boxes/%F0%9F%92%A9 | 1234           | b64:8J+SqQ== |
+      | /v2/applications/1234/boxes/a%2Fz        | 1234           | b64:YS96     |
 
   @unit.algod.ledger_refactoring
   Scenario Outline: Account Information
