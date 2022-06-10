@@ -9,7 +9,7 @@ java_cucumber/.classpath
 
 
 .DS_Store
-
+.idea/
 .vscode/
 
 # feature files
