@@ -1,6 +1,7 @@
-@unit.abijson
 @unit
 Feature: AbiJson
+
+  @unit.abijson
   Scenario Outline: Serialize Method object from sig into json
     When I create the Method object from method signature "<methodsig>"
     And I serialize the Method object into json
@@ -16,6 +17,7 @@ Feature: AbiJson
       | referenceTest(account,application,asset)uint8[3] | referenceTestMethod.json | abi_responsejsons |
       | txnTest(txn,pay,keyreg,acfg,axfer,afrz,appl)bool | txnTestMethod.json       | abi_responsejsons |
 
+  @unit.abijson
   Scenario Outline: Create and serialize Method object into json
     When I create the Method object with name "<name>" first argument type "<firstargtype>" second argument type "<secondargtype>" and return type "<returntype>"
     And I serialize the Method object into json
@@ -26,6 +28,7 @@ Feature: AbiJson
       | name | firstargtype | secondargtype | returntype | jsonfile       | directory         |
       | add  | uint32       | uint32        | uint32     | addMethod.json | abi_responsejsons |
 
+  @unit.abijson
   Scenario Outline: Create and serialize Method object into json with arg names
     When I create the Method object with name "<name>" first argument name "<firstargname>" first argument type "<firstargtype>" second argument name "<secondargname>" second argument type "<secondargtype>" and return type "<returntype>"
     And I serialize the Method object into json
@@ -36,6 +39,7 @@ Feature: AbiJson
       | name | firstargname | firstargtype | secondargname | secondargtype | returntype | jsonfile                   | directory         |
       | add  | first        | uint32       | second        | uint32        | uint32     | addMethodWithArgNames.json | abi_responsejsons |
 
+  @unit.abijson
   Scenario Outline: Create and serialize Method object into json with description
     When I create the Method object with name "<name>" method description "<methoddesc>" first argument type "<firstargtype>" first argument description "<firstdesc>" second argument type "<secondargtype>" second argument description "<seconddesc>" and return type "<returntype>"
     And I serialize the Method object into json
@@ -46,6 +50,7 @@ Feature: AbiJson
       | name | methoddesc         | firstargtype | firstdesc         | secondargtype | seconddesc         | returntype | jsonfile                      | directory         |
       | add  | method description | uint32       | first description | uint16        | second description | uint32     | addMethodWithDescription.json | abi_responsejsons |
 
+  @unit.abijson
   Scenario Outline: Check txn count of Method
     When I create the Method object from method signature "<methodsig>"
     Then the txn count should be <txncount>
@@ -55,6 +60,7 @@ Feature: AbiJson
       | add(uint32,uint32)uint32             | 1        |
       | txcalls(pay,bool,pay,axfer,byte)void | 4        |
 
+  @unit.abijson
   Scenario Outline: Check method selector from Method
     When I create the Method object from method signature "<methodsig>"
     Then the method selector should be "<methodselector>"
@@ -63,6 +69,7 @@ Feature: AbiJson
       | methodsig                | methodselector |
       | add(uint32,uint32)uint32 | 3e1e52bd       |
 
+  @unit.abijson
   Scenario Outline: Serialize Interface into json
     When I create the Method object from method signature "<methodsig>"
     And I create an Interface object from the Method object with name "<name>" and description "<description>"
@@ -74,6 +81,7 @@ Feature: AbiJson
       | methodsig                | name             | description                  | jsonfile       | directory         |
       | add(uint32,uint32)uint32 | ExampleInterface | This is an example interface | interface.json | abi_responsejsons |
 
+  @unit.abijson
   Scenario Outline: Serialize Contract into json
     When I create the Method object from method signature "<methodsig>"
     And I create a Contract object from the Method object with name "<name>" and description "<description>"
@@ -88,6 +96,7 @@ Feature: AbiJson
       | add(uint32,uint32)uint32 | ExampleContract | This is an example contract | wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8= | 1234            | SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI= | 5678            | contract.json | abi_responsejsons |
 
 
+  @unit.abijson.byname
   Scenario Outline: Get a method by name from Interface
     When I append to my Method objects list in the case of a non-empty signature "<methodsig>"
     And I append to my Method objects list in the case of a non-empty signature "<extramethod>"
@@ -101,6 +110,7 @@ Feature: AbiJson
       | add(uint32,uint32)uint32 |                          | sub  | found 0 methods |
       | add(uint32,uint32)uint32 | add(uint64,uint64)uint64 | add  | found 2 methods |
 
+  @unit.abijson.byname
   Scenario Outline: Get a method by name from Contract
     When I append to my Method objects list in the case of a non-empty signature "<methodsig>"
     And I append to my Method objects list in the case of a non-empty signature "<extramethod>"
