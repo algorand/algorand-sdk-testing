@@ -12,6 +12,7 @@ Feature: ABI Interaction
     And I wait for the transaction to be confirmed.
     And I remember the new application ID.
 
+  @z
   Scenario Outline: Method call exceptions
     Given a new AtomicTransactionComposer
     # Create a payment method call with an address argument, and add it to the composer
@@ -19,7 +20,7 @@ Feature: ABI Interaction
     And I create a new method arguments array.
     And I append the encoded arguments "<app-args>" to the method arguments array.
     # When "none" is provided for <none-or-exception-pattern> there should be no exception, otherwise, the error's message should satisfy the regex:
-    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments; any resulting exception satisfies the regex "<none-or-exception-pattern>".
+    Then I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments; any resulting exception satisfies the regex "<none-or-exception-pattern>".
 
     Examples:
       | method-signature         | app-args                               | none-or-exception-pattern |
