@@ -18,15 +18,16 @@ Feature: ABI Interaction
     When I create the Method object from method signature "<method-signature>"
     And I create a new method arguments array.
     And I append the encoded arguments "<app-args>" to the method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
     # When "none" is provided for <none-or-exception-pattern> there should be no exception, otherwise, the error's message should satisfy the regex
-    Then the most recently added method call has an exception which satisfies "<none-or-exception-pattern>".
+    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments; any resulting exception satisfies the regex "<none-or-exception-pattern>".
 
     Examples:
       | method-signature         | app-args                               | none-or-exception-pattern |
       | add(uint64,uint64)uint64 | AAAAAAAAAAE=,AAAAAAAAAAI=              | none                      |
       | empty()void              |                                        | none                      |
+      | empty()void              | AAAAAAAAAAE=                           | number.*arguments         |
       | add(uint64,uint64)uint64 | AAAAAAAAAAE=,AAAAAAAAAAI=,AAAAAAAAAAI= | number.*arguments         |
+      | add(uint64,uint64)uint64 | AAAAAAAAAAE=                           | number.*arguments         |
 
   Scenario Outline: Method call execution with other transactions
     Given a new AtomicTransactionComposer
