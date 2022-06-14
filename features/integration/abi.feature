@@ -12,7 +12,6 @@ Feature: ABI Interaction
     And I wait for the transaction to be confirmed.
     And I remember the new application ID.
 
-  @z
   Scenario Outline: Method call exceptions
     Given a new AtomicTransactionComposer
     # Create a payment method call with an address argument, and add it to the composer
