@@ -23,12 +23,22 @@ Feature: ABI Interaction
     Then I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments; any resulting exception satisfies the regex "<none-or-exception-pattern>".
 
     Examples:
-      | method-signature         | app-args                               | none-or-exception-pattern |
-      | add(uint64,uint64)uint64 | AAAAAAAAAAE=,AAAAAAAAAAI=              | none                      |
-      | empty()void              |                                        | none                      |
-      | empty()void              | AAAAAAAAAAE=                           | number.*arguments         |
-      | add(uint64,uint64)uint64 | AAAAAAAAAAE=,AAAAAAAAAAI=,AAAAAAAAAAI= | number.*arguments         |
-      | add(uint64,uint64)uint64 | AAAAAAAAAAE=                           | number.*arguments         |
+      | method-signature                                                                                                  | app-args                                                                                   | none-or-exception-pattern |
+      | add(uint64,uint64)uint64                                                                                          | AAAAAAAAAAE=,AAAAAAAAAAI=                                                                  | none                      |
+      | empty()void                                                                                                       |                                                                                            | none                      |
+      | f15(string,string,string,string,string,string,string,string,string,string,string,string,string,string,string)void | AAFh,AAFi,AAFj,AAFk,AAFl,AAFm,AAFn,AAFo,AAFp,AAFq,AAFr,AAFs,AAFt,AAFu,AAFv                 | none                      |
+      | f16(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void          | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==,Dw==            | none                      |
+      | f17(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void    | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==,Dw==,Dw==       | none                      |
+      | add(uint64,uint64)uint64                                                                                          | AAAAAAAAAAE=,AAAAAAAAAAI=,AAAAAAAAAAI=                                                     | number.*arguments         |
+      | add(uint64,uint64)uint64                                                                                          | AAAAAAAAAAE=                                                                               | number.*arguments         |
+      | empty()void                                                                                                       | AAAAAAAAAAE=                                                                               | number.*arguments         |
+      | f15(string,string,string,string,string,string,string,string,string,string,string,string,string,string,string)void | AAFh,AAFi,AAFj,AAFk,AAFl,AAFm,AAFn,AAFo,AAFp,AAFq,AAFr,AAFs,AAFt,AAFu                      | number.*arguments         |
+      | f15(string,string,string,string,string,string,string,string,string,string,string,string,string,string,string)void | AAFh,AAFi,AAFj,AAFk,AAFl,AAFm,AAFn,AAFo,AAFp,AAFq,AAFr,AAFs,AAFt,AAFu,AAFu,AAFu            | number.*arguments         |
+      | f16(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void          | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==                 | number.*arguments         |
+      | f16(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void          | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==,Dw==,Dw==       | number.*arguments         |
+      | f17(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void    | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==                 | number.*arguments         |
+      | f17(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void    | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==,Dw==            | number.*arguments         |
+      | f17(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void    | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==,Dw==,Dw==,Dw==  | number.*arguments         |
 
   Scenario Outline: Method call execution with other transactions
     Given a new AtomicTransactionComposer
