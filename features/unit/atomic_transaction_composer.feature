@@ -170,3 +170,33 @@ Feature: Atomic Transaction Composer
     Given a new AtomicTransactionComposer
     When I build the transaction group with the composer. If there is an error it is "zero group size error".
     Then The composer should have a status of "BUILDING".
+  
+  @unit.atc_method_args
+  Scenario Outline: Method call argument count validation
+    Given a new AtomicTransactionComposer
+    And suggested transaction parameters fee 1234, flat-fee "true", first-valid 9000, last-valid 9010, genesis-hash "Mf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464M=", genesis-id "cucumbernet"
+    And I make a transaction signer for the signing account.
+    And an application id 42
+    When I create the Method object from method signature "<method-signature>"
+    And I create a new method arguments array.
+    And I append the encoded arguments "<app-args>" to the method arguments array.
+    # When "none" is provided for <none-or-exception-pattern> there should be no exception, otherwise, the error's message should satisfy the regex:
+    Then I add a method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments; any resulting exception has key "<none-or-exception-key>".
+
+    Examples:
+      | method-signature                                                                                                  | app-args                                                                                   | none-or-exception-key     |
+      | add(uint64,uint64)uint64                                                                                          | AAAAAAAAAAE=,AAAAAAAAAAI=                                                                  | none                      |
+      | empty()void                                                                                                       |                                                                                            | none                      |
+      | f15(string,string,string,string,string,string,string,string,string,string,string,string,string,string,string)void | AAFh,AAFi,AAFj,AAFk,AAFl,AAFm,AAFn,AAFo,AAFp,AAFq,AAFr,AAFs,AAFt,AAFu,AAFv                 | none                      |
+      | f16(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void          | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==,Dw==            | none                      |
+      | f17(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void    | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==,Dw==,Dw==       | none                      |
+      | add(uint64,uint64)uint64                                                                                          | AAAAAAAAAAE=,AAAAAAAAAAI=,AAAAAAAAAAI=                                                     | argument_count_mismatch   |
+      | add(uint64,uint64)uint64                                                                                          | AAAAAAAAAAE=                                                                               | argument_count_mismatch   |
+      | empty()void                                                                                                       | AAAAAAAAAAE=                                                                               | argument_count_mismatch   |
+      | f15(string,string,string,string,string,string,string,string,string,string,string,string,string,string,string)void | AAFh,AAFi,AAFj,AAFk,AAFl,AAFm,AAFn,AAFo,AAFp,AAFq,AAFr,AAFs,AAFt,AAFu                      | argument_count_mismatch   |
+      | f15(string,string,string,string,string,string,string,string,string,string,string,string,string,string,string)void | AAFh,AAFi,AAFj,AAFk,AAFl,AAFm,AAFn,AAFo,AAFp,AAFq,AAFr,AAFs,AAFt,AAFu,AAFu,AAFu            | argument_count_mismatch   |
+      | f16(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void          | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==                 | argument_count_mismatch   |
+      | f16(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void          | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==,Dw==,Dw==       | argument_count_mismatch   |
+      | f17(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void    | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==                 | argument_count_mismatch   |
+      | f17(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void    | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==,Dw==            | argument_count_mismatch   |
+      | f17(uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8,uint8)void    | AA==,AQ==,Ag==,Aw==,BA==,BQ==,Bg==,Bw==,CA==,CQ==,Cg==,Cw==,DA==,DQ==,Dg==,Dw==,Dw==,Dw==  | argument_count_mismatch   |
