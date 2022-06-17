@@ -171,6 +171,7 @@ Feature: Atomic Transaction Composer
     When I build the transaction group with the composer. If there is an error it is "zero group size error".
     Then The composer should have a status of "BUILDING".
   
+  @unit.atc_method_args
   Scenario Outline: Method call argument count validation
     Given a new AtomicTransactionComposer
     And suggested transaction parameters fee 1234, flat-fee "true", first-valid 9000, last-valid 9010, genesis-hash "Mf0h6zjkEIEZPtNM3zsrg+iHQFS0fZxhgr7w35I464M=", genesis-id "cucumbernet"
