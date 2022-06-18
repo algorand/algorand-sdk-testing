@@ -30,8 +30,9 @@ services:
       context: .
       dockerfile: ./docker/indexer/Dockerfile
       args:
-        URL: "https://github.com/algorand/indexer"
-        BRANCH: "develop"
+        # allow override of the git information.
+        URL: "${INDEXER_URL:-https://github.com/algorand/indexer}"
+        BRANCH: "${INDEXER_BRANCH:-develop}"
     ports:
       - 60002:8980
     restart: unless-stopped
@@ -53,6 +54,7 @@ services:
       args:
         URL: "https://github.com/algorand/indexer"
         BRANCH: "master"
+        # Is there a reason why we're still pinning to a particular commit?
         SHA: "a30878e3669310c30a2b916fb41511516b906c9a"
     ports:
       - 59999:8980
@@ -74,6 +76,7 @@ services:
       args:
         URL: "https://github.com/algorand/indexer"
         BRANCH: "master"
+        # Is there a reason why we're still pinning to a particular commit?
         SHA: "a30878e3669310c30a2b916fb41511516b906c9a"
     ports:
       - 59998:8980
@@ -94,6 +97,7 @@ services:
       dockerfile: ./docker/indexer/Dockerfile
       args:
         URL: "https://github.com/algorand/indexer"
+        # Can we follow up on this now?
         # TODO: Set back to master when include-all makes it to master.
         BRANCH: "develop"
         SHA: "cf93e3acacdf6fde9afd0b6b24fa0fde723ff43b"
@@ -116,6 +120,7 @@ services:
       dockerfile: ./docker/indexer/Dockerfile
       args:
         URL: "https://github.com/algorand/indexer"
+        # Can we follow up on this now?
         # TODO: Set back to master + SHA when include-all makes it to master.
         BRANCH: "develop"
         SHA: "cf93e3acacdf6fde9afd0b6b24fa0fde723ff43b"
