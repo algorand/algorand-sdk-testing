@@ -186,7 +186,6 @@ Feature: Atomic Transaction Composer
     When I create the Method object from method signature "<method-signature>"
     And I create a new method arguments array.
     And I append the encoded arguments "<app-args>" to the method arguments array.
-    # When "none" is provided for <none-or-exception-pattern> there should be no exception, otherwise, the error's message should satisfy the regex:
     Then I add a method call with the signing account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments; any resulting exception has key "<none-or-exception-key>".
 
     Examples:
