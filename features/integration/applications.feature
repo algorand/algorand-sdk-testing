@@ -104,14 +104,14 @@ Feature: Applications
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,str:name", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      Then the contents of the box with name "name" should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+      Then the contents of the box with name "str:name" should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
       # app call to set box value
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:set,str:name,str:value", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      Then the contents of the box with name "name" should be "dmFsdWUAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+      Then the contents of the box with name "str:name" should be "dmFsdWUAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
       # app call to delete the box
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,str:name", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      Then the contents of the box with name "name" should be "". If there is an error it is "box not found".
+      Then the contents of the box with name "str:name" should be "". If there is an error it is "box not found".
