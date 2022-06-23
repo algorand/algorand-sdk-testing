@@ -86,7 +86,7 @@ Feature: Applications
          | programs/globcheck.teal.tok | global         | 1            | 0           |
 
    @applications.boxes
-   Scenario: exercise box features
+   Scenario: Exercise box features
       # Make these tests 'standalone'.
       # This should create a new, random account and save the public/private key for future steps to use.
       Given I create a new transient account and fund it with 10000000000 microalgos.
@@ -98,8 +98,8 @@ Feature: Applications
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       And I remember the new application ID.
-      Then I get the account address for the current application and see that it matches the app id's hash
       And I fund the current application's address with 100000000 microalgos.
+      Then I get the account address for the current application and see that it matches the app id's hash
       # app call to create box
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,str:name", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
