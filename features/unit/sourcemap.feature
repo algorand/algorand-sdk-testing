@@ -2,7 +2,7 @@
 Feature: SourceMap
 
     @unit.sourcemap.pctoline
-    Scenario Outline: Parse a SourceMap from json 
+    Scenario Outline: Parse a SourceMap from json and get the line corresponding to a PC
         Given a source map json file "<sourcemap-file>"
         Then getting the line that corresponds to the PC "<pc-value>" produces "<line-number>"
 
@@ -12,7 +12,7 @@ Feature: SourceMap
             | v2algodclient_responsejsons/sourcemap.json | 10 | 8 |
 
     @unit.sourcemap.linetopc
-    Scenario Outline: Parse a SourceMap from json 
+    Scenario Outline: Parse a SourceMap from json and get a PC corresponding to the line
         Given a source map json file "<sourcemap-file>" 
         Then getting the first PC that corresponds to the line "<line-number>" produces "<pc-value>"
 
