@@ -3,7 +3,8 @@ Feature: SourceMap
 
     @unit.sourcemap.pctoline
     Scenario Outline: Parse a SourceMap from json 
-        Given a source map json file "<soucemap-file>" and a PC with the value "<pc-value>" 
+        Given a source map json file "<soucemap-file>" 
+        And a PC with the value "<pc-value>" 
         Then getting the line that corresponds to the PC produces "<line-number>"
 
         Examples:
@@ -14,7 +15,8 @@ Feature: SourceMap
 
     @unit.sourcemap.linetopc
     Scenario Outline: Parse a SourceMap from json 
-        Given a source map json file "<soucemap-file>" and a Line with the value "<line-number>" 
+        Given a source map json file "<soucemap-file>" 
+        And a Line with the value "<line-number>" 
         Then getting the first PC that corresponds to the line produces "<pc-value>"
 
         Examples:
