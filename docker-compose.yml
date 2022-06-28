@@ -95,7 +95,6 @@ services:
       dockerfile: ./docker/indexer/Dockerfile
       args:
         URL: "https://github.com/algorand/indexer"
-        # Can we follow up on this now?
         # TODO: Set back to master when include-all makes it to master.
         BRANCH: "develop"
         SHA: "cf93e3acacdf6fde9afd0b6b24fa0fde723ff43b"
