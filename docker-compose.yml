@@ -75,7 +75,6 @@ services:
       args:
         URL: "https://github.com/algorand/indexer"
         BRANCH: "master"
-        # Is there a reason why we're still pinning to a particular commit?
         SHA: "a30878e3669310c30a2b916fb41511516b906c9a"
     ports:
       - 59998:8980
