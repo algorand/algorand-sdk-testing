@@ -75,11 +75,11 @@ Feature: Algod REST API v2 Paths
     When we make a GetApplicationBoxByName call for applicationID <application-id> with box name "<box-name>"
     Then expect the path used to be "<path>"
     Examples:
-      | path                                              | application-id | box-name     |
-      | /v2/applications/1234/box?name=b64:aGVsbG8%3D     | 1234           | b64:aGVsbG8= |
-      | /v2/applications/1234/box?name=b64:%2Fw%3D%3D     | 1234           | b64:/w==     |
-      | /v2/applications/1234/box?name=b64:8J%2BSqQ%3D%3D | 1234           | b64:8J+SqQ== |
-      | /v2/applications/1234/box?name=b64:YS96           | 1234           | b64:YS96     |
+      | path                                                | application-id | box-name     |
+      | /v2/applications/1234/box?name=b64%3AaGVsbG8%3D     | 1234           | b64:aGVsbG8= |
+      | /v2/applications/1234/box?name=b64%3A%2Fw%3D%3D     | 1234           | b64:/w==     |
+      | /v2/applications/1234/box?name=b64%3A8J%2BSqQ%3D%3D | 1234           | b64:8J+SqQ== |
+      | /v2/applications/1234/box?name=b64%3AYS96           | 1234           | b64:YS96     |
 
   @unit.algod.ledger_refactoring
   Scenario Outline: Account Information
