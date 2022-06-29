@@ -4,6 +4,5 @@ export TYPE="source"
 export CHANNEL="nightly"
 
 # Used when TYPE=source
-# TODO: Revert this back - just for temporary CI testing
-export ALGOD_URL="https://github.com/algochoi/go-algorand"
-export ALGOD_BRANCH="algochoi/box-search-api"
+export ALGOD_URL="https://github.com/algorand/go-algorand"
+export ALGOD_BRANCH="feature/avm-box"
