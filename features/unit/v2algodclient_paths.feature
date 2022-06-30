@@ -70,16 +70,16 @@ Feature: Algod REST API v2 Paths
       | path                  | application-id |
       | /v2/applications/1234 | 1234           |
 
-  @unit.applications
+  @unit.applications.boxes
   Scenario Outline: GetApplicationBoxByName
-    When we make a GetApplicationBoxByName call for applicationID <application-id> with box name "<box-name>"
+    When we make a GetApplicationBoxByName call for applicationID <application-id> with encoded box name "<encoded-box-name>"
     Then expect the path used to be "<path>"
     Examples:
-      | path                                     | application-id | box-name     |
-      | /v2/applications/1234/boxes/hello        | 1234           | b64:aGVsbG8= |
-      | /v2/applications/1234/boxes/%FF          | 1234           | b64:/w==     |
-      | /v2/applications/1234/boxes/%F0%9F%92%A9 | 1234           | b64:8J+SqQ== |
-      | /v2/applications/1234/boxes/a%2Fz        | 1234           | b64:YS96     |
+      | path                                                | application-id | encoded-box-name     |
+      | /v2/applications/1234/box?name=b64%3AaGVsbG8%3D     | 1234           | b64:aGVsbG8=         |
+      | /v2/applications/1234/box?name=b64%3A%2Fw%3D%3D     | 1234           | b64:/w==             |
+      | /v2/applications/1234/box?name=b64%3A8J%2BSqQ%3D%3D | 1234           | b64:8J+SqQ==         |
+      | /v2/applications/1234/box?name=b64%3AYS96           | 1234           | b64:YS96             |
 
   @unit.algod.ledger_refactoring
   Scenario Outline: Account Information
