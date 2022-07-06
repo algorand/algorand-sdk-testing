@@ -1,8 +1,8 @@
-@compile
 Feature: Compile
   Background:
     Given an algod v2 client
 
+  @compile
   Scenario Outline: Compile programs
     When I compile a teal program <program>
     Then it is compiled with <status> and <result> and <hash>
@@ -12,6 +12,7 @@ Feature: Compile
       | "programs/invalid.teal" | 400    | ""         | ""                                                           |
 
 
+  @compile
   Scenario Outline: Teals compile to their associated binary
     When I compile a teal program <teal>
     Then base64 decoding the response is the same as the binary <program>
