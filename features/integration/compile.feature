@@ -20,3 +20,11 @@ Feature: Compile
       | "programs/one.teal"             | "programs/one.teal.tok"             |
       | "programs/zero.teal"            | "programs/zero.teal.tok"            |
       | "programs/abi_method_call.teal" | "programs/abi_method_call.teal.tok" |
+
+  @compile.sourcemap
+  Scenario Outline: Teals return a valid Source Map
+    When I compile a teal program <teal> with mapping enabled
+    Then the resulting source map is the same as the json <sourcemap>
+    Examples:
+      | teal                | sourcemap                                  |
+      | programs/quine.teal | v2algodclient_responsejsons/sourcemap.json |
