@@ -104,14 +104,44 @@ Feature: Applications
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,str:name", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      Then the contents of the box with name "str:name" should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+      Then the contents of the box with name "str:name" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
       # app call to set box value
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:set,str:name,str:value", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      Then the contents of the box with name "str:name" should be "dmFsdWUAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+      Then the contents of the box with name "str:name" in the current application should be "dmFsdWUAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
       # app call to delete the box
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,str:name", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      Then the contents of the box with name "str:name" should be "". If there is an error it is "box not found".
+      Then the contents of the box with name "str:name" in the current application should be "". If there is an error it is "box not found".
+
+      # Check if all the application boxes can be returned
+      # Create some boxes
+      Given I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,str:foo bar", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:foo bar"
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,str:asdf123", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:asdf123"
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,b64:APj/IA==", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,b64:APj/IA=="
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:set,str:foo bar,str:value", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:foo bar"
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      # Check that GetApplicationBoxes call returns the right number of boxes
+      Then the current application should have the following boxes "str:foo bar,str:asdf123,b64:APj/IA==".
+      # Delete some boxes
+      Given I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,str:asdf123", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:asdf123"
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      Then the current application should have the following boxes "str:foo bar,b64:APj/IA==".
+      Given I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,str:foo bar", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:foo bar"
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,b64:APj/IA==", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,b64:APj/IA=="
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      Then the current application should have the following boxes "".
+      
