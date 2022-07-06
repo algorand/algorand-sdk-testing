@@ -144,4 +144,3 @@ Feature: Applications
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       Then the current application should have the following boxes "".
-      
