@@ -121,25 +121,18 @@ Feature: Applications
       Given I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,str:foo bar", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:foo bar"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,str:asdf123", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:asdf123"
-      And I sign and submit the transaction, saving the txid. If there is an error it is "".
-      And I wait for the transaction to be confirmed.
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,b64:APj/IA==", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,b64:APj/IA=="
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:set,str:foo bar,str:value", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:foo bar"
-      And I sign and submit the transaction, saving the txid. If there is an error it is "".
-      And I wait for the transaction to be confirmed.
       # Check that GetApplicationBoxes call returns the right number of boxes
-      Then the current application should have the following boxes "str:foo bar,str:asdf123,b64:APj/IA==".
-      # Delete some boxes
-      Given I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,str:asdf123", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:asdf123"
-      And I sign and submit the transaction, saving the txid. If there is an error it is "".
-      And I wait for the transaction to be confirmed.
       Then the current application should have the following boxes "str:foo bar,b64:APj/IA==".
+      # Delete one box
       Given I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,str:foo bar", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:foo bar"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
+      # Check that box was correctly deleted
+      Then the current application should have the following boxes "b64:APj/IA==".
+      # Delete last box and check that empty response is handled correctly
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,b64:APj/IA==", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,b64:APj/IA=="
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
