@@ -13,7 +13,7 @@ Feature: Compile
 
 
   @compile
-  Scenario Outline: Teals compile to their associated binary
+  Scenario Outline: Teal compiles to its associated binary
     When I compile a teal program <teal>
     Then base64 decoding the response is the same as the binary <program>
     Examples:
@@ -23,7 +23,7 @@ Feature: Compile
       | "programs/abi_method_call.teal" | "programs/abi_method_call.teal.tok" |
 
   @compile.sourcemap
-  Scenario Outline: Teals return a valid Source Map
+  Scenario Outline: Algod compiling Teal returns a valid Source Map
     When I compile a teal program <teal> with mapping enabled
     Then the resulting source map is the same as the json <sourcemap>
     Examples:
