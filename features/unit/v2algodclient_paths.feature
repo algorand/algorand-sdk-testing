@@ -83,11 +83,12 @@ Feature: Algod REST API v2 Paths
 
   @unit.applications.boxes
   Scenario Outline: GetApplicationBoxes
-    When we make a GetApplicationBoxes call for applicationID <application-id>
+    When we make a GetApplicationBoxes call for applicationID <application-id> with max <max>
     Then expect the path used to be "<path>"
     Examples:
-      | path                        | application-id |
-      | /v2/applications/1234/boxes | 1234           | 
+      | path                              | application-id | max |
+      | /v2/applications/1234/boxes       | 1234           | 0   |
+      | /v2/applications/1234/boxes?max=2 | 1234           | 2   |
 
   @unit.algod.ledger_refactoring
   Scenario Outline: Account Information
