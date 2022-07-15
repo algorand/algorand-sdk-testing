@@ -16,7 +16,7 @@
             {
                 "Name": "Wallet3",
                 "Stake": 20,
-                "Online": true
+                "Online": false
             }
         ],
         "DevMode": true

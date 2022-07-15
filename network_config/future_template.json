@@ -24,8 +24,7 @@
                 "Stake": 10,
                 "Online": false
             }
-        ],
-        "DevMode": true
+        ]
     },
     "Nodes": [
         {

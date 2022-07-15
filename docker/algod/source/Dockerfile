@@ -25,7 +25,7 @@ RUN git clone --single-branch --branch "${BRANCH}" "${URL}" && \
 RUN python3 /tmp/docker/algod/setup.py configure \
     --bin-dir "$BIN_DIR" \
     --network-dir /opt/testnetwork \
-    --network-template /tmp/network_config/future_template.json \
+    --network-template /tmp/network_config/DevModeNetwork.json \
     --network-token aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
     --algod-port 60000 \
     --kmd-port 60001
