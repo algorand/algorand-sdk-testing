@@ -1,4 +1,4 @@
-export TYPE="channel"
+export TYPE="source"
 
 # Set network template file to future_template if it is not manually set to dev net.
 NETWORK_TEMPLATE="${NETWORK_TEMPLATE:=future_template.json}"
