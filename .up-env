@@ -1,4 +1,5 @@
 export TYPE="channel"
+export NETWORK_TEMPLATE="/tmp/network_config/DevModeNetwork.json"
 
 # Used when TYPE=channel
 export CHANNEL="nightly"
