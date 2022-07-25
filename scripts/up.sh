@@ -54,10 +54,6 @@ fi
 # Load environment.
 source $ENV_FILE
 
-# Set network template file to future_template if it is not manually set to dev net.
-NETWORK_TEMPLATE="${NETWORK_TEMPLATE:=future_template.json}"
-export NETWORK_TEMPLATE_PATH="/tmp/network_config/${NETWORK_TEMPLATE}"
-
 # Choose which dockerfile to use.
 TYPE=${TYPE_OVERRIDE:-$TYPE}
 if [[ $TYPE == "channel" ]] || [[ $TYPE == "source" ]]; then
