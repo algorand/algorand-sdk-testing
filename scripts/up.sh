@@ -54,6 +54,8 @@ fi
 # Load environment.
 source $ENV_FILE
 
+echo $NETWORK_TEMPLATE_PATH
+
 # Choose which dockerfile to use.
 TYPE=${TYPE_OVERRIDE:-$TYPE}
 if [[ $TYPE == "channel" ]] || [[ $TYPE == "source" ]]; then
