@@ -2,6 +2,7 @@ FROM ubuntu:20.04
 
 ARG CHANNEL=nightly
 ENV BIN_DIR="$HOME/node"
+ARG NETWORK_TEMPLATE_PATH
 
 ENV DEBIAN_FRONTEND noninteractive
 

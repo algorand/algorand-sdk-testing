@@ -2,6 +2,7 @@ FROM golang:1.17
 
 ARG URL=https://github.com/algorand/go-algorand
 ARG BRANCH=master
+ARG NETWORK_TEMPLATE_PATH
 
 RUN echo "Installing from source. ${URL} -- ${BRANCH}"
 ENV BIN_DIR="$GOPATH/bin"
