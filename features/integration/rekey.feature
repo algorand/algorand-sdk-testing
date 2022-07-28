@@ -6,7 +6,7 @@ Feature: Sending transactions
     And wallet information
 
   Scenario Outline: Sending transactions
-    When I generate a key using kmd for rekeying
+    When I generate a key using kmd for rekeying and fund it
     Given default transaction with parameters <amt> "<note>" and rekeying key
     When I get the private key
     And I add a rekeyTo field with address "<rekeyTo>"
