@@ -1,4 +1,4 @@
-@rekey
+@rekey_v1
 Feature: Sending transactions
   Background:
     Given an algod client
