@@ -7,6 +7,8 @@ Feature: Algod
     Then the node should be healthy
 
   Scenario: Status check
+    Given a kmd client
+    And wallet information
     When I get the status
     And I get status after this block
     Then I can get the block info

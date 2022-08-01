@@ -10,6 +10,9 @@ services:
       args:
         # This is used with TYPE="channel" to override the channel.
         CHANNEL: "${CHANNEL:-nightly}"
+
+        # Set network template file to dev mode network if it is not manually set.
+        NETWORK_TEMPLATE_PATH: "/tmp/network_config/${NETWORK_TEMPLATE:-DevModeNetwork.json}"
         
         # This is used with TYPE="source" to override the git information.
         URL: "${ALGOD_URL:-https://github.com/algorand/go-algorand}"
