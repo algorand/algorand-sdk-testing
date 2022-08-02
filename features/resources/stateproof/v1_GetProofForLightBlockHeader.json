@@ -1,4 +1,3 @@
-curl "localhost:4001/v2/blocks/800/lightheader/proof?pretty" -H "X-Algo-API-Token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 {
   "index": 31,
   "proof": "jJRrXHxG/b1buN510QarXsYh2JBQo3olJ4Zkhj7qcN2Sw7TIGwOOA6OMFA4xxgDU5q9blHooMLlcU5C5nDRBWQYBIECTn2dW/mseP1PZQINFfnMz/0Eh9uCdh53ixgp95NgjoGglazSQmnGPyRF6eJXsVaSKCHYW3aQaar/eqHLjBJqFzIPVvg4uBfnjHmEsEvW8GDo39pAcI/77a51Tnv0Vse0JUr2hn7De8xX3jci6I14W3EHKqw07iO+c+4tSQYyc7Q8FbL+Sql1c9HYSaMHYgaj19o5Z/ecyatJrc0JdX78jlJDOqvyaiDd7g65//aPmGHWmb/p6EYIph1xxIQ==",
