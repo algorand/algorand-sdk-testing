@@ -185,7 +185,7 @@ Feature: Indexer Client v2 Paths
 
   @unit.applications.boxes
   Scenario Outline: LookupApplicationBoxByIDandName path
-    When we make a LookupApplicationBoxByIDandName call with applicationID <application-id>
+    When we make a LookupApplicationBoxByIDandName call with applicationID <application-id> with encoded box name "<encoded-box-name>"
     Then expect the path used to be "<path>"
 
     Examples:
