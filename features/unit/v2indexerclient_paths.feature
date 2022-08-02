@@ -184,8 +184,8 @@ Feature: Indexer Client v2 Paths
       | /v2/applications/1234 | 1234           |
 
   @unit.applications.boxes
-  Scenario Outline: SearchForApplicationBoxes path
-    When we make a LookupApplications call with applicationID <application-id>
+  Scenario Outline: LookupApplicationBoxByIDandName path
+    When we make a LookupApplicationBoxByIDandName call with applicationID <application-id>
     Then expect the path used to be "<path>"
 
     Examples:
@@ -197,12 +197,13 @@ Feature: Indexer Client v2 Paths
 
   @unit.applications.boxes
   Scenario Outline: SearchForApplicationBoxes path
-    When we make a LookupApplications call with applicationID <application-id>
+    When we make a SearchForApplicationBoxes call with applicationID <application-id> with max <max>
     Then expect the path used to be "<path>"
 
     Examples:
-      | path                        | application-id |
-      | /v2/applications/1234/boxes | 1234           |
+      | path                                | application-id | max |
+      | /v2/applications/1234/boxes         | 1234           | 0   |
+      | /v2/applications/1234/boxes?limit=2 | 1234           | 2   |
 
   @unit.indexer.logs
   Scenario Outline: LookupApplicationLogsByID path
