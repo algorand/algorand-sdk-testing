@@ -1,0 +1,8 @@
+curl "localhost:4001/v2/blocks/1502/transactions/PBFTEOO4PFV2RR6KFD2JD5VSUTNVPB2F2GG5F63N4RD52PX47FOQ/proof?pretty" -H "X-Algo-API-Token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+{
+  "hashtype": "sha512_256",
+  "idx": 0,
+  "proof": "",
+  "stibhash": "1mr5NAjTaheChqu/6dt5JR8yHC8pZW4w8fgOcfSoHEU=",
+  "treedepth": 0
+}

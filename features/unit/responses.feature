@@ -164,13 +164,12 @@ Feature: REST Client Responses
       | algod_PendingTransactionsResponse_1.base64 | generated_responses_231 | 200    | algod  | GetPendingTransactions          |
       | algod_PendingTransactionsResponse_0.base64 | generated_responses_231 | 200    | algod  | GetPendingTransactionsByAddress |
       | algod_PendingTransactionsResponse_1.base64 | generated_responses_231 | 200    | algod  | GetPendingTransactionsByAddress |
-# -- These are missing proper response objects, so they were not generated.
-# GetBlock
-# health check
-# metrics
-# Register participation keys
-# ShutdownNode
-# -- Missing a proper path definition
-# Versions
-# -- This is still WIP?
-# Dryrun
+
+    @unit.responses.stateproof
+    Examples:
+      | jsonfile                            | response-folder | status | client  | endpoint                    |
+      | v1_GetBlock_header.json             | stateproof      | 200    | algod   | GetBlock                    |
+      | v1_GetBlock_txn.json                | stateproof      | 200    | algod   | GetBlock                    |
+      | v1_GetProof.json                    | stateproof      | 200    | algod   | GetProof                    |
+      | v1_GetProofForLightBlockHeader.json | stateproof      | 200    | algod   | GetProofForLightBlockHeader |
+      | v1_GetStateProof.json               | stateproof      | 200    | algod   | GetStateProof               |
