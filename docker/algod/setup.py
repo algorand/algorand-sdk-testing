@@ -42,7 +42,7 @@ def install_algod_binaries(bin_dir, channel):
     home = expanduser('~')
     os.makedirs("%s/inst" % home, exist_ok=True)
     print('downloading updater...')
-    url='https://algorand-releases.s3.amazonaws.com/channel/stable/install_stable_linux-amd64_2.0.4.tar.gz'
+    url='https://algorand-releases.s3.amazonaws.com/channel/stable/install_stable_linux-amd64_3.8.0.tar.gz'
     updater_tar='%s/inst/installer.tar.gz' % home
     filedata = urllib.request.urlretrieve(url, updater_tar)
     tar = tarfile.open(updater_tar)

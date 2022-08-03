@@ -2,6 +2,7 @@ FROM golang:1.17
 
 ARG URL=https://github.com/algorand/go-algorand
 ARG BRANCH=master
+ARG NETWORK_TEMPLATE_PATH
 
 RUN echo "Installing from source. ${URL} -- ${BRANCH}"
 ENV BIN_DIR="$GOPATH/bin"
@@ -25,7 +26,7 @@ RUN git clone --single-branch --branch "${BRANCH}" "${URL}" && \
 RUN python3 /tmp/docker/algod/setup.py configure \
     --bin-dir "$BIN_DIR" \
     --network-dir /opt/testnetwork \
-    --network-template /tmp/network_config/future_template.json \
+    --network-template "$NETWORK_TEMPLATE_PATH" \
     --network-token aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
     --algod-port 60000 \
     --kmd-port 60001
