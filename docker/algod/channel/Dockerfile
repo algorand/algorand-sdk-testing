@@ -2,6 +2,7 @@ FROM ubuntu:20.04
 
 ARG CHANNEL=nightly
 ENV BIN_DIR="$HOME/node"
+ARG NETWORK_TEMPLATE_PATH
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -22,7 +23,7 @@ RUN python3 /tmp/docker/algod/setup.py install \
 RUN python3 /tmp/docker/algod/setup.py configure \
  --bin-dir "${BIN_DIR}" \
  --network-dir /opt/testnetwork \
- --network-template /tmp/network_config/future_template.json \
+ --network-template "$NETWORK_TEMPLATE_PATH" \
  --network-token aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
  --algod-port 60000 \
  --kmd-port 60001
