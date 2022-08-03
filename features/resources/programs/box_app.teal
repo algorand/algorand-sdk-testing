@@ -15,7 +15,9 @@ txn ApplicationArgs 2   // [arg[2]]
 btoi                    // [btoi(arg[2])]
 default:                    // [24] // NumAppArgs == 2
 txn ApplicationArgs 1   // [24, arg[1]]
+swap
 box_create              // [] // boxes: arg[1] -> [24]byte
+assert
 b end
 del:						// delete box arg[1]
 txn ApplicationArgs 0   // [arg[0]]
@@ -24,6 +26,7 @@ byte "delete"           // [arg[0], "delete"]
 bz set                  // "delete" ? continue : goto set
 txn ApplicationArgs 1   // [arg[1]]
 box_del                 // del boxes[arg[1]]
+assert
 b end
 set:						// put arg[1] at start of box arg[0] ... so actually a _partial_ "set"
 txn ApplicationArgs 0   // [arg[0]]
