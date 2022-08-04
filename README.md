@@ -23,6 +23,7 @@ These reside in the [unit features directory](features/unit)
 | @unit.algod                       | Algod REST API unit tests.                            |
 | @unit.applications                | Application endpoints added to Algod and Indexer.     |
 | @unit.atomic_transaction_composer | ABI / atomic transaction construction unit tests.     |
+| @unit.c2c                         | Not python... what actually does implement it?        |
 | @unit.dryrun                      | Dryrun endpoint added to Algod.                       |
 | @unit.feetest                     | Fee transaction encoding tests.                       |
 | @unit.indexer                     | Indexer REST API unit tests.                          |
@@ -56,9 +57,6 @@ These reside in the [integration features directory](features/integration)
 | @compile               | Test the algod compile endpoint.                                                       |
 | @dryrun                | Test the algod dryrun endpoint.                                                        |
 | @dryrun.testing        | Test the testing harness that relies on dryrun endpoint. Python only.                  |
-| @indexer               | Test all types of indexer queries and parameters against a static dataset.             |
-| @indexer.231           | REST Client Integration Tests for Indexer 2.3.1+                                       |
-| @indexer.applications  | Endpoints and parameters added to support applications.                                |
 | @kmd                   | Test the kmd REST endpoints.                                                           |
 | @rekey_v1              | Test the rekeying transactions.                                                        |
 | @send                  | Test the ability to submit transactions to algod.                                      |
@@ -72,7 +70,8 @@ However, a few are not fully supported:
 | tag                             | SDK's which implement        |
 | ------------------------------- | ---------------------------- |
 | @dryrun.testing                 | Python only                  |
-| @indexer.rekey                  | missing from Python and JS   |
+| @unit.c2c                       | Not python... which one???   |
+| @unit.indexer.rekey             | missing from Python and JS   |
 | @unit.responses.genesis         | missing from Python and Java |
 | @unit.responses.messagepack     | missing from Python          |
 | @unit.responses.messagepack.231 | missing from Python and JS   |
