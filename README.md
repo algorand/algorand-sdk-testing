@@ -49,7 +49,6 @@ These reside in the [integration features directory](features/integration)
 | ---------------------- | -------------------------------------------------------------------------------------- |
 | @abi                   | Test the Application Binary Interface (ABI) with atomic txn composition and execution. |
 | @algod                 | General tests against algod REST endpoints.                                            |
-| @application.evaldelta | Test that eval delta fields are included in algod and indexer.                         |
 | @applications.verified | Submit all types of application transactions and verify account state.                 |
 | @assets                | Submit all types of asset transactions.                                                |
 | @auction               | Encode and decode bids for an auction.                                                 |
@@ -72,7 +71,6 @@ However, a few are not fully supported:
 
 | tag                             | SDK's which implement        |
 | ------------------------------- | ---------------------------- |
-| @application.evaldelta          | Java only                    |
 | @dryrun.testing                 | Python only                  |
 | @indexer.rekey                  | missing from Python and JS   |
 | @unit.responses.genesis         | missing from Python and Java |
