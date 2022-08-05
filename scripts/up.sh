@@ -4,35 +4,14 @@
 
 set -e
 
+START=$(date "+%s")
+
 # Defaults
 TYPE_OVERRIDE=""
-ENV_FILE=".up-env"
+ENV_FILE=".env"
 
-# TODO: THESE ARE PROBABLY ALL OBSOLETE... SHOULD REALLY PASS THRU TO SANDBOXES EXECUTABLE...
-show_help() {
-  echo "Manage bringing up the SDK test environment."
-  echo
-  echo "Usage: up.sh [options]"
-  echo
-  echo "Options:"
-  echo "  -f <FILE>  Override the environment file."
-  echo "  -t <TYPE>  Override the installation type specified in the environment file."
-  echo "             Valid types: ['channel', 'type']"
-  echo "  -i         Start the docker environment in interactive mode."
-  echo "  -h         Provide this help information."
-}
-
-# Parse arguments
-while getopts "f:t:h" opt; do
-  case "$opt" in
-    f) ENV_FILE=$OPTARG; ;;
-    t) TYPE_OVERRIDE=$OPTARG; ;;
-    *) show_help; exit 0 ;;
-  esac
-done
-
-
-# Load environment.
+# Load environment
+echo "up.sh is sourcing environment vars from-->$ENV_FILE"
 source "$ENV_FILE"
 
 # Verify there are no positional parameters with getopt/getopts
@@ -57,17 +36,41 @@ echo "Before bootrapping, try cleaning up first..."
 
 # Make sure it isn't running and clean up any docker detritous
 ./scripts/down.sh -f "$ENV_FILE"
+rm -rf "$SANDBOX"
+echo "up.sh. seconds it took to get to end of $SANDBOX cleanup: " + $(($(date "+%s") - $START))
+
+SANDBOX_CFG="_config.harness"
+cp config.harness "$SANDBOX_CFG"
+if [[ $TYPE == "channel" ]]; then
+  ALGOD_URL=""
+  ALGOD_BRANCH=""
+  ALGOD_SHA=""
+else
+  ALGOD_CHANNEL=""
+fi
+
+sed -i "" "s|#ALGOD_CHANNEL|$ALGOD_CHANNEL|g" "$SANDBOX_CFG"
+sed -i "" "s|#ALGOD_URL|$ALGOD_URL|g" "$SANDBOX_CFG"
+sed -i "" "s|#ALGOD_BRANCH|$ALGOD_BRANCH|g" "$SANDBOX_CFG"
+sed -i "" "s|#ALGOD_SHA|$ALGOD_SHA|g" "$SANDBOX_CFG"
+sed -i "" "s|#NETWORK_TEMPLATE|$NETWORK_TEMPLATE|g" "$SANDBOX_CFG"
+sed -i "" "s|#NETWORK_NUM_ROUNDS|$NETWORK_NUM_ROUNDS|g" "$SANDBOX_CFG"
+sed -i "" "s|#INDEXER_URL|$INDEXER_URL|g" "$SANDBOX_CFG"
+sed -i "" "s|#INDEXER_BRANCH|$INDEXER_BRANCH|g" "$SANDBOX_CFG"
+sed -i "" "s|#INDEXER_SHA|$INDEXER_SHA|g" "$SANDBOX_CFG"
 
 rootdir=$(dirname "$0")
 pushd "$rootdir"/.. > /dev/null || exit
 
-rm -rf "$SANDBOX"
 SANDBOX_BRANCH="configurable-ports"
 git clone --branch $SANDBOX_BRANCH --single-branch https://github.com/algorand/sandbox.git $SANDBOX
 
+echo "up.sh. seconds it took to get to end of cloning sandbox into $SANDBOX: " + $(($(date "+%s") - $START))
+
 echo "Bringing up network with '$TYPE' configuration."
-cp .env $SANDBOX/.
-cp "config.$TYPE" $SANDBOX/.
+cp .env "$SANDBOX"/.
+mv "$SANDBOX_CFG" "$SANDBOX"/config.harness
 pushd "$SANDBOX"
 
-./sandbox up "$TYPE"
+./sandbox up harness
+echo "up.sh. seconds it took to finish with harness ($SANDBOX) up and running: " + $(($(date "+%s") - $START))
