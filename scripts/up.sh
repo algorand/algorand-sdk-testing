@@ -4,17 +4,11 @@
 
 set -e
 
-rootdir=`dirname $0`
-pushd $rootdir/.. > /dev/null
-
 # Defaults
 TYPE_OVERRIDE=""
-DAEMON_FLAG="-d"
-SKIP_BUILD=0
-SHOW_HELP=0
 ENV_FILE=".up-env"
-PARALLEL="--parallel"
 
+# TODO: THESE ARE PROBABLY ALL OBSOLETE... SHOULD REALLY PASS THRU TO SANDBOXES EXECUTABLE...
 show_help() {
   echo "Manage bringing up the SDK test environment."
   echo
@@ -24,23 +18,23 @@ show_help() {
   echo "  -f <FILE>  Override the environment file."
   echo "  -t <TYPE>  Override the installation type specified in the environment file."
   echo "             Valid types: ['channel', 'type']"
-  echo "  -s         Skip rebuilding the docker image."
   echo "  -i         Start the docker environment in interactive mode."
   echo "  -h         Provide this help information."
-  echo "  -p         Disable parallel build mode. Probably only useful when editing the test environment."
 }
 
 # Parse arguments
-while getopts "pf:t:sih" opt; do
+while getopts "f:t:h" opt; do
   case "$opt" in
     f) ENV_FILE=$OPTARG; ;;
-    i) unset DAEMON_FLAG; ;;
-    s) SKIP_BUILD=1; ;;
     t) TYPE_OVERRIDE=$OPTARG; ;;
-    h) show_help; exit 0 ;;
-    p) unset PARALLEL; ;; 
+    *) show_help; exit 0 ;;
   esac
 done
+
+
+# Load environment.
+source "$ENV_FILE"
+set +a  # all of the variables will be exported
 
 # Verify there are no positional parameters with getopt/getopts
 shift "$((OPTIND-1))"
@@ -51,9 +45,6 @@ if [[ "$1" != "" ]]; then
   exit
 fi
 
-# Load environment.
-source $ENV_FILE
-
 # Choose which dockerfile to use.
 TYPE=${TYPE_OVERRIDE:-$TYPE}
 if [[ $TYPE == "channel" ]] || [[ $TYPE == "source" ]]; then
@@ -63,17 +54,21 @@ else
   exit 1
 fi
 
+echo "Before bootrapping, try cleaning up first..."
+
+# Make sure it isn't running and clean up any docker detritous
+./scripts/down.sh -f "$ENV_FILE"
+
+rootdir=$(dirname "$0")
+pushd "$rootdir"/.. > /dev/null || exit
+
+rm -rf "$SANDBOX"
+SANDBOX_BRANCH="configurable-ports"
+git clone --branch $SANDBOX_BRANCH --single-branch https://github.com/algorand/sandbox.git $SANDBOX
+
 echo "Bringing up network with '$TYPE' configuration."
+cp .env $SANDBOX/.
+cp "config.$TYPE" $SANDBOX/.
+pushd "$SANDBOX"
 
-# Make sure it isn't running
-./scripts/down.sh
-
-# Remove the containers to allow re-running stateful tests.
-docker-compose rm --force
-
-# When developing, it's often useful to skip the build phase.
-if [[ $SKIP_BUILD -eq 0 ]]; then
-  docker-compose build --no-cache $PARALLEL
-fi
-
-docker-compose up $DAEMON_FLAG
+./sandbox up "$TYPE"

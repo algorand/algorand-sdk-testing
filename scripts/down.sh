@@ -1,13 +1,21 @@
 #!/usr/bin/env bash
-rootdir=`dirname $0`
-pushd $rootdir/.. > /dev/null
 
-docker-compose down
+ENV_FILE=".up-env"
 
-# In case a graceful shutdown/remove fails, bring them down the hard way.
-#docker kill $(docker ps -f name="sdk-harness")
-containers=$(docker ps -a -f name="sdk-harness" -q)
-if [ ! -z "$containers" ]; then
-  docker kill $containers || true
-  docker rm $containers || true
-fi
+# Parse arguments
+while getopts "f" opt; do
+  case "$opt" in
+    f) ENV_FILE=$OPTARG; ;;
+    *) exit 1 ;;
+  esac
+done
+
+# Load environment.
+source "$ENV_FILE"
+
+rootdir=$(dirname "$0")
+pushd "$rootdir"/.. > /dev/null || exit
+pushd "$SANDBOX"
+
+./sandbox down
+./sandbox clean
