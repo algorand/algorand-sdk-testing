@@ -34,7 +34,6 @@ done
 
 # Load environment.
 source "$ENV_FILE"
-set +a  # all of the variables will be exported
 
 # Verify there are no positional parameters with getopt/getopts
 shift "$((OPTIND-1))"
