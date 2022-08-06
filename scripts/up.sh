@@ -41,9 +41,9 @@ else
 fi
 
 if [[ $OSTYPE == 'darwin'* ]]; then
-  SED_CMD='sed -i ""'
+  SED_CMD='sed -i "" '
 else
-  SED_CMD='sed -i'
+  SED_CMD='sed -i '
 fi
 
 echo "On this OSTYPE=$OSTYPE using sed variant $SED_CMD"
