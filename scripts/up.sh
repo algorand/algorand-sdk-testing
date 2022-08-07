@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Bring up the SDK test environment.
+
 set -e
 
 START=$(date "+%s")
