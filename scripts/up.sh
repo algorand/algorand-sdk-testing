@@ -25,8 +25,8 @@ echo "Before bootrapping, try cleaning up first..."
 
 # Make sure it isn't running and clean up any docker detritous
 ./scripts/down.sh -f "$ENV_FILE"
-rm -rf "$SANDBOX"
-echo "up.sh. seconds it took to get to end of $SANDBOX cleanup: " + $(($(date "+%s") - $START))
+rm -rf "$SANDBOX_DIR"
+echo "up.sh. seconds it took to get to end of $SANDBOX_DIR cleanup: " + $(($(date "+%s") - $START))
 
 SANDBOX_CFG="_config.harness"
 cp config.harness "$SANDBOX_CFG"
@@ -53,6 +53,8 @@ $SED_CMD "s|#ALGOD_BRANCH|$ALGOD_BRANCH|g" "$SANDBOX_CFG"
 $SED_CMD "s|#ALGOD_SHA|$ALGOD_SHA|g" "$SANDBOX_CFG"
 $SED_CMD "s|#NETWORK_TEMPLATE|$NETWORK_TEMPLATE|g" "$SANDBOX_CFG"
 $SED_CMD "s|#NETWORK_NUM_ROUNDS|$NETWORK_NUM_ROUNDS|g" "$SANDBOX_CFG"
+$SED_CMD "s|#NODE_ARCHIVAL|$NODE_ARCHIVAL|g" "$SANDBOX_CFG"
+$SED_CMD "s|#NODE_V1_INDEXER|$NODE_V1_INDEXER|g" "$SANDBOX_CFG"
 $SED_CMD "s|#INDEXER_URL|$INDEXER_URL|g" "$SANDBOX_CFG"
 $SED_CMD "s|#INDEXER_BRANCH|$INDEXER_BRANCH|g" "$SANDBOX_CFG"
 $SED_CMD "s|#INDEXER_SHA|$INDEXER_SHA|g" "$SANDBOX_CFG"
@@ -63,15 +65,14 @@ cat "$SANDBOX_CFG"
 rootdir=$(dirname "$0")
 pushd "$rootdir"/.. > /dev/null || exit
 
-SANDBOX_BRANCH="configurable-ports"
-git clone --branch $SANDBOX_BRANCH --single-branch https://github.com/algorand/sandbox.git $SANDBOX
+git clone --branch "$SANDBOX_BRANCH" --single-branch "$SANDBOX_URL" "$SANDBOX_DIR"
 
-echo "up.sh. seconds it took to get to end of cloning sandbox into $SANDBOX: " + $(($(date "+%s") - $START))
+echo "up.sh. seconds it took to get to end of cloning sandbox into $SANDBOX_DIR: " + $(($(date "+%s") - $START))
 
 echo "Bringing up network with '$TYPE' configuration."
-cp .env "$SANDBOX"/.
-mv "$SANDBOX_CFG" "$SANDBOX"/config.harness
-pushd "$SANDBOX"
+cp .env "$SANDBOX_DIR"/.
+mv "$SANDBOX_CFG" "$SANDBOX_DIR"/config.harness
+pushd "$SANDBOX_DIR"
 
 ./sandbox up harness
-echo "up.sh. seconds it took to finish with harness ($SANDBOX) up and running: " + $(($(date "+%s") - $START))
+echo "up.sh. seconds it took to finish with harness ($SANDBOX_DIR) up and running: " + $(($(date "+%s") - $START))
