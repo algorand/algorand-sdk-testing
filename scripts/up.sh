@@ -25,6 +25,11 @@ fi
 
 echo "Before bootrapping, try cleaning up first..."
 
+
+pwd
+ls -a
+echo "^^^^CWD STATUS FROM up.sh^^^^"
+
 # Make sure it isn't running and clean up any docker detritous
 ./scripts/down.sh -f "$ENV_FILE"
 rm -rf "$SANDBOX_DIR"

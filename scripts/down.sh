@@ -11,6 +11,7 @@ echo "down.sh will be looking to clean up inside-->$SANDBOX_DIR"
 # pushd "$rootdir"/.. > /dev/null || exit
 pwd
 ls -a
+echo "^^^^CWD STATUS FROM down.sh^^^^"
 
 if [ -d "$SANDBOX_DIR" ]; then
   pushd "$SANDBOX_DIR"
