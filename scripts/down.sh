@@ -9,6 +9,8 @@ echo "down.sh will be looking to clean up inside-->$SANDBOX_DIR"
 
 # rootdir=$(dirname "$0")
 # pushd "$rootdir"/.. > /dev/null || exit
+pwd
+ls -a
 
 if [ -d "$SANDBOX_DIR" ]; then
   pushd "$SANDBOX_DIR"
