@@ -94,3 +94,29 @@ Feature: Algod REST API v2 Paths
     Examples:
       | path                              | account | application-id |
       | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/applications/123 | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU     | 123            |
+
+  @unit.responses.stateproof
+  Scenario Outline: GetTransactionProof
+    When we make a GetTransactionProof call for round <round> txid "<txid>" and hashtype "<hashtype>"
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                                                                                                       | round | txid                                                 | hashtype   |
+      | /v2/blocks/123/transactions/5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ/proof                     | 123   | 5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ |            |
+      | /v2/blocks/123/transactions/5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ/proof&hashtype=sha512_256 | 123   | 5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ | sha512_256 |
+
+  @unit.responses.stateproof
+  Scenario Outline: GetLightBlockHeaderProof
+    When we make a GetLightBlockHeaderProof call for round <round>
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                             | round |
+      | /v2/blocks/123/lightheader/proof | 123   |
+
+  @unit.responses.stateproof
+  Scenario Outline: GetStateProof
+    When we make a GetStateProof call for round <round>
+    Then expect the path used to be "<path>"
+    Examples:
+      | path               | round |
+      | /v2/stateproof/123 | 123   |
+
