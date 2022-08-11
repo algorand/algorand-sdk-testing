@@ -1,0 +1,37 @@
+{
+  "genesis-hash": "GUk5a9mr2S17TIqw/Lre/oTilqURTJtiP10iHjpP8us=",
+  "genesis-id": "sandnet-v1",
+  "previous-block-hash": "4YgqEA7h49w45lyWHrX8yRMjTFYaEg4wilQNC2Kf5G4=",
+  "rewards": {
+    "fee-sink": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
+    "rewards-calculation-round": 500000,
+    "rewards-level": 19,
+    "rewards-pool": "7777777777777777777777777777777777777777777777777774MSJUVU",
+    "rewards-rate": 249999999,
+    "rewards-residue": 1999999232
+  },
+  "round": 768,
+  "seed": "RZT+bNwzqggpLzFVdV7S92RNrw4ycPZaOZPTfjivjP4=",
+  "state-proof-tracking": [
+    {
+      "next-round": 768,
+      "online-total-weight": 5000090000000000,
+      "type": 0,
+      "voters-commitment": "OD+qFSqawmPgYw3XlBEXDnCR9lQRuy8vC3GUFK9OGY0xxRKhm4qAfT4znaE7eP6NK8a4bSff/+mKajRIo3RKcA=="
+    }
+  ],
+  "timestamp": 1660162763,
+  "transactions": [],
+  "transactions-root": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+  "txn-counter": 1,
+  "upgrade-state": {
+    "current-protocol": "future",
+    "next-protocol-approvals": 0,
+    "next-protocol-switch-on": 0,
+    "next-protocol-vote-before": 0
+  },
+  "upgrade-vote": {
+    "upgrade-approve": false,
+    "upgrade-delay": 0
+  }
+}

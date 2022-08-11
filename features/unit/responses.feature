@@ -167,9 +167,11 @@ Feature: REST Client Responses
 
     @unit.responses.stateproof
     Examples:
-      | jsonfile                            | response-folder | status | client  | endpoint                    |
-      | v1_GetBlock_header.json             | stateproof      | 200    | algod   | GetBlock                    |
-      | v1_GetBlock_txn.json                | stateproof      | 200    | algod   | GetBlock                    |
-      | v1_GetProof.json                    | stateproof      | 200    | algod   | GetProof                    |
-      | v1_GetProofForLightBlockHeader.json | stateproof      | 200    | algod   | GetProofForLightBlockHeader |
-      | v1_GetStateProof.json               | stateproof      | 200    | algod   | GetStateProof               |
+      | jsonfile                                  | response-folder | status | client  | endpoint                    |
+      | v1_algod_GetProof.json                    | stateproof      | 200    | algod   | GetProof                    |
+      | v1_algod_GetProofForLightBlockHeader.json | stateproof      | 200    | algod   | GetProofForLightBlockHeader |
+      | v1_algod_GetStateProof.json               | stateproof      | 200    | algod   | GetStateProof               |
+      | v1_algod_GetBlock_header.msgp             | stateproof      | 200    | algod   | GetBlock                    |
+      | v1_algod_GetBlock_transaction.msgp        | stateproof      | 200    | algod   | GetBlock                    |
+      | v1_indexer_GetBlock_header.json           | stateproof      | 200    | indexer | GetBlock                    |
+      | v1_indexer_GetBlock_transaction.json      | stateproof      | 200    | indexer | GetBlock                    |
