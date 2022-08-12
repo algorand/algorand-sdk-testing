@@ -1,17 +1,10 @@
 #!/usr/bin/env bash
 
-# Bring up the SDK test environment.
-
-set -e
-set -a
-set -o allexport
-
+set -ae
 START=$(date "+%s")
 
-# Load environment
-ENV_FILE=".env"
-
 echo "up.sh: sourcing environment vars from-->$ENV_FILE"
+ENV_FILE=".env"
 source "$ENV_FILE"
 
 # Make sure test-sdk sandbox isn't running and clean up any docker detritous
@@ -42,6 +35,7 @@ envsubst < "$SANDBOX_CFG" > "$SANDBOX_DIR/$SANDBOX_CFG"
 echo "up.sh: resulting $SANDBOX_DIR/$SANDBOX_CFG:"
 cat "$SANDBOX_DIR/$SANDBOX_CFG"
 
+echo ""
 echo "up.sh: seconds it took to get to end of cloning sandbox into $SANDBOX_DIR: " + $(($(date "+%s") - $START))
 echo ""
 echo "up.sh: bringing up network with TYPE=$TYPE configuration."
