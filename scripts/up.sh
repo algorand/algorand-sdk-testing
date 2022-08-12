@@ -3,9 +3,24 @@
 set -ae
 START=$(date "+%s")
 
+
 echo "up.sh: sourcing environment vars from-->$ENV_FILE"
 ENV_FILE=".env"
 source "$ENV_FILE"
+
+if [[ $TYPE == "channel" ]] || [[ $TYPE == "source" ]]; then
+  export TYPE="$TYPE"
+  if [[ $TYPE == "channel" ]]; then
+    ALGOD_URL=""
+    ALGOD_BRANCH=""
+    ALGOD_SHA=""
+  else
+    ALGOD_CHANNEL=""
+  fi
+else
+  echo "Unknown environment: $TYPE"
+  exit 1
+fi
 
 # Make sure test-sdk sandbox isn't running and clean up any docker detritous
 echo "up.sh: Before bootstrapping, try cleaning up first..."
@@ -13,13 +28,6 @@ echo "up.sh: Before bootstrapping, try cleaning up first..."
 rm -rf "$SANDBOX_DIR"
 echo "up.sh: seconds it took to get to end of $SANDBOX_DIR cleanup: " + $(($(date "+%s") - $START))
 
-if [[ $TYPE == "channel" ]]; then
-  ALGOD_URL=""
-  ALGOD_BRANCH=""
-  ALGOD_SHA=""
-else
-  ALGOD_CHANNEL=""
-fi
 
 rootdir=$(dirname "$0")
 pushd "$rootdir"/.. > /dev/null || exit
