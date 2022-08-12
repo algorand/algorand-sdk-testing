@@ -20,7 +20,7 @@ Feature: Algod
     Given a kmd client
     And wallet information
     Then I get transactions by address and round
-    And I get transactions by address only
+    # And I get transactions by address only
     And I get transactions by address and date
 
   Scenario: Getting transaction by ID
@@ -35,14 +35,14 @@ Feature: Algod
   Scenario: Get pending transactions
     Then I get pending transactions
 
-  Scenario Outline: Get Transactions By Address and Limit Count
-    Given a kmd client
-    And wallet information
-    When I get recent transactions, limited by <cnt> transactions
-    Examples:
-      | cnt |
-      | 0   |
-      | 1   |
+  # Scenario Outline: Get Transactions By Address and Limit Count
+  #   Given a kmd client
+  #   And wallet information
+  #   When I get recent transactions, limited by <cnt> transactions
+  #   Examples:
+  #     | cnt |
+  #     | 0   |
+  #     | 1   |
 
   Scenario: Suggested params
     When I get the suggested params
