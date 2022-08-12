@@ -36,7 +36,7 @@ git clone --branch "$SANDBOX_BRANCH" --single-branch "$SANDBOX_URL" "$SANDBOX_DI
 cp .env "$SANDBOX_DIR"/.
 
 SANDBOX_CFG="config.harness"
-echo "about to envsubst < $SANDBOX_CFG  > $SANDBOX_DIR/$SANDBOX_CFG"
+echo "up.sh: about to envsubst < $SANDBOX_CFG  > $SANDBOX_DIR/$SANDBOX_CFG"
 envsubst < "$SANDBOX_CFG" > "$SANDBOX_DIR/$SANDBOX_CFG"
 
 echo "up.sh: resulting $SANDBOX_DIR/$SANDBOX_CFG:"
@@ -44,7 +44,7 @@ cat "$SANDBOX_DIR/$SANDBOX_CFG"
 
 echo "up.sh: seconds it took to get to end of cloning sandbox into $SANDBOX_DIR: " + $(($(date "+%s") - $START))
 echo ""
-echo "up.sh: bringing up network with '$TYPE' configuration."
+echo "up.sh: bringing up network with TYPE=$TYPE configuration."
 
 pushd "$SANDBOX_DIR"
 
