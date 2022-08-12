@@ -5,12 +5,12 @@ ENV_FILE=".env"
 # Load environment.
 echo "down.sh: sourcing environment vars from-->$ENV_FILE"
 source "$ENV_FILE"
-echo "down.sh: looking to clean up inside-->$SANDBOX_DIR"
+echo "down.sh: looking to clean up inside-->$LOCAL_SANDBOX_DIR"
 
-if [ -d "$SANDBOX_DIR" ]; then
-  pushd "$SANDBOX_DIR"
+if [ -d "$LOCAL_SANDBOX_DIR" ]; then
+  pushd "$LOCAL_SANDBOX_DIR"
   ./sandbox down
   ./sandbox clean
 else
-  echo "down.sh: directory $SANDBOX_DIR does not exist - NOOP"
+  echo "down.sh: directory $LOCAL_SANDBOX_DIR does not exist - NOOP"
 fi
