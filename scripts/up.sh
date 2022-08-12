@@ -16,7 +16,7 @@ source "$ENV_FILE"
 
 # Make sure test-sdk sandbox isn't running and clean up any docker detritous
 echo "up.sh: Before bootrapping, try cleaning up first..."
-./scripts/down.sh -f "$ENV_FILE"
+./scripts/down.sh
 rm -rf "$SANDBOX_DIR"
 echo "up.sh: seconds it took to get to end of $SANDBOX_DIR cleanup: " + $(($(date "+%s") - $START))
 
