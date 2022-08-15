@@ -104,7 +104,7 @@ Feature: Algod REST API v2 Paths
       | /v2/blocks/123/transactions/5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ/proof?format=msgpack                     | 123   | 5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ |            |
       | /v2/blocks/123/transactions/5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ/proof?format=msgpack&hashtype=sha512_256 | 123   | 5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ | sha512_256 |
 
-  @unit.paths.stateproof
+  @unit.stateproof.paths
   Scenario Outline: GetLightBlockHeaderProof
     When we make a GetLightBlockHeaderProof call for round <round>
     Then expect the path used to be "<path>"
@@ -112,7 +112,7 @@ Feature: Algod REST API v2 Paths
       | path                             | round |
       | /v2/blocks/123/lightheader/proof | 123   |
 
-  @unit.paths.stateproof
+  @unit.stateproof.paths
   Scenario Outline: GetStateProof
     When we make a GetStateProof call for round <round>
     Then expect the path used to be "<path>"

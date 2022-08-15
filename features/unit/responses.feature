@@ -165,7 +165,7 @@ Feature: REST Client Responses
       | algod_PendingTransactionsResponse_0.base64 | generated_responses_231 | 200    | algod  | GetPendingTransactionsByAddress |
       | algod_PendingTransactionsResponse_1.base64 | generated_responses_231 | 200    | algod  | GetPendingTransactionsByAddress |
 
-    @unit.responses.stateproof
+    @unit.stateproof.responses
     Examples:
       | jsonfile                                | response-folder | status | client  | endpoint                 |
       | v2_algod_GetTransactionProof.json       | stateproof      | 200    | algod   | GetTransactionProof      |
@@ -174,7 +174,7 @@ Feature: REST Client Responses
       | v2_indexer_lookupBlock_header.json      | stateproof      | 200    | indexer | lookupBlock              |
       | v2_indexer_lookupBlock_transaction.json | stateproof      | 200    | indexer | lookupBlock              |
 
-    @unit.responses.msgp.stateproof
+    @unit.stateproof.responses.msgp
     Examples:
       | jsonfile                                | response-folder | status | client  | endpoint                 |
       | v2_algod_GetBlock_header.base64         | stateproof      | 200    | algod   | GetBlock                 |

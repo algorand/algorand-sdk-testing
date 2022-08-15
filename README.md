@@ -36,9 +36,9 @@ These reside in the [unit features directory](features/unit)
 | @unit.responses.genesis           | REST Client Unit Tests for GetGenesis endpoint        |
 | @unit.responses.messagepack       | REST Client MessagePack Unit Tests                    |
 | @unit.responses.messagepack.231   | REST Client MessagePack Unit Tests for Indexer 2.3.1+ |
-| @unit.responses.stateproof        | REST Client Response Tests for State Proof.           |
-| @unit.responses.msgp.stateproof   | REST Client MessagePack Tests for State Proofs.       |
-| @unit.paths.stateproof            | REST Client Unit Tests for State Proof feature.       |
+| @unit.stateproof.responses        | REST Client Response Tests for State Proof.           |
+| @unit.stateproof.responses.msgp   | REST Client MessagePack Tests for State Proofs.       |
+| @unit.stateproof.paths            | REST Client Unit Tests for State Proof feature.       |
 | @unit.tealsign                    | Test TEAL signature utilities.                        |
 | @unit.transactions                | Transaction encoding tests.                           |
 | @unit.transactions.keyreg         | Keyreg encoding tests.                                |
