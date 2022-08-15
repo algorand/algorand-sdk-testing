@@ -168,10 +168,10 @@ Feature: REST Client Responses
     @unit.responses.stateproof
     Examples:
       | jsonfile                                | response-folder | status | client  | endpoint                 |
-      | v1_algod_GetTransactionProof.json       | stateproof      | 200    | algod   | GetTransactionProof      |
-      | v1_algod_GetLightBlockHeaderProof.json  | stateproof      | 200    | algod   | GetLightBlockHeaderProof |
-      | v1_algod_GetStateProof.json             | stateproof      | 200    | algod   | GetStateProof            |
-      | v1_algod_GetBlock_header.base64         | stateproof      | 200    | algod   | GetBlock                 |
-      | v1_algod_GetBlock_transaction.base64    | stateproof      | 200    | algod   | GetBlock                 |
-      | v1_indexer_lookupBlock_header.json      | stateproof      | 200    | indexer | lookupBlock              |
-      | v1_indexer_lookupBlock_transaction.json | stateproof      | 200    | indexer | lookupBlock              |
+      | v2_algod_GetTransactionProof.json       | stateproof      | 200    | algod   | GetTransactionProof      |
+      | v2_algod_GetLightBlockHeaderProof.json  | stateproof      | 200    | algod   | GetLightBlockHeaderProof |
+      | v2_algod_GetStateProof.json             | stateproof      | 200    | algod   | GetStateProof            |
+      | v2_algod_GetBlock_header.base64         | stateproof      | 200    | algod   | GetBlock                 |
+      | v2_algod_GetBlock_transaction.base64    | stateproof      | 200    | algod   | GetBlock                 |
+      | v2_indexer_lookupBlock_header.json      | stateproof      | 200    | indexer | lookupBlock              |
+      | v2_indexer_lookupBlock_transaction.json | stateproof      | 200    | indexer | lookupBlock              |
