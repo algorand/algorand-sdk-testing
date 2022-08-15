@@ -100,9 +100,9 @@ Feature: Algod REST API v2 Paths
     When we make a GetTransactionProof call for round <round> txid "<txid>" and hashtype "<hashtype>"
     Then expect the path used to be "<path>"
     Examples:
-      | path                                                                                                       | round | txid                                                 | hashtype   |
-      | /v2/blocks/123/transactions/5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ/proof                     | 123   | 5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ |            |
-      | /v2/blocks/123/transactions/5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ/proof&hashtype=sha512_256 | 123   | 5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ | sha512_256 |
+      | path                                                                                                                      | round | txid                                                 | hashtype   |
+      | /v2/blocks/123/transactions/5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ/proof?format=msgpack                     | 123   | 5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ |            |
+      | /v2/blocks/123/transactions/5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ/proof?format=msgpack&hashtype=sha512_256 | 123   | 5FJDJD5LMZC3EHUYYJNH5I23U4X6H2KXABNDGPIL557ZMJ33GZHQ | sha512_256 |
 
   @unit.responses.stateproof
   Scenario Outline: GetLightBlockHeaderProof
@@ -117,6 +117,6 @@ Feature: Algod REST API v2 Paths
     When we make a GetStateProof call for round <round>
     Then expect the path used to be "<path>"
     Examples:
-      | path               | round |
-      | /v2/stateproof/123 | 123   |
+      | path                | round |
+      | /v2/stateproofs/123 | 123   |
 
