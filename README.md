@@ -21,6 +21,7 @@ These reside in the [unit features directory](features/unit)
 | @unit                             | Select all unit tests.                                |
 | @unit.abijson                     | ABI types and method encoding/decoding unit tests.    |
 | @unit.algod                       | Algod REST API unit tests.                            |
+| @unit.algod.ledger_refactoring    |                                                       |
 | @unit.applications                | Application endpoints added to Algod and Indexer.     |
 | @unit.atomic_transaction_composer | ABI / atomic transaction construction unit tests.     |
 | @unit.dryrun                      | Dryrun endpoint added to Algod.                       |
@@ -35,7 +36,9 @@ These reside in the [unit features directory](features/unit)
 | @unit.responses.genesis           | REST Client Unit Tests for GetGenesis endpoint        |
 | @unit.responses.messagepack       | REST Client MessagePack Unit Tests                    |
 | @unit.responses.messagepack.231   | REST Client MessagePack Unit Tests for Indexer 2.3.1+ |
-| @unit.responses.stateproof        | REST Client Unit Tests for State Proof feature.       |
+| @unit.responses.stateproof        | REST Client Response Tests for State Proof.           |
+| @unit.responses.msgp.stateproof   | REST Client MessagePack Tests for State Proofs.       |
+| @unit.paths.stateproof            | REST Client Unit Tests for State Proof feature.       |
 | @unit.tealsign                    | Test TEAL signature utilities.                        |
 | @unit.transactions                | Transaction encoding tests.                           |
 | @unit.transactions.keyreg         | Keyreg encoding tests.                                |
