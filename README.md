@@ -196,7 +196,7 @@ Algorand's [sandbox](https://github.com/algorand/sandbox) is used to manage seve
 
 [up.sh](scripts/up.sh) is used to bring up the test environment. Not surprisingly, [down.sh](scripts/down.sh) brings it all down.
 
-When starting the environment we default using `go-algorand`'s nightly build. If you're interested in running tests against a specific branch of `go-algorand`, you should set `TYPE="source"` in `.env`
+When starting the environment, we default to using `go-algorand`'s nightly build. If you're interested in running tests against a specific branch of `go-algorand`, you should set `TYPE="source"` in `.env`
 and set `ALGOD_URL`, and either `ALGOD_BRANCH` or `ALGOD_SHA` appropriately. 
 
 `indexer` and even the `sandbox` itself can be configured similarly through `.env`.
