@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
-THIS=$(basename "$0")
 
-set -ae
+set -e
+
 START=$(date "+%s")
 
-
+THIS=$(basename "$0")
 ENV_FILE=".env"
 echo "$THIS: sourcing environment vars from-->$ENV_FILE"
+
+set -a
 source "$ENV_FILE"
+set +a
 
 if [[ $TYPE == "channel" ]] || [[ $TYPE == "source" ]]; then
   echo "$THIS: setting sandbox variables for git based on TYPE=$TYPE."
