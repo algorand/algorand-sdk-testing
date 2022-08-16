@@ -188,12 +188,15 @@ Once the test environment is running you can use `make unit` and `make integrati
 
 ## Integration test environment
 
-Algorand's [sandbox](https://github.com/algorand/sandbox) is used to manage several containers which work together to provide the test environment. This includes `algod`, `kmd`, `indexer` and a `postgres` database. The services run on specific ports with specific API tokens. Refer to [.env](.env) and the [sandbox'es docker-compose.yml](https://github.com/algorand/sandbox/blob/master/docker-compose.yml) for how these are configured.
+Algorand's [sandbox](https://github.com/algorand/sandbox) is used to manage several containers which work together to provide the test environment. This includes `algod`, `kmd`, `indexer` and a `postgres` database. The services run on specific ports with specific API tokens. Refer to [.env](.env) and to [sandbox'es docker-compose.yml](https://github.com/algorand/sandbox/blob/master/docker-compose.yml) for how these are configured.
 
 ![Integration Test Environment](docs/SDK%20Test%20Environment.png)
 
-### Start the test environment
+### Managing the test environment
 
-There are a number of [scripts](scripts/) to help with managing the test environment. The names should help you understand what they do, but to get started simply run **up.sh** to bring up a new environment, and **down.sh** to shut it down.
+[up.sh](scripts/up.sh) is used to bring up the test environment. Not surprisingly, [down.sh](scripts/down.sh) brings it all down.
 
-When starting the environment we avoid using the cache intentionally. It uses the go-algorand nightly build, and we want to ensure that the containers are always running against the most recent nightly build. In the future these scripts should be improved, but for now we completely avoid using cached docker containers to ensure that we don't accidentally run against a stale environment.
+When starting the environment we default using `go-algorand`'s nightly build. If you're interested in running tests against a specific branch of `go-algorand`, you should set `TYPE="source"` in `.env`
+and set `ALGOD_URL`, and either `ALGOD_BRANCH` or `ALGOD_SHA` appropriately. 
+
+`indexer` and even the `sandbox` itself can be configured similarly through `.env`.
