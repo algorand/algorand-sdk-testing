@@ -34,14 +34,6 @@ Feature: Algod
   Scenario: Get pending transactions
     Then I get pending transactions
 
-  # Scenario Outline: Get Transactions By Address and Limit Count
-  #   Given a kmd client
-  #   And wallet information
-  #   When I get recent transactions, limited by <cnt> transactions
-  #   Examples:
-  #     | cnt |
-  #     | 0   |
-  #     | 1   |
 
   Scenario: Suggested params
     When I get the suggested params
