@@ -30,7 +30,7 @@ fi
 echo "$THIS: before bootstrapping, try cleaning up first..."
 ./scripts/down.sh
 rm -rf "$LOCAL_SANDBOX_DIR"
-echo "$THIS: seconds it took to get to end of $LOCAL_SANDBOX_DIR cleanup: " + $(($(date "+%s") - $START))
+echo "$THIS: seconds it took to get to end of $LOCAL_SANDBOX_DIR cleanup: $(($(date "+%s") - START))s"
 
 
 rootdir=$(dirname "$0")
@@ -48,7 +48,7 @@ echo "$THIS: resulting $LOCAL_SANDBOX_DIR/$SANDBOX_CFG:"
 cat "$LOCAL_SANDBOX_DIR/$SANDBOX_CFG"
 
 echo ""
-echo "$THIS: seconds it took to get to end of cloning sandbox into $LOCAL_SANDBOX_DIR: " + $(($(date "+%s") - $START))
+echo "$THIS: seconds it took to get to end of cloning sandbox into $LOCAL_SANDBOX_DIR: $(($(date "+%s") - START))s"
 echo ""
 echo "$THIS: bringing up network with TYPE=$TYPE configuration."
 
@@ -58,4 +58,4 @@ pushd "$LOCAL_SANDBOX_DIR"
 
 
 ./sandbox up "$V_FLAG" harness
-echo "$THIS: seconds it took to finish with harness ($LOCAL_SANDBOX_DIR) up and running: " + $(($(date "+%s") - $START))
+echo "$THIS: seconds it took to finish getting harness ($LOCAL_SANDBOX_DIR) up and running: $(($(date "+%s") - START))s"
