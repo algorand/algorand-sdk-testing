@@ -6,7 +6,7 @@ START=$(date "+%s")
 
 THIS=$(basename "$0")
 ENV_FILE=".env"
-echo "$THIS: sourcing environment vars from-->$ENV_FILE"
+echo "$THIS: sourcing environment vars from-->$(pwd)/$ENV_FILE"
 
 set -a
 source "$ENV_FILE"
