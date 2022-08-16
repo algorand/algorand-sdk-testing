@@ -30,7 +30,6 @@ Feature: Algod
     When I get the private key
     And I sign the transaction with the private key
     And I send the transaction
-    # Then I can get the transaction by ID
 
   Scenario: Get pending transactions
     Then I get pending transactions
