@@ -10,7 +10,7 @@ echo "$THIS: sourcing environment vars from-->$ENV_FILE"
 source "$ENV_FILE"
 
 if [[ $TYPE == "channel" ]] || [[ $TYPE == "source" ]]; then
-  export TYPE="$TYPE"
+  echo "$THIS: setting sandbox variables for git based on TYPE=$TYPE."
   if [[ $TYPE == "channel" ]]; then
     ALGOD_URL=""
     ALGOD_BRANCH=""
@@ -24,7 +24,7 @@ else
 fi
 
 # Make sure test-sdk sandbox isn't running and clean up any docker detritous
-echo "$THIS: Before bootstrapping, try cleaning up first..."
+echo "$THIS: before bootstrapping, try cleaning up first..."
 ./scripts/down.sh
 rm -rf "$LOCAL_SANDBOX_DIR"
 echo "$THIS: seconds it took to get to end of $LOCAL_SANDBOX_DIR cleanup: " + $(($(date "+%s") - $START))
