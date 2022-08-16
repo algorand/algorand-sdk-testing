@@ -32,7 +32,7 @@ echo "up.sh: seconds it took to get to end of $LOCAL_SANDBOX_DIR cleanup: " + $(
 rootdir=$(dirname "$0")
 pushd "$rootdir"/.. > /dev/null || exit
 
-git clone --branch "$SANDBOX_BRANCH" --single-branch "$SANDBOX_URL" "$LOCAL_SANDBOX_DIR"
+git clone --depth 1 --branch "$SANDBOX_BRANCH" --single-branch "$SANDBOX_URL" "$LOCAL_SANDBOX_DIR"
 
 cp .env "$LOCAL_SANDBOX_DIR"/.
 
