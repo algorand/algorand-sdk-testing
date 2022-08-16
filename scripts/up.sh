@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
+THIS=$(basename "$0")
 
 set -ae
 START=$(date "+%s")
 
 
 ENV_FILE=".env"
-echo "up.sh: sourcing environment vars from-->$ENV_FILE"
+echo "$THIS: sourcing environment vars from-->$ENV_FILE"
 source "$ENV_FILE"
 
 if [[ $TYPE == "channel" ]] || [[ $TYPE == "source" ]]; then
@@ -23,10 +24,10 @@ else
 fi
 
 # Make sure test-sdk sandbox isn't running and clean up any docker detritous
-echo "up.sh: Before bootstrapping, try cleaning up first..."
+echo "$THIS: Before bootstrapping, try cleaning up first..."
 ./scripts/down.sh
 rm -rf "$LOCAL_SANDBOX_DIR"
-echo "up.sh: seconds it took to get to end of $LOCAL_SANDBOX_DIR cleanup: " + $(($(date "+%s") - $START))
+echo "$THIS: seconds it took to get to end of $LOCAL_SANDBOX_DIR cleanup: " + $(($(date "+%s") - $START))
 
 
 rootdir=$(dirname "$0")
@@ -37,16 +38,16 @@ git clone --depth 1 --branch "$SANDBOX_BRANCH" --single-branch "$SANDBOX_URL" "$
 cp .env "$LOCAL_SANDBOX_DIR"/.
 
 SANDBOX_CFG="config.harness"
-echo "up.sh: about to envsubst < $SANDBOX_CFG  > $LOCAL_SANDBOX_DIR/$SANDBOX_CFG"
+echo "$THIS: about to envsubst < $SANDBOX_CFG  > $LOCAL_SANDBOX_DIR/$SANDBOX_CFG"
 envsubst < "$SANDBOX_CFG" > "$LOCAL_SANDBOX_DIR/$SANDBOX_CFG"
 
-echo "up.sh: resulting $LOCAL_SANDBOX_DIR/$SANDBOX_CFG:"
+echo "$THIS: resulting $LOCAL_SANDBOX_DIR/$SANDBOX_CFG:"
 cat "$LOCAL_SANDBOX_DIR/$SANDBOX_CFG"
 
 echo ""
-echo "up.sh: seconds it took to get to end of cloning sandbox into $LOCAL_SANDBOX_DIR: " + $(($(date "+%s") - $START))
+echo "$THIS: seconds it took to get to end of cloning sandbox into $LOCAL_SANDBOX_DIR: " + $(($(date "+%s") - $START))
 echo ""
-echo "up.sh: bringing up network with TYPE=$TYPE configuration."
+echo "$THIS: bringing up network with TYPE=$TYPE configuration."
 
 pushd "$LOCAL_SANDBOX_DIR"
 
@@ -54,4 +55,4 @@ pushd "$LOCAL_SANDBOX_DIR"
 
 
 ./sandbox up "$V_FLAG" harness
-echo "up.sh: seconds it took to finish with harness ($LOCAL_SANDBOX_DIR) up and running: " + $(($(date "+%s") - $START))
+echo "$THIS: seconds it took to finish with harness ($LOCAL_SANDBOX_DIR) up and running: " + $(($(date "+%s") - $START))
