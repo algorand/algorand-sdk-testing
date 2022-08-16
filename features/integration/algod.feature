@@ -20,8 +20,6 @@ Feature: Algod
     Given a kmd client
     And wallet information
     Then I get transactions by address and round
-    # And I get transactions by address only
-    # And I get transactions by address and date
 
   Scenario: Getting transaction by ID
     Given a kmd client
