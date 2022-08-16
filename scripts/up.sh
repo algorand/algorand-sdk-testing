@@ -50,5 +50,8 @@ echo "up.sh: bringing up network with TYPE=$TYPE configuration."
 
 pushd "$LOCAL_SANDBOX_DIR"
 
-./sandbox up -v harness
+[[ "$VERBOSE_HARNESS" = 1 ]] && V_FLAG="-v" || V_FLAG=""
+
+
+./sandbox up "$V_FLAG" harness
 echo "up.sh: seconds it took to finish with harness ($LOCAL_SANDBOX_DIR) up and running: " + $(($(date "+%s") - $START))
