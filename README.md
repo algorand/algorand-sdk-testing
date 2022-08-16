@@ -168,14 +168,15 @@ The SDKs come with a Makefile to coordinate running the cucumber test suites. Th
 
 - **unit**: runs all of the short unit tests.
 - **integration**: runs all integration tests.
+- **harness**: downloads this repo and calls `up.sh` to stand up a sandbox ready for running tests
 - **docker-test**: installs feature file dependencies, starts the test environment, and runs the SDK tests in a docker container.
 
 At a high level, the **docker-test** target is required to:
 
-1. clone `algorand-sdk-testing`.
-2. copy supported feature files from the `features` directory into the SDK.
-3. build and start the test environment by calling `./scripts/up.sh`
-4. launch an SDK container using `--network host` which runs the cucumber test suite.
+1. clone `algorand-sdk-testing`
+2. copy supported feature files from the `features` directory into the SDK
+3. build and start the test environment by calling `./scripts/up.sh` which clones `sandbox` and stands it up
+4. run all cucumber tests against the `sandbox` containers
 
 ### Running tests during development
 
@@ -187,7 +188,7 @@ Once the test environment is running you can use `make unit` and `make integrati
 
 ## Integration test environment
 
-Docker compose is used to manage several containers which work together to provide the test environment. Currently that includes algod, kmd, indexer and a postgres database. The services run on specific ports with specific API tokens. Refer to [docker-compose.yml](docker-compose.yml) and the [docker](docker/) directory for how this is configured.
+Algorand's [sandbox](https://github.com/algorand/sandbox) is used to manage several containers which work together to provide the test environment. This includes `algod`, `kmd`, `indexer` and a `postgres` database. The services run on specific ports with specific API tokens. Refer to [.env](.env) and the [sandbox'es docker-compose.yml](https://github.com/algorand/sandbox/blob/master/docker-compose.yml) for how these are configured.
 
 ![Integration Test Environment](docs/SDK%20Test%20Environment.png)
 
