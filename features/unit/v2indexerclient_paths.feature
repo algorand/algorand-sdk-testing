@@ -197,13 +197,14 @@ Feature: Indexer Client v2 Paths
 
   @unit.applications.boxes
   Scenario Outline: SearchForApplicationBoxes path
-    When we make a SearchForApplicationBoxes call with applicationID <application-id> with max <max>
+    When we make a SearchForApplicationBoxes call with applicationID <application-id> with max <max> nextToken "<nextToken>"
     Then expect the path used to be "<path>"
 
     Examples:
-      | path                                | application-id | max |
-      | /v2/applications/1234/boxes         | 1234           | 0   |
-      | /v2/applications/1234/boxes?limit=2 | 1234           | 2   |
+      | path                                           | application-id | max | nextToken |
+      | /v2/applications/1234/boxes                    | 1234           | 0   |           |
+      | /v2/applications/1234/boxes?limit=2            | 1234           | 2   |           |
+      | /v2/applications/1234/boxes?limit=2&next=token | 1234           | 2   | token     |
 
   @unit.indexer.logs
   Scenario Outline: LookupApplicationLogsByID path
