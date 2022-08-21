@@ -32,12 +32,12 @@ Feature: Dryrun Testing
       | programs/globalwrite.teal | clearp | aW50a2V5     | 2      | 11       |
 
   Scenario Outline: Dryrun test case with global state delta assert failed
-    Given dryrun test case with <program> of type <kind>
-    Then global delta assert with <key>, <value> and <action> is failed
+    Given dryrun test case with "<program>" of type "<kind>"
+    Then global delta assert with "<key>", "<value>" and <action> is failed
     Examples:
-      | program                     | kind     | key            | action | value  |
-      | "programs/globalwrite.teal" | "clearp" | "Ynl0ZXNrZXk=" | 1      | "test" |
-      | "programs/globalwrite.teal" | "approv" | "aW50a2V5"     | 2      | "12"   |
+      | program                   | kind   | key          | action | value|
+      | programs/globalwrite.teal | clearp | Ynl0ZXNrZXk= | 1      | test |
+      | programs/globalwrite.teal | approv | aW50a2V5     | 2      | 12   |
 
   Scenario Outline: Dryrun test case with local state delta assert succeed
     Given dryrun test case with "<program>" of type "<kind>"
