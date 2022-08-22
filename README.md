@@ -21,11 +21,16 @@ These reside in the [unit features directory](features/unit)
 | @unit                             | Select all unit tests.                                |
 | @unit.abijson                     | ABI types and method encoding/decoding unit tests.    |
 | @unit.algod                       | Algod REST API unit tests.                            |
+| @unit.algod.ledger_refactoring    |                                                       |
 | @unit.applications                | Application endpoints added to Algod and Indexer.     |
 | @unit.atomic_transaction_composer | ABI / atomic transaction construction unit tests.     |
+| @unit.atc_method_args              | Test that algod's Atomic Transaction Composer assserts that the same number of arguments given as expected |
+| @unit.c2c                         | Test for contract to contract calling    |
 | @unit.dryrun                      | Dryrun endpoint added to Algod.                       |
+| @unit.dryrun.trace.application    | DryrunResult formatting tests.                        |
 | @unit.feetest                     | Fee transaction encoding tests.                       |
 | @unit.indexer                     | Indexer REST API unit tests.                          |
+| @unit.indexer.ledger_refactoring   | Assertions for indexer after ledger refactoring.  |
 | @unit.indexer.logs                | Application logs endpoints added to Indexer.          |
 | @unit.indexer.rekey               | Rekey endpoints added to Algod and Indexer            |
 | @unit.offline                     | The first unit tests we wrote for cucumber.           |
@@ -35,11 +40,14 @@ These reside in the [unit features directory](features/unit)
 | @unit.responses.genesis           | REST Client Unit Tests for GetGenesis endpoint        |
 | @unit.responses.messagepack       | REST Client MessagePack Unit Tests                    |
 | @unit.responses.messagepack.231   | REST Client MessagePack Unit Tests for Indexer 2.3.1+ |
+| @unit.sourcemap                    | Test the sourcemap endpoint.                        |
+| @unit.stateproof.responses        | REST Client Response Tests for State Proof.           |
+| @unit.stateproof.responses.msgp   | REST Client MessagePack Tests for State Proofs.       |
+| @unit.stateproof.paths            | REST Client Unit Tests for State Proof feature.       |
 | @unit.tealsign                    | Test TEAL signature utilities.                        |
 | @unit.transactions                | Transaction encoding tests.                           |
 | @unit.transactions.keyreg         | Keyreg encoding tests.                                |
 | @unit.transactions.payment        | Payment encoding tests.                               |
-| @unit.dryrun.trace.application    | DryrunResult formatting tests.                        |
 
 ### Integration Tests
 
@@ -49,17 +57,14 @@ These reside in the [integration features directory](features/integration)
 | ---------------------- | -------------------------------------------------------------------------------------- |
 | @abi                   | Test the Application Binary Interface (ABI) with atomic txn composition and execution. |
 | @algod                 | General tests against algod REST endpoints.                                            |
-| @application.evaldelta | Test that eval delta fields are included in algod and indexer.                         |
 | @applications.verified | Submit all types of application transactions and verify account state.                 |
 | @assets                | Submit all types of asset transactions.                                                |
 | @auction               | Encode and decode bids for an auction.                                                 |
 | @c2c                   | Test Contract to Contract invocations and injestion.                                   |
 | @compile               | Test the algod compile endpoint.                                                       |
+| @compile.sourcemap   | Test the algod compile endpoint returns a valid Source Map  |
 | @dryrun                | Test the algod dryrun endpoint.                                                        |
 | @dryrun.testing        | Test the testing harness that relies on dryrun endpoint. Python only.                  |
-| @indexer               | Test all types of indexer queries and parameters against a static dataset.             |
-| @indexer.231           | REST Client Integration Tests for Indexer 2.3.1+                                       |
-| @indexer.applications  | Endpoints and parameters added to support applications.                                |
 | @kmd                   | Test the kmd REST endpoints.                                                           |
 | @rekey_v1              | Test the rekeying transactions.                                                        |
 | @send                  | Test the ability to submit transactions to algod.                                      |
@@ -72,9 +77,9 @@ However, a few are not fully supported:
 
 | tag                             | SDK's which implement        |
 | ------------------------------- | ---------------------------- |
-| @application.evaldelta          | Java only                    |
 | @dryrun.testing                 | Python only                  |
-| @indexer.rekey                  | missing from Python and JS   |
+| @unit.c2c                       | missing from Python   |
+| @unit.indexer.rekey             | missing from Python and JS   |
 | @unit.responses.genesis         | missing from Python and Java |
 | @unit.responses.messagepack     | missing from Python          |
 | @unit.responses.messagepack.231 | missing from Python and JS   |
@@ -163,14 +168,15 @@ The SDKs come with a Makefile to coordinate running the cucumber test suites. Th
 
 - **unit**: runs all of the short unit tests.
 - **integration**: runs all integration tests.
+- **harness**: downloads this repo and calls `up.sh` to stand up a sandbox ready for running tests
 - **docker-test**: installs feature file dependencies, starts the test environment, and runs the SDK tests in a docker container.
 
 At a high level, the **docker-test** target is required to:
 
-1. clone `algorand-sdk-testing`.
-2. copy supported feature files from the `features` directory into the SDK.
-3. build and start the test environment by calling `./scripts/up.sh`
-4. launch an SDK container using `--network host` which runs the cucumber test suite.
+1. clone `algorand-sdk-testing`
+2. copy supported feature files from the `features` directory into the SDK
+3. build and start the test environment by calling `./scripts/up.sh` which clones `sandbox` and stands it up
+4. run all cucumber tests against the `sandbox` containers
 
 ### Running tests during development
 
@@ -182,12 +188,15 @@ Once the test environment is running you can use `make unit` and `make integrati
 
 ## Integration test environment
 
-Docker compose is used to manage several containers which work together to provide the test environment. Currently that includes algod, kmd, indexer and a postgres database. The services run on specific ports with specific API tokens. Refer to [docker-compose.yml](docker-compose.yml) and the [docker](docker/) directory for how this is configured.
+Algorand's [sandbox](https://github.com/algorand/sandbox) is used to manage several containers which work together to provide the test environment. This includes `algod`, `kmd`, `indexer` and a `postgres` database. The services run on specific ports with specific API tokens. Refer to [.env](.env) and to [sandbox'es docker-compose.yml](https://github.com/algorand/sandbox/blob/master/docker-compose.yml) for how these are configured.
 
 ![Integration Test Environment](docs/SDK%20Test%20Environment.png)
 
-### Start the test environment
+### Managing the test environment
 
-There are a number of [scripts](scripts/) to help with managing the test environment. The names should help you understand what they do, but to get started simply run **up.sh** to bring up a new environment, and **down.sh** to shut it down.
+[up.sh](scripts/up.sh) is used to bring up the test environment. Not surprisingly, [down.sh](scripts/down.sh) brings it all down.
 
-When starting the environment we avoid using the cache intentionally. It uses the go-algorand nightly build, and we want to ensure that the containers are always running against the most recent nightly build. In the future these scripts should be improved, but for now we completely avoid using cached docker containers to ensure that we don't accidentally run against a stale environment.
+When starting the environment, we default to using `go-algorand`'s nightly build. If you're interested in running tests against a specific branch of `go-algorand`, you should set `TYPE="source"` in `.env`
+and set `ALGOD_URL`, and either `ALGOD_BRANCH` or `ALGOD_SHA` appropriately. 
+
+`indexer` and even the `sandbox` itself can be configured similarly through `.env`.
