@@ -23,6 +23,7 @@
   "timestamp": 1660162763,
   "transactions": [],
   "transactions-root": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+  "transactions-root-sha256": "HQn2+iMjWIFRTaDl+PeJdn5rKOch+otqMK5/Gao+puc=",
   "txn-counter": 1,
   "upgrade-state": {
     "current-protocol": "future",

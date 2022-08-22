@@ -281,6 +281,7 @@
     }
   ],
   "transactions-root": "7T4Zq/v95Xo4LsPuPsp+dP66MCYLy+t8r0PtcjfuMzY=",
+  "transactions-root-sha256": "HQn2+iMjWIFRTaDl+PeJdn5rKOch+otqMK5/Gao+puc=",
   "txn-counter": 1,
   "upgrade-state": {
     "current-protocol": "future",
