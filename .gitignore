@@ -18,3 +18,5 @@ java_cucumber/src/test/resources/java_cucumber/*.feature
 js_cucumber/features/*.feature
 py_behave/*.feature
 
+# asdf
+.tool-versions

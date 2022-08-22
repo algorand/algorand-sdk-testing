@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
-rootdir=`dirname $0`
-pushd $rootdir/.. > /dev/null
+THIS=$(basename "$0")
 
-docker-compose down
+ENV_FILE=".env"
 
-# In case a graceful shutdown/remove fails, bring them down the hard way.
-#docker kill $(docker ps -f name="sdk-harness")
-containers=$(docker ps -a -f name="sdk-harness" -q)
-if [ ! -z "$containers" ]; then
-  docker kill $containers || true
-  docker rm $containers || true
+# Load environment.
+echo "$THIS: sourcing environment vars from-->$(pwd)/$ENV_FILE"
+source "$ENV_FILE"
+echo "$THIS: looking to clean up inside-->$(pwd)/$LOCAL_SANDBOX_DIR"
+
+if [ -d "$LOCAL_SANDBOX_DIR" ]; then
+  pushd "$LOCAL_SANDBOX_DIR"
+  ./sandbox down
+  ./sandbox clean
+else
+  echo "$THIS: directory $(pwd)/$LOCAL_SANDBOX_DIR does not exist - NOOP"
 fi
