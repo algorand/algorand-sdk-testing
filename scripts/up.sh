@@ -12,6 +12,16 @@ set -a
 source "$ENV_FILE"
 set +a
 
+# TODO: allow more than just --verbose env var overrides
+while (( "$#" )); do
+  case "$1" in
+    -v|--verbose)
+      VERBOSE_HARNESS=1
+      ;;
+  esac
+  shift
+done
+
 echo "$THIS: VERBOSE_HARNESS=$VERBOSE_HARNESS"
 if [[ $TYPE == "channel" ]] || [[ $TYPE == "source" ]]; then
   echo "$THIS: setting sandbox variables for git based on TYPE=$TYPE."
@@ -57,6 +67,6 @@ pushd "$LOCAL_SANDBOX_DIR"
 
 [[ "$VERBOSE_HARNESS" = 1 ]] && V_FLAG="-v" || V_FLAG=""
 
-echo "$THIS: running sandbox with command [./sandbox up $V_FLAG harness]"
-./sandbox up "$V_FLAG" harness
+echo "$THIS: running sandbox with command [./sandbox up harness $V_FLAG]"
+./sandbox up harness "$V_FLAG"
 echo "$THIS: seconds it took to finish getting sandbox harness ($(pwd)) up and running: $(($(date "+%s") - START))s"
