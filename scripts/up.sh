@@ -21,8 +21,8 @@ while (( "$#" )); do
   esac
   shift
 done
-
 echo "$THIS: VERBOSE_HARNESS=$VERBOSE_HARNESS"
+
 if [[ $TYPE == "channel" ]] || [[ $TYPE == "source" ]]; then
   echo "$THIS: setting sandbox variables for git based on TYPE=$TYPE."
   if [[ $TYPE == "channel" ]]; then
