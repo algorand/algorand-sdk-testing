@@ -27,5 +27,5 @@ Feature: Compile
     When I compile a teal program "<teal>" with mapping enabled
     Then the resulting source map is the same as the json "<sourcemap>"
     Examples:
-      | teal                | sourcemap                                 |
-      | programs/quine.teal | v2algodclient_responsejsons/sourcemap.json|
+      | teal                | sourcemap                                   |
+      | programs/quine.teal | v2algodclient_responsejsons/sourcemap2.json |
