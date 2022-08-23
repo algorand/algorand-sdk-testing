@@ -28,4 +28,4 @@ Feature: Compile
     Then the resulting source map is the same as the json "<sourcemap>"
     Examples:
       | teal                | sourcemap                                   |
-      | programs/quine.teal | v2algodclient_responsejsons/sourcemap2.json |
+      | programs/quine.teal | v2algodclient_responsejsons/sourcemap.json |
