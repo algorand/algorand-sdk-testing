@@ -12,6 +12,7 @@ set -a
 source "$ENV_FILE"
 set +a
 
+echo "$THIS: VERBOSE_HARNESS=$VERBOSE_HARNESS"
 if [[ $TYPE == "channel" ]] || [[ $TYPE == "source" ]]; then
   echo "$THIS: setting sandbox variables for git based on TYPE=$TYPE."
   if [[ $TYPE == "channel" ]]; then
@@ -56,6 +57,6 @@ pushd "$LOCAL_SANDBOX_DIR"
 
 [[ "$VERBOSE_HARNESS" = 1 ]] && V_FLAG="-v" || V_FLAG=""
 
-
+echo "$THIS: running sandbox with command [./sandbox up $V_FLAG harness]"
 ./sandbox up "$V_FLAG" harness
 echo "$THIS: seconds it took to finish getting sandbox harness ($(pwd)) up and running: $(($(date "+%s") - START))s"
