@@ -7,6 +7,7 @@ Feature: HeursticSanityCheck
 
     Examples:
       | bytes                                                                            | error                          |
+      |                                                                                  | empty program                  |
       | RE43TUJNQ0w1SlEzUEZVUVM3VE1YNUFINEVFS09CSlZEVUY0VENWNldFUkFUS0ZMUUY0TVFVUFpUQQ== | get Algorand address           |
       | U0dPMUdLU3p5RTdJRVBJdFR4Q0J5dzl4OEZtbnJDRGV4aTkvY09VSk9pST0=                     | should not be b64 encoded      |
       | Q2FzdCBhIGNvbGQgZXllCm9uIGxpZmUsIG9uIGRlYXRoLgpIb3JzZW1hbiwgcGFzcyBieQ==         | all ASCII printable characters |
