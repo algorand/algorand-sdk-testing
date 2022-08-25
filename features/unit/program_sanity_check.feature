@@ -3,7 +3,7 @@ Feature: HeursticSanityCheck
   Scenario Outline: Read a slice of bytes and heuristically decide if it look like program bytes
     Given a base64 encoded program bytes for heuristic sanity check "<bytes>"
     When I start heuristic sanity check over the bytes
-    Then if there exists an error, the error contains "<error>"
+    Then if the heuristic sanity check throws an error, the error contains "<error>"
 
     Examples:
       | bytes                                                                            | error                          |
