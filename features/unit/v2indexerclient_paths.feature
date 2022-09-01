@@ -201,10 +201,12 @@ Feature: Indexer Client v2 Paths
     Then expect the path used to be "<path>"
 
     Examples:
-      | path                                           | application-id | max | nextToken |
-      | /v2/applications/1234/boxes                    | 1234           | 0   |           |
-      | /v2/applications/1234/boxes?limit=2            | 1234           | 2   |           |
-      | /v2/applications/1234/boxes?limit=2&next=token | 1234           | 2   | token     |
+      | path                                                            | application-id | max | nextToken        |
+      | /v2/applications/1234/boxes                                     | 1234           | 0   |                  |
+      | /v2/applications/1234/boxes?limit=2                             | 1234           | 2   |                  |
+      | /v2/applications/1234/boxes?limit=2&next=token                  | 1234           | 2   | token            |
+      | /v2/applications/1234/boxes?limit=2&next=b64%3AdG9rZW4%3D       | 1234           | 2   | b64:dG9rZW4=     |
+      | /v2/applications/1234/boxes?limit=2&next=b64%3AZ29vZEJveA%3D%3D | 1234           | 2   | b64:Z29vZEJveA== |
 
   @unit.indexer.logs
   Scenario Outline: LookupApplicationLogsByID path
