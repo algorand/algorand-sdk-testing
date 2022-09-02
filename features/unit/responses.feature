@@ -164,13 +164,18 @@ Feature: REST Client Responses
       | algod_PendingTransactionsResponse_1.base64 | generated_responses_231 | 200    | algod  | GetPendingTransactions          |
       | algod_PendingTransactionsResponse_0.base64 | generated_responses_231 | 200    | algod  | GetPendingTransactionsByAddress |
       | algod_PendingTransactionsResponse_1.base64 | generated_responses_231 | 200    | algod  | GetPendingTransactionsByAddress |
-# -- These are missing proper response objects, so they were not generated.
-# GetBlock
-# health check
-# metrics
-# Register participation keys
-# ShutdownNode
-# -- Missing a proper path definition
-# Versions
-# -- This is still WIP?
-# Dryrun
+
+    @unit.stateproof.responses
+    Examples:
+      | jsonfile                                | response-folder | status | client  | endpoint                 |
+      | v2_algod_GetTransactionProof.json       | stateproof      | 200    | algod   | GetTransactionProof      |
+      | v2_algod_GetLightBlockHeaderProof.json  | stateproof      | 200    | algod   | GetLightBlockHeaderProof |
+      | v2_algod_GetStateProof.json             | stateproof      | 200    | algod   | GetStateProof            |
+      | v2_indexer_lookupBlock_header.json      | stateproof      | 200    | indexer | lookupBlock              |
+      | v2_indexer_lookupBlock_transaction.json | stateproof      | 200    | indexer | lookupBlock              |
+
+    @unit.stateproof.responses.msgp
+    Examples:
+      | jsonfile                                | response-folder | status | client  | endpoint                 |
+      | v2_algod_GetBlock_header.base64         | stateproof      | 200    | algod   | GetBlock                 |
+      | v2_algod_GetBlock_transaction.base64    | stateproof      | 200    | algod   | GetBlock                 |

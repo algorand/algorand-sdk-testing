@@ -18,7 +18,7 @@ isExcluded () {
 }
 
 # Lookup tags
-TAGS=$(find . -name "*.feature" -exec cat {} \; -exec /usr/bin/echo \;|grep @|tr -d ' '|sort -u)
+TAGS=$(find . -name "*.feature" -exec cat {} \; -exec /usr/bin/echo \;|grep @[a-zA-Z]|tr -d ' '|sort -u)
 
 if ! [ -r "$1" ]; then
   printf "Unable to read makefile at '%s'\n" "$1"

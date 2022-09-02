@@ -1,79 +1,72 @@
 #!/usr/bin/env bash
-#
-# Bring up the SDK test environment.
 
-set -e
+set -euo pipefail
 
-rootdir=`dirname $0`
-pushd $rootdir/.. > /dev/null
+START=$(date "+%s")
 
-# Defaults
-TYPE_OVERRIDE=""
-DAEMON_FLAG="-d"
-SKIP_BUILD=0
-SHOW_HELP=0
-ENV_FILE=".up-env"
-PARALLEL="--parallel"
+THIS=$(basename "$0")
+ENV_FILE=".env"
+echo "$THIS: sourcing environment vars from-->$(pwd)/$ENV_FILE"
 
-show_help() {
-  echo "Manage bringing up the SDK test environment."
-  echo
-  echo "Usage: up.sh [options]"
-  echo
-  echo "Options:"
-  echo "  -f <FILE>  Override the environment file."
-  echo "  -t <TYPE>  Override the installation type specified in the environment file."
-  echo "             Valid types: ['channel', 'type']"
-  echo "  -s         Skip rebuilding the docker image."
-  echo "  -i         Start the docker environment in interactive mode."
-  echo "  -h         Provide this help information."
-  echo "  -p         Disable parallel build mode. Probably only useful when editing the test environment."
-}
+set -a
+source "$ENV_FILE"
+set +a
 
-# Parse arguments
-while getopts "pf:t:sih" opt; do
-  case "$opt" in
-    f) ENV_FILE=$OPTARG; ;;
-    i) unset DAEMON_FLAG; ;;
-    s) SKIP_BUILD=1; ;;
-    t) TYPE_OVERRIDE=$OPTARG; ;;
-    h) show_help; exit 0 ;;
-    p) unset PARALLEL; ;; 
+# TODO: allow more than just --verbose env var overrides
+while (( "$#" )); do
+  case "$1" in
+    -v|--verbose)
+      VERBOSE_HARNESS=1
+      ;;
   esac
+  shift
 done
+echo "$THIS: VERBOSE_HARNESS=$VERBOSE_HARNESS"
 
-# Verify there are no positional parameters with getopt/getopts
-shift "$((OPTIND-1))"
-if [[ "$1" != "" ]]; then
-  echo "No positional arguments should be provided, found '$@'"
-  echo
-  show_help
-  exit
-fi
-
-# Load environment.
-source $ENV_FILE
-
-# Choose which dockerfile to use.
-TYPE=${TYPE_OVERRIDE:-$TYPE}
 if [[ $TYPE == "channel" ]] || [[ $TYPE == "source" ]]; then
-  export TYPE="$TYPE"
+  echo "$THIS: setting sandbox variables for git based on TYPE=$TYPE."
+  if [[ $TYPE == "channel" ]]; then
+    ALGOD_URL=""
+    ALGOD_BRANCH=""
+    ALGOD_SHA=""
+  else
+    ALGOD_CHANNEL=""
+  fi
 else
   echo "Unknown environment: $TYPE"
   exit 1
 fi
 
-echo "Bringing up network with '$TYPE' configuration."
-
-# Make sure it isn't running
+# Make sure test-sdk sandbox isn't running and clean up any docker detritous
+echo "$THIS: before bootstrapping, try cleaning up first..."
 ./scripts/down.sh
+rm -rf "$LOCAL_SANDBOX_DIR"
+echo "$THIS: seconds it took to get to end of $(pwd)/$LOCAL_SANDBOX_DIR cleanup: $(($(date "+%s") - START))s"
 
-# Remove the containers to allow re-running stateful tests.
-docker-compose rm --force
 
-# When developing, it's often useful to skip the build phase.
-if [[ $SKIP_BUILD -eq 0 ]]; then
-  docker-compose build --no-cache $PARALLEL
-fi
+rootdir=$(dirname "$0")
+pushd "$rootdir"/.. > /dev/null || exit
 
-docker-compose up $DAEMON_FLAG
+git clone --depth 1 --branch "$SANDBOX_BRANCH" --single-branch "$SANDBOX_URL" "$LOCAL_SANDBOX_DIR"
+
+cp .env "$LOCAL_SANDBOX_DIR"/.
+
+SANDBOX_CFG="config.harness"
+echo "$THIS: about to envsubst < $SANDBOX_CFG  > $LOCAL_SANDBOX_DIR/$SANDBOX_CFG"
+envsubst < "$SANDBOX_CFG" > "$LOCAL_SANDBOX_DIR/$SANDBOX_CFG"
+
+echo "$THIS: resulting $(pwd)/$LOCAL_SANDBOX_DIR/$SANDBOX_CFG:"
+cat "$LOCAL_SANDBOX_DIR/$SANDBOX_CFG"
+
+echo ""
+echo "$THIS: seconds it took to get to end of cloning sandbox into $(pwd)/$LOCAL_SANDBOX_DIR: $(($(date "+%s") - START))s"
+echo ""
+echo "$THIS: bringing up network with TYPE=$TYPE configuration."
+
+pushd "$LOCAL_SANDBOX_DIR"
+
+[[ "$VERBOSE_HARNESS" = 1 ]] && V_FLAG="-v" || V_FLAG=""
+
+echo "$THIS: running sandbox with command [./sandbox up harness $V_FLAG]"
+./sandbox up harness "$V_FLAG"
+echo "$THIS: seconds it took to finish getting sandbox harness ($(pwd)) up and running: $(($(date "+%s") - START))s"
