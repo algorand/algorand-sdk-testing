@@ -4,6 +4,7 @@ Feature: Applications
       And a kmd client
       And wallet information
       And an algod v2 client connected to "localhost" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      And an indexer v2 client
 
    @applications.verified
    Scenario Outline: <state-location> test - Use every applications feature!
