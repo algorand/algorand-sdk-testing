@@ -138,3 +138,22 @@ Feature: Applications
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       Then according to "algod", the current application should have the following boxes "".
+
+    @applications.boxes_indexer_confirmed
+    Scenario: Exercise indexer after a slew of box creations
+      Given I create a new transient account and fund it with 10000000000 microalgos.
+      And I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/box_app.teal", clear-program "programs/box_app.teal", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      And I remember the new application ID.
+      And I fund the current application's address with 100000000 microalgos.
+      Then I get the account address for the current application and see that it matches the app id's hash
+      And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,str:name", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      Then according to "algod", the contents of the box with name "str:name" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+      And I forward 10 empty rounds with transient account.
+      And according to "indexer", the contents of the box with name "str:name" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+
+      # Scenario: Exercise indexer after a few deletions
+      # Scenario: Exercise indexer after zig zag of additions and deletions
