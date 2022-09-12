@@ -183,7 +183,7 @@ Feature: Applications
       Then according to "algod", the current application should have the following boxes "str:foo bar,b64:APj/IA==,str:name,b64:MTE0NTE0".
       And according to "algod", by parameter max 2, the current application should have 2 boxes.
       And according to "algod", by parameter max 6, the current application should have 4 boxes.
-      And I forward 10 empty rounds with transient account.
+      And I sleep for 1 seconds for indexer to digest things down.
       And according to "indexer", the current application should have the following boxes "str:foo bar,b64:APj/IA==,str:name,b64:MTE0NTE0".
       And according to "indexer", by parameter max 2, the current application should have 2 boxes.
       And according to "indexer", by parameter max 6, the current application should have 4 boxes.
@@ -195,7 +195,7 @@ Feature: Applications
       And according to "algod", the current application should have the following boxes "str:foo bar,b64:APj/IA==,b64:MTE0NTE0".
 
       # move to indexer testing steps
-      Then I forward 20 empty rounds with transient account.
+      And I sleep for 1 seconds for indexer to digest things down.
       And according to "indexer", the contents of the box with name "b64:APj/IA==" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
       And according to "indexer", the current application should have the following boxes "str:foo bar,b64:APj/IA==,b64:MTE0NTE0".
       And according to "indexer", by parameter max 2, the current application should have 2 boxes.
