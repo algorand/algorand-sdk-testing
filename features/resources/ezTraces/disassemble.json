@@ -1,9 +1,10 @@
 [
   {
+    "name": "nil program works, but results in invalid version text",
     "path": "/v2/teal/disassemble",
     "method": "POST",
     "bytesB64": "",
-    "values": null,
+    "params": null,
     "encodeJSON": false,
     "decodeJSON": true,
     "statusCode": 200,
@@ -15,10 +16,11 @@
     }
   },
   {
+    "name": "Test a valid program across all assembler versions (v1)",
     "path": "/v2/teal/disassemble",
     "method": "POST",
     "bytesB64": "ASABASI=",
-    "values": null,
+    "params": null,
     "encodeJSON": false,
     "decodeJSON": true,
     "statusCode": 200,
@@ -30,10 +32,11 @@
     }
   },
   {
+    "name": "Test a valid program across all assembler versions (v2)",
     "path": "/v2/teal/disassemble",
     "method": "POST",
     "bytesB64": "AiABASI=",
-    "values": null,
+    "params": null,
     "encodeJSON": false,
     "decodeJSON": true,
     "statusCode": 200,
@@ -45,10 +48,11 @@
     }
   },
   {
+    "name": "Test a valid program across all assembler versions (v3)",
     "path": "/v2/teal/disassemble",
     "method": "POST",
     "bytesB64": "AyABASI=",
-    "values": null,
+    "params": null,
     "encodeJSON": false,
     "decodeJSON": true,
     "statusCode": 200,
@@ -60,10 +64,11 @@
     }
   },
   {
+    "name": "Test a valid program across all assembler versions (v4)",
     "path": "/v2/teal/disassemble",
     "method": "POST",
     "bytesB64": "BIEB",
-    "values": null,
+    "params": null,
     "encodeJSON": false,
     "decodeJSON": true,
     "statusCode": 200,
@@ -75,10 +80,11 @@
     }
   },
   {
+    "name": "Test a valid program across all assembler versions (v5)",
     "path": "/v2/teal/disassemble",
     "method": "POST",
     "bytesB64": "BYEB",
-    "values": null,
+    "params": null,
     "encodeJSON": false,
     "decodeJSON": true,
     "statusCode": 200,
@@ -90,10 +96,11 @@
     }
   },
   {
+    "name": "Test a valid program across all assembler versions (v6)",
     "path": "/v2/teal/disassemble",
     "method": "POST",
     "bytesB64": "BoEB",
-    "values": null,
+    "params": null,
     "encodeJSON": false,
     "decodeJSON": true,
     "statusCode": 200,
@@ -105,10 +112,11 @@
     }
   },
   {
+    "name": "Test a valid program across all assembler versions (v7)",
     "path": "/v2/teal/disassemble",
     "method": "POST",
     "bytesB64": "B4EB",
-    "values": null,
+    "params": null,
     "encodeJSON": false,
     "decodeJSON": true,
     "statusCode": 200,
@@ -120,10 +128,11 @@
     }
   },
   {
+    "name": "Test a valid program across all assembler versions (v8)",
     "path": "/v2/teal/disassemble",
     "method": "POST",
     "bytesB64": "CIEB",
-    "values": null,
+    "params": null,
     "encodeJSON": false,
     "decodeJSON": true,
     "statusCode": 200,
@@ -135,10 +144,11 @@
     }
   },
   {
+    "name": "Test bad program",
     "path": "/v2/teal/disassemble",
     "method": "POST",
     "bytesB64": "AWM=",
-    "values": null,
+    "params": null,
     "encodeJSON": false,
     "decodeJSON": true,
     "statusCode": 400,
