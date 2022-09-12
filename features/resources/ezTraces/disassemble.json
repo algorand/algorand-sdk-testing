@@ -1,0 +1,150 @@
+[
+  {
+    "path": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "",
+    "values": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "responseB64": "eyJyZXN1bHQiOiIvLyBpbnZhbGlkIHZlcnNpb25cbiJ9Cg==",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "// invalid version\n"
+    }
+  },
+  {
+    "path": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "ASABASI=",
+    "values": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gMVxuaW50Y2Jsb2NrIDFcbmludGNfMCAvLyAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 1\nintcblock 1\nintc_0 // 1\n"
+    }
+  },
+  {
+    "path": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "AiABASI=",
+    "values": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gMlxuaW50Y2Jsb2NrIDFcbmludGNfMCAvLyAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 2\nintcblock 1\nintc_0 // 1\n"
+    }
+  },
+  {
+    "path": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "AyABASI=",
+    "values": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gM1xuaW50Y2Jsb2NrIDFcbmludGNfMCAvLyAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 3\nintcblock 1\nintc_0 // 1\n"
+    }
+  },
+  {
+    "path": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "BIEB",
+    "values": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gNFxucHVzaGludCAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 4\npushint 1\n"
+    }
+  },
+  {
+    "path": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "BYEB",
+    "values": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gNVxucHVzaGludCAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 5\npushint 1\n"
+    }
+  },
+  {
+    "path": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "BoEB",
+    "values": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gNlxucHVzaGludCAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 6\npushint 1\n"
+    }
+  },
+  {
+    "path": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "B4EB",
+    "values": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gN1xucHVzaGludCAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 7\npushint 1\n"
+    }
+  },
+  {
+    "path": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "CIEB",
+    "values": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gOFxucHVzaGludCAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 8\npushint 1\n"
+    }
+  },
+  {
+    "path": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "AWM=",
+    "values": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 400,
+    "responseErr": "HTTP 400 Bad Request: {\"message\":\"invalid opcode 63 at pc=1\"}",
+    "responseB64": "eyJtZXNzYWdlIjoiaW52YWxpZCBvcGNvZGUgNjMgYXQgcGM9MSJ9Cg==",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": null
+  }
+]

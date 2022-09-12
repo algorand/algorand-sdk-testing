@@ -9,9 +9,9 @@ Feature: Easy Integration Testing
   @ez.disassemble
   Scenario: 
     Given an ez request/response array fixture "disassemble.json" to save in "disassemble"'s context.
-    * Parse and save as ordered each "disassemble" request's route, path, verb, content-type, optional params and post-data with encoding info.
-    Then Sanity check that "disassemble"'s request data matches its verbs.
-    * Decode "disassemble"'s data as needed in preparation for making requests.
-    * Parse and save as ordered each "disassemble" response body in the given format.
+    * Unmarshal and save as ordered each "disassemble" object for request and response information.
+    Then Sanity check that each "disassemble" request data matches its verb and encoding.
+    * Decode each "disassemble" request information as needed in preparation for making requests.
+    * Parse and save as ordered each "disassemble" raw response and assert in comparison with the parsed response.
     * Infer each SDK method from "disassemble"'s requests and run it live saving its response.
     Then Assert that each live "disassemble" response is essentially identical to the parsed fixture response.
