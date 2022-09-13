@@ -179,3 +179,8 @@ Feature: REST Client Responses
       | jsonfile                                | response-folder | status | client  | endpoint                 |
       | v2_algod_GetBlock_header.base64         | stateproof      | 200    | algod   | GetBlock                 |
       | v2_algod_GetBlock_transaction.base64    | stateproof      | 200    | algod   | GetBlock                 |
+ 
+    @unit.responses.participationupdates
+    Examples:
+      | jsonfile                                                | response-folder     | status | client  | endpoint | 
+      |indexer_block_ParticipationupdatesResponse.json | generated_responses | 200 | indexer | lookupBlock |

@@ -109,13 +109,5 @@ Feature: Indexer Client v2 Responses
       | jsonfiles                    | directory                     | err | roundNum | len | index | rekeyto                                                    |
       | searchForTransactions_1.json | v2indexerclient_responsejsons |     | 6222958  | 10  | 1     | PRIC4GIQTJFD2SZIEQGAYBV2KUJ7YQR3EV3KSOZKLOHPDNRDXXVWMHDAQA |
 
-  @unit.indexer.participationupdates
-  Scenario Outline: LookupBlock response with participationPpdates field
-    Given mock http responses in "<jsonfiles>" loaded from "<directory>"
-    When we make any LookupBlock call
-    Then expect error string to contain "<err>"
-    And the parsed LookupBlock response should have previous block hash "<prevHash>"
-    Examples:
-      |jsonfiles          |directory                      |err|prevHash|
-      |lookupBlock_1.json | v2indexerclient_responsejsons ||jIYt/5YlDB/fzOoLIZXKwCD9e9Y37YXoz3umPCoo7Rw=    |
+ 
       
