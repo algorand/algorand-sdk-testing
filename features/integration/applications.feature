@@ -126,13 +126,13 @@ Feature: Applications
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       # Check that GetApplicationBoxes call returns the right number of boxes
-      Then according to "algod", the current application should have the following boxes "str:foo bar,b64:APj/IA==".
+      Then according to "algod", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==".
       # Delete one box
       Given I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,str:foo bar", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:foo bar"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       # Check that box was correctly deleted
-      Then according to "algod", the current application should have the following boxes "b64:APj/IA==".
+      Then according to "algod", the current application should have the following boxes "APj/IA==".
       # Delete last box and check that empty response is handled correctly
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,b64:APj/IA==", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,b64:APj/IA=="
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
@@ -182,12 +182,12 @@ Feature: Applications
       And according to "indexer", the contents of the box with name "str:foo bar" in the current application should be "YmF6IHF1eAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
 
       # full check confirmed by both algod and indexer
-      Then according to "algod", the current application should have the following boxes "b64:Zm9vIGJhcg==,b64:APj/IA==,b64:bmFtZQ==,b64:MTE0NTE0".
+      Then according to "algod", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:bmFtZQ==:MTE0NTE0".
       And according to "algod", by parameter max 2, the current application should have 2 boxes.
       And according to "algod", by parameter max 6, the current application should have 4 boxes.
 
       And I sleep for 500 milliseconds for indexer to digest things down.
-      And according to "indexer", the current application should have the following boxes "b64:Zm9vIGJhcg==,b64:APj/IA==,b64:bmFtZQ==,b64:MTE0NTE0".
+      And according to "indexer", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:bmFtZQ==:MTE0NTE0".
       And according to "indexer", by parameter max 2, the current application should have 2 boxes.
       And according to "indexer", by parameter max 6, the current application should have 4 boxes.
 
@@ -195,13 +195,14 @@ Feature: Applications
       Then I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,str:name", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      And according to "algod", the current application should have the following boxes "b64:Zm9vIGJhcg==,b64:APj/IA==,b64:MTE0NTE0".
+      And according to "algod", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:MTE0NTE0".
 
       # move to indexer testing steps
       And I sleep for 500 milliseconds for indexer to digest things down.
+      And according to "indexer", the contents of the box with name "str:name" in the current application should be "". If there is an error it is "no application boxes found".
       And according to "indexer", the contents of the box with name "b64:APj/IA==" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
-      And according to "indexer", the current application should have the following boxes "b64:Zm9vIGJhcg==,b64:APj/IA==,b64:MTE0NTE0".
+      And according to "indexer", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:MTE0NTE0".
       And according to "indexer", by parameter max 2, the current application should have 2 boxes.
       And according to "indexer", by parameter max 0, the current application should have 3 boxes.
-      And according to indexer, by parameter max 1 and next "b64:APj/IA==", the current application should have the following boxes "b64:MTE0NTE0".
+      And according to indexer, by parameter max 1 and next "b64:APj/IA==", the current application should have the following boxes "MTE0NTE0".
  
