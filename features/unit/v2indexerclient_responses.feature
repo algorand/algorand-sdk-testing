@@ -108,6 +108,3 @@ Feature: Indexer Client v2 Responses
     Examples:
       | jsonfiles                    | directory                     | err | roundNum | len | index | rekeyto                                                    |
       | searchForTransactions_1.json | v2indexerclient_responsejsons |     | 6222958  | 10  | 1     | PRIC4GIQTJFD2SZIEQGAYBV2KUJ7YQR3EV3KSOZKLOHPDNRDXXVWMHDAQA |
-
- 
-      
