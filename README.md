@@ -40,6 +40,7 @@ These reside in the [unit features directory](features/unit)
 | @unit.responses.genesis           | REST Client Unit Tests for GetGenesis endpoint        |
 | @unit.responses.messagepack       | REST Client MessagePack Unit Tests                    |
 | @unit.responses.messagepack.231   | REST Client MessagePack Unit Tests for Indexer 2.3.1+ |
+| @unit.responses.participationupdates | REST Client Response serialization test for ParticipationUpdates|
 | @unit.sourcemap                    | Test the sourcemap endpoint.                        |
 | @unit.stateproof.responses        | REST Client Response Tests for State Proof.           |
 | @unit.stateproof.responses.msgp   | REST Client MessagePack Tests for State Proofs.       |
