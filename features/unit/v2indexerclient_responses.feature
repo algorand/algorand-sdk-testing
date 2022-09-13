@@ -118,3 +118,4 @@ Feature: Indexer Client v2 Responses
     Examples:
       |jsonfiles          |directory                      |err|prevHash|
       |lookupBlock_1.json | v2indexerclient_responsejsons ||jIYt/5YlDB/fzOoLIZXKwCD9e9Y37YXoz3umPCoo7Rw=    |
+      
