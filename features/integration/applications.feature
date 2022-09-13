@@ -178,7 +178,7 @@ Feature: Applications
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       Then according to "algod", the contents of the box with name "b64:Zm9vIGJhcg==" in the current application should be "YmF6IHF1eAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
-      And I sleep for 1 seconds for indexer to digest things down.
+      And I sleep for 500 milliseconds for indexer to digest things down.
       And according to "indexer", the contents of the box with name "b64:Zm9vIGJhcg==" in the current application should be "YmF6IHF1eAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
 
       # full check confirmed by both algod and indexer
@@ -186,7 +186,7 @@ Feature: Applications
       And according to "algod", by parameter max 2, the current application should have 2 boxes.
       And according to "algod", by parameter max 6, the current application should have 4 boxes.
 
-      And I sleep for 1 seconds for indexer to digest things down.
+      And I sleep for 500 milliseconds for indexer to digest things down.
       And according to "indexer", the current application should have the following boxes "b64:Zm9vIGJhcg==,b64:APj/IA==,b64:bmFtZQ==,b64:MTE0NTE0".
       And according to "indexer", by parameter max 2, the current application should have 2 boxes.
       And according to "indexer", by parameter max 6, the current application should have 4 boxes.
@@ -198,7 +198,7 @@ Feature: Applications
       And according to "algod", the current application should have the following boxes "b64:Zm9vIGJhcg==,b64:APj/IA==,b64:MTE0NTE0".
 
       # move to indexer testing steps
-      And I sleep for 1 seconds for indexer to digest things down.
+      And I sleep for 500 milliseconds for indexer to digest things down.
       And according to "indexer", the contents of the box with name "b64:APj/IA==" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
       And according to "indexer", the current application should have the following boxes "b64:Zm9vIGJhcg==,b64:APj/IA==,b64:MTE0NTE0".
       And according to "indexer", by parameter max 2, the current application should have 2 boxes.
