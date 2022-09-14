@@ -205,3 +205,11 @@ Feature: Applications
       And according to "indexer", with 2 being the parameter that limits results, the current application should have 2 boxes.
       And according to "indexer", with 0 being the parameter that limits results, the current application should have 3 boxes.
       And according to indexer, with 1 being the parameter that limits results, and "b64:APj/IA==" being the parameter that sets the next result, the current application should have the following boxes "MTE0NTE0".
+
+      # To test *exactly* which boxes are under an app with parameter `limit` can only be done through indexer,
+      # for indexer returns deterministic results with `ORDER BY`, but algod result on boxes are determined by box operations' order.
+      # To minimize the potential error space, the exact box comparison can be done only with indexer
+
+      # A potential improvement space:
+      # we can make this test determinstic (i.e., removing sleep for indexer) by waiting indexer to be at the same round of algod finishing all the box operations.
+      # Once indexer has a round number at least as large as algod finishing box operations, the changes on boxes can be reflected in indexer side.
