@@ -4,6 +4,7 @@ Feature: Applications
       And a kmd client
       And wallet information
       And an algod v2 client connected to "localhost" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      And an indexer v2 client
 
    @applications.verified
    Scenario Outline: <state-location> test - Use every applications feature!
@@ -104,17 +105,17 @@ Feature: Applications
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,str:name", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      Then the contents of the box with name "str:name" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+      Then according to "algod", the contents of the box with name "str:name" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
       # app call to set box value
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:set,str:name,str:value", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      Then the contents of the box with name "str:name" in the current application should be "dmFsdWUAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+      Then according to "algod", the contents of the box with name "str:name" in the current application should be "dmFsdWUAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
       # app call to delete the box
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,str:name", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      Then the contents of the box with name "str:name" in the current application should be "". If there is an error it is "box not found".
+      Then according to "algod", the contents of the box with name "str:name" in the current application should be "". If there is an error it is "box not found".
 
       # Check if all the application boxes can be returned
       # Create some boxes
@@ -125,15 +126,90 @@ Feature: Applications
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       # Check that GetApplicationBoxes call returns the right number of boxes
-      Then the current application should have the following boxes "str:foo bar,b64:APj/IA==".
+      Then according to "algod", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==".
       # Delete one box
       Given I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,str:foo bar", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:foo bar"
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       # Check that box was correctly deleted
-      Then the current application should have the following boxes "b64:APj/IA==".
+      Then according to "algod", the current application should have the following boxes "APj/IA==".
       # Delete last box and check that empty response is handled correctly
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,b64:APj/IA==", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,b64:APj/IA=="
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
-      Then the current application should have the following boxes "".
+      Then according to "algod", the current application should have the following boxes "".
+
+   @applications.boxes
+   Scenario: Exercise indexer after a slew of box operations
+      Given I create a new transient account and fund it with 10000000000 microalgos.
+      And I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/box_app.teal", clear-program "programs/box_app.teal", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      And I remember the new application ID.
+      And I fund the current application's address with 100000000 microalgos.
+      Then I get the account address for the current application and see that it matches the app id's hash
+
+      # create a box called "str:name" (i.e., b64:bmFtZQ==)
+      And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,str:name", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      Then according to "algod", the contents of the box with name "str:name" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+
+      # create a box called "str:foo bar" (i.e., b64:Zm9vIGJhcg==)
+      And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,str:foo bar", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:foo bar"
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      Then according to "algod", the contents of the box with name "str:foo bar" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+
+      # create a box called "b64:APj/IA=="
+      And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,b64:APj/IA==", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,b64:APj/IA=="
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      Then according to "algod", the contents of the box with name "b64:APj/IA==" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+
+      # create a box called "b64:MTE0NTE0"
+      And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:create,b64:MTE0NTE0", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,b64:MTE0NTE0"
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      Then according to "algod", the contents of the box with name "b64:MTE0NTE0" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+
+      # set box "str:foo bar" to value "str:baz qux" (i.e., b64:YmF6IHF1eA==)
+      And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:set,str:foo bar,str:baz qux", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:foo bar"
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      Then according to "algod", the contents of the box with name "str:foo bar" in the current application should be "YmF6IHF1eAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+      And I sleep for 500 milliseconds for indexer to digest things down.
+      And according to "indexer", the contents of the box with name "str:foo bar" in the current application should be "YmF6IHF1eAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+
+      # full check confirmed by both algod and indexer
+      Then according to "algod", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:bmFtZQ==:MTE0NTE0".
+      And according to "algod", with 2 being the parameter that limits results, the current application should have 2 boxes.
+      And according to "algod", with 6 being the parameter that limits results, the current application should have 4 boxes.
+
+      And I sleep for 500 milliseconds for indexer to digest things down.
+      And according to "indexer", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:bmFtZQ==:MTE0NTE0".
+      And according to "indexer", with 2 being the parameter that limits results, the current application should have 2 boxes.
+      And according to "indexer", with 6 being the parameter that limits results, the current application should have 4 boxes.
+
+      # delete one box
+      Then I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,str:name", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
+      And I sign and submit the transaction, saving the txid. If there is an error it is "".
+      And I wait for the transaction to be confirmed.
+      And according to "algod", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:MTE0NTE0".
+
+      # move to indexer testing steps
+      And I sleep for 500 milliseconds for indexer to digest things down.
+      And according to "indexer", the contents of the box with name "str:name" in the current application should be "". If there is an error it is "no application boxes found".
+      And according to "indexer", the contents of the box with name "b64:APj/IA==" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
+      And according to "indexer", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:MTE0NTE0".
+      And according to "indexer", with 2 being the parameter that limits results, the current application should have 2 boxes.
+      And according to "indexer", with 0 being the parameter that limits results, the current application should have 3 boxes.
+      And according to indexer, with 1 being the parameter that limits results, and "b64:APj/IA==" being the parameter that sets the next result, the current application should have the following boxes "MTE0NTE0".
+
+      # To test *exactly* which boxes are under an app with parameter `limit` can only be done through indexer,
+      # for indexer returns deterministic results with `ORDER BY`, but algod result on boxes are determined by box operations' order.
+      # To minimize the potential error space, the exact box comparison can be done only with indexer
+
+      # A potential improvement space:
+      # we can make this test determinstic (i.e., removing sleep for indexer) by waiting indexer to be at the same round of algod finishing all the box operations.
+      # Once indexer has a round number at least as large as algod finishing box operations, the changes on boxes can be reflected in indexer side.
