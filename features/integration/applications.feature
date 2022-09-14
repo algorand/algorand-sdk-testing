@@ -183,13 +183,13 @@ Feature: Applications
 
       # full check confirmed by both algod and indexer
       Then according to "algod", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:bmFtZQ==:MTE0NTE0".
-      And according to "algod", by parameter max 2, the current application should have 2 boxes.
-      And according to "algod", by parameter max 6, the current application should have 4 boxes.
+      And according to "algod", with 2 being the parameter that limits results, the current application should have 2 boxes.
+      And according to "algod", with 6 being the parameter that limits results, the current application should have 4 boxes.
 
       And I sleep for 500 milliseconds for indexer to digest things down.
       And according to "indexer", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:bmFtZQ==:MTE0NTE0".
-      And according to "indexer", by parameter max 2, the current application should have 2 boxes.
-      And according to "indexer", by parameter max 6, the current application should have 4 boxes.
+      And according to "indexer", with 2 being the parameter that limits results, the current application should have 2 boxes.
+      And according to "indexer", with 6 being the parameter that limits results, the current application should have 4 boxes.
 
       # delete one box
       Then I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:delete,str:name", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes "0,str:name"
@@ -202,6 +202,6 @@ Feature: Applications
       And according to "indexer", the contents of the box with name "str:name" in the current application should be "". If there is an error it is "no application boxes found".
       And according to "indexer", the contents of the box with name "b64:APj/IA==" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
       And according to "indexer", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:MTE0NTE0".
-      And according to "indexer", by parameter max 2, the current application should have 2 boxes.
-      And according to "indexer", by parameter max 0, the current application should have 3 boxes.
-      And according to indexer, by parameter max 1 and next "b64:APj/IA==", the current application should have the following boxes "MTE0NTE0".
+      And according to "indexer", with 2 being the parameter that limits results, the current application should have 2 boxes.
+      And according to "indexer", with 0 being the parameter that limits results, the current application should have 3 boxes.
+      And according to indexer, with 1 being the parameter that limits results, and "b64:APj/IA==" being the parameter that sets the next result, the current application should have the following boxes "MTE0NTE0".
