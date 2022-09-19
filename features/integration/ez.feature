@@ -10,8 +10,11 @@ Feature: Easy Integration Testing
   @ez.disassemble
   Scenario: 
     Given an ez request and response array fixture "disassemble.json" to unmarshal and save in the "disassemble" context.
-    # Then Sanity check that each "disassemble" request data matches its verb and encoding.
-    # * Decode each "disassemble" request information as needed in preparation for making requests.
-    # * Parse and save as ordered each "disassemble" raw response and assert in comparison with the parsed response.
-    # * Infer each SDK method from "disassemble"'s requests and run it live saving its response.
+    # The following step probably cannot be resurrected sensibly. For now, just a console.log()...
+    Then Sanity check that each "disassemble" request data matches its verb and encoding.
+    # The next step should only be added when the client cannot use the b64 encoded request as is:
+    * Base64 decode each "disassemble" query info to prepare for making an http request.
+    * Sanity check the "disassemble" response information for b64 encoding, status code, and error state.
+    # The next step is the only one that should need customization:
+    * Infer each SDK method from the "disassemble" route and call the method live saving its response.
     # Then Assert that each live "disassemble" response is essentially identical to the parsed fixture response.
