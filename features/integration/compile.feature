@@ -20,6 +20,7 @@ Feature: Compile
       | teal                          | program                           |
       | programs/one.teal             | programs/one.teal.tok             |
       | programs/zero.teal            | programs/zero.teal.tok            |
+      | programs/eight.teal           | programs/eight.teal.tok           |
       | programs/abi_method_call.teal | programs/abi_method_call.teal.tok |
 
   @compile.sourcemap
