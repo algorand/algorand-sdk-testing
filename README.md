@@ -63,7 +63,7 @@ These reside in the [integration features directory](features/integration)
 | @auction               | Encode and decode bids for an auction.                                                 |
 | @c2c                   | Test Contract to Contract invocations and injestion.                                   |
 | @compile               | Test the algod compile endpoint.                                                       |
-| @compile.sourcemap   | Test the algod compile endpoint returns a valid Source Map                               |
+| @compile.sourcemap     | Test the algod compile endpoint returns a valid Source Map                             |
 | @dryrun                | Test the algod dryrun endpoint.                                                        |
 | @dryrun.testing        | Test the testing harness that relies on dryrun endpoint. Python only.                  |
 | @kmd                   | Test the kmd REST endpoints.                                                           |
