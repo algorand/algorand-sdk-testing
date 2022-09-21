@@ -12,7 +12,7 @@ Feature: Applications
       # This should create a new, random account and save the public/private key for future steps to use.
       Given I create a new transient account and fund it with 100000000 microalgos.
       # Application create with extra pages should succeed with expected message.
-      And I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/big_app_program.teal.tok", clear-program "programs/big_app_program.teal.tok", global-bytes <global-bytes>, global-ints 0, local-bytes <local-bytes>, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 3, boxes ""
+      And I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/big_app_program.teal.tok", clear-program "programs/four.teal.tok", global-bytes <global-bytes>, global-ints 0, local-bytes <local-bytes>, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 3, boxes ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "logic eval error: pc=704 dynamic cost budget exceeded, executing intc_1: local program cost was 700. Details: pc=704, opcodes=intc_1 // 1".
 
       # Create application
