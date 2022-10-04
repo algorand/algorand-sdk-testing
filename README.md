@@ -22,15 +22,17 @@ These reside in the [unit features directory](features/unit)
 | @unit.abijson                     | ABI types and method encoding/decoding unit tests.    |
 | @unit.algod                       | Algod REST API unit tests.                            |
 | @unit.algod.ledger_refactoring    |                                                       |
+| @unit.algod.blockhash            | Algod REST API unit tests.                            |
 | @unit.applications                | Application endpoints added to Algod and Indexer.     |
 | @unit.atomic_transaction_composer | ABI / atomic transaction construction unit tests.     |
-| @unit.atc_method_args              | Test that algod's Atomic Transaction Composer assserts that the same number of arguments given as expected |
-| @unit.c2c                         | Test for contract to contract calling    |
+| @unit.atc_method_args             | Test that algod's Atomic Transaction Composer assserts that the same number of arguments given as expected |
+| @unit.c2c                         | Test for contract to contract calling                 |
 | @unit.dryrun                      | Dryrun endpoint added to Algod.                       |
 | @unit.dryrun.trace.application    | DryrunResult formatting tests.                        |
 | @unit.feetest                     | Fee transaction encoding tests.                       |
 | @unit.indexer                     | Indexer REST API unit tests.                          |
-| @unit.indexer.ledger_refactoring   | Assertions for indexer after ledger refactoring.  |
+| @unit.indexer.blocks              | Indexer REST API block path test.                     | 
+| @unit.indexer.ledger_refactoring  | Assertions for indexer after ledger refactoring.      |
 | @unit.indexer.logs                | Application logs endpoints added to Indexer.          |
 | @unit.indexer.rekey               | Rekey endpoints added to Algod and Indexer            |
 | @unit.offline                     | The first unit tests we wrote for cucumber.           |

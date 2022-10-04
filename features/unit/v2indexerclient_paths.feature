@@ -66,24 +66,6 @@ Feature: Indexer Client v2 Paths
       | path         | round |
       | /v2/blocks/3 | 3     |
 
-  @unit.indexer.blocks
-  Scenario Outline: LookupBlock path 2
-    When we make a Lookup Block call against round <round> and header <header>
-    Then expect the path used to be "<path>"
-    Examples:
-      | path                           | round | header |
-      | /v2/blocks/3                   | 3     |        |
-      | /v2/blocks/3&header-only=false | 3     | false  |
-      | /v2/blocks/3&header-only=true  | 3     | true   |
-
-  @unit.indexer.hash
-  Scenario Outline: LookupBlockHash path
-    When we make a Lookup Block Hash call against round <round>
-    Then expect the path used to be "<path>"
-    Examples:
-      | path                           | round |
-      | /v2/blocks/3/hash              | 3     |
-
   @unit.indexer
   Scenario Outline: LookupAccountByID path
     When we make a Lookup Account by ID call against account "<account>" with round <round>
@@ -295,3 +277,13 @@ Feature: Indexer Client v2 Paths
     Examples:
       | path                         | creator |
       | /v2/applications?creator=7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q     |
+
+  @unit.indexer.blocks
+  Scenario Outline: LookupBlock path 2
+    When we make a Lookup Block call against round <round> and header <header>
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                           | round | header |
+      | /v2/blocks/3                   | 3     |        |
+      | /v2/blocks/3&header-only=false | 3     | false  |
+      | /v2/blocks/3&header-only=true  | 3     | true   |

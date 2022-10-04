@@ -95,7 +95,7 @@ Feature: Algod REST API v2 Paths
       | path                              | account | application-id |
       | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/applications/123 | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU     | 123            |
 
-  @unit.paths.stateproof
+  @unit.stateproof.paths
   Scenario Outline: GetTransactionProof
     When we make a GetTransactionProof call for round <round> txid "<txid>" and hashtype "<hashtype>"
     Then expect the path used to be "<path>"
@@ -120,3 +120,10 @@ Feature: Algod REST API v2 Paths
       | path                | round |
       | /v2/stateproofs/123 | 123   |
 
+  @unit.algod.blockhash
+  Scenario Outline: LookupBlockHash path
+    When we make a Lookup Block Hash call against round <round>
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                           | round |
+      | /v2/blocks/3/hash              | 3     |
