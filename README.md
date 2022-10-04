@@ -41,7 +41,9 @@ These reside in the [unit features directory](features/unit)
 | @unit.responses.messagepack       | REST Client MessagePack Unit Tests                    |
 | @unit.responses.messagepack.231   | REST Client MessagePack Unit Tests for Indexer 2.3.1+ |
 | @unit.responses.participationupdates | REST Client Response serialization test for ParticipationUpdates|
-| @unit.sourcemap                    | Test the sourcemap endpoint.                        |
+| @unit.responses.blockhash         | REST Client Unit test for algod block hash endpoint   |
+| @unit.responses.block.headeronly  | REST Client Unit test for Indexer header-only flag.   |
+| @unit.sourcemap                   |  Test the sourcemap endpoint.                         |
 | @unit.stateproof.responses        | REST Client Response Tests for State Proof.           |
 | @unit.stateproof.responses.msgp   | REST Client MessagePack Tests for State Proofs.       |
 | @unit.stateproof.paths            | REST Client Unit Tests for State Proof feature.       |
