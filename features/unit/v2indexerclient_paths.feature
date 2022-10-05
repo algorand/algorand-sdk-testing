@@ -280,7 +280,7 @@ Feature: Indexer Client v2 Paths
 
   @unit.indexer.blocks
   Scenario Outline: LookupBlock path 2
-    When we make a Lookup Block call against round <round> and header <header>
+    When we make a Lookup Block call against round <round> and header "<header>"
     Then expect the path used to be "<path>"
     Examples:
       | path                           | round | header |
