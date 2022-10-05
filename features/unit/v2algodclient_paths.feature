@@ -95,7 +95,7 @@ Feature: Algod REST API v2 Paths
       | path                              | account | application-id |
       | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/applications/123 | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU     | 123            |
 
-  @unit.stateproof.paths
+  @unit.paths.stateproof
   Scenario Outline: GetTransactionProof
     When we make a GetTransactionProof call for round <round> txid "<txid>" and hashtype "<hashtype>"
     Then expect the path used to be "<path>"
