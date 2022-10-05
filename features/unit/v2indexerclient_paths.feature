@@ -285,5 +285,4 @@ Feature: Indexer Client v2 Paths
     Examples:
       | path                           | round | header |
       | /v2/blocks/3                   | 3     |        |
-      | /v2/blocks/3&header-only=false | 3     | false  |
       | /v2/blocks/3&header-only=true  | 3     | true   |
