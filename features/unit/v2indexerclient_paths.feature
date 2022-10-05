@@ -278,7 +278,7 @@ Feature: Indexer Client v2 Paths
       | path                         | creator |
       | /v2/applications?creator=7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q     |
 
-  @unit.indexer.blocks
+  @unit.blocksummary
   Scenario Outline: LookupBlock path 2
     When we make a Lookup Block call against round <round> and header "<header>"
     Then expect the path used to be "<path>"

@@ -185,12 +185,12 @@ Feature: REST Client Responses
       | jsonfile                                        | response-folder     | status | client  | endpoint    | 
       | indexer_block_ParticipationupdatesResponse.json | generated_responses | 200    | indexer | lookupBlock |
 
-    @unit.responses.blockhash
+    @unit.responses.blocksummary
     Examples:
       | jsonfile                   | response-folder             | status | client | endpoint     | 
       | v2_algod_GetBlockHash.json | v2algodclient_responsejsons | 200    | algod  | GetBlockHash |
 
-    @unit.responses.block.headeronly
+    @unit.responses.blocksummary
     Examples:
       | jsonfile                                | response-folder               | status | client  | endpoint    | 
       | indexer_v2_lookupBlock_header_only.json | v2indexerclient_responsejsons | 200    | indexer | lookupBlock |

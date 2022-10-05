@@ -22,7 +22,7 @@ These reside in the [unit features directory](features/unit)
 | @unit.abijson                     | ABI types and method encoding/decoding unit tests.    |
 | @unit.algod                       | Algod REST API unit tests.                            |
 | @unit.algod.ledger_refactoring    |                                                       |
-| @unit.algod.blockhash            | Algod REST API unit tests.                            |
+| @unit.blocksummary                | Algod / Indexer block REST API unit tests.            |
 | @unit.applications                | Application endpoints added to Algod and Indexer.     |
 | @unit.atomic_transaction_composer | ABI / atomic transaction construction unit tests.     |
 | @unit.atc_method_args             | Test that algod's Atomic Transaction Composer assserts that the same number of arguments given as expected |
@@ -31,7 +31,6 @@ These reside in the [unit features directory](features/unit)
 | @unit.dryrun.trace.application    | DryrunResult formatting tests.                        |
 | @unit.feetest                     | Fee transaction encoding tests.                       |
 | @unit.indexer                     | Indexer REST API unit tests.                          |
-| @unit.indexer.blocks              | Indexer REST API block path test.                     | 
 | @unit.indexer.ledger_refactoring  | Assertions for indexer after ledger refactoring.      |
 | @unit.indexer.logs                | Application logs endpoints added to Indexer.          |
 | @unit.indexer.rekey               | Rekey endpoints added to Algod and Indexer            |
@@ -43,8 +42,7 @@ These reside in the [unit features directory](features/unit)
 | @unit.responses.messagepack       | REST Client MessagePack Unit Tests                    |
 | @unit.responses.messagepack.231   | REST Client MessagePack Unit Tests for Indexer 2.3.1+ |
 | @unit.responses.participationupdates | REST Client Response serialization test for ParticipationUpdates|
-| @unit.responses.blockhash         | REST Client Unit test for algod block hash endpoint   |
-| @unit.responses.block.headeronly  | REST Client Unit test for Indexer header-only flag.   |
+| @unit.responses.blocksummary      | REST Client updates for indexer/algod block endpoints.|
 | @unit.sourcemap                   |  Test the sourcemap endpoint.                         |
 | @unit.stateproof.responses        | REST Client Response Tests for State Proof.           |
 | @unit.stateproof.responses.msgp   | REST Client MessagePack Tests for State Proofs.       |
