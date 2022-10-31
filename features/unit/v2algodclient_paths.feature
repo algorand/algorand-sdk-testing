@@ -140,3 +140,10 @@ Feature: Algod REST API v2 Paths
       | path                | round |
       | /v2/stateproofs/123 | 123   |
 
+  @unit.blocksummary
+  Scenario Outline: LookupBlockHash path
+    When we make a Lookup Block Hash call against round <round>
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                           | round |
+      | /v2/blocks/3/hash              | 3     |

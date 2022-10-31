@@ -183,7 +183,6 @@ Feature: Applications
 
       # full check confirmed by both algod and indexer
       Then according to "algod", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:bmFtZQ==:MTE0NTE0".
-      And according to "algod", with 2 being the parameter that limits results, the current application should have 2 boxes.
       And according to "algod", with 6 being the parameter that limits results, the current application should have 4 boxes.
 
       And I sleep for 500 milliseconds for indexer to digest things down.
