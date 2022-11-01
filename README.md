@@ -60,12 +60,13 @@ These reside in the [integration features directory](features/integration)
 | ---------------------- | -------------------------------------------------------------------------------------- |
 | @abi                   | Test the Application Binary Interface (ABI) with atomic txn composition and execution. |
 | @algod                 | General tests against algod REST endpoints.                                            |
+| @applications.boxes    | Test application boxes and box references functionality.                               |
 | @applications.verified | Submit all types of application transactions and verify account state.                 |
 | @assets                | Submit all types of asset transactions.                                                |
 | @auction               | Encode and decode bids for an auction.                                                 |
 | @c2c                   | Test Contract to Contract invocations and injestion.                                   |
 | @compile               | Test the algod compile endpoint.                                                       |
-| @compile.sourcemap   | Test the algod compile endpoint returns a valid Source Map  |
+| @compile.sourcemap     | Test the algod compile endpoint returns a valid Source Map                             |
 | @dryrun                | Test the algod dryrun endpoint.                                                        |
 | @dryrun.testing        | Test the testing harness that relies on dryrun endpoint. Python only.                  |
 | @kmd                   | Test the kmd REST endpoints.                                                           |

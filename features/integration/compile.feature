@@ -20,6 +20,7 @@ Feature: Compile
       | teal                          | program                           |
       | programs/one.teal             | programs/one.teal.tok             |
       | programs/zero.teal            | programs/zero.teal.tok            |
+      | programs/eight.teal           | programs/eight.teal.tok           |
       | programs/abi_method_call.teal | programs/abi_method_call.teal.tok |
 
   @compile.sourcemap
@@ -27,5 +28,5 @@ Feature: Compile
     When I compile a teal program "<teal>" with mapping enabled
     Then the resulting source map is the same as the json "<sourcemap>"
     Examples:
-      | teal                | sourcemap                                   |
-      | programs/quine.teal | v2algodclient_responsejsons/sourcemap.json  |
+      | teal                | sourcemap                                  |
+      | programs/quine.teal | v2algodclient_responsejsons/sourcemap.json |

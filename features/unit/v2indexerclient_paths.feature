@@ -183,6 +183,31 @@ Feature: Indexer Client v2 Paths
       | path                  | application-id |
       | /v2/applications/1234 | 1234           |
 
+  @unit.applications.boxes
+  Scenario Outline: LookupApplicationBoxByIDandName path
+    When we make a LookupApplicationBoxByIDandName call with applicationID <application-id> with encoded box name "<encoded-box-name>"
+    Then expect the path used to be "<path>"
+
+    Examples:
+      | path                                                | application-id | encoded-box-name     |
+      | /v2/applications/1234/box?name=b64%3AaGVsbG8%3D     | 1234           | b64:aGVsbG8=         |
+      | /v2/applications/1234/box?name=b64%3A%2Fw%3D%3D     | 1234           | b64:/w==             |
+      | /v2/applications/1234/box?name=b64%3A8J%2BSqQ%3D%3D | 1234           | b64:8J+SqQ==         |
+      | /v2/applications/1234/box?name=b64%3AYS96           | 1234           | b64:YS96             |
+
+  @unit.applications.boxes
+  Scenario Outline: SearchForApplicationBoxes path
+    When we make a SearchForApplicationBoxes call with applicationID <application-id> with max <max> nextToken "<nextToken>"
+    Then expect the path used to be "<path>"
+
+    Examples:
+      | path                                                            | application-id | max | nextToken        |
+      | /v2/applications/1234/boxes                                     | 1234           | 0   |                  |
+      | /v2/applications/1234/boxes?limit=2                             | 1234           | 2   |                  |
+      | /v2/applications/1234/boxes?limit=2&next=token                  | 1234           | 2   | token            |
+      | /v2/applications/1234/boxes?limit=2&next=b64%3AdG9rZW4%3D       | 1234           | 2   | b64:dG9rZW4=     |
+      | /v2/applications/1234/boxes?limit=2&next=b64%3AZ29vZEJveA%3D%3D | 1234           | 2   | b64:Z29vZEJveA== |
+
   @unit.indexer.logs
   Scenario Outline: LookupApplicationLogsByID path
     When we make a LookupApplicationLogsByID call with applicationID <application-id> limit <limit> minRound <minRound> maxRound <maxRound> nextToken "<nextToken>" sender "<senderAddr>" and txID "<txid>"
