@@ -1,7 +1,7 @@
 @rekey_v1
 Feature: Sending transactions
   Background:
-    Given an algod client
+    Given an algod v2 client connected to "localhost" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     And a kmd client
     And wallet information
 
@@ -12,19 +12,19 @@ Feature: Sending transactions
     And I add a rekeyTo field with address "<rekeyTo>"
     And I sign the transaction with the private key
     And I send the transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     Given default transaction with parameters <amt> "<note>" and rekeying key
     And mnemonic for private key "<mn>"
     And I sign the transaction with the private key
     And I send the transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     Given default transaction with parameters <amt> "<note>" and rekeying key
     When I get the private key
     And I add a rekeyTo field with the private key algorand address
     And mnemonic for private key "<mn>"
     And I sign the transaction with the private key
     And I send the transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
 
     Examples:
       | amt | note         | rekeyTo                                                    | mn                                                                                                                                                               |

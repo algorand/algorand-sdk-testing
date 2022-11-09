@@ -29,7 +29,7 @@ Feature: KMD
     Then the key should not be in the wallet
 
   Scenario: Make account and get info
-    Given an algod client
+    Given an algod v2 client connected to "localhost" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     When I generate a key using kmd
     Then I can get account information
 
@@ -39,7 +39,7 @@ Feature: KMD
     Then the private key should be equal to the exported private key
 
   Scenario Outline: Sign both ways
-    Given an algod client
+    Given an algod v2 client connected to "localhost" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     And default transaction with parameters <amt> "<note>"
     When I get the private key
     And I sign the transaction with the private key
@@ -65,7 +65,7 @@ Feature: KMD
       | DN7MBMCL5JQ3PFUQS7TMX5AH4EEKOBJVDUF4TCV6WERATKFLQF4MQUPZTA BFRTECKTOOE7A5LHCF3TTEOH2A7BW46IYT2SX5VP6ANKEXHZYJY77SJTVM 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU |
 
   Scenario Outline: Sign multisig both ways
-    Given an algod client
+    Given an algod v2 client connected to "localhost" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     And default multisig transaction with parameters <amt> "<note>"
     When I sign the multisig transaction with kmd
     And I get the private key
