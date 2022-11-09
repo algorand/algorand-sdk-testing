@@ -1,7 +1,7 @@
 @assets
 Feature: Assets
   Background:
-    Given an algod client
+    Given an algod v2 client connected to "localhost" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     And a kmd client
     And wallet information
     And asset test fixture
@@ -10,7 +10,7 @@ Feature: Assets
     Given default asset creation transaction with total issuance <total>
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I update the asset index
     And I get the asset info
     Then the asset info should match the expected asset info
@@ -23,14 +23,14 @@ Feature: Assets
     Given default asset creation transaction with total issuance <total>
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I update the asset index
     And I get the asset info
     Then the asset info should match the expected asset info
     When I create a no-managers asset reconfigure transaction
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I get the asset info
     Then the asset info should match the expected asset info
 
@@ -42,13 +42,13 @@ Feature: Assets
     Given default asset creation transaction with total issuance <total>
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I update the asset index
     And I get the asset info
     And I create an asset destroy transaction
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     And I should be unable to get the asset info
 
     Examples:
@@ -59,16 +59,16 @@ Feature: Assets
     Given default asset creation transaction with total issuance <total>
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I update the asset index
     And I create a transaction for a second account, signalling asset acceptance
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I create a transaction transferring <amount> assets from creator to a second account
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     And the creator should have <expected balance> assets remaining
 
     Examples:
@@ -79,7 +79,7 @@ Feature: Assets
     Given default asset creation transaction with total issuance <total>
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I update the asset index
     When I create a transaction transferring <amount> assets from creator to a second account
     And I sign the transaction with kmd
@@ -95,21 +95,21 @@ Feature: Assets
     Given default asset creation transaction with total issuance <total>
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I update the asset index
     And I create a transaction for a second account, signalling asset acceptance
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I create a transaction transferring <amount> assets from creator to a second account
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     And the creator should have <expected balance> assets remaining
     When I create a freeze transaction targeting the second account
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I create a transaction transferring <amount> assets from creator to a second account
     And I sign the transaction with kmd
     And I send the bogus kmd-signed transaction
@@ -124,11 +124,11 @@ Feature: Assets
     When I create an un-freeze transaction targeting the second account
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I create a transaction transferring <amount> assets from a second account to creator
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     And the creator should have <final expected balance> assets remaining
 
     Examples:
@@ -139,12 +139,12 @@ Feature: Assets
     Given default-frozen asset creation transaction with total issuance <total>
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I update the asset index
     When I create a transaction for a second account, signalling asset acceptance
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I create a transaction transferring <amount> assets from creator to a second account
     And I send the bogus kmd-signed transaction
     Then the transaction should not go through
@@ -152,11 +152,11 @@ Feature: Assets
     When I create an un-freeze transaction targeting the second account
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I create a transaction transferring <amount> assets from creator to a second account
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     And the creator should have <final expected balance> assets remaining
 
     Examples:
@@ -167,20 +167,20 @@ Feature: Assets
     Given default asset creation transaction with total issuance <total>
     When I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I update the asset index
     And I create a transaction for a second account, signalling asset acceptance
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I create a transaction transferring <amount> assets from creator to a second account
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     When I create a transaction revoking <amount> assets from a second account to creator
     And I sign the transaction with kmd
     And I send the kmd-signed transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
     And the creator should have <expected balance> assets remaining
 
     Examples:
