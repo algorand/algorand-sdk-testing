@@ -1,6 +1,6 @@
 Feature: Sending transactions
   Background:
-    Given an algod client
+    Given an algod v2 client connected to "localhost" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     And a kmd client
     And wallet information
 
@@ -10,7 +10,7 @@ Feature: Sending transactions
     When I get the private key
     And I sign the transaction with the private key
     And I send the transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
 
     Examples:
       | amt     | note         |
@@ -36,7 +36,7 @@ Feature: Sending transactions
     When I get the private key
     And I sign the transaction with the private key
     And I send the transaction
-    Then the transaction should go through
+    Then I wait for the transaction to be confirmed.
 
     Examples:
       | type             |

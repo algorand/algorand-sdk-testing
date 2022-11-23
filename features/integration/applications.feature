@@ -1,7 +1,6 @@
 Feature: Applications
    Background:
-      Given an algod client
-      And a kmd client
+      Given a kmd client
       And wallet information
       And an algod v2 client connected to "localhost" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       And an indexer v2 client
