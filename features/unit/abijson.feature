@@ -16,6 +16,7 @@ Feature: AbiJson
       | add(uint32,uint16)uint32                         | addMethodUint16.json     | abi_responsejsons |
       | referenceTest(account,application,asset)uint8[3] | referenceTestMethod.json | abi_responsejsons |
       | txnTest(txn,pay,keyreg,acfg,axfer,afrz,appl)bool | txnTestMethod.json       | abi_responsejsons |
+      | nonsense((uint64,address)[0])(uint64,address)    | nonsense.json            | abi_responsejsons |
 
   @unit.abijson
   Scenario Outline: Create and serialize Method object into json
