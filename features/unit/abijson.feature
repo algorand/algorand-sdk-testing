@@ -8,14 +8,15 @@ Feature: AbiJson
     Then the produced json should equal "<jsonfile>" loaded from "<directory>"
 
     Examples:
-      | methodsig                                        | jsonfile                 | directory         |
-      | add(uint32,uint32)uint32                         | addMethod.json           | abi_responsejsons |
-      | add(uint32,uint32)void                           | addMethodVoid.json       | abi_responsejsons |
-      | add()uint32                                      | addMethodNoArgs.json     | abi_responsejsons |
-      | add((uint32,uint32))(uint32,uint32)              | addMethodTuple.json      | abi_responsejsons |
-      | add(uint32,uint16)uint32                         | addMethodUint16.json     | abi_responsejsons |
-      | referenceTest(account,application,asset)uint8[3] | referenceTestMethod.json | abi_responsejsons |
-      | txnTest(txn,pay,keyreg,acfg,axfer,afrz,appl)bool | txnTestMethod.json       | abi_responsejsons |
+      | methodsig                                                  | jsonfile                   | directory         |
+      | add(uint32,uint32)uint32                                   | addMethod.json             | abi_responsejsons |
+      | add(uint32,uint32)void                                     | addMethodVoid.json         | abi_responsejsons |
+      | add()uint32                                                | addMethodNoArgs.json       | abi_responsejsons |
+      | add((uint32,uint32))(uint32,uint32)                        | addMethodTuple.json        | abi_responsejsons |
+      | add(uint32,uint16)uint32                                   | addMethodUint16.json       | abi_responsejsons |
+      | referenceTest(account,application,asset)uint8[3]           | referenceTestMethod.json   | abi_responsejsons |
+      | txnTest(txn,pay,keyreg,acfg,axfer,afrz,appl)bool           | txnTestMethod.json         | abi_responsejsons |
+      | zeroLenStaticArrayArg((uint64,address)[0])(uint64,address) | zeroLenStaticArrayArg.json | abi_responsejsons |
 
   @unit.abijson
   Scenario Outline: Create and serialize Method object into json
