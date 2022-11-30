@@ -35,5 +35,5 @@ Feature: Compile
   Scenario Outline: Algod disassembles valid TEAL bytecode to source code
     Then Disassembly of "<bytecodeFilename>" matches "<sourceFilename>"
     Examples:
-      | bytecodeFilename                    | sourceFilename             |
-      | programs/eight.teal.tok             | programs/eight.teal        |
+      | bytecodeFilename                    | sourceFilename                          |
+      | programs/eight.teal.tok             | programs/eight_disassembled.teal        |
