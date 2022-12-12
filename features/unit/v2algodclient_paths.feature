@@ -147,3 +147,11 @@ Feature: Algod REST API v2 Paths
     Examples:
       | path                           | round |
       | /v2/blocks/3/hash              | 3     |
+
+  @unit.statedelta
+  Scenario Outline: LookupBlockHash path
+    When we make a GetLedgerStateDelta call against round <round>
+    Then expect the path used to be "<path>"
+    Examples:
+      | path         | round |
+      | /v2/deltas/3 | 3     |

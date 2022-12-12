@@ -1,0 +1,367 @@
+{
+  "accts": {
+    "accounts": [
+      {
+        "account-data": {
+          "address": "7777777777777777777777777777777777777777777777777774MSJUVU",
+          "amount": 2030818314,
+          "amount-without-pending-rewards": 1974950684,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 55867630,
+          "reward-base": 0,
+          "rewards": 0,
+          "round": 26091000,
+          "status": "Not Participating",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "7777777777777777777777777777777777777777777777777774MSJUVU"
+      },
+      {
+        "account-data": {
+          "address": "UKSBQH6FOHPZMEQ7YPDSD3AV54XSXRFG744W6WF4QUFEF5SLXVIL7SQ4GM",
+          "amount": 229200,
+          "amount-without-pending-rewards": 229200,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 27521,
+          "rewards": 0,
+          "round": 26091000,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "UKSBQH6FOHPZMEQ7YPDSD3AV54XSXRFG744W6WF4QUFEF5SLXVIL7SQ4GM"
+      },
+      {
+        "account-data": {
+          "address": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
+          "amount": 334928765078,
+          "amount-without-pending-rewards": 325711211590,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 9217553488,
+          "reward-base": 0,
+          "rewards": 0,
+          "round": 26091000,
+          "status": "Not Participating",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE"
+      },
+      {
+        "account-data": {
+          "address": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
+          "amount": 53397589,
+          "amount-without-pending-rewards": 53397589,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 27521,
+          "rewards": 61854,
+          "round": 26091000,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI"
+      },
+      {
+        "account-data": {
+          "address": "IKDRMFBLWCMSXVK3SEVFWZ2WYR5FGYNLOR5LQ6Z3XVSFX7AAYVSKS7HFAI",
+          "amount": 12958000,
+          "amount-without-pending-rewards": 12958000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 29,
+            "num-uint": 1
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 1578500,
+          "pending-rewards": 0,
+          "reward-base": 27521,
+          "rewards": 0,
+          "round": 26091000,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "IKDRMFBLWCMSXVK3SEVFWZ2WYR5FGYNLOR5LQ6Z3XVSFX7AAYVSKS7HFAI"
+      },
+      {
+        "account-data": {
+          "address": "BX7DE4WGKPMZHR5ASXRWF2SQU5RNRWM3IXUNJ5T5LZMLVUYS3VCWI426NA",
+          "amount": 13541625,
+          "amount-without-pending-rewards": 13541625,
+          "apps-local-state": [],
+          "apps-total-extra-pages": 27,
+          "apps-total-schema": {
+            "num-byte-slice": 64,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 6000000,
+          "pending-rewards": 0,
+          "reward-base": 27521,
+          "rewards": 0,
+          "round": 26091000,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "BX7DE4WGKPMZHR5ASXRWF2SQU5RNRWM3IXUNJ5T5LZMLVUYS3VCWI426NA"
+      },
+      {
+        "account-data": {
+          "address": "ISTJS27XQLNY2G2ZWNOPDEAKLYWMNCRXKMPR4YYJVT4ERML47GV2FTNDJ4",
+          "amount": 200000,
+          "amount-without-pending-rewards": 200000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 27521,
+          "rewards": 0,
+          "round": 26091000,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "ISTJS27XQLNY2G2ZWNOPDEAKLYWMNCRXKMPR4YYJVT4ERML47GV2FTNDJ4"
+      }
+    ],
+    "apps": [
+      {
+        "address": "KCVW6CW2ZZGHDF7I4MIF32O4NE66LKCCX46GDC7SDFOFZWEWRXPOEBU4EA",
+        "app-deleted": false,
+        "app-index": 100233411,
+        "app-local-state": {
+          "id": 100233411,
+          "key-value": [
+            {
+              "key": "AA==",
+              "value": {
+                "bytes": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+                "type": 1,
+                "uint": 0
+              }
+            }
+          ],
+          "schema": {
+            "num-byte-slice": 1,
+            "num-uint": 0
+          }
+        },
+        "app-local-state-deleted": false,
+        "app-params": {
+          "approval-program": "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",
+          "clear-state-program": "Bg==",
+          "creator": "KCVW6CW2ZZGHDF7I4MIF32O4NE66LKCCX46GDC7SDFOFZWEWRXPOEBU4EA",
+          "extra-program-pages": 3,
+          "global-state": [
+            {
+              "key": "AA==",
+              "value": {
+                "bytes": "UKtvCtrOTHGX6OMQXencaT3lqEK/PGGL8hlcXNiWjd4AAAAAA7ZXTQAAAAAAAAAtAAAAAAAST4AAAAAAABGMMAAAAAAF+XDDAAAAAHc1lAAN/jJyxlPZk8egleNi6lCnYtjZm0Xo1PZ9Xli60xLdRQ3+MnLGU9mTx6CV42LqUA==",
+                "type": 1,
+                "uint": 0
+              }
+            },
+            {
+              "key": "",
+              "value": {
+                "bytes": "AAAAAAAAAAcAAAAAAY4d+AAAAAAF+XDc",
+                "type": 1,
+                "uint": 0
+              }
+            },
+            {
+              "key": "Ag==",
+              "value": {
+                "bytes": "ZDUAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAoAAAAAAAAAMgAAAAAAAAAyAAAAAACYloAAAAAAYyqHLAGUvbtq1E5lvRMiXTybk6DQzULcXRGDoTVLQNpgo77yIQHqZuEmpQNRB85Ax1C2KHeqOHkG06LmjYdUJeQ6CBlc/wAAAA==",
+                "type": 1,
+                "uint": 0
+              }
+            },
+            {
+              "key": "Aw==",
+              "value": {
+                "bytes": "AAAB9WIAAAABFgh8gwAAAABjkLqZAAAA576eiN8AAAAAAAAAAAAAAAAFttokOwAAAAAF+XDcDf4ycsZT2ZPHoJXjYupQp2LY2ZtF6NT2fV5YutMS3UUN/jJyxlPZk8egleNi6lCnYtjZm0Xo1PZ9Xli60xLdRQ3+MnLGU9mTxw==",
+                "type": 1,
+                "uint": 0
+              }
+            },
+            {
+              "key": "BA==",
+              "value": {
+                "bytes": "oJXjYupQp2LY2ZtF6NT2fV5YutMS3UUN/jJyxlPZk8egleNi6lCnYtjZm0Xo1PZ9Xli60xLdRQ3+MnLGU9mTx6CV42LqUKdi2NmbRejU9n1eWLrTEt1FAAAAAAAAAAAAAAAAAANkNQAAAAAAAAAAAAAAAAAAAAUAAAAAAAAACg==",
+                "type": 1,
+                "uint": 0
+              }
+            },
+            {
+              "key": "BQ==",
+              "value": {
+                "bytes": "AAAAAAAAADIAAAAAAAAAMgAAAAAAmJaAAAAAAGMqhywBlL27atROZb0TIl08m5Og0M1C3F0Rg6E1S0DaYKO+8iEB6mbhJqUDUQfOQMdQtih3qjh5BtOi5o2HVCXkOggZXP8AAAAAAAAABQAAAAAAAAAKAAAAAAAAADIAAAAAAA==",
+                "type": 1,
+                "uint": 0
+              }
+            },
+            {
+              "key": "AQ==",
+              "value": {
+                "bytes": "p2LY2ZtF6NT2fV5YutMS3UUN/jJyxlPZk8egleNi6lCnYtjZm0Xo1PZ9Xli60xLdRQ3+MnLGU9mTx6CV42LqUKdi2NmbRejU9n1eWLrTEt1FDf4ycsZT2ZPHoJXjYupQp2LY2ZtF6NT2fV5YutMS3UUAAAAAAAAAAAAAAAAAAw==",
+                "type": 1,
+                "uint": 0
+              }
+            },
+            {
+              "key": "Bg==",
+              "value": {
+                "bytes": "AAAyAZS9u2rUTmW9EyJdPJuToNDNQtxdEYOhNUtA2mCjvvIhAepm4SalA1EHzkDHULYod6o4eQbTouaNh1Ql5DoIGVz/AAAAAAAB9WIAAAABFgh8gw==",
+                "type": 1,
+                "uint": 0
+              }
+            }
+          ],
+          "global-state-schema": {
+            "num-byte-slice": 8,
+            "num-uint": 0
+          },
+          "local-state-schema": {
+            "num-byte-slice": 1,
+            "num-uint": 0
+          }
+        }
+      }
+    ],
+    "assets": [
+      {
+        "address": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
+        "asset-deleted": false,
+        "asset-holding": {
+          "amount": 4404225818558038,
+          "asset-id": 41468020,
+          "is-frozen": false
+        },
+        "asset-holding-deleted": false,
+        "asset-index": 41468020,
+        "asset-params": {
+          "clawback": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
+          "creator": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
+          "decimals": 6,
+          "default-frozen": false,
+          "freeze": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
+          "manager": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
+          "name": "PLANET Recycle Bin",
+          "name-b64": "UExBTkVUIFJlY3ljbGUgQmlu",
+          "reserve": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
+          "total": 4500000000000000,
+          "unit-name": "PlanetsR",
+          "unit-name-b64": "UGxhbmV0c1I=",
+          "url": "https://www.planetwatch.io/",
+          "url-b64": "aHR0cHM6Ly93d3cucGxhbmV0d2F0Y2guaW8v"
+        }
+      },
+      {
+        "address": "GKHJNRK3CJ5ESJWXMRSCNSB43KOWQJAZQGLL6FS3HPU4RI2KDNAFSTWE4U",
+        "asset-deleted": false,
+        "asset-holding": {
+          "amount": 81751775561,
+          "asset-id": 41468020,
+          "is-frozen": false
+        },
+        "asset-holding-deleted": false,
+        "asset-index": 41468020
+      },
+      {
+        "address": "IKDRMFBLWCMSXVK3SEVFWZ2WYR5FGYNLOR5LQ6Z3XVSFX7AAYVSKS7HFAI",
+        "asset-deleted": false,
+        "asset-holding": {
+          "amount": 0,
+          "asset-id": 147516314,
+          "is-frozen": false
+        },
+        "asset-holding-deleted": false,
+        "asset-index": 147516314
+      },
+      {
+        "address": "ISTJS27XQLNY2G2ZWNOPDEAKLYWMNCRXKMPR4YYJVT4ERML47GV2FTNDJ4",
+        "asset-deleted": false,
+        "asset-holding": {
+          "amount": 0,
+          "asset-id": 147516326,
+          "is-frozen": false
+        },
+        "asset-holding-deleted": false,
+        "asset-index": 147516326
+      }
+    ]
+  },
+  "kv-mods": null,
+  "modified-apps": null,
+  "modified-assets": null,
+  "prev-timestamp": 1670429337,
+  "totals": {
+    "not-participating": 339875857157,
+    "offline": 2544597461249363,
+    "online": 7580062662993480,
+    "rewards-level": 27521
+  },
+  "tx-leases": null
+}

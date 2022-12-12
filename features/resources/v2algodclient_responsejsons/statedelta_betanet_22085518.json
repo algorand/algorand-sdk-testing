@@ -1,0 +1,1440 @@
+{
+  "accts": {
+    "accounts": [
+      {
+        "account-data": {
+          "address": "7777777777777777777777777777777777777777777777777774MSJUVU",
+          "amount": 3846899481,
+          "amount-without-pending-rewards": 3798459111,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 48440370,
+          "reward-base": 0,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Not Participating",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "7777777777777777777777777777777777777777777777777774MSJUVU"
+      },
+      {
+        "account-data": {
+          "address": "TEMFLLX3MYP533ZSVGD6LGKGMGLGVA6KPMK67W4QWBC64RKBR6IDEPINDA",
+          "amount": 89597001,
+          "amount-without-pending-rewards": 89597001,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "TEMFLLX3MYP533ZSVGD6LGKGMGLGVA6KPMK67W4QWBC64RKBR6IDEPINDA"
+      },
+      {
+        "account-data": {
+          "address": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
+          "amount": 1357799888809,
+          "amount-without-pending-rewards": 1340698410404,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 17101478405,
+          "reward-base": 0,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Not Participating",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE"
+      },
+      {
+        "account-data": {
+          "address": "NWEGGPZBAUDMPD5A2LP3IYDCXPKGJUIRILRYEMJETTSMV5WO6CSMEAL5NU",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "NWEGGPZBAUDMPD5A2LP3IYDCXPKGJUIRILRYEMJETTSMV5WO6CSMEAL5NU"
+      },
+      {
+        "account-data": {
+          "address": "K5FBUPVCO3NOKVU67J7COAGYRZVF6JPXWOAOZ2V7NGK3WMIBMH3BL6IGMY",
+          "amount": 89595999,
+          "amount-without-pending-rewards": 89595999,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "K5FBUPVCO3NOKVU67J7COAGYRZVF6JPXWOAOZ2V7NGK3WMIBMH3BL6IGMY"
+      },
+      {
+        "account-data": {
+          "address": "FMXWIYDRWURPWVTEGDRWCHLXKY3SE5K2YVFIK5IXGBLI3OGH5DVE6DKYWY",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "FMXWIYDRWURPWVTEGDRWCHLXKY3SE5K2YVFIK5IXGBLI3OGH5DVE6DKYWY"
+      },
+      {
+        "account-data": {
+          "address": "DC5NRFRRXVLP5GBD4D6SQJX53YQ2EX7PL3DMP7Z4DOTX2GGTYCD4XTET5E",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "DC5NRFRRXVLP5GBD4D6SQJX53YQ2EX7PL3DMP7Z4DOTX2GGTYCD4XTET5E"
+      },
+      {
+        "account-data": {
+          "address": "YAC5FU3BXY4YE6KG42SHCDKR34NHYSNT3UPILEZOAKYFADXL2CKUF6AQCI",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "YAC5FU3BXY4YE6KG42SHCDKR34NHYSNT3UPILEZOAKYFADXL2CKUF6AQCI"
+      },
+      {
+        "account-data": {
+          "address": "CFDBH6JMUVYXW5WICVJS3IMSET762FJOHHAX72YO4H6ZDGHFWDB5QYFABI",
+          "amount": 89595999,
+          "amount-without-pending-rewards": 89595999,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "CFDBH6JMUVYXW5WICVJS3IMSET762FJOHHAX72YO4H6ZDGHFWDB5QYFABI"
+      },
+      {
+        "account-data": {
+          "address": "ZV7U5N75SPGYKSTUI5MNN675HY5X6VXGOK6XUZXGC4AN7765TEEUP5SAW4",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "ZV7U5N75SPGYKSTUI5MNN675HY5X6VXGOK6XUZXGC4AN7765TEEUP5SAW4"
+      },
+      {
+        "account-data": {
+          "address": "A5BSFUM372UQJFMAYIE2LSNGOO7KBAWFWW6BMSSHYRC7Y2QB53DMAI6OHM",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "A5BSFUM372UQJFMAYIE2LSNGOO7KBAWFWW6BMSSHYRC7Y2QB53DMAI6OHM"
+      },
+      {
+        "account-data": {
+          "address": "ZTCH4N4X5XIJQYUFBG6VQNEZC5QPMPZFJXRARMTDQ6WMSGKXNPXXRNGVNE",
+          "amount": 89597001,
+          "amount-without-pending-rewards": 89597001,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "ZTCH4N4X5XIJQYUFBG6VQNEZC5QPMPZFJXRARMTDQ6WMSGKXNPXXRNGVNE"
+      },
+      {
+        "account-data": {
+          "address": "TSTX3UHLEREFVRIYMXJEIPMQ7GD7FYCIH3VSVDJNQ564KLRBWGFNXBD2LM",
+          "amount": 89597001,
+          "amount-without-pending-rewards": 89597001,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "TSTX3UHLEREFVRIYMXJEIPMQ7GD7FYCIH3VSVDJNQ564KLRBWGFNXBD2LM"
+      },
+      {
+        "account-data": {
+          "address": "MUGZIV7HAYUEL5WKZGZ5QSBTMDSTAEYZVDJMAPEWR7RTD2CP4LH244LZII",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "MUGZIV7HAYUEL5WKZGZ5QSBTMDSTAEYZVDJMAPEWR7RTD2CP4LH244LZII"
+      },
+      {
+        "account-data": {
+          "address": "RTGQDNMNKV5JD2NVZXRMP3CYVIMTYDIEEZT65VNCFS2TTP32Y45IGMDTLM",
+          "amount": 89595999,
+          "amount-without-pending-rewards": 89595999,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "RTGQDNMNKV5JD2NVZXRMP3CYVIMTYDIEEZT65VNCFS2TTP32Y45IGMDTLM"
+      },
+      {
+        "account-data": {
+          "address": "NIG3G7OLUYVKTWVWZNSYBV46NSAETY22VXREHQ4GZDATUZM4QBZAVCYTME",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "NIG3G7OLUYVKTWVWZNSYBV46NSAETY22VXREHQ4GZDATUZM4QBZAVCYTME"
+      },
+      {
+        "account-data": {
+          "address": "MZUVMPKMLALQQMO3FIXHL5XJY477KXSOGLRPECI2NVG5I7SBABDOKYKET4",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "MZUVMPKMLALQQMO3FIXHL5XJY477KXSOGLRPECI2NVG5I7SBABDOKYKET4"
+      },
+      {
+        "account-data": {
+          "address": "DLZMUYCBOMZKXLPRPJW6XRRU7XPK4ATKJ4IHZUKZSO5SDALKN2LQ4GSM3Q",
+          "amount": 89595999,
+          "amount-without-pending-rewards": 89595999,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "DLZMUYCBOMZKXLPRPJW6XRRU7XPK4ATKJ4IHZUKZSO5SDALKN2LQ4GSM3Q"
+      },
+      {
+        "account-data": {
+          "address": "GHRJXNQG2TDSRTL2T3BYTTPKMMHLCI6UBGAWYCFXDR5YU674KK23P72G7Y",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "GHRJXNQG2TDSRTL2T3BYTTPKMMHLCI6UBGAWYCFXDR5YU674KK23P72G7Y"
+      },
+      {
+        "account-data": {
+          "address": "NVBQCX2EMMGKKSD5VV4OSPKK2YPEOEIBJHMVBSNP7IX3IDTLIIJ72LBU6M",
+          "amount": 89597001,
+          "amount-without-pending-rewards": 89597001,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "NVBQCX2EMMGKKSD5VV4OSPKK2YPEOEIBJHMVBSNP7IX3IDTLIIJ72LBU6M"
+      },
+      {
+        "account-data": {
+          "address": "O67HT3XCCJEQREBUCKXZ5RR7TAKCSDJQL4ROUVDZFKM2R75YUZ5SVUYAIY",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "O67HT3XCCJEQREBUCKXZ5RR7TAKCSDJQL4ROUVDZFKM2R75YUZ5SVUYAIY"
+      },
+      {
+        "account-data": {
+          "address": "7GHMIAXV32NH45DW76M7BIPWEKKIM4UAV5HV6KLJUZUFQL5MFKDPK65CRM",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "7GHMIAXV32NH45DW76M7BIPWEKKIM4UAV5HV6KLJUZUFQL5MFKDPK65CRM"
+      },
+      {
+        "account-data": {
+          "address": "KW4A6PAMITUM6DQSAGS5H326H426DDWPZ42ZCG7Z7OTDDB7LDZACSEJS4I",
+          "amount": 89597001,
+          "amount-without-pending-rewards": 89597001,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "KW4A6PAMITUM6DQSAGS5H326H426DDWPZ42ZCG7Z7OTDDB7LDZACSEJS4I"
+      },
+      {
+        "account-data": {
+          "address": "CFKJBVYLCCF7ZHK7AHVYPDA4YAXHN3SHSZL62PKW5TXFSXL4EPWNWAI6TY",
+          "amount": 89597001,
+          "amount-without-pending-rewards": 89597001,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "CFKJBVYLCCF7ZHK7AHVYPDA4YAXHN3SHSZL62PKW5TXFSXL4EPWNWAI6TY"
+      },
+      {
+        "account-data": {
+          "address": "XOKMFT7DIZSA2YR7P2HUHMJDOVNY24N6367TUM4HUUQI32VB6OGUXSAVJY",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "XOKMFT7DIZSA2YR7P2HUHMJDOVNY24N6367TUM4HUUQI32VB6OGUXSAVJY"
+      },
+      {
+        "account-data": {
+          "address": "HAA6FOTDZ2HZNQHLQNHZRINF42YUEUHWAZOT2KXUZGQ3VDBBDNCOEKCTPY",
+          "amount": 89595999,
+          "amount-without-pending-rewards": 89595999,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "HAA6FOTDZ2HZNQHLQNHZRINF42YUEUHWAZOT2KXUZGQ3VDBBDNCOEKCTPY"
+      },
+      {
+        "account-data": {
+          "address": "SHX4ZXOQPN3VBEYRCW6TSOJXP66SLRSNUIYFHAZ6UF3ACOIJJLQEZ4LQRQ",
+          "amount": 89597001,
+          "amount-without-pending-rewards": 89597001,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "SHX4ZXOQPN3VBEYRCW6TSOJXP66SLRSNUIYFHAZ6UF3ACOIJJLQEZ4LQRQ"
+      },
+      {
+        "account-data": {
+          "address": "VV2QFIZENH663VOS2GJKAITIQWHHQLCR7AQBRV7EUSD5FYX2P3X6LUE6LI",
+          "amount": 89597001,
+          "amount-without-pending-rewards": 89597001,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "VV2QFIZENH663VOS2GJKAITIQWHHQLCR7AQBRV7EUSD5FYX2P3X6LUE6LI"
+      },
+      {
+        "account-data": {
+          "address": "SBKZAOS3LYASTCTSBHJMC52Y45OOMYMY4XSLLBASGN6GBJOEARUKPOZ3BE",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "SBKZAOS3LYASTCTSBHJMC52Y45OOMYMY4XSLLBASGN6GBJOEARUKPOZ3BE"
+      },
+      {
+        "account-data": {
+          "address": "LMJAMWEDZE7AL25VXBQH4OUEMRZ3XNH6Y76PRU4BW2262UBHTM34J5R42Y",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "LMJAMWEDZE7AL25VXBQH4OUEMRZ3XNH6Y76PRU4BW2262UBHTM34J5R42Y"
+      },
+      {
+        "account-data": {
+          "address": "LXKIIYIR44WFWDT37E6QXWDCCMN4DJUDXN2RO5WXBTUVKKN7TQAWKCF6LI",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "LXKIIYIR44WFWDT37E6QXWDCCMN4DJUDXN2RO5WXBTUVKKN7TQAWKCF6LI"
+      },
+      {
+        "account-data": {
+          "address": "F53X3524HL6SNVHCKC252PYFH3FAWZAE46TFFL3PO62RJRQYKGUGO3JMZU",
+          "amount": 89597001,
+          "amount-without-pending-rewards": 89597001,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "F53X3524HL6SNVHCKC252PYFH3FAWZAE46TFFL3PO62RJRQYKGUGO3JMZU"
+      },
+      {
+        "account-data": {
+          "address": "XXVPWGGU4OICADPUBP6B3RBYGQXOTUEYBM6D4UKAZUBJNY5Z3Y4CQLUUCY",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "XXVPWGGU4OICADPUBP6B3RBYGQXOTUEYBM6D4UKAZUBJNY5Z3Y4CQLUUCY"
+      },
+      {
+        "account-data": {
+          "address": "L3UDQSJYGSLFEWRRTNMV75IQWZSEB2SUKMO6IYKFIDPTWJPVQTZDOVQRG4",
+          "amount": 89597000,
+          "amount-without-pending-rewards": 89597000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "L3UDQSJYGSLFEWRRTNMV75IQWZSEB2SUKMO6IYKFIDPTWJPVQTZDOVQRG4"
+      },
+      {
+        "account-data": {
+          "address": "C25LZV5N6N2TYEIH4WE5KBWQIGBWAA2TLZXW36PDNMTUHGQXRMSDVXKP6U",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "C25LZV5N6N2TYEIH4WE5KBWQIGBWAA2TLZXW36PDNMTUHGQXRMSDVXKP6U"
+      },
+      {
+        "account-data": {
+          "address": "X5PEDKFAOTUUGPZFKVBJQLUMGT6RK6356F4KFRNIYMNCEQXCHIOZBQXBI4",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "X5PEDKFAOTUUGPZFKVBJQLUMGT6RK6356F4KFRNIYMNCEQXCHIOZBQXBI4"
+      },
+      {
+        "account-data": {
+          "address": "MH63GZDAFEFNFU6T37NOBUA24TMDZ5AIQGNYSPUHTA53MXPWLHUUDCNZXA",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "MH63GZDAFEFNFU6T37NOBUA24TMDZ5AIQGNYSPUHTA53MXPWLHUUDCNZXA"
+      },
+      {
+        "account-data": {
+          "address": "TUHO4M5UDEAKHTK4VIGOABW5FQ7LFWV6HPEOORC4EF6OONOMLUTATEVESI",
+          "amount": 89597000,
+          "amount-without-pending-rewards": 89597000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "TUHO4M5UDEAKHTK4VIGOABW5FQ7LFWV6HPEOORC4EF6OONOMLUTATEVESI"
+      },
+      {
+        "account-data": {
+          "address": "EYZIF2CV2RP2PXEXIXWYLHCC37XPOIOOJRWLYZHDDR3KN2AO6YGUY7VF3M",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "EYZIF2CV2RP2PXEXIXWYLHCC37XPOIOOJRWLYZHDDR3KN2AO6YGUY7VF3M"
+      },
+      {
+        "account-data": {
+          "address": "C53UBSLCWZXMTKTGSUA5IGSCMNPEE5X4YJWNDQ4DQT4OJCK346WUBZGY24",
+          "amount": 89597001,
+          "amount-without-pending-rewards": 89597001,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "C53UBSLCWZXMTKTGSUA5IGSCMNPEE5X4YJWNDQ4DQT4OJCK346WUBZGY24"
+      },
+      {
+        "account-data": {
+          "address": "GS5Y37IBMT4ZLKCSA437K3HCAXX6ANFIQ2RCPFFQH7OUBW7VOJ5HVQURU4",
+          "amount": 89597000,
+          "amount-without-pending-rewards": 89597000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "GS5Y37IBMT4ZLKCSA437K3HCAXX6ANFIQ2RCPFFQH7OUBW7VOJ5HVQURU4"
+      },
+      {
+        "account-data": {
+          "address": "BQFFCSTIURAW6ECX4MJG5GYR3GJ4TIJJ7OC7BIJ6EOZSHOHSTEZTYOGZDY",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "BQFFCSTIURAW6ECX4MJG5GYR3GJ4TIJJ7OC7BIJ6EOZSHOHSTEZTYOGZDY"
+      },
+      {
+        "account-data": {
+          "address": "NCAJK7KNJBLJPGI3XZV5YHALBAJRS63LNCU6RSLSGTECLOMRLQ5YABWTGU",
+          "amount": 89595999,
+          "amount-without-pending-rewards": 89595999,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "NCAJK7KNJBLJPGI3XZV5YHALBAJRS63LNCU6RSLSGTECLOMRLQ5YABWTGU"
+      },
+      {
+        "account-data": {
+          "address": "MIXOPVJHGDMEHX76OUNVPSDANFNGS5HM5RYSRQ3VJ5VG6D6FNOUUDAVF7U",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "MIXOPVJHGDMEHX76OUNVPSDANFNGS5HM5RYSRQ3VJ5VG6D6FNOUUDAVF7U"
+      },
+      {
+        "account-data": {
+          "address": "BOK46E3YACLU64QM4K7KEVBH3AZJI5K2P7MC5HTYTDORNJKPSBGTVEZ4KA",
+          "amount": 89595999,
+          "amount-without-pending-rewards": 89595999,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "BOK46E3YACLU64QM4K7KEVBH3AZJI5K2P7MC5HTYTDORNJKPSBGTVEZ4KA"
+      },
+      {
+        "account-data": {
+          "address": "2V3AQNCE7DJE76WIGBN6KT6IYUFU6G4GXFW6VX5574SQX5FEA53Z7W2LIA",
+          "amount": 39996000,
+          "amount-without-pending-rewards": 39996000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 11
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 413500,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "2V3AQNCE7DJE76WIGBN6KT6IYUFU6G4GXFW6VX5574SQX5FEA53Z7W2LIA"
+      },
+      {
+        "account-data": {
+          "address": "RZK74A7BE4ECUMCVNTFWWKSAOSFRVEXGJ3S3R673O47AQULVCSCAAXQ6Y4",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "RZK74A7BE4ECUMCVNTFWWKSAOSFRVEXGJ3S3R673O47AQULVCSCAAXQ6Y4"
+      },
+      {
+        "account-data": {
+          "address": "AXRSQQG7FR6HDBHLR23EURQ7YSL5UU4BED46DALQVQYMTIAKEM37JKB6JA",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "AXRSQQG7FR6HDBHLR23EURQ7YSL5UU4BED46DALQVQYMTIAKEM37JKB6JA"
+      },
+      {
+        "account-data": {
+          "address": "IOEHCOUTUVLM7D626MIAVM4XRLG6M25QI6DP3OPU7LALBZXBQ4UY4H6G4E",
+          "amount": 89595999,
+          "amount-without-pending-rewards": 89595999,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "IOEHCOUTUVLM7D626MIAVM4XRLG6M25QI6DP3OPU7LALBZXBQ4UY4H6G4E"
+      },
+      {
+        "account-data": {
+          "address": "YENAMUAV4VVB6QR66HADERLE4X24FOROL3U7KW4OK3JWDVADCJL7FRL5YM",
+          "amount": 89595999,
+          "amount-without-pending-rewards": 89595999,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "YENAMUAV4VVB6QR66HADERLE4X24FOROL3U7KW4OK3JWDVADCJL7FRL5YM"
+      },
+      {
+        "account-data": {
+          "address": "KQX72RE7MJ7UVJFGHDN5ARONGFKVOLIMKCXPEB7XJCORI5JHGM2WIKCNOM",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "KQX72RE7MJ7UVJFGHDN5ARONGFKVOLIMKCXPEB7XJCORI5JHGM2WIKCNOM"
+      },
+      {
+        "account-data": {
+          "address": "FDYJMXO2NKOYBITMFM4TJC6KUNMLLXGH3I2ROPT544224KK3JW2C6BWTRE",
+          "amount": 89596000,
+          "amount-without-pending-rewards": 89596000,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "FDYJMXO2NKOYBITMFM4TJC6KUNMLLXGH3I2ROPT544224KK3JW2C6BWTRE"
+      },
+      {
+        "account-data": {
+          "address": "OVGKE3ZPIHKSRCFWDCIBKHBJMVKMHAE357KODWPV5ZUE233BOC6RL3LZ6Y",
+          "amount": 89595999,
+          "amount-without-pending-rewards": 89595999,
+          "apps-local-state": [],
+          "apps-total-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 0
+          },
+          "assets": [],
+          "created-apps": [],
+          "created-assets": [],
+          "min-balance": 100000,
+          "pending-rewards": 0,
+          "reward-base": 12595,
+          "rewards": 0,
+          "round": 22085518,
+          "status": "Offline",
+          "total-apps-opted-in": 0,
+          "total-assets-opted-in": 0,
+          "total-created-apps": 0,
+          "total-created-assets": 0
+        },
+        "address": "OVGKE3ZPIHKSRCFWDCIBKHBJMVKMHAE357KODWPV5ZUE233BOC6RL3LZ6Y"
+      }
+    ],
+    "apps": [
+      {
+        "address": "2V3AQNCE7DJE76WIGBN6KT6IYUFU6G4GXFW6VX5574SQX5FEA53Z7W2LIA",
+        "app-deleted": false,
+        "app-index": 1337185129,
+        "app-local-state-deleted": false,
+        "app-params": {
+          "approval-program": "CCAGAAECGPQDgCAmBAhhc2tfYm9vawhiaWRfYm9vawNzZXEDBoEBMRsiEkABGTYaAIAEjsSYgRJAAP02GgCABAnlcRYSQAC4NhoAgATBmHqfEkAAfDYaAIAEvxQd2RJAADg2GgCABEPXgiYSQAABADEZIhIxGCITEEQ2GgEiVTURNhoCIlU1EjYaAyJVNRM0ETQSNBOIA54jQzEZIhIxGCITEEQ2GgEXNQw2GgIXNQ02GgMXNQ42GgQXNQ82GgUXNRA0DDQNNA40DzQQiANaI0MxGSISMRgiExBENhoBFzUINhoCFzUJNhoDFzUKNhoEFzULNAg0CTQKNAuIAyAjQzEZIhIxGCITEEQ2GgEigQgLUzUANhoCFzUBNhoDFzUCNAA0ATQCiAKfNQOABBUffHU0AxZQsCNDMRkiEjEYIhMQRIgCeCNDMRkiEkAAAQAxGCISRIgAAiNDI0M1JDUjNSI0IhUiEjQjFSISEUAALzQkQAAcNCJXAAg0IlcICK5QNCNXAAg0I1cICK5QpUIADzQiVwAQNCNXABCkQgABIok1GzUaNRk0GTQZZDQaFQs0Grs0GTQZZDQaFTQbiAB2NBk0GWQjCGeJNTo1OTU4NTc0NzQ3ZCMJZzQ3NDg0N2Q0OYgAGjQ3NDg0OTQ6iADlNDc0N2Q0Oa8VCzQ5r7uJNSg1JzUmNSU0JTQmNCgLNCi6NSk0JTQnNCgLNCi6NSo0JTQnNCkVCzQpuzQlNCY0KhULNCq7iTUfNR41HTUcNB0iE0EAjyEEgQoINSA0IDIMDUAAbTQdJBgiEkAAXTQdIwkkCjUhNBw0HTQeCzQeujQcNCE0Hgs0Hro0H4j+3kEAUzQcNB00ITQeiP9zNBw0ITQeNB80HDQdNB40HzQgNCFPCU8JTwlPCYj/izUhNSA1HzUeNR01HEIAGjQdJAlC/6CxgQayEIEFshkrsh4rsh+zQv94iTU+NT01PDU7NDw0O2QMQQDXIQSBCgg1PzQ/MgwNQAC1NDw1QDQ8JAsjCDVBNDwkCyQINUI0QTQ7ZAxAAHU0QjQ7ZAxAAEk0QDQ8E0EAmjQ7NDw0QDQ9iP7RNDs0QDQ9ND40OzQ8ND00PjQ/NEA0QTRCTwtPC08LTwuI/4Q1QjVBNUA1PzU+NT01PDU7QgBZNDs0QjQ9CzQ9ujQ7NEA0PQs0Pbo0Poj930H/mzRCNUBC/5Q0OzRBND0LND26NDs0QDQ9CzQ9ujQ+iP28Qf9vNEE1QEL/aLGBBrIQgQWyGSuyHiuyH7NC/zCJKCEFuUQpIQW5RIk1BjUFNQQ0BjUHNARAACA0BTQGiACfNQY0BkEALzQFNAYqKmQjCGcqZIgAakIAHTQFNAaIARk1BjQGQQAPNAU0BioqZCMIZypkiAArNAc0Bgk1BzQHiTVNNUw1SzVKIkSJNVI1UTVQNU81TiJEiTVVNVQ1UyJEiTUWNRU1FDQWNRc0FBY0FxZQNBUWUDUYKTQYIoj9Q4k1LTUsNSs0LTUuNCsWNC4WUDQsFlA1Lyg0LyOI/SSJNTE1MClkIhI0MSISEUAAhikiJQslujUyNDIiWzUzNDKBEFs1NDQzNDAMQABmNDQ0MQ5AACg0MoEIWzU1NDQ0MQk1NjQzFjQ1FlA0NhZQNTIpIjQyFQs0MrsiQgA8KSIlIoj85zQwNDE0NAk0MDQxNDI0MzQ0NDU0Nk8ITwiI/4BOBzU2NTU1NDUzNTI1MTUwQgAGNDGJNDGJiTVENUMoZCISNEQiEhFAAIYoIiULJbo1RTRFIls1RjRFgRBbNUc0RjRDDUAAZjRHNEQOQAAoNEWBCFs1SDRHNEQJNUk0RhY0SBZQNEkWUDVFKCI0RRULNEW7IkIAPCgiJSOI/E00QzRENEcJNEM0RDRFNEY0RzRINElPCE8IiP+ATgc1STVINUc1RjVFNUQ1Q0IABjREiTREiYk=",
+          "clear-state-program": "CIEAQw==",
+          "creator": "2V3AQNCE7DJE76WIGBN6KT6IYUFU6G4GXFW6VX5574SQX5FEA53Z7W2LIA",
+          "global-state": [
+            {
+              "key": "YmlkX2Jvb2s=",
+              "value": {
+                "bytes": "",
+                "type": 2,
+                "uint": 1
+              }
+            },
+            {
+              "key": "c2Vx",
+              "value": {
+                "bytes": "",
+                "type": 2,
+                "uint": 1
+              }
+            }
+          ],
+          "global-state-schema": {
+            "num-byte-slice": 0,
+            "num-uint": 11
+          },
+          "local-state-schema": {
+            "num-byte-slice": 1,
+            "num-uint": 4
+          }
+        }
+      }
+    ],
+    "assets": null
+  },
+  "kv-mods": [
+    {
+      "key": "Yng6AAAAAE+z02liaWRfYm9vaw==",
+      "value": "AAAAAAAAADMAAAAAAAAAAQAAAAAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+    }
+  ],
+  "modified-apps": null,
+  "modified-assets": null,
+  "prev-timestamp": 1668439239,
+  "totals": {
+    "not-participating": 1361656576290,
+    "offline": 112271490590529,
+    "online": 10011366852933180,
+    "rewards-level": 12595
+  },
+  "tx-leases": null
+}
