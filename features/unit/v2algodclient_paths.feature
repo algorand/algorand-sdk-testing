@@ -151,31 +151,31 @@ Feature: Algod REST API v2 Paths
   @unit.statedelta
   Scenario Outline: GetLedgerStateDelta path
     When we make a GetLedgerStateDelta call against round <round>
-    Then expect the path used to be "<path>"
+    Then expect the request to be "<method>" "<path>"
     Examples:
-      | path         | round |
-      | /v2/deltas/3 | 3     |
+      | path         | method | round |
+      | /v2/deltas/3 | get    | 3     |
 
   @unit.statedelta
   Scenario Outline: SetSyncRound path
     When we make a SetSyncRound call against round <round>
-    Then expect the path used to be "<path>"
+    Then expect the request to be "<method>" "<path>"
     Examples:
-      | path              | round |
-      | /v2/ledger/sync/3 | 3     |
+      | path              | method | round |
+      | /v2/ledger/sync/3 | post   | 3     |
 
   @unit.statedelta
   Scenario Outline: GetSyncRound path
     When we make a GetSyncRound call
-    Then expect the path used to be "<path>"
+    Then expect the request to be "<method>" "<path>"
     Examples:
-      | path            |
-      | /v2/ledger/sync |
+      | path            | method |
+      | /v2/ledger/sync | get    |
 
   @unit.statedelta
   Scenario Outline: UnsetSyncRound path
     When we make a UnsetSyncRound call
-    Then expect the path used to be "<path>"
+    Then expect the request to be "<method>" "<path>"
     Examples:
-      | path            |
-      | /v2/ledger/sync |
+      | path            | method |
+      | /v2/ledger/sync | delete |
