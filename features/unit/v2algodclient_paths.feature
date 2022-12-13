@@ -149,9 +149,33 @@ Feature: Algod REST API v2 Paths
       | /v2/blocks/3/hash              | 3     |
 
   @unit.statedelta
-  Scenario Outline: LookupBlockHash path
+  Scenario Outline: GetLedgerStateDelta path
     When we make a GetLedgerStateDelta call against round <round>
     Then expect the path used to be "<path>"
     Examples:
       | path         | round |
       | /v2/deltas/3 | 3     |
+
+  @unit.statedelta
+  Scenario Outline: SetSyncRound path
+    When we make a SetSyncRound call against round <round>
+    Then expect the path used to be "<path>"
+    Examples:
+      | path              | round |
+      | /v2/ledger/sync/3 | 3     |
+
+  @unit.statedelta
+  Scenario Outline: GetSyncRound path
+    When we make a GetSyncRound call
+    Then expect the path used to be "<path>"
+    Examples:
+      | path            |
+      | /v2/ledger/sync |
+
+  @unit.statedelta
+  Scenario Outline: UnsetSyncRound path
+    When we make a UnsetSyncRound call
+    Then expect the path used to be "<path>"
+    Examples:
+      | path            |
+      | /v2/ledger/sync |
