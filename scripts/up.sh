@@ -5,9 +5,9 @@ set -euo pipefail
 START=$(date "+%s")
 
 THIS=$(basename "$0")
-THIS="[algorand-testing-harness]$THIS"
+THIS="[algorand-sdk-testing-harness]$THIS"
 
-export COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME:-algorand-testing-harness}"
+export COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME:-algorand-sdk-testing-harness}"
 
 ENV_FILE=".env"
 echo "$THIS: sourcing environment vars from-->$(pwd)/$ENV_FILE"

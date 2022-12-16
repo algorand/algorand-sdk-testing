@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 THIS=$(basename "$0")
 
-export COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME:-algorand-testing-harness}"
+export COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME:-algorand-sdk-testing-harness}"
 ENV_FILE=".env"
 
 # Load environment.
