@@ -43,7 +43,9 @@ These reside in the [unit features directory](features/unit)
 | @unit.responses.messagepack.231   | REST Client MessagePack Unit Tests for Indexer 2.3.1+ |
 | @unit.responses.participationupdates | REST Client Response serialization test for ParticipationUpdates|
 | @unit.responses.blocksummary      | REST Client updates for indexer/algod block endpoints.|
-| @unit.sourcemap                   |  Test the sourcemap endpoint.                         |
+| @unit.responses.statedelta        | REST Client updates for algod statedelta endpoint.    |
+| @unit.sourcemap                   | Test the sourcemap endpoint.                          |
+| @unit.statedelta                  | Test the statedleta endpoint.                         |
 | @unit.stateproof.responses        | REST Client Response Tests for State Proof.           |
 | @unit.stateproof.responses.msgp   | REST Client MessagePack Tests for State Proofs.       |
 | @unit.stateproof.paths            | REST Client Unit Tests for State Proof feature.       |

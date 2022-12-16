@@ -194,3 +194,12 @@ Feature: REST Client Responses
     Examples:
       | jsonfile                                | response-folder               | status | client  | endpoint    | 
       | indexer_v2_lookupBlock_header_only.json | v2indexerclient_responsejsons | 200    | indexer | lookupBlock |
+
+    @unit.responses.statedelta
+    Examples:
+      | jsonfile                         | response-folder             | status | client | endpoint            | 
+      | statedelta_betanet_22085518.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | statedelta_testnet_26091000.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | statedelta_testnet_26091001.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | statedelta_testnet_26091002.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | statedelta_testnet_26091003.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
