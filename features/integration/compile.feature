@@ -30,3 +30,10 @@ Feature: Compile
     Examples:
       | teal                | sourcemap                                  |
       | programs/quine.teal | v2algodclient_responsejsons/sourcemap.json |
+
+  @compile.disassemble
+  Scenario Outline: SDK requests algod to disassemble valid TEAL bytecode to source code
+    Then disassembly of "<bytecodeFilename>" matches "<sourceFilename>"
+    Examples:
+      | bytecodeFilename                    | sourceFilename                          |
+      | programs/eight.teal.tok             | programs/eight_disassembled.teal        |
