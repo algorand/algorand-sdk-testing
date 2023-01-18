@@ -140,6 +140,23 @@ Feature: ABI Interaction
       | delete      |
       | update      |
 
+  Scenario: Method call create and delete execution
+    Given I create a new transient account and fund it with 10000000 microalgos.
+    And I make a transaction signer for the transient account.
+    And a new AtomicTransactionComposer
+    And an application id 0
+    When I create the Method object from method signature "referenceTest(account,application,account,asset,account,asset,asset,application,application)uint8[9]"
+    And I create a new method arguments array.
+    And I append the encoded arguments "Uabo7LuH+JfxYes3JwpJ4Fz3Kzoz5LYtZhWxaN8pa3g=,AAAAAAAAAAo=,Uabo7LuH+JfxYes3JwpJ4Fz3Kzoz5LYtZhWxaN8pa3g=,AAAAAAAAABQ=,1Hq2PnhdWWwQ3IvRrz0gZ8EZmoH68yc2DzLpab3P8uA=,AAAAAAAAABQ=,AAAAAAAAABU=,AAAAAAAAAAo=,AAAAAAAAAAs=" to the method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "delete", current transaction signer, current method arguments, approval-program "programs/abi_method_call.teal.tok", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, extra-pages 0.
+    And I build the transaction group with the composer. If there is an error it is "".
+    Then The composer should have a status of "BUILT".
+    And I gather signatures with the composer.
+    Then The composer should have a status of "SIGNED".
+    And I execute the current transaction group with the composer.
+    Then The composer should have a status of "COMMITTED".
+    And The app should have returned "AQECAQECAAAB".
+
   Scenario: Method call update execution
     Given I create a new transient account and fund it with 10000000 microalgos.
     And I make a transaction signer for the transient account.
