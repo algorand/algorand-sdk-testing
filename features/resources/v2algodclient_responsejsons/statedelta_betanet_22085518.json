@@ -1,1387 +1,1626 @@
 {
-  "accts": {
-    "accounts": [
+  "Accts": {
+    "Accts": [
       {
-        "account-data": {
-          "address": "7777777777777777777777777777777777777777777777777774MSJUVU",
-          "amount": 3846899481,
-          "amount-without-pending-rewards": 3798459111,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 48440370,
-          "reward-base": 0,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Not Participating",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "7777777777777777777777777777777777777777777777777774MSJUVU"
+        "Addr": "7777777777777777777777777777777777777777777777777774MSJUVU",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 3846899481,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 0,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 2,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "TEMFLLX3MYP533ZSVGD6LGKGMGLGVA6KPMK67W4QWBC64RKBR6IDEPINDA",
-          "amount": 89597001,
-          "amount-without-pending-rewards": 89597001,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "TEMFLLX3MYP533ZSVGD6LGKGMGLGVA6KPMK67W4QWBC64RKBR6IDEPINDA"
+        "Addr": "TEMFLLX3MYP533ZSVGD6LGKGMGLGVA6KPMK67W4QWBC64RKBR6IDEPINDA",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89597001,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
-          "amount": 1357799888809,
-          "amount-without-pending-rewards": 1340698410404,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 17101478405,
-          "reward-base": 0,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Not Participating",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE"
+        "Addr": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 1357799888809,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 0,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 2,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "NWEGGPZBAUDMPD5A2LP3IYDCXPKGJUIRILRYEMJETTSMV5WO6CSMEAL5NU",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "NWEGGPZBAUDMPD5A2LP3IYDCXPKGJUIRILRYEMJETTSMV5WO6CSMEAL5NU"
+        "Addr": "NWEGGPZBAUDMPD5A2LP3IYDCXPKGJUIRILRYEMJETTSMV5WO6CSMEAL5NU",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "K5FBUPVCO3NOKVU67J7COAGYRZVF6JPXWOAOZ2V7NGK3WMIBMH3BL6IGMY",
-          "amount": 89595999,
-          "amount-without-pending-rewards": 89595999,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "K5FBUPVCO3NOKVU67J7COAGYRZVF6JPXWOAOZ2V7NGK3WMIBMH3BL6IGMY"
+        "Addr": "K5FBUPVCO3NOKVU67J7COAGYRZVF6JPXWOAOZ2V7NGK3WMIBMH3BL6IGMY",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89595999,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "FMXWIYDRWURPWVTEGDRWCHLXKY3SE5K2YVFIK5IXGBLI3OGH5DVE6DKYWY",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "FMXWIYDRWURPWVTEGDRWCHLXKY3SE5K2YVFIK5IXGBLI3OGH5DVE6DKYWY"
+        "Addr": "FMXWIYDRWURPWVTEGDRWCHLXKY3SE5K2YVFIK5IXGBLI3OGH5DVE6DKYWY",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "DC5NRFRRXVLP5GBD4D6SQJX53YQ2EX7PL3DMP7Z4DOTX2GGTYCD4XTET5E",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "DC5NRFRRXVLP5GBD4D6SQJX53YQ2EX7PL3DMP7Z4DOTX2GGTYCD4XTET5E"
+        "Addr": "DC5NRFRRXVLP5GBD4D6SQJX53YQ2EX7PL3DMP7Z4DOTX2GGTYCD4XTET5E",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "YAC5FU3BXY4YE6KG42SHCDKR34NHYSNT3UPILEZOAKYFADXL2CKUF6AQCI",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "YAC5FU3BXY4YE6KG42SHCDKR34NHYSNT3UPILEZOAKYFADXL2CKUF6AQCI"
+        "Addr": "YAC5FU3BXY4YE6KG42SHCDKR34NHYSNT3UPILEZOAKYFADXL2CKUF6AQCI",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "CFDBH6JMUVYXW5WICVJS3IMSET762FJOHHAX72YO4H6ZDGHFWDB5QYFABI",
-          "amount": 89595999,
-          "amount-without-pending-rewards": 89595999,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "CFDBH6JMUVYXW5WICVJS3IMSET762FJOHHAX72YO4H6ZDGHFWDB5QYFABI"
+        "Addr": "CFDBH6JMUVYXW5WICVJS3IMSET762FJOHHAX72YO4H6ZDGHFWDB5QYFABI",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89595999,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "ZV7U5N75SPGYKSTUI5MNN675HY5X6VXGOK6XUZXGC4AN7765TEEUP5SAW4",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "ZV7U5N75SPGYKSTUI5MNN675HY5X6VXGOK6XUZXGC4AN7765TEEUP5SAW4"
+        "Addr": "ZV7U5N75SPGYKSTUI5MNN675HY5X6VXGOK6XUZXGC4AN7765TEEUP5SAW4",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "A5BSFUM372UQJFMAYIE2LSNGOO7KBAWFWW6BMSSHYRC7Y2QB53DMAI6OHM",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "A5BSFUM372UQJFMAYIE2LSNGOO7KBAWFWW6BMSSHYRC7Y2QB53DMAI6OHM"
+        "Addr": "A5BSFUM372UQJFMAYIE2LSNGOO7KBAWFWW6BMSSHYRC7Y2QB53DMAI6OHM",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "ZTCH4N4X5XIJQYUFBG6VQNEZC5QPMPZFJXRARMTDQ6WMSGKXNPXXRNGVNE",
-          "amount": 89597001,
-          "amount-without-pending-rewards": 89597001,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "ZTCH4N4X5XIJQYUFBG6VQNEZC5QPMPZFJXRARMTDQ6WMSGKXNPXXRNGVNE"
+        "Addr": "ZTCH4N4X5XIJQYUFBG6VQNEZC5QPMPZFJXRARMTDQ6WMSGKXNPXXRNGVNE",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89597001,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "TSTX3UHLEREFVRIYMXJEIPMQ7GD7FYCIH3VSVDJNQ564KLRBWGFNXBD2LM",
-          "amount": 89597001,
-          "amount-without-pending-rewards": 89597001,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "TSTX3UHLEREFVRIYMXJEIPMQ7GD7FYCIH3VSVDJNQ564KLRBWGFNXBD2LM"
+        "Addr": "TSTX3UHLEREFVRIYMXJEIPMQ7GD7FYCIH3VSVDJNQ564KLRBWGFNXBD2LM",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89597001,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "MUGZIV7HAYUEL5WKZGZ5QSBTMDSTAEYZVDJMAPEWR7RTD2CP4LH244LZII",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "MUGZIV7HAYUEL5WKZGZ5QSBTMDSTAEYZVDJMAPEWR7RTD2CP4LH244LZII"
+        "Addr": "MUGZIV7HAYUEL5WKZGZ5QSBTMDSTAEYZVDJMAPEWR7RTD2CP4LH244LZII",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "RTGQDNMNKV5JD2NVZXRMP3CYVIMTYDIEEZT65VNCFS2TTP32Y45IGMDTLM",
-          "amount": 89595999,
-          "amount-without-pending-rewards": 89595999,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "RTGQDNMNKV5JD2NVZXRMP3CYVIMTYDIEEZT65VNCFS2TTP32Y45IGMDTLM"
+        "Addr": "RTGQDNMNKV5JD2NVZXRMP3CYVIMTYDIEEZT65VNCFS2TTP32Y45IGMDTLM",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89595999,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "NIG3G7OLUYVKTWVWZNSYBV46NSAETY22VXREHQ4GZDATUZM4QBZAVCYTME",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "NIG3G7OLUYVKTWVWZNSYBV46NSAETY22VXREHQ4GZDATUZM4QBZAVCYTME"
+        "Addr": "NIG3G7OLUYVKTWVWZNSYBV46NSAETY22VXREHQ4GZDATUZM4QBZAVCYTME",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "MZUVMPKMLALQQMO3FIXHL5XJY477KXSOGLRPECI2NVG5I7SBABDOKYKET4",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "MZUVMPKMLALQQMO3FIXHL5XJY477KXSOGLRPECI2NVG5I7SBABDOKYKET4"
+        "Addr": "MZUVMPKMLALQQMO3FIXHL5XJY477KXSOGLRPECI2NVG5I7SBABDOKYKET4",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "DLZMUYCBOMZKXLPRPJW6XRRU7XPK4ATKJ4IHZUKZSO5SDALKN2LQ4GSM3Q",
-          "amount": 89595999,
-          "amount-without-pending-rewards": 89595999,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "DLZMUYCBOMZKXLPRPJW6XRRU7XPK4ATKJ4IHZUKZSO5SDALKN2LQ4GSM3Q"
+        "Addr": "DLZMUYCBOMZKXLPRPJW6XRRU7XPK4ATKJ4IHZUKZSO5SDALKN2LQ4GSM3Q",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89595999,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "GHRJXNQG2TDSRTL2T3BYTTPKMMHLCI6UBGAWYCFXDR5YU674KK23P72G7Y",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "GHRJXNQG2TDSRTL2T3BYTTPKMMHLCI6UBGAWYCFXDR5YU674KK23P72G7Y"
+        "Addr": "GHRJXNQG2TDSRTL2T3BYTTPKMMHLCI6UBGAWYCFXDR5YU674KK23P72G7Y",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "NVBQCX2EMMGKKSD5VV4OSPKK2YPEOEIBJHMVBSNP7IX3IDTLIIJ72LBU6M",
-          "amount": 89597001,
-          "amount-without-pending-rewards": 89597001,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "NVBQCX2EMMGKKSD5VV4OSPKK2YPEOEIBJHMVBSNP7IX3IDTLIIJ72LBU6M"
+        "Addr": "NVBQCX2EMMGKKSD5VV4OSPKK2YPEOEIBJHMVBSNP7IX3IDTLIIJ72LBU6M",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89597001,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "O67HT3XCCJEQREBUCKXZ5RR7TAKCSDJQL4ROUVDZFKM2R75YUZ5SVUYAIY",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "O67HT3XCCJEQREBUCKXZ5RR7TAKCSDJQL4ROUVDZFKM2R75YUZ5SVUYAIY"
+        "Addr": "O67HT3XCCJEQREBUCKXZ5RR7TAKCSDJQL4ROUVDZFKM2R75YUZ5SVUYAIY",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "7GHMIAXV32NH45DW76M7BIPWEKKIM4UAV5HV6KLJUZUFQL5MFKDPK65CRM",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "7GHMIAXV32NH45DW76M7BIPWEKKIM4UAV5HV6KLJUZUFQL5MFKDPK65CRM"
+        "Addr": "7GHMIAXV32NH45DW76M7BIPWEKKIM4UAV5HV6KLJUZUFQL5MFKDPK65CRM",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "KW4A6PAMITUM6DQSAGS5H326H426DDWPZ42ZCG7Z7OTDDB7LDZACSEJS4I",
-          "amount": 89597001,
-          "amount-without-pending-rewards": 89597001,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "KW4A6PAMITUM6DQSAGS5H326H426DDWPZ42ZCG7Z7OTDDB7LDZACSEJS4I"
+        "Addr": "KW4A6PAMITUM6DQSAGS5H326H426DDWPZ42ZCG7Z7OTDDB7LDZACSEJS4I",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89597001,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "CFKJBVYLCCF7ZHK7AHVYPDA4YAXHN3SHSZL62PKW5TXFSXL4EPWNWAI6TY",
-          "amount": 89597001,
-          "amount-without-pending-rewards": 89597001,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "CFKJBVYLCCF7ZHK7AHVYPDA4YAXHN3SHSZL62PKW5TXFSXL4EPWNWAI6TY"
+        "Addr": "CFKJBVYLCCF7ZHK7AHVYPDA4YAXHN3SHSZL62PKW5TXFSXL4EPWNWAI6TY",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89597001,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "XOKMFT7DIZSA2YR7P2HUHMJDOVNY24N6367TUM4HUUQI32VB6OGUXSAVJY",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "XOKMFT7DIZSA2YR7P2HUHMJDOVNY24N6367TUM4HUUQI32VB6OGUXSAVJY"
+        "Addr": "XOKMFT7DIZSA2YR7P2HUHMJDOVNY24N6367TUM4HUUQI32VB6OGUXSAVJY",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "HAA6FOTDZ2HZNQHLQNHZRINF42YUEUHWAZOT2KXUZGQ3VDBBDNCOEKCTPY",
-          "amount": 89595999,
-          "amount-without-pending-rewards": 89595999,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "HAA6FOTDZ2HZNQHLQNHZRINF42YUEUHWAZOT2KXUZGQ3VDBBDNCOEKCTPY"
+        "Addr": "HAA6FOTDZ2HZNQHLQNHZRINF42YUEUHWAZOT2KXUZGQ3VDBBDNCOEKCTPY",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89595999,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "SHX4ZXOQPN3VBEYRCW6TSOJXP66SLRSNUIYFHAZ6UF3ACOIJJLQEZ4LQRQ",
-          "amount": 89597001,
-          "amount-without-pending-rewards": 89597001,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "SHX4ZXOQPN3VBEYRCW6TSOJXP66SLRSNUIYFHAZ6UF3ACOIJJLQEZ4LQRQ"
+        "Addr": "SHX4ZXOQPN3VBEYRCW6TSOJXP66SLRSNUIYFHAZ6UF3ACOIJJLQEZ4LQRQ",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89597001,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "VV2QFIZENH663VOS2GJKAITIQWHHQLCR7AQBRV7EUSD5FYX2P3X6LUE6LI",
-          "amount": 89597001,
-          "amount-without-pending-rewards": 89597001,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "VV2QFIZENH663VOS2GJKAITIQWHHQLCR7AQBRV7EUSD5FYX2P3X6LUE6LI"
+        "Addr": "VV2QFIZENH663VOS2GJKAITIQWHHQLCR7AQBRV7EUSD5FYX2P3X6LUE6LI",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89597001,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "SBKZAOS3LYASTCTSBHJMC52Y45OOMYMY4XSLLBASGN6GBJOEARUKPOZ3BE",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "SBKZAOS3LYASTCTSBHJMC52Y45OOMYMY4XSLLBASGN6GBJOEARUKPOZ3BE"
+        "Addr": "SBKZAOS3LYASTCTSBHJMC52Y45OOMYMY4XSLLBASGN6GBJOEARUKPOZ3BE",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "LMJAMWEDZE7AL25VXBQH4OUEMRZ3XNH6Y76PRU4BW2262UBHTM34J5R42Y",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "LMJAMWEDZE7AL25VXBQH4OUEMRZ3XNH6Y76PRU4BW2262UBHTM34J5R42Y"
+        "Addr": "LMJAMWEDZE7AL25VXBQH4OUEMRZ3XNH6Y76PRU4BW2262UBHTM34J5R42Y",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "LXKIIYIR44WFWDT37E6QXWDCCMN4DJUDXN2RO5WXBTUVKKN7TQAWKCF6LI",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "LXKIIYIR44WFWDT37E6QXWDCCMN4DJUDXN2RO5WXBTUVKKN7TQAWKCF6LI"
+        "Addr": "LXKIIYIR44WFWDT37E6QXWDCCMN4DJUDXN2RO5WXBTUVKKN7TQAWKCF6LI",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "F53X3524HL6SNVHCKC252PYFH3FAWZAE46TFFL3PO62RJRQYKGUGO3JMZU",
-          "amount": 89597001,
-          "amount-without-pending-rewards": 89597001,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "F53X3524HL6SNVHCKC252PYFH3FAWZAE46TFFL3PO62RJRQYKGUGO3JMZU"
+        "Addr": "F53X3524HL6SNVHCKC252PYFH3FAWZAE46TFFL3PO62RJRQYKGUGO3JMZU",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89597001,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "XXVPWGGU4OICADPUBP6B3RBYGQXOTUEYBM6D4UKAZUBJNY5Z3Y4CQLUUCY",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "XXVPWGGU4OICADPUBP6B3RBYGQXOTUEYBM6D4UKAZUBJNY5Z3Y4CQLUUCY"
+        "Addr": "XXVPWGGU4OICADPUBP6B3RBYGQXOTUEYBM6D4UKAZUBJNY5Z3Y4CQLUUCY",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "L3UDQSJYGSLFEWRRTNMV75IQWZSEB2SUKMO6IYKFIDPTWJPVQTZDOVQRG4",
-          "amount": 89597000,
-          "amount-without-pending-rewards": 89597000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "L3UDQSJYGSLFEWRRTNMV75IQWZSEB2SUKMO6IYKFIDPTWJPVQTZDOVQRG4"
+        "Addr": "L3UDQSJYGSLFEWRRTNMV75IQWZSEB2SUKMO6IYKFIDPTWJPVQTZDOVQRG4",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89597000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "C25LZV5N6N2TYEIH4WE5KBWQIGBWAA2TLZXW36PDNMTUHGQXRMSDVXKP6U",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "C25LZV5N6N2TYEIH4WE5KBWQIGBWAA2TLZXW36PDNMTUHGQXRMSDVXKP6U"
+        "Addr": "C25LZV5N6N2TYEIH4WE5KBWQIGBWAA2TLZXW36PDNMTUHGQXRMSDVXKP6U",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "X5PEDKFAOTUUGPZFKVBJQLUMGT6RK6356F4KFRNIYMNCEQXCHIOZBQXBI4",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "X5PEDKFAOTUUGPZFKVBJQLUMGT6RK6356F4KFRNIYMNCEQXCHIOZBQXBI4"
+        "Addr": "X5PEDKFAOTUUGPZFKVBJQLUMGT6RK6356F4KFRNIYMNCEQXCHIOZBQXBI4",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "MH63GZDAFEFNFU6T37NOBUA24TMDZ5AIQGNYSPUHTA53MXPWLHUUDCNZXA",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "MH63GZDAFEFNFU6T37NOBUA24TMDZ5AIQGNYSPUHTA53MXPWLHUUDCNZXA"
+        "Addr": "MH63GZDAFEFNFU6T37NOBUA24TMDZ5AIQGNYSPUHTA53MXPWLHUUDCNZXA",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "TUHO4M5UDEAKHTK4VIGOABW5FQ7LFWV6HPEOORC4EF6OONOMLUTATEVESI",
-          "amount": 89597000,
-          "amount-without-pending-rewards": 89597000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "TUHO4M5UDEAKHTK4VIGOABW5FQ7LFWV6HPEOORC4EF6OONOMLUTATEVESI"
+        "Addr": "TUHO4M5UDEAKHTK4VIGOABW5FQ7LFWV6HPEOORC4EF6OONOMLUTATEVESI",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89597000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "EYZIF2CV2RP2PXEXIXWYLHCC37XPOIOOJRWLYZHDDR3KN2AO6YGUY7VF3M",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "EYZIF2CV2RP2PXEXIXWYLHCC37XPOIOOJRWLYZHDDR3KN2AO6YGUY7VF3M"
+        "Addr": "EYZIF2CV2RP2PXEXIXWYLHCC37XPOIOOJRWLYZHDDR3KN2AO6YGUY7VF3M",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "C53UBSLCWZXMTKTGSUA5IGSCMNPEE5X4YJWNDQ4DQT4OJCK346WUBZGY24",
-          "amount": 89597001,
-          "amount-without-pending-rewards": 89597001,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "C53UBSLCWZXMTKTGSUA5IGSCMNPEE5X4YJWNDQ4DQT4OJCK346WUBZGY24"
+        "Addr": "C53UBSLCWZXMTKTGSUA5IGSCMNPEE5X4YJWNDQ4DQT4OJCK346WUBZGY24",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89597001,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "GS5Y37IBMT4ZLKCSA437K3HCAXX6ANFIQ2RCPFFQH7OUBW7VOJ5HVQURU4",
-          "amount": 89597000,
-          "amount-without-pending-rewards": 89597000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "GS5Y37IBMT4ZLKCSA437K3HCAXX6ANFIQ2RCPFFQH7OUBW7VOJ5HVQURU4"
+        "Addr": "GS5Y37IBMT4ZLKCSA437K3HCAXX6ANFIQ2RCPFFQH7OUBW7VOJ5HVQURU4",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89597000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "BQFFCSTIURAW6ECX4MJG5GYR3GJ4TIJJ7OC7BIJ6EOZSHOHSTEZTYOGZDY",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "BQFFCSTIURAW6ECX4MJG5GYR3GJ4TIJJ7OC7BIJ6EOZSHOHSTEZTYOGZDY"
+        "Addr": "BQFFCSTIURAW6ECX4MJG5GYR3GJ4TIJJ7OC7BIJ6EOZSHOHSTEZTYOGZDY",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "NCAJK7KNJBLJPGI3XZV5YHALBAJRS63LNCU6RSLSGTECLOMRLQ5YABWTGU",
-          "amount": 89595999,
-          "amount-without-pending-rewards": 89595999,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "NCAJK7KNJBLJPGI3XZV5YHALBAJRS63LNCU6RSLSGTECLOMRLQ5YABWTGU"
+        "Addr": "NCAJK7KNJBLJPGI3XZV5YHALBAJRS63LNCU6RSLSGTECLOMRLQ5YABWTGU",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89595999,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "MIXOPVJHGDMEHX76OUNVPSDANFNGS5HM5RYSRQ3VJ5VG6D6FNOUUDAVF7U",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "MIXOPVJHGDMEHX76OUNVPSDANFNGS5HM5RYSRQ3VJ5VG6D6FNOUUDAVF7U"
+        "Addr": "MIXOPVJHGDMEHX76OUNVPSDANFNGS5HM5RYSRQ3VJ5VG6D6FNOUUDAVF7U",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "BOK46E3YACLU64QM4K7KEVBH3AZJI5K2P7MC5HTYTDORNJKPSBGTVEZ4KA",
-          "amount": 89595999,
-          "amount-without-pending-rewards": 89595999,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "BOK46E3YACLU64QM4K7KEVBH3AZJI5K2P7MC5HTYTDORNJKPSBGTVEZ4KA"
+        "Addr": "BOK46E3YACLU64QM4K7KEVBH3AZJI5K2P7MC5HTYTDORNJKPSBGTVEZ4KA",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89595999,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "2V3AQNCE7DJE76WIGBN6KT6IYUFU6G4GXFW6VX5574SQX5FEA53Z7W2LIA",
-          "amount": 39996000,
-          "amount-without-pending-rewards": 39996000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 11
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
+        "Addr": "2V3AQNCE7DJE76WIGBN6KT6IYUFU6G4GXFW6VX5574SQX5FEA53Z7W2LIA",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 39996000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 1,
+        "TotalAppSchema": {
+          "nui": 11
         },
-        "address": "2V3AQNCE7DJE76WIGBN6KT6IYUFU6G4GXFW6VX5574SQX5FEA53Z7W2LIA"
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "RZK74A7BE4ECUMCVNTFWWKSAOSFRVEXGJ3S3R673O47AQULVCSCAAXQ6Y4",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "RZK74A7BE4ECUMCVNTFWWKSAOSFRVEXGJ3S3R673O47AQULVCSCAAXQ6Y4"
+        "Addr": "RZK74A7BE4ECUMCVNTFWWKSAOSFRVEXGJ3S3R673O47AQULVCSCAAXQ6Y4",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "AXRSQQG7FR6HDBHLR23EURQ7YSL5UU4BED46DALQVQYMTIAKEM37JKB6JA",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "AXRSQQG7FR6HDBHLR23EURQ7YSL5UU4BED46DALQVQYMTIAKEM37JKB6JA"
+        "Addr": "AXRSQQG7FR6HDBHLR23EURQ7YSL5UU4BED46DALQVQYMTIAKEM37JKB6JA",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "IOEHCOUTUVLM7D626MIAVM4XRLG6M25QI6DP3OPU7LALBZXBQ4UY4H6G4E",
-          "amount": 89595999,
-          "amount-without-pending-rewards": 89595999,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "IOEHCOUTUVLM7D626MIAVM4XRLG6M25QI6DP3OPU7LALBZXBQ4UY4H6G4E"
+        "Addr": "IOEHCOUTUVLM7D626MIAVM4XRLG6M25QI6DP3OPU7LALBZXBQ4UY4H6G4E",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89595999,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "YENAMUAV4VVB6QR66HADERLE4X24FOROL3U7KW4OK3JWDVADCJL7FRL5YM",
-          "amount": 89595999,
-          "amount-without-pending-rewards": 89595999,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "YENAMUAV4VVB6QR66HADERLE4X24FOROL3U7KW4OK3JWDVADCJL7FRL5YM"
+        "Addr": "YENAMUAV4VVB6QR66HADERLE4X24FOROL3U7KW4OK3JWDVADCJL7FRL5YM",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89595999,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "KQX72RE7MJ7UVJFGHDN5ARONGFKVOLIMKCXPEB7XJCORI5JHGM2WIKCNOM",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "KQX72RE7MJ7UVJFGHDN5ARONGFKVOLIMKCXPEB7XJCORI5JHGM2WIKCNOM"
+        "Addr": "KQX72RE7MJ7UVJFGHDN5ARONGFKVOLIMKCXPEB7XJCORI5JHGM2WIKCNOM",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "FDYJMXO2NKOYBITMFM4TJC6KUNMLLXGH3I2ROPT544224KK3JW2C6BWTRE",
-          "amount": 89596000,
-          "amount-without-pending-rewards": 89596000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "FDYJMXO2NKOYBITMFM4TJC6KUNMLLXGH3I2ROPT544224KK3JW2C6BWTRE"
+        "Addr": "FDYJMXO2NKOYBITMFM4TJC6KUNMLLXGH3I2ROPT544224KK3JW2C6BWTRE",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89596000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "OVGKE3ZPIHKSRCFWDCIBKHBJMVKMHAE357KODWPV5ZUE233BOC6RL3LZ6Y",
-          "amount": 89595999,
-          "amount-without-pending-rewards": 89595999,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 12595,
-          "rewards": 0,
-          "round": 22085518,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "OVGKE3ZPIHKSRCFWDCIBKHBJMVKMHAE357KODWPV5ZUE233BOC6RL3LZ6Y"
+        "Addr": "OVGKE3ZPIHKSRCFWDCIBKHBJMVKMHAE357KODWPV5ZUE233BOC6RL3LZ6Y",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 89595999,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       }
     ],
-    "apps": [
+    "AppResources": [
       {
-        "address": "2V3AQNCE7DJE76WIGBN6KT6IYUFU6G4GXFW6VX5574SQX5FEA53Z7W2LIA",
-        "app-deleted": false,
-        "app-index": 1337185129,
-        "app-local-state-deleted": false,
-        "app-params": {
-          "approval-program": "CCAGAAECGPQDgCAmBAhhc2tfYm9vawhiaWRfYm9vawNzZXEDBoEBMRsiEkABGTYaAIAEjsSYgRJAAP02GgCABAnlcRYSQAC4NhoAgATBmHqfEkAAfDYaAIAEvxQd2RJAADg2GgCABEPXgiYSQAABADEZIhIxGCITEEQ2GgEiVTURNhoCIlU1EjYaAyJVNRM0ETQSNBOIA54jQzEZIhIxGCITEEQ2GgEXNQw2GgIXNQ02GgMXNQ42GgQXNQ82GgUXNRA0DDQNNA40DzQQiANaI0MxGSISMRgiExBENhoBFzUINhoCFzUJNhoDFzUKNhoEFzULNAg0CTQKNAuIAyAjQzEZIhIxGCITEEQ2GgEigQgLUzUANhoCFzUBNhoDFzUCNAA0ATQCiAKfNQOABBUffHU0AxZQsCNDMRkiEjEYIhMQRIgCeCNDMRkiEkAAAQAxGCISRIgAAiNDI0M1JDUjNSI0IhUiEjQjFSISEUAALzQkQAAcNCJXAAg0IlcICK5QNCNXAAg0I1cICK5QpUIADzQiVwAQNCNXABCkQgABIok1GzUaNRk0GTQZZDQaFQs0Grs0GTQZZDQaFTQbiAB2NBk0GWQjCGeJNTo1OTU4NTc0NzQ3ZCMJZzQ3NDg0N2Q0OYgAGjQ3NDg0OTQ6iADlNDc0N2Q0Oa8VCzQ5r7uJNSg1JzUmNSU0JTQmNCgLNCi6NSk0JTQnNCgLNCi6NSo0JTQnNCkVCzQpuzQlNCY0KhULNCq7iTUfNR41HTUcNB0iE0EAjyEEgQoINSA0IDIMDUAAbTQdJBgiEkAAXTQdIwkkCjUhNBw0HTQeCzQeujQcNCE0Hgs0Hro0H4j+3kEAUzQcNB00ITQeiP9zNBw0ITQeNB80HDQdNB40HzQgNCFPCU8JTwlPCYj/izUhNSA1HzUeNR01HEIAGjQdJAlC/6CxgQayEIEFshkrsh4rsh+zQv94iTU+NT01PDU7NDw0O2QMQQDXIQSBCgg1PzQ/MgwNQAC1NDw1QDQ8JAsjCDVBNDwkCyQINUI0QTQ7ZAxAAHU0QjQ7ZAxAAEk0QDQ8E0EAmjQ7NDw0QDQ9iP7RNDs0QDQ9ND40OzQ8ND00PjQ/NEA0QTRCTwtPC08LTwuI/4Q1QjVBNUA1PzU+NT01PDU7QgBZNDs0QjQ9CzQ9ujQ7NEA0PQs0Pbo0Poj930H/mzRCNUBC/5Q0OzRBND0LND26NDs0QDQ9CzQ9ujQ+iP28Qf9vNEE1QEL/aLGBBrIQgQWyGSuyHiuyH7NC/zCJKCEFuUQpIQW5RIk1BjUFNQQ0BjUHNARAACA0BTQGiACfNQY0BkEALzQFNAYqKmQjCGcqZIgAakIAHTQFNAaIARk1BjQGQQAPNAU0BioqZCMIZypkiAArNAc0Bgk1BzQHiTVNNUw1SzVKIkSJNVI1UTVQNU81TiJEiTVVNVQ1UyJEiTUWNRU1FDQWNRc0FBY0FxZQNBUWUDUYKTQYIoj9Q4k1LTUsNSs0LTUuNCsWNC4WUDQsFlA1Lyg0LyOI/SSJNTE1MClkIhI0MSISEUAAhikiJQslujUyNDIiWzUzNDKBEFs1NDQzNDAMQABmNDQ0MQ5AACg0MoEIWzU1NDQ0MQk1NjQzFjQ1FlA0NhZQNTIpIjQyFQs0MrsiQgA8KSIlIoj85zQwNDE0NAk0MDQxNDI0MzQ0NDU0Nk8ITwiI/4BOBzU2NTU1NDUzNTI1MTUwQgAGNDGJNDGJiTVENUMoZCISNEQiEhFAAIYoIiULJbo1RTRFIls1RjRFgRBbNUc0RjRDDUAAZjRHNEQOQAAoNEWBCFs1SDRHNEQJNUk0RhY0SBZQNEkWUDVFKCI0RRULNEW7IkIAPCgiJSOI/E00QzRENEcJNEM0RDRFNEY0RzRINElPCE8IiP+ATgc1STVINUc1RjVFNUQ1Q0IABjREiTREiYk=",
-          "clear-state-program": "CIEAQw==",
-          "creator": "2V3AQNCE7DJE76WIGBN6KT6IYUFU6G4GXFW6VX5574SQX5FEA53Z7W2LIA",
-          "global-state": [
-            {
-              "key": "YmlkX2Jvb2s=",
-              "value": {
-                "bytes": "",
-                "type": 2,
-                "uint": 1
+        "Addr": "2V3AQNCE7DJE76WIGBN6KT6IYUFU6G4GXFW6VX5574SQX5FEA53Z7W2LIA",
+        "Aidx": 1337185129,
+        "Params": {
+          "Deleted": false,
+          "Params": {
+            "approv": "CCAGAAECGPQDgCAmBAhhc2tfYm9vawhiaWRfYm9vawNzZXEDBoEBMRsiEkABGTYaAIAEjsSYgRJAAP02GgCABAnlcRYSQAC4NhoAgATBmHqfEkAAfDYaAIAEvxQd2RJAADg2GgCABEPXgiYSQAABADEZIhIxGCITEEQ2GgEiVTURNhoCIlU1EjYaAyJVNRM0ETQSNBOIA54jQzEZIhIxGCITEEQ2GgEXNQw2GgIXNQ02GgMXNQ42GgQXNQ82GgUXNRA0DDQNNA40DzQQiANaI0MxGSISMRgiExBENhoBFzUINhoCFzUJNhoDFzUKNhoEFzULNAg0CTQKNAuIAyAjQzEZIhIxGCITEEQ2GgEigQgLUzUANhoCFzUBNhoDFzUCNAA0ATQCiAKfNQOABBUffHU0AxZQsCNDMRkiEjEYIhMQRIgCeCNDMRkiEkAAAQAxGCISRIgAAiNDI0M1JDUjNSI0IhUiEjQjFSISEUAALzQkQAAcNCJXAAg0IlcICK5QNCNXAAg0I1cICK5QpUIADzQiVwAQNCNXABCkQgABIok1GzUaNRk0GTQZZDQaFQs0Grs0GTQZZDQaFTQbiAB2NBk0GWQjCGeJNTo1OTU4NTc0NzQ3ZCMJZzQ3NDg0N2Q0OYgAGjQ3NDg0OTQ6iADlNDc0N2Q0Oa8VCzQ5r7uJNSg1JzUmNSU0JTQmNCgLNCi6NSk0JTQnNCgLNCi6NSo0JTQnNCkVCzQpuzQlNCY0KhULNCq7iTUfNR41HTUcNB0iE0EAjyEEgQoINSA0IDIMDUAAbTQdJBgiEkAAXTQdIwkkCjUhNBw0HTQeCzQeujQcNCE0Hgs0Hro0H4j+3kEAUzQcNB00ITQeiP9zNBw0ITQeNB80HDQdNB40HzQgNCFPCU8JTwlPCYj/izUhNSA1HzUeNR01HEIAGjQdJAlC/6CxgQayEIEFshkrsh4rsh+zQv94iTU+NT01PDU7NDw0O2QMQQDXIQSBCgg1PzQ/MgwNQAC1NDw1QDQ8JAsjCDVBNDwkCyQINUI0QTQ7ZAxAAHU0QjQ7ZAxAAEk0QDQ8E0EAmjQ7NDw0QDQ9iP7RNDs0QDQ9ND40OzQ8ND00PjQ/NEA0QTRCTwtPC08LTwuI/4Q1QjVBNUA1PzU+NT01PDU7QgBZNDs0QjQ9CzQ9ujQ7NEA0PQs0Pbo0Poj930H/mzRCNUBC/5Q0OzRBND0LND26NDs0QDQ9CzQ9ujQ+iP28Qf9vNEE1QEL/aLGBBrIQgQWyGSuyHiuyH7NC/zCJKCEFuUQpIQW5RIk1BjUFNQQ0BjUHNARAACA0BTQGiACfNQY0BkEALzQFNAYqKmQjCGcqZIgAakIAHTQFNAaIARk1BjQGQQAPNAU0BioqZCMIZypkiAArNAc0Bgk1BzQHiTVNNUw1SzVKIkSJNVI1UTVQNU81TiJEiTVVNVQ1UyJEiTUWNRU1FDQWNRc0FBY0FxZQNBUWUDUYKTQYIoj9Q4k1LTUsNSs0LTUuNCsWNC4WUDQsFlA1Lyg0LyOI/SSJNTE1MClkIhI0MSISEUAAhikiJQslujUyNDIiWzUzNDKBEFs1NDQzNDAMQABmNDQ0MQ5AACg0MoEIWzU1NDQ0MQk1NjQzFjQ1FlA0NhZQNTIpIjQyFQs0MrsiQgA8KSIlIoj85zQwNDE0NAk0MDQxNDI0MzQ0NDU0Nk8ITwiI/4BOBzU2NTU1NDUzNTI1MTUwQgAGNDGJNDGJiTVENUMoZCISNEQiEhFAAIYoIiULJbo1RTRFIls1RjRFgRBbNUc0RjRDDUAAZjRHNEQOQAAoNEWBCFs1SDRHNEQJNUk0RhY0SBZQNEkWUDVFKCI0RRULNEW7IkIAPCgiJSOI/E00QzRENEcJNEM0RDRFNEY0RzRINElPCE8IiP+ATgc1STVINUc1RjVFNUQ1Q0IABjREiTREiYk=",
+            "clearp": "CIEAQw==",
+            "gs": {
+              "bid_book": {
+                "tt": 2,
+                "ui": 1
+              },
+              "seq": {
+                "tt": 2,
+                "ui": 1
               }
             },
-            {
-              "key": "c2Vx",
-              "value": {
-                "bytes": "",
-                "type": 2,
-                "uint": 1
-              }
+            "gsch": {
+              "nui": 11
+            },
+            "lsch": {
+              "nbs": 1,
+              "nui": 4
             }
-          ],
-          "global-state-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 11
-          },
-          "local-state-schema": {
-            "num-byte-slice": 1,
-            "num-uint": 4
           }
+        },
+        "State": {
+          "Deleted": false,
+          "LocalState": null
         }
       }
     ],
-    "assets": null
+    "AssetResources": null
   },
-  "kv-mods": [
-    {
-      "key": "Yng6AAAAAE+z02liaWRfYm9vaw==",
-      "value": "AAAAAAAAADMAAAAAAAAAAQAAAAAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+  "Creatables": null,
+  "Hdr": {
+    "earn": 12595,
+    "fees": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
+    "frac": 3846799357,
+    "gen": "betanet-v1.0",
+    "gh": "mFgazF+2uRS1tMiL9dsj01hJGySEmPN28B/TjjvpVW0=",
+    "prev": "blk-U5MOD6WYEH2NOQZVY2G3M7OUMMBONJPEQDBAO55PWT6MASQ7AUPA",
+    "proto": "https://github.com/algorandfoundation/specs/tree/44fa607d6051730f5264526bf3c108d51f0eadb6",
+    "rnd": 22085518,
+    "rwcalr": 22500000,
+    "rwd": "7777777777777777777777777777777777777777777777777774MSJUVU",
+    "seed": "LM9PRjCcVDEGuUzI5BElS4RTn60x7pHZ0J3BRSgelOg=",
+    "spt": {
+      "0": {
+        "n": 22085632
+      }
+    },
+    "tc": 1337185754,
+    "ts": 1668439243,
+    "txn": "Le+J3oJwb/jumXXk8OGNBV5LtEjKApjFYw6hXRig11Q=",
+    "txn256": "oLF/IPwwlgXO6yaoGwW76m8vrYAZGzU6+ogpav4ecC8="
+  },
+  "KvMods": {
+    "bx:\u0000\u0000\u0000\u0000O\ufffd\ufffdibid_book": {
+      "Data": "AAAAAAAAADMAAAAAAAAAAQAAAAAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+      "OldData": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
     }
-  ],
-  "modified-apps": null,
-  "modified-assets": null,
-  "prev-timestamp": 1668439239,
-  "totals": {
-    "not-participating": 1361656576290,
-    "offline": 112271490590529,
-    "online": 10011366852933180,
-    "rewards-level": 12595
   },
-  "tx-leases": null
+  "PrevTimestamp": 1668439239,
+  "StateProofNext": 0,
+  "Totals": {
+    "notpart": {
+      "mon": 1361656576290,
+      "rwd": 1361654
+    },
+    "offline": {
+      "mon": 112271490590529,
+      "rwd": 111623656
+    },
+    "online": {
+      "mon": 10011366852933181,
+      "rwd": 10010107336
+    },
+    "rwdlvl": 12595
+  },
+  "Txids": {
+    "/ebn/WznhB9/PukVYc9VuXai8Ox/nq5Tz4wgLqGyVIk=": {
+      "Intra": 0,
+      "LastValid": 22085521
+    },
+    "0NrGLcCMC+bT6amF8niax/GyZEsVRp/D+IoYL34egjE=": {
+      "Intra": 11,
+      "LastValid": 22085522
+    },
+    "1DkZwxxlE+CFMP2RNssJR9AcwRyWUgczLjQ65mGFV2Y=": {
+      "Intra": 78,
+      "LastValid": 22085522
+    },
+    "3XECD2JqkMntNIfSiOMxdct8CRTggME9xmKelnwHd+s=": {
+      "Intra": 44,
+      "LastValid": 22085522
+    },
+    "5Y98pZOuKlwXfb5jhZsEKECViuUXoqicIInjS4IbHS0=": {
+      "Intra": 5,
+      "LastValid": 22085522
+    },
+    "61Pq67EaDdxN3AVFvh4YnGQtLSEEpDEh2I7YNKU2u/Q=": {
+      "Intra": 2,
+      "LastValid": 22085521
+    },
+    "668VmAEt//2OH/twa4AT67FUJGigOU/xVVFNdOmUHxA=": {
+      "Intra": 29,
+      "LastValid": 22085522
+    },
+    "688VeaqyxL+lyyHrv4Abp4x2p28++15vUdwlhRXFmzY=": {
+      "Intra": 84,
+      "LastValid": 22085522
+    },
+    "6CNflytab/E/W7Z2HqJTfd4XTvqo81rXrpi4pTbUTpg=": {
+      "Intra": 81,
+      "LastValid": 22085522
+    },
+    "7dIoau5+szS4fcnAnSNRrsrTgVV16yvxgpiK4WDcAjQ=": {
+      "Intra": 16,
+      "LastValid": 22085522
+    },
+    "7iz6vIoesGkH+hINgd+hKsbSjgRRKsJ6Jh01iP8yngg=": {
+      "Intra": 25,
+      "LastValid": 22085522
+    },
+    "7tZGfRpdgPBELGlnPgnFOlbFfthwFyEazCvLcUElnr8=": {
+      "Intra": 4,
+      "LastValid": 22085522
+    },
+    "9+BqoBQ4ccmy0g2C3/vH55ym+neEiU8r4QoksjY8z0k=": {
+      "Intra": 52,
+      "LastValid": 22085522
+    },
+    "AGqLwibwxsU7eJk/RdHl4k3IN9D/dwv2psgp6b44fps=": {
+      "Intra": 19,
+      "LastValid": 22085522
+    },
+    "AjOo9IP/g2/oHLr4HedrblAHdvMCwTggTI2Tv8kKIXg=": {
+      "Intra": 26,
+      "LastValid": 22085522
+    },
+    "Cba6RSdSPuzqUhRfo9BXgX1Kb1Pd/qrHjqE64PcC4vA=": {
+      "Intra": 22,
+      "LastValid": 22085522
+    },
+    "DRAmeVanqdLSojiQdLG+oj93v4D9KIqpWpKD68n7qss=": {
+      "Intra": 36,
+      "LastValid": 22085522
+    },
+    "DTjlo2UV1wMKSKFk8jxK3IfWAVEYyRJW8ExS0LiGpPM=": {
+      "Intra": 88,
+      "LastValid": 22085522
+    },
+    "DrFIDoU2lpy/FEzTyBM1vL+3TSGIzhHjDtcc1ETlSnc=": {
+      "Intra": 40,
+      "LastValid": 22085522
+    },
+    "EqSuCBj/fYRGzUyvJXLSEDoqxJobo1Zz9m7+MR/uIDg=": {
+      "Intra": 66,
+      "LastValid": 22085522
+    },
+    "ExcKfw+4h1Yx/gQjy8m+6ZNXMBpfGkyr2T9h8tqx6Ag=": {
+      "Intra": 24,
+      "LastValid": 22085522
+    },
+    "FjJRVmf01CDjELIgnkooeggqsDaPr2yMIk5UhWfDnSQ=": {
+      "Intra": 46,
+      "LastValid": 22085522
+    },
+    "HO0ZzmTCdobn0TEL27A7MYYYLhe260ec+AcT5L+nQ14=": {
+      "Intra": 12,
+      "LastValid": 22085522
+    },
+    "HRP/RY/rizlGtfueu6yOeXZI2KPXARKBfmJhDDkBKSQ=": {
+      "Intra": 59,
+      "LastValid": 22085522
+    },
+    "HVZTdd+8sztzAbMK8r7BWgIJtMMa2/Sh1OX6PC+ygU4=": {
+      "Intra": 20,
+      "LastValid": 22085522
+    },
+    "IukS6BMxKelU8zoGIKqAUrom25A9zj06jS5LQ/dtosY=": {
+      "Intra": 76,
+      "LastValid": 22085522
+    },
+    "KsVfbK5XPz4s2Jfk0aaTkbYtgwowl5cAcM11sqXE9TA=": {
+      "Intra": 15,
+      "LastValid": 22085522
+    },
+    "L0Yh+EBPtrKheD8uKKv+pGkpMLG6kPwws2khonJ34KU=": {
+      "Intra": 65,
+      "LastValid": 22085522
+    },
+    "L2ASrQT2BvZHdOX+OMOzSohpLw7CZwPdbfXczNY2uw8=": {
+      "Intra": 33,
+      "LastValid": 22085522
+    },
+    "L7I0TLPSVW8owQlUNtFxqUTZbPM0x0aGTcJgHsEsOs4=": {
+      "Intra": 35,
+      "LastValid": 22085522
+    },
+    "LQjyHeb8dZI1u2EbQRLmwhUgzXEMmTH4cAr4eUrPwuc=": {
+      "Intra": 57,
+      "LastValid": 22085522
+    },
+    "LgxT9FxHQSHmTUxqQmivMLqoWp+SElwBeF44SrT8q58=": {
+      "Intra": 30,
+      "LastValid": 22085522
+    },
+    "LhXwPbZM1RZTYSOaLAUuzuyxlSxjhtLfH+1f/ivVZHc=": {
+      "Intra": 72,
+      "LastValid": 22085522
+    },
+    "LkIoZLEIpNGy06yejOZh+VmqaABQl9k78HI5GFTQliM=": {
+      "Intra": 87,
+      "LastValid": 22085522
+    },
+    "MFb+Lu11re+vPil5QPliG7zXzKpcGhSus1Qh2r98QCE=": {
+      "Intra": 37,
+      "LastValid": 22086516
+    },
+    "MPRb/Re/CW9S+CgP/WepMZwL2eliPvFCqPQrqGQGjnI=": {
+      "Intra": 68,
+      "LastValid": 22085522
+    },
+    "N1cstoK0FgkA90q4JzJVWqBhdVhWM9COIXtHLmo2NUQ=": {
+      "Intra": 18,
+      "LastValid": 22085522
+    },
+    "N2bqD6k/f8TKfwvAjhRJFahWAhNNLeZz8OCz9tf8YpQ=": {
+      "Intra": 7,
+      "LastValid": 22085522
+    },
+    "NP9FVuJWab/rST9nwzH5Nz9loC4o8c1SeR6LGNDCw4c=": {
+      "Intra": 74,
+      "LastValid": 22085522
+    },
+    "NdTN6SJqsm0tlZOopA43E3froYV+ZUqGXuZFnF3IdWU=": {
+      "Intra": 51,
+      "LastValid": 22085522
+    },
+    "O4nedQFp1KyluGQq4Axk9N4HuPpFliwdrldpAj7yhkI=": {
+      "Intra": 34,
+      "LastValid": 22085522
+    },
+    "Oc2lKbFRkVo55Y47L0bqdsuDTY0xdU/YDKcgK4QSqVo=": {
+      "Intra": 83,
+      "LastValid": 22085522
+    },
+    "PeOJiFLhCzHJEBmBT5yievoz3BqKvLBWPAri3vEzGKM=": {
+      "Intra": 6,
+      "LastValid": 22085522
+    },
+    "SGNxVVMPxSlQl9ez1W2aabSQs9C5qw9LobL+cA3l69U=": {
+      "Intra": 23,
+      "LastValid": 22085522
+    },
+    "SsfVcROk3RdEwIBaOTgYSs469REnLHQKK4zietFEhj4=": {
+      "Intra": 41,
+      "LastValid": 22085522
+    },
+    "U0KHHw/6/cfhCn9OGkD6Zm24Ct4yZFjB0nnK6o0bkGs=": {
+      "Intra": 42,
+      "LastValid": 22085522
+    },
+    "V9mUKaWcPfYeeldMD4TrhIvvXQz5641TFy4Jxd9vrHY=": {
+      "Intra": 45,
+      "LastValid": 22085522
+    },
+    "VNgwOgGuLjRQ5K+rdhY8B7aD6FHCcQPL+SezmURG9Wc=": {
+      "Intra": 27,
+      "LastValid": 22085522
+    },
+    "VtuOBkol9oykt6UCiVolk8nMtWJTcgfRq8tmii58PKA=": {
+      "Intra": 14,
+      "LastValid": 22085522
+    },
+    "WApfhQs1+FqpO/38uDxgAUqh0FIgwGfvuFRfQzw8Fzg=": {
+      "Intra": 62,
+      "LastValid": 22085522
+    },
+    "Ws77ikAeL5W+GonDPko/mES58XYf2yHyPReZCKQ9uSI=": {
+      "Intra": 70,
+      "LastValid": 22085522
+    },
+    "X01GkqlJDtTj8QOQf5Mb7KL3Xgxl4mB6Q5A5m9wNGzk=": {
+      "Intra": 3,
+      "LastValid": 22085522
+    },
+    "X85MQTvy8i8BwpoKcQvgccvpCIyJ7R3Wqf3CCIjC030=": {
+      "Intra": 17,
+      "LastValid": 22085522
+    },
+    "Xdtszxwvvz6nngLbA0arwuZRSkoNBDOiQvXJ+L6W7Tk=": {
+      "Intra": 61,
+      "LastValid": 22085522
+    },
+    "YQGOJbdoQdu/bX8+FNd2FhuYxnNs6kkoTGcRVQw/b2Y=": {
+      "Intra": 8,
+      "LastValid": 22085522
+    },
+    "YfZMnoPhiw1wmllQlcecV7WDk0/BGG1985JYkTU/FXM=": {
+      "Intra": 63,
+      "LastValid": 22085522
+    },
+    "ZkeHDjNv6DIuKAUpnq7AbbMh4WplWbSyVn5RiVbtzt8=": {
+      "Intra": 85,
+      "LastValid": 22085522
+    },
+    "avnv26a+7jdzEhxVhGtVlVG4lIhFlgVmRf9fkwwjbro=": {
+      "Intra": 56,
+      "LastValid": 22085522
+    },
+    "cHnD2UU9hOYn7j9BhvgqTTekDLt0oYlKEOCMiAh+Avo=": {
+      "Intra": 9,
+      "LastValid": 22085522
+    },
+    "cp+Du4w4OsZE+uZAcJnIeo0XSFceex1kAUSiKesZwD0=": {
+      "Intra": 53,
+      "LastValid": 22085522
+    },
+    "df0vtKmQ1KTG/2VOn+kQLR/bIfLVlm220Dp7Oxlkrew=": {
+      "Intra": 38,
+      "LastValid": 22085522
+    },
+    "eY4fUbiC0oSbXze8WAJq8lgWltxMhe1fFhTM1fHUMsg=": {
+      "Intra": 82,
+      "LastValid": 22085522
+    },
+    "etFswfkvHpwYFC8BdzLkC055ypFvf3h5DPeSgXHFpfM=": {
+      "Intra": 71,
+      "LastValid": 22085522
+    },
+    "fLBRCE01lujiQoWnUjeEEHm+9GYJevXKndz1+OG0+AE=": {
+      "Intra": 10,
+      "LastValid": 22085522
+    },
+    "frunmaLGjdoIVDxarVJoxVXfFkIvmmzZE/Eg3+Mx7cA=": {
+      "Intra": 89,
+      "LastValid": 22085522
+    },
+    "g+6qb0KFWvxeXXHbJLOoU3F/c/cVbEc0okJFVWX9yP4=": {
+      "Intra": 28,
+      "LastValid": 22085522
+    },
+    "g434l3G66Z8McmQXvqPBbU5gTUNa99t4+0lDbYX46wo=": {
+      "Intra": 75,
+      "LastValid": 22085522
+    },
+    "gGgA0VpJw/AjAVfZF6SHMsT/a3InAs/xOmX5mZ6uH8A=": {
+      "Intra": 43,
+      "LastValid": 22085522
+    },
+    "gJeFWNh3KVt3h5vxuWogfSXV80jGqL00L9Qxgu4z3D0=": {
+      "Intra": 1,
+      "LastValid": 22085521
+    },
+    "gtCjKVfinnP00QC6fgkvywD5W+/KEMHKpviRUECwr/o=": {
+      "Intra": 80,
+      "LastValid": 22085522
+    },
+    "hiQprUGff2FK1mfl0MAx06cq7UC+GRtlY0qsFUYr3yk=": {
+      "Intra": 58,
+      "LastValid": 22085522
+    },
+    "iAEPzk9QX6PNEQVlTYF+iObWH0BgjyEzIHcjRqm9yrI=": {
+      "Intra": 86,
+      "LastValid": 22085522
+    },
+    "iccf4oBq78YUqL5PlJA6r1T4c5uvmHZrRAeucoWz/Qc=": {
+      "Intra": 54,
+      "LastValid": 22085522
+    },
+    "ipOyvbFzXhaT1SllbqWFFmsa4Nji+0MouDhHqWz4BAg=": {
+      "Intra": 13,
+      "LastValid": 22085522
+    },
+    "jEu5H3f/WGthnutL3P6olbq5sHq8dHyJ+HEPoIikreI=": {
+      "Intra": 32,
+      "LastValid": 22085522
+    },
+    "kNVU517vJDuK8WJFJAl9Jfro5zlQ+8JOQnlmNTQv8Js=": {
+      "Intra": 73,
+      "LastValid": 22085522
+    },
+    "kkPFrf22vZVOip/ar6EanQUNRiEaKCHG1UXXafjnLNY=": {
+      "Intra": 48,
+      "LastValid": 22085522
+    },
+    "lN/6qCEOpUPinJFaE5kO8mWHlhYDfNrJDL2LwBapees=": {
+      "Intra": 79,
+      "LastValid": 22085522
+    },
+    "mh27/yJsZPc8d/PPaY8nuX44NqoLycJgocfFTE3P3ek=": {
+      "Intra": 77,
+      "LastValid": 22085522
+    },
+    "o/hQmuYgt8E6++O+qoZihko1aJmNYEBxFawmfT/4M/4=": {
+      "Intra": 21,
+      "LastValid": 22085522
+    },
+    "oCmlC9QMwbzRSK/H+gfc3XGQaGoeZBOTCfF7sFUBHxo=": {
+      "Intra": 64,
+      "LastValid": 22085522
+    },
+    "ojLZAjkbbdk8SA3eX/ZKpBqaHD0X2RmTMK3p/AvThxk=": {
+      "Intra": 39,
+      "LastValid": 22085522
+    },
+    "pOKA0Dl26fy1muNefh4Sx9HCvpJ4jiyCUdUCiEqTnXk=": {
+      "Intra": 47,
+      "LastValid": 22085522
+    },
+    "s/fd6vfMtm+YCAhaoHENcBwBRd1ENKlQsKUPHPIQcnc=": {
+      "Intra": 91,
+      "LastValid": 22085522
+    },
+    "sBk6QQcIlnuknZ2rgEtKcoQOsjq8ePQpcTjsR9/BBJc=": {
+      "Intra": 49,
+      "LastValid": 22085522
+    },
+    "sv9CIGY47gaxnQh3d7tPhiKRh3wXzKxioBamJxYgwvM=": {
+      "Intra": 55,
+      "LastValid": 22085522
+    },
+    "tli8tsKY68hryTj1iWCZUYncjnNfUz1oLpncEONrMMU=": {
+      "Intra": 60,
+      "LastValid": 22085522
+    },
+    "wgUj7G+pLhNkIZwWwIqkCOJ1mI6b9RqAEfZCjbZAaUY=": {
+      "Intra": 31,
+      "LastValid": 22085522
+    },
+    "whHkzq7nHg52xRu+g/zcm9qv9QGVRd7a/S9ppsvssDE=": {
+      "Intra": 67,
+      "LastValid": 22085522
+    },
+    "xN6l0I+1rrATstQlZ9/FKKIbF6UZdw2VncuB1NID/PU=": {
+      "Intra": 90,
+      "LastValid": 22085522
+    },
+    "yrd/0F9SrLribIy5ZzxxT34SN8DhCaFgYfTxw/OBFnU=": {
+      "Intra": 69,
+      "LastValid": 22085522
+    },
+    "z6F4wlkERBSJCR8MndO9cCtLZikNPXwGs322ms033qA=": {
+      "Intra": 50,
+      "LastValid": 22085522
+    }
+  },
+  "Txleases": null
 }

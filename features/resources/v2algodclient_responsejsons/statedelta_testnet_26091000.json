@@ -1,360 +1,570 @@
 {
-  "accts": {
-    "accounts": [
+  "Accts": {
+    "Accts": [
       {
-        "account-data": {
-          "address": "7777777777777777777777777777777777777777777777777774MSJUVU",
-          "amount": 2030818314,
-          "amount-without-pending-rewards": 1974950684,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 55867630,
-          "reward-base": 0,
-          "rewards": 0,
-          "round": 26091000,
-          "status": "Not Participating",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "7777777777777777777777777777777777777777777777777774MSJUVU"
+        "Addr": "7777777777777777777777777777777777777777777777777774MSJUVU",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 2051818321,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 0,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 2,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "UKSBQH6FOHPZMEQ7YPDSD3AV54XSXRFG744W6WF4QUFEF5SLXVIL7SQ4GM",
-          "amount": 229200,
-          "amount-without-pending-rewards": 229200,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 27521,
-          "rewards": 0,
-          "round": 26091000,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "UKSBQH6FOHPZMEQ7YPDSD3AV54XSXRFG744W6WF4QUFEF5SLXVIL7SQ4GM"
+        "Addr": "6DJL462RP2DWBGMJIPDQ5PJCXRJKI34Z4GRWB3MEPAGRBAPTBL7U42RDYI",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 550506000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 27521,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
-          "amount": 334928765078,
-          "amount-without-pending-rewards": 325711211590,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 9217553488,
-          "reward-base": 0,
-          "rewards": 0,
-          "round": 26091000,
-          "status": "Not Participating",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE"
+        "Addr": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 342106532750,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 0,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 2,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
-          "amount": 53397589,
-          "amount-without-pending-rewards": 53397589,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 27521,
-          "rewards": 61854,
-          "round": 26091000,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
+        "Addr": "XRLMBT6LVVV22E35CRT5TFQKGQPQ4EE6X6K4U3XPQ3UOCRY5FYY7BFEBJE",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 190692000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 27521,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 17,
+        "TotalAppParams": 13,
+        "TotalAppSchema": {
+          "nbs": 80,
+          "nui": 221
         },
-        "address": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI"
+        "TotalAssetParams": 2,
+        "TotalAssets": 2,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       },
       {
-        "account-data": {
-          "address": "IKDRMFBLWCMSXVK3SEVFWZ2WYR5FGYNLOR5LQ6Z3XVSFX7AAYVSKS7HFAI",
-          "amount": 12958000,
-          "amount-without-pending-rewards": 12958000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 29,
-            "num-uint": 1
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 27521,
-          "rewards": 0,
-          "round": 26091000,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
+        "Addr": "OOADCJDVTA3QKWLBI7QBQZVTXXOVNYY4RMXNLAQNPQGTNK7Y446SX5MFCM",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 39927000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 27521,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 1,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {
+          "nbs": 16
         },
-        "address": "IKDRMFBLWCMSXVK3SEVFWZ2WYR5FGYNLOR5LQ6Z3XVSFX7AAYVSKS7HFAI"
-      },
-      {
-        "account-data": {
-          "address": "BX7DE4WGKPMZHR5ASXRWF2SQU5RNRWM3IXUNJ5T5LZMLVUYS3VCWI426NA",
-          "amount": 13541625,
-          "amount-without-pending-rewards": 13541625,
-          "apps-local-state": [],
-          "apps-total-extra-pages": 27,
-          "apps-total-schema": {
-            "num-byte-slice": 64,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 27521,
-          "rewards": 0,
-          "round": 26091000,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "BX7DE4WGKPMZHR5ASXRWF2SQU5RNRWM3IXUNJ5T5LZMLVUYS3VCWI426NA"
-      },
-      {
-        "account-data": {
-          "address": "ISTJS27XQLNY2G2ZWNOPDEAKLYWMNCRXKMPR4YYJVT4ERML47GV2FTNDJ4",
-          "amount": 200000,
-          "amount-without-pending-rewards": 200000,
-          "apps-local-state": [],
-          "apps-total-schema": {
-            "num-byte-slice": 0,
-            "num-uint": 0
-          },
-          "assets": [],
-          "created-apps": [],
-          "created-assets": [],
-          "pending-rewards": 0,
-          "reward-base": 27521,
-          "rewards": 0,
-          "round": 26091000,
-          "status": "Offline",
-          "total-apps-opted-in": 0,
-          "total-assets-opted-in": 0,
-          "total-created-apps": 0,
-          "total-created-assets": 0
-        },
-        "address": "ISTJS27XQLNY2G2ZWNOPDEAKLYWMNCRXKMPR4YYJVT4ERML47GV2FTNDJ4"
+        "TotalAssetParams": 0,
+        "TotalAssets": 1,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
       }
     ],
-    "apps": [
+    "AppResources": [
       {
-        "address": "KCVW6CW2ZZGHDF7I4MIF32O4NE66LKCCX46GDC7SDFOFZWEWRXPOEBU4EA",
-        "app-deleted": false,
-        "app-index": 100233411,
-        "app-local-state": {
-          "id": 100233411,
-          "key-value": [
-            {
-              "key": "AA==",
-              "value": {
-                "bytes": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-                "type": 1,
-                "uint": 0
+        "Addr": "ZOAAQIADWSKRAM3VP4QUBOCHAN34JSR45KGYY5KJ3JMB6D5OCLJ2HF6DN4",
+        "Aidx": 96279902,
+        "Params": {
+          "Deleted": false,
+          "Params": null
+        },
+        "State": {
+          "Deleted": false,
+          "LocalState": {
+            "hsch": {
+              "nbs": 16
+            },
+            "tkv": {
+              "\f": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "\r": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\ufffd\ufffdS\u0000\u0000\u0000\u0000\u0000\u0000\u0003R\u0000\u0000\u0000\u0002$\ufffd\ufffd 07\u0000\u0000\u0000\u0000\u0000\u0001\ufffd\u0005S\u0000\u0000\u0000\u0000\u0000\u0000\u0003p\u0000\u0000\u0000\u0000\ufffd\u001e\u001b\ufffd08",
+                "tt": 1
+              },
+              "\u000e": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001E\u0015B\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u0000\u0000\u0000\u0004\ufffd\u0017\ufffd\u00000;\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "accountInfo": {
+                "tb": "\u0000\u0000\u0000\u0000\u00003\u0014\ufffd\u0000\u0000\u0000\u0000\u0000\ufffdo\ufffd\u0000\u0000\u0000\u0003\u001d\ufffd\ufffd\u0000\u0000\u0000\u0000\u0001\ufffd\ufffdk \u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000b?\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd",
+                "tt": 1
               }
             }
-          ],
-          "schema": {
-            "num-byte-slice": 1,
-            "num-uint": 0
+          }
+        }
+      },
+      {
+        "Addr": "7SWZ6PM2TWU2RL2SYV2SNWPEM67LUCE67XGUIKG6RWSZEBDCAEWYUHQIQM",
+        "Aidx": 96279902,
+        "Params": {
+          "Deleted": false,
+          "Params": null
+        },
+        "State": {
+          "Deleted": false,
+          "LocalState": {
+            "hsch": {
+              "nbs": 16
+            },
+            "tkv": {
+              "\u000e": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "accountInfo": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001O\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001e\ufffd\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000f\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd",
+                "tt": 1
+              }
+            }
+          }
+        }
+      },
+      {
+        "Addr": "PA5BLCW7U4SMDUIPXNY7HUIZIDI6L6ZW7NZKPT4DUJQN6E5UCBAAHKNZLU",
+        "Aidx": 92138200,
+        "Params": {
+          "Deleted": false,
+          "Params": null
+        },
+        "State": {
+          "Deleted": false,
+          "LocalState": {
+            "hsch": {
+              "nbs": 16
+            },
+            "tkv": {
+              "\u000e": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0004f\ufffdB\u0000\u0000\u0000\u0000\u0000\u0000\u0014Z\u0000\u0000\u0000\u0000\u0000\u000fB@P<",
+                "tt": 1
+              },
+              "accountInfo": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0014Z\u0000\u0000\u0000\u0000\u0000\u0000[\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000fB@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0007\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd",
+                "tt": 1
+              }
+            }
+          }
+        }
+      },
+      {
+        "Addr": "KHKO4BLTFEHRXECEGCPRYOEHFZQVYAFOQSV5O2XUHQ7HHDKKZ7OZNQEEAA",
+        "Aidx": 92138200,
+        "Params": {
+          "Deleted": false,
+          "Params": null
+        },
+        "State": {
+          "Deleted": false,
+          "LocalState": {
+            "hsch": {
+              "nbs": 16
+            },
+            "tkv": {
+              "\u000e": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0004\ufffd\ufffdS\u0000\u0000\u0000\u0000\u0000\u0000\"\ufffd\u0000\u0000\u0000\u00009\u0019\ufffd\ufffd0<",
+                "tt": 1
+              },
+              "accountInfo": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\tr\u0000\u0000\u0000\u00009\u0019\ufffd\ufffd\u0000\u0000\u0000\u0000X\ufffd_@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0007\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd",
+                "tt": 1
+              }
+            }
+          }
+        }
+      },
+      {
+        "Addr": "2MXD4RPX4TE3LGWU3TVQKYDPL56A4P2ENHPZFOKS6HV3VGIKFFZVLXMQ3E",
+        "Aidx": 106421217,
+        "Params": {
+          "Deleted": false,
+          "Params": {
+            "approv": "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",
+            "clearp": "BYEBQw==",
+            "epp": 1,
+            "gs": {
+              "AUM_ADDITION": {
+                "tt": 2
+              },
+              "AUM_DEDUCTION": {
+                "tt": 2
+              },
+              "COOLDOWN_DURATION": {
+                "tt": 2,
+                "ui": 200
+              },
+              "FEE_FLP_TRACKER": {
+                "tt": 2,
+                "ui": 106421532
+              },
+              "FLP_SUPPLY": {
+                "tt": 2,
+                "ui": 478261977612
+              },
+              "GOV": {
+                "tb": "\ufffd.>E\ufffd\ufffdɵ\ufffd\ufffd\ufffd\ufffd\u0005`o_|\u000e?Diߒ\ufffdR\ufffd뺙\n)s",
+                "tt": 1
+              },
+              "IN_PRIVATE_MODE": {
+                "tt": 2,
+                "ui": 1
+              },
+              "LAST_PRICE_SET_TIME": {
+                "tt": 2,
+                "ui": 26910000
+              },
+              "MAX_FLP_PRICE": {
+                "tt": 2,
+                "ui": 815688
+              },
+              "MIN_FLP_PRICE": {
+                "tt": 2,
+                "ui": 814949
+              },
+              "PREV_MAX_FLP_PRICE": {
+                "tt": 2,
+                "ui": 815688
+              },
+              "PREV_MIN_FLP_PRICE": {
+                "tt": 2,
+                "ui": 814949
+              },
+              "STAKED_FLP_TRACKER": {
+                "tt": 2,
+                "ui": 106421501
+              },
+              "USDF_SUPPLY": {
+                "tt": 2,
+                "ui": 473292517864
+              },
+              "VAULT_APP_ID": {
+                "tt": 2,
+                "ui": 106418092
+              },
+              "VAULT_ESCROW": {
+                "tb": "\ufffd\ufffd\ufffd`\ufffd\u001dʷ\u0019Ϻ)\"TpY(}m\ufffd\u0010\u0018\ufffd\ufffd\ufffdK\u001eZ8\u001f\ufffd^",
+                "tt": 1
+              }
+            },
+            "gsch": {
+              "nbs": 10,
+              "nui": 25
+            },
+            "lsch": {
+              "nbs": 3,
+              "nui": 7
+            }
           }
         },
-        "app-local-state-deleted": false,
-        "app-params": {
-          "approval-program": "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",
-          "clear-state-program": "Bg==",
-          "creator": "KCVW6CW2ZZGHDF7I4MIF32O4NE66LKCCX46GDC7SDFOFZWEWRXPOEBU4EA",
-          "extra-program-pages": 3,
-          "global-state": [
-            {
-              "key": "AA==",
-              "value": {
-                "bytes": "UKtvCtrOTHGX6OMQXencaT3lqEK/PGGL8hlcXNiWjd4AAAAAA7ZXTQAAAAAAAAAtAAAAAAAST4AAAAAAABGMMAAAAAAF+XDDAAAAAHc1lAAN/jJyxlPZk8egleNi6lCnYtjZm0Xo1PZ9Xli60xLdRQ3+MnLGU9mTx6CV42LqUA==",
-                "type": 1,
-                "uint": 0
-              }
+        "State": {
+          "Deleted": false,
+          "LocalState": null
+        }
+      },
+      {
+        "Addr": "OOADCJDVTA3QKWLBI7QBQZVTXXOVNYY4RMXNLAQNPQGTNK7Y446SX5MFCM",
+        "Aidx": 92138200,
+        "Params": {
+          "Deleted": false,
+          "Params": null
+        },
+        "State": {
+          "Deleted": false,
+          "LocalState": {
+            "hsch": {
+              "nbs": 16
             },
-            {
-              "key": "",
-              "value": {
-                "bytes": "AAAAAAAAAAcAAAAAAY4d+AAAAAAF+XDc",
-                "type": 1,
-                "uint": 0
-              }
-            },
-            {
-              "key": "Ag==",
-              "value": {
-                "bytes": "ZDUAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAoAAAAAAAAAMgAAAAAAAAAyAAAAAACYloAAAAAAYyqHLAGUvbtq1E5lvRMiXTybk6DQzULcXRGDoTVLQNpgo77yIQHqZuEmpQNRB85Ax1C2KHeqOHkG06LmjYdUJeQ6CBlc/wAAAA==",
-                "type": 1,
-                "uint": 0
-              }
-            },
-            {
-              "key": "Aw==",
-              "value": {
-                "bytes": "AAAB9WIAAAABFgh8gwAAAABjkLqZAAAA576eiN8AAAAAAAAAAAAAAAAFttokOwAAAAAF+XDcDf4ycsZT2ZPHoJXjYupQp2LY2ZtF6NT2fV5YutMS3UUN/jJyxlPZk8egleNi6lCnYtjZm0Xo1PZ9Xli60xLdRQ3+MnLGU9mTxw==",
-                "type": 1,
-                "uint": 0
-              }
-            },
-            {
-              "key": "BA==",
-              "value": {
-                "bytes": "oJXjYupQp2LY2ZtF6NT2fV5YutMS3UUN/jJyxlPZk8egleNi6lCnYtjZm0Xo1PZ9Xli60xLdRQ3+MnLGU9mTx6CV42LqUKdi2NmbRejU9n1eWLrTEt1FAAAAAAAAAAAAAAAAAANkNQAAAAAAAAAAAAAAAAAAAAUAAAAAAAAACg==",
-                "type": 1,
-                "uint": 0
-              }
-            },
-            {
-              "key": "BQ==",
-              "value": {
-                "bytes": "AAAAAAAAADIAAAAAAAAAMgAAAAAAmJaAAAAAAGMqhywBlL27atROZb0TIl08m5Og0M1C3F0Rg6E1S0DaYKO+8iEB6mbhJqUDUQfOQMdQtih3qjh5BtOi5o2HVCXkOggZXP8AAAAAAAAABQAAAAAAAAAKAAAAAAAAADIAAAAAAA==",
-                "type": 1,
-                "uint": 0
-              }
-            },
-            {
-              "key": "AQ==",
-              "value": {
-                "bytes": "p2LY2ZtF6NT2fV5YutMS3UUN/jJyxlPZk8egleNi6lCnYtjZm0Xo1PZ9Xli60xLdRQ3+MnLGU9mTx6CV42LqUKdi2NmbRejU9n1eWLrTEt1FDf4ycsZT2ZPHoJXjYupQp2LY2ZtF6NT2fV5YutMS3UUAAAAAAAAAAAAAAAAAAw==",
-                "type": 1,
-                "uint": 0
-              }
-            },
-            {
-              "key": "Bg==",
-              "value": {
-                "bytes": "AAAyAZS9u2rUTmW9EyJdPJuToNDNQtxdEYOhNUtA2mCjvvIhAepm4SalA1EHzkDHULYod6o4eQbTouaNh1Ql5DoIGVz/AAAAAAAB9WIAAAABFgh8gw==",
-                "type": 1,
-                "uint": 0
+            "tkv": {
+              "\f": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "\r": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "\u000e": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0004\f/S\u0000\u0000\u0000\u0000\u0000\u0000$\ufffd\u0000\u0000\u0000\u0000\u0000\u000fB@P9\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0003\ufffdIS\u0000\u0000\u0000\u0000\u0000\u0000)\u000e\u0000\u0000\u0000\u0000\u0000\u000fB@P;\u0000\u0000\u0000\u0000\u0000\u0004\ufffd\ufffdB\u0000\u0000\u0000\u0000\u0000\u0000\"\ufffd\u0000\u0000\u0000\u0000\u0000\u000fB@M<",
+                "tt": 1
+              },
+              "accountInfo": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\"\ufffd\u0000\u0000\u0000\u0000\u0000\u0001\ufffd\ufffd\u0000\u0000\u0000\u0000\u0000\u001e\ufffd\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd",
+                "tt": 1
               }
             }
-          ],
-          "global-state-schema": {
-            "num-byte-slice": 8,
-            "num-uint": 0
-          },
-          "local-state-schema": {
-            "num-byte-slice": 1,
-            "num-uint": 0
           }
+        }
+      },
+      {
+        "Addr": "43ZZTEATZRBQVH3JLVLQ3OL5WLC7F2SN7G26EHZ3ELD2B7RRYCR2GTHJ7E",
+        "Aidx": 92138200,
+        "Params": {
+          "Deleted": false,
+          "Params": {
+            "approv": "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",
+            "clearp": "BoEBQw==",
+            "epp": 2,
+            "gs": {
+              "BASE_CURRENCY": {
+                "tb": "ALGO",
+                "tt": 1
+              },
+              "BASE_CURRENCY_DECIMALS": {
+                "tt": 2,
+                "ui": 6
+              },
+              "BASE_CURRENCY_ID": {
+                "tt": 2
+              },
+              "BEST_ASK": {
+                "tt": 2
+              },
+              "BEST_BID": {
+                "tt": 2
+              },
+              "BKA": {
+                "tb": "\ufffdҾ{Q~\ufffd`\ufffd\ufffdC\ufffd\u000e\ufffd\"\ufffdR\ufffdo\ufffd\ufffd\ufffd`\ufffd\ufffdx\r\u0010\ufffd\ufffd\n\ufffd",
+                "tt": 1
+              },
+              "CRA": {
+                "tb": "\ufffd\ufffd\ufffd\ufffd\u0013\ufffdC\n\ufffdi]W\r\ufffd}\ufffd\ufffd\ufffd\ufffdM\ufffd\ufffd\ufffd\u001f;\"Ǡ\ufffd1\ufffd\ufffd",
+                "tt": 1
+              },
+              "LAST_PRICE": {
+                "tt": 2
+              },
+              "LAST_TRADE": {
+                "tt": 2
+              },
+              "MFEE_TIER_1": {
+                "tt": 2,
+                "ui": 12
+              },
+              "MFEE_TIER_2": {
+                "tt": 2,
+                "ui": 8
+              },
+              "MFEE_TIER_3": {
+                "tt": 2,
+                "ui": 6
+              },
+              "MFEE_TIER_4": {
+                "tt": 2,
+                "ui": 4
+              },
+              "MFEE_TIER_5": {
+                "tt": 2,
+                "ui": 2
+              },
+              "MFEE_TIER_6": {
+                "tt": 2
+              },
+              "MIN_ORDER_SIZE": {
+                "tt": 2,
+                "ui": 1000000
+              },
+              "MIN_PRICE_INC": {
+                "tt": 2,
+                "ui": 5
+              },
+              "MIN_SIZE_INC": {
+                "tt": 2,
+                "ui": 1000000
+              },
+              "MM_FEE_TIER_1": {
+                "tt": 2
+              },
+              "MM_FEE_TIER_2": {
+                "tt": 2
+              },
+              "MM_FEE_TIER_3": {
+                "tt": 2
+              },
+              "MTN": {
+                "tt": 2
+              },
+              "ORDER_COUNTER": {
+                "tt": 2,
+                "ui": 305404
+              },
+              "PAIR": {
+                "tb": "ALGO_USDC",
+                "tt": 1
+              },
+              "PRICE_CURRENCY": {
+                "tb": "USDC",
+                "tt": 1
+              },
+              "PRICE_CURRENCYDecimals": {
+                "tt": 2,
+                "ui": 4
+              },
+              "PRICE_CURRENCY_ID": {
+                "tt": 2,
+                "ui": 81981957
+              },
+              "TFEE_TIER_1": {
+                "tt": 2,
+                "ui": 20
+              },
+              "TFEE_TIER_2": {
+                "tt": 2,
+                "ui": 16
+              },
+              "TFEE_TIER_3": {
+                "tt": 2,
+                "ui": 14
+              },
+              "TFEE_TIER_4": {
+                "tt": 2,
+                "ui": 13
+              },
+              "TFEE_TIER_5": {
+                "tt": 2,
+                "ui": 12
+              },
+              "TFEE_TIER_6": {
+                "tt": 2,
+                "ui": 10
+              },
+              "account_counter": {
+                "tt": 2,
+                "ui": 13917
+              }
+            },
+            "gsch": {
+              "nbs": 32,
+              "nui": 32
+            },
+            "lsch": {
+              "nbs": 16
+            }
+          }
+        },
+        "State": {
+          "Deleted": false,
+          "LocalState": null
         }
       }
     ],
-    "assets": [
-      {
-        "address": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
-        "asset-deleted": false,
-        "asset-holding": {
-          "amount": 4404225818558038,
-          "asset-id": 41468020,
-          "is-frozen": false
-        },
-        "asset-holding-deleted": false,
-        "asset-index": 41468020,
-        "asset-params": {
-          "clawback": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
-          "creator": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
-          "decimals": 6,
-          "default-frozen": false,
-          "freeze": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
-          "manager": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
-          "name": "PLANET Recycle Bin",
-          "name-b64": "UExBTkVUIFJlY3ljbGUgQmlu",
-          "reserve": "G26NNWKJUPSTGVLLDHCUQ7LFJHMZP2UUAQG2HURLI6LOEI235YCQUNPQEI",
-          "total": 4500000000000000,
-          "unit-name": "PlanetsR",
-          "unit-name-b64": "UGxhbmV0c1I=",
-          "url": "https://www.planetwatch.io/",
-          "url-b64": "aHR0cHM6Ly93d3cucGxhbmV0d2F0Y2guaW8v"
-        }
-      },
-      {
-        "address": "GKHJNRK3CJ5ESJWXMRSCNSB43KOWQJAZQGLL6FS3HPU4RI2KDNAFSTWE4U",
-        "asset-deleted": false,
-        "asset-holding": {
-          "amount": 81751775561,
-          "asset-id": 41468020,
-          "is-frozen": false
-        },
-        "asset-holding-deleted": false,
-        "asset-index": 41468020
-      },
-      {
-        "address": "IKDRMFBLWCMSXVK3SEVFWZ2WYR5FGYNLOR5LQ6Z3XVSFX7AAYVSKS7HFAI",
-        "asset-deleted": false,
-        "asset-holding": {
-          "amount": 0,
-          "asset-id": 147516314,
-          "is-frozen": false
-        },
-        "asset-holding-deleted": false,
-        "asset-index": 147516314
-      },
-      {
-        "address": "ISTJS27XQLNY2G2ZWNOPDEAKLYWMNCRXKMPR4YYJVT4ERML47GV2FTNDJ4",
-        "asset-deleted": false,
-        "asset-holding": {
-          "amount": 0,
-          "asset-id": 147516326,
-          "is-frozen": false
-        },
-        "asset-holding-deleted": false,
-        "asset-index": 147516326
+    "AssetResources": null
+  },
+  "Creatables": null,
+  "Hdr": {
+    "earn": 27521,
+    "fees": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
+    "frac": 2047917345,
+    "gen": "testnet-v1.0",
+    "gh": "SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI=",
+    "prev": "blk-EWRYEMIXF5RZGH3FX6WYUSTK7FTCB52BWGJVGWSVWSXO7KLXWIIQ",
+    "proto": "https://github.com/algorandfoundation/specs/tree/44fa607d6051730f5264526bf3c108d51f0eadb6",
+    "rate": 42,
+    "rnd": 26910000,
+    "rwcalr": 27000000,
+    "rwd": "7777777777777777777777777777777777777777777777777774MSJUVU",
+    "seed": "qAGpjhsqGflHDC2QEjwfpRTXEKjVo1DwshaB4XDD9DE=",
+    "spt": {
+      "0": {
+        "n": 26909952
       }
-    ]
+    },
+    "tc": 153348349,
+    "ts": 1673397868,
+    "txn": "YlHc2weI18c2RbApZQos0is6PiGEIAOlY4Mj/zx3Va8=",
+    "txn256": "TodzSZUALWBHme8F+J0N2IGI92CPc/ubOu8m3La2FMU="
   },
-  "kv-mods": null,
-  "modified-apps": null,
-  "modified-assets": null,
-  "prev-timestamp": 1670429337,
-  "totals": {
-    "not-participating": 339875857157,
-    "offline": 2544597461249363,
-    "online": 7580062662993480,
-    "rewards-level": 27521
+  "KvMods": null,
+  "PrevTimestamp": 1673397864,
+  "StateProofNext": 0,
+  "Totals": {
+    "notpart": {
+      "mon": 347207129836,
+      "rwd": 346468
+    },
+    "offline": {
+      "mon": 2544590110577384,
+      "rwd": 2526267564
+    },
+    "online": {
+      "mon": 7580062682392780,
+      "rwd": 7580062232
+    },
+    "rwdlvl": 27521
   },
-  "tx-leases": null
+  "Txids": {
+    "9O78fpLiwXyHZvrviXIXK/bVV3nEZ3AuitOprdgR5X8=": {
+      "Intra": 3,
+      "LastValid": 26910996
+    },
+    "K4pu32z3IylFiPivddikV5oWqNGchhkiv8AZybHKQOQ=": {
+      "Intra": 0,
+      "LastValid": 26910989
+    },
+    "UKkyzCkYQWhJ1HVaEARMqb19eGGdmDgWvUmDXKEFOzs=": {
+      "Intra": 2,
+      "LastValid": 26910998
+    },
+    "oy+SmiO2nLzmj4wtEGjPMNhAClnlmjVkPphGJwHltTA=": {
+      "Intra": 1,
+      "LastValid": 26910989
+    }
+  },
+  "Txleases": null
 }
