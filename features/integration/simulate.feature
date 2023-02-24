@@ -1,6 +1,6 @@
 Feature: Simulating transactions
   Background:
-    Given an algod v2 client connected to "localhost" port 4001 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    Given an algod v2 client
     And a kmd client
     And wallet information
     And suggested transaction parameters from the algod v2 client
