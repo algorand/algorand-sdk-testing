@@ -21,7 +21,7 @@ Feature: Simulating transactions
   @simulate
   Scenario: Simulating duplicate transactions in a group
     Given a new AtomicTransactionComposer
-    And I create a new transient account and fund it with 100000000 microalgos.
+    And I create a new transient account and fund it with 10000000 microalgos.
     When I build a payment transaction with sender "transient", receiver "transient", amount 100001, close remainder to ""
     And I make a transaction signer for the transient account.
     And I create a transaction with signer with the current transaction.
