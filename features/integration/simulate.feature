@@ -13,7 +13,7 @@ Feature: Simulating transactions
     When I get the private key
     And I sign the transaction with the private key
     And I simulate the transaction
-    Then the simulation should succeed
+    Then the simulation should succeed without any failure message
 
     Examples:
       | amt     | note         |
@@ -27,11 +27,11 @@ Feature: Simulating transactions
     And I create a transaction with signer with the current transaction.
     And I add the current transaction with signer to the composer.
     Then I simulate the current transaction group with the composer
-    And the simulation should succeed
+    And the simulation should succeed without any failure message
     And I clone the composer.
     When I add the current transaction with signer to the composer.
     Then I simulate the current transaction group with the composer
-    And the simulation should fail at path "1" with message "transaction already in ledger"
+    And the simulation should report a failure at path "1" with message "transaction already in ledger"
 
   @simulate
   Scenario: Simulating bad inner transactions in the ATC
@@ -81,4 +81,4 @@ Feature: Simulating transactions
 
     # The simulation should fail at the third transaction's first inner transaction (2,0) due to no app args being passed into the app.
     Then I simulate the current transaction group with the composer
-    And the simulation should fail at path "2,0" with message "invalid ApplicationArgs"
+    And the simulation should report a failure at path "2,0" with message "invalid ApplicationArgs"
