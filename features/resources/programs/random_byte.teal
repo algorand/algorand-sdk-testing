@@ -13,9 +13,14 @@ txn ApplicationID
 bz finish  // creating ok
 
 txn ApplicationArgs 0
+method "badMethod(string,application)void"
+==
+bnz err_program // Call FakeRandom app in inner txn with bad app args (should error)
+
+txn ApplicationArgs 0
 method "randElement(string,application)(byte,byte[17])"
 ==
-assert      // other than create, only the app call is allowed
+assert      // other than create, only badMethod and randElement method call is allowed
 
 itxn_begin
     int appl
@@ -88,3 +93,14 @@ log
 finish:
     int 1
     return
+
+err_program:
+    itxn_begin
+        int appl
+        itxn_field TypeEnum
+
+        txn Applications 1 // FakeRandom
+        itxn_field ApplicationID
+    itxn_submit
+
+    b finish

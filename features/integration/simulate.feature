@@ -4,6 +4,8 @@ Feature: Simulating transactions
     And a kmd client
     And wallet information
     And suggested transaction parameters from the algod v2 client
+    And I create a new transient account and fund it with 100000000 microalgos.
+    And I make a transaction signer for the transient account.
 
   @simulate
   Scenario Outline: Simulating successful payment transactions
@@ -21,9 +23,7 @@ Feature: Simulating transactions
   @simulate
   Scenario: Simulating duplicate transactions in a group
     Given a new AtomicTransactionComposer
-    And I create a new transient account and fund it with 10000000 microalgos.
     When I build a payment transaction with sender "transient", receiver "transient", amount 100001, close remainder to ""
-    And I make a transaction signer for the transient account.
     And I create a transaction with signer with the current transaction.
     And I add the current transaction with signer to the composer.
     Then I simulate the current transaction group with the composer
@@ -32,3 +32,53 @@ Feature: Simulating transactions
     When I add the current transaction with signer to the composer.
     Then I simulate the current transaction group with the composer
     And the simulation should fail at path "1" with message "transaction already in ledger"
+
+  @simulate
+  Scenario: Simulating bad inner transactions in the ATC
+    Given a new AtomicTransactionComposer
+    # Create an app at context index 0: FakeRandom
+    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/fake_random.teal", clear-program "programs/six.teal", global-bytes 0, global-ints 1, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
+    And I sign and submit the transaction, saving the txid. If there is an error it is "".
+    And I wait for the transaction to be confirmed.
+    Given I remember the new application ID.
+    
+    # Create another app at index 1: RandomByte
+    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/random_byte.teal", clear-program "programs/six.teal", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
+    And I sign and submit the transaction, saving the txid. If there is an error it is "".
+    And I wait for the transaction to be confirmed.
+    Given I remember the new application ID.
+
+    # Need to fund RandomByte because it pays for calling RandomInteger in FakeRandom:
+    And I fund the current application's address with 100000000 microalgos.
+
+    # First, check that inner transaction simulation is okay.
+    # The following two steps are taken from c2c.feature
+    # randElement("hello",RandomByte) -> (c, witnessString)
+    Given I add the nonce "Thing One"
+    When I create the Method object from method signature "randElement(string,application)(byte,byte[17])"
+    * I create a new method arguments array.
+    * I append the encoded arguments "AAVoZWxsbw==,ctxAppIdx:0" to the method arguments array.
+    * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+    # randElement("goodbye",RandomByte) -> (c, witnessString)
+    Given I add the nonce "Thing Two"
+    When I create the Method object from method signature "randElement(string,application)(byte,byte[17])"
+    * I create a new method arguments array.
+    * I append the encoded arguments "AAdnb29kYnll,ctxAppIdx:0" to the method arguments array.
+    * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+    # The simulation should succeed with an ABI return
+    Then I simulate the current transaction group with the composer
+    And The app should have returned ABI types "(byte,byte[17]):(byte,byte[17])".
+    And The 0th atomic result for randElement("hello") proves correct
+    And The 1th atomic result for randElement("goodbye") proves correct
+
+    # Clone the composer and add a bad inner transaction call.
+    Then I clone the composer.
+    Given I add the nonce "Thing Three"
+    When I create the Method object from method signature "badMethod(string,application)void"
+    And I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+    # The simulation should fail at the third transaction's first inner transaction (2,0) due to no app args being passed into the app.
+    Then I simulate the current transaction group with the composer
+    And the simulation should fail at path "2,0" with message "invalid ApplicationArgs"
