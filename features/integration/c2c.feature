@@ -5,7 +5,7 @@ Feature: Contract to Contract Interaction
     * a kmd client
     * wallet information
     * suggested transaction parameters from the algod v2 client
-    * I create a new transient account and fund it with 100000000 microalgos.
+    * I create a new transient account and fund it with 10000000 microalgos.
     * I make a transaction signer for the transient account.
     * I reset the array of application IDs to remember.
 
@@ -47,7 +47,7 @@ Feature: Contract to Contract Interaction
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
     # Need to fund RandomByte because it pays for calling RandomInteger:
-    And I fund the current application's address with 100000000 microalgos.
+    And I fund the current application's address with 10000000 microalgos.
 
     Given a new AtomicTransactionComposer
 
@@ -85,7 +85,7 @@ Feature: Contract to Contract Interaction
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
     # Need to fund SlotMachine because it pays for calling RandomByte:
-    And I fund the current application's address with 100000000 microalgos.
+    And I fund the current application's address with 10000000 microalgos.
 
     Given a new AtomicTransactionComposer
 
