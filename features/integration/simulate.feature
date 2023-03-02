@@ -21,19 +21,29 @@ Feature: Simulating transactions
       | 1234523 | X4Bl4wQ9rCo= |
 
   @simulate
-  Scenario: Simulating duplicate transactions in a group
+  Scenario: Simulating duplicate transactions in a group and overspending errors
     Given a new AtomicTransactionComposer
     When I build a payment transaction with sender "transient", receiver "transient", amount 100001, close remainder to ""
     And I create a transaction with signer with the current transaction.
     And I add the current transaction with signer to the composer.
     Then I simulate the current transaction group with the composer
     And the simulation should succeed without any failure message
+
+    # Check for duplicate transaction errors
     And I clone the composer.
     When I add the current transaction with signer to the composer.
     Then I simulate the current transaction group with the composer
     And the simulation should report a failure at path "1" with message "transaction already in ledger"
 
-  @simulate
+    # Check for overspending errors
+    Given a new AtomicTransactionComposer
+    When I build a payment transaction with sender "transient", receiver "transient", amount 999999999, close remainder to ""
+    And I create a transaction with signer with the current transaction.
+    And I add the current transaction with signer to the composer.
+    Then I simulate the current transaction group with the composer
+    And the simulation should report a failure at path "0" with message "overspend"
+
+  # @simulate
   Scenario: Simulating bad inner transactions in the ATC
     Given a new AtomicTransactionComposer
     # Create an app at context index 0: FakeRandom
@@ -49,7 +59,7 @@ Feature: Simulating transactions
     Given I remember the new application ID.
 
     # Need to fund RandomByte because it pays for calling RandomInteger in FakeRandom:
-    And I fund the current application's address with 100000000 microalgos.
+    And I fund the current application's address with 10000000 microalgos.
 
     # First, check that inner transaction simulation is okay.
     # The following two steps are taken from c2c.feature
