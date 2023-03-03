@@ -33,7 +33,7 @@ Feature: Simulating transactions
     And I clone the composer.
     When I add the current transaction with signer to the composer.
     Then I simulate the current transaction group with the composer
-    And the simulation should report a failure at path "1" with message "transaction already in ledger"
+    And the simulation should report a failure at group "0", path "1" with message "transaction already in ledger"
 
     # Check for overspending errors
     Given a new AtomicTransactionComposer
@@ -41,7 +41,7 @@ Feature: Simulating transactions
     And I create a transaction with signer with the current transaction.
     And I add the current transaction with signer to the composer.
     Then I simulate the current transaction group with the composer
-    And the simulation should report a failure at path "0" with message "overspend"
+    And the simulation should report a failure at group "0", path "0" with message "overspend"
 
   # @simulate
   Scenario: Simulating bad inner transactions in the ATC
@@ -91,4 +91,4 @@ Feature: Simulating transactions
 
     # The simulation should fail at the third transaction's first inner transaction (2,0) due to no app args being passed into the app.
     Then I simulate the current transaction group with the composer
-    And the simulation should report a failure at path "2,0" with message "invalid ApplicationArgs"
+    And the simulation should report a failure at group "0", path "2,0" with message "invalid ApplicationArgs"
