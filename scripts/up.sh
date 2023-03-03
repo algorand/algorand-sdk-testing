@@ -67,6 +67,8 @@ pushd "$LOCAL_SANDBOX_DIR"
 
 [[ "$VERBOSE_HARNESS" = 1 ]] && V_FLAG="-v" || V_FLAG=""
 
-echo "$THIS: running sandbox with command [./sandbox up harness $V_FLAG]"
-./sandbox up harness "$V_FLAG"
+[[ "$SANDBOX_FORCE_RECREATE" = 1 ]] && F_FLAG="-f" || F_FLAG=""
+
+echo "$THIS: running sandbox with command [./sandbox up harness $V_FLAG $F_FLAG]"
+./sandbox up harness "$V_FLAG" "$F_FLAG"
 echo "$THIS: seconds it took to finish getting sandbox harness ($(pwd)) up and running: $(($(date "+%s") - START))s"
