@@ -50,7 +50,8 @@ pushd "$rootdir"/.. > /dev/null || exit
 
 git clone --depth 1 --branch "$SANDBOX_BRANCH" --single-branch "$SANDBOX_URL" "$LOCAL_SANDBOX_DIR"
 
-cp .env "$LOCAL_SANDBOX_DIR"/.
+touch "$LOCAL_SANDBOX_DIR"/.env
+cat "$ENV_FILE" >> "$LOCAL_SANDBOX_DIR"/.env
 
 SANDBOX_CFG="config.harness"
 echo "$THIS: about to envsubst < $SANDBOX_CFG  > $LOCAL_SANDBOX_DIR/$SANDBOX_CFG"
