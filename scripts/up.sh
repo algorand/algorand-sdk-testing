@@ -22,6 +22,7 @@ while (( "$#" )); do
   shift
 done
 echo "$THIS: VERBOSE_HARNESS=$VERBOSE_HARNESS"
+echo "$THIS: SANDBOX_CLEAN_CACHE=$SANDBOX_CLEAN_CACHE"
 
 if [[ $TYPE == "channel" ]] || [[ $TYPE == "source" ]]; then
   echo "$THIS: setting sandbox variables for git based on TYPE=$TYPE."
@@ -66,6 +67,9 @@ echo "$THIS: bringing up network with TYPE=$TYPE configuration."
 pushd "$LOCAL_SANDBOX_DIR"
 
 [[ "$VERBOSE_HARNESS" = 1 ]] && V_FLAG="-v" || V_FLAG=""
+
+
+[[ "$SANDBOX_CLEAN_CACHE" = 0 ]] || touch .clean
 
 echo "$THIS: running sandbox with command [./sandbox up harness $V_FLAG]"
 ./sandbox up harness "$V_FLAG"
