@@ -21,18 +21,29 @@ Feature: Simulating transactions
       | 1234523 | X4Bl4wQ9rCo= |
 
   @simulate
+  Scenario: Simulating unsigned payment transaction
+    Given default transaction with parameters 100001 "X4Bl4wQ9rCo="
+    When I prepare the transaction without signatures for simulation
+    And I simulate the transaction
+    Then the simulation should report missing signatures at group "0", transactions "0"
+
+  @simulate
   Scenario: Simulating duplicate transactions in a group and overspending errors
     Given a new AtomicTransactionComposer
     When I build a payment transaction with sender "transient", receiver "transient", amount 100001, close remainder to ""
     And I create a transaction with signer with the current transaction.
     And I add the current transaction with signer to the composer.
-    Then I simulate the current transaction group with the composer
+    Then I build the transaction group with the composer. If there is an error it is "".
+    And I gather signatures with the composer.
+    And I simulate the current transaction group with the composer
     And the simulation should succeed without any failure message
 
     # Check for duplicate transaction errors
     And I clone the composer.
     When I add the current transaction with signer to the composer.
-    Then I simulate the current transaction group with the composer
+    Then I build the transaction group with the composer. If there is an error it is "".
+    And I gather signatures with the composer.
+    And I simulate the current transaction group with the composer
     And the simulation should report a failure at group "0", path "1" with message "transaction already in ledger"
 
     # Check for overspending errors
@@ -43,7 +54,16 @@ Feature: Simulating transactions
     Then I simulate the current transaction group with the composer
     And the simulation should report a failure at group "0", path "0" with message "overspend"
 
-  # @simulate
+  @simulate
+  Scenario: Simulating unsigned transactions in the ATC group
+    Given a new AtomicTransactionComposer
+    When I build a payment transaction with sender "transient", receiver "transient", amount 100001, close remainder to ""
+    And I create a transaction with an empty signer with the current transaction.
+    And I add the current transaction with signer to the composer.
+    Then I simulate the current transaction group with the composer
+    And the simulation should report missing signatures at group "0", transactions "0"
+
+  @simulate
   Scenario: Simulating bad inner transactions in the ATC
     Given a new AtomicTransactionComposer
     # Create an app at context index 0: FakeRandom
