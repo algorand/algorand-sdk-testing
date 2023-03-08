@@ -62,6 +62,14 @@ Feature: Simulating transactions
     And I add the current transaction with signer to the composer.
     Then I simulate the current transaction group with the composer
     And the simulation should report missing signatures at group "0", transactions "0"
+    
+    # Add another unsigned transaction
+    And I clone the composer.
+    When I build a payment transaction with sender "transient", receiver "transient", amount 100002, close remainder to ""
+    And I create a transaction with an empty signer with the current transaction.
+    And I add the current transaction with signer to the composer.
+    Then I simulate the current transaction group with the composer
+    And the simulation should report missing signatures at group "0", transactions "0,1"
 
   @simulate
   Scenario: Simulating bad inner transactions in the ATC
