@@ -74,6 +74,7 @@ These reside in the [integration features directory](features/integration)
 | @kmd                   | Test the kmd REST endpoints.                                                           |
 | @rekey_v1              | Test the rekeying transactions.                                                        |
 | @send                  | Test the ability to submit transactions to algod.                                      |
+| @simulate              | Test the ability to simulate transactions with algod.                                  |
 
 ### Test Implementation Status
 

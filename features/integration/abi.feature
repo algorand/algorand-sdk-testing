@@ -5,7 +5,7 @@ Feature: ABI Interaction
     And a kmd client
     And wallet information
     And suggested transaction parameters from the algod v2 client
-    And I create a new transient account and fund it with 100000000 microalgos.
+    And I create a new transient account and fund it with 10000000 microalgos.
     And I make a transaction signer for the transient account.
     And I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/abi_method_call.teal.tok", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 0, local-bytes 1, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
     And I sign and submit the transaction, saving the txid. If there is an error it is "".
@@ -98,7 +98,7 @@ Feature: ABI Interaction
     And The app should have returned "ABRnb29kYnllIEFsZ29yYW5kIEZhbg==".
 
   Scenario: Method call delete execution
-    Given I create a new transient account and fund it with 100000000 microalgos.
+    Given I create a new transient account and fund it with 10000000 microalgos.
     And I make a transaction signer for the transient account.
     And I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/abi_method_call.teal.tok", clear-program "programs/one.teal.tok", global-bytes 0, global-ints 0, local-bytes 1, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
     And I sign and submit the transaction, saving the txid. If there is an error it is "".
