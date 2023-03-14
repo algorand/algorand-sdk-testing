@@ -77,7 +77,6 @@ Feature: Simulating transactions
     When I build a payment transaction with sender "transient", receiver "transient", amount 999999999, close remainder to ""
     And I create a transaction with an empty signer with the current transaction.
     And I add the current transaction with signer to the composer.
-    And I gather signatures with the composer.
     Then I simulate the current transaction group with the composer
     And the simulation should report missing signatures at group "0", transactions "0,1,2"
     And the simulation should report a failure at group "0", path "2" with message "overspend"
