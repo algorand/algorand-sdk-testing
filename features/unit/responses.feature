@@ -35,7 +35,7 @@ Feature: REST Client Responses
       | algod_applications_AssetResponse_0.json                 | generated_responses | 200    | algod   | GetAssetByID              |
       | algod_applications_ErrorResponse_0.json                 | generated_responses | 500    | algod   | any                       |
 
-    @unit.responses.231
+    @unit.responses
     Examples:
       | jsonfile                                          | response-folder         | status | client  | endpoint                  |
       | indexer_applications_AccountResponse_0.json       | generated_responses_231 | 200    | indexer | lookupAccountByID         |

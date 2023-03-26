@@ -90,7 +90,7 @@ Feature: Algod REST API v2 Paths
       | /v2/applications/1234/boxes       | 1234           | 0   |
       | /v2/applications/1234/boxes?max=2 | 1234           | 2   |
 
-  @unit.algod.ledger_refactoring
+  @unit.algod
   Scenario Outline: Account Information
     When we make an Account Information call against account "<account>" with exclude "<exclude>"
     Then expect the path used to be "<path>"
@@ -99,7 +99,7 @@ Feature: Algod REST API v2 Paths
       | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU             | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU     |         |
       | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU?exclude=all | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU     | all     |
 
-  @unit.algod.ledger_refactoring
+  @unit.algod
   Scenario Outline: Account Asset Information
     When we make an Account Asset Information call against account "<account>" assetID <asset-id>
     Then expect the path used to be "<path>"
@@ -107,7 +107,7 @@ Feature: Algod REST API v2 Paths
       | path                        | account | asset-id |
       | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/assets/123 | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU     | 123      |
 
-  @unit.algod.ledger_refactoring
+  @unit.algod
   Scenario Outline: Account Application Information
     When we make an Account Application Information call against account "<account>" applicationID <application-id>
     Then expect the path used to be "<path>"
