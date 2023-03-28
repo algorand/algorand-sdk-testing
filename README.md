@@ -98,8 +98,9 @@ Full featured Algorand SDKs have 6 major components. Depending on the compatibil
 2. Transaction Utilities
 3. Encoding Utilities
 4. Crypto Utilities
-5. TEAL Utilities
-6. Testing
+5. Enriched Interaction
+6. dApp Testing and Simulate
+7. SDK Testing
 
 ![SDK Overview](docs/SDK%20Components.png)
 
@@ -107,7 +108,6 @@ Full featured Algorand SDKs have 6 major components. Depending on the compatibil
 
 The most basic functionality includes the REST clients for communicating with **algod** and **indexer**. These interfaces are defined by OpenAPI specifications:
 
-- algod v1 / indexer v1 (generated at build time at **daemon/algod/api/swagger.json**)
 - kmd v1 (generated at build time at **daemon/kmd/api/swagger.json**)
 - [algod v2](https://github.com/algorand/go-algorand/blob/master/daemon/algod/api/algod.oas2.json)
 - [indexer v2](https://github.com/algorand/indexer/blob/develop/api/indexer.oas2.json)
@@ -122,7 +122,7 @@ To ensure that transactions are compact and can hash consistently, there are som
 
 ### Crypto Utilities
 
-All things related to crypto to make it easier for developers to work with the blockchain. This includes standard things like ED25519 signing, up through Algorand specific LogicSig and MultiSig utilities. There are also some convenience methods for converting Mnemonics.
+All things related to crypto to make it easier for developers to work with the blockchain. This includes standards such as ED25519 signing, up through Algorand specific LogicSig and MultiSig utilities. There are also some convenience methods for converting Mnemonics.
 
 ### Enriched Interaction
 
@@ -136,17 +136,30 @@ and [Smart Signature](https://developer.algorand.org/docs/get-details/dapps/smar
 
 Utilities for testing [Smart Contracts and dApps](https://developer.algorand.org/docs/get-details/dapps/smart-contracts/). This currently includes utilities for using [dry-runs](https://developer.algorand.org/docs/get-details/dapps/smart-contracts/debugging/?from_query=dry#dryrun-rest-endpoint). It also enables interacting with the [simulate REST endpoint](https://developer.algorand.org/docs/rest-apis/algod/?from_query=simulate#post-v2transactionssimulate).
 
-### Testing
+### SDK Testing
 
-Each SDK has a number of unit tests specific to that particular SDK. The details of SDK-specific unit tests are up to the developers discretion. There are also a large number of cucumber integration tests stored in this repository which cover various unit-style tests and many integration tests. To assist with working in this environment each SDK must provide tooling to download and install the cucumber files, and a Dockerfile which configures an environment suitable for building the SDK and running the tests, and 3 makefile targets: `make unit`, `make integration`, and `make docker-test`. The rest of this document relates to details about the Cucumber test.
+There are besploke unit-tests for each SDK. The details of SDK-specific unit tests are up to the developer's discretion. There are also a large number of cucumber tests stored in this repository which cover various unit-style tests and many integration tests. To assist with working in this environment each SDK must provide tooling to download and install the cucumber files, stand up a Sandbox environment that provides
+**algod** and **indexer** endpoints,
+a Dockerfile which configures an environment suitable for building the SDK and running the tests, and 3 `Makefile` targets:
+
+- `make unit`
+- `make integration`
+- `make docker-test`
+
+The rest of this document relates to details about the Cucumber test.
 
 ## How to write tests
 
-Tests consist of two things -- the feature files defined in this repository and some code snippets that map the text in the feature files to specific functions. The implementation process will vary by programming language and isn't covered here, [refer to the relevant documentation](https://cucumber.io/docs/installation/) for setting up a new SDK.
+Tests consist of two components:
+
+- the feature files defined in this repository
+- code snippets that map the text in the feature files to specific functions
+
+The implementation process will vary by programming language and isn't covered here. Refer to the [Cucumber docs](https://cucumber.io/docs/installation/) for setting up a new SDK.
 
 ### Tags
 
-We use [tags](https://cucumber.io/docs/cucumber/api/#tags), and a simple directory structure, to organize our feature files. All cucumber implementations should allow specifying one or more tags to include, or exclude, when running tests.
+We use [tags](https://cucumber.io/docs/cucumber/api/#tags), and a simple directory structure to organize our feature files. All cucumber implementations should allow specifying one or more tags to include, or exclude, when running tests.
 
 ### Unit tests
 
@@ -156,17 +169,18 @@ All unit tests should be tagged with `@unit` so that unit tests can be run toget
 ~$ mvn test -Dcucumber.filter.tags="@unit"
 ```
 
-This command will vary by cucumber implementation, the specific framework documentation should be referenced for details.
+This command will vary by cucumber implementation. The specific framework documentation should be referenced for details.
 
 ### Adding a new test
 
-When adding a new test to an existing feature file, or a new feature file, a new tag should be created which describes that test. For example, the **assets** feature file has a corresponding `@assets` tag. By adding a new tag for each feature we are able to add new tests to this repository without breaking the SDKs.
+When testing a new feature, add a new feature file
+or add new scenario to an existing feature file, along with a new tag. For example, the [assets feature file](./features/integration/assets.feature) is tagged with `@assets`. By adding a new tag for each feature we are able to add new tests to this repository without breaking the SDKs.
 
 In order for this to work, each SDK maintains a whitelist of tags which have been implemented.
 
 If a new feature file is created, the tag would go at the top of the file. If a new scenario is added the tag would go right above the scenario.
 
-If possible, please run a formatter on the file modified. There are several, including one built into VSCode Cucuber/Gherkin plugin.
+If possible, please run a formatter on the file modified. There are several, including one built into VSCode Cucumber/Gherkin plugin.
 
 ### Implementing tests in the SDK
 
@@ -176,7 +190,7 @@ When a test fails, the cucumber libraries we use print the code snippets which s
 
 ### Running tests
 
-The SDKs come with a Makefile to coordinate running the cucumber test suites. There are 3 main targets:
+The SDKs come with a `Makefile` to coordinate running the cucumber test suites. There are 3 main targets:
 
 - **unit**: runs all of the short unit tests.
 - **integration**: runs all integration tests.
@@ -188,7 +202,8 @@ At a high level, the **docker-test** target is required to:
 1. clone `algorand-sdk-testing`
 2. copy supported feature files from the `features` directory into the SDK
 3. build and start the test environment by calling `./scripts/up.sh` which clones `sandbox` and stands it up
-4. run all cucumber tests against the `sandbox` containers
+4. stand up the SDK's Docker container
+5. run all cucumber tests against the `sandbox` containers
 
 ### Running tests during development
 

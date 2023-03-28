@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="MQf6bn77YmY3BxwNJZ0i" name="Page-1">
-        <mxGraphModel dx="633" dy="552" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="206" dy="524" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -13,7 +13,7 @@
                 <mxCell id="Wqetf2JTwrelO_5sCt5Z-1" value="" style="rounded=0;whiteSpace=wrap;html=1;glass=0;shadow=0;" parent="1" vertex="1">
                     <mxGeometry x="180" y="230" width="570" height="340" as="geometry"/>
                 </mxCell>
-                <mxCell id="Wqetf2JTwrelO_5sCt5Z-2" value="&lt;u&gt;REST CLIENT&lt;br&gt;&lt;/u&gt;&lt;br&gt;&lt;div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- algod v1&lt;/span&gt;&lt;/div&gt;&lt;span&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- algod v2&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- kmd&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;span&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- indexer&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-2" value="&lt;u&gt;REST CLIENT&lt;br&gt;&lt;br&gt;&lt;/u&gt;&lt;div&gt;&lt;span&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- algod v2&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- kmd&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;span&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- indexer&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="200" y="250" width="150" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="Wqetf2JTwrelO_5sCt5Z-3" value="&lt;u&gt;Transaction Utils&lt;/u&gt;&lt;u&gt;&lt;br&gt;&lt;/u&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Payment&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Key Registration&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Asset Config&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- etc&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -28,7 +28,7 @@
                 <mxCell id="Wqetf2JTwrelO_5sCt5Z-6" value="&lt;u&gt;dApp Testing&lt;br&gt;&lt;br&gt;&lt;/u&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Dryrun Helpers&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Simulate&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="540" y="250" width="190" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="Wqetf2JTwrelO_5sCt5Z-7" value="&lt;u&gt;Testing&lt;/u&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;ul&gt;&lt;li&gt;&lt;span&gt;Cucumber Framework (unit/integration tests)&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span&gt;Setup script&lt;br&gt;&lt;/span&gt;(install feature files)&lt;br&gt;&lt;/li&gt;&lt;li&gt;&lt;span&gt;Dockerfile&lt;br&gt;&lt;/span&gt;(containerized test execution)&lt;br&gt;&lt;/li&gt;&lt;li&gt;&lt;span&gt;&quot;Golden&quot; test cases&lt;br&gt;&lt;/span&gt;(legacy tests)&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-7" value="&lt;u&gt;SDK&amp;nbsp; Testing&lt;/u&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;ul&gt;&lt;li&gt;&lt;span&gt;Cucumber Framework (unit/integration tests)&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span&gt;Setup script&lt;/span&gt;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;span&gt;install feature files&lt;/span&gt;&lt;/li&gt;&lt;li&gt;run Sandbox up&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;span&gt;SDK Dockerfile&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;Containerized test execution&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="540" y="340" width="190" height="200" as="geometry"/>
                 </mxCell>
                 <mxCell id="Wqetf2JTwrelO_5sCt5Z-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="Wqetf2JTwrelO_5sCt5Z-8" target="Wqetf2JTwrelO_5sCt5Z-10" edge="1">
