@@ -1,1 +1,67 @@
-<mxfile host="app.diagrams.net" modified="2020-07-13T14:29:19.476Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36" etag="n4NrpnIKOgednBLeSuhO" version="13.4.2" type="google"><diagram id="MQf6bn77YmY3BxwNJZ0i" name="Page-1">5VrbcuI4EP0aqmYfMuU78JgAmcsmk9SQ3bm8bCl2x2gjWx5ZDjBfPxKWsY0NGIITz+4LZR21pHb36ZZMq2eOgsU7hqLZNfWA9AzNW/TMcc8whvpA/EpgmQLWwEkBn2EvhfQcmOKfoEBNoQn2IC4JckoJx1EZdGkYgstLGGKMzstiD5SUV42QDxVg6iJSRb9gj89SdGBrOf4esD/LVtY11ROgTFgB8Qx5dF6AzEnPHDFKefoULEZApO0yu6TjLrf0rhVjEPImA778AP5gfLybMyA3/9jxiNvfz3RLKceX2RuDJwygmpTxGfVpiMgkRy8YTUIP5LSaaOUyV5RGAtQF+C9wvlTeRAmnAprxgKheWGD+VQ5/6ziOan9btTUt6x8v1PyrxrLQuAWGA+DAFJa+gVR7q2UUFNOEubDLHIphiPnAd8gN1/4TvAcqtGFLMU6III6fynogxUB/Lbceekux0NDQVLDYtgoWFSuGqZWnSPVXo4qurkw0LE2k943yROkLViYSD4X3yaEVkw5hVbraEyKJskWFZWUOzWeYwzRCK+fMRSIp88UnKI6V6DqMctc/AeOw2O38qrOyAQOt3ujzPNztvsJmhVA3dW27g0sWPdR8Ro35HCKWvUjEgy8fPk+md0JkdPVh8uku671nWXeGiOWTTawq5eGnWqjgL+dHIvPUhbAzP0ME+2HPPBcSBB543rs5SxyhMMPOpKWITz35ZnpBwaJQAa5Rqk6yZUWNoxRtR6nHwDtKmy3CL2dNLCJ9AeyUym8Kb80u+v7scoIkYmgbScSuJhHdrkkiemtJxNyfRO4YCmPkckyFfbW/OCbxrsTRIJMckG9OzrJbtAyku7oTsH+CpMhn8HHMGUrN3BnlzuMY5JFhRMMH7HdIMeDu7x385qBp8FttBb+1P/gnoUs9HPoq8jHHsDP6q2H8UoF9DXEsPrNukfvYIZp+nN58+r14avaP3KT6bdHU3krTGjeuGTliy0h8UTbk7Q5ONNjNXi7reeKrTR92iODXIQQ0xG7cJZ0SwnF88Hb1nMBTuo5dEWXyL4c2ItE0nWaRmP15dvJIdBqcFifnV3VB161T4N9ipIc4Pe5rox2d7iCICOLQpUgasyVL5LH/PZAI2KGqdWwrs6yGW9mgra2s3yCAIOarA1cX4iYhmwjBuzgzStwkuJcf8dolQwHMKROnMe1NEmKxyiUWydHPvnE0QXUe/3HIyXE77apq7VZ0CjyJpIFchiPeeMU3OIw5Wvn5ARBPGMgnTODg9zhU4TF1H4HJpZor69KQIxwCwz/BUwaXh4gFuIn0Qds657x6R4kHYZFnmTIuivdsEqVXIuAjd1khT61yMlAq/O1YirKtBqftYU2Kau+4rTsVq7xEsScUuqfVHjtrfiv25ZWeVSsr9fROV9ZRZZW9ZR1dq3dp47rOs9wzqGwh6m/o55ROSuWSYh3lFH989I23donk678ziyQ3akjutMZx+3/K8WFTjhuvyXG9/6ru0YvOKfiqO+4ZvKZ3hpUM9CEr3XQ1B1nDYfdykFax4wURpzx3Js5sFVMK60Ty0V0SWShj++15nxr/6n4NIPfRX7nkJuFiFlB42UutbgWD/oYbjKoX6k47dmtOMCpOGCOO7sWp9L/pAlu3uuaCuhrkZvYPvXN5TUtaX9oDu70tV4UMp98rXxUyezuvCh25J3fkitGWjaB4K2WHL595E8naVs8+9CaSZW9MpG1MdPRNJNHM786l4vkFRHPyCw==</diagram></mxfile>
+<mxfile host="65bd71144e">
+    <diagram id="MQf6bn77YmY3BxwNJZ0i" name="Page-1">
+        <mxGraphModel dx="206" dy="524" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.666;exitY=0.001;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="Wqetf2JTwrelO_5sCt5Z-1" target="Wqetf2JTwrelO_5sCt5Z-9" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="558" y="230" as="sourcePoint"/>
+                        <mxPoint x="559" y="172" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-1" value="" style="rounded=0;whiteSpace=wrap;html=1;glass=0;shadow=0;" parent="1" vertex="1">
+                    <mxGeometry x="180" y="230" width="570" height="340" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-2" value="&lt;u&gt;REST CLIENT&lt;br&gt;&lt;br&gt;&lt;/u&gt;&lt;div&gt;&lt;span&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- algod v2&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- kmd&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;span&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- indexer&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="250" width="150" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-3" value="&lt;u&gt;Transaction Utils&lt;/u&gt;&lt;u&gt;&lt;br&gt;&lt;/u&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Payment&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Key Registration&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Asset Config&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- etc&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="402" width="150" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-4" value="&lt;u&gt;Encoding Utilities&lt;/u&gt;&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- MessagePack&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- JSON&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- ARC-4 ABI&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="250" width="150" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-5" value="&lt;div&gt;&lt;u&gt;Crypto Utilities&lt;/u&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- ed25519&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Mnemonics&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Multisig&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="336" width="150" height="86" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-6" value="&lt;u&gt;dApp Testing&lt;br&gt;&lt;br&gt;&lt;/u&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Dryrun Helpers&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Simulate&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="250" width="190" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-7" value="&lt;u&gt;SDK&amp;nbsp; Testing&lt;/u&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;ul&gt;&lt;li&gt;&lt;span&gt;Cucumber Framework (unit/integration tests)&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span&gt;Setup script&lt;/span&gt;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;span&gt;install feature files&lt;/span&gt;&lt;/li&gt;&lt;li&gt;run Sandbox up&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;span&gt;SDK Dockerfile&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;Containerized test execution&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="340" width="190" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="Wqetf2JTwrelO_5sCt5Z-8" target="Wqetf2JTwrelO_5sCt5Z-10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-8" value="algod" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;" parent="1" vertex="1">
+                    <mxGeometry x="272.5" y="110" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="Wqetf2JTwrelO_5sCt5Z-9" target="Wqetf2JTwrelO_5sCt5Z-12" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="Wqetf2JTwrelO_5sCt5Z-9" target="Wqetf2JTwrelO_5sCt5Z-8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-9" value="Indexer" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;" parent="1" vertex="1">
+                    <mxGeometry x="499.5" y="110" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-10" value="Blockchain" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;rounded=0;shadow=0;glass=0;" parent="1" vertex="1">
+                    <mxGeometry x="287.5" y="20" width="90" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-12" value="Database" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;rounded=0;shadow=0;glass=0;" parent="1" vertex="1">
+                    <mxGeometry x="514.5" y="20" width="90" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="Wqetf2JTwrelO_5sCt5Z-13" value="" style="endArrow=classic;html=1;exitX=0.267;exitY=0.003;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitPerimeter=0;" parent="1" source="Wqetf2JTwrelO_5sCt5Z-1" target="Wqetf2JTwrelO_5sCt5Z-8" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="250" as="sourcePoint"/>
+                        <mxPoint x="450" y="200" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2" value="&lt;div&gt;&lt;u&gt;Enriched Interaction&lt;/u&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Wallet utils&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Atomic Txn Composer&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- Smart Signatures&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="430" width="150" height="110" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

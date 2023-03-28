@@ -8,7 +8,7 @@ The files in this repository are used for testing the different Algorand SDK imp
 
 To define tests we use [cucumber](https://cucumber.io/), and feature files written with [gherkin syntax](https://cucumber.io/docs/gherkin/reference/). Each SDK is responsible for finding a framework which can use these files. There are implementations for [many popular programming languages](https://cucumber.io/docs/installation/).
 
-We have different feature files for unit and integration tests. The unit tests should be run as a normal part of development to quickly identify bugs and regressions. Integration tests on the other hand take much longer to run and require a special test environment. The test environment is made up of multiple services and managed with [docker compose](https://docs.docker.com/compose/).
+We have different feature files for unit and integration tests. The unit tests should be run as a normal part of development to quickly identify bugs and regressions. Integration tests, on the other hand, take much longer to run and require a special test environment. The test environment is made up of multiple services and managed with [docker compose](https://docs.docker.com/compose/).
 
 ## Test Descriptions
 
@@ -21,31 +21,28 @@ These reside in the [unit features directory](features/unit)
 | @unit                             | Select all unit tests.                                |
 | @unit.abijson                     | ABI types and method encoding/decoding unit tests.    |
 | @unit.algod                       | Algod REST API unit tests.                            |
-| @unit.algod.ledger_refactoring    |                                                       |
 | @unit.blocksummary                | Algod / Indexer block REST API unit tests.            |
 | @unit.applications                | Application endpoints added to Algod and Indexer.     |
+| @unit.applications.boxes          | Box endpoints for Algod and Indexer.                  |
 | @unit.atomic_transaction_composer | ABI / atomic transaction construction unit tests.     |
-| @unit.atc_method_args             | Test that algod's Atomic Transaction Composer assserts that the same number of arguments given as expected |
-| @unit.c2c                         | Test for contract to contract calling                 |
+| @unit.atc_method_args             | Test that algod's Atomic Transaction Composer assserts that the same number of arguments given as expected.|
 | @unit.dryrun                      | Dryrun endpoint added to Algod.                       |
 | @unit.dryrun.trace.application    | DryrunResult formatting tests.                        |
 | @unit.feetest                     | Fee transaction encoding tests.                       |
 | @unit.indexer                     | Indexer REST API unit tests.                          |
-| @unit.indexer.ledger_refactoring  | Assertions for indexer after ledger refactoring.      |
 | @unit.indexer.logs                | Application logs endpoints added to Indexer.          |
-| @unit.indexer.rekey               | Rekey endpoints added to Algod and Indexer            |
-| @unit.offline                     | The first unit tests we wrote for cucumber.           |
+| @unit.indexer.rekey               | Rekey endpoints added to Algod and Indexer.           |
+| @unit.offline                     | Offline account operations.                           |
 | @unit.rekey                       | Rekey Transaction golden tests.                       |
 | @unit.responses                   | REST Client Response serialization tests.             |
-| @unit.responses.231               | REST Client Unit Tests for Indexer 2.3.1+             |
-| @unit.responses.genesis           | REST Client Unit Tests for GetGenesis endpoint        |
-| @unit.responses.messagepack       | REST Client MessagePack Unit Tests                    |
-| @unit.responses.messagepack.231   | REST Client MessagePack Unit Tests for Indexer 2.3.1+ |
-| @unit.responses.participationupdates | REST Client Response serialization test for ParticipationUpdates|
+| @unit.responses.genesis           | REST Client Unit Tests for GetGenesis endpoint.       |
+| @unit.responses.messagepack       | REST Client MessagePack Unit Tests.                   |
+| @unit.responses.messagepack.231   | REST Client MessagePack Unit Tests for Indexer 2.3.1+.|
+| @unit.responses.participationupdates | REST Client Response serialization test for ParticipationUpdates.|
 | @unit.responses.blocksummary      | REST Client updates for indexer/algod block endpoints.|
 | @unit.responses.statedelta        | REST Client updates for algod statedelta endpoint.    |
 | @unit.sourcemap                   | Test the sourcemap endpoint.                          |
-| @unit.statedelta                  | Test the statedleta endpoint.                         |
+| @unit.statedelta                  | Test the statedelta endpoint.                         |
 | @unit.stateproof.responses        | REST Client Response Tests for State Proof.           |
 | @unit.stateproof.responses.msgp   | REST Client MessagePack Tests for State Proofs.       |
 | @unit.stateproof.paths            | REST Client Unit Tests for State Proof feature.       |
@@ -66,13 +63,13 @@ These reside in the [integration features directory](features/integration)
 | @applications.verified | Submit all types of application transactions and verify account state.                 |
 | @assets                | Submit all types of asset transactions.                                                |
 | @auction               | Encode and decode bids for an auction.                                                 |
-| @c2c                   | Test Contract to Contract invocations and injestion.                                   |
+| @c2c                   | Test Contract to Contract invocations and ingestion.                                   |
 | @compile               | Test the algod compile endpoint.                                                       |
-| @compile.sourcemap     | Test the algod compile endpoint returns a valid Source Map                             |
+| @compile.sourcemap     | Test that the algod compile endpoint returns a valid Source Map.                       |
 | @dryrun                | Test the algod dryrun endpoint.                                                        |
 | @dryrun.testing        | Test the testing harness that relies on dryrun endpoint. Python only.                  |
 | @kmd                   | Test the kmd REST endpoints.                                                           |
-| @rekey_v1              | Test the rekeying transactions.                                                        |
+| @rekey_v1              | Test rekeying transactions.                                                            |
 | @send                  | Test the ability to submit transactions to algod.                                      |
 | @simulate              | Test the ability to simulate transactions with algod.                                  |
 
@@ -85,7 +82,7 @@ However, a few are not fully supported:
 | tag                             | SDK's which implement        |
 | ------------------------------- | ---------------------------- |
 | @dryrun.testing                 | Python only                  |
-| @unit.c2c                       | missing from Python   |
+| @unit.c2c                       | missing from Python          |
 | @unit.indexer.rekey             | missing from Python and JS   |
 | @unit.responses.genesis         | missing from Python and Java |
 | @unit.responses.messagepack     | missing from Python          |
@@ -101,8 +98,9 @@ Full featured Algorand SDKs have 6 major components. Depending on the compatibil
 2. Transaction Utilities
 3. Encoding Utilities
 4. Crypto Utilities
-5. TEAL Utilities
-6. Testing
+5. Enriched Interaction
+6. dApp Testing and Simulate
+7. SDK Testing
 
 ![SDK Overview](docs/SDK%20Components.png)
 
@@ -110,7 +108,6 @@ Full featured Algorand SDKs have 6 major components. Depending on the compatibil
 
 The most basic functionality includes the REST clients for communicating with **algod** and **indexer**. These interfaces are defined by OpenAPI specifications:
 
-- algod v1 / indexer v1 (generated at build time at **daemon/algod/api/swagger.json**)
 - kmd v1 (generated at build time at **daemon/kmd/api/swagger.json**)
 - [algod v2](https://github.com/algorand/go-algorand/blob/master/daemon/algod/api/algod.oas2.json)
 - [indexer v2](https://github.com/algorand/indexer/blob/develop/api/indexer.oas2.json)
@@ -121,27 +118,48 @@ One of the basic features of an Algorand SDK is the ability to construct all typ
 
 ### Encoding Utilities
 
-In order to ensure transactions are compact and can hash consistently, there are some special encoding requirements. The SDKs must provide utilities to work with these encodings. Algorand uses MessagePack as a compact binary-encoded JSON alternative, and fields with default values are excluded from the encoded object. Additionally to ensure consistent hashes, the fields must be alphebatized.
+To ensure that transactions are compact and can hash consistently, there are some special encoding requirements. The SDKs must provide utilities to work with these encodings. Algorand uses MessagePack as a compact binary-encoded JSON alternative, and fields with default values are excluded from the encoded object. Additionally to ensure consistent hashes, the fields must be alphabetized. Finally, dApp args and return values can be encoded and decoded in accordance with the [ARC-004 ABI-Type Specification](https://arc.algorand.foundation/ARCs/arc-0004#encoding).
 
 ### Crypto Utilities
 
-All things related to crypto to make it easier for developers to work with the blockchain. This includes standard things like ED25519 signing, up through Algorand specific LogicSig and MultiSig utilities. There are also some convenience methods for converting Mnemonics.
+All things related to crypto to make it easier for developers to work with the blockchain. This includes standards such as ED25519 signing, up through Algorand specific LogicSig and MultiSig utilities. There are also some convenience methods for converting Mnemonics.
 
-### TEAL Utilities
+### Enriched Interaction
 
-Everything related to working with [TEAL](https://developer.algorand.org/docs/reference/teal/specification/#transaction-execution-approval-language-teal). This includes some utilities for parsing and validating compiled TEAL programs.
+In certain cases, API's are provided to ease interacting
+with the Algorand blockchain.
+This includes [wallet interaction](https://developer.algorand.org/docs/get-details/accounts/create/#wallet-derived-kmd),
+ARC-4 dApp interaction via the [Atomic Transaction Composer](https://developer.algorand.org/docs/get-details/atc/?from_query=atomic#template-modal-overlay),
+and [Smart Signature](https://developer.algorand.org/docs/get-details/dapps/smart-contracts/frontend/smartsigs/?from_query=smart%20signatgure#template-modal-overlay) utilities.
 
-### Testing
+### dApp Testing and Simulate
 
-Each SDK has a number of unit tests specific to that particular SDK. The details of SDK-specific unit tests are up to the developers discretion. There are also a large number of cucumber integration tests stored in this repository which cover various unit-style tests and many integration tests. To assist with working in this environment each SDK must provide tooling to download and install the cucumber files, and a Dockerfile which configures an environment suitable for building the SDK and running the tests, and 3 makefile targets: `make unit`, `make integration`, and `make docker-test`. The rest of this document relates to details about the Cucumber test.
+Utilities for testing [Smart Contracts and dApps](https://developer.algorand.org/docs/get-details/dapps/smart-contracts/). This currently includes utilities for using [dry-runs](https://developer.algorand.org/docs/get-details/dapps/smart-contracts/debugging/?from_query=dry#dryrun-rest-endpoint). It also enables interacting with the [simulate REST endpoint](https://developer.algorand.org/docs/rest-apis/algod/?from_query=simulate#post-v2transactionssimulate).
+
+### SDK Testing
+
+There are besploke unit-tests for each SDK. The details of SDK-specific unit tests are up to the developer's discretion. There are also a large number of cucumber tests stored in this repository which cover various unit-style tests and many integration tests. To assist with working in this environment each SDK must provide tooling to download and install the cucumber files, stand up a Sandbox environment that provides
+**algod** and **indexer** endpoints,
+a Dockerfile which configures an environment suitable for building the SDK and running the tests, and 3 `Makefile` targets:
+
+- `make unit`
+- `make integration`
+- `make docker-test`
+
+The rest of this document relates to details about the Cucumber test.
 
 ## How to write tests
 
-Tests consist of two things -- the feature files defined in this repository and some code snippets that map the text in the feature files to specific functions. The implementation process will vary by programming language and isn't covered here, [refer to the relevant documentation](https://cucumber.io/docs/installation/) for setting up a new SDK.
+Tests consist of two components:
+
+- the feature files defined in this repository
+- code snippets that map the text in the feature files to specific functions
+
+The implementation process will vary by programming language and isn't covered here. Refer to the [Cucumber docs](https://cucumber.io/docs/installation/) for setting up a new SDK.
 
 ### Tags
 
-We use [tags](https://cucumber.io/docs/cucumber/api/#tags), and a simple directory structure, to organize our feature files. All cucumber implementations should allow specifying one or more tags to include, or exclude, when running tests.
+We use [tags](https://cucumber.io/docs/cucumber/api/#tags), and a simple directory structure to organize our feature files. All cucumber implementations should allow specifying one or more tags to include, or exclude, when running tests.
 
 ### Unit tests
 
@@ -151,17 +169,18 @@ All unit tests should be tagged with `@unit` so that unit tests can be run toget
 ~$ mvn test -Dcucumber.filter.tags="@unit"
 ```
 
-This command will vary by cucumber implementation, the specific framework documentation should be referenced for details.
+This command will vary by cucumber implementation. The specific framework documentation should be referenced for details.
 
 ### Adding a new test
 
-When adding a new test to an existing feature file, or a new feature file, a new tag should be created which describes that test. For example, the **templates** feature file has a corresponding `@templates` tag. By adding a new tag for each feature we are able to add new tests to this repository without breaking the SDKs.
+When testing a new feature, add a new feature file
+or add new scenario to an existing feature file, along with a new tag. For example, the [assets feature file](./features/integration/assets.feature) is tagged with `@assets`. By adding a new tag for each feature we are able to add new tests to this repository without breaking the SDKs.
 
 In order for this to work, each SDK maintains a whitelist of tags which have been implemented.
 
 If a new feature file is created, the tag would go at the top of the file. If a new scenario is added the tag would go right above the scenario.
 
-If possible, please run a formatter on the file modified. There are several, including one built into VSCode Cucuber/Gherkin plugin.
+If possible, please run a formatter on the file modified. There are several, including one built into VSCode Cucumber/Gherkin plugin.
 
 ### Implementing tests in the SDK
 
@@ -171,7 +190,7 @@ When a test fails, the cucumber libraries we use print the code snippets which s
 
 ### Running tests
 
-The SDKs come with a Makefile to coordinate running the cucumber test suites. There are 3 main targets:
+The SDKs come with a `Makefile` to coordinate running the cucumber test suites. There are 3 main targets:
 
 - **unit**: runs all of the short unit tests.
 - **integration**: runs all integration tests.
@@ -183,7 +202,8 @@ At a high level, the **docker-test** target is required to:
 1. clone `algorand-sdk-testing`
 2. copy supported feature files from the `features` directory into the SDK
 3. build and start the test environment by calling `./scripts/up.sh` which clones `sandbox` and stands it up
-4. run all cucumber tests against the `sandbox` containers
+4. stand up the SDK's Docker container
+5. run all cucumber tests against the `sandbox` containers
 
 ### Running tests during development
 
