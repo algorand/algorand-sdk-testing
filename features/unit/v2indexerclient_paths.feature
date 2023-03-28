@@ -218,7 +218,7 @@ Feature: Indexer Client v2 Paths
       | /v2/applications/1234/logs                                                                                                                                                                                    | 1234           | 0     | 0        | 0        |           |                                                            |                                                      |
       | /v2/applications/1234/logs?limit=4&max-round=120&min-round=100&next=TOKEN&sender-address=PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI&txid=TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A | 1234           | 4     | 100      | 120      | TOKEN     | PNWOET7LLOWMBMLE4KOCELCX6X3D3Q4H2Q4QJASYIEOF7YIPPQBG3YQ5YI | TDIO6RJWJIVDDJZELMSX5CPJW7MUNM3QR4YAHYAKHF3W2CFRTI7A |
 
-  @unit.indexer
+  @unit.indexer.ledger_refactoring
   Scenario Outline: LookupAccountAssets path
     When we make a LookupAccountAssets call with accountID "<account-id>" assetID <asset-id> includeAll "<include-all>" limit <limit> next "<next>"
     Then expect the path used to be "<path>"
@@ -232,7 +232,7 @@ Feature: Indexer Client v2 Paths
       | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets?next=def                                         | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 0     | def  |
       | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/assets?asset-id=123&include-all=true&limit=456&next=def | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123      | true        | 456   | def  |
 
-  @unit.indexer
+  @unit.indexer.ledger_refactoring
   Scenario Outline: LookupAccountCreatedAssets path
     When we make a LookupAccountCreatedAssets call with accountID "<account-id>" assetID <asset-id> includeAll "<include-all>" limit <limit> next "<next>"
     Then expect the path used to be "<path>"
@@ -246,7 +246,7 @@ Feature: Indexer Client v2 Paths
       | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets?next=def                                         | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0        | false       | 0     | def  |
       | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-assets?asset-id=123&include-all=true&limit=456&next=def | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123      | true        | 456   | def  |
 
-  @unit.indexer
+  @unit.indexer.ledger_refactoring
   Scenario Outline: LookupAccountAppLocalStates path
     When we make a LookupAccountAppLocalStates call with accountID "<account-id>" applicationID <application-id> includeAll "<include-all>" limit <limit> next "<next>"
     Then expect the path used to be "<path>"
@@ -260,7 +260,7 @@ Feature: Indexer Client v2 Paths
       | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state?next=def                                               | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 0     | def  |
       | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/apps-local-state?application-id=123&include-all=true&limit=456&next=def | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123            | true        | 456   | def  |
 
-  @unit.indexer
+  @unit.indexer.ledger_refactoring
   Scenario Outline: LookupAccountCreatedApplications path
     When we make a LookupAccountCreatedApplications call with accountID "<account-id>" applicationID <application-id> includeAll "<include-all>" limit <limit> next "<next>"
     Then expect the path used to be "<path>"
@@ -274,7 +274,7 @@ Feature: Indexer Client v2 Paths
       | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications?next=def                                               | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 0              | false       | 0     | def  |
       | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q/created-applications?application-id=123&include-all=true&limit=456&next=def | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q        | 123            | true        | 456   | def  |
 
-  @unit.indexer
+  @unit.indexer.ledger_refactoring
   Scenario Outline: SearchAccounts path
     When we make a Search Accounts call with exclude "<exclude>"
     Then expect the path used to be "<path>"
@@ -284,7 +284,7 @@ Feature: Indexer Client v2 Paths
       | /v2/accounts?exclude=assets%2Ccreated-assets                                   | assets,created-assets                               |
       | /v2/accounts?exclude=assets%2Ccreated-assets%2Capps-local-state%2Ccreated-apps | assets,created-assets,apps-local-state,created-apps |
 
-  @unit.indexer
+  @unit.indexer.ledger_refactoring
   Scenario Outline: LookupAccountByID path
     When we make a Lookup Account by ID call against account "<account>" with exclude "<exclude>"
     Then expect the path used to be "<path>"
@@ -294,7 +294,7 @@ Feature: Indexer Client v2 Paths
       | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q?exclude=assets%2Ccreated-assets                                   | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q     | assets,created-assets                               |
       | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q?exclude=assets%2Ccreated-assets%2Capps-local-state%2Ccreated-apps | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q     | assets,created-assets,apps-local-state,created-apps |
 
-  @unit.indexer
+  @unit.indexer.ledger_refactoring
   Scenario Outline: SearchForApplications path
     When we make a SearchForApplications call with creator "<creator>"
     Then expect the path used to be "<path>"
