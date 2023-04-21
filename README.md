@@ -66,6 +66,7 @@ These reside in the [integration features directory](features/integration)
 | @c2c                   | Test Contract to Contract invocations and ingestion.                                   |
 | @compile               | Test the algod compile endpoint.                                                       |
 | @compile.sourcemap     | Test that the algod compile endpoint returns a valid Source Map.                       |
+| @devmode               | Test dev mode features, such as setting timestamp offsets.                             |
 | @dryrun                | Test the algod dryrun endpoint.                                                        |
 | @dryrun.testing        | Test the testing harness that relies on dryrun endpoint. Python only.                  |
 | @kmd                   | Test the kmd REST endpoints.                                                           |
@@ -227,3 +228,5 @@ When starting the environment, we default to using `go-algorand`'s nightly build
 and set `ALGOD_URL`, and either `ALGOD_BRANCH` or `ALGOD_SHA` appropriately. 
 
 `indexer` and even the `sandbox` itself can be configured similarly through `.env`.
+
+By default, the test environment runs a dev mode network to instantaneously confirm transactions in each block. This drastically shortens testing times both locally and in CI. There are some tests that only work in dev mode (they have a @devmode tag), and these tests should not be run on a non-devmode network.
