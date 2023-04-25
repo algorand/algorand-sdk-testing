@@ -41,12 +41,14 @@ These reside in the [unit features directory](features/unit)
 | @unit.responses.participationupdates | REST Client Response serialization test for ParticipationUpdates.|
 | @unit.responses.blocksummary      | REST Client updates for indexer/algod block endpoints.|
 | @unit.responses.statedelta        | REST Client updates for algod statedelta endpoint.    |
+| @unit.responses.timestamp         | REST Client updates for timestamp offset endpoint.    |
 | @unit.sourcemap                   | Test the sourcemap endpoint.                          |
 | @unit.statedelta                  | Test the statedelta endpoint.                         |
 | @unit.stateproof.responses        | REST Client Response Tests for State Proof.           |
 | @unit.stateproof.responses.msgp   | REST Client MessagePack Tests for State Proofs.       |
 | @unit.stateproof.paths            | REST Client Unit Tests for State Proof feature.       |
 | @unit.tealsign                    | Test TEAL signature utilities.                        |
+| @unit.timestamp                   | Test the devmode timestamp offset endpoint.           |
 | @unit.transactions                | Transaction encoding tests.                           |
 | @unit.transactions.keyreg         | Keyreg encoding tests.                                |
 | @unit.transactions.payment        | Payment encoding tests.                               |
