@@ -157,6 +157,7 @@ Feature: Simulating transactions
     Then I attach the simulate request to simulate the transaction group.
 
     # Final step to check log in simulation tho
+    Then the simulation with "allow-more-logging" should not have failure message.
 
 # When I make a new simulate request
 # When I attach the transaction to the simulate request
