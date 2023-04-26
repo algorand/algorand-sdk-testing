@@ -183,10 +183,10 @@ Feature: Algod REST API v2 Paths
   @unit.timestamp
   Scenario Outline: SetBlockTimeStampOffset path
     When we make a SetBlockTimeStampOffset call against offset <offset>
-    Then expect the path used to be "<path>"
+    Then expect the request to be "<method>" "<path>"
     Examples:
-      | path                          | offset |
-      | /v2/devmode/blocks/offset/123 | 123    |
+      | path                          | method | offset |
+      | /v2/devmode/blocks/offset/123 | post   | 123    |
 
   @unit.timestamp
   Scenario Outline: GetBlockTimeStampOffset path
