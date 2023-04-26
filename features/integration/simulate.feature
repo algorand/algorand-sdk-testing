@@ -152,14 +152,10 @@ Feature: Simulating transactions
     And the simulation should report a failure at group "0", path "0" with message "logic eval error: program logs too large."
 
     # Now we simulate with lifting log limits
-    Given I add the nonce "simulate-with-log-limits"
     When I make a new simulate request.
     Then I lift log limits on that simulate request.
-    Then I attach the simulate request to the transaction group to be simulated.
-
+    Then I attach the simulate request to simulate the transaction group.
 
 # When I make a new simulate request
 # When I attach the transaction to the simulate request
-# When I lift log limits on the simulate request
-# (plus a step for each new power up)
 # When I submit the simulate request
