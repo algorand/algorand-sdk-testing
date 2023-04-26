@@ -149,7 +149,7 @@ Feature: Simulating transactions
     * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     Then I simulate the current transaction group with the composer
-    And the simulation should report a failure at group "0", path "0,0" with message "logic eval error: program logs too large."
+    And the simulation should report a failure at group "0", path "0" with message "logic eval error: program logs too large."
 
     # Now we simulate with lifting log limits
     Given I add the nonce "simulate-with-log-limits"
