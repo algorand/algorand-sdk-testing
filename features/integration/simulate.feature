@@ -156,6 +156,8 @@ Feature: Simulating transactions
     Then I lift log limits on that simulate request.
     Then I attach the simulate request to simulate the transaction group.
 
+    # Final step to check log in simulation tho
+
 # When I make a new simulate request
 # When I attach the transaction to the simulate request
 # When I submit the simulate request
