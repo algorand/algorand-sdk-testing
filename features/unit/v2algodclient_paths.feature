@@ -179,3 +179,19 @@ Feature: Algod REST API v2 Paths
     Examples:
       | path            | method |
       | /v2/ledger/sync | delete |
+
+  @unit.timestamp
+  Scenario Outline: SetBlockTimeStampOffset path
+    When we make a SetBlockTimeStampOffset call against offset <offset>
+    Then expect the request to be "<method>" "<path>"
+    Examples:
+      | path                          | method | offset |
+      | /v2/devmode/blocks/offset/123 | post   | 123    |
+
+  @unit.timestamp
+  Scenario Outline: GetBlockTimeStampOffset path
+    When we make a GetBlockTimeStampOffset call
+    Then expect the request to be "<method>" "<path>"
+    Examples:
+      | path                      | method |
+      | /v2/devmode/blocks/offset | get    |
