@@ -134,22 +134,28 @@ Feature: Simulating transactions
   @simulate.lift_log_limits
   Scenario: Simulate app call that logs more than 1024 bytes
     Given a new AtomicTransactionComposer
-    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/logs-a-lot.teal", clear-program "programs/eight.teal", global-bytes 0, global-ints 1, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
+    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/logs-a-lot.teal", clear-program "programs/six.teal", global-bytes 0, global-ints 1, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
     And I sign and submit the transaction, saving the txid. If there is an error it is "".
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
 
     And I fund the current application's address with 10000000 microalgos.
 
-    When I make a new simulate request.
-
+    # First we simulate without lifting log limits
+    Given I add the nonce "simulate-without-log-limits"
     When I create the Method object from method signature "unlimited_log_test()void"
     * I create a new method arguments array.
     * I append the encoded arguments "" to the method arguments array.
     * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     Then I simulate the current transaction group with the composer
-    And the simulation should report a failure at group "0" with message "logic eval error: program logs too large."
+    And the simulation should report a failure at group "0", path "0,0" with message "logic eval error: program logs too large."
+
+    # Now we simulate with lifting log limits
+    Given I add the nonce "simulate-with-log-limits"
+    When I make a new simulate request.
+    Then I lift log limits on that simulate request.
+    Then I attach the simulate request to the transaction group to be simulated.
 
 
 # When I make a new simulate request
