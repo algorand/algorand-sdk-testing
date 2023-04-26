@@ -130,3 +130,7 @@ Feature: Simulating transactions
     # The simulation should fail at the third transaction's first inner transaction (2,0) due to no app args being passed into the app.
     Then I simulate the current transaction group with the composer
     And the simulation should report a failure at group "0", path "2,0" with message "invalid ApplicationArgs"
+
+  @simulate.lift_log_limits
+  Scenario: Simulate app call that logs more than 1024 bytes
+  Given a new AtomicTransactionComposer
