@@ -156,7 +156,7 @@ Feature: Algod REST API v2 Paths
       | path         | method | round |
       | /v2/deltas/3 | get    | 3     |
 
-  @unit.statedelta
+  @unit.sync
   Scenario Outline: SetSyncRound path
     When we make a SetSyncRound call against round <round>
     Then expect the request to be "<method>" "<path>"
@@ -164,7 +164,7 @@ Feature: Algod REST API v2 Paths
       | path              | method | round |
       | /v2/ledger/sync/3 | post   | 3     |
 
-  @unit.statedelta
+  @unit.sync
   Scenario Outline: GetSyncRound path
     When we make a GetSyncRound call
     Then expect the request to be "<method>" "<path>"
@@ -172,7 +172,7 @@ Feature: Algod REST API v2 Paths
       | path            | method |
       | /v2/ledger/sync | get    |
 
-  @unit.statedelta
+  @unit.sync
   Scenario Outline: UnsetSyncRound path
     When we make a UnsetSyncRound call
     Then expect the request to be "<method>" "<path>"

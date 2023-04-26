@@ -48,6 +48,7 @@ These reside in the [unit features directory](features/unit)
 | @unit.stateproof.responses        | REST Client Response Tests for State Proof.           |
 | @unit.stateproof.responses.msgp   | REST Client MessagePack Tests for State Proofs.       |
 | @unit.stateproof.paths            | REST Client Unit Tests for State Proof feature.       |
+| @unit.sync                        | Test the follower sync endpoints.                     |
 | @unit.tealsign                    | Test TEAL signature utilities.                        |
 | @unit.timestamp                   | Test the devmode timestamp offset endpoint.           |
 | @unit.transactions                | Transaction encoding tests.                           |
@@ -227,6 +228,6 @@ Algorand's [sandbox](https://github.com/algorand/sandbox) is used to manage seve
 [up.sh](scripts/up.sh) is used to bring up the test environment. Not surprisingly, [down.sh](scripts/down.sh) brings it all down.
 
 When starting the environment, we default to using `go-algorand`'s nightly build. If you're interested in running tests against a specific branch of `go-algorand`, you should set `TYPE="source"` in `.env`
-and set `ALGOD_URL`, and either `ALGOD_BRANCH` or `ALGOD_SHA` appropriately. 
+and set `ALGOD_URL`, and either `ALGOD_BRANCH` or `ALGOD_SHA` appropriately.
 
 `indexer` and even the `sandbox` itself can be configured similarly through `.env`.
