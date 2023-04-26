@@ -208,3 +208,8 @@ Feature: REST Client Responses
     Examples:
       | jsonfile                    | response-folder             | status | client | endpoint                | 
       | devmodeTimestampOffset.json | v2algodclient_responsejsons | 200    | algod  | GetBlockTimeStampOffset |
+
+    @unit.responses.sync
+    Examples:
+      | jsonfile                    | response-folder             | status | client | endpoint                |
+      | getSyncRoundResponse.json   | v2algodclient_responsejsons | 200    | algod  | GetSyncRound            |

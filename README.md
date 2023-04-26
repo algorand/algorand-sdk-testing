@@ -16,44 +16,45 @@ We have different feature files for unit and integration tests. The unit tests s
 
 These reside in the [unit features directory](features/unit)
 
-| tag                               | description                                           |
-| --------------------------------- | ----------------------------------------------------- |
-| @unit                             | Select all unit tests.                                |
-| @unit.abijson                     | ABI types and method encoding/decoding unit tests.    |
-| @unit.algod                       | Algod REST API unit tests.                            |
-| @unit.blocksummary                | Algod / Indexer block REST API unit tests.            |
-| @unit.applications                | Application endpoints added to Algod and Indexer.     |
-| @unit.applications.boxes          | Box endpoints for Algod and Indexer.                  |
-| @unit.atomic_transaction_composer | ABI / atomic transaction construction unit tests.     |
-| @unit.atc_method_args             | Test that algod's Atomic Transaction Composer assserts that the same number of arguments given as expected.|
-| @unit.dryrun                      | Dryrun endpoint added to Algod.                       |
-| @unit.dryrun.trace.application    | DryrunResult formatting tests.                        |
-| @unit.feetest                     | Fee transaction encoding tests.                       |
-| @unit.indexer                     | Indexer REST API unit tests.                          |
-| @unit.indexer.logs                | Application logs endpoints added to Indexer.          |
-| @unit.indexer.rekey               | Rekey endpoints added to Algod and Indexer.           |
-| @unit.offline                     | Offline account operations.                           |
-| @unit.ready                       | Test the ready endpoint.                              |
-| @unit.rekey                       | Rekey Transaction golden tests.                       |
-| @unit.responses                   | REST Client Response serialization tests.             |
-| @unit.responses.genesis           | REST Client Unit Tests for GetGenesis endpoint.       |
-| @unit.responses.messagepack       | REST Client MessagePack Unit Tests.                   |
-| @unit.responses.messagepack.231   | REST Client MessagePack Unit Tests for Indexer 2.3.1+.|
-| @unit.responses.participationupdates | REST Client Response serialization test for ParticipationUpdates.|
-| @unit.responses.blocksummary      | REST Client updates for indexer/algod block endpoints.|
-| @unit.responses.statedelta        | REST Client updates for algod statedelta endpoint.    |
-| @unit.responses.timestamp         | REST Client updates for timestamp offset endpoint.    |
-| @unit.sourcemap                   | Test the sourcemap endpoint.                          |
-| @unit.statedelta                  | Test the statedelta endpoint.                         |
-| @unit.stateproof.responses        | REST Client Response Tests for State Proof.           |
-| @unit.stateproof.responses.msgp   | REST Client MessagePack Tests for State Proofs.       |
-| @unit.stateproof.paths            | REST Client Unit Tests for State Proof feature.       |
-| @unit.sync                        | Test the follower sync endpoints.                     |
-| @unit.tealsign                    | Test TEAL signature utilities.                        |
-| @unit.timestamp                   | Test the devmode timestamp offset endpoint.           |
-| @unit.transactions                | Transaction encoding tests.                           |
-| @unit.transactions.keyreg         | Keyreg encoding tests.                                |
-| @unit.transactions.payment        | Payment encoding tests.                               |
+| tag                                  | description                                                                                                 |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| @unit                                | Select all unit tests.                                                                                      |
+| @unit.abijson                        | ABI types and method encoding/decoding unit tests.                                                          |
+| @unit.algod                          | Algod REST API unit tests.                                                                                  |
+| @unit.blocksummary                   | Algod / Indexer block REST API unit tests.                                                                  |
+| @unit.applications                   | Application endpoints added to Algod and Indexer.                                                           |
+| @unit.applications.boxes             | Box endpoints for Algod and Indexer.                                                                        |
+| @unit.atomic_transaction_composer    | ABI / atomic transaction construction unit tests.                                                           |
+| @unit.atc_method_args                | Test that algod's Atomic Transaction Composer assserts that the same number of arguments given as expected. |
+| @unit.dryrun                         | Dryrun endpoint added to Algod.                                                                             |
+| @unit.dryrun.trace.application       | DryrunResult formatting tests.                                                                              |
+| @unit.feetest                        | Fee transaction encoding tests.                                                                             |
+| @unit.indexer                        | Indexer REST API unit tests.                                                                                |
+| @unit.indexer.logs                   | Application logs endpoints added to Indexer.                                                                |
+| @unit.indexer.rekey                  | Rekey endpoints added to Algod and Indexer.                                                                 |
+| @unit.offline                        | Offline account operations.                                                                                 |
+| @unit.ready                          | Test the ready endpoint.                                                                                    |
+| @unit.rekey                          | Rekey Transaction golden tests.                                                                             |
+| @unit.responses                      | REST Client Response serialization tests.                                                                   |
+| @unit.responses.genesis              | REST Client Unit Tests for GetGenesis endpoint.                                                             |
+| @unit.responses.messagepack          | REST Client MessagePack Unit Tests.                                                                         |
+| @unit.responses.messagepack.231      | REST Client MessagePack Unit Tests for Indexer 2.3.1+.                                                      |
+| @unit.responses.participationupdates | REST Client Response serialization test for ParticipationUpdates.                                           |
+| @unit.responses.blocksummary         | REST Client updates for indexer/algod block endpoints.                                                      |
+| @unit.responses.statedelta           | REST Client updates for algod statedelta endpoint.                                                          |
+| @unit.responses.sync                 | REST Client updates for algod sync round endpoints.                                                         |
+| @unit.responses.timestamp            | REST Client updates for timestamp offset endpoint.                                                          |
+| @unit.sourcemap                      | Test the sourcemap endpoint.                                                                                |
+| @unit.statedelta                     | Test the statedelta endpoint.                                                                               |
+| @unit.stateproof.responses           | REST Client Response Tests for State Proof.                                                                 |
+| @unit.stateproof.responses.msgp      | REST Client MessagePack Tests for State Proofs.                                                             |
+| @unit.stateproof.paths               | REST Client Unit Tests for State Proof feature.                                                             |
+| @unit.sync                           | Test the follower sync endpoints.                                                                           |
+| @unit.tealsign                       | Test TEAL signature utilities.                                                                              |
+| @unit.timestamp                      | Test the devmode timestamp offset endpoint.                                                                 |
+| @unit.transactions                   | Transaction encoding tests.                                                                                 |
+| @unit.transactions.keyreg            | Keyreg encoding tests.                                                                                      |
+| @unit.transactions.payment           | Payment encoding tests.                                                                                     |
 
 ### Integration Tests
 
