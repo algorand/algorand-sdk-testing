@@ -153,7 +153,7 @@ Feature: Simulating transactions
     # Now we simulate with lifting log limits
     When I make a new simulate request.
     Then I allow more logs on that simulate request.
-    Then I attach the simulate request to simulate the transaction group.
+    Then I simulate the transaction group with the simulate request.
 
     # Final step to check log in simulation result
     Then I check the simulation result has power packs allow-more-logging.
