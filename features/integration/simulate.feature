@@ -157,5 +157,5 @@ Feature: Simulating transactions
     Then I attach the simulate request to simulate the transaction group.
 
     # Final step to check log in simulation result
-    Then I check the simulation result has power packs "allow-more-logging".
+    Then I check the simulation result has power packs allow-more-logging.
     And the simulation should succeed without any failure message
