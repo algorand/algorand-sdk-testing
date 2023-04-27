@@ -62,7 +62,7 @@ Feature: Simulating transactions
     And I add the current transaction with signer to the composer.
     Then I simulate the current transaction group with the composer
     And the simulation should report missing signatures at group "0", transactions "0"
-    
+ 
     # Add another unsigned transaction
     And I clone the composer.
     When I build a payment transaction with sender "transient", receiver "transient", amount 100002, close remainder to ""
@@ -156,9 +156,6 @@ Feature: Simulating transactions
     Then I lift log limits on that simulate request.
     Then I attach the simulate request to simulate the transaction group.
 
-    # Final step to check log in simulation tho
-    Then the simulation with "allow-more-logging" should not have failure message.
-
-# When I make a new simulate request
-# When I attach the transaction to the simulate request
-# When I submit the simulate request
+    # Final step to check log in simulation result
+    Then I check the simulation result has power packs "allow-more-logging".
+    And the simulation should succeed without any failure message
