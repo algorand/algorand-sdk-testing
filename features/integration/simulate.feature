@@ -25,7 +25,7 @@ Feature: Simulating transactions
     Given default transaction with parameters 100001 "X4Bl4wQ9rCo="
     When I prepare the transaction without signatures for simulation
     And I simulate the transaction
-    Then the simulation should report missing signatures at group "0", transactions "0"
+    Then the simulation should report a failure at group "0", path "0" with message "signedtxn has no sig"
 
   @simulate
   Scenario: Simulating duplicate transactions in a group and overspending errors
@@ -61,15 +61,15 @@ Feature: Simulating transactions
     And I create a transaction with an empty signer with the current transaction.
     And I add the current transaction with signer to the composer.
     Then I simulate the current transaction group with the composer
-    And the simulation should report missing signatures at group "0", transactions "0"
-    
+    Then the simulation should report a failure at group "0", path "0" with message "signedtxn has no sig"
+
     # Add another unsigned transaction
     And I clone the composer.
     When I build a payment transaction with sender "transient", receiver "transient", amount 100002, close remainder to ""
     And I create a transaction with an empty signer with the current transaction.
     And I add the current transaction with signer to the composer.
     Then I simulate the current transaction group with the composer
-    And the simulation should report missing signatures at group "0", transactions "0,1"
+    Then the simulation should report a failure at group "0", path "0" with message "signedtxn has no sig"
 
     # Check for an overspending error in addition to the unsigned transaction
     # Add another unsigned transaction
@@ -78,8 +78,7 @@ Feature: Simulating transactions
     And I create a transaction with an empty signer with the current transaction.
     And I add the current transaction with signer to the composer.
     Then I simulate the current transaction group with the composer
-    And the simulation should report missing signatures at group "0", transactions "0,1,2"
-    And the simulation should report a failure at group "0", path "2" with message "overspend"
+    Then the simulation should report a failure at group "0", path "0" with message "signedtxn has no sig"
 
   @simulate
   Scenario: Simulating bad inner transactions in the ATC
@@ -89,7 +88,7 @@ Feature: Simulating transactions
     And I sign and submit the transaction, saving the txid. If there is an error it is "".
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
-    
+
     # Create another app at context index 1: RandomByte
     When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/random_byte.teal", clear-program "programs/six.teal", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
     And I sign and submit the transaction, saving the txid. If there is an error it is "".
@@ -130,3 +129,32 @@ Feature: Simulating transactions
     # The simulation should fail at the third transaction's first inner transaction (2,0) due to no app args being passed into the app.
     Then I simulate the current transaction group with the composer
     And the simulation should report a failure at group "0", path "2,0" with message "invalid ApplicationArgs"
+
+  @simulate.lift_log_limits
+  Scenario: Simulate app call that logs more than 1024 bytes
+    Given a new AtomicTransactionComposer
+    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/logs-a-lot.teal", clear-program "programs/six.teal", global-bytes 0, global-ints 1, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
+    And I sign and submit the transaction, saving the txid. If there is an error it is "".
+    And I wait for the transaction to be confirmed.
+    Given I remember the new application ID.
+
+    And I fund the current application's address with 10000000 microalgos.
+
+    # First we simulate without lifting log limits
+    Given I add the nonce "simulate-without-log-limits"
+    When I create the Method object from method signature "unlimited_log_test()void"
+    * I create a new method arguments array.
+    * I append the encoded arguments "" to the method arguments array.
+    * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+    Then I simulate the current transaction group with the composer
+    And the simulation should report a failure at group "0", path "0" with message "logic eval error: too many log calls in program. up to 32 is allowed."
+
+    # Now we simulate with lifting log limits
+    When I make a new simulate request.
+    Then I allow more logs on that simulate request.
+    Then I simulate the transaction group with the simulate request.
+
+    # Final step to check log in simulation result
+    Then I check the simulation result has power packs allow-more-logging.
+    And the simulation should succeed without any failure message
