@@ -72,7 +72,7 @@ Feature: Applications
       And I wait for the transaction to be confirmed.
       # Call with args 'str:hello', this should fail with error 'only ClearState is supported' since the application was deleted.
       And I build an application transaction with the transient account, the current application, suggested params, operation "call", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "str:hello", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
-      And I sign and submit the transaction, saving the txid. If there is an error it is "only clearing out is supported".
+      And I sign and submit the transaction, saving the txid. If there is an error it is "only ClearState is supported".
       # Clear with no args should succeed.
       And I build an application transaction with the transient account, the current application, suggested params, operation "clear", approval-program "", clear-program "", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
