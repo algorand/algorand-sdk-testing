@@ -26,6 +26,7 @@ These reside in the [unit features directory](features/unit)
 | @unit.applications.boxes             | Box endpoints for Algod and Indexer.                                                                        |
 | @unit.atomic_transaction_composer    | ABI / atomic transaction construction unit tests.                                                           |
 | @unit.atc_method_args                | Test that algod's Atomic Transaction Composer assserts that the same number of arguments given as expected. |
+| @unit.client-no-headers              | Tests that clients don't add non-standard http headers when no (or an empty) auth token is provided.        |
 | @unit.dryrun                         | Dryrun endpoint added to Algod.                                                                             |
 | @unit.dryrun.trace.application       | DryrunResult formatting tests.                                                                              |
 | @unit.feetest                        | Fee transaction encoding tests.                                                                             |
