@@ -44,9 +44,9 @@ Feature: KMD
     When I get the private key
     And I sign the transaction with the private key
     And I sign the transaction with kmd
-    And I sign the transaction providing the public key to kmd
+    And I sign the transaction providing the signing address to kmd
     Then the signed transaction should equal the kmd signed transaction
-    Then the signed transaction should equal the public key kmd signed transaction
+    Then the signed transaction should equal the signing address kmd signed transaction
 
     Examples:
       | amt     | note         |
