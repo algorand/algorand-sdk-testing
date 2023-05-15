@@ -38,13 +38,15 @@ Feature: KMD
     And I import the key
     Then the private key should be equal to the exported private key
 
-  Scenario Outline: Sign both ways
+  Scenario Outline: Sign multiple ways
     Given an algod v2 client connected to "localhost" port 60000 with token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     And default transaction with parameters <amt> "<note>"
     When I get the private key
     And I sign the transaction with the private key
     And I sign the transaction with kmd
+    And I sign the transaction providing the public key to kmd
     Then the signed transaction should equal the kmd signed transaction
+    Then the signed transaction should equal the public key kmd signed transaction
 
     Examples:
       | amt     | note         |
