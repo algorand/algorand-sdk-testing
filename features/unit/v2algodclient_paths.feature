@@ -208,7 +208,7 @@ Feature: Algod REST API v2 Paths
 
   @unit.txngroupdeltas
   Scenario Outline: TransactionGroupLedgerStateDeltaForRoundResponse
-    When we make a TransactionGroupLedgerStateDeltaForRoundResponse call for round "<round>"
+    When we make a TransactionGroupLedgerStateDeltaForRoundResponse call for round <round>
     Then expect the path used to be "<path>"
     Examples:
       | path                      | round |
