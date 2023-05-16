@@ -213,3 +213,15 @@ Feature: REST Client Responses
     Examples:
       | jsonfile                    | response-folder             | status | client | endpoint                |
       | getSyncRoundResponse.json   | v2algodclient_responsejsons | 200    | algod  | GetSyncRound            |
+
+    @unit.responses.txngroupdeltas
+    Examples:
+      | jsonfile                         | response-folder             | status | client | endpoint                                    |
+      | groupdelta-betanet_23963123.json | v2algodclient_responsejsons | 200    | algod  | GetTransactionGroupLedgerStateDeltaForRound |
+
+    @unit.responses.txngroupdeltas
+    Examples:
+      | jsonfile                           | response-folder             | status | client | endpoint                               |
+      | groupdelta-betanet_23963123_0.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+      | groupdelta-betanet_23963123_1.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+      | groupdelta-betanet_23963123_1.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |

@@ -1,0 +1,235 @@
+{
+  "Accts": {
+    "Accts": [
+      {
+        "Addr": "TILB4MAJIUF56ZBE7CDOWOXDR57IXZFJUHJARQPW3JDEVKMU56HP3A6A54",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 377962010,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 37,
+        "TotalAppParams": 459,
+        "TotalAppSchema": {
+          "nbs": 2962,
+          "nui": 2675
+        },
+        "TotalAssetParams": 23,
+        "TotalAssets": 110,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 740,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
+      },
+      {
+        "Addr": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 1529589813809,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 0,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 2,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
+      },
+      {
+        "Addr": "DSR7TNPLYXGPINSZOC76OYLXNAH6VITLH7BYO5HWLLWUOUI365LD62IHSA",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 100000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
+      },
+      {
+        "Addr": "5UA72YDDTT7VLRMVHDRWCUOTWMWBH5XOB4MJRYTMKDNV3GEVYY5JMT5KXM",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 243300,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 12595,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 331,
+        "TotalBoxes": 1,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
+      }
+    ],
+    "AppResources": [
+      {
+        "Addr": "TILB4MAJIUF56ZBE7CDOWOXDR57IXZFJUHJARQPW3JDEVKMU56HP3A6A54",
+        "Aidx": 1508981233,
+        "Params": {
+          "Deleted": false,
+          "Params": {
+            "approv": "CCAEAAgBOCYVCER1cmF0aW9uA1JQVAhSUFRfZnJhYwxUb3RhbFJld2FyZHMOUGVuZGluZ1Jld2FyZHMLVG90YWxTdGFrZWQKTnVtU3Rha2VycwxOZXh0RHVyYXRpb24OUmV3YXJkQXNzZXRJRHMGU3Rha2VkDkFjY3J1ZWRSZXdhcmRzC05leHRSZXdhcmRzBUFkbWluDkNsYWltZWRSZXdhcmRzCVVwZGF0ZWRBdAdVcGRhdGVyxQIIIAQAAQQGJgMLTWFzdGVyQXBwSUQBAQEAMgkxABJEMRlAAPIxGEAARTYaAIAEOIgacRJEKDYaARfAMmexJbIQNhoCF8AyshiABLc1X9GyGiKyAbOxJLIQMgqyFCKyEjYaAxfAMLIRIrIBs0IA1TYaAIAEeIIs8BJAAE42GgCABLdY2NESQAApNhoAgASb5CgbEkAAAQCxI7IQNhoBF8AcsgcisgE2GgJXAgCyBbNCAJKxI7IQMgmyBzIKYDIKeAmyCCKyAbNCAHqxJLIQMgmyFDYaAheyEjYaARfAMLIRIrIBs7ElshAoZLIYgATDFArnshopshoqshopshoqshoyCbIcMgiyMjYaARfAMLIwIrIBs0IALTEZgQUSQAABADIJKGRhFESxJLIQNjAAshEyCbIVIrIBs7EjshAyCbIJIrIBsyNDCEVzY3Jvd0lEAA1TdGFrZWRBc3NldElEDUNPTlRSQUNUX05BTUUxGyISQAGvNhoAgAQtYN77EkABbzYaAIAE/WijvxJAAU42GgCABI8NfY4SQAEtNhoAgASUjPWAEkABDDYaAIAEb+gbmxJAAOE2GgCABGFhym4SQADFNhoAgAQ1noJVEkAAqTYaAIAEoh7bJBJAAIk2GgCABMMUCucSQABJNhoAgARKrqPyEkAAHTYaAIAEGZ27ERJAAAEAMRkiEjEYIhMQRIgL9CRDMRkiEjEYIhMQRDYaASJVNRA2GgI1ETQQNBGICxokQzEZIhIxGCITEEQ2GgEiVTUMNhoCIlU1DTYaAyJVNQ42GgQiVTUPNAw0DTQONA+IB7YkQzEZIhIxGCITEEQ2GgEXiAbVJEMxGSISMRgiExBEiATcJEMxGSISMRgiExBEiAS4JEMxGSISMRgiExBENhoBNQo2GgIXNQs0CjQLiAPVJEMxGSISMRgiExBENhoBIlWIA3QkQzEZIhIxGCITEEQ2GgEiVYgDUCRDMRkiEjEYIhMQRDYaASJViAMsJEMxGSISMRgiEhBENhoBIlU1BjYaAiJVNQc2GgMiVTUINhoEIlU1CTQGNAc0CDQJiAJJJEMxGSQSQAAlMRmBAhJAABMxGYEEEkAAAQAxGCITRIgA+iRDMRgiE0SIAVMkQzEYIhNEiADtJEM1tzW2NbU0tkAAE7EkshA0tbIHNLeyCCKyAbNCABWxgQSyEDS1shQ0t7ISNLayESKyAbOJNSo0KjgQJBJAAAc0KjgSQgAENCo4CIk1IDUiIjUhNCE0IhUjCgxBABg0IjQhIwtbNCASQAAJNCEkCDUhQv/fJIkiiTUuNS01LDUrNCxAACo0KzgQJBI0KzggMgMSEDQrOAkyAxIQNCs4BzQtEhA0KzgANC4SEERCADA0KzgQgQQSNCs4IDIDEhA0KzgVMgMSEDQrOBE0LBIQNCs4FDQtEhA0KzgANC4SEESJJw9kEokxAIj/9kSJMRYkCTUBNAE4EIEGEjQBOBgiEhA0ATgZIhIQNAE4HicQEhA0ATgAMQASEEQxACcJImYxACcRImYxACklr2YxAColr2YxACcNJa9mMQAnCiWvZjEAJxE0ATg9ZokxACcJYiISRDEAJwpiJa8SRDEAJwliNQQnBScFZDQECWc0BCKICZErZDUCMQAnCmI1AyI1BTQFgQcMQQAiNAI0BSMLNAI0BSMLWzQDNAUjC1sJFl01AjQFJAg1BUL/1is0AmckQycPZBKJJwxkEoknDGQSiScMZBKJNaA1nzSfcgA1ojWhNJ9yBzWkNaM0n8AygAtNYXN0ZXJBcHBJRGU1pjWlNKI0oScQEhA0ozSgwBwSEDSmEDSlMggSEDSgwBwnEWI0n8AyEhCJNRc1FjUVNRQiJxRlNRk1GDQZFEQnFIAJUEFDVCBGQVJNZ4AHVkVSU0lPToFkZycMJxJnJw8nEmcnBSJnJw4yB2cnBiJnKCJnJwciZyklr2cqJa9nJwslr2cnBCWvZyslr2cnDSWvZycIJxJnIicTZTUbNRo0GxREJxM0FcAwZycMNBbAHGcnDzQXwBxnsYEGshA0FMAyshiABLc1X9GyGiKyAbOABkVzY3JvdycQv4k1HDEAiP7kRCcPNBzAHGeJNR0xAIj+2UQnDDQdwBxniTUeMQCI/s5EJwhkNR80HxUjCoEHDEQ0HzQewDCI/UsURDQfNB7AMBZQNR8nCDQfZzQewDAiE0EAE7GBBLIQMgqyFDQewDCyESKyAbOJNSQ1IzEAiP6ERCcOZDIHEkQnB2QiEkQ0IyJZRDQkRCcIZDUoIjUlNCU0IyJZDEAAYSWvNSkiNSU0JTQjIlkMQAAgKGQiEkAADScLNClnJwc0JGdCAG4nBDQpZyg0JGdCAGI0IyM0JQuBAghbNSc0KTQnIwsxFjQjIlk1JjQmCTQlCIj8gRZdNSk0JSQINSVC/6Y0IyM0JQuBAghbNScxFjQjIlk1JjQmCTQlCDQoNCcjC1syCicMZIj8jjQlJAg1JUL/Y4knBCcLZGcoJwdkZycLJa9nJwciZ4knBWQiEyhkIhMQQQHXMgcnDmQJNTEoZDQxSg1NNS8nB2Q0MTQvCUoNTTUwJwhkFSMKNTQoZDUyJwVkNTMpZDU1KmQ1NicEZDU3K2Q1OCI1OTQ5NDQMQAEGKChkNC8JZyk0NWcqNDZnJwQ0N2crNDhnKGQiEkEBbScEJwtkZygnB2RnJwslr2cnByJnNDBBAVQnCGQVIwo1QyhkNUEnBWQ1QilkNUQqZDVFJwRkNUYrZDVHIjVINEg0QwxAABsoKGQ0MAlnKTREZyo0RWcnBDRGZys0R2dCAQw0RjRIIwtbNUk0STQwHTRBlzVMNEw0Qgo1TTRMNEIYIjRClzVONEU0SCMLWzROHjVLNU80RDRIIwtbNE0INE8INUo0RDRIIws0ShZdNUQ0RTRIIws0SxZdNUU0RjRIIws0STRMCRZdNUY0RzRIIws0RzRIIwtbNEwIFl01RzRIJAg1SEL/VzQ3NDkjC1s1OjQ6NC8dNDKXNT00PTQzCjU+ND00MxgiNDOXNT80NjQ5IwtbND8eNTw1QDQ1NDkjC1s0Pgg0QAg1OzQ1NDkjCzQ7Fl01NTQ2NDkjCzQ8Fl01NjQ3NDkjCzQ6ND0JFl01NzQ4NDkjCzQ4NDkjC1s0PQgWXTU4NDkkCDU5Qv5sJw4yB2eJNVAnCGQVIwo1UyhkNVEnBWQ1UilkNVQqZDVVJwRkNVYrZDVXIjVYNFg0UwxBAIY0VjRYIwtbNVk0WTRQHTRRlzVcNFw0Ugo1XTRcNFIYIjRSlzVeNFU0WCMLWzReHjVbNV80VDRYIwtbNF0INF8INVo0VDRYIws0WhZdNVQ0VTRYIws0WxZdNVU0VjRYIws0WTRcCRZdNVY0VzRYIws0VzRYIwtbNFwIFl01VzRYJAg1WEL/cigoZDRQCWcpNFRnKjRVZycENFZnKzRXZ4k1YzViNWE1YDRgcgc1ZTVkNGByCDVnNWY0ZUQ0Z0Q0ZjRhwBwSRDRkIicJYzVpNWg0aUQ0YDRiiPrGRCcFZCITKGQiExBAAMcnDjIHZylkNYsqZDWMNGQnCWI1jTRkKWI1jjRkKmI1jzRkJwpiNZAiNZE0kScIZBUjCgxBAmg0izSRIwtbNZI0jDSRIwtbNZM0jjSRIwtbNZQ0jzSRIwtbNZU0lTSTDkAAVIH///////////8BNJUJNJMIJAg1mDSSNJQJJAk1lzRkJwliNJgdNQA1mTRkJwliNJcLNJkINZY0kDSRIws0kDSRIwtbNJYIFl01kDSRJAg1kUL/dDSTNJUJNZg0kjSUCTWXQv+5MgcnDmQJNWwoZDRsSg1NNWonB2Q0bDRqCUoNTTVrJwhkFSMKNW8oZDVtJwVkNW4pZDVwKmQ1cScEZDVyK2Q1cyI1dDR0NG8MQAEGKChkNGoJZyk0cGcqNHFnJwQ0cmcrNHNnKGQiEkH+zycEJwtkZygnB2RnJwslr2cnByJnNGtB/rYnCGQVIwo1fihkNXwnBWQ1fSlkNX8qZDWAJwRkNYErZDWCIjWDNIM0fgxAABsoKGQ0awlnKTR/Zyo0gGcnBDSBZys0gmdC/m40gTSDIwtbNYQ0hDRrHTR8lzWHNIc0fQo1iDSHNH0YIjR9lzWJNIA0gyMLWzSJHjWGNYo0fzSDIwtbNIgINIoINYU0fzSDIws0hRZdNX80gDSDIws0hhZdNYA0gTSDIws0hDSHCRZdNYE0gjSDIws0gjSDIwtbNIcIFl01gjSDJAg1g0L/VzRyNHQjC1s1dTR1NGodNG2XNXg0eDRuCjV5NHg0bhgiNG6XNXo0cTR0IwtbNHoeNXc1ezRwNHQjC1s0eQg0ewg1djRwNHQjCzR2Fl01cDRxNHQjCzR3Fl01cTRyNHQjCzR1NHgJFl01cjRzNHQjCzRzNHQjC1s0eAgWXTVzNHQkCDV0Qv5sNGZzAjWbNZo0ZicTZHAANZ01nDSaMgMSNJwLNZ4nBScFZDSNCTSeCGc0jTSeiAFTNGQnCTSeZjRkKTSLZjRkKjSMZjRkJwo0kGaJNao1qScIZDWsNKwVIwo1qycNZDWtNKnAHCcKYjWuNKnAHCcNYjWvNKoiWTWwIjW0NLQ0sAxBAGs0qiM0tAuBAghbNbE0sTSrDkQ0rDSxIwtbNbM0rjSxIwtbNbI0qcAcNLM0soj1qDSuNLEjCyIWXTWuNK00sSMLNK00sSMLWzSyCBZdNa00rzSxIws0rzSxIwtbNLIIFl01rzS0JAg1tEL/jScNNK1nNKnAHCcKNK5mNKnAHCcNNK9miTEAJwliNbonBScFZDS6CWc0uiKIAJErZDW4MQAnCmI1uSI1uzS7gQcMQQAiNLg0uyMLNLg0uyMLWzS5NLsjC1sJFl01uDS7JAg1u0L/1is0uGeJNRM1EjQSNBMUEEAAFDQSFDQTEEEAEycGJwZkJAhnQgAIJwYnBmQkCWeJNag1pzSnNKgUEEAAFDSnFDSoEEEAEycGJwZkJAhnQgAIJwYnBmQkCWeJNb01vDS8NL0UEEAAFDS8FDS9EEEAEycGJwZkJAhnQgAIJwYnBmQkCWeJ",
+            "clearp": "CCADAQAIJgMKTnVtU3Rha2VycwtUb3RhbFN0YWtlZAxUb3RhbFJld2FyZHMxGyMSQAABAIgAAiJDMQCABlN0YWtlZGI1AikpZDQCCWc0AiOIAEwqZDUAMQCADkFjY3J1ZWRSZXdhcmRzYjUBIzUDNAOBBwxBACI0ADQDJAs0ADQDJAtbNAE0AyQLWwkWXTUANAMiCDUDQv/WKjQAZyJDNQU1BDQENAUUEEAAEjQEFDQFEEEADygoZCIIZ0IABigoZCIJZ4k=",
+            "epp": 2,
+            "gs": {
+              "Admin": {
+                "tb": "\ufffd\u0016\u001e0\tE\u000b\ufffdd$\ufffd\ufffd\ufffd:\ufffd\ufffd~\ufffd䩡\ufffd\b\ufffd\ufffd\ufffdFJ\ufffd\ufffd\ufffd\ufffd",
+                "tt": 1
+              },
+              "CONTRACT_NAME": {
+                "tb": "PACT FARM",
+                "tt": 1
+              },
+              "ClaimedRewards": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "Duration": {
+                "tt": 2
+              },
+              "NextDuration": {
+                "tt": 2
+              },
+              "NextRewards": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "NumStakers": {
+                "tt": 2
+              },
+              "PendingRewards": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "RPT": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "RPT_frac": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "RewardAssetIDs": {
+                "tt": 1
+              },
+              "StakedAssetID": {
+                "tt": 2,
+                "ui": 156390370
+              },
+              "TotalRewards": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "TotalStaked": {
+                "tt": 2
+              },
+              "UpdatedAt": {
+                "tt": 2,
+                "ui": 1675257832
+              },
+              "Updater": {
+                "tb": "\ufffd\u0016\u001e0\tE\u000b\ufffdd$\ufffd\ufffd\ufffd:\ufffd\ufffd~\ufffd䩡\ufffd\b\ufffd\ufffd\ufffdFJ\ufffd\ufffd\ufffd\ufffd",
+                "tt": 1
+              },
+              "VERSION": {
+                "tt": 2,
+                "ui": 100
+              }
+            },
+            "gsch": {
+              "nbs": 10,
+              "nui": 7
+            },
+            "lsch": {
+              "nbs": 4,
+              "nui": 2
+            }
+          }
+        },
+        "State": {
+          "Deleted": false,
+          "LocalState": null
+        }
+      }
+    ],
+    "AssetResources": null
+  },
+  "Creatables": {
+    "1508981233": {
+      "Created": true,
+      "Creator": "TILB4MAJIUF56ZBE7CDOWOXDR57IXZFJUHJARQPW3JDEVKMU56HP3A6A54",
+      "Ctype": 1,
+      "Ndeltas": 0
+    }
+  },
+  "Hdr": {
+    "earn": 12595,
+    "fees": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
+    "frac": 3846799357,
+    "gen": "betanet-v1.0",
+    "gh": "mFgazF+2uRS1tMiL9dsj01hJGySEmPN28B/TjjvpVW0=",
+    "prev": "blk-GTYKIBQDH634TUN5C2NFNJE6LBYLEYKHOEJAQYCCBFQLIRCCXKQQ",
+    "proto": "https://github.com/algorandfoundation/specs/tree/44fa607d6051730f5264526bf3c108d51f0eadb6",
+    "rnd": 23963123,
+    "rwcalr": 24000000,
+    "rwd": "7777777777777777777777777777777777777777777777777774MSJUVU",
+    "seed": "yxhfocGJCuC+DKVcfgwo0juV9jNEUvMiU1uJl0Y1MNk=",
+    "spt": {
+      "0": {
+        "n": 23963136
+      }
+    },
+    "tc": 1508981323,
+    "ts": 1675257836,
+    "txn": "FIrR4OYcMHA4fhT2vEScSvbaCkETZd+BPtttEQi8DiI=",
+    "txn256": "Hj1OQRa1jURkxJkRtXOKTrKSrm/MIrP5wmTnUuNq3ew="
+  },
+  "KvMods": {
+    "bx:\u0000\u0000\u0000\u0000Y\ufffd9\ufffdEscrow": {
+      "Data": "CCAEAAEEBiYDC01hc3RlckFwcElEAQEBADIJMQASRDEZQADyMRhAAEU2GgCABDiIGnESRCg2GgEXwDJnsSWyEDYaAhfAMrIYgAS3NV/RshoisgGzsSSyEDIKshQishI2GgMXwDCyESKyAbNCANU2GgCABHiCLPASQABONhoAgAS3WNjREkAAKTYaAIAEm+QoGxJAAAEAsSOyEDYaARfAHLIHIrIBNhoCVwIAsgWzQgCSsSOyEDIJsgcyCmAyCngJsggisgGzQgB6sSSyEDIJshQ2GgIXshI2GgEXwDCyESKyAbOxJbIQKGSyGIAEwxQK57IaKbIaKrIaKbIaKrIaMgmyHDIIsjI2GgEXwDCyMCKyAbNCAC0xGYEFEkAAAQAyCShkYRREsSSyEDYwALIRMgmyFSKyAbOxI7IQMgmyCSKyAbMjQw==",
+      "OldData": "CCAEAAEEBiYDC01hc3RlckFwcElEAQEBADIJMQASRDEZQADyMRhAAEU2GgCABDiIGnESRCg2GgEXwDJnsSWyEDYaAhfAMrIYgAS3NV/RshoisgGzsSSyEDIKshQishI2GgMXwDCyESKyAbNCANU2GgCABHiCLPASQABONhoAgAS3WNjREkAAKTYaAIAEm+QoGxJAAAEAsSOyEDYaARfAHLIHIrIBNhoCVwIAsgWzQgCSsSOyEDIJsgcyCmAyCngJsggisgGzQgB6sSSyEDIJshQ2GgIXshI2GgEXwDCyESKyAbOxJbIQKGSyGIAEwxQK57IaKbIaKrIaKbIaKrIaMgmyHDIIsjI2GgEXwDCyMCKyAbNCAC0xGYEFEkAAAQAyCShkYRREsSSyEDYwALIRMgmyFSKyAbOxI7IQMgmyCSKyAbMjQw=="
+    }
+  },
+  "Txids": {
+    "g3NWme3GAy5uHfd8BQO06da2MjdGJ9EuuikeSD3Nuqk=": {
+      "Intra": 1,
+      "LastValid": 23964120
+    },
+    "j6CIOjVZijXyqqTJA4xJjoA4oSmiM6Il5qsV/O3H3+Q=": {
+      "Intra": 0,
+      "LastValid": 23964120
+    }
+  }
+}

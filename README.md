@@ -44,6 +44,7 @@ These reside in the [unit features directory](features/unit)
 | @unit.responses.statedelta           | REST Client updates for algod statedelta endpoint.                                                          |
 | @unit.responses.sync                 | REST Client updates for algod sync round endpoints.                                                         |
 | @unit.responses.timestamp            | REST Client updates for timestamp offset endpoint.                                                          |
+| @unit.responses.txngroupdeltas       | REST Client updates for algod transaction group deltas endpoints.                                           |
 | @unit.sourcemap                      | Test the sourcemap endpoint.                                                                                |
 | @unit.statedelta                     | Test the statedelta endpoint.                                                                               |
 | @unit.stateproof.responses           | REST Client Response Tests for State Proof.                                                                 |
@@ -55,6 +56,7 @@ These reside in the [unit features directory](features/unit)
 | @unit.transactions                   | Transaction encoding tests.                                                                                 |
 | @unit.transactions.keyreg            | Keyreg encoding tests.                                                                                      |
 | @unit.transactions.payment           | Payment encoding tests.                                                                                     |
+| @unit.txngroupdeltas                 | Algod transaction group deltas endpoints.                                                                   |
 
 ### Integration Tests
 
