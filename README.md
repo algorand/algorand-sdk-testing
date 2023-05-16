@@ -86,9 +86,10 @@ These reside in the [integration features directory](features/integration)
 However, a few are not fully supported:
 
 | tag                             | SDK's which implement        |
-| ------------------------------- | ---------------------------- |
+| ------------------------------- |------------------------------|
 | @dryrun.testing                 | Python only                  |
 | @unit.c2c                       | missing from Python          |
+| @unit.client-no-headers         | JS only                      |
 | @unit.indexer.rekey             | missing from Python and JS   |
 | @unit.responses.genesis         | missing from Python and Java |
 | @unit.responses.messagepack     | missing from Python          |
