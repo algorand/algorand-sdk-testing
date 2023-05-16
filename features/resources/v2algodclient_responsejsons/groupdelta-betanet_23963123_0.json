@@ -2,9 +2,9 @@
   "Accts": {
     "Accts": [
       {
-        "Addr": "ZLCQBSXNXR6R36N2DWPTO64NNGR2GVZFKRFRHO6YPVP2JHNQYKEX66FJRE",
+        "Addr": "MWY6LEQMUB2ZFV3JRDFMG5EILFSCYQ53HJABIDXHX3FSTHDSXL7LRTEIFM",
         "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
-        "MicroAlgos": 47625984160,
+        "MicroAlgos": 90151000,
         "RewardedMicroAlgos": 0,
         "RewardsBase": 12595,
         "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
@@ -14,7 +14,7 @@
         "TotalAppParams": 0,
         "TotalAppSchema": {},
         "TotalAssetParams": 0,
-        "TotalAssets": 1,
+        "TotalAssets": 0,
         "TotalBoxBytes": 0,
         "TotalBoxes": 0,
         "TotalExtraAppPages": 0,
@@ -26,7 +26,7 @@
       {
         "Addr": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
         "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
-        "MicroAlgos": 1529591229809,
+        "MicroAlgos": 1529589847809,
         "RewardedMicroAlgos": 0,
         "RewardsBase": 0,
         "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
@@ -46,9 +46,9 @@
         "VoteLastValid": 0
       },
       {
-        "Addr": "WQB2ELLO3XBJHVEI3RGTGHMVHWO3DANS5PPTK3AOVBDF3YEZTQXDXZTLMU",
+        "Addr": "YW4GRW3XP3GKG4CKAGWD6YVVNGHM7F4HGF5B6QHXOH7NXZWADJC6LGYDPI",
         "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
-        "MicroAlgos": 90124001,
+        "MicroAlgos": 90152001,
         "RewardedMicroAlgos": 0,
         "RewardsBase": 12595,
         "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
