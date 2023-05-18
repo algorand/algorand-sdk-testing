@@ -138,8 +138,6 @@ Feature: Simulating transactions
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
 
-    And I fund the current application's address with 10000000 microalgos.
-
     # First we simulate without lifting log limits
     Given I add the nonce "simulate-without-log-limits"
     When I create the Method object from method signature "unlimited_log_test()void"
