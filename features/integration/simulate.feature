@@ -167,8 +167,6 @@ Feature: Simulating transactions
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
 
-    And I fund the current application's address with 10000000 microalgos.
-
     # First we simulate without extra budget
     Given I add the nonce "simulate-without-extra-budget"
     When I create the Method object from method signature "int_pop_700()void"
