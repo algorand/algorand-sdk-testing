@@ -138,8 +138,6 @@ Feature: Simulating transactions
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
 
-    And I fund the current application's address with 10000000 microalgos.
-
     # First we simulate without lifting log limits
     Given I add the nonce "simulate-without-log-limits"
     When I create the Method object from method signature "unlimited_log_test()void"
@@ -157,4 +155,30 @@ Feature: Simulating transactions
 
     # Final step to check log in simulation result
     Then I check the simulation result has power packs allow-more-logging.
+    And the simulation should succeed without any failure message
+
+  @simulate.extra_opcode_budget
+  Scenario: Simulate app call that uses more than 700 opcode budgets
+    Given a new AtomicTransactionComposer
+    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/int-pop-700.teal", clear-program "programs/eight.teal", global-bytes 0, global-ints 1, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
+    And I sign and submit the transaction, saving the txid. If there is an error it is "".
+    And I wait for the transaction to be confirmed.
+    Given I remember the new application ID.
+
+    # First we simulate without extra budget
+    Given I add the nonce "simulate-without-extra-budget"
+    When I create the Method object from method signature "int_pop_700()void"
+    * I create a new method arguments array.
+    * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+    Then I simulate the current transaction group with the composer
+    And the simulation should report a failure at group "0", path "0" with message "local program cost was 700."
+
+    # Now we simulate with extra budget
+    When I make a new simulate request.
+    Then I allow 2000 more budget on that simulate request.
+    Then I simulate the transaction group with the simulate request.
+
+    # Final step to check extra budgets in simulation result
+    Then I check the simulation result has power packs extra-opcode-budget with extra budget 2000.
     And the simulation should succeed without any failure message
