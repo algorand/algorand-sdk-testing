@@ -173,7 +173,6 @@ Feature: Simulating transactions
     Given I add the nonce "simulate-without-extra-budget"
     When I create the Method object from method signature "int_pop_700()void"
     * I create a new method arguments array.
-    * I append the encoded arguments "" to the method arguments array.
     * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     Then I simulate the current transaction group with the composer
