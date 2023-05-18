@@ -178,9 +178,9 @@ Feature: Simulating transactions
 
     # Now we simulate with extra budget
     When I make a new simulate request.
-    Then I allow 100 more budget on that simulate request.
+    Then I allow 2000 more budget on that simulate request.
     Then I simulate the transaction group with the simulate request.
 
     # Final step to check extra budgets in simulation result
-    Then I check the simulation result has power packs extra-opcode-budget with extra budget 100.
+    Then I check the simulation result has power packs extra-opcode-budget with extra budget 2000.
     And the simulation should succeed without any failure message
