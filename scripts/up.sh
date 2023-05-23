@@ -71,6 +71,7 @@ pushd "$LOCAL_SANDBOX_DIR"
 
 [[ "$SANDBOX_CLEAN_CACHE" = 0 ]] || touch .clean
 
+set +e
 echo "$THIS: running sandbox with command [./sandbox up harness $V_FLAG]"
 ./sandbox up harness "$V_FLAG"
 if [ -n "$V_FLAG" ] ; then
@@ -86,3 +87,4 @@ if [ -n "$V_FLAG" ] ; then
   echo "----------------------------------------"
 fi
 echo "$THIS: seconds it took to finish getting sandbox harness ($(pwd)) up and running: $(($(date "+%s") - START))s"
+set -e
