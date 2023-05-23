@@ -80,7 +80,7 @@ handle_error() {
   fi
 }
 
-trap handle_error EXIT
+trap handle_error ERR
 
 set +e
 echo "$THIS: running sandbox with command [./sandbox up harness $V_FLAG]"
