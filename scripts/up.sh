@@ -73,4 +73,16 @@ pushd "$LOCAL_SANDBOX_DIR"
 
 echo "$THIS: running sandbox with command [./sandbox up harness $V_FLAG]"
 ./sandbox up harness "$V_FLAG"
+if [ -n "$V_FLAG" ] ; then
+  echo "----------------------------------------"
+  echo "$THIS: sandbox docker-compose logs indexer-db:"
+  ./sandbox dump indexer-db
+  echo "----------------------------------------"
+  echo "$THIS: sandbox docker-compose logs algod:"
+  ./sandbox dump algod
+  echo "----------------------------------------"
+  echo "$THIS: sandbox docker-compose logs indexer:"
+  ./sandbox dump indexer
+  echo "----------------------------------------"
+fi
 echo "$THIS: seconds it took to finish getting sandbox harness ($(pwd)) up and running: $(($(date "+%s") - START))s"
