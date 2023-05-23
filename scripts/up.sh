@@ -73,8 +73,8 @@ pushd "$LOCAL_SANDBOX_DIR"
 
 error=0
 handle_error() {
-  echo "$THIS: trapped an error!!!!"
   local exit_code=$?
+  echo "$THIS: trapped an error with exit_code=$exit_code!!!!"
   if [ $exit_code -ne 0 ]; then
     error=$exit_code 
   fi
@@ -101,5 +101,6 @@ echo "$THIS: seconds it took to finish getting sandbox harness ($(pwd)) up and r
 set -e
 
 if [ "$error" -ne 0 ]; then
+  echo "$THIS: exiting with error=$error!!!!"
   exit "$error"
 fi
