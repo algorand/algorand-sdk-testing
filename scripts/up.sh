@@ -71,6 +71,16 @@ pushd "$LOCAL_SANDBOX_DIR"
 
 [[ "$SANDBOX_CLEAN_CACHE" = 0 ]] || touch .clean
 
+handle_error() {
+  echo "$THIS: trapped an error!!!!"
+  local exit_code=$?
+  if [ $exit_code -ne 0 ]; then
+    error=$exit_code 
+  fi
+}
+
+trap handle_error EXIT
+
 set +e
 echo "$THIS: running sandbox with command [./sandbox up harness $V_FLAG]"
 ./sandbox up harness "$V_FLAG"
@@ -88,3 +98,7 @@ if [ -n "$V_FLAG" ] ; then
 fi
 echo "$THIS: seconds it took to finish getting sandbox harness ($(pwd)) up and running: $(($(date "+%s") - START))s"
 set -e
+
+if [ "$error" -ne 0 ]; then
+  exit "$error"
+fi
