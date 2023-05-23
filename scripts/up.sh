@@ -71,6 +71,7 @@ pushd "$LOCAL_SANDBOX_DIR"
 
 [[ "$SANDBOX_CLEAN_CACHE" = 0 ]] || touch .clean
 
+error=0
 handle_error() {
   echo "$THIS: trapped an error!!!!"
   local exit_code=$?
