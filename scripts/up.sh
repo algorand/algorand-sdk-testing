@@ -71,6 +71,36 @@ pushd "$LOCAL_SANDBOX_DIR"
 
 [[ "$SANDBOX_CLEAN_CACHE" = 0 ]] || touch .clean
 
+error=0
+handle_error() {
+  local exit_code=$?
+  echo "$THIS: trapped an error with exit_code=$exit_code!!!!"
+  if [ $exit_code -ne 0 ]; then
+    error=$exit_code 
+  fi
+}
+
+trap handle_error ERR
+
+set +e
 echo "$THIS: running sandbox with command [./sandbox up harness $V_FLAG]"
 ./sandbox up harness "$V_FLAG"
+if [ -n "$V_FLAG" ] ; then
+  echo "----------------------------------------"
+  echo "$THIS: sandbox docker-compose logs indexer-db:"
+  ./sandbox dump indexer-db
+  echo "----------------------------------------"
+  echo "$THIS: sandbox docker-compose logs algod:"
+  ./sandbox dump algod
+  echo "----------------------------------------"
+  echo "$THIS: sandbox docker-compose logs indexer:"
+  ./sandbox dump indexer
+  echo "----------------------------------------"
+fi
 echo "$THIS: seconds it took to finish getting sandbox harness ($(pwd)) up and running: $(($(date "+%s") - START))s"
+set -e
+
+if [ "$error" -ne 0 ]; then
+  echo "$THIS: exiting with error=$error!!!!"
+  exit "$error"
+fi
