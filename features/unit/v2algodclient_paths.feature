@@ -153,8 +153,8 @@ Feature: Algod REST API v2 Paths
     When we make a GetLedgerStateDelta call against round <round>
     Then expect the request to be "<method>" "<path>"
     Examples:
-      | path         | method | round |
-      | /v2/deltas/3 | get    | 3     |
+      | path                        | method | round |
+      | /v2/deltas/3?format=msgpack | get    | 3     |
 
   @unit.sync
   Scenario Outline: SetSyncRound path
