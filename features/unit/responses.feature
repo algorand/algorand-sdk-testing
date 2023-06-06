@@ -179,34 +179,34 @@ Feature: REST Client Responses
       | jsonfile                                | response-folder | status | client  | endpoint |
       | v2_algod_GetBlock_header.base64         | stateproof      | 200    | algod   | GetBlock |
       | v2_algod_GetBlock_transaction.base64    | stateproof      | 200    | algod   | GetBlock |
- 
+
     @unit.responses.participationupdates
     Examples:
-      | jsonfile                                        | response-folder     | status | client  | endpoint    | 
+      | jsonfile                                        | response-folder     | status | client  | endpoint    |
       | indexer_block_ParticipationupdatesResponse.json | generated_responses | 200    | indexer | lookupBlock |
 
     @unit.responses.blocksummary
     Examples:
-      | jsonfile                   | response-folder             | status | client | endpoint     | 
+      | jsonfile                   | response-folder             | status | client | endpoint     |
       | v2_algod_GetBlockHash.json | v2algodclient_responsejsons | 200    | algod  | GetBlockHash |
 
     @unit.responses.blocksummary
     Examples:
-      | jsonfile                                | response-folder               | status | client  | endpoint    | 
+      | jsonfile                                | response-folder               | status | client  | endpoint    |
       | indexer_v2_lookupBlock_header_only.json | v2indexerclient_responsejsons | 200    | indexer | lookupBlock |
 
     @unit.responses.statedelta
     Examples:
-      | jsonfile                         | response-folder             | status | client | endpoint            | 
-      | statedelta_betanet_22085518.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
-      | statedelta_testnet_26091000.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
-      | statedelta_testnet_26091001.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
-      | statedelta_testnet_26091002.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
-      | statedelta_testnet_26091003.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | jsonfile                           | response-folder             | status | client | endpoint            |
+      | statedelta_betanet_22085518.base64 | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | statedelta_testnet_26091000.base64 | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | statedelta_testnet_26091001.base64 | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | statedelta_testnet_26091002.base64 | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | statedelta_testnet_26091003.base64 | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
 
     @unit.responses.timestamp
     Examples:
-      | jsonfile                    | response-folder             | status | client | endpoint                | 
+      | jsonfile                    | response-folder             | status | client | endpoint                |
       | devmodeTimestampOffset.json | v2algodclient_responsejsons | 200    | algod  | GetBlockTimeStampOffset |
 
     @unit.responses.sync
@@ -216,12 +216,12 @@ Feature: REST Client Responses
 
     @unit.responses.txngroupdeltas
     Examples:
-      | jsonfile                         | response-folder             | status | client | endpoint                                    |
-      | groupdelta-betanet_23963123.json | v2algodclient_responsejsons | 200    | algod  | GetTransactionGroupLedgerStateDeltaForRound |
+      | jsonfile                           | response-folder             | status | client | endpoint                                    |
+      | groupdelta-betanet_23963123.base64 | v2algodclient_responsejsons | 200    | algod  | GetTransactionGroupLedgerStateDeltaForRound |
 
     @unit.responses.txngroupdeltas
     Examples:
-      | jsonfile                           | response-folder             | status | client | endpoint                               |
-      | groupdelta-betanet_23963123_0.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
-      | groupdelta-betanet_23963123_1.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
-      | groupdelta-betanet_23963123_1.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+      | jsonfile                             | response-folder             | status | client | endpoint                               |
+      | groupdelta-betanet_23963123_0.base64 | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+      | groupdelta-betanet_23963123_1.base64 | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+      | groupdelta-betanet_23963123_1.base64 | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
