@@ -201,9 +201,9 @@ Feature: Algod REST API v2 Paths
     When we make a LedgerStateDeltaForTransactionGroupResponse call for ID "<id>"
     Then expect the path used to be "<path>"
     Examples:
-      | path                                                                      | id                                                   |
-      | /v2/deltas/txn/group/JQKUGWTENQUYD64IRVJTZ7226BIEBZU2WDMPPMWJSA4FXIPRMWYQ | JQKUGWTENQUYD64IRVJTZ7226BIEBZU2WDMPPMWJSA4FXIPRMWYQ |
-      | /v2/deltas/txn/group/4MGYPT5CU5O3KRPKYTLBXL4XANTKQNL4P5ZPVFNVFUFMZNUY6E5A | 4MGYPT5CU5O3KRPKYTLBXL4XANTKQNL4P5ZPVFNVFUFMZNUY6E5A |
+      | path                                                                                     | id                                                   |
+      | /v2/deltas/txn/group/JQKUGWTENQUYD64IRVJTZ7226BIEBZU2WDMPPMWJSA4FXIPRMWYQ?format=msgpack | JQKUGWTENQUYD64IRVJTZ7226BIEBZU2WDMPPMWJSA4FXIPRMWYQ |
+      | /v2/deltas/txn/group/4MGYPT5CU5O3KRPKYTLBXL4XANTKQNL4P5ZPVFNVFUFMZNUY6E5A?format=msgpack | 4MGYPT5CU5O3KRPKYTLBXL4XANTKQNL4P5ZPVFNVFUFMZNUY6E5A |
 
 
   @unit.txngroupdeltas
@@ -211,6 +211,6 @@ Feature: Algod REST API v2 Paths
     When we make a TransactionGroupLedgerStateDeltaForRoundResponse call for round <round>
     Then expect the path used to be "<path>"
     Examples:
-      | path                      | round |
-      | /v2/deltas/25/txn/group   | 25    |
-      | /v2/deltas/1001/txn/group | 1001  |
+      | path                                     | round |
+      | /v2/deltas/25/txn/group?format=msgpack   | 25    |
+      | /v2/deltas/1001/txn/group?format=msgpack | 1001  |
