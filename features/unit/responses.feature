@@ -198,7 +198,7 @@ Feature: REST Client Responses
     @unit.responses.statedelta
     Examples:
       | jsonfile                         | response-folder     | status | client | endpoint            | 
-      | statedelta_betanet_23963123.json | generated_responses | 200    | algod  | GetLedgerStateDelta |
+      | statedelta_betanet_23963123.msgp | generated_responses | 200    | algod  | GetLedgerStateDelta |
 
     @unit.responses.timestamp
     Examples:
