@@ -221,7 +221,7 @@ Feature: REST Client Responses
 
     @unit.responses.txngroupdeltas
     Examples:
-      | jsonfile                           | response-folder             | status | client | endpoint                               |
-      | groupdelta-betanet_23963123_0.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
-      | groupdelta-betanet_23963123_1.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
-      | groupdelta-betanet_23963123_1.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+      | jsonfile                           | response-folder     | status | client | endpoint                               |
+      | groupdelta-betanet_23963123_0.msgp | generated_responses | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+      | groupdelta-betanet_23963123_1.msgp | generated_responses | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+      | groupdelta-betanet_23963123_1.msgp | generated_responses | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
