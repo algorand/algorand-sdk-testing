@@ -197,8 +197,8 @@ Feature: REST Client Responses
 
     @unit.responses.statedelta
     Examples:
-      | jsonfile                         | response-folder     | status | client | endpoint            | 
-      | statedelta_betanet_23963123.msgp | generated_responses | 200    | algod  | GetLedgerStateDelta |
+      | jsonfile                           | response-folder     | status | client | endpoint            | 
+      | statedelta_betanet_23963123.base64 | generated_responses | 200    | algod  | GetLedgerStateDelta |
 
     @unit.responses.timestamp
     Examples:
@@ -212,12 +212,12 @@ Feature: REST Client Responses
 
     @unit.responses.txngroupdeltas
     Examples:
-      | jsonfile                         | response-folder             | status | client | endpoint                                    |
-      | groupdelta-betanet_23963123.msgp | generated_responses | 200    | algod  | GetTransactionGroupLedgerStateDeltaForRound |
+      | jsonfile                           | response-folder             | status | client | endpoint                                    |
+      | groupdelta-betanet_23963123.base64 | generated_responses | 200    | algod  | GetTransactionGroupLedgerStateDeltaForRound |
 
     @unit.responses.txngroupdeltas
     Examples:
-      | jsonfile                           | response-folder     | status | client | endpoint                               |
-      | groupdelta-betanet_23963123_0.msgp | generated_responses | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
-      | groupdelta-betanet_23963123_1.msgp | generated_responses | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
-      | groupdelta-betanet_23963123_1.msgp | generated_responses | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+      | jsonfile                             | response-folder     | status | client | endpoint                               |
+      | groupdelta-betanet_23963123_0.base64 | generated_responses | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+      | groupdelta-betanet_23963123_1.base64 | generated_responses | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+      | groupdelta-betanet_23963123_1.base64 | generated_responses | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
