@@ -197,12 +197,8 @@ Feature: REST Client Responses
 
     @unit.responses.statedelta
     Examples:
-      | jsonfile                         | response-folder             | status | client | endpoint            | 
-      | statedelta_betanet_22085518.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
-      | statedelta_testnet_26091000.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
-      | statedelta_testnet_26091001.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
-      | statedelta_testnet_26091002.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
-      | statedelta_testnet_26091003.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | jsonfile                         | response-folder     | status | client | endpoint            | 
+      | statedelta_betanet_23963123.json | generated_responses | 200    | algod  | GetLedgerStateDelta |
 
     @unit.responses.timestamp
     Examples:
