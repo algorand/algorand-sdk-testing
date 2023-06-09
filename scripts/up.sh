@@ -96,6 +96,9 @@ if [ -n "$V_FLAG" ] ; then
   echo "$THIS: sandbox docker-compose logs indexer:"
   ./sandbox dump indexer
   echo "----------------------------------------"
+  echo "$THIS: sandbox docker-compose logs conduit:"
+  ./sandbox dump conduit
+  echo "----------------------------------------"
 fi
 echo "$THIS: seconds it took to finish getting sandbox harness ($(pwd)) up and running: $(($(date "+%s") - START))s"
 set -e
