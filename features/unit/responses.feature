@@ -212,7 +212,7 @@ Feature: REST Client Responses
 
     @unit.responses.txngroupdeltas
     Examples:
-      | jsonfile                           | response-folder             | status | client | endpoint                                    |
+      | jsonfile                           | response-folder     | status | client | endpoint                                    |
       | groupdelta-betanet_23963123.base64 | generated_responses | 200    | algod  | GetTransactionGroupLedgerStateDeltaForRound |
 
     @unit.responses.txngroupdeltas
@@ -221,3 +221,24 @@ Feature: REST Client Responses
       | groupdelta-betanet_23963123_0.base64 | generated_responses | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
       | groupdelta-betanet_23963123_1.base64 | generated_responses | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
       | groupdelta-betanet_23963123_1.base64 | generated_responses | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+
+    @unit.responses.txngroupdeltas.json
+    Examples:
+      | jsonfile                           | response-folder             | status | client | endpoint                               |
+      | groupdelta-betanet_23963123_0.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+      | groupdelta-betanet_23963123_1.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+      | groupdelta-betanet_23963123_2.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDeltaForTransactionGroup |
+
+    @unit.responses.txngroupdeltas.json
+    Examples:
+      | jsonfile                         | response-folder             | status | client | endpoint                                    |
+      | groupdelta-betanet_23963123.json | v2algodclient_responsejsons | 200    | algod  | GetTransactionGroupLedgerStateDeltaForRound |
+
+    @unit.responses.statedelta.json
+    Examples:
+      | jsonfile                         | response-folder     | status | client | endpoint            |
+      | statedelta_betanet_22085518.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | statedelta_testnet_26091000.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | statedelta_testnet_26091001.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | statedelta_testnet_26091002.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+      | statedelta_testnet_26091003.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |

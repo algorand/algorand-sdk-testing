@@ -1,0 +1,518 @@
+{
+  "Accts": {
+    "Accts": [
+      {
+        "Addr": "7777777777777777777777777777777777777777777777777774MSJUVU",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 2051818321,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 0,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 2,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
+      },
+      {
+        "Addr": "6DJL462RP2DWBGMJIPDQ5PJCXRJKI34Z4GRWB3MEPAGRBAPTBL7U42RDYI",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 550505000,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 27521,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
+      },
+      {
+        "Addr": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 342106544750,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 0,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 2,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 0,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
+      },
+      {
+        "Addr": "ZLCQBSXNXR6R36N2DWPTO64NNGR2GVZFKRFRHO6YPVP2JHNQYKEX66FJRE",
+        "AuthAddr": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ",
+        "MicroAlgos": 48192186764,
+        "RewardedMicroAlgos": 0,
+        "RewardsBase": 27521,
+        "SelectionID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "StateProofID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "Status": 0,
+        "TotalAppLocalStates": 0,
+        "TotalAppParams": 0,
+        "TotalAppSchema": {},
+        "TotalAssetParams": 0,
+        "TotalAssets": 1,
+        "TotalBoxBytes": 0,
+        "TotalBoxes": 0,
+        "TotalExtraAppPages": 0,
+        "VoteFirstValid": 0,
+        "VoteID": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "VoteKeyDilution": 0,
+        "VoteLastValid": 0
+      }
+    ],
+    "AppResources": [
+      {
+        "Addr": "LWOXAHEF32ISGGQSQTOFFTVSVUGJIRRFSIJYRFVL4PK4KS7MNG4SBWKYK4",
+        "Aidx": 110096026,
+        "Params": {
+          "Deleted": false,
+          "Params": {
+            "approv": "ByAGAAgBIL0BAyYCAAQVH3x1NhoAgAQD3VB4EkAAkDYaAIAEpJ1KeBJAAGU2GgCABBiTksUSQAAzNhoAgARHwgwjEkAAAQAxGSISMRgiExBENhoBFzULNhoCNQw0CzQMiALyNQ0pNA1QsCRDMRkiEjEYIhMQRDYaARc1BTYaAjUGNAU0BogCkzUHKTQHULAkQzEZIhIxGCITEEQ2GgEXNQM2GgI1BDQDNASIAfUkQzEZIhIxGCISEEQ2GgEXNQA2GgI1ATYaAzUCNAA0ATQCiAGsJEM1GzQbgQcIIwojC4k1GjQaiP/tIwohBBghBQqJNRw0HIj/3SMKIQQYIQUYiTUYNRc0GBUlEkQ0F4j/0RY1GTQZNBlkNBg0F4j/0ogAAmeJNR81HjUdNB8iEkAALDQfJBJAABQ0H4ECEkAAAQA0HVcAQDQeUEIAGTQdVwAgNB5QNB1XQCBQQgAINB40HVcgQFCJNSI1ITUgNCAWNCDRAFADNCE0ItAANSQ1IzQkJBJENCNXACCJNRY1FTUUNBQ0FDQVNBaI/8uI/2OJNS01LDQsiP85FmQlNCyI/0ELJVg0LBZQNC1QmIk1JjUlIjUnNCeBPwxBAG80JxaAYGFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWc0JyQINSdC/4koNCUWNCUWUDQmUGeJNS40Loj+hyhkIlsONC6I/n0oZCNbDxCJNSs0KyMYIhI0KyhkIlsjCA0QNCuB6AcIMgaBEAgOEIk1EzUSNRE0ESMYIhJENBMVJRJENBE0E4j/IzQRNBI0E4j+6Ik1KTUoKGQiWyMINCgSNCiI/6oRRDQoiP+jNSo0KDQpKGRXECCI/sAoNCgWKGQjWxZQKGRXECBQZzQqQAAqKGQiWyhkI1sJgegLD0EAKygoZCJbFihkIluB4AsJFlAoZFcQIFBnQgARKChkIlsWNCgWUChkVxAgUGeJNQk1CDQIiP8iFEAAGzQINAlXAgCI/mw1CjQKFRZXBgA0ClA1CkIADyg1CjQKFRZXBgA0ClA1CjQKiTUPNQ40Doj+6EQ0DjQPVwIAiP41NRA0EBUWVwYANBBQNRA0EIk=",
+            "clearp": "BzEbgQASQAABAIEBQw==",
+            "gs": {
+              "": {
+                "tb": "\u0000\u0000\u0000\u0000\u0001\ufffd\ufffd0\u0000\u0000\u0000\u0000\u0001\ufffd\ufffdP\ufffd\u001d\ufffd\u000erUQڀf\u001bL1\u0014sxݩ\ufffd\ufffdӲl\ufffd\ufffd\u001d\ufffd\ufffdk4\ufffd\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000": {
+                "tb": "/\b\u001b\ufffd\ufffd\ufffd\ufffdD}\ufffd\ufffdu(F\ufffd\ufffd?u\r\ufffdXP\ufffdA \ufffdClN\ufffd\ufffd\ufffdΨ\ufffd\ufffd`\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd8\ufffd\ufffdZ\u0001\ufffdp\ufffd\ufffd\ufffd\ufffdȌy۴\ufffd\ufffd^\u001eD\r\u0014x\ufffd8^X\ufffd\u0006*.\ufffd\ufffd\u0007_${\u0014~LI5\ufffd\ufffdg\u0016\ufffd\ufffdj\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001": {
+                "tb": "|\ufffd\ufffd2I\ufffd?\ufffd19'\u0014l\ufffd`\ufffd,\ufffd\ufffd\ufffd\ufffdU̯\ufffd\u000e\u0011\ufffd\ufffd5n\ufffd\ufffdg\ufffd0\ufffdl͚L\ufffd\\\ufffd1I\ufffd\ufffd\ufffd\r8\ufffd\u001c>G\u001e&\ufffd\ufffdi\ufffdG\u0006\ufffd\ufffd\u00030\u0011\ufffd2\ufffd\ufffda誚\u0015\u0017TMs\ufffdBsn\u0014\ufffd\ufffdXd\ufffd\u001a\ufffdd\ufffd)",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002": {
+                "tb": "\"F0\u0011׿D\ufffd\ufffdȨ\ufffd/\u0017\u000b\u001cO\ufffd\ufffd\ufffdC\ufffdA\ufffd\u000b\ufffd\ufffdj\ufffd\ufffd:\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\"\ufffd\u0016\ufffd\ufffdDS\ufffd\ufffd\ufffdk\ufffdhyЎ\u001c\ufffd\ufffd㬚9\ufffdR\ufffd\ufffdZ\ufffd\ufffdw\ufffd0\ufffd\ufffd\ufffdSOˀ\ufffdZ\ufffd\ufffd.\ufffd\u0006\ufffd\ufffdo@Z\u000e#?\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0003": {
+                "tb": "\u0019\ufffd\ufffdǸr\ufffdٺa\ufffd!u\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd(\ufffdL\ufffd\ufffdK\ufffd\ufffd\ufffdI\u001d\u001a멊\f\ufffd?\ufffd\ufffd\ufffd^~\ufffdg\ufffdc{\ufffdIp\u0010\ufffd\u00057\u0011\ufffdϧ\ufffdʱ\ufffd\u0018QCDp\ufffd9*\ufffdFv\ufffd\ufffd\ufffdrB:5\ufffd\u000eBNy\ufffd\ufffd\ufffd3\ufffdm\ufffd\u0015\ufffds",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0004": {
+                "tb": "\ufffd\ufffd$/@\u0003<\u0016\u0010\u0017\ufffdP\ufffd}\u0012hIs\ufffd\u001a\ufffd\ufffd\ufffd\ufffdi\u0017&\ufffdo\ufffdm~\ufffd,\u0001\ufffd4\ufffd\ufffd\u0015\ufffd%v\ufffd\ufffd\ufffd\ufffd\ufffd\"\ufffdzl\u001d?\ufffd\ufffd\ufffdc\ufffdV\ufffd\ufffdH\ufffdo\ufffd\ufffd\u001c\ufffd3n\ufffd\ufffd\u0014\u0019\ufffd\ufffd.\ufffd\ufffd&\ufffd$\u0006\ufffd\ufffd\ufffdq\u000f\ufffd\u000f\ufffd\ufffd+\ufffd)",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0005": {
+                "tb": "\ufffd\ufffd9\ufffd.\\ӌ\ufffdT\u001aǮ\ufffd\ufffd.|P\ufffdʐQ\u000b\ufffd\u0004#\ufffd\u0004\u0014\u0011\u000b\ufffd\ufffd\ufffdM\ufffdR5<\ufffd\u0002\ufffd\ufffd7\u0010\u0015\ufffd\ufffd\ufffd\u0017h\ufffd\ufffd\ufffd\ufffd>\ufffdJ\ufffd#\u0004\ufffd\ufffd$ٿ\ufffd\ufffd\ufffd\u0013\ufffd\u0006p\ufffd\ufffd\ufffd]4\ufffd\ufffde\ufffd\f\ufffdn\ufffd\ufffd\ufffdTE\ufffd\ufffd\u000f\t\ufffd}",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0006": {
+                "tb": "\ufffd\ufffd{\ufffd.]l\u001e\ufffdS\ufffd\ufffd\ufffd\u0018\ufffd\ufffd\u000b\ufffdb\ufffd\u0014\ufffd\ufffd\ufffd1\ufffdE\ufffd\ufffd\ufffdz\ufffd\r\u0013\n\u001bb\u0015\ufffd\ufffd\u000f\ufffd\u0010\ufffd\u0002=uY\ufffd\u001faM\ufffdHv8\ufffd\ufffd\u0000\ufffd>\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdF\ufffdaϯw\ufffd \ufffd\u000e\ufffdl\ufffd`H\ufffd\u001b\u0001\ufffd\ufffd\ufffd\u0012\ufffd\ufffd(\ufffd\u0014",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0007": {
+                "tb": "\ufffd\ufffd\ufffd>:\ufffd\ufffd\u0019\ufffd\ufffd\ufffd\ufffd\ufffd\u0014\ufffd\u0010M\ufffd\ufffd\u0013#!a\ufffdb\ufffd</\nٮD\u0002\ufffd\u001b\n\ufffd\ufffd\ufffd\ufffdg\ufffd\ufffd\ufffd\u0000\ufffd/Nu\ufffd\u0011\u0001\ufffd}\ufffd\u0006i\ufffd\u0017\ufffdQ\ufffd\ufffdd\t\ufffdC\ufffdy\u0017\ufffd\ufffdp\u000f\ufffd\ufffd\ufffd\ufffd=n\ufffd\ufffd\ufffd\u0002\ufffd&*\t\ufffdhfU\ufffd\ufffd\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\b": {
+                "tb": "\ufffd\u0004\u0011\ufffd\u0007@\u001d\ufffd\ufffdI\u0004#(jy\ufffd\ufffdp8\ufffdÎ\ufffd˰\ufffd*\u001e|\ufffd3?\ufffd\rw\ufffdWw\u0003ص$\ufffdX\u0001\ufffd>\ufffd\ufffdM|8\ufffdvo\ufffd\ufffdDS\ufffdN\u001crAde\ufffd\u0013\fRu.\ufffd\ufffd\ufffd;\r\u000e{~&\ufffd.)N\ufffdy2\u0006\u0000\ufffdXQ\ufffd\ufffdF",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\t": {
+                "tb": "\ufffd\u0019/\ufffdW\ufffdxO\ufffd\ufffd\u0003\ufffd\ufffd\u0007\ufffd'\ufffdňv\ufffd\ufffdw\ufffd|-\ufffdl\"q\ufffd-EL\ufffd\ufffdrK\ufffd\ufffdU\ufffd\u000e~\u000bڱ0л\ufffd\ufffd\ufffd\u000b\ufffdT\ufffdV\ufffd:\u000bx\ufffd\u001e\u001bk\ufffd\ufffdՏůamoh`C\u00165\ufffd\u0004\ufffd!\ufffd\ufffd0Ӵ\ufffd\u0007x\ufffdH\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\n": {
+                "tb": "]|S#\u0016\ufffdܙ6\ufffd\ufffd\ufffd\b\ufffd\u000f\ufffd\u0007\ufffd\ufffdWH\ufffdJ\ufffd\ufffd\ufffd\ufffd<\ufffd\u0011K\ufffdr\u0000\ufffd\ufffd7#\ufffd\ufffd\ufffdOB\ufffd\ufffd\ufffd\u0002\u0011\ufffd}\ufffd\ufffd3\ufffd+\ufffd[P#C\ufffd:\u001dc>\ufffdzP\ufffd\ufffd\u000e')T\ufffdQ\ufffd&n(\ufffd\ufffd\u0014\ufffd\ufffdx\ufffd\ufffd\ufffd\t\ufffd0'\ufffd\ufffd]",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000b": {
+                "tb": "\ufffd\ufffd\ufffd#TPFo^\ufffdc\u0019\ufffd\ufffd\u001a'\ufffd\u0007QT\ufffd\ufffd\ufffd\u0017\ufffd\ufffd\ufffdJF\ufffd\ufffd\ufffd\u0000\\\ufffd\ufffd\ufffd1\ufffd\ufffd\ufffd\u001d#6\r\ufffd\ufffd9Ԙ\ufffd\u0012\ufffd\ufffd[+M\nH\u0016\ufffdƠ\ufffdQ\ufffd\ufffd\ufffd\ufffd\ufffdv\ufffd\ufffd{$.F\u0003\ufffdݥ^\ufffd\ufffd\ufffd\ufffd\f\ufffd\ufffdO>fN\u0001?\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\f": {
+                "tb": ".\ufffd$\ufffd?z\ufffdc\u0016\ufffd\ufffdQ,\ufffd\ufffdM\u001d.LK\ufffd\ufffdh\u0006O\ufffd\ufffd\ufffd\ufffd߀[\ufffd\u001c\ufffd\u0012\ufffd\"\ufffd\ufffdg\u0012\ufffd\ufffd\ufffd\ufffd՚\u0001\ufffd\ufffd\ufffd\ufffdK\ufffd3\ufffd\\8L\u0007\ufffd_ݪ\u0007A\ufffdy\ufffd\ufffd\u0003F3ka\u000e\ufffd\u0001;.\ufffd  \ufffd\ufffd=\u001aY\ufffd\u000787",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\r": {
+                "tb": "~\u0003|\ufffd{a\ufffd\ufffd{}\ufffd\ufffd\ufffd\u0018\ufffdi\u0001\ufffd>\ufffd~\ufffd]wXvwz\t\ufffd\ufffd!\ufffdG\r\ufffd:\\\ufffd#\u0014y\ufffd)Z\ufffd)@m\ufffd\ufffdM\u0012\ufffd\ufffdr=\ufffd'\ufffd\ufffdTF̮\ufffd\u001fV\ufffdl\ufffd\ufffd#\ufffd\ufffd\ufffd\u001df\ufffd\ufffd\ufffd<p\ufffdE\ufffd\u0015\u0001\ufffd\ufffdbrL\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000e": {
+                "tb": "\\\ufffdW\ufffdb\ufffdsH\u0006ڢ\ufffdw\ufffd\u0003\u0013\u001d\ufffd\ufffd3\ufffd\ufffd\ufffd\u001c\ufffd\u0019\u001a \u0017\ufffd\ufffdl\ufffd{\ufffd\ufffd\ufffd\ufffd\ufffdG\ufffdR\ufffd\ufffd\ufffd\\\ufffdw\ufffd\ufffd\ufffd#C\f\ufffd\ufffd\ufffd\u0001t\ufffdx\ufffdN/\ufffd'P\t\ufffd\ufffd\f\ufffd\ufffd\ufffd\ufffd&\u0018p\ufffd\u001cyR\u0015\u0014\ufffdD\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd>,\ufffd\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000f": {
+                "tb": "}\ufffd\ufffdT3\ufffd\ufffd\"|\ufffd\ufffdcF\ufffd\u001d8\ufffd\u0018Ҵ\ufffd\u001cՉX\ufffd\ufffd\u001f5\ufffdҸ\u000b\ufffd\ufffd\ufffd\u0012\ufffd\ufffd\u0003\ufffd\u000f\ufffdb[ hy\ufffd\u001f\ufffdD{\u0000M\ufffdv=cUI7\ufffdI\ufffd\ufffd\ufffdQ\ufffdˊ+\ufffd\ufffd\ufffd\ufffd~!\ufffdZ\ufffd$\ufffd\u000e\ufffd(\ufffd(n\ufffd\ufffdTbh\ufffd\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0010": {
+                "tb": "\ufffd\ufffd\ufffd'\ufffd\ufffd\ufffd\ufffdXL\ufffd\ufffds\ufffd+\ufffd\ufffd3cYHӽ\u0002hv\ufffd\ufffd)\ufffd\ufffdWM\ufffd\ufffdܬ\ufffd&kv\ufffd׃\ufffd\ufffd\ufffd7\ufffd\ufffdx\ufffd\ufffd\ufffd\u0002\ufffd5R\ufffd\ufffdY\ufffd=\"\ufffd\u0001\ufffdy\ufffd\tY\ufffd&\ufffds\ufffdO\u001f\u0019\u0018''\u001f\ufffdl\ufffd\ufffd\ufffdy+ZGI\ufffdK\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0011": {
+                "tb": "\u0010_@\b_R\ufffd\ufffdpr\ufffd\ufffd\u0018+\ufffdA#\u0007\u0001\f\ufffd\ufffd\ufffd\u0004\ufffd\ufffdP\ufffdlW\ufffd\ufffdm\ufffd\ufffd\ufffd9\ufffd\ufffd\ufffdk\ufffdLo\ufffd\ufffd\ufffdР\ufffd\u0019\ufffdrF\ufffd\ufffd\ufffd\ufffd8\ufffd\u0014\ufffd͹A\\\r\ufffdNUݞ⍒\u0002^<\ufffdV\ufffde-\ufffdH\u0016q\ufffdnך\u00178\ufffd\u001b\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0012": {
+                "tb": "1h\ufffd˶\u0005\ufffdW\ufffd\ufffd/\ufffd\ufffd\ufffd:\ufffd\u0015\ufffdj|5\ufffd\ufffd\ufffd\t\ufffdD\u0013\ufffd\" ΐ\ufffd\ufffdX!\ufffdp\ufffd\u0016\u001b\ufffd6\ufffd\b\ufffd\ufffd\u0013\ufffd\u001c\ufffd\u0019\ufffd\ufffdF\ufffd?\ufffdr\ufffd\ufffd\ufffd鷖\ufffd\u000f\u000f\ufffd\ufffdDJ\ufffd\ufffd\u0004\ufffdr\ufffd\ufffdR^f\ufffd\ufffd*\u001e\ufffd\ufffd\f\ufffd\ufffd\fBL",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0013": {
+                "tb": "j\u0004\ufffd\ufffd\ufffd\ufffd\ufffd\b\ufffd\rMn=\ufffd\ufffd\ufffdi\ufffd\ufffdzd\ufffd&\u001d'm\ufffdsU\ufffdE\ufffd\ufffdP\ufffd~\ufffd\ufffd3\ufffdN\u0016Y=+\ufffd\u0006d\ufffdHp!\ufffd\ufffd7\ufffda\ufffd\ufffdkg\ufffdU;C<\u000b\ufffd\u000f5O81\ufffdp\u0000\n\u0012G\ufffd\ufffdm-7\ufffd\ufffd4\rʹ\ufffd\ufffdL\ufffd\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014": {
+                "tb": "/F\ufffd\u0007Y\ufffdѲ\ufffd\ufffd\ufffd)ϟ\ufffdb\ufffds\ufffd\u0014\ufffd\u0018\u0012\ufffdz\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdO\u001a0\ufffd\ufffdD\ufffdOg]\ufffd\ufffdk\ufffd\ufffdn\ufffd\ufffd*m7ߘ\ufffd\ufffd(49YD#o\u000f\ufffd\ufffd\ufffd\ufffd)\ufffd\ufffdK\u000e\ufffd\ufffd\ufffd#\ufffd\ufffd\\}\u0014Y\ufffd\u0016\ufffd\ufffdm!XD\ufffd\ufffd\u0005\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0015": {
+                "tb": "\ufffd\u001d>=5\ufffdf\ufffd\ufffd\ufffd\ufffd'\ufffd>\u0017Y0\ufffd\u001b/ȣ\ufffd\ufffd!\u00030\ufffd\ufffd\ufffd7\ufffd\ufffd\u00048\ufffdJ\tvq\ufffdl\u00141&Ă\ufffd\ufffd\ufffd\ufffd0\u00111\ufffd\ufffd\ufffd \ufffd\fޅ\ufffd-vY7Qk\ufffd\u0002\ufffdx\ufffd¡\ufffd\u0005\ufffd\ufffdJ\ufffd\ufffd\ufffd]/\u0016`\u001c\ufffd7Y4\u0007|\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0016": {
+                "tb": "\f}\ufffda\ufffd\ufffdC\u001e\ufffd\u0014\ufffd\"\u0000\u0002\ufffdV$\u001e\u0015ϪT\u0006\ufffd\ufffd\ufffd1@\u001b%\u0006\ufffd1\ufffd\ufffd\ufffd!\ufffd[\ufffd\ufffd\u0010\ufffd\ufffdPg ]\ufffd\u00107\fX\ufffd8\ufffd\ufffd\u001adV\ufffd\ufffda\u0002\ufffdt\u0007\ufffdT\ufffd\ufffd\u000e7\ufffd\ufffd\ufffdYu\ufffd\ufffdX\ufffd\ufffdZ\ufffd\ufffdL\ufffdլ\u0017\u0013׍2",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0017": {
+                "tb": ")\u000fER+\u0016{^\u0002\ufffd\ufffd\u00145\ufffd\ufffd\u000e\ufffd\ufffd\ufffd\u0011\ufffd\ufffd\ufffdO\ufffd\ufffd\u0005\u0012\u001b\ufffdw\ufffdR\ufffd\r\ufffd\ufffd\ufffd/\ufffd—)v\ufffd\ufffd\ufffd\u0003\u0001h\ufffd\ufffdd\u001d\ufffdw\ufffd'\ufffd\ufffd9\u0004\ufffdZʉZl\ufffd\u000f\u0013n\ufffd\u0004ʽ\ufffd\ufffd~м}W\ufffd\ufffd\ufffd_\ufffdA\ufffd\r\ufffd$\ufffd\\",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0018": {
+                "tb": "!\ufffd\f\ufffdS\u0010s1gR\ufffdJ%\ufffd͐\ufffd\ufffd\ufffd\ufffd\ufffdʹ\"'\u001di\ufffd\u0017F$\ufffd\u0006;\ufffd\ufffdݳ\u0015\ufffd\ufffdT'\ufffd\ufffd3#P\u0004Hy\ufffd\ufffd\ufffd\ufffd7Ȏr\ufffd\u0003V\ufffd\ufffd\ufffd\"\ufffd\ufffd Q\ufffd\ufffdG\ufffd\u0017\ufffd\ufffd\ufffd\u001b\u001c\ufffd\ufffd\ufffd\ufffd;44\ufffd\ufffd\"g\ufffd\u001f\ufffdct",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0019": {
+                "tb": "\u0014\ufffdm4\ufffd\ufffd_\u0005:UAR\ufffd\ufffd\u001fI0\ufffdE\ufffd\ufffd\u0015_\ufffd\ufffd'!\ufffd[A\ufffd\ufffd\u0016\ufffd\ufffd\u001b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdJ\ufffd\ufffd\ufffd\ufffdd\ufffd\ufffd{\ufffdPK\u000f`ZW\u0016\ufffd\ufffd\u0000\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdE\ufffdR@\ufffd\ufffd\ufffdv&J\u0018\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd]\u0000\ufffd\ufffdå\\\ufffdt",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001a": {
+                "tb": "\ufffdr\\\ufffd\ufffd-\\\ufffd/Y\ufffd\ufffd(\ufffd\ufffdK\ufffd\ufffd\ufffḓͱ~\ufffd\ufffdT\ufffd\ufffdp\ufffdqba@\ufffd\\\ufffdc\n\ufffd\ufffd\u0016St\ufffd\ufffdT\ufffd.A\u0015t\u001f\ufffdAy\ufffdCE \ufffd\ufffd\u0018;\ufffd\u00167\ufffd\ufffd((\ufffd\ufffd\ufffd\ufffd\u0011[\ufffd\ufffd7\ufffd=\ufffd\ufffd\u001d\ufffd\ufffd\u0001\ufffd\ufffd\ufffdUe\ufffd\"",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001b": {
+                "tb": "\u001d\ufffd\u001bZ\u001c\ufffd\ufffd=\ufffd\ufffd\ufffdR\u001d\u0010\ufffd|\ufffd6^\ufffd\u001f?\ufffd\u000e+<z\ufffd\ufffd<y\ufffd\u0011D\ufffd\ufffd\ufffd\ufffd\u000b\ufffd\ufffd\ufffd\ufffd򄨅&w۸\ufffd\ufffd\u0005#\ufffd\ufffdt\ufffd\ufffd?\ufffd\ufffd\ufffd8=\ufffd:%\ufffd\ufffdA$0\ufffdP\ufffd\ufffd]-\u0007;\ufffd0\ufffdl\ufffd!\ufffd3\ufffd\u0017\u0017F",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001c": {
+                "tb": "\ufffd\ufffd\ufffd\ufffd=\ufffdp\ufffd\ufffd3\u0011\ufffd\u0004l\ufffd\ufffd)\ufffd\ufffd\ufffdi˖\ufffd\u0010Զ(\ufffd\u00038g\ufffdMT\ufffd)\u000b\ufffd\u000f\ufffd\ufffdE\ufffd\ufffd\ufffdA\ufffd\ufffdC\ufffd\ufffd\u001bv,b\ufffd\ufffd\ufffdOv\ufffd\ufffd\u0006\ufffdy\u000f\ufffd7\ufffd?\u0005\ufffd6\ufffd\ufffdAT\ufffdy\ufffdTJF\ufffd5\ufffd\ufffdg\u001c/*\ufffdS\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001d": {
+                "tb": "\ufffdZ\ufffd\ufffdvj9]8-\ufffdG\ufffdT\ufffd\ufffd\"\ufffd\ufffd\ufffd}\ufffdj\ufffdrPgCl\u0017W\ufffd0ߐPNZ\ufffd&\ufffd\ufffd\ufffdo\ufffd\ufffd[\ufffdSX\ufffd/#oӴ\ufffd\ufffdܘ5$\ufffd\ufffdY&\ufffd\ufffd\ufffd\ufffd\u0004\ufffdX\ufffd>\ufffdE\u0011\ufffd\ufffd\ufffdmyu]V\u0013\ufffdת\ufffdS\u001e\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001e": {
+                "tb": ";\u0013\ufffd\ufffd\ufffd]\ufffd\ufffd\u0017\ufffd\ufffd\ufffdg\ufffdL\ufffd\f\ufffd\ufffd2\ufffd*\ufffd/]eF\ufffd+\ufffd?\ufffd\ufffdHً\u0018#\ufffd\u0012B>\ufffd_L\ufffd\ufffd\ufffdU\ufffd\ufffd>\ufffd\ufffd\u001f4\ufffdr\ufffd\\\u0018\ufffd\ufffd~gr\ufffds\ufffd\u001e⽽x\u0003\ufffd\ufffd\ufffd˙\ufffd\u0016\ufffd\ufffdÊ\ufffdbʹ\ufffd\ufffd\u0011\ufffd\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001f": {
+                "tb": "\ufffd\ufffd1LlD\u0017~@aִ`\ufffd\\\u000f\u0007\ufffd\ufffd:\ufffd\ufffd*\u0010\ufffdUwlM\ufffdG\ufffdp\u0010\ufffd\ufffd\ufffd}\ufffd\ufffdf\ufffd\ufffd\n\u000b\ufffd\ufffd.\ufffd\\h\ufffd\ufffd\ufffd\u000bJ\ufffd20\ufffd\u0004\ufffd(\u0018\ufffd6\ufffd\ufffdL\u000e\u00168\ufffdm\ufffdb\ufffd\u0019\u0002\ufffd\ufffdiD\ufffd_.\ufffd\ufffd&q\ufffd\ufffd+\ufffd\ufffd\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000 ": {
+                "tb": "H\ufffd\ufffd_`\ufffdO6\ufffd\u0017\ufffd\ufffd\u001e\f̰%\ufffd\ufffddid\ufffd\ufffd\ufffd\ufffdz6\ufffd\ufffd\ufffd\ufffd\u0004g\ufffdE5\ufffd);\ufffd\u0007\ufffd \ufffd\u0004\ufffd\u0010\ufffd\ufffd\ufffd\ufffd\ufffda\ufffdQ^\u001c\ufffd\ufffd\ufffd\ufffd4YVܿE9\ufffd\u0019\ufffd3\ufffdh;\ufffdp٤\ufffd}n\ufffd\ufffdߓ\u0003k\ufffd\ufffd\ufffd'J\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000!": {
+                "tb": "\n\ufffd\u000f\u001bT&\ufffd\ufffd\ufffd\u0002\ufffd\ufffd\u001e8\ufffdf:D\ufffd\ufffd|\ufffd)X\ufffdj\ufffd\ufffdd6*\ufffd\u0012\ufffdP\ufffd\ufffdwŎ\u000f\ufffd\ufffd!ϰ\ufffd\u0015w\ufffd\ufffd\ufffdߡ\\g|\ufffd!\ufffd\ufffd1\u0019\u0015\ufffd\ufffd}\ufffd]\u0018\ufffd\ufffd\ufffd\ufffdɢ\ufffd,\ufffdw-4ݒ3=4X<!*\ufffd_R\u0014",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\"": {
+                "tb": "\ufffd\ufffd\u000b\ufffd\ufffd\u0011D\t\ufffd2\ufffd\ufffd\u000e\ufffd\ufffd\u0007D\ufffd\ufffd߽\u0012L=.\ufffdʫw\ufffd|\u0005\ufffd\ufffd\u0010|\ufffd&\ufffdC\u000b\ufffd\ufffdL\u0000\ufffd\u0010\ufffd؆\u0006\ufffdS\ufffd}\ufffdE\ufffdpE\ufffd\ufffdjnM\u0005\ufffd\ufffd\ufffdՒF\ufffd\ufffd\ufffdM\tL8C\ufffd|peD\ufffd̻W\ufffd\ufffd\ufffdȖ\u0018\u0013",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000#": {
+                "tb": "^\ufffdս\ufffd\t\ufffd\ufffd\ufffd\u0019\ufffdjM\ufffdm\u0014+S\u0002m\ufffd\ufffd-\ufffd\ufffdQ\ufffd\ufffd,B\ufffdv\u0010\u000f\ufffdo\u0006JWc\u0017\u0002531\ufffd\ufffd\ufffd\ufffd\tԑ\u001f*\ufffdH\ufffd\ufffdQ\b\ufffd\u0014\nI\ufffd5\u001d\ufffd\ufffd3\ufffd\ufffdX\ufffd\u001dl\ufffd\ufffd?\ufffd@\ufffd\tw\ufffd\u001e\u0004P\ufffd\ufffdx\ufffdIK:*",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000$": {
+                "tb": "g\ufffd5\ufffd8\ufffd\u001b\ufffd\f\ufffd\ufffd\n\ufffd\u0001\u000f\ufffdk\u0001V\ufffd`\u001cֻj\ufffd4\u000b8\ufffd\ufffd\u0019\ufffd\ufffd\u0011s\u0006\u0006\ufffdPx\ufffd\u0005\ufffd\ufffd\ufffd\ufffd>\ufffdm\ufffd\ufffd\ufffd?W\ufffd\u000e\ufffd\ufffd\ufffd\ufffd*\u001b\ufffd\ufffd\ufffd0:\ufffdғ\ufffd,\ufffd\ufffd\ufffd\ufffd\u001f\ufffd\ufffd\u000e\ufffdo\ufffd\ufffd\ufffd\ufffdA\ufffdu\fS\u0015}\ufffdM",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000%": {
+                "tb": "U\ufffd\ufffd_\ufffd\ufffd,\ufffd\ufffd\ufffd\ufffd\ufffdLR\ufffdP0\ufffdy\ufffd\ufffd\ufffd\ufffd\"\ufffd\f-\ufffd\ufffd\ufffdxG\ufffd\u0019Y\ufffdD\ufffd\ufffd\u0006b_\ufffd'2\ufffdk\ufffd~\ufffd,\u0006T_\ufffd\ufffd\u001c\u0004\ufffd\ufffdQ\ufffd\ufffdC\ufffdt\ufffd0\ufffd\ufffd}\ufffdm\u0019\ufffd\ufffd\ufffdٟ\ufffd\u0001\ufffd\u001fA\ufffd\ufffd[V\ufffdT\ufffd\ufffdN2\ufffd\u0019",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000&": {
+                "tb": "\u0016\u0006&\ufffd\ufffd\ufffd\ufffd\u0018\ufffd\ufffdڴ\ufffd\ufffd\ufffd\ufffd|6jt\ufffdu\ufffd\u0003\ufffd\ufffd\ufffdŔ\ufffd\u001b\ufffd\ufffd\tޮb[\ufffdܷG\u001d\ufffd\ufffd>\u0018\ufffd\ufffd\u0019\u0010i5W\ufffd\u00030\u0010\ufffdMr\u0001\ufffd\u0003(\ufffdoVj\ufffdbaG\ufffd\ufffd\ufffd%\ufffdbýX\ufffd\ufffd\u001aG\ufffdY\ufffd\ufffd\u0005\ufffd\ufffd\u0003T\u0005",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000'": {
+                "tb": "\ufffd\ufffd\ufffd\ufffd\u001c<\ufffdM\ufffd\ufffd\ufffd\ufffd\ufffd)Y\ufffd\ufffd\ufffd˳\ufffd|(\ufffd\ufffdHI\u0006\u001aڋP\b\ufffd綆\ufffdi+eK\ufffdK\\LP7\ufffdR\ufffdb\ufffd\ufffd\u0004m9/\ufffd\ufffd՝C\ufffdn퐏\ufffd=Hm\ufffd\ufffd\ufffd籫\ufffd:\ufffdp̻\ufffd\ufffd\ufffdM\u0014\ufffdSk\u0005c\u0005",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000(": {
+                "tb": "\ufffdٷ̩,\ufffd\ufffdN\ufffdt\ufffdmp\ufffd<z\ufffd!\ufffdљ\ufffd\ufffdq<B\ufffdŚ\u0011\ufffdR\ufffd\ufffdH\t\ufffd\ufffd(\ufffda\ufffd\ufffd\ufffd{M5\u0016\ufffd\ufffdϚp\ufffdL1T/s\u0002\u0002}\ufffd\u000e\u0019\ufffdeY\ufffd\ufffd\ufffdy\ufffd\ufffd8`C\ufffdF\ufffd~ٰ\ufffd\u0011\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\\B",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000)": {
+                "tb": "E\ufffd\ufffdk\ufffdэ\u0005%\u001e=\ufffdM\ufffd\u0010Zq\ufffd\f\ufffd\u0019\ufffd\rjh\ufffd\ufffd?\ufffd\ufffd\ufffd\ufffd($\b\tS7!\ufffd\ufffd\ufffdӻ\u0001\ufffd\u0018\ufffd\ufffd\ufffd\u001ek\ufffd\ufffdzd\ufffd\ufffd\t\ufffdH-J\ufffd\ufffd\ufffd\ufffd\u0012\ufffdh؆a㭵\u001d\ufffd\u0013\u0001\ufffd\ufffd\ufffd\ufffdݤV\ufffd\ufffd\ufffd)\ufffd\ufffd\u0007\ufffdA",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000*": {
+                "tb": "s'<y\u0001\ufffdP`\ufffd\u001b?\ufffd\ufffdPuf\u0017e\ufffd\ufffd;\n\ufffd\u001c\ufffd\ufffd\ufffd\r\ufffd\ufffd`\ufffd\rt\u000e`\ufffd)\u0004\ufffd\ufffd\u0017\ufffd\ufffd\ufffdB\ufffd\ufffd\u0016n\ufffd\u0001\ufffd\ufffd\ufffdR\ufffd'\u001b/(K\u0005\ufffd>\ufffd\b2\u0004Ɨ׷\ufffd\ufffd\ufffd\ufffd\ufffdX\ufffdE\ufffd\u001d\u001d\f\ufffd\ufffd\ufffd\ufffd\u0006<\ufffd\ufffd\ufffd\ufffdc",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000+": {
+                "tb": "v\ufffd)\ufffd\ufffd\ufffd\ufffd\u000e\ufffd#n\ufffd\u001eS\ufffd\ufffd\ufffd|LdjzɊ\ufffd\ufffd\u0019l\ufffd\u001cV \ufffdL\ufffd\ufffd?\ufffd$$,4HE\ufffd\ufffd\ufffdƪ\ufffdY\ufffdk#\ufffd\ufffd\nx\u0011\ufffdRؘ\ufffd\u0018\ufffd\ufffd\ufffd\ufffd\ufffd\u0012p\ufffd\ufffdh&\ufffd؊\ufffd+\ufffd\u0014\u001c\ufffd`x\u0007xGq\ufffdP6b",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000,": {
+                "tb": "\ufffd U²\u0003]3\ufffdrĢ\ufffd%g\u0013\ufffd\ufffd\u00128\ufffdH\ufffdsw\ufffd'\ufffdG\u0002\ufffdwS\ufffdEN\ufffd\ufffdf'\f~\ufffd\ufffd\ufffdO\ufffd?,!\ufffd\ufffd\ufffdς2J\u0012D\ufffd_\u0004o\u0011{\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\n\ufffdޒa&\ufffd\ufffd\u001f\ufffd;\ufffd[?z\ufffd[r)\ufffd\ufffd\u0012\ufffd\ufffd\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000-": {
+                "tb": "5\ufffd\ufffd\ufffd\ufffdU\ufffd\u0011\ufffd\r\u0002\ufffd&\ufffdTY5e.\ufffd\ufffd\ufffdxxhІ\ufffd'\ufffd\ufffdͳw\ufffd蝬\ufffdj[ܓ\ufffd\u001f\ufffd\ufffd\u000be\ufffd\ufffd\ufffdl\ufffd\ufffdX\u0017\ufffd\u000e,\ufffd\u0017\ufffd\ufffd/M\ufffd\ufffd\ufffd\f\ufffd>}\bg:J6\ufffdS\ufffd+\ufffd\ufffd\ufffd\ufffd\ufffd&RW\ufffd\u0000|ٞ,",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000.": {
+                "tb": "v\ufffdU\ufffd\ufffd\u0007\ufffd)\ufffdĵ\u00136?0\u001d$1\ufffdȇ-y\u0004<:\ufffd\b\ufffd\ufffd\ufffdy\ufffd\ufffd\ufffdI\ufffdnD\ufffd\ufffd\ufffdA\u0012\ufffdZje\u0006\u0003\ufffdb\ufffd\u0013\ufffd\u0000<A\ufffd\ufffdt\ufffdx\ufffd\r8\ufffd\u001em\ufffd\ufffd\ufffd&\ufffd\ufffd\ufffdU\ufffd\ufffd!\ufffd\u0013\ufffd\ufffd<\u001f\ufffdv\ufffd$(a\ufffd\u0005A",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000/": {
+                "tb": "7\ufffd>*E\ufffd\ufffdr\ufffdBD\u0003)\u001c\ufffd\u0019\ufffdL\ufffd<\u0004\ufffd\b\u001a\ufffd\ufffdg\ufffd8E\ufffd\ufffdw\u0001ڔ}\ufffdH\u000fZ\ufffd\u0001\ufffdى\ufffd\ufffd\u001b\ufffd\ufffdxc^\ufffd\ufffd\ufffd~\u001f\ufffd\u0015H\ufffd\u000f\u0017d\ufffdP`1\u001c\ufffd\ufffd\ufffd[\ufffd$/5iHTR)\ufffdU\u001a1\u0000M\n\ufffd\ufffd\ufffd\ufffdf",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u00000": {
+                "tb": "\ufffdl\ufffd$\ufffd0\ufffdɡXK:XUC\u0018\ufffd\b\ufffdy\ufffd\ufffd\ufffdnV\ufffd\ufffd\u0010\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\u0016ev_cPfs\ufffd\ufffdo\ufffd\ufffd\ufffdW\ufffd\ufffdhH\ufffd3\u000e\ufffd\ufffdj\u0013<2\ufffd48\ufffd4\ufffdJKV\u0004\ufffd\ufffd\ufffdIPRm\ufffd\ufffd\ufffd\ufffd\ufffdV\ufffdX\ufffd-\u0000OQ\n\ufffd\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u00001": {
+                "tb": "j\ufffd#\ufffd\ufffd\ufffd<\ufffd\ufffd\ufffd\u0000\ufffdV\ufffd\ufffd\u0011{\ufffdy\ufffd\ufffd\ufffd\u0003\ufffd%AS\u0013\u0004\ufffd\u0003I\u0003\ufffd\ufffd\ufffdM\ufffd\u001a@{\ufffd\ufffd\ufffd J\ufffd\ufffdmb\u0004ʖ\ufffd\u001e\ufffd\u0016\ufffd\ufffd\u001fX\ufffd\ufffd\ufffd\ufffd\u0019\ufffdŚ\ufffd\ufffd^\ufffd#\ufffd|\ufffd\u0015ⓒ\ufffd|M\u0014Y\ufffd\ufffd(UƔ\ufffdL\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u00002": {
+                "tb": "bx\u0000\ufffd\ufffd\u0006\ufffd7\ufffdgHU\u0007_\ufffdo\ufffd\u0011\ufffd\ufffdʇasEc\u0014\u0003\ufffd\u0018\ufffd,\ufffd\ufffd\ufffdu \ufffd\ufffdR\ufffdy\ufffdl7T\u001dQ~\ufffd\ufffd\ufffd\ufffd\ufffdY\ufffd\ufffd\ufffdu\ufffd\ufffd4\ufffd\u001a\ufffd\ufffd\ufffd\ufffd3\u0012\ufffd\ufffd\ufffdc\ufffd\ufffd\ufffd\ufffd'\ufffd\ufffd5ON)\ufffd\ufffd\ufffdh\u001d\ufffd\ufffd\ufffdG=",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u00003": {
+                "tb": "f\ufffd\ufffd~\ufffd΅5\ufffdO\ufffd\ufffd\fw\ufffd\ufffdr\u0014\ufffdllZ~\ufffd\ufffd\u001e\ufffd\ufffd|#\ufffdxQ&^\ufffd\ufffdvU\ufffd\u0011\u0013\ufffdn\ufffdcm{\ufffd[\ufffd\u000f\ufffd\ufffd\ufffd\ufffd\u0010(\ufffd\ufffdƴň*\ufffd\ufffd\t\ufffd7\u0010\ufffdU\ufffd\ufffdP\ufffd\ufffd\ufffdp\ufffd'/\ufffd\u0003\ufffd\ufffd!*\u001dp\ufffd͐\ufffdn",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u00004": {
+                "tb": "\u0019\ufffd\ufffdsaT\r\ufffd_Чh\u000e\u000b\ufffd\ufffd\ufffdj\ufffd\ufffdY\ufffd\ufffda\ufffd\ufffd\ufffdY\ufffd\ufffd\ufffdU\u0011\u001aI\ufffd\ufffd\ufffd4\ufffdK\u0019(\u001b5\ufffd\ufffd\ufffd0\ufffdg\ufffdqf\ufffdo\ufffd\ufffdr\u0003?\ufffdi\u0007\ufffd*ȼ\ufffd\ufffd?\ufffdK\ufffd1\ufffd*\ufffdùǴ:#\u0007Ԟ\ufffdh]\ufffd\ufffd\ufffd\u0002\u0018\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u00005": {
+                "tb": "=\ufffd\ufffd\n8\u0006\ufffdk4\ufffd\ufffdS\ufffd\ufffd\ufffd\ufffd\ufffdS\ufffd\ufffd_\u00054\ufffd\u0012\ufffd8\ufffd\ufffda\ufffd.\u0011֭h]\ufffd!\u000e\u000b\ufffd \ufffd4\r\ufffd\ufffd\\\ufffdX>\ufffd\ufffdΪ\ufffd\ufffds\ufffd\ufffd09&\u0001|?\ufffd_\ufffd\ufffd)\ufffd\ufffd:\ufffd\u0006\ufffdEuu\u0015\u001e\ufffd\ufffdL\ufffdq\ufffd\u000b\ufffd\ufffd\u000f\ufffd\ufffd\u000f",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u00006": {
+                "tb": "\u0007N\ufffdh\ufffd\tQoHM\ufffd\ufffd\ufffdcڟ\u000f\u0010c\ufffd\ufffdA\ufffd\ufffd\ufffd\ufffd\u0013v\ufffd2A\ufffd\ufffdm\ufffd\ufffd\u0001\ufffd2\ufffdi`\u0010E-m!\ufffd\ufffdl\ufffd\ufffd\ufffd\ufffd<6.\u0014\ufffdq\ufffd\ufffdkhygH\ufffd\ufffdb\ufffd\ufffdy\ufffd\ufffd\ufffd_\ufffd\ufffd\u0018y$ׇ3\ufffdq\ufffd\ufffd\u0000ѕP5\u0011\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u00007": {
+                "tb": "\u000b%\ufffd$S:\ufffd\ufffd\ufffd\\\ufffd\ufffd\ufffdZ\ufffd\ufffdF\ufffd\ufffd\u0017\ufffd~]!\t\ufffdᴂ<\ufffd\ufffdv\"-2|\ufffdJk\ufffd\ufffdP8\u000fb\ufffd\ufffd\ufffd,PQ\u0000\u0011zy\ufffd\ufffd\u0006\ufffd\\H\ufffd±B\ufffdԍ\ufffdS\ufffdUK~\ufffd\ufffd_\ufffd\ufffdJs\u0012\ufffd\ufffd`\ufffd%V\ufffd)p\ufffd\t.",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u00008": {
+                "tb": "\u000bR\ufffdbϰU\ufffd\ufffdg\ufffd\ufffdk\ufffd\u0010\ufffd\ufffd'Kf\ufffdQK\u0006p\u0003zb\ufffdρ\ufffd\ufffdh}\ufffdY\ufffdZMܱX\ufffd\ufffd\ufffd3\ufffd\ufffd9\ufffd\ufffd'N\u0000\u0014*ގ\n\ufffdx\u001c\u0000\u001fR\ufffdֵƏtM\ufffd\u0004\ufffd$\ufffd\ufffd,\ufffd\u0011\ufffd\ufffdDR92\ufffd\ufffd\ufffd\ufffd5Zt\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u00009": {
+                "tb": "~\ufffd̥\ufffdyf<YW\ufffdR-U\ufffd\ufffdd|6\ufffdG\ufffdF\ufffdQ\ufffdOh\ufffdy\ufffdg\ufffda-\u000ei\u0006\u000e\ufffd\ufffd1\ufffd^E\ufffd$\ufffd\ufffdO:Ҳ\u0000\ufffd\r\bb\ufffd\u0004W\ufffd\ufffd\ufffd\u0002\ufffdd\ufffdQ*0DY\ufffdя[\ufffd/\u0003\ufffd\ufffdG6\ufffdd[t\ufffdqx>\ufffd\\\ufffd\u000f",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000:": {
+                "tb": "`\r\f\ufffd\ufffd!\ufffd\ufffdG:\ufffdl\ufffdL%<]\ufffdf\ufffd[\ufffd';a\ufffdv\ufffdqU\ufffd\ufffdU\ufffd<\ufffd\ufffd\ufffd\ufffd\ufffd=\ufffd\ufffdk8\u0018\ufffd6*\ufffd\ufffd\ufffd\ufffd\ufffd譻l\ufffdv\ufffdя\ufffd\ufffd\ufffd\ufffd\ufffd[\ufffd\ufffd\ufffd\u000eX7\n+\ufffd<f\ufffd\ufffd\ufffd\u0019\ufffdQQ(PT`\n$\u001d7+",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000;": {
+                "tb": "\ufffd0ׅ\ufffd\ufffd\ufffdxJ\ufffdXf@?-\ufffd\u001f\ufffd\u0016\ufffdU\ufffd!Y:N\ufffd=\ufffdL\u0018 >g\ufffdq\ufffd\ufffd\ufffd\ufffdIJ\ufffd\ufffd)Zݙ\ufffd\ufffd@#\ufffd\ufffd\ufffd\ufffdN\ufffd\ufffd\ufffd:?\u0015o\ufffd\\\u0015\ufffd(\u000f\u0010p\ufffd\ufffd\ufffd\ufffd\ufffd!^\ufffdi\ufffdf\ufffd\ufffd\n\ufffd4t\ufffd\ufffd\ufffd\ufffd\ufffd\u0015\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000<": {
+                "tb": "e\ufffd\ufffd0\ufffdKmH:\u0003\ufffdN0\ufffd\ufffd\ufffd\ufffd5\ufffd\ufffd\ufffd\u001d\ufffd5D\b\ufffd Y\ufffd\ufffdG]&k\ufffdr\u0014W\u0002!\ufffdP\ufffdᡒu\ufffd\ufffd\ufffd\u001b\ufffd\ufffde\u00062`\ufffd\u001a\u0012F\ufffd\ufffd\ufffd\ufffdJ\u001dx.\ufffd\nH3\ufffdP˜\ufffd\ufffdJ\ufffd\b1\u001a뷖@r\r\ufffd`\ufffd\ufffd",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000=": {
+                "tb": "\ufffd\ufffd;\r\u0004\u0014\ufffde\ufffd*$\ufffdf؝\u001b\ufffda\ufffdH\ufffdtQ\ufffd\u0001\ufffd\ufffd}\ufffd\ufffd\ufffd\u0000\ufffd\ufffdd\u0014|\ufffd{t\ufffd\ufffd\ufffd\ufffdh^\u0018\ufffd/`a\u001aRÆh\ufffd\u0007\u0002:\ufffd\ufffd\u0013\ufffd\ufffd\ufffd\ufffd\ufffd![p\ufffd\ufffd gZ\ufffdrw\ufffd\u0005\ufffd4\ufffd갉[PC[\u000f:48\u001b",
+                "tt": 1
+              },
+              "\u0000\u0000\u0000\u0000\u0000\u0000\u0000>": {
+                "tb": "4\t\ufffdg\ufffd\ufffd\ufffd\ufffd.eb\ufffd\b\ufffd\ufffd\ufffdb4[,\ufffd\ufffd\u0015\ufffd3\ufffd\ufffd\ufffdM\ufffd\ufffd\ufffd\ufffdL:$Ы\ufffdM\ufffd\ufffd\ufffd\u000f\ufffd\ufffd(\ufffd\ufffd\ufffd\ufffdM\ufffd\ufffd\ufffd;œ\fi\ufffdv\ufffd\ufffd3\ufffdS\ufffd\u00036\ufffd\ufffd#9\u0016\u0005.\ufffdo\u0000\ufffd1\u001eZ9\ufffd\ufffd{b;\u0016\u000bO",
+                "tt": 1
+              }
+            },
+            "gsch": {
+              "nbs": 64
+            }
+          }
+        },
+        "State": {
+          "Deleted": false,
+          "LocalState": null
+        }
+      },
+      {
+        "Addr": "OOADCJDVTA3QKWLBI7QBQZVTXXOVNYY4RMXNLAQNPQGTNK7Y446SX5MFCM",
+        "Aidx": 92138200,
+        "Params": {
+          "Deleted": false,
+          "Params": null
+        },
+        "State": {
+          "Deleted": false,
+          "LocalState": {
+            "hsch": {
+              "nbs": 16
+            },
+            "tkv": {
+              "\f": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "\r": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "\u000e": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0004\f/S\u0000\u0000\u0000\u0000\u0000\u0000$\ufffd\u0000\u0000\u0000\u0000\u0000\u000fB@P9\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0003\ufffdIS\u0000\u0000\u0000\u0000\u0000\u0000)\u000e\u0000\u0000\u0000\u0000\u0000\u000fB@P;\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                "tt": 1
+              },
+              "accountInfo": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffd\ufffd\u0000\u0000\u0000\u0000\u0000\u001e\ufffd\ufffd\u0000\u0000\u0000\u0000\u0000\u000fB@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\n\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd",
+                "tt": 1
+              }
+            }
+          }
+        }
+      },
+      {
+        "Addr": "KHKO4BLTFEHRXECEGCPRYOEHFZQVYAFOQSV5O2XUHQ7HHDKKZ7OZNQEEAA",
+        "Aidx": 92138200,
+        "Params": {
+          "Deleted": false,
+          "Params": null
+        },
+        "State": {
+          "Deleted": false,
+          "LocalState": {
+            "hsch": {
+              "nbs": 16
+            },
+            "tkv": {
+              "\u000e": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0004\ufffd\ufffdS\u0000\u0000\u0000\u0000\u0000\u0000\"\ufffd\u0000\u0000\u0000\u00009\n\ufffd@0<",
+                "tt": 1
+              },
+              "accountInfo": {
+                "tb": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd,6\u0000\u0000\u0000\u00009\n\ufffd@\u0000\u0000\u0000\u0000X\ufffd_@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0007\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd",
+                "tt": 1
+              }
+            }
+          }
+        }
+      }
+    ],
+    "AssetResources": null
+  },
+  "Creatables": null,
+  "Hdr": {
+    "earn": 27521,
+    "fees": "A7NMWS3NT3IUDMLVO26ULGXGIIOUQ3ND2TXSER6EBGRZNOBOUIQXHIBGDE",
+    "frac": 2047917429,
+    "gen": "testnet-v1.0",
+    "gh": "SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI=",
+    "prev": "blk-DGCK2OZX73HENEQ36UAYH6NUQIBCBKHJKHZHP4GXI7HCZH3BMRIA",
+    "proto": "https://github.com/algorandfoundation/specs/tree/44fa607d6051730f5264526bf3c108d51f0eadb6",
+    "rate": 42,
+    "rnd": 26910002,
+    "rwcalr": 27000000,
+    "rwd": "7777777777777777777777777777777777777777777777777774MSJUVU",
+    "seed": "y7GjtZVwK0PU7gD97SS6cv1J8l1H4v5IDhHaCfiDZmE=",
+    "spt": {
+      "0": {
+        "n": 26909952
+      }
+    },
+    "tc": 153348361,
+    "ts": 1673397875,
+    "txn": "etVItYGArmk1FadXoNyxuByy7m/ZjqCOjajjaTbPZeQ=",
+    "txn256": "dGZhFIv+P0DfDXKtIVbKjocOruYTT+0CQLp+QeXQWv0="
+  },
+  "KvMods": null,
+  "PrevTimestamp": 1673397871,
+  "StateProofNext": 0,
+  "Totals": {
+    "notpart": {
+      "mon": 347207141836,
+      "rwd": 346468
+    },
+    "offline": {
+      "mon": 2544590110565384,
+      "rwd": 2526267564
+    },
+    "online": {
+      "mon": 7580062682392780,
+      "rwd": 7580062232
+    },
+    "rwdlvl": 27521
+  },
+  "Txids": {
+    "/36ndb8DIXo31AlKm9yVZonyMpOw/M1UuHuxr3bwgmk=": {
+      "Intra": 5,
+      "LastValid": 26911001
+    },
+    "3Avuu0SuuR40vimeFxrWvYKJVbch/0LZtqAxyqQiII0=": {
+      "Intra": 2,
+      "LastValid": 26911001
+    },
+    "5uxu3WRlSyQD8dyig27fQGtBMKOtHkSEkVyHE8Z6ra0=": {
+      "Intra": 4,
+      "LastValid": 26911001
+    },
+    "6Pmo1Y4YW1AZ1d+wpf5iHxC3zXkiyxAaZPKinfDe5UQ=": {
+      "Intra": 6,
+      "LastValid": 26911001
+    },
+    "7xsQOaCffOtmtaXSFpYfsLoWY/2xElSgTzohK1Q5XPs=": {
+      "Intra": 8,
+      "LastValid": 26911001
+    },
+    "A0nBcRzofiWuepCuzk7usKOGdmtp5E+Ku2CqlpMPjms=": {
+      "Intra": 0,
+      "LastValid": 26910989
+    },
+    "CBqkqJVJ4jqe6Su5dKPkpinxZHCxtYEiKAH9i8s1v+Q=": {
+      "Intra": 3,
+      "LastValid": 26911001
+    },
+    "ES20PzakDP3UBZnd8Cydrgu6P6/SxbJKzh5O2IEvpb0=": {
+      "Intra": 9,
+      "LastValid": 26911001
+    },
+    "Vkp8mVWLQFrQCQlVXRzSmuBRuVGOORPK5W2tAJz4/d4=": {
+      "Intra": 1,
+      "LastValid": 26911001
+    },
+    "ljiCUgifBagW+8eFi2K0GPa+X13uJJPQLeOnK1M79Y8=": {
+      "Intra": 7,
+      "LastValid": 26911001
+    }
+  },
+  "Txleases": null
+}
