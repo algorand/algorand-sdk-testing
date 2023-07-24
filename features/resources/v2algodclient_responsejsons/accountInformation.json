@@ -8,5 +8,6 @@
   "status" : "Not Participating",
   "round" : 6222133,
   "reward-base" : 0,
-  "rewards" : 0
+  "rewards" : 0,
+  "min-balance": 1000
 }
