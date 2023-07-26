@@ -8,5 +8,10 @@
   "status" : "Not Participating",
   "round" : 6222133,
   "reward-base" : 0,
-  "rewards" : 0
+  "rewards" : 0,
+  "total-apps-opted-in": 0,
+  "total-assets-opted-in": 0,
+  "total-created-apps": 0,
+  "total-created-assets": 0,
+  "min-balance": 1000
 }
