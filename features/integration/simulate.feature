@@ -194,6 +194,7 @@ Feature: Simulating transactions
     Given I add the nonce "simulate-with-exec-trace-stack-scratch"
     When I create the Method object from method signature "manipulation(uint64)uint64"
     * I create a new method arguments array.
+    * I append the encoded arguments "AAAAAAAAAAo=" to the method arguments array.
     * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     Then I allow exec trace options "stack,scratch" on that simulate request.
