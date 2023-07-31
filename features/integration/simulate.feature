@@ -182,3 +182,11 @@ Feature: Simulating transactions
     # Final step to check extra budgets in simulation result
     Then I check the simulation result has power packs extra-opcode-budget with extra budget 2000.
     And the simulation should succeed without any failure message
+
+  @simulate.exec_trace_with_stack_scratch
+  Scenario: Simulate app with response containing stack and scratch changes
+  Given a new AtomicTransactionComposer
+    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/stack-scratch.teal", clear-program "programs/eight.teal", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
+    And I sign and submit the transaction, saving the txid. If there is an error it is "".
+    And I wait for the transaction to be confirmed.
+    Given I remember the new application ID.
