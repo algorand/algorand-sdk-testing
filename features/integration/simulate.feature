@@ -192,6 +192,7 @@ Feature: Simulating transactions
     Given I remember the new application ID.
 
     Given I add the nonce "simulate-with-exec-trace-stack-scratch"
+    When I make a new simulate request.
     When I create the Method object from method signature "manipulation(uint64)uint64"
     * I create a new method arguments array.
     * I append the encoded arguments "AAAAAAAAAAo=" to the method arguments array.
