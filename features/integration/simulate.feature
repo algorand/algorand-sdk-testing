@@ -201,3 +201,6 @@ Feature: Simulating transactions
     Then I allow exec trace options "stack,scratch" on that simulate request.
     Then I simulate the transaction group with the simulate request.
     And the simulation should succeed without any failure message
+
+    Then 4th unit in the approval trace at txn-groups path "0" should add to stack "uint64:2", pop from stack by 1, write to "none" scratch slot by "none".
+    Then 31th unit in the approval trace at txn-groups path "0" should add to stack "", pop from stack by 1, write to "1" scratch slot by "uint64:18446744073709551615".
