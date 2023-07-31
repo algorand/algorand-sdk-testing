@@ -199,5 +199,5 @@ Feature: Simulating transactions
     * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     Then I allow exec trace options "stack,scratch" on that simulate request.
-    Then I simulate the current transaction group with the composer
+    Then I simulate the transaction group with the simulate request.
     And the simulation should succeed without any failure message
