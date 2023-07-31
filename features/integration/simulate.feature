@@ -191,8 +191,8 @@ Feature: Simulating transactions
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
 
-    Given I add the nonce "simulate-without-extra-budget"
-    When I create the Method object from method signature "maniulation(uint64)uint64"
+    Given I add the nonce "simulate-with-exec-trace-stack-scratch"
+    When I create the Method object from method signature "manipulation(uint64)uint64"
     * I create a new method arguments array.
     * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
