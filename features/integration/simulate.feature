@@ -190,3 +190,12 @@ Feature: Simulating transactions
     And I sign and submit the transaction, saving the txid. If there is an error it is "".
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
+
+    Given I add the nonce "simulate-without-extra-budget"
+    When I create the Method object from method signature "maniulation(uint64)uint64"
+    * I create a new method arguments array.
+    * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+
+    Then I allow exec trace options "stack,scratch" on that simulate request.
+    Then I simulate the current transaction group with the composer
+    And the simulation should succeed without any failure message
