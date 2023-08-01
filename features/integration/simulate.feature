@@ -202,5 +202,6 @@ Feature: Simulating transactions
     Then I simulate the transaction group with the simulate request.
     And the simulation should succeed without any failure message
 
-    Then 4th unit in the "approval" trace at txn-groups path "0" should add to stack "uint64:1", pop from stack by 2, write to "none" scratch slot by "none".
-    Then 31th unit in the "approval" trace at txn-groups path "0" should add to stack "", pop from stack by 1, write to "1" scratch slot by "uint64:18446744073709551615".
+    Then 4th unit in the "approval" trace at txn-groups path "0" should add value "uint64:1" to stack, pop 2 values from stack, write value "" to scratch slot "".
+    Then 29th unit in the "approval" trace at txn-groups path "0" should add value "bytes:MSE=,bytes:NSE=" to stack, pop 0 values from stack, write value "" to scratch slot "".
+    Then 31th unit in the "approval" trace at txn-groups path "0" should add value "" to stack, pop 1 values from stack, write value "uint64:18446744073709551615" to scratch slot "1".
