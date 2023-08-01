@@ -4,7 +4,7 @@ Feature: Simulating transactions
     And a kmd client
     And wallet information
     And suggested transaction parameters from the algod v2 client
-    And I create a new transient account and fund it with 10000000 microalgos.
+    And I create a new transient account and fund it with 1000000 microalgos.
     And I make a transaction signer for the transient account.
 
   @simulate
