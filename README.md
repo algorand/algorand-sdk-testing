@@ -63,23 +63,26 @@ These reside in the [unit features directory](features/unit)
 
 These reside in the [integration features directory](features/integration)
 
-| tag                    | description                                                                            |
-| ---------------------- | -------------------------------------------------------------------------------------- |
-| @abi                   | Test the Application Binary Interface (ABI) with atomic txn composition and execution. |
-| @algod                 | General tests against algod REST endpoints.                                            |
-| @applications.boxes    | Test application boxes and box references functionality.                               |
-| @applications.verified | Submit all types of application transactions and verify account state.                 |
-| @assets                | Submit all types of asset transactions.                                                |
-| @auction               | Encode and decode bids for an auction.                                                 |
-| @c2c                   | Test Contract to Contract invocations and ingestion.                                   |
-| @compile               | Test the algod compile endpoint.                                                       |
-| @compile.sourcemap     | Test that the algod compile endpoint returns a valid Source Map.                       |
-| @dryrun                | Test the algod dryrun endpoint.                                                        |
-| @dryrun.testing        | Test the testing harness that relies on dryrun endpoint. Python only.                  |
-| @kmd                   | Test the kmd REST endpoints.                                                           |
-| @rekey_v1              | Test rekeying transactions.                                                            |
-| @send                  | Test the ability to submit transactions to algod.                                      |
-| @simulate              | Test the ability to simulate transactions with algod.                                  |
+| tag                                         | description                                                                                                            |
+| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| @abi                                        | Test the Application Binary Interface (ABI) with atomic txn composition and execution.                                 |
+| @algod                                      | General tests against algod REST endpoints.                                                                            |
+| @applications.boxes                         | Test application boxes and box references functionality.                                                               |
+| @applications.verified                      | Submit all types of application transactions and verify account state.                                                 |
+| @assets                                     | Submit all types of asset transactions.                                                                                |
+| @auction                                    | Encode and decode bids for an auction.                                                                                 |
+| @c2c                                        | Test Contract to Contract invocations and ingestion.                                                                   |
+| @compile                                    | Test the algod compile endpoint.                                                                                       |
+| @compile.sourcemap                          | Test that the algod compile endpoint returns a valid Source Map.                                                       |
+| @dryrun                                     | Test the algod dryrun endpoint.                                                                                        |
+| @dryrun.testing                             | Test the testing harness that relies on dryrun endpoint. Python only.                                                  |
+| @kmd                                        | Test the kmd REST endpoints.                                                                                           |
+| @rekey_v1                                   | Test rekeying transactions.                                                                                            |
+| @send                                       | Test the ability to submit transactions to algod.                                                                      |
+| @simulate                                   | Test the ability to simulate transactions with algod.                                                                  |
+| @simulate.lift\_log\_limits                 | Test the ability to simulate transactions with lifted log limit through algod.                                         |
+| @simulate.extra\_opcode\_budget             | Test the ability to simulate transactions by specifying extra opcode budget through algod.                             |
+| @simulate.exec\_trace\_with\_stack\_scratch | Test the ability to simulate transactions with execution trace containing stack and scratch slot change through algod. |
 
 ### Test Implementation Status
 
