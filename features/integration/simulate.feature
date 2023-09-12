@@ -207,23 +207,28 @@ Feature: Simulating transactions
     Then 31th unit in the "approval" trace at txn-groups path "0" should add value "" to stack, pop 1 values from stack, write value "uint64:18446744073709551615" to scratch slot "1".
 
   @simulate.exec_trace_with_state_change_and_hash
-  Scenario: Simulate app with response containing state changes and hash of executed byte code
-  Given a new AtomicTransactionComposer
-    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/state-changes.teal", clear-program "programs/eight.teal", global-bytes 1, global-ints 1, local-bytes 1, local-ints 1, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
+  Scenario Outline: Simulate app with response containing state changes and hash of executed byte code
+    Given a new AtomicTransactionComposer
+    When I build an application transaction with the transient account, the current application, suggested params, operation "create-and-optin", approval-program "programs/state-changes.teal", clear-program "programs/eight.teal", global-bytes 1, global-ints 1, local-bytes 1, local-ints 1, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
     And I sign and submit the transaction, saving the txid. If there is an error it is "".
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
 
     Given I add the nonce "simulate-with-exec-trace-state-changes"
     When I make a new simulate request.
-    When I create the Method object from method signature "global()void"
-    * I create a new method arguments array.
-    * I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    When I create the Method object from method signature "<method>"
+    And I create a new method arguments array.
+    And I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
 
     Then I allow exec trace options "state" on that simulate request.
-    Then I simulate the transaction group with the simulate request.
+    And I simulate the transaction group with the simulate request.
     And the simulation should succeed without any failure message
 
     Then "approval" hash at txn-groups path "0" should be "4NiVKyKI3huK1nHi/etuy5rbgnP1ODRaN77WF2swNNY=".
-    Then 13th unit in the "approval" trace at txn-groups path "0" should write to "global" state "global-int-key" with new value "uint64:3735928559".
-    Then 16th unit in the "approval" trace at txn-groups path "0" should write to "global" state "global-bytes-key" with new value "bytes:d2VsdCBhbSBkcmFodA==".
+    And <index1>th unit in the "approval" trace at txn-groups path "0" should write to "<state>" state "<key1>" with new value "<value1>".
+    And <index2>th unit in the "approval" trace at txn-groups path "0" should write to "<state>" state "<key2>" with new value "<value2>".
+
+    Examples:
+      | method       | state  | index1 | key1           | value1            | index2 | key2             | value2                     |
+      | global()void | global | 13     | global-int-key | uint64:3735928559 | 16     | global-bytes-key | bytes:d2VsdCBhbSBkcmFodA== |
+      | local()void  | local  | 14     | local-int-key  | uint64:3405689018 | 18     | local-bytes-key  | bytes:eHFjTA==             |
