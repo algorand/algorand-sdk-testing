@@ -213,22 +213,23 @@ Feature: Simulating transactions
     And I sign and submit the transaction, saving the txid. If there is an error it is "".
     And I wait for the transaction to be confirmed.
     Given I remember the new application ID.
+    And I fund the current application's address with 1000000 microalgos.
 
-    Given I add the nonce "simulate-with-exec-trace-state-changes"
     When I make a new simulate request.
     When I create the Method object from method signature "<method>"
     And I create a new method arguments array.
-    And I add a nonced method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments, boxes "0,str:box-key-1,0,str:box-key-2".
 
     Then I allow exec trace options "state" on that simulate request.
     And I simulate the transaction group with the simulate request.
     And the simulation should succeed without any failure message
 
-    Then "approval" hash at txn-groups path "0" should be "4NiVKyKI3huK1nHi/etuy5rbgnP1ODRaN77WF2swNNY=".
+    Then "approval" hash at txn-groups path "0" should be "elIoqp1XgWrLCBLPmaZlDsKE3sEMZBY1dlxOvBXPtak=".
     And <index1>th unit in the "approval" trace at txn-groups path "0" should write to "<state>" state "<key1>" with new value "<value1>".
     And <index2>th unit in the "approval" trace at txn-groups path "0" should write to "<state>" state "<key2>" with new value "<value2>".
 
     Examples:
-      | method       | state  | index1 | key1           | value1            | index2 | key2             | value2                     |
-      | global()void | global | 13     | global-int-key | uint64:3735928559 | 16     | global-bytes-key | bytes:d2VsdCBhbSBkcmFodA== |
-      | local()void  | local  | 14     | local-int-key  | uint64:3405689018 | 18     | local-bytes-key  | bytes:eHFjTA==             |
+      | method       | state  | index1 | key1           | value1                 | index2 | key2             | value2                     |
+      | global()void | global | 14     | global-int-key | uint64:3735928559      | 17     | global-bytes-key | bytes:d2VsdCBhbSBkcmFodA== |
+      | local()void  | local  | 15     | local-int-key  | uint64:3405689018      | 19     | local-bytes-key  | bytes:eHFjTA==             |
+      | box()void    | box    | 14     | box-key-1      | bytes:Ym94LXZhbHVlLTE= | 17     | box-key-2        | bytes:                     |

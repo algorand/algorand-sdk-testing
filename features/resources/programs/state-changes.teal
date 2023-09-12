@@ -9,8 +9,9 @@ bnz end // Always allow optin
 
 method "local()void"
 method "global()void"
+method "box()void"
 txn ApplicationArgs 0
-match local global
+match local global box
 err // Unknown command
 
 local:
@@ -32,6 +33,14 @@ global:
   byte "welt am draht"
   app_global_put
   b end
+
+box:
+  byte "box-key-1"
+  byte "box-value-1"
+  box_put
+  byte "box-key-2"
+  byte ""
+  box_put
 
 end:
   int 1
