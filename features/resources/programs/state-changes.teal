@@ -1,0 +1,46 @@
+#pragma version 8
+txn ApplicationID
+bz end // Do nothing during create
+
+txn OnCompletion
+int OptIn
+==
+bnz end // Always allow optin
+
+method "local()void"
+method "global()void"
+method "box()void"
+txn ApplicationArgs 0
+match local global box
+err // Unknown command
+
+local:
+  txn Sender
+  byte "local-int-key"
+  int 0xcafeb0ba
+  app_local_put
+  int 0
+  byte "local-bytes-key"
+  byte "xqcL"
+  app_local_put
+  b end
+
+global:
+  byte "global-int-key"
+  int 0xdeadbeef
+  app_global_put
+  byte "global-bytes-key"
+  byte "welt am draht"
+  app_global_put
+  b end
+
+box:
+  byte "box-key-1"
+  byte "box-value-1"
+  box_put
+  byte "box-key-2"
+  byte ""
+  box_put
+
+end:
+  int 1

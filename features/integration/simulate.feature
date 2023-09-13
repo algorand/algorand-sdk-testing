@@ -205,3 +205,50 @@ Feature: Simulating transactions
     Then 4th unit in the "approval" trace at txn-groups path "0" should add value "uint64:1" to stack, pop 2 values from stack, write value "" to scratch slot "".
     Then 29th unit in the "approval" trace at txn-groups path "0" should add value "bytes:MSE=,bytes:NSE=" to stack, pop 0 values from stack, write value "" to scratch slot "".
     Then 31th unit in the "approval" trace at txn-groups path "0" should add value "" to stack, pop 1 values from stack, write value "uint64:18446744073709551615" to scratch slot "1".
+
+  @simulate.exec_trace_with_state_change_and_hash
+  Scenario Outline: Simulate app with response containing state changes and hash of executed byte code
+    Given a new AtomicTransactionComposer
+    When I build an application transaction with the transient account, the current application, suggested params, operation "create-and-optin", approval-program "programs/state-changes.teal", clear-program "programs/eight.teal", global-bytes 1, global-ints 1, local-bytes 1, local-ints 1, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
+    And I sign and submit the transaction, saving the txid. If there is an error it is "".
+    And I wait for the transaction to be confirmed.
+    Given I remember the new application ID.
+    And I fund the current application's address with 1000000 microalgos.
+
+    When I make a new simulate request.
+    And I create the Method object from method signature "<method>"
+    And I create a new method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments, boxes "0,str:box-key-1,0,str:box-key-2".
+
+    Then I allow exec trace options "state" on that simulate request.
+    And I simulate the transaction group with the simulate request.
+    And the simulation should succeed without any failure message
+
+    Then the current application initial "<state>" state should be empty.
+
+    Then "approval" hash at txn-groups path "0" should be "elIoqp1XgWrLCBLPmaZlDsKE3sEMZBY1dlxOvBXPtak=".
+    And <index1>th unit in the "approval" trace at txn-groups path "0" should write to "<state>" state "<key1>" with new value "<value1>".
+    And <index2>th unit in the "approval" trace at txn-groups path "0" should write to "<state>" state "<key2>" with new value "<value2>".
+
+    # Submit the group to the actual network
+    Then I execute the current transaction group with the composer.
+    
+    # Simulate again so we can check the reported initial state.
+    Given a new AtomicTransactionComposer
+    When I make a new simulate request.
+    And I create the Method object from method signature "<method>"
+    And I create a new method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments, boxes "0,str:box-key-1,0,str:box-key-2,0,str:nonce-box".
+    
+    Then I allow exec trace options "state" on that simulate request.
+    And I simulate the transaction group with the simulate request.
+    And the simulation should succeed without any failure message
+
+    Then the current application initial "<state>" state should contain "<key1>" with value "<value1>".
+    And the current application initial "<state>" state should contain "<key2>" with value "<value2>".
+
+    Examples:
+      | method       | state  | index1 | key1           | value1                 | index2 | key2             | value2                     |
+      | global()void | global | 14     | global-int-key | uint64:3735928559      | 17     | global-bytes-key | bytes:d2VsdCBhbSBkcmFodA== |
+      | local()void  | local  | 15     | local-int-key  | uint64:3405689018      | 19     | local-bytes-key  | bytes:eHFjTA==             |
+      | box()void    | box    | 14     | box-key-1      | bytes:Ym94LXZhbHVlLTE= | 17     | box-key-2        | bytes:                     |
