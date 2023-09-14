@@ -214,3 +214,11 @@ Feature: Algod REST API v2 Paths
       | path                                     | round |
       | /v2/deltas/25/txn/group?format=msgpack   | 25    |
       | /v2/deltas/1001/txn/group?format=msgpack | 1001  |
+
+  @unit.blocktxids
+  Scenario Outline: Get Block TXIDs
+    When we make a GetBlockTxids call against block number <round>
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                      | round    |
+      | /v2/blocks/29608182/txids | 29608182 |

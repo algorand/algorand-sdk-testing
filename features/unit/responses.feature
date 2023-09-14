@@ -242,3 +242,8 @@ Feature: REST Client Responses
       | statedelta_testnet_26091001.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
       | statedelta_testnet_26091002.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
       | statedelta_testnet_26091003.json | v2algodclient_responsejsons | 200    | algod  | GetLedgerStateDelta |
+
+    @unit.responses.txid.json
+    Examples:
+      | jsonfile                         | response-folder             | status | client | endpoint      |
+      | txids_betanet_29608182.json      | v2algodclient_responsejsons | 200    | algod  | GetBlockTxids |
