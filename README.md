@@ -22,6 +22,7 @@ These reside in the [unit features directory](features/unit)
 | @unit.abijson                        | ABI types and method encoding/decoding unit tests.                                                          |
 | @unit.algod                          | Algod REST API unit tests.                                                                                  |
 | @unit.blocksummary                   | Algod / Indexer block REST API unit tests.                                                                  |
+| @unit.blocktxids                     | Algod block transactions REST API unit tests.                                                               |
 | @unit.applications                   | Application endpoints added to Algod and Indexer.                                                           |
 | @unit.applications.boxes             | Box endpoints for Algod and Indexer.                                                                        |
 | @unit.atomic_transaction_composer    | ABI / atomic transaction construction unit tests.                                                           |
@@ -46,6 +47,7 @@ These reside in the [unit features directory](features/unit)
 | @unit.responses.sync                 | REST Client updates for algod sync round endpoints.                                                         |
 | @unit.responses.timestamp            | REST Client updates for timestamp offset endpoint.                                                          |
 | @unit.responses.txngroupdeltas       | REST Client updates for algod transaction group deltas endpoints.                                           |
+| @unit.responses.txnid.json           | REST Client updates for algod block txids endpoint.                                                         |
 | @unit.sourcemap                      | Test the sourcemap endpoint.                                                                                |
 | @unit.statedelta                     | Test the statedelta endpoint.                                                                               |
 | @unit.stateproof.responses           | REST Client Response Tests for State Proof.                                                                 |
