@@ -1,0 +1,13 @@
+#pragma version 9
+// While this is not legal, for the sake of this example the program imports the "assertEquals" definition from lib.teal
+
+txn ApplicationID; int 0; ==; bz create
+
+main:
+    int 3; int 4; +;
+    int 6; int 1; +;
+    assertEquals
+
+create:
+    int 1
+    return
