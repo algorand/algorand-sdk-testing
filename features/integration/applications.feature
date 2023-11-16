@@ -177,14 +177,14 @@ Feature: Applications
       And I sign and submit the transaction, saving the txid. If there is an error it is "".
       And I wait for the transaction to be confirmed.
       Then according to "algod", the contents of the box with name "str:foo bar" in the current application should be "YmF6IHF1eAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
-      And I sleep for 30000 milliseconds for indexer to digest things down.
+      And I sleep for 5000 milliseconds for indexer to digest things down.
       And according to "indexer", the contents of the box with name "str:foo bar" in the current application should be "YmF6IHF1eAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
 
       # full check confirmed by both algod and indexer
       Then according to "algod", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:bmFtZQ==:MTE0NTE0".
       And according to "algod", with 6 being the parameter that limits results, the current application should have 4 boxes.
 
-      And I sleep for 30000 milliseconds for indexer to digest things down.
+      And I sleep for 5000 milliseconds for indexer to digest things down.
       And according to "indexer", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:bmFtZQ==:MTE0NTE0".
       And according to "indexer", with 2 being the parameter that limits results, the current application should have 2 boxes.
       And according to "indexer", with 6 being the parameter that limits results, the current application should have 4 boxes.
@@ -196,7 +196,7 @@ Feature: Applications
       And according to "algod", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:MTE0NTE0".
 
       # move to indexer testing steps
-      And I sleep for 30000 milliseconds for indexer to digest things down.
+      And I sleep for 5000 milliseconds for indexer to digest things down.
       And according to "indexer", the contents of the box with name "str:name" in the current application should be "". If there is an error it is "no application boxes found".
       And according to "indexer", the contents of the box with name "b64:APj/IA==" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
       And according to "indexer", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:MTE0NTE0".
