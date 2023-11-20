@@ -48,7 +48,8 @@ These reside in the [unit features directory](features/unit)
 | @unit.responses.timestamp            | REST Client updates for timestamp offset endpoint.                                                          |
 | @unit.responses.txngroupdeltas       | REST Client updates for algod transaction group deltas endpoints.                                           |
 | @unit.responses.txid.json            | REST Client updates for algod block txids endpoint.                                                         |
-| @unit.sourcemap                      | Test the sourcemap endpoint.                                                                                |
+| @unit.sourcemap                      | Test sourcemap decoding. (Legacy behavior, use @unit.sourcemapv2 instead)                                   |
+| @unit.sourcemapv2                    | Test sourcemap decoding against the latest standards.                                                       |
 | @unit.statedelta                     | Test the statedelta endpoint.                                                                               |
 | @unit.stateproof.responses           | REST Client Response Tests for State Proof.                                                                 |
 | @unit.stateproof.responses.msgp      | REST Client MessagePack Tests for State Proofs.                                                             |
