@@ -196,7 +196,7 @@ Feature: Applications
       And according to "algod", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:MTE0NTE0".
 
       # move to indexer testing steps
-      And I sleep for 3000 milliseconds for indexer to digest things down.
+      And I sleep for 10000 milliseconds for indexer to digest things down.
       And according to "indexer", the contents of the box with name "str:name" in the current application should be "". If there is an error it is "no application boxes found".
       And according to "indexer", the contents of the box with name "b64:APj/IA==" in the current application should be "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA". If there is an error it is "".
       And according to "indexer", the current application should have the following boxes "Zm9vIGJhcg==:APj/IA==:MTE0NTE0".
