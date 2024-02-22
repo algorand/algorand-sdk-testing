@@ -1,266 +1,124 @@
 {
-  "account" : {
-    "address" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-    "amount" : 9092282,
-    "amount-without-pending-rewards" : 8706706,
-    "assets" : [ {
-      "amount" : 10000000000,
-      "asset-id" : 979,
-      "creator" : "",
-      "is-frozen" : false
-    }, {
-      "amount" : 10000000000,
-      "asset-id" : 979,
-      "creator" : "",
-      "is-frozen" : false
-    }, {
-      "amount" : 10000000000,
-      "asset-id" : 979,
-      "creator" : "",
-      "is-frozen" : false
-    }, {
-      "amount" : 10000000000,
-      "asset-id" : 979,
-      "creator" : "",
-      "is-frozen" : false
-    }, {
-      "amount" : 10000000000,
-      "asset-id" : 980,
-      "creator" : "",
-      "is-frozen" : false
-    }, {
-      "amount" : 10000000000,
-      "asset-id" : 980,
-      "creator" : "",
-      "is-frozen" : false
-    }, {
-      "amount" : 10000000000,
-      "asset-id" : 980,
-      "creator" : "",
-      "is-frozen" : false
-    }, {
-      "amount" : 10000000000,
-      "asset-id" : 980,
-      "creator" : "",
-      "is-frozen" : false
-    }, {
-      "amount" : 9999900000,
-      "asset-id" : 1125,
-      "creator" : "",
-      "is-frozen" : false
-    }, {
-      "amount" : 9999900000,
-      "asset-id" : 1125,
-      "creator" : "",
-      "is-frozen" : false
-    }, {
-      "amount" : 9999900000,
-      "asset-id" : 1125,
-      "creator" : "",
-      "is-frozen" : false
-    }, {
-      "amount" : 9999900000,
-      "asset-id" : 1125,
-      "creator" : "",
-      "is-frozen" : false
-    } ],
-    "created-assets" : [ {
-      "index" : 979,
-      "params" : {
-        "clawback" : "",
-        "creator" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "decimals" : 0,
-        "default-frozen" : false,
-        "freeze" : "",
-        "manager" : "",
-        "metadata-hash" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-        "name" : "algorandAsset",
-        "reserve" : "",
-        "total" : 10000000000,
-        "unit-name" : "ass",
-        "url" : "url"
+  "account": {
+    "address": "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
+    "amount": 9895682,
+    "amount-without-pending-rewards": 8706706,
+    "assets": [
+      {
+        "amount": 10000000000,
+        "asset-id": 979,
+        "deleted": false,
+        "is-frozen": false,
+        "opted-in-at-round": 3323025
+      },
+      {
+        "amount": 10000000000,
+        "asset-id": 980,
+        "deleted": false,
+        "is-frozen": false,
+        "opted-in-at-round": 3323081
+      },
+      {
+        "amount": 0,
+        "asset-id": 1056,
+        "deleted": false,
+        "is-frozen": false,
+        "opted-in-at-round": 3323657
+      },
+      {
+        "amount": 9999900000,
+        "asset-id": 1125,
+        "deleted": false,
+        "is-frozen": false,
+        "opted-in-at-round": 3323805
       }
-    }, {
-      "index" : 980,
-      "params" : {
-        "clawback" : "",
-        "creator" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "decimals" : 0,
-        "default-frozen" : false,
-        "freeze" : "",
-        "manager" : "",
-        "metadata-hash" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-        "name" : "algorandAsset2",
-        "reserve" : "",
-        "total" : 10000000000,
-        "unit-name" : "ass2",
-        "url" : "url"
+    ],
+    "created-assets": [
+      {
+        "created-at-round": 3323081,
+        "deleted": false,
+        "index": 980,
+        "params": {
+          "creator": "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
+          "decimals": 0,
+          "default-frozen": false,
+          "name": "algorandAsset2",
+          "name-b64": "YWxnb3JhbmRBc3NldDI=",
+          "total": 10000000000,
+          "unit-name": "ass2",
+          "unit-name-b64": "YXNzMg==",
+          "url": "url",
+          "url-b64": "dXJs"
+        }
+      },
+      {
+        "created-at-round": 3323657,
+        "deleted": false,
+        "index": 1056,
+        "params": {
+          "clawback": "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
+          "creator": "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
+          "decimals": 0,
+          "default-frozen": false,
+          "freeze": "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
+          "manager": "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
+          "reserve": "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
+          "total": 0
+        }
+      },
+      {
+        "created-at-round": 3323805,
+        "deleted": false,
+        "index": 1125,
+        "params": {
+          "clawback": "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
+          "creator": "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
+          "decimals": 0,
+          "default-frozen": false,
+          "freeze": "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
+          "manager": "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
+          "name": "algorandAsset3",
+          "name-b64": "YWxnb3JhbmRBc3NldDM=",
+          "reserve": "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
+          "total": 10000000000,
+          "unit-name": "ass3",
+          "unit-name-b64": "YXNzMw==",
+          "url": "url",
+          "url-b64": "dXJs"
+        }
+      },
+      {
+        "created-at-round": 3323025,
+        "deleted": false,
+        "index": 979,
+        "params": {
+          "creator": "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
+          "decimals": 0,
+          "default-frozen": false,
+          "name": "algorandAsset",
+          "name-b64": "YWxnb3JhbmRBc3NldA==",
+          "total": 10000000000,
+          "unit-name": "ass",
+          "unit-name-b64": "YXNz",
+          "url": "url",
+          "url-b64": "dXJs"
+        }
       }
-    }, {
-      "index" : 1056,
-      "params" : {
-        "clawback" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "creator" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "decimals" : 0,
-        "default-frozen" : false,
-        "freeze" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "manager" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "metadata-hash" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-        "name" : "",
-        "reserve" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "total" : 0,
-        "unit-name" : "",
-        "url" : ""
-      }
-    }, {
-      "index" : 1125,
-      "params" : {
-        "clawback" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "creator" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "decimals" : 0,
-        "default-frozen" : false,
-        "freeze" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "manager" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "metadata-hash" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-        "name" : "algorandAsset3",
-        "reserve" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "total" : 10000000000,
-        "unit-name" : "ass3",
-        "url" : "url"
-      }
-    }, {
-      "index" : 979,
-      "params" : {
-        "clawback" : "",
-        "creator" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "decimals" : 0,
-        "default-frozen" : false,
-        "freeze" : "",
-        "manager" : "",
-        "metadata-hash" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-        "name" : "algorandAsset",
-        "reserve" : "",
-        "total" : 10000000000,
-        "unit-name" : "ass",
-        "url" : "url"
-      }
-    }, {
-      "index" : 980,
-      "params" : {
-        "clawback" : "",
-        "creator" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "decimals" : 0,
-        "default-frozen" : false,
-        "freeze" : "",
-        "manager" : "",
-        "metadata-hash" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-        "name" : "algorandAsset2",
-        "reserve" : "",
-        "total" : 10000000000,
-        "unit-name" : "ass2",
-        "url" : "url"
-      }
-    }, {
-      "index" : 1056,
-      "params" : {
-        "clawback" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "creator" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "decimals" : 0,
-        "default-frozen" : false,
-        "freeze" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "manager" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "metadata-hash" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-        "name" : "",
-        "reserve" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "total" : 0,
-        "unit-name" : "",
-        "url" : ""
-      }
-    }, {
-      "index" : 1125,
-      "params" : {
-        "clawback" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "creator" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "decimals" : 0,
-        "default-frozen" : false,
-        "freeze" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "manager" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "metadata-hash" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-        "name" : "algorandAsset3",
-        "reserve" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "total" : 10000000000,
-        "unit-name" : "ass3",
-        "url" : "url"
-      }
-    }, {
-      "index" : 979,
-      "params" : {
-        "clawback" : "",
-        "creator" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "decimals" : 0,
-        "default-frozen" : false,
-        "freeze" : "",
-        "manager" : "",
-        "metadata-hash" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-        "name" : "algorandAsset",
-        "reserve" : "",
-        "total" : 10000000000,
-        "unit-name" : "ass",
-        "url" : "url"
-      }
-    }, {
-      "index" : 980,
-      "params" : {
-        "clawback" : "",
-        "creator" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "decimals" : 0,
-        "default-frozen" : false,
-        "freeze" : "",
-        "manager" : "",
-        "metadata-hash" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-        "name" : "algorandAsset2",
-        "reserve" : "",
-        "total" : 10000000000,
-        "unit-name" : "ass2",
-        "url" : "url"
-      }
-    }, {
-      "index" : 1056,
-      "params" : {
-        "clawback" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "creator" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "decimals" : 0,
-        "default-frozen" : false,
-        "freeze" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "manager" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "metadata-hash" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-        "name" : "",
-        "reserve" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "total" : 0,
-        "unit-name" : "",
-        "url" : ""
-      }
-    }, {
-      "index" : 1125,
-      "params" : {
-        "clawback" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "creator" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "decimals" : 0,
-        "default-frozen" : false,
-        "freeze" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "manager" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "metadata-hash" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-        "name" : "algorandAsset3",
-        "reserve" : "BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE",
-        "total" : 10000000000,
-        "unit-name" : "ass3",
-        "url" : "url"
-      }
-    } ],
-    "pending-rewards" : 385576,
-    "rewards" : 0,
-    "round" : 6222956,
-    "status" : ""
+    ],
+    "created-at-round": 3319709,
+    "deleted": false,
+    "pending-rewards": 1188976,
+    "reward-base": 69666,
+    "rewards": 1192673,
+    "round": 36343009,
+    "sig-type": "sig",
+    "status": "Offline",
+    "total-apps-opted-in": 0,
+    "total-assets-opted-in": 4,
+    "total-box-bytes": 0,
+    "total-boxes": 0,
+    "total-created-apps": 0,
+    "total-created-assets": 4
   },
-  "current-round" : 6222956
+  "current-round": 36343009
 }

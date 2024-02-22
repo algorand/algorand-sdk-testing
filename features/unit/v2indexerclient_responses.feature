@@ -8,8 +8,8 @@ Feature: Indexer Client v2 Responses
     Then expect error string to contain "<err>"
     And the parsed LookupAssetBalances response should be valid on round <roundNum>, and contain an array of len <len> and element number <idx> should have address "<address>" amount <amount> and frozen state "<frozenState>"
     Examples:
-      | jsonfiles                  | directory                     | err | roundNum | len | idx | address                                                    | amount  | frozenState |
-      | lookupAssetBalances_0.json | v2indexerclient_responsejsons |     | 6222956  | 22  | 1   | B2IID7Y54ROV2H6OXO3IXVSF64CBJ2GLEKCHYE2ZZE63RBMROO5FARL4IQ | 4900000 | false       |
+      | jsonfiles                  | directory                     | err | roundNum | len | idx | address                                                    | amount   | frozenState |
+      | lookupAssetBalances_0.json | v2indexerclient_responsejsons |     | 36349126 | 10  | 1   | AACCDJTFPQR5UQJZ337NFR56CC44T776EWBGVJG5NY2QFTQWBWTALTEN4A | 53776560 | false       |
 
   @unit.indexer
   Scenario Outline: LookupAssetTransactions response
@@ -19,7 +19,7 @@ Feature: Indexer Client v2 Responses
     And the parsed LookupAssetTransactions response should be valid on round <roundNum>, and contain an array of len <len> and element number <idx> should have sender "<sender>"
     Examples:
       | jsonfiles                      | directory                     | err | roundNum | len | idx | sender                                                     |
-      | lookupAssetTransactions_0.json | v2indexerclient_responsejsons |     | 6222957  | 39  | 0   | ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY |
+      | lookupAssetTransactions_0.json | v2indexerclient_responsejsons |     | 36348919 | 10  | 0   | ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY |
 
   @unit.indexer
   Scenario Outline: LookupAccountTransactions response
@@ -28,8 +28,8 @@ Feature: Indexer Client v2 Responses
     Then expect error string to contain "<err>"
     And the parsed LookupAccountTransactions response should be valid on round <roundNum>, and contain an array of len <len> and element number <idx> should have sender "<sender>"
     Examples:
-      | jsonfiles                        | directory                     | err | roundNum | len | idx | sender |
-      | lookupAccountTransactions_0.json | v2indexerclient_responsejsons |     | 6222956  | 0   | 0   | N/A    |
+      | jsonfiles                        | directory                     | err | roundNum | len | idx | sender                                                     |
+      | lookupAccountTransactions_0.json | v2indexerclient_responsejsons |     | 36343223 | 23  | 1   | J2WKA2P622UGRYLEQJPTM3K62RLWOKWSIY32A7HUNJ7HKQCRJANHNBFLBQ |
 
   @unit.indexer
   Scenario Outline: LookupBlock response
@@ -69,7 +69,7 @@ Feature: Indexer Client v2 Responses
     And the parsed SearchAccounts response should be valid on round <roundNum> and the array should be of len <len> and the element at index <index> should have address "<address>"
     Examples:
       | jsonfiles                | directory                     | err | roundNum | len | index | address                                                    |
-      | searchForAccounts_0.json | v2indexerclient_responsejsons |     | 6222956  | 1   | 0     | BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE |
+      | searchForAccounts_0.json | v2indexerclient_responsejsons |     | 36343009 | 1   | 0     | BZNKXBBXIVZ7GFAXHNC26ERYUD5TQWWV327IU2N4SKG6WLNFGMMCRQEFZE |
 
   @unit.indexer
   Scenario Outline: SearchForTransactions response
@@ -79,7 +79,7 @@ Feature: Indexer Client v2 Responses
     And the parsed SearchForTransactions response should be valid on round <roundNum> and the array should be of len <len> and the element at index <index> should have sender "<sender>"
     Examples:
       | jsonfiles                    | directory                     | err | roundNum | len | index | sender                                                     |
-      | searchForTransactions_0.json | v2indexerclient_responsejsons |     | 6222958  | 10  | 0     | I3345FUQQ2GRBHFZQPLYQQX5HJMMRZMABCHRLWV6RCJYC6OO4MOLEUBEGU |
+      | searchForTransactions_0.json | v2indexerclient_responsejsons |     | 36347979 | 5   | 0     | VH3PQNIZ5LID2JFYZDGAUWIYVANWYWTRXG7HNXVXBAE4ME2LT5QPQA2ACY |
 
   @unit.indexer
   Scenario Outline: SearchForAssets response
@@ -89,7 +89,7 @@ Feature: Indexer Client v2 Responses
     And the parsed SearchForAssets response should be valid on round <roundNum> and the array should be of len <len> and the element at index <index> should have asset index <assetIndex>
     Examples:
       | jsonfiles              | directory                     | err | roundNum | len | index | assetIndex |
-      | searchForAssets_0.json | v2indexerclient_responsejsons |     | 6222956  | 3   | 0     | 5          |
+      | searchForAssets_0.json | v2indexerclient_responsejsons |     | 36347835 | 4   | 0     | 979        |
 
   @unit.indexer.rekey
   Scenario Outline: SearchForAccounts response, authorizing address
@@ -107,4 +107,4 @@ Feature: Indexer Client v2 Responses
     And the parsed SearchForTransactions response should be valid on round <roundNum> and the array should be of len <len> and the element at index <index> should have rekey-to "<rekeyto>"
     Examples:
       | jsonfiles                    | directory                     | err | roundNum | len | index | rekeyto                                                    |
-      | searchForTransactions_1.json | v2indexerclient_responsejsons |     | 6222958  | 10  | 1     | PRIC4GIQTJFD2SZIEQGAYBV2KUJ7YQR3EV3KSOZKLOHPDNRDXXVWMHDAQA |
+      | searchForTransactions_1.json | v2indexerclient_responsejsons |     | 36347979 | 10  | 1     | PRIC4GIQTJFD2SZIEQGAYBV2KUJ7YQR3EV3KSOZKLOHPDNRDXXVWMHDAQA |

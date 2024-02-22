@@ -1,19 +1,24 @@
 {
-  "asset" : {
-    "index" : 163650,
-    "params" : {
-      "clawback" : "ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY",
-      "creator" : "ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY",
-      "decimals" : 6,
-      "default-frozen" : false,
-      "freeze" : "ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY",
-      "manager" : "ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY",
-      "name" : "Asia Reserve Currency Coin",
-      "reserve" : "ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY",
-      "total" : 88616203378510000,
-      "unit-name" : "ARCC",
-      "url" : "https://arcc.io"
+  "asset": {
+    "created-at-round": 4162690,
+    "deleted": false,
+    "index": 163650,
+    "params": {
+      "clawback": "ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY",
+      "creator": "ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY",
+      "decimals": 6,
+      "default-frozen": false,
+      "freeze": "ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY",
+      "manager": "ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY",
+      "name": "Asia Reserve Currency Coin",
+      "name-b64": "QXNpYSBSZXNlcnZlIEN1cnJlbmN5IENvaW4=",
+      "reserve": "ARCC3TMGVD7KXY7GYTE7U5XXUJXFRD2SXLAWRV57XJ6HWHRR37GNGNMPSY",
+      "total": 88616203378510000,
+      "unit-name": "ARCC",
+      "unit-name-b64": "QVJDQw==",
+      "url": "https://arcc.io",
+      "url-b64": "aHR0cHM6Ly9hcmNjLmlv"
     }
   },
-  "current-round" : 6222956
+  "current-round": 36345022
 }
