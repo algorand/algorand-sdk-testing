@@ -195,6 +195,12 @@ Feature: REST Client Responses
       | jsonfile                                | response-folder               | status | client  | endpoint    | 
       | indexer_v2_lookupBlock_header_only.json | v2indexerclient_responsejsons | 200    | indexer | lookupBlock |
 
+    @unit.responses.minbalance
+    Examples:
+      | jsonfile                                | response-folder               | status | client  | endpoint           |
+      | algod_account_minbalance.json           | v2algodclient_responsejsons   | 200    | algod   | AccountInformation |
+      | lookupAccountByID_minbalance.json       | v2indexerclient_responsejsons | 200    | indexer | lookupAccountByID  |
+
     @unit.responses.statedelta
     Examples:
       | jsonfile                           | response-folder     | status | client | endpoint            | 
