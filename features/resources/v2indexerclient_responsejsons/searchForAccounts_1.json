@@ -261,7 +261,8 @@
     "pending-rewards" : 385576,
     "rewards" : 0,
     "round" : 6222956,
-    "status" : ""
+    "status" : "",
+    "min-balance" : 1000
   } ],
   "current-round" : 6222956
 }
