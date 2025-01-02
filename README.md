@@ -54,6 +54,9 @@ These reside in the [unit features directory](features/unit)
 | @unit.stateproof.responses           | REST Client Response Tests for State Proof.                                                                 |
 | @unit.stateproof.responses.msgp      | REST Client MessagePack Tests for State Proofs.                                                             |
 | @unit.stateproof.paths               | REST Client Unit Tests for State Proof feature.                                                             |
+| @unit.heartbeat.responses           | REST Client Response Tests for a block with heartbeat txn.                                                                 |
+| @unit.heartbeat.responses.msgp      | REST Client MessagePack Tests for block with heartbeat txn.                                                             |
+
 | @unit.sync                           | Test the follower sync endpoints.                                                                           |
 | @unit.tealsign                       | Test TEAL signature utilities.                                                                              |
 | @unit.timestamp                      | Test the devmode timestamp offset endpoint.                                                                 |
