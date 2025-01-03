@@ -109,14 +109,3 @@ Feature: Algod REST API v2 Responses
     Examples:
       | jsonfiles           | directory                   | key     | action |
       | dryrunResponse.json | v2algodclient_responsejsons | Creator | 2      |
-
-  @unit.algod
-  Scenario Outline: Get Block with heartbeat response
-    Given mock http responses in "<jsonfiles>" loaded from "<directory>"
-    When we make any Get Block call
-    Then expect error string to contain "<err>"
-    And the parsed Get Block response should have heartbeat addr "<hbaddr>"
-    Examples:
-      | jsonfiles                          | directory | err | hbaddr                                                     |
-      | v2_algod_GetBlock_heartbeat.json   | heartbeat |     | ZOPWIFBHKDPKQZA4ROC74GEDCZTTKKSDSN5HR3RDT2DTYP4EXGIG3QX7NE |
-      | v2_algod_GetBlock_heartbeat.base64 | heartbeat |     | ZOPWIFBHKDPKQZA4ROC74GEDCZTTKKSDSN5HR3RDT2DTYP4EXGIG3QX7NE |

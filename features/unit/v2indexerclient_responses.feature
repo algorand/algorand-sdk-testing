@@ -108,3 +108,13 @@ Feature: Indexer Client v2 Responses
     Examples:
       | jsonfiles                    | directory                     | err | roundNum | len | index | rekeyto                                                    |
       | searchForTransactions_1.json | v2indexerclient_responsejsons |     | 6222958  | 10  | 1     | PRIC4GIQTJFD2SZIEQGAYBV2KUJ7YQR3EV3KSOZKLOHPDNRDXXVWMHDAQA |
+
+  @unit.indexer.heartbeat
+  Scenario Outline: SearchForTransactions response, heartbeat
+    Given mock http responses in "<jsonfiles>" loaded from "<directory>"
+    When we make any SearchForTransactions call
+    Then expect error string to contain "<err>"
+    And the parsed SearchForTransactions response should be valid on round <roundNum> and the array should be of len <len> and the element at index <index> should have hbaddress "<hbaddress>"
+    Examples:
+      | jsonfiles                    | directory                     | err | roundNum | len | index | hbaddress                                                  |
+      | searchForTransactions_2.json | v2indexerclient_responsejsons |     | 100      | 1   | 0     | RI53WA75QRYLN64GMKBALH35SDFPEJDW5QMTYU3H2F36DBVAHPDN3FF4YA |
