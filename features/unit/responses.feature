@@ -180,16 +180,6 @@ Feature: REST Client Responses
       | v2_algod_GetBlock_header.base64         | stateproof      | 200    | algod   | GetBlock |
       | v2_algod_GetBlock_transaction.base64    | stateproof      | 200    | algod   | GetBlock |
 
-    @unit.heartbeat.responses
-    Examples:
-      | jsonfile                                | response-folder | status | client  | endpoint |
-      | v2_algod_GetBlock_heartbeat.json        | heartbeat       | 200    | algod   | GetBlock |
-
-    @unit.heartbeat.responses.msgp
-    Examples:
-      | jsonfile                                | response-folder | status | client  | endpoint |
-      | v2_algod_GetBlock_heartbeat.base64      | heartbeat       | 200    | algod   | GetBlock |
-
     @unit.responses.participationupdates
     Examples:
       | jsonfile                                        | response-folder     | status | client  | endpoint    |

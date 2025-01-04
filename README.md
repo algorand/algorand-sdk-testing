@@ -21,6 +21,8 @@ These reside in the [unit features directory](features/unit)
 | @unit                                | Select all unit tests.                                                                                      |
 | @unit.abijson                        | ABI types and method encoding/decoding unit tests.                                                          |
 | @unit.algod                          | Algod REST API unit tests.                                                                                  |
+| @unit.algod.heartbeat                | Algod REST API Response Tests for a block with heartbeat txn.                                                                 |
+| @unit.algod.heartbeat.msgp           | Algod REST API MessagePack Tests for block with heartbeat txn.                                                             |
 | @unit.blocksummary                   | Algod / Indexer block REST API unit tests.                                                                  |
 | @unit.blocktxids                     | Algod block transactions REST API unit tests.                                                               |
 | @unit.applications                   | Application endpoints added to Algod and Indexer.                                                           |
@@ -55,8 +57,6 @@ These reside in the [unit features directory](features/unit)
 | @unit.stateproof.responses           | REST Client Response Tests for State Proof.                                                                 |
 | @unit.stateproof.responses.msgp      | REST Client MessagePack Tests for State Proofs.                                                             |
 | @unit.stateproof.paths               | REST Client Unit Tests for State Proof feature.                                                             |
-| @unit.heartbeat.responses           | REST Client Response Tests for a block with heartbeat txn.                                                                 |
-| @unit.heartbeat.responses.msgp      | REST Client MessagePack Tests for block with heartbeat txn.                                                             |
 
 | @unit.sync                           | Test the follower sync endpoints.                                                                           |
 | @unit.tealsign                       | Test TEAL signature utilities.                                                                              |
