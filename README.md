@@ -21,6 +21,8 @@ These reside in the [unit features directory](features/unit)
 | @unit                                | Select all unit tests.                                                                                      |
 | @unit.abijson                        | ABI types and method encoding/decoding unit tests.                                                          |
 | @unit.algod                          | Algod REST API unit tests.                                                                                  |
+| @unit.algod.heartbeat                | Algod REST API Response Tests for a block with heartbeat txn.                                                                 |
+| @unit.algod.heartbeat.msgp           | Algod REST API MessagePack Tests for block with heartbeat txn.                                                             |
 | @unit.blocksummary                   | Algod / Indexer block REST API unit tests.                                                                  |
 | @unit.blocktxids                     | Algod block transactions REST API unit tests.                                                               |
 | @unit.applications                   | Application endpoints added to Algod and Indexer.                                                           |
@@ -34,6 +36,7 @@ These reside in the [unit features directory](features/unit)
 | @unit.indexer                        | Indexer REST API unit tests.                                                                                |
 | @unit.indexer.logs                   | Application logs endpoints added to Indexer.                                                                |
 | @unit.indexer.rekey                  | Rekey endpoints added to Algod and Indexer.                                                                 |
+| @unit.indexer.heartbeat              | Heartbeat transaction parsing Indexer.                                                                 |
 | @unit.offline                        | Offline account operations.                                                                                 |
 | @unit.ready                          | Test the ready endpoint.                                                                                    |
 | @unit.rekey                          | Rekey Transaction golden tests.                                                                             |
@@ -54,6 +57,7 @@ These reside in the [unit features directory](features/unit)
 | @unit.stateproof.responses           | REST Client Response Tests for State Proof.                                                                 |
 | @unit.stateproof.responses.msgp      | REST Client MessagePack Tests for State Proofs.                                                             |
 | @unit.stateproof.paths               | REST Client Unit Tests for State Proof feature.                                                             |
+
 | @unit.sync                           | Test the follower sync endpoints.                                                                           |
 | @unit.tealsign                       | Test TEAL signature utilities.                                                                              |
 | @unit.timestamp                      | Test the devmode timestamp offset endpoint.                                                                 |
