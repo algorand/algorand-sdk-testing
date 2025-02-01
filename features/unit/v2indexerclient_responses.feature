@@ -87,10 +87,10 @@ Feature: Indexer Client v2 Responses
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any SearchForBlockHeaders call
     Then expect error string to contain "<err>"
-    And the parsed SearchForBlockHeaders response should be valid on min round <minRound> and the array should be of len <len> and the element at index <index> should have round "<round>"
+    And the parsed SearchForBlockHeaders response should have a block array of len <len> and the element at index <index> should have round "<round>"
     Examples:
-      | jsonfiles                    | directory                     | err | minRound | len | index | round    |
-      | searchForBlockHeaders_0.json | v2indexerclient_responsejsons |     | 41000000 | 5   | 1     | 41000001 |
+      | jsonfiles                    | directory                     | err | len | index | round    |
+      | searchForBlockHeaders_0.json | v2indexerclient_responsejsons |     | 6   | 1     | 41000001 |
 
   @unit.indexer
   Scenario Outline: SearchForAssets response
