@@ -81,6 +81,17 @@ Feature: Indexer Client v2 Responses
       | jsonfiles                    | directory                     | err | roundNum | len | index | sender                                                     |
       | searchForTransactions_0.json | v2indexerclient_responsejsons |     | 6222958  | 10  | 0     | I3345FUQQ2GRBHFZQPLYQQX5HJMMRZMABCHRLWV6RCJYC6OO4MOLEUBEGU |
 
+
+  @unit.indexer.blockheaders
+  Scenario Outline: SearchForBlockHeaders response
+    Given mock http responses in "<jsonfiles>" loaded from "<directory>"
+    When we make any SearchForBlockHeaders call
+    Then expect error string to contain "<err>"
+    And the parsed SearchForBlockHeaders response should have a block array of len <len> and the element at index <index> should have round "<round>"
+    Examples:
+      | jsonfiles                    | directory                     | err | len | index | round    |
+      | searchForBlockHeaders_0.json | v2indexerclient_responsejsons |     | 6   | 1     | 41000001 |
+
   @unit.indexer
   Scenario Outline: SearchForAssets response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"

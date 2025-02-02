@@ -36,7 +36,8 @@ These reside in the [unit features directory](features/unit)
 | @unit.indexer                        | Indexer REST API unit tests.                                                                                |
 | @unit.indexer.logs                   | Application logs endpoints added to Indexer.                                                                |
 | @unit.indexer.rekey                  | Rekey endpoints added to Algod and Indexer.                                                                 |
-| @unit.indexer.heartbeat              | Heartbeat transaction parsing Indexer.                                                                 |
+| @unit.indexer.heartbeat              | Heartbeat transaction parsing Indexer.                                                                      |
+| @unit.indexer.blockheaders           | Block header endpoints, Indexer API.                                                                        |
 | @unit.offline                        | Offline account operations.                                                                                 |
 | @unit.ready                          | Test the ready endpoint.                                                                                    |
 | @unit.rekey                          | Rekey Transaction golden tests.                                                                             |

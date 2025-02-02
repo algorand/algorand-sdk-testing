@@ -1,0 +1,222 @@
+{
+  "blocks": [
+    {
+      "genesis-hash": "wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8=",
+      "genesis-id": "mainnet-v1.0",
+      "previous-block-hash": "+PuXWPw8hyENPRBO3iwTilBxtiZVqO2SPkMwfbXv8nU=",
+      "rewards": {
+        "fee-sink": "Y76M3MSY6DKBRHBL7C3NNDXGS5IIMQVQVUAB6MP4XEMMGVF2QWNPL226CA",
+        "rewards-calculation-round": 41500000,
+        "rewards-level": 218288,
+        "rewards-pool": "737777777777777777777777777777777777777777777777777UFEJ2CI",
+        "rewards-rate": 0,
+        "rewards-residue": 6886250026
+      },
+      "round": 41000000,
+      "seed": "rP2oC+lMQtwlp6DW3y2pCp3bwGmMAsRcQ26zohfwMnA=",
+      "state-proof-tracking": [
+        {
+          "next-round": 40999936,
+          "online-total-weight": 0,
+          "type": 0
+        }
+      ],
+      "timestamp": 1721940726,
+      "transactions-root": "U1iKpsBmG6PzSgUoR1v6eQtusGSX13yq4c/BnrBp9hA=",
+      "transactions-root-sha256": "iHVgHCfAGkXbnF/sSzHSnfOJ8VP8COifBT/I2LQ1DkI=",
+      "txn-counter": 2193468832,
+      "upgrade-state": {
+        "current-protocol": "https://github.com/algorandfoundation/specs/tree/925a46433742afb0b51bb939354bd907fa88bf95",
+        "next-protocol-approvals": 0,
+        "next-protocol-switch-on": 0,
+        "next-protocol-vote-before": 0
+      },
+      "upgrade-vote": {
+        "upgrade-approve": false,
+        "upgrade-delay": 0
+      }
+    },
+    {
+      "genesis-hash": "wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8=",
+      "genesis-id": "mainnet-v1.0",
+      "previous-block-hash": "g67hYbOkk1KIxwiwDXbED9xf4w0kIfbVB4vjA7Cicr8=",
+      "rewards": {
+        "fee-sink": "Y76M3MSY6DKBRHBL7C3NNDXGS5IIMQVQVUAB6MP4XEMMGVF2QWNPL226CA",
+        "rewards-calculation-round": 41500000,
+        "rewards-level": 218288,
+        "rewards-pool": "737777777777777777777777777777777777777777777777777UFEJ2CI",
+        "rewards-rate": 0,
+        "rewards-residue": 6886250026
+      },
+      "round": 41000001,
+      "seed": "YcxC6Sq7Va6shHOnkjF1hSjbmXQB2kFfAajZIKV2Nko=",
+      "state-proof-tracking": [
+        {
+          "next-round": 40999936,
+          "online-total-weight": 0,
+          "type": 0
+        }
+      ],
+      "timestamp": 1721940729,
+      "transactions-root": "ClTCaLToBSHE8WWyubADDNiqTmoXa0/8TcsTHLMXG0w=",
+      "transactions-root-sha256": "3ImlXMv2OtEHiRWxWlWIaESd+Bay5zu0ZWHWu0uAafc=",
+      "txn-counter": 2193468851,
+      "upgrade-state": {
+        "current-protocol": "https://github.com/algorandfoundation/specs/tree/925a46433742afb0b51bb939354bd907fa88bf95",
+        "next-protocol-approvals": 0,
+        "next-protocol-switch-on": 0,
+        "next-protocol-vote-before": 0
+      },
+      "upgrade-vote": {
+        "upgrade-approve": false,
+        "upgrade-delay": 0
+      }
+    },
+    {
+      "genesis-hash": "wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8=",
+      "genesis-id": "mainnet-v1.0",
+      "previous-block-hash": "s+JrruyQRrRo9xrrKTU6sPAozN62noDkb8HsYN8FV2U=",
+      "rewards": {
+        "fee-sink": "Y76M3MSY6DKBRHBL7C3NNDXGS5IIMQVQVUAB6MP4XEMMGVF2QWNPL226CA",
+        "rewards-calculation-round": 41500000,
+        "rewards-level": 218288,
+        "rewards-pool": "737777777777777777777777777777777777777777777777777UFEJ2CI",
+        "rewards-rate": 0,
+        "rewards-residue": 6886250026
+      },
+      "round": 41000002,
+      "seed": "3d2nNKNzV8w/6QGtV6BiEFsxRkqWSWyJqu1Os0vo3HQ=",
+      "state-proof-tracking": [
+        {
+          "next-round": 40999936,
+          "online-total-weight": 0,
+          "type": 0
+        }
+      ],
+      "timestamp": 1721940731,
+      "transactions-root": "1yA1YHJS1MJxArfyzM0YOnkurrG+3QGKznHnyuJhLqk=",
+      "transactions-root-sha256": "QIrR8JUKjfS/J2DOI+PRt++VoDKWma5HHSXjx6Io9Cg=",
+      "txn-counter": 2193468874,
+      "upgrade-state": {
+        "current-protocol": "https://github.com/algorandfoundation/specs/tree/925a46433742afb0b51bb939354bd907fa88bf95",
+        "next-protocol-approvals": 0,
+        "next-protocol-switch-on": 0,
+        "next-protocol-vote-before": 0
+      },
+      "upgrade-vote": {
+        "upgrade-approve": false,
+        "upgrade-delay": 0
+      }
+    },
+    {
+      "genesis-hash": "wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8=",
+      "genesis-id": "mainnet-v1.0",
+      "previous-block-hash": "MJfuTUlWFSRMJAazAZoVV+rivwcQdBmv2/kfnPoMd9U=",
+      "rewards": {
+        "fee-sink": "Y76M3MSY6DKBRHBL7C3NNDXGS5IIMQVQVUAB6MP4XEMMGVF2QWNPL226CA",
+        "rewards-calculation-round": 41500000,
+        "rewards-level": 218288,
+        "rewards-pool": "737777777777777777777777777777777777777777777777777UFEJ2CI",
+        "rewards-rate": 0,
+        "rewards-residue": 6886250026
+      },
+      "round": 41000003,
+      "seed": "UBaFLjHg0YgY1d7G2O/0MHKS60na4rR8c6gvHXcMvA4=",
+      "state-proof-tracking": [
+        {
+          "next-round": 40999936,
+          "online-total-weight": 0,
+          "type": 0
+        }
+      ],
+      "timestamp": 1721940734,
+      "transactions-root": "apk8q3x6ObM6PMV+WqEoJh83JNAOUNN8MjsHquOKDJ8=",
+      "transactions-root-sha256": "WaYDKO+C56aqD4CZ7oZ/6WFi5KEkucyqawSzBwEoVis=",
+      "txn-counter": 2193468901,
+      "upgrade-state": {
+        "current-protocol": "https://github.com/algorandfoundation/specs/tree/925a46433742afb0b51bb939354bd907fa88bf95",
+        "next-protocol-approvals": 0,
+        "next-protocol-switch-on": 0,
+        "next-protocol-vote-before": 0
+      },
+      "upgrade-vote": {
+        "upgrade-approve": false,
+        "upgrade-delay": 0
+      }
+    },
+    {
+      "genesis-hash": "wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8=",
+      "genesis-id": "mainnet-v1.0",
+      "previous-block-hash": "dYFdJ3axVZcS+44pl8aqfu2xhE5Yx7GcS8g41L7tMH8=",
+      "rewards": {
+        "fee-sink": "Y76M3MSY6DKBRHBL7C3NNDXGS5IIMQVQVUAB6MP4XEMMGVF2QWNPL226CA",
+        "rewards-calculation-round": 41500000,
+        "rewards-level": 218288,
+        "rewards-pool": "737777777777777777777777777777777777777777777777777UFEJ2CI",
+        "rewards-rate": 0,
+        "rewards-residue": 6886250026
+      },
+      "round": 41000004,
+      "seed": "L1toW6XWPMB541VNJwlm0HRw3Fr0CpIdDfD2okGXa5g=",
+      "state-proof-tracking": [
+        {
+          "next-round": 40999936,
+          "online-total-weight": 0,
+          "type": 0
+        }
+      ],
+      "timestamp": 1721940737,
+      "transactions-root": "LuZlbJus7Ou/pB0Xljuf4rFuN8MK4KFHC5MKmBgN18k=",
+      "transactions-root-sha256": "zAIuNCVJLCUuqOdmjP1b+n4t8gtDxy5kYLK+LZQIrE8=",
+      "txn-counter": 2193468925,
+      "upgrade-state": {
+        "current-protocol": "https://github.com/algorandfoundation/specs/tree/925a46433742afb0b51bb939354bd907fa88bf95",
+        "next-protocol-approvals": 0,
+        "next-protocol-switch-on": 0,
+        "next-protocol-vote-before": 0
+      },
+      "upgrade-vote": {
+        "upgrade-approve": false,
+        "upgrade-delay": 0
+      }
+    },
+    {
+      "genesis-hash": "wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8=",
+      "genesis-id": "mainnet-v1.0",
+      "previous-block-hash": "T1k7r08GezdIkNilYM7VBWZgiC8YvbGk3GfZqrA+bLo=",
+      "rewards": {
+        "fee-sink": "Y76M3MSY6DKBRHBL7C3NNDXGS5IIMQVQVUAB6MP4XEMMGVF2QWNPL226CA",
+        "rewards-calculation-round": 41500000,
+        "rewards-level": 218288,
+        "rewards-pool": "737777777777777777777777777777777777777777777777777UFEJ2CI",
+        "rewards-rate": 0,
+        "rewards-residue": 6886250026
+      },
+      "round": 41000005,
+      "seed": "JUzINGNlBq45Gtoqb4qT04hoyfUVEtlZ3IarGe7zzKs=",
+      "state-proof-tracking": [
+        {
+          "next-round": 40999936,
+          "online-total-weight": 0,
+          "type": 0
+        }
+      ],
+      "timestamp": 1721940740,
+      "transactions-root": "2SXa/9l3jVZhBvlU8y7JxbZiG5D/sU5OOzG1HyqedEM=",
+      "transactions-root-sha256": "mCzqb9seEjeBmpneYNb98Inzs5xWpTC1uihB5x7rtgw=",
+      "txn-counter": 2193468975,
+      "upgrade-state": {
+        "current-protocol": "https://github.com/algorandfoundation/specs/tree/925a46433742afb0b51bb939354bd907fa88bf95",
+        "next-protocol-approvals": 0,
+        "next-protocol-switch-on": 0,
+        "next-protocol-vote-before": 0
+      },
+      "upgrade-vote": {
+        "upgrade-approve": false,
+        "upgrade-delay": 0
+      }
+    }
+  ],
+  "current-round": 46777881,
+  "next-token": "RZxxAgAAAAA="
+}
