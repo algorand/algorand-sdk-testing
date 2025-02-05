@@ -54,6 +54,14 @@ Feature: Algod REST API v2 Paths
       | path                        | round | format  |
       | /v2/blocks/0?format=msgpack | 0     | msgpack |
 
+  @unit.algod
+  Scenario Outline: GetBlockHeader
+    When we make a GetBlockHeader call for round <round> with format "<format>"
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                                 | round | format   |
+      | /v2/blocks/123/header?format=msgpack | 123   | msgpack  |
+
   @unit.applications
   Scenario Outline: GetAssetByID
     When we make a GetAssetByID call for assetID <asset-id>
