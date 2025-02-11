@@ -47,7 +47,7 @@ Feature: Algod REST API v2 Paths
       | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q |
 
   @unit.algod
-  Scenario Outline: Get Block, header-only
+  Scenario Outline: Get Block
     When we make a Get Block call against block number <round> with format "<format>"
     Then expect the path used to be "<path>"
     Examples:
@@ -55,12 +55,12 @@ Feature: Algod REST API v2 Paths
       | /v2/blocks/0?format=msgpack | 0     | msgpack |
 
   @unit.algod
-  Scenario Outline: Get Block
-    When we make a Get Block call for round <round> with format "<format>"
+  Scenario Outline: Get Block, header-only
+    When we make a Get Block call for round <round> with format "<format>" and header-only "<header-only>"
     Then expect the path used to be "<path>"
     Examples:
-      | path                                 | round | format   |
-      | /v2/blocks/123/header?format=msgpack | 123   | msgpack  |
+      | path                                           | round | format   |
+      | /v2/blocks/123?format=msgpack&header-only=true | 123   | msgpack  |
 
   @unit.applications
   Scenario Outline: GetAssetByID
