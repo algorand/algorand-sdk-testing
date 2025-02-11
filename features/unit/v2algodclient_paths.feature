@@ -59,8 +59,9 @@ Feature: Algod REST API v2 Paths
     When we make a Get Block call for round <round> with format "<format>" and header-only "<header-only>"
     Then expect the path used to be "<path>"
     Examples:
-      | path                                           | round | format   |
-      | /v2/blocks/123?format=msgpack&header-only=true | 123   | msgpack  |
+      | path                                            | round | format   | header-only  |
+      | /v2/blocks/123?format=msgpack&header-only=true  | 123   | msgpack  | true         |
+      | /v2/blocks/123?format=msgpack&header-only=false | 123   | msgpack  | false        |
 
   @unit.applications
   Scenario Outline: GetAssetByID
