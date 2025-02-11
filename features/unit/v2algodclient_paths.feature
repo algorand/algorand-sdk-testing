@@ -47,7 +47,7 @@ Feature: Algod REST API v2 Paths
       | /v2/accounts/7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q | 7ZUECA7HFLZTXENRV24SHLU4AVPUTMTTDUFUBNBD64C73F3UHRTHAIOF6Q |
 
   @unit.algod
-  Scenario Outline: Get Block
+  Scenario Outline: Get Block, header-only
     When we make a Get Block call against block number <round> with format "<format>"
     Then expect the path used to be "<path>"
     Examples:
@@ -55,8 +55,8 @@ Feature: Algod REST API v2 Paths
       | /v2/blocks/0?format=msgpack | 0     | msgpack |
 
   @unit.algod
-  Scenario Outline: GetBlockHeader
-    When we make a GetBlockHeader call for round <round> with format "<format>"
+  Scenario Outline: Get Block
+    When we make a Get Block call for round <round> with format "<format>"
     Then expect the path used to be "<path>"
     Examples:
       | path                                 | round | format   |
