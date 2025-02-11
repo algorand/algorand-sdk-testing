@@ -108,6 +108,16 @@ Feature: Algod REST API v2 Responses
       | v2_algod_GetBlock_heartbeat.base64 | v2algodclient_responsejsons |     | ZOPWIFBHKDPKQZA4ROC74GEDCZTTKKSDSN5HR3RDT2DTYP4EXGIG3QX7NE |
 
   @unit.algod
+  Scenario Outline: Get Block response, header-only
+    Given mock http responses in "<jsonfiles>" loaded from "<directory>"
+    When we make any Get Block call
+    Then expect error string to contain "<err>"
+    And the parsed Get Block response should have rewards pool "<pool>" and no certificate or payset
+    Examples:
+      | jsonfiles           | directory                   | err | pool                                         |
+      | block-header.base64 | v2algodclient_responsejsons |     | /v////////////////////////////////////////8= |
+
+  @unit.algod
   Scenario Outline: Suggested Transaction Parameters response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
     When we make any Suggested Transaction Parameters call
