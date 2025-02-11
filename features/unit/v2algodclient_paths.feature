@@ -61,7 +61,7 @@ Feature: Algod REST API v2 Paths
     Examples:
       | path                                            | round | format   | header-only  |
       | /v2/blocks/123?format=msgpack&header-only=true  | 123   | msgpack  | true         |
-      | /v2/blocks/123?format=msgpack&header-only=false | 123   | msgpack  | false        |
+      | /v2/blocks/123?format=msgpack                   | 123   | msgpack  | false        |
 
   @unit.applications
   Scenario Outline: GetAssetByID
