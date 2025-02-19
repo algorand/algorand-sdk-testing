@@ -265,10 +265,14 @@ Feature: Simulating transactions
 
     # Call with simulate
     Given a new AtomicTransactionComposer
-    When I add a app call with the transient account, the current application, suggested params, on complete "noop", current transaction signer
-    And I make a new simulate request
+    # The program doesn't actually route method selectors, but we want to reuse these steps
+    And I create the Method object from method signature "call()void"
+    And I create a new method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments
+    And I make a new simulate request.
+    And I set unnamed-resources "true"
     And I set populate-resources "true"
-    And I simulate the transaction group with the transaction request
+    And I simulate the current transaction group with the composer
     Then the simulation should succeed without any failure message
     And the response should include populated-resource-arrays for the transaction
     And the response should include extra-resource-arrays for the group
