@@ -268,8 +268,8 @@ Feature: Simulating transactions
     # The program doesn't actually route method selectors, but we want to reuse these steps
     And I create the Method object from method signature "call()void"
     And I create a new method arguments array.
-    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments
-    And I make a new simulate request.
+    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    When I make a new simulate request.
     And I set unnamed-resources "true"
     And I set populate-resources "true"
     And I simulate the current transaction group with the composer
