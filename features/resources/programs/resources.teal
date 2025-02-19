@@ -1,0 +1,40 @@
+#pragma version 11
+txn ApplicationID
+bz end
+
+// Box ref
+byte "boxkey1"; int 1; box_create
+
+// Account ref
+addr DEPBW254YVMYJ5CCVQGGD4OFGRRCORIUPGC42QP6SQRE3UQNH23HI23OJA; acct_params_get AcctBalance
+
+// Asset ref 
+int 100000; asset_params_get AssetTotal
+
+// App ref
+int 200000; app_params_get AppCreator
+
+// Fill rest of this txn's references
+byte "boxkey2"; int 1; box_create
+byte "boxkey3"; int 1; box_create
+byte "boxkey4"; int 1; box_create
+byte "boxkey5"; int 1; box_create
+
+// Now for extra resources
+
+// Box ref
+byte "boxkey6"; int 1; box_create
+
+// Account ref
+addr FLKXHGZRZUQEFB34LFGHKIEBE6YJ7VEFLQ5VH7PCANR4PFPGJKCIBMGDXM; acct_params_get AcctBalance
+
+// Asset ref
+int 300000; asset_params_get AssetTotal
+
+// App ref
+int 400000; app_params_get AppCreator
+
+end:
+  int 1
+  return
+
