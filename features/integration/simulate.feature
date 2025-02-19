@@ -272,8 +272,8 @@ Feature: Simulating transactions
     When I make a new simulate request.
     And I set unnamed-resources "true"
     And I set populate-resources "true"
-    And I simulate the current transaction group with the composer
-    Then the simulation should succeed without any failure message
+    Then I simulate the current transaction group with the composer
+    And the simulation should succeed without any failure message
     And the response should include populated-resource-arrays for the transaction
     And the response should include extra-resource-arrays for the group
 
