@@ -1,0 +1,170 @@
+[
+  {
+    "name": "nil program works, but results in invalid version text",
+    "route": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "",
+    "params": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "response": "{\"result\":\"// invalid version\\n\"}\n",
+    "responseB64": "eyJyZXN1bHQiOiIvLyBpbnZhbGlkIHZlcnNpb25cbiJ9Cg==",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "// invalid version\n"
+    }
+  },
+  {
+    "name": "Test a valid program across all assembler versions (v1)",
+    "route": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "ASABASI=",
+    "params": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "response": "{\"result\":\"#pragma version 1\\nintcblock 1\\nintc_0 // 1\\n\"}\n",
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gMVxuaW50Y2Jsb2NrIDFcbmludGNfMCAvLyAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 1\nintcblock 1\nintc_0 // 1\n"
+    }
+  },
+  {
+    "name": "Test a valid program across all assembler versions (v2)",
+    "route": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "AiABASI=",
+    "params": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "response": "{\"result\":\"#pragma version 2\\nintcblock 1\\nintc_0 // 1\\n\"}\n",
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gMlxuaW50Y2Jsb2NrIDFcbmludGNfMCAvLyAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 2\nintcblock 1\nintc_0 // 1\n"
+    }
+  },
+  {
+    "name": "Test a valid program across all assembler versions (v3)",
+    "route": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "AyABASI=",
+    "params": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "response": "{\"result\":\"#pragma version 3\\nintcblock 1\\nintc_0 // 1\\n\"}\n",
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gM1xuaW50Y2Jsb2NrIDFcbmludGNfMCAvLyAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 3\nintcblock 1\nintc_0 // 1\n"
+    }
+  },
+  {
+    "name": "Test a valid program across all assembler versions (v4)",
+    "route": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "BIEB",
+    "params": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "response": "{\"result\":\"#pragma version 4\\npushint 1\\n\"}\n",
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gNFxucHVzaGludCAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 4\npushint 1\n"
+    }
+  },
+  {
+    "name": "Test a valid program across all assembler versions (v5)",
+    "route": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "BYEB",
+    "params": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "response": "{\"result\":\"#pragma version 5\\npushint 1\\n\"}\n",
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gNVxucHVzaGludCAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 5\npushint 1\n"
+    }
+  },
+  {
+    "name": "Test a valid program across all assembler versions (v6)",
+    "route": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "BoEB",
+    "params": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "response": "{\"result\":\"#pragma version 6\\npushint 1\\n\"}\n",
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gNlxucHVzaGludCAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 6\npushint 1\n"
+    }
+  },
+  {
+    "name": "Test a valid program across all assembler versions (v7)",
+    "route": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "B4EB",
+    "params": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "response": "{\"result\":\"#pragma version 7\\npushint 1\\n\"}\n",
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gN1xucHVzaGludCAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 7\npushint 1\n"
+    }
+  },
+  {
+    "name": "Test a valid program across all assembler versions (v8)",
+    "route": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "CIEB",
+    "params": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 200,
+    "responseErr": null,
+    "response": "{\"result\":\"#pragma version 8\\npushint 1\\n\"}\n",
+    "responseB64": "eyJyZXN1bHQiOiIjcHJhZ21hIHZlcnNpb24gOFxucHVzaGludCAxXG4ifQo=",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": {
+      "result": "#pragma version 8\npushint 1\n"
+    }
+  },
+  {
+    "name": "Test bad program",
+    "route": "/v2/teal/disassemble",
+    "method": "POST",
+    "bytesB64": "AWM=",
+    "params": null,
+    "encodeJSON": false,
+    "decodeJSON": true,
+    "statusCode": 400,
+    "responseErr": "HTTP 400 Bad Request: {\"message\":\"invalid opcode 63 at pc=1\"}",
+    "response": "{\"message\":\"invalid opcode 63 at pc=1\"}\n",
+    "responseB64": "eyJtZXNzYWdlIjoiaW52YWxpZCBvcGNvZGUgNjMgYXQgcGM9MSJ9Cg==",
+    "parsedResponseGoType": "*generated.DisassembleResponse",
+    "parsedResponse": null
+  }
+]
