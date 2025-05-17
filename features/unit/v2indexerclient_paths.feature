@@ -97,6 +97,15 @@ Feature: Indexer Client v2 Paths
       | /v2/accounts?currency-greater-than=0&round=15                     | 0     | 15    | 0     | 0                   | 0                |
 
   @unit.indexer
+  Scenario Outline: SearchAccounts path with OnlineOnly
+    When we make a Search Accounts call with onlineOnly <onlineOnly>
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                           | onlineOnly |
+      | /v2/accounts?online-only=true  | true       |
+      | /v2/accounts?online-only=false | false      |
+
+  @unit.indexer
   Scenario Outline: SearchForTransactions path
     When we make a Search For Transactions call with account "<account>" NotePrefix "<notePrefixB64>" TxType "<txType>" SigType "<sigType>" txid "<txid>" round <round> minRound <minRound> maxRound <maxRound> limit <limit> beforeTime "<beforeTime>" afterTime "<afterTime>" currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> assetIndex <index> addressRole "<addressRole>" ExcluseCloseTo "<excludeCloseTo>"
     Then expect the path used to be "<path>"

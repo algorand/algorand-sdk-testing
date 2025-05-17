@@ -4,7 +4,7 @@
       "addr": "7777777777777777777777777777777777777777777777777774MSJUVU",
       "comment": "RewardsPool",
       "state": {
-        "algo": 125000000000000,
+        "algo": 100000,
         "onl": 2
       }
     },
@@ -17,38 +17,40 @@
       }
     },
     {
-      "addr": "LX6VRFCL4723LRO3VEX5XNOXHFXFQKATKDLDBT5HNT5DFDC3SQG4EI2LSI",
+      "addr": "ZROUWRELHY7S6FXPL23ZAKZP26IQGS57BU77H5D2QXHOZXBYUQRDKK3SHE",
       "comment": "Wallet1",
       "state": {
         "algo": 1000000000000000,
         "onl": 1,
-        "sel": "XGIljovdG8IjSQJRcvc/vi6UXXTIddUgjZACWZPW23M=",
-        "vote": "zccp6OB5EOh21WMV7A7iVg+CitiZeOao+VYbIkNdPgM=",
-        "voteKD": 10000,
-        "voteLst": 3000000
+        "sel": "cVkeYPxaTpiNv/+UqK02CdwBaiKEBlk0NPgGRZHStiA=",
+        "stprf": "bbd+At6LjySR9koII8WqjKd9bPXUbqdlzQDzcMedZJH+S9+72Odnp3gsFz3W32p25WglOTJ+YKqCgNJOurN3vQ==",
+        "vote": "gwp/uuR0MLU6JSzthTPAhVrv1CDZtmwhmJlXeqqChyQ=",
+        "voteKD": 100,
+        "voteLst": 300000
       }
     },
     {
-      "addr": "SKRRLS4D7YQ3SMC5KIZCMME2NRXW3DJMHAFKZM6YEZMIWIO36YVXZZSGMA",
+      "addr": "KKNXZSFUSUXWRL3O6QTVGB7DF3AEZEY2O3MC77LRN34P77DT26TDEV4RGY",
       "comment": "Wallet2",
       "state": {
         "algo": 4000000000000000,
         "onl": 1,
-        "sel": "OGz10aBiWUWYGKkeqsLbAfb99L75R3HXbiRMa5/7zVk=",
-        "vote": "6lVpwKsSYiXMIsCiYOIFfzwsijfXeEHE+FP8YTzgPMs=",
-        "voteKD": 10000,
-        "voteLst": 3000000
+        "sel": "jfp3Xg4YrCShn8UitZnLxe6Vz+XGjooc/MN88Hlkyrk=",
+        "stprf": "URn6ZMZnaVRmedrt1qAvvotDanJVFZjVyJ21uwlhdNUjdhXivXhiSClrkUnSQp1VqlgLhAGWcY2YWeAP666rPA==",
+        "vote": "FIwaicbZdDa07Nvh+YPsc+6s1X+U5ATHxz0FMyiH/t8=",
+        "voteKD": 100,
+        "voteLst": 300000
       }
     },
     {
-      "addr": "JTN5H3Y4O5KXP52NQULW5E2OZIJFF5LWEU2OKDJJRX75TX3CGOBJHNQIWI",
+      "addr": "PETZN4DITML45ZCQIORTG5PRKPQLWCFB2WD53IF2C6WKSNE5QOCQMNYGFQ",
       "comment": "Wallet3",
       "state": {
         "algo": 4000000000000000
       }
     },
     {
-      "addr": "3V5G32IKV4ZE7Q7VTWMLNBOWV4LU6AP6P2PYWL4GCH37VFKQXP227ZTSAQ",
+      "addr": "S7O4R6HXTW2OVW2L7TLBKFXH4UNQK3TQGKT7V555CMNIBS7TEK4FZWSD5I",
       "comment": "Wallet4",
       "state": {
         "algo": 1000000000000000
