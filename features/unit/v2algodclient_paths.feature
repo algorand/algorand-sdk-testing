@@ -99,11 +99,11 @@ Feature: Algod REST API v2 Paths
       | /v2/applications/1234/boxes                      | 1234           | 0   |             |             |        |
       | /v2/applications/1234/boxes?max=2                | 1234           | 2   |             |             |        |
       | /v2/applications/1234/boxes?prefix=int%3A1234    | 1234           | 0   | int:1234    |             |        |
-      | /v2/applications/1234/boxes?prefix=b64%3AA==     | 1234           | 0   | b64:A==     |             |        |
+      | /v2/applications/1234/boxes?prefix=b64%3AA%3D%3D | 1234           | 0   | b64:A==     |             |        |
       | /v2/applications/1234/boxes?prefix=str%3Ahello   | 1234           | 0   | str:hello   |             |        |
       | /v2/applications/1234/boxes?prefix=addr%3AXYZABC | 1234           | 0   | addr:XYZABC |             |        |
       | /v2/applications/1234/boxes?next=int%3A1234      | 1234           | 0   |             | int:1234    |        |
-      | /v2/applications/1234/boxes?next=b64%3AA==       | 1234           | 0   |             | b64:A==     |        |
+      | /v2/applications/1234/boxes?next=b64%3AA%3D%3D   | 1234           | 0   |             | b64:A==     |        |
       | /v2/applications/1234/boxes?next=str%3Ahello     | 1234           | 0   |             | str:hello   |        |
       | /v2/applications/1234/boxes?next=addr%3AXYZABC   | 1234           | 0   |             | addr:XYZABC |        |
       | /v2/applications/1234/boxes?values=true          | 1234           | 0   |             |             | true   |
