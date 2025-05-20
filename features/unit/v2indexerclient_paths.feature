@@ -103,7 +103,7 @@ Feature: Indexer Client v2 Paths
     Examples:
       | path                           | onlineOnly |
       | /v2/accounts?online-only=true  | true       |
-      | /v2/accounts?online-only=false | false      |
+      | /v2/accounts                   | false      |
 
   @unit.indexer
   Scenario Outline: SearchForTransactions path
