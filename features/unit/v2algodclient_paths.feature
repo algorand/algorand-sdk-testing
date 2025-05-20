@@ -95,18 +95,18 @@ Feature: Algod REST API v2 Paths
     When we make a GetApplicationBoxes call for applicationID <application-id> with max <max> prefix "<prefix>" next "<next>" values "<values>"
     Then expect the path used to be "<path>"
     Examples:
-      | path                                           | application-id | max | prefix      | next        | values |
-      | /v2/applications/1234/boxes                    | 1234           | 0   |             |             |        |
-      | /v2/applications/1234/boxes?max=2              | 1234           | 2   |             |             |        |
-      | /v2/applications/1234/boxes?prefix=int:1234    | 1234           | 0   | int:1234    |             |        |
-      | /v2/applications/1234/boxes?prefix=b64:A==     | 1234           | 0   | b64:A==     |             |        |
-      | /v2/applications/1234/boxes?prefix=str:hello   | 1234           | 0   | str:hello   |             |        |
-      | /v2/applications/1234/boxes?prefix=addr:XYZABC | 1234           | 0   | addr:XYZABC |             |        |
-      | /v2/applications/1234/boxes?next=int:1234      | 1234           | 0   |             | int:1234    |        |
-      | /v2/applications/1234/boxes?next=b64:A==       | 1234           | 0   |             | b64:A==     |        |
-      | /v2/applications/1234/boxes?next=str:hello     | 1234           | 0   |             | str:hello   |        |
-      | /v2/applications/1234/boxes?next=addr:XYZABC   | 1234           | 0   |             | addr:XYZABC |        |
-      | /v2/applications/1234/boxes?values=true        | 1234           | 0   |             |             | true   |
+      | path                                             | application-id | max | prefix      | next        | values |
+      | /v2/applications/1234/boxes                      | 1234           | 0   |             |             |        |
+      | /v2/applications/1234/boxes?max=2                | 1234           | 2   |             |             |        |
+      | /v2/applications/1234/boxes?prefix=int%3A1234    | 1234           | 0   | int:1234    |             |        |
+      | /v2/applications/1234/boxes?prefix=b64%3AA==     | 1234           | 0   | b64:A==     |             |        |
+      | /v2/applications/1234/boxes?prefix=str%3Ahello   | 1234           | 0   | str:hello   |             |        |
+      | /v2/applications/1234/boxes?prefix=addr%3AXYZABC | 1234           | 0   | addr:XYZABC |             |        |
+      | /v2/applications/1234/boxes?next=int%3A1234      | 1234           | 0   |             | int:1234    |        |
+      | /v2/applications/1234/boxes?next=b64%3AA==       | 1234           | 0   |             | b64:A==     |        |
+      | /v2/applications/1234/boxes?next=str%3Ahello     | 1234           | 0   |             | str:hello   |        |
+      | /v2/applications/1234/boxes?next=addr%3AXYZABC   | 1234           | 0   |             | addr:XYZABC |        |
+      | /v2/applications/1234/boxes?values=true          | 1234           | 0   |             |             | true   |
 
   @unit.algod.ledger_refactoring
   Scenario Outline: Account Information
