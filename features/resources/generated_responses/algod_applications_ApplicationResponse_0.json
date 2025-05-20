@@ -33,6 +33,7 @@
     "local-state-schema" : {
       "num-byte-slice" : 800044,
       "num-uint" : 412226
-    }
+    },
+    "version" : 1
   }
 }
