@@ -92,7 +92,7 @@ Feature: Algod REST API v2 Paths
 
   @unit.applications.boxes
   Scenario Outline: GetApplicationBoxes
-    When we make a GetApplicationBoxes call for applicationID <application-id> with max <max> prefix <prefix> next <next> values <values>
+    When we make a GetApplicationBoxes call for applicationID <application-id> with max <max> prefix "<prefix>" next "<next>" values "<values>"
     Then expect the path used to be "<path>"
     Examples:
       | path                                           | application-id | max | prefix      | next        | values |

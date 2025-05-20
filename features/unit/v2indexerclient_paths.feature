@@ -98,7 +98,7 @@ Feature: Indexer Client v2 Paths
 
   @unit.indexer
   Scenario Outline: SearchAccounts path with OnlineOnly
-    When we make a Search Accounts call with onlineOnly <onlineOnly>
+    When we make a Search Accounts call with onlineOnly "<onlineOnly>"
     Then expect the path used to be "<path>"
     Examples:
       | path                           | onlineOnly |
