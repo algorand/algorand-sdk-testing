@@ -185,11 +185,11 @@ Feature: Indexer Client v2 Paths
 
   @unit.indexer.rekey
   Scenario Outline: SearchForTransactions path for rekey
-    When we make a Search For Transactions call with account "<account>" NotePrefix "<notePrefixB64>" TxType "<txType>" SigType "<sigType>" txid "<txid>" round <round> minRound <minRound> maxRound <maxRound> limit <limit> beforeTime "<beforeTime>" afterTime "<afterTime>" currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> assetIndex <index> addressRole "<addressRole>" ExcluseCloseTo "<excludeCloseTo>" rekeyTo "<rekeyTo>"
+    When we make a Search For Transactions call with account "<account>" NotePrefix "<notePrefixB64>" TxType "<txType>" SigType "<sigType>" txid "<txid>" round <round> minRound <minRound> maxRound <maxRound> limit <limit> beforeTime "<beforeTime>" afterTime "<afterTime>" currencyGreaterThan <currencyGreaterThan> currencyLessThan <currencyLessThan> assetIndex <index> addressRole "<addressRole>" ExcluseCloseTo "<excludeCloseTo>" groupid "<groupid>" rekeyTo "<rekeyTo>"
     Then expect the path used to be "<path>"
     Examples:
-      | path                                                   | account | notePrefixB64 | txType | sigType | txid | round | minRound | maxRound | limit | beforeTime | afterTime | currencyGreaterThan | currencyLessThan | index | addressRole | excludeCloseTo | rekeyTo |
-      | /v2/transactions?currency-greater-than=0&rekey-to=true |         |               |        |         |      | 0     | 0        | 0        | 0     |            |           | 0                   | 0                | 0     |             |                | true    |
+      | path                                                   | account | notePrefixB64 | txType | sigType | txid | round | minRound | maxRound | limit | beforeTime | afterTime | currencyGreaterThan | currencyLessThan | index | addressRole | excludeCloseTo | groupid | rekeyTo |
+      | /v2/transactions?currency-greater-than=0&rekey-to=true |         |               |        |         |      | 0     | 0        | 0        | 0     |            |           | 0                   | 0                | 0     |             |                |         | true    |
 
   @unit.applications
   Scenario Outline: SearchForApplications path
