@@ -224,6 +224,36 @@ Feature: Algod REST API v2 Paths
       | /v2/deltas/25/txn/group?format=msgpack   | 25    |
       | /v2/deltas/1001/txn/group?format=msgpack | 1001  |
 
+  @unit.algod.account_info_extras
+  Scenario Outline: Account Information with new exclude values
+    When we make an Account Information call against account "<account>" with exclude "<exclude>"
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                         | account | exclude |
+      | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU?exclude=created-apps-params                              | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | created-apps-params                       |
+      | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU?exclude=created-assets-params                             | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | created-assets-params                     |
+      | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU?exclude=created-apps-params%2Ccreated-assets-params       | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | created-apps-params,created-assets-params |
+
+  @unit.algod.account_info_extras
+  Scenario Outline: Account Assets Information
+    When we make an Account Assets Information call against account "<account>" with limit <limit> and next "<next>"
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                                                                                                    | account                                                    | limit | next  |
+      | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/assets                         | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | 0     |       |
+      | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/assets?limit=10                 | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | 10    |       |
+      | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/assets?limit=10&next=abc        | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | 10    | abc   |
+
+  @unit.algod.account_info_extras
+  Scenario Outline: Account Applications Information
+    When we make an Account Applications Information call against account "<account>" with limit <limit> next "<next>" and include "<include>"
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                                                                                                              | account                                                    | limit | next  | include |
+      | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/applications                              | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | 0     |       |         |
+      | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/applications?include=params&limit=5        | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | 5     |       | params  |
+      | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/applications?include=params&limit=5&next=x | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | 5     | x     | params  |
+
   @unit.blocktxids
   Scenario Outline: Get Block TXIDs
     When we make a GetBlockTxids call against block number <round>
