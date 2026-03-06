@@ -1,0 +1,20 @@
+{
+  "asset-holdings": [
+    {
+      "asset-holding": {
+        "amount": 1000,
+        "asset-id": 123,
+        "is-frozen": false
+      }
+    },
+    {
+      "asset-holding": {
+        "amount": 500,
+        "asset-id": 456,
+        "is-frozen": true
+      }
+    }
+  ],
+  "next-token": "456",
+  "round": 7500000
+}

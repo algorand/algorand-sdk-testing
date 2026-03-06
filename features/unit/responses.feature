@@ -253,3 +253,10 @@ Feature: REST Client Responses
     Examples:
       | jsonfile                         | response-folder             | status | client | endpoint      |
       | txids_betanet_29608182.json      | v2algodclient_responsejsons | 200    | algod  | GetBlockTxids |
+
+    @unit.responses.account_info_extras
+    Examples:
+      | jsonfile                                | response-folder             | status | client | endpoint                         |
+      | supplyWithOnlineStake.json              | v2algodclient_responsejsons | 200    | algod  | GetSupply                        |
+      | accountAssetsInformation.json           | v2algodclient_responsejsons | 200    | algod  | AccountAssetsInformation         |
+      | accountApplicationsInformation.json     | v2algodclient_responsejsons | 200    | algod  | AccountApplicationsInformation   |

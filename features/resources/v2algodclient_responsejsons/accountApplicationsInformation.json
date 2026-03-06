@@ -1,0 +1,26 @@
+{
+  "application-resources": [
+    {
+      "id": 100,
+      "app-local-state": {
+        "id": 100,
+        "schema": {
+          "num-byte-slice": 1,
+          "num-uint": 2
+        }
+      }
+    },
+    {
+      "id": 200,
+      "app-local-state": {
+        "id": 200,
+        "schema": {
+          "num-byte-slice": 0,
+          "num-uint": 1
+        }
+      }
+    }
+  ],
+  "next-token": "200",
+  "round": 7500000
+}
