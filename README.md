@@ -30,8 +30,6 @@ These reside in the [unit features directory](features/unit)
 | @unit.atomic_transaction_composer    | ABI / atomic transaction construction unit tests.                                                           |
 | @unit.atc_method_args                | Test that algod's Atomic Transaction Composer assserts that the same number of arguments given as expected. |
 | @unit.client-no-headers              | Tests that clients don't add non-standard http headers when no (or an empty) auth token is provided.        |
-| @unit.dryrun                         | Dryrun endpoint added to Algod.                                                                             |
-| @unit.dryrun.trace.application       | DryrunResult formatting tests.                                                                              |
 | @unit.feetest                        | Fee transaction encoding tests.                                                                             |
 | @unit.indexer                        | Indexer REST API unit tests.                                                                                |
 | @unit.indexer.logs                   | Application logs endpoints added to Indexer.                                                                |
@@ -82,8 +80,6 @@ These reside in the [integration features directory](features/integration)
 | @c2c                                        | Test Contract to Contract invocations and ingestion.                                                                   |
 | @compile                                    | Test the algod compile endpoint.                                                                                       |
 | @compile.sourcemap                          | Test that the algod compile endpoint returns a valid Source Map.                                                       |
-| @dryrun                                     | Test the algod dryrun endpoint.                                                                                        |
-| @dryrun.testing                             | Test the testing harness that relies on dryrun endpoint. Python only.                                                  |
 | @kmd                                        | Test the kmd REST endpoints.                                                                                           |
 | @rekey_v1                                   | Test rekeying transactions.                                                                                            |
 | @send                                       | Test the ability to submit transactions to algod.                                                                      |
@@ -100,7 +96,6 @@ However, a few are not fully supported:
 
 | tag                             | SDK's which implement        |
 | ------------------------------- |------------------------------|
-| @dryrun.testing                 | Python only                  |
 | @unit.c2c                       | missing from Python          |
 | @unit.client-no-headers         | JS only                      |
 | @unit.indexer.rekey             | missing from Python and JS   |
@@ -154,7 +149,7 @@ and [Smart Signature](https://developer.algorand.org/docs/get-details/dapps/smar
 
 ### dApp Testing and Simulate
 
-Utilities for testing [Smart Contracts and dApps](https://developer.algorand.org/docs/get-details/dapps/smart-contracts/). This currently includes utilities for using [dry-runs](https://developer.algorand.org/docs/get-details/dapps/smart-contracts/debugging/?from_query=dry#dryrun-rest-endpoint). It also enables interacting with the [simulate REST endpoint](https://developer.algorand.org/docs/rest-apis/algod/?from_query=simulate#post-v2transactionssimulate).
+Utilities for testing [Smart Contracts and dApps](https://developer.algorand.org/docs/get-details/dapps/smart-contracts/). This enables interacting with the [simulate REST endpoint](https://developer.algorand.org/docs/rest-apis/algod/?from_query=simulate#post-v2transactionssimulate).
 
 ### SDK Testing
 
