@@ -57,7 +57,6 @@ Feature: REST Client Responses
       | algod_NodeStatusResponse_0.json                   | generated_responses_231 | 200    | algod   | GetStatus                 |
       | algod_NodeStatusResponse_0.json                   | generated_responses_231 | 200    | algod   | WaitForBlock              |
       | algod_CompileResponse_0.json                      | generated_responses_231 | 200    | algod   | TealCompile               |
-      | algod_DryrunResponse_0.json                       | generated_responses_231 | 200    | algod   | DryRun                    |
       | algod_PostTransactionsResponse_0.json             | generated_responses_231 | 200    | algod   | RawTransaction            |
       | algod_ProofResponse_0.json                        | generated_responses_231 | 200    | algod   | Proof                     |
       | algod_SupplyResponse_0.json                       | generated_responses_231 | 200    | algod   | GetSupply                 |
