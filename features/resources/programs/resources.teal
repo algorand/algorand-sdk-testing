@@ -1,0 +1,30 @@
+ #pragma version 11
+txn ApplicationID
+bz end
+
+// 1 box ref here and 1 empty ref later
+byte "box_key"; int 1024; int 2; *; box_create
+
+// 4 accounts to max this txns limit
+addr AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ; acct_params_get AcctBalance
+addr AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKE3PRHE; acct_params_get AcctBalance
+addr AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGFFWAF4; acct_params_get AcctBalance
+addr AMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANVWEXNA; acct_params_get AcctBalance
+
+// 3 apps to hit this txns reference limit and force references in ExtraResourceArrays
+int 10000; app_params_get AppCreator
+int 20000; app_params_get AppCreator
+int 30000; app_params_get AppCreator
+
+// App in ExtraResourceArrays
+int 40000; app_params_get AppCreator
+
+// Account in ExtraResourceArrays
+addr AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJVBPJXY; acct_params_get AcctBalance
+
+// Asset in ExtraResourceArrays 
+int 10001; asset_params_get AssetTotal
+
+end:
+  int 1; return
+ 
