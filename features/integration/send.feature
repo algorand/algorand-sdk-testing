@@ -18,6 +18,19 @@ Feature: Sending transactions
       | 1234523 | X4Bl4wQ9rCo= |
 
   @send
+  Scenario Outline: Sending falcon1024 transactions
+    Given I generate and fund a falcon1024 key
+    And I create the default falcon1024 transaction with parameters <amt> "<note>"
+    And I sign the falcon1024 transaction with the private key
+    And I send the transaction
+    Then I wait for the transaction to be confirmed.
+
+    Examples:
+      | amt     | note         |
+      | 0       | X4Bl4wQ9rCo= |
+      | 1234523 | X4Bl4wQ9rCo= |
+
+  @send
   Scenario Outline: Sending multisig transactions
     Given default multisig transaction with parameters <amt> "<note>"
     When I get the private key
