@@ -17,7 +17,7 @@ Feature: Sending transactions
       | 0       | X4Bl4wQ9rCo= |
       | 1234523 | X4Bl4wQ9rCo= |
 
-  @send
+  @send @falcon-1024
   Scenario Outline: Sending falcon1024 transactions
     Given I generate and fund a falcon1024 key
     And I create the default falcon1024 transaction with parameters <amt> "<note>"
