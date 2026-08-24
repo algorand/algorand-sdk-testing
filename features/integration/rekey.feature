@@ -30,7 +30,7 @@ Feature: Sending transactions
       | amt | note         | rekeyTo                                                    | mn                                                                                                                                                               |
       | 0   | X4Bl4wQ9rCo= | AAEHXUN5L4MJ6Y5O3RIIHST6BZHJ2RGMIHQKQK2K2W2CSHCABV3MFUFBGA | cute elevator romance type flight broccoli hub engage hundred brick add cage crouch turtle cake service heart cube like hidden dizzy lonely include abandon oven |
 
-
+  @falcon-1024
   Scenario Outline: Rekeying to PQ account
     When I generate a key using kmd for rekeying and fund it
     Given default transaction with parameters <amt> "<note>" and rekeying key
@@ -56,5 +56,4 @@ Feature: Sending transactions
     Examples:
       | amt | note         | rekeyTo                                                    | mn                                                                                                                                                               |
       | 0   | X4Bl4wQ9rCo= | UGEDBJQD4LZF6OMFQDQ3BLY6CRX36Y75AZPDKJ3TTRU4TOGJ36EL34CWRI | abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon invest |
-
 
