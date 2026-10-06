@@ -44,7 +44,7 @@ Feature: Simulating transactions
     Then I build the transaction group with the composer. If there is an error it is "".
     And I gather signatures with the composer.
     And I simulate the current transaction group with the composer
-    And the simulation should report a failure at group "0", path "1" with message "transaction already in ledger"
+    And the simulation should report a failure at group "0", path "1" with message "duplicate transaction"
 
     # Check for overspending errors
     Given a new AtomicTransactionComposer
