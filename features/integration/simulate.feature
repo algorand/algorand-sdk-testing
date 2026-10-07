@@ -185,7 +185,7 @@ Feature: Simulating transactions
 
   @simulate.exec_trace_with_stack_scratch
   Scenario: Simulate app with response containing stack and scratch changes
-  Given a new AtomicTransactionComposer
+    Given a new AtomicTransactionComposer
     When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/stack-scratch.teal", clear-program "programs/eight.teal", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
     And I sign and submit the transaction, saving the txid. If there is an error it is "".
     And I wait for the transaction to be confirmed.
@@ -232,14 +232,14 @@ Feature: Simulating transactions
 
     # Submit the group to the actual network
     Then I execute the current transaction group with the composer.
-    
+
     # Simulate again so we can check the reported initial state.
     Given a new AtomicTransactionComposer
     When I make a new simulate request.
     And I create the Method object from method signature "<method>"
     And I create a new method arguments array.
     And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments, boxes "0,str:box-key-1,0,str:box-key-2,0,str:nonce-box".
-    
+
     Then I allow exec trace options "state" on that simulate request.
     And I simulate the transaction group with the simulate request.
     And the simulation should succeed without any failure message
@@ -252,3 +252,28 @@ Feature: Simulating transactions
       | global()void | global | 14     | global-int-key | uint64:3735928559      | 17     | global-bytes-key | bytes:d2VsdCBhbSBkcmFodA== |
       | local()void  | local  | 15     | local-int-key  | uint64:3405689018      | 19     | local-bytes-key  | bytes:eHFjTA==             |
       | box()void    | box    | 14     | box-key-1      | bytes:Ym94LXZhbHVlLTE= | 17     | box-key-2        | bytes:                     |
+
+  @simulate.populate_resources
+  Scenario: Simulate with populate-resources set to true returns populated resource arrays for transactions and group
+    # Create app
+    Given a new AtomicTransactionComposer
+    When I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/resources.teal", clear-program "programs/resources.teal", global-bytes 0, global-ints 0, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
+    And I sign and submit the transaction, saving the txid. If there is an error it is "".
+    And I wait for the transaction to be confirmed.
+    Given I remember the new application ID.
+    And I fund the current application's address with 1000000 microalgos.
+
+    # Call with simulate
+    Given a new AtomicTransactionComposer
+    # The program doesn't actually route method selectors, but we want to reuse these steps
+    And I create the Method object from method signature "call()void"
+    And I create a new method arguments array.
+    And I add a method call with the transient account, the current application, suggested params, on complete "noop", current transaction signer, current method arguments.
+    When I make a new simulate request.
+    And I set unnamed-resources "true"
+    And I set populate-resources "true"
+    Then I simulate the transaction group with the simulate request.
+    And the simulation should succeed without any failure message
+    And the response should include populated-resource-arrays for the transaction
+    And the response should include extra-resource-arrays for the group
+
