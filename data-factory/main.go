@@ -196,7 +196,9 @@ type Signer struct {
 	MsigVersion   uint8                     `codec:"msigVersion,omitempty"`
 	MsigThreshold uint8                     `codec:"msigThreshold,omitempty"`
 	Lsig          []byte                    `codec:"lsig,omitempty"`
-	PQSigner      *crypto.FalconSigner      `codec:"pqSigner,omitempty"`
+	// LsigArgs are passed to Lsig. They are not signed but are part of the signed transaction.
+	LsigArgs [][]byte             `codec:"lsigArgs,omitempty"`
+	PQSigner *crypto.FalconSigner `codec:"pqSigner,omitempty"`
 	// RekeyedSender, when set, is used as the transaction Sender while the
 	// signer authorizes on behalf of it via the AuthAddr field (i.e. the
 	// sender account has been rekeyed to the signer's address).
@@ -274,6 +276,10 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 	if signer.RekeyedSender != nil {
 		stxn.Txn.Header.Sender = *signer.RekeyedSender
 		stxn.AuthAddr = authAddr
+	}
+
+	if len(signer.Lsig) > 0 {
+		stxn.Lsig.Args = signer.LsigArgs
 	}
 
 	if signer.PQSigner != nil && len(signer.Lsig) > 0 {
@@ -369,12 +375,9 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 	stxns := make([]transactions.SignedTxn, 1)
 	stxns[0] = stxn
 
-	// PQ signature schemes (e.g. Falcon-1024) are only enabled under the
-	// future consensus protocol, so verify against it when signing with PQ.
+	// PQ signature schemes (Falcon-1024) are enabled from consensus v42, so
+	// every signer, PQ included, verifies against the current protocol.
 	proto := protocol.ConsensusCurrentVersion
-	if signer.PQSigner != nil {
-		proto = protocol.ConsensusFuture
-	}
 
 	blkHdr := createDummyBlockHeader(proto)
 	ledger := DummyLedgerForSignature{proto: proto}
@@ -783,13 +786,24 @@ func main() {
 		panic(err)
 	}
 
+	// Every logic sig uses this program and args. The program only approves when it receives exactly these
+	// args, so verification proves they are passed through.
+	lsigOp, err := logic.AssembleString("arg 0\nbyte \"foo\"\n==\narg 1\nbyte 0x0102\n==\n&&")
+	if err != nil {
+		panic(err)
+	}
+	lsigProgram := lsigOp.Program
+	lsigArgs := [][]byte{[]byte("foo"), {0x01, 0x02}}
+
 	lsigSigner := Signer{
-		Lsig: op.Program,
+		Lsig:     lsigProgram,
+		LsigArgs: lsigArgs,
 	}
 
 	delegatedSigner := Signer{
 		SingleSigner: secrets[0],
-		Lsig:         op.Program,
+		Lsig:         lsigProgram,
+		LsigArgs:     lsigArgs,
 	}
 
 	pqSigner := Signer{
@@ -798,14 +812,16 @@ func main() {
 
 	pqDelegatedSigner := Signer{
 		PQSigner: generatePQSigner(),
-		Lsig:     op.Program,
+		Lsig:     lsigProgram,
+		LsigArgs: lsigArgs,
 	}
 
 	msigDelegatedSigner := Signer{
 		MsigSigners:   []crypto.SignatureSecrets{*secrets[0], *secrets[1], *secrets[2]},
 		MsigVersion:   msigVersion,
 		MsigThreshold: msigThreshold,
-		Lsig:          op.Program,
+		Lsig:          lsigProgram,
+		LsigArgs:      lsigArgs,
 	}
 
 	rekeyedSender := rekeyedSenderAddr()
@@ -822,13 +838,38 @@ func main() {
 
 	rekeyedDelegatedSigner := Signer{
 		SingleSigner:  secrets[0],
-		Lsig:          op.Program,
+		Lsig:          lsigProgram,
+		LsigArgs:      lsigArgs,
 		RekeyedSender: &rekeyedSender,
 	}
 
 	pqRekeyedDelegatedSigner := Signer{
 		PQSigner:      generatePQSigner(),
-		Lsig:          op.Program,
+		Lsig:          lsigProgram,
+		LsigArgs:      lsigArgs,
+		RekeyedSender: &rekeyedSender,
+	}
+
+	rekeyedMsigSigner := Signer{
+		MsigSigners:   []crypto.SignatureSecrets{*secrets[0], *secrets[1], *secrets[2]},
+		MsigVersion:   msigVersion,
+		MsigThreshold: msigThreshold,
+		RekeyedSender: &rekeyedSender,
+	}
+
+	// The sender is rekeyed to the escrow program's address
+	rekeyedLsigSigner := Signer{
+		Lsig:          lsigProgram,
+		LsigArgs:      lsigArgs,
+		RekeyedSender: &rekeyedSender,
+	}
+
+	rekeyedMsigDelegatedSigner := Signer{
+		MsigSigners:   []crypto.SignatureSecrets{*secrets[0], *secrets[1], *secrets[2]},
+		MsigVersion:   msigVersion,
+		MsigThreshold: msigThreshold,
+		Lsig:          lsigProgram,
+		LsigArgs:      lsigArgs,
 		RekeyedSender: &rekeyedSender,
 	}
 
@@ -863,6 +904,9 @@ func main() {
 	writeTestDataFile("pqRekeyedPayment", makeSimplePayment(pqRekeyedSigner))
 	writeTestDataFile("rekeyedDelegatedPayment", makeSimplePayment(rekeyedDelegatedSigner))
 	writeTestDataFile("pqRekeyedDelegatedPayment", makeSimplePayment(pqRekeyedDelegatedSigner))
+	writeTestDataFile("rekeyedMsigPayment", makeSimplePayment(rekeyedMsigSigner))
+	writeTestDataFile("rekeyedLsigPayment", makeSimplePayment(rekeyedLsigSigner))
+	writeTestDataFile("rekeyedMsigDelegatedPayment", makeSimplePayment(rekeyedMsigDelegatedSigner))
 	writeTestDataFile("pqMnemonic", makePQMnemonicData())
 
 }

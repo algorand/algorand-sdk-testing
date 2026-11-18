@@ -33,8 +33,11 @@ Feature: Data factory transactions
   # SHA-512/256("PQA" || "f1" || salt || pk), where salt is the lowest value in 0..255 whose address is
   # PQ compliant.
   #
+  # lsigArgs, when present, are set as the logic signature's args (lsig.arg). Args are not signed.
+  #
   # rekeyedSender, when present, is the transaction sender, an account rekeyed to the signer. The signed
-  # transaction additionally sets sgnr (auth address) to the signer's own address.
+  # transaction additionally sets sgnr (auth address) to the signer's own address (for an escrow lsig, the
+  # program's address).
 
   @unit.datafactory.msgpack
   Scenario Outline: Msgpack round trip (<file>)
@@ -75,6 +78,9 @@ Feature: Data factory transactions
       | pqRekeyedPayment                |
       | rekeyedDelegatedPayment         |
       | pqRekeyedDelegatedPayment       |
+      | rekeyedMsigPayment              |
+      | rekeyedLsigPayment              |
+      | rekeyedMsigDelegatedPayment     |
       | stateProof                      |
 
   @unit.datafactory.signing
@@ -115,6 +121,9 @@ Feature: Data factory transactions
       | pqRekeyedPayment                |
       | rekeyedDelegatedPayment         |
       | pqRekeyedDelegatedPayment       |
+      | rekeyedMsigPayment              |
+      | rekeyedLsigPayment              |
+      | rekeyedMsigDelegatedPayment     |
 
   @unit.datafactory.msgpack
   Scenario Outline: Msgpack round trip for a transaction group (<file>)
