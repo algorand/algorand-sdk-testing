@@ -1,0 +1,19 @@
+{
+  "logs": [
+    {
+      "txId": "ITRPGGAIHEAADRU2W535P5UUEJHYHRN6LZRBJ7E56XSUKJRMZRSQ",
+      "application-index": 84366825,
+      "logs": [
+        "aGVsbG8=",
+        "d29ybGQ="
+      ]
+    },
+    {
+      "txId": "ITRPGGAIHEAADRU2W535P5UUEJHYHRN6LZRBJ7E56XSUKJRMZRSQ",
+      "application-index": 84366826,
+      "logs": [
+        "aW5uZXI="
+      ]
+    }
+  ]
+}

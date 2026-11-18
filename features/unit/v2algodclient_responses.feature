@@ -138,6 +138,12 @@ Feature: Algod REST API v2 Responses
     When we make any Get Block call
     Then the parsed Get Block response should have load 40 and congestion tax 2500 in millionths
 
+  @unit.algod.block_sha512
+  Scenario: Get Block response with SHA-512 hashes
+    Given mock http responses in "block-sha512.json" loaded from "v2algodclient_responsejsons"
+    When we make any Get Block call
+    Then the parsed Get Block response should have SHA-512 previous block hash "oOODl1JcjvSupWw+574ev347KnXZXOfqDKdcpEWaI8wjah1/0OtuCKAHUV+SejUl+8XLdXNz0W4YDbHsIvt4Ig==" and SHA-512 transaction commitment "N/lyVtVgpOw8LjgC8uBlWSMMfmR9opfsnbLSASumaYBneQFXajy3TxsXi5OkptKkMwxRRmDLTMlFAlpGJ44g6w=="
+
   @unit.algod
   Scenario Outline: Suggested Transaction Parameters response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"

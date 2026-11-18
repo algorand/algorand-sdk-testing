@@ -259,3 +259,23 @@ Feature: REST Client Responses
       | supplyWithOnlineStake.json              | v2algodclient_responsejsons | 200    | algod  | GetSupply                        |
       | accountAssetsInformation.json           | v2algodclient_responsejsons | 200    | algod  | AccountAssetsInformation         |
       | accountApplicationsInformation.json     | v2algodclient_responsejsons | 200    | algod  | AccountApplicationsInformation   |
+
+    @unit.responses.incentives
+    Examples:
+      | jsonfile                          | response-folder             | status | client | endpoint           |
+      | accountInformationIncentives.json | v2algodclient_responsejsons | 200    | algod  | AccountInformation |
+
+    @unit.responses.app_box_access
+    Examples:
+      | jsonfile                  | response-folder             | status | client | endpoint           |
+      | applicationBoxAccess.json | v2algodclient_responsejsons | 200    | algod  | GetApplicationByID |
+
+    @unit.responses.simulate
+    Examples:
+      | jsonfile                                | response-folder             | status | client | endpoint            |
+      | simulateFixSignersUnnamedResources.json | v2algodclient_responsejsons | 200    | algod  | SimulateTransaction |
+
+    @unit.responses.blocklogs
+    Examples:
+      | jsonfile       | response-folder             | status | client | endpoint     |
+      | blockLogs.json | v2algodclient_responsejsons | 200    | algod  | GetBlockLogs |

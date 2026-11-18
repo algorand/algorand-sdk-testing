@@ -1,0 +1,88 @@
+{
+  "version": 2,
+  "last-round": 6222133,
+  "eval-overrides": {
+    "allow-empty-signatures": true,
+    "allow-unnamed-resources": true,
+    "fix-signers": true
+  },
+  "exec-trace-config": {
+    "enable": true
+  },
+  "txn-groups": [
+    {
+      "app-budget-added": 700,
+      "app-budget-consumed": 12,
+      "group-fees-paid": 1000,
+      "group-usage": 1000000,
+      "unnamed-resources-accessed": {
+        "accounts": [
+          "MUDNR6GODUNBSJDHTSB2L6MRZLYEKMO2ZDBJRE3BALB6YSM55UU6KFGKYQ"
+        ],
+        "extra-box-refs": 1
+      },
+      "txn-results": [
+        {
+          "txn-result": {
+            "pool-error": "",
+            "txn": {
+              "txn": {
+                "apid": 84366825,
+                "fee": 1000,
+                "fv": 50659540,
+                "gen": "testnet-v1.0",
+                "gh": "SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI=",
+                "lv": 50660540,
+                "snd": "AOQQPP7TZYIL4HLQ3UMOOS6ATFT6JVRQTOSQ2XY53SDGIESVGG4MPFYUMQ",
+                "type": "appl"
+              }
+            }
+          },
+          "app-budget-consumed": 12,
+          "fees-paid": 1000,
+          "fixed-signer": "6F3XDLTSGCBMOODCCSNMU7ODC3HL3EUWLSF7MCRDJ55X26SI5KL7YGF6HY",
+          "unnamed-resources-accessed": {
+            "accounts": [
+              "6F3XDLTSGCBMOODCCSNMU7ODC3HL3EUWLSF7MCRDJ55X26SI5KL7YGF6HY"
+            ],
+            "assets": [
+              107686045
+            ],
+            "apps": [
+              84366826
+            ],
+            "boxes": [
+              {
+                "app": 84366826,
+                "name": "Ym94"
+              }
+            ],
+            "extra-box-refs": 2,
+            "asset-holdings": [
+              {
+                "account": "6F3XDLTSGCBMOODCCSNMU7ODC3HL3EUWLSF7MCRDJ55X26SI5KL7YGF6HY",
+                "asset": 107686045
+              }
+            ],
+            "app-locals": [
+              {
+                "account": "MUDNR6GODUNBSJDHTSB2L6MRZLYEKMO2ZDBJRE3BALB6YSM55UU6KFGKYQ",
+                "app": 84366826
+              }
+            ]
+          },
+          "exec-trace": {
+            "clear-state-program-hash": "Ks6VyEEdd7Ht7xfHy3PVaQuEqDlzacgnWvZYQC6t7zA=",
+            "clear-state-program-trace": [
+              {
+                "pc": 1
+              }
+            ],
+            "clear-state-rollback": true,
+            "clear-state-rollback-error": "logic eval error: err opcode executed. Details: app=84366825, pc=1"
+          }
+        }
+      ]
+    }
+  ]
+}

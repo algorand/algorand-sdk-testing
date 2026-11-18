@@ -268,6 +268,14 @@ Feature: Algod REST API v2 Paths
       | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/applications?include=params&limit=5        | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | 5     |       | params  |
       | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/applications?include=params&limit=5&next=x | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | 5     | x     | params  |
 
+  @unit.blocklogs
+  Scenario Outline: Get Block Logs
+    When we make a GetBlockLogs call against block number <round>
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                     | round    |
+      | /v2/blocks/29608182/logs | 29608182 |
+
   @unit.blocktxids
   Scenario Outline: Get Block TXIDs
     When we make a GetBlockTxids call against block number <round>
