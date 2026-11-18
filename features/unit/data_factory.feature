@@ -14,15 +14,27 @@ Feature: Data factory transactions
   # The group file (txGroup) contains txns (names of the individual files the group was built from),
   # txnBlobs, stxnBlobs, groupID and a signer that signed every transaction in the group.
   #
-  # The signer object determines how the transaction is signed. Each key is a 64-byte ed25519 private key
+  # The signer object determines how the transaction is signed. Each ed25519 key is a 64-byte private key
   # (32-byte seed followed by 32-byte public key) under "SK", with its public key under "SignatureVerifier".
   #   singleSigner only          - ed25519 signature of the transaction (sig)
   #   msigSigners only           - multisig account built from msigVersion, msigThreshold and the signers'
   #                                public keys in order; every signer signs the transaction (msig)
+  #   pqSigner only              - Falcon-1024 signature of the transaction (pqsig)
   #   lsig only                  - escrow logic signature: the program with no signature (lsig.l)
   #   lsig and singleSigner      - logic signature delegated by singleSigner (lsig.l, lsig.sig)
   #   lsig and msigSigners       - logic signature delegated by the multisig account, every signer signs
   #                                "MsigProgram" || multisig address || program (lsig.l, lsig.lmsig)
+  #   lsig and pqSigner          - logic signature delegated by the PQ account, which signs
+  #                                "PQProgram" || PQ address || program (lsig.l, lsig.pqsig)
+  #
+  # pqSigner holds a Falcon-1024 key pair ("pk", "sk"). go-algorand signs with a deterministic Falcon profile,
+  # so signatures are reproducible. A pqsig contains the scheme "f1" (sch), the address salt (slt), the
+  # public key (pk) and the signature (sig). The PQ address is
+  # SHA-512/256("PQA" || "f1" || salt || pk), where salt is the lowest value in 0..255 whose address is
+  # PQ compliant.
+  #
+  # rekeyedSender, when present, is the transaction sender, an account rekeyed to the signer. The signed
+  # transaction additionally sets sgnr (auth address) to the signer's own address.
 
   @unit.datafactory.msgpack
   Scenario Outline: Msgpack round trip (<file>)
@@ -57,6 +69,12 @@ Feature: Data factory transactions
       | lsigPayment                     |
       | singleDelegatedPayment          |
       | msigDelegatedPayment            |
+      | pqPayment                       |
+      | pqDelegatedPayment              |
+      | rekeyedPayment                  |
+      | pqRekeyedPayment                |
+      | rekeyedDelegatedPayment         |
+      | pqRekeyedDelegatedPayment       |
       | stateProof                      |
 
   @unit.datafactory.signing
@@ -91,6 +109,12 @@ Feature: Data factory transactions
       | lsigPayment                     |
       | singleDelegatedPayment          |
       | msigDelegatedPayment            |
+      | pqPayment                       |
+      | pqDelegatedPayment              |
+      | rekeyedPayment                  |
+      | pqRekeyedPayment                |
+      | rekeyedDelegatedPayment         |
+      | pqRekeyedDelegatedPayment       |
 
   @unit.datafactory.msgpack
   Scenario Outline: Msgpack round trip for a transaction group (<file>)

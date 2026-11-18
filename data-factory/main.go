@@ -6,8 +6,10 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 
 	"github.com/algorand/go-algorand/crypto"
+	"github.com/algorand/go-algorand/crypto/passphrase"
 	"github.com/algorand/go-algorand/data/basics"
 	"github.com/algorand/go-algorand/data/bookkeeping"
 	"github.com/algorand/go-algorand/data/committee"
@@ -18,10 +20,12 @@ import (
 	"github.com/algorand/go-algorand/protocol"
 )
 
-type DummyLedgerForSignature struct{}
+type DummyLedgerForSignature struct {
+	proto protocol.ConsensusVersion
+}
 
 func (d *DummyLedgerForSignature) BlockHdr(rnd basics.Round) (blk bookkeeping.BlockHeader, err error) {
-	return createDummyBlockHeader(), nil
+	return createDummyBlockHeader(d.proto), nil
 }
 
 func (d *DummyLedgerForSignature) GenesisHash() crypto.Digest {
@@ -41,8 +45,10 @@ var poolAddr = basics.Address{0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x
 const assetId = basics.AssetIndex(107686045)
 const appId = basics.AppIndex(84366825)
 
-func createDummyBlockHeader() bookkeeping.BlockHeader {
-	proto := protocol.ConsensusCurrentVersion
+func createDummyBlockHeader(proto protocol.ConsensusVersion) bookkeeping.BlockHeader {
+	if proto == "" {
+		proto = protocol.ConsensusCurrentVersion
+	}
 
 	return bookkeeping.BlockHeader{
 		Round:       1000,
@@ -71,6 +77,88 @@ func generateSecrets(numAccs int) []*crypto.SignatureSecrets {
 
 	}
 	return secrets
+}
+
+// generatePQSigner generates a deterministic Falcon signer for PQ signature test data
+func generatePQSigner() *crypto.FalconSigner {
+	var seed crypto.FalconSeed
+	for i := range len(seed) {
+		seed[i] = byte(i)
+	}
+
+	signer, err := crypto.GenerateFalconSigner(seed)
+	if err != nil {
+		panic(err)
+	}
+
+	return &signer
+}
+
+// PQMnemonicData captures the mnemonic -> seed -> public key -> address chain
+// used to exercise mnemonic-based PQ key derivation without depending on
+// falcon-1024 in the consuming test suite.
+type PQMnemonicData struct {
+	Mnemonic  string `codec:"mnemonic"`
+	Seed      []byte `codec:"seed"`
+	PublicKey []byte `codec:"publicKey"`
+	Address   string `codec:"address"`
+}
+
+// pq25WordMnemonicToSeed mirrors the algosdk helper of the same name: it decodes
+// the 25-word mnemonic to its 32-byte source key and derives the PQ seed as
+// genericHash("PQK" || scheme || sourceKey). algosdk's genericHash is
+// SHA-512/256, which is exactly crypto.Hash here.
+func pq25WordMnemonicToSeed(mnemonic string, scheme protocol.PQScheme) []byte {
+	sourceKey, err := passphrase.MnemonicToKey(mnemonic)
+	if err != nil {
+		panic(err)
+	}
+
+	preimage := append([]byte("PQK"), scheme[:]...)
+	preimage = append(preimage, sourceKey...)
+
+	seed := crypto.Hash(preimage)
+	return seed[:]
+}
+
+// makePQMnemonicData derives the PQ key chain from the all-zero source key,
+// whose 25-word mnemonic is the canonical "abandon ... invest" phrase.
+func makePQMnemonicData() PQMnemonicData {
+	mnemonic, err := passphrase.KeyToMnemonic(make([]byte, 32))
+	if err != nil {
+		panic(err)
+	}
+
+	seed := pq25WordMnemonicToSeed(mnemonic, protocol.PQSchemeFalcon1024)
+
+	signer, err := crypto.GenerateFalconSigner(crypto.FalconSeed(seed))
+	if err != nil {
+		panic(err)
+	}
+	publicKey := slices.Clone(signer.PublicKey[:])
+
+	_, address, err := basics.CanonicalPQAddressSalt(protocol.PQSchemeFalcon1024, publicKey)
+	if err != nil {
+		panic(err)
+	}
+
+	return PQMnemonicData{
+		Mnemonic:  mnemonic,
+		Seed:      seed,
+		PublicKey: publicKey,
+		Address:   address.String(),
+	}
+}
+
+// rekeyedSenderAddr returns a deterministic address distinct from any signer,
+// used as the Sender of a rekeyed transaction. The account's own keys never
+// sign; authorization comes from the AuthAddr the account was rekeyed to.
+func rekeyedSenderAddr() basics.Address {
+	var seed crypto.Seed
+	for j := range len(seed) {
+		seed[j] = byte(j + 100)
+	}
+	return basics.Address(crypto.GenerateSignatureSecrets(seed).SignatureVerifier)
 }
 
 const msigVersion = 1
@@ -108,6 +196,11 @@ type Signer struct {
 	MsigVersion   uint8                     `codec:"msigVersion,omitempty"`
 	MsigThreshold uint8                     `codec:"msigThreshold,omitempty"`
 	Lsig          []byte                    `codec:"lsig,omitempty"`
+	PQSigner      *crypto.FalconSigner      `codec:"pqSigner,omitempty"`
+	// RekeyedSender, when set, is used as the transaction Sender while the
+	// signer authorizes on behalf of it via the AuthAddr field (i.e. the
+	// sender account has been rekeyed to the signer's address).
+	RekeyedSender *basics.Address `codec:"rekeyedSender,omitempty"`
 }
 
 func makeTxData(txType protocol.TxType, fields any, signer Signer) TxData {
@@ -160,9 +253,14 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 		panic("Unsupported transaction type")
 	}
 
+	// authAddr is the address that actually authorizes the transaction. For a
+	// rekeyed transaction the Sender is a different account and authAddr is
+	// carried in the AuthAddr field; otherwise the Sender authorizes itself.
+	authAddr := addr(signer)
+
 	stxn.Txn.Type = txType
 	stxn.Txn.Header = transactions.Header{
-		Sender:      addr(signer),
+		Sender:      authAddr,
 		FirstValid:  50659540,
 		LastValid:   50660540,
 		GenesisHash: gh,
@@ -173,7 +271,54 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 		updateHeader(&stxn.Txn.Header)
 	}
 
-	if len(signer.Lsig) > 0 {
+	if signer.RekeyedSender != nil {
+		stxn.Txn.Header.Sender = *signer.RekeyedSender
+		stxn.AuthAddr = authAddr
+	}
+
+	if signer.PQSigner != nil && len(signer.Lsig) > 0 {
+		// PQ-delegated logic signature: the PQ account delegates signing
+		// authority to the program by signing a PQDelegatedProgram bound to
+		// its own (authorizer) address.
+		stxn.Lsig.Logic = signer.Lsig
+
+		program := logic.PQDelegatedProgram{Addr: authAddr, Program: signer.Lsig}
+		sig, err := signer.PQSigner.Sign(program)
+		if err != nil {
+			panic(err)
+		}
+
+		publicKey := slices.Clone(signer.PQSigner.PublicKey[:])
+		salt, _, err := basics.CanonicalPQAddressSalt(protocol.PQSchemeFalcon1024, publicKey)
+		if err != nil {
+			panic(err)
+		}
+
+		stxn.Lsig.PQsig = transactions.PQSig{
+			Scheme:    protocol.PQSchemeFalcon1024,
+			Salt:      salt,
+			PublicKey: publicKey,
+			Signature: sig,
+		}
+	} else if signer.PQSigner != nil {
+		sig, err := signer.PQSigner.Sign(stxn.Txn)
+		if err != nil {
+			panic(err)
+		}
+
+		publicKey := slices.Clone(signer.PQSigner.PublicKey[:])
+		salt, _, err := basics.CanonicalPQAddressSalt(protocol.PQSchemeFalcon1024, publicKey)
+		if err != nil {
+			panic(err)
+		}
+
+		stxn.PQsig = transactions.PQSig{
+			Scheme:    protocol.PQSchemeFalcon1024,
+			Salt:      salt,
+			PublicKey: publicKey,
+			Signature: sig,
+		}
+	} else if len(signer.Lsig) > 0 {
 		program := logic.Program(signer.Lsig)
 		stxn.Lsig.Logic = signer.Lsig
 
@@ -185,7 +330,7 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 				pks[i] = signer.MsigSigners[i].SignatureVerifier
 			}
 
-			toBeSigned := logic.MultisigProgram{Addr: crypto.Digest(stxn.Txn.Sender), Program: program}
+			toBeSigned := logic.MultisigProgram{Addr: crypto.Digest(authAddr), Program: program}
 
 			stxn.Lsig.LMsig.Threshold = msigThreshold
 			stxn.Lsig.LMsig.Version = msigVersion
@@ -224,8 +369,15 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 	stxns := make([]transactions.SignedTxn, 1)
 	stxns[0] = stxn
 
-	blkHdr := createDummyBlockHeader()
-	ledger := DummyLedgerForSignature{}
+	// PQ signature schemes (e.g. Falcon-1024) are only enabled under the
+	// future consensus protocol, so verify against it when signing with PQ.
+	proto := protocol.ConsensusCurrentVersion
+	if signer.PQSigner != nil {
+		proto = protocol.ConsensusFuture
+	}
+
+	blkHdr := createDummyBlockHeader(proto)
+	ledger := DummyLedgerForSignature{proto: proto}
 
 	_, err = verify.TxnGroup(stxns, &blkHdr, nil, &ledger)
 	if err != nil {
@@ -242,7 +394,14 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 }
 
 func addr(signer Signer) basics.Address {
-	if signer.SingleSigner != nil {
+	if signer.PQSigner != nil {
+		publicKey := slices.Clone(signer.PQSigner.PublicKey[:])
+		_, pqAddr, err := basics.CanonicalPQAddressSalt(protocol.PQSchemeFalcon1024, publicKey)
+		if err != nil {
+			panic(err)
+		}
+		return pqAddr
+	} else if signer.SingleSigner != nil {
 		return basics.Address(signer.SingleSigner.SignatureVerifier)
 	} else if len(signer.MsigSigners) > 0 {
 		var pks [3]crypto.PublicKey
@@ -535,7 +694,7 @@ func makeTxGroup(signer Signer) TxGroupData {
 			}
 	}
 
-	blkHdr := createDummyBlockHeader()
+	blkHdr := createDummyBlockHeader(protocol.ConsensusCurrentVersion)
 	ledger := DummyLedgerForSignature{}
 
 	_, err = verify.TxnGroup(stxns, &blkHdr, nil, &ledger)
@@ -633,11 +792,44 @@ func main() {
 		Lsig:         op.Program,
 	}
 
+	pqSigner := Signer{
+		PQSigner: generatePQSigner(),
+	}
+
+	pqDelegatedSigner := Signer{
+		PQSigner: generatePQSigner(),
+		Lsig:     op.Program,
+	}
+
 	msigDelegatedSigner := Signer{
 		MsigSigners:   []crypto.SignatureSecrets{*secrets[0], *secrets[1], *secrets[2]},
 		MsigVersion:   msigVersion,
 		MsigThreshold: msigThreshold,
 		Lsig:          op.Program,
+	}
+
+	rekeyedSender := rekeyedSenderAddr()
+
+	rekeyedSigner := Signer{
+		SingleSigner:  secrets[0],
+		RekeyedSender: &rekeyedSender,
+	}
+
+	pqRekeyedSigner := Signer{
+		PQSigner:      generatePQSigner(),
+		RekeyedSender: &rekeyedSender,
+	}
+
+	rekeyedDelegatedSigner := Signer{
+		SingleSigner:  secrets[0],
+		Lsig:          op.Program,
+		RekeyedSender: &rekeyedSender,
+	}
+
+	pqRekeyedDelegatedSigner := Signer{
+		PQSigner:      generatePQSigner(),
+		Lsig:          op.Program,
+		RekeyedSender: &rekeyedSender,
 	}
 
 	writeTestDataFile("simplePayment", makeSimplePayment(simpleSigner))
@@ -665,5 +857,12 @@ func main() {
 	writeTestDataFile("msigDelegatedPayment", makeSimplePayment(msigDelegatedSigner))
 	writeTestDataFile("stateProof", makeStateProof())
 	writeTestDataFile("txGroup", makeTxGroup(simpleSigner))
+	writeTestDataFile("pqPayment", makeSimplePayment(pqSigner))
+	writeTestDataFile("pqDelegatedPayment", makeSimplePayment(pqDelegatedSigner))
+	writeTestDataFile("rekeyedPayment", makeSimplePayment(rekeyedSigner))
+	writeTestDataFile("pqRekeyedPayment", makeSimplePayment(pqRekeyedSigner))
+	writeTestDataFile("rekeyedDelegatedPayment", makeSimplePayment(rekeyedDelegatedSigner))
+	writeTestDataFile("pqRekeyedDelegatedPayment", makeSimplePayment(pqRekeyedDelegatedSigner))
+	writeTestDataFile("pqMnemonic", makePQMnemonicData())
 
 }
