@@ -1,0 +1,22 @@
+{
+  "id": "7JGVAHKRR2YVG3FZN5MIK7K6OGZ4PN26XHTXGA652LMSR2VQ336Q",
+  "signer": {
+    "lsig": "ASABASI="
+  },
+  "stxn": {
+    "lsig": {
+      "l": "ASABASI="
+    },
+    "txn": {
+      "fee": 1000,
+      "fv": 50659540,
+      "gen": "testnet-v1.0",
+      "gh": "SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI=",
+      "lv": 50660540,
+      "snd": "6Z3C3LDVWGMX23BMSYMANACQOSINPFIRF77H7N3AWJZYV6OH6GWTJKVMXY",
+      "type": "pay"
+    }
+  },
+  "stxnBlob": "gqRsc2lngaFsxAUBIAEBIqN0eG6Ho2ZlZc0D6KJmds4DBQDUo2dlbqx0ZXN0bmV0LXYxLjCiZ2jEIEhjtRiks8hOyBDyLU8QgcsPcfBZp6wg3sYvf3DlCToiomx2zgMFBLyjc25kxCD2di2sdbGZfWwslhgGgFB0kNeVES/+f7dgsnOK+cfxraR0eXBlo3BheQ==",
+  "txnBlob": "h6NmZWXNA+iiZnbOAwUA1KNnZW6sdGVzdG5ldC12MS4womdoxCBIY7UYpLPITsgQ8i1PEIHLD3HwWaesIN7GL39w5Qk6IqJsds4DBQS8o3NuZMQg9nYtrHWxmX1sLJYYBoBQdJDXlREv/n+3YLJzivnH8a2kdHlwZaNwYXk="
+}
