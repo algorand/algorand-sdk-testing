@@ -62,14 +62,23 @@ Feature: Data factory transactions
       | simplePayment                   |
       | paymentWithAmount               |
       | largeNotePayment                |
+      | closePayment                    |
+      | leasePayment                    |
+      | rekeyPayment                    |
       | simpleAssetTransfer             |
       | optInAssetTransfer              |
+      | assetClawback                   |
+      | assetCloseOut                   |
       | appCreate                       |
       | appUpdate                       |
       | appResize                       |
       | appDelete                       |
       | appCall                         |
       | appCallWithAccess               |
+      | appCallWithForeignRefs          |
+      | appOptIn                        |
+      | appCloseOut                     |
+      | appClearState                   |
       | assetCreate                     |
       | assetDestroy                    |
       | assetConfig                     |
@@ -106,14 +115,23 @@ Feature: Data factory transactions
       | simplePayment                   |
       | paymentWithAmount               |
       | largeNotePayment                |
+      | closePayment                    |
+      | leasePayment                    |
+      | rekeyPayment                    |
       | simpleAssetTransfer             |
       | optInAssetTransfer              |
+      | assetClawback                   |
+      | assetCloseOut                   |
       | appCreate                       |
       | appUpdate                       |
       | appResize                       |
       | appDelete                       |
       | appCall                         |
       | appCallWithAccess               |
+      | appCallWithForeignRefs          |
+      | appOptIn                        |
+      | appCloseOut                     |
+      | appClearState                   |
       | assetCreate                     |
       | assetDestroy                    |
       | assetConfig                     |

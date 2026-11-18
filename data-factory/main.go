@@ -563,11 +563,12 @@ func makeAssetCreate(signer Signer) TxData {
 		ConfigAsset: 0, // 0 for asset creation
 		AssetParams: basics.AssetParams{
 			Total:         10000000000,
-			Decimals:      0,
-			DefaultFrozen: false,
+			Decimals:      2,
+			DefaultFrozen: true,
 			UnitName:      "TEST",
 			AssetName:     "Test Asset",
 			URL:           "https://example.com",
+			MetadataHash:  crypto.Hash([]byte("asset metadata")),
 			Manager:       addr(signer),
 			Reserve:       addr(signer),
 			Freeze:        addr(signer),
@@ -663,6 +664,77 @@ func makeAssetUnfreeze(signer Signer) TxData {
 	}
 
 	return makeTxData(protocol.AssetFreezeTx, unfreezeFields, signer)
+}
+
+func makeClosePayment(signer Signer, closeTo basics.Address) TxData {
+	return makeTxData(protocol.PaymentTx, transactions.PaymentTxnFields{
+		Receiver:         closeTo,
+		Amount:           basics.MicroAlgos{Raw: 1},
+		CloseRemainderTo: closeTo,
+	}, signer)
+}
+
+func makeLeasePayment(signer Signer) TxData {
+	return makeTxDataWithHeader(protocol.PaymentTx, transactions.PaymentTxnFields{}, signer, func(header *transactions.Header) {
+		header.Lease = crypto.Hash([]byte("lease"))
+	})
+}
+
+// makeRekeyPayment rekeys the sender to rekeyTo (the RekeyTo header field). It
+// is distinct from the rekeyed* files, which are signed by an account that was
+// previously rekeyed to (the AuthAddr field).
+func makeRekeyPayment(signer Signer, rekeyTo basics.Address) TxData {
+	return makeTxDataWithHeader(protocol.PaymentTx, transactions.PaymentTxnFields{}, signer, func(header *transactions.Header) {
+		header.RekeyTo = rekeyTo
+	})
+}
+
+// makeAssetClawback is sent by the clawback account to move assets out of
+// revokeFrom (AssetSender) to the receiver.
+func makeAssetClawback(signer Signer, revokeFrom basics.Address) TxData {
+	return makeTxData(protocol.AssetTransferTx, transactions.AssetTransferTxnFields{
+		XferAsset:     assetId,
+		AssetAmount:   500,
+		AssetSender:   revokeFrom,
+		AssetReceiver: addr(signer),
+	}, signer)
+}
+
+// makeAssetCloseOut sends the remaining holding to closeTo and opts out.
+func makeAssetCloseOut(signer Signer, closeTo basics.Address) TxData {
+	return makeTxData(protocol.AssetTransferTx, transactions.AssetTransferTxnFields{
+		XferAsset:     assetId,
+		AssetAmount:   1,
+		AssetReceiver: closeTo,
+		AssetCloseTo:  closeTo,
+	}, signer)
+}
+
+func makeAppCallWithOnCompletion(signer Signer, oc transactions.OnCompletion) TxData {
+	return makeTxData(protocol.ApplicationCallTx, transactions.ApplicationCallTxnFields{
+		ApplicationID: appId,
+		OnCompletion:  oc,
+	}, signer)
+}
+
+// makeAppCallWithForeignRefs names its resources in the legacy foreign arrays
+// (which cannot be combined with the access list) and passes app args. Box
+// references index into ForeignApps, where 0 means the current app.
+func makeAppCallWithForeignRefs(signer Signer, otherAddr basics.Address) TxData {
+	const otherAppId = basics.AppIndex(84366826)
+
+	return makeTxData(protocol.ApplicationCallTx, transactions.ApplicationCallTxnFields{
+		ApplicationID:   appId,
+		OnCompletion:    transactions.NoOpOC,
+		ApplicationArgs: [][]byte{[]byte("foo"), {0x01, 0x02}, {}},
+		Accounts:        []basics.Address{otherAddr},
+		ForeignAssets:   []basics.AssetIndex{assetId},
+		ForeignApps:     []basics.AppIndex{otherAppId},
+		Boxes: []transactions.BoxRef{
+			{Index: 0, Name: []byte("box")}, // box of the current app
+			{Index: 1, Name: []byte("box")}, // box of ForeignApps[0]
+		},
+	}, signer)
 }
 
 func makeHeartbeat(signer Signer) TxData {
@@ -914,7 +986,18 @@ func main() {
 	writeTestDataFile("appResize", makeAppResize(simpleSigner))
 	writeTestDataFile("appDelete", makeAppDelete(simpleSigner))
 	writeTestDataFile("appCall", makeAppCall(simpleSigner))
-	writeTestDataFile("appCallWithAccess", makeAppCallWithAccess(simpleSigner, addr(Signer{SingleSigner: secrets[1]})))
+	otherAddr := addr(Signer{SingleSigner: secrets[1]})
+
+	writeTestDataFile("appCallWithAccess", makeAppCallWithAccess(simpleSigner, otherAddr))
+	writeTestDataFile("appCallWithForeignRefs", makeAppCallWithForeignRefs(simpleSigner, otherAddr))
+	writeTestDataFile("appOptIn", makeAppCallWithOnCompletion(simpleSigner, transactions.OptInOC))
+	writeTestDataFile("appCloseOut", makeAppCallWithOnCompletion(simpleSigner, transactions.CloseOutOC))
+	writeTestDataFile("appClearState", makeAppCallWithOnCompletion(simpleSigner, transactions.ClearStateOC))
+	writeTestDataFile("closePayment", makeClosePayment(simpleSigner, otherAddr))
+	writeTestDataFile("leasePayment", makeLeasePayment(simpleSigner))
+	writeTestDataFile("rekeyPayment", makeRekeyPayment(simpleSigner, otherAddr))
+	writeTestDataFile("assetClawback", makeAssetClawback(simpleSigner, otherAddr))
+	writeTestDataFile("assetCloseOut", makeAssetCloseOut(simpleSigner, otherAddr))
 	writeTestDataFile("assetCreate", makeAssetCreate(simpleSigner))
 	writeTestDataFile("assetDestroy", makeAssetDestroy(simpleSigner))
 	writeTestDataFile("assetConfig", makeAssetConfig(simpleSigner))
