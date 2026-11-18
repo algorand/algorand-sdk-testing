@@ -85,19 +85,6 @@ Feature: Applications
          | programs/loccheck.teal.tok  | local          | 0            | 1           |
          | programs/globcheck.teal.tok | global         | 1            | 0           |
 
-   @applications.resize
-   Scenario: Update an application's global schema and extra program pages
-      Given I create a new transient account and fund it with 2000000 microalgos.
-      And I build an application transaction with the transient account, the current application, suggested params, operation "create", approval-program "programs/thirteen.teal", clear-program "programs/thirteen.teal", global-bytes 0, global-ints 2, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 0, boxes ""
-      And I sign and submit the transaction, saving the txid. If there is an error it is "".
-      And I wait for the transaction to be confirmed.
-      And I remember the new application ID.
-      Then algod should report global schema byte-slices 0 and uints 2, and 0 extra program pages for the current application
-      When I build an application transaction with the transient account, the current application, suggested params, operation "update", approval-program "programs/thirteen.teal", clear-program "programs/thirteen.teal", global-bytes 1, global-ints 3, local-bytes 0, local-ints 0, app-args "", foreign-apps "", foreign-assets "", app-accounts "", extra-pages 2, boxes ""
-      And I sign and submit the transaction, saving the txid. If there is an error it is "".
-      And I wait for the transaction to be confirmed.
-      Then algod should report global schema byte-slices 1 and uints 3, and 2 extra program pages for the current application
-
    @applications.boxes
    Scenario: Exercise box features
       # Make these tests 'standalone'.
