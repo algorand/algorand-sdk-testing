@@ -3,7 +3,9 @@ name: go-algorand-update
 description: Perform the necessary steps to prepare this SDK for a go-algorand release 
 ---
 
-This repo needs to be updated to support the features coming in the next go-algorand release. Before doing anything, verify you can run `data-factory/generate.sh`. Stop immediately and let the user know if you cannot run the script. Do NOT try to fix/install anything before going to the user.
+This repo needs to be updated to support the features coming in the next go-algorand release. Before doing anything, ask the user which go-algorand ref (master, stable tag, or beta tag) they want to update this repo for and whether vFuture is in scope or not
+
+Before doing anything, verify you can run `data-factory/generate.sh`. Stop immediately and let the user know if you cannot run the script. Do NOT try to fix/install anything before going to the user.
 
 To determine the upcoming changes, perform a diff of the current `data-factory/go-algorand` reference and upstream go-algorand master.
 
