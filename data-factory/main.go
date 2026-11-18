@@ -514,9 +514,38 @@ func makeAppCall(signer Signer) TxData {
 	appCallFields := transactions.ApplicationCallTxnFields{
 		ApplicationID: appId,
 		OnCompletion:  transactions.NoOpOC,
+		RejectVersion: 2,
 	}
 
 	return makeTxData(protocol.ApplicationCallTx, appCallFields, signer)
+}
+
+// makeAppCallWithAccess builds an app call whose resources are named in the
+// access list (al) rather than the legacy foreign arrays, exercising every kind
+// of ResourceRef. Holding, Locals and Box references are 1-based indices into
+// the access list itself, with 0 meaning the sender (address), the current app
+// (locals app, box app).
+func makeAppCallWithAccess(signer Signer, otherAddr basics.Address) TxData {
+	const otherAppId = basics.AppIndex(84366826)
+
+	access := []transactions.ResourceRef{
+		{Address: otherAddr}, // 1: address
+		{Asset: assetId},     // 2: asset
+		{App: otherAppId},    // 3: app
+		{Holding: transactions.HoldingRef{Address: 1, Asset: 2}},  // otherAddr's holding of assetId
+		{Holding: transactions.HoldingRef{Address: 0, Asset: 2}},  // sender's holding of assetId
+		{Locals: transactions.LocalsRef{Address: 1, App: 3}},      // otherAddr's locals in otherAppId
+		{Locals: transactions.LocalsRef{Address: 1, App: 0}},      // otherAddr's locals in the current app
+		{Box: transactions.BoxRef{Index: 3, Name: []byte("box")}}, // box of otherAppId
+		{Box: transactions.BoxRef{Index: 0, Name: []byte("box")}}, // box of the current app
+		{}, // empty reference, which only bumps the box read/write quota
+	}
+
+	return makeTxData(protocol.ApplicationCallTx, transactions.ApplicationCallTxnFields{
+		ApplicationID: appId,
+		OnCompletion:  transactions.NoOpOC,
+		Access:        access,
+	}, signer)
 }
 
 func makeSimpleAssetTransfer(signer Signer) TxData {
@@ -885,6 +914,7 @@ func main() {
 	writeTestDataFile("appResize", makeAppResize(simpleSigner))
 	writeTestDataFile("appDelete", makeAppDelete(simpleSigner))
 	writeTestDataFile("appCall", makeAppCall(simpleSigner))
+	writeTestDataFile("appCallWithAccess", makeAppCallWithAccess(simpleSigner, addr(Signer{SingleSigner: secrets[1]})))
 	writeTestDataFile("assetCreate", makeAssetCreate(simpleSigner))
 	writeTestDataFile("assetDestroy", makeAssetDestroy(simpleSigner))
 	writeTestDataFile("assetConfig", makeAssetConfig(simpleSigner))

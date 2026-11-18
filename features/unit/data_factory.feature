@@ -40,6 +40,11 @@ Feature: Data factory transactions
   #
   # lsigArgs, when present, are set as the logic signature's args (lsig.arg). Args are not signed.
   #
+  # appCallWithAccess names its resources in the access list (al) instead of the foreign arrays. It contains
+  # one of every ResourceRef kind: address (d), asset (s), app (p), holding (h), locals (l) and box (b), plus an
+  # empty reference ({}) that only bumps the box quota. h, l and b refer to earlier entries by 1-based index into
+  # al, where 0 means the sender (h.d, l.d) or the current app (l.p, b.i), and zero indices are omitted.
+  #
   # rekeyedSender, when present, is the transaction sender, an account rekeyed to the signer. The signed
   # transaction additionally sets sgnr (auth address) to the signer's own address (for an escrow lsig, the
   # program's address).
@@ -64,6 +69,7 @@ Feature: Data factory transactions
       | appResize                       |
       | appDelete                       |
       | appCall                         |
+      | appCallWithAccess               |
       | assetCreate                     |
       | assetDestroy                    |
       | assetConfig                     |
@@ -107,6 +113,7 @@ Feature: Data factory transactions
       | appResize                       |
       | appDelete                       |
       | appCall                         |
+      | appCallWithAccess               |
       | assetCreate                     |
       | assetDestroy                    |
       | assetConfig                     |
