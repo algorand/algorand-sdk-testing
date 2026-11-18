@@ -105,6 +105,10 @@ type Signer struct {
 }
 
 func makeTxData(txType protocol.TxType, fields any, signer Signer) TxData {
+	return makeTxDataWithHeader(txType, fields, signer, nil)
+}
+
+func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, updateHeader func(*transactions.Header)) TxData {
 	ghB64 := "SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI="
 
 	ghBytes, err := base64.StdEncoding.DecodeString(ghB64)
@@ -158,6 +162,9 @@ func makeTxData(txType protocol.TxType, fields any, signer Signer) TxData {
 		GenesisHash: gh,
 		GenesisID:   "testnet-v1.0",
 		Fee:         basics.MicroAlgos{Raw: 1000},
+	}
+	if updateHeader != nil {
+		updateHeader(&stxn.Txn.Header)
 	}
 
 	if len(signer.Lsig) > 0 {
@@ -249,6 +256,24 @@ func makeSimplePayment(signer Signer) TxData {
 	return makeTxData(protocol.PaymentTx, payFields, signer)
 }
 
+func makePaymentWithAmount(signer Signer) TxData {
+	return makeTxData(protocol.PaymentTx, transactions.PaymentTxnFields{
+		Receiver: addr(signer),
+		Amount:   basics.MicroAlgos{Raw: 1},
+	}, signer)
+}
+
+func makeLargeNotePayment(signer Signer) TxData {
+	return makeTxDataWithHeader(protocol.PaymentTx, transactions.PaymentTxnFields{
+		Receiver: addr(signer),
+		Amount:   basics.MicroAlgos{Raw: 1},
+	}, signer, func(header *transactions.Header) {
+		// One charged byte beyond the 1024-byte standard note limit.
+		header.Note = make([]byte, 1025)
+		header.Fee = basics.MicroAlgos{Raw: 1001}
+	})
+}
+
 func makeOptInAssetTransfer(signer Signer) TxData {
 	optInFields := transactions.AssetTransferTxnFields{
 		XferAsset:     assetId,
@@ -288,6 +313,22 @@ func makeAppUpdate(signer Signer, program []byte) TxData {
 	}
 
 	return makeTxData(protocol.ApplicationCallTx, appUpdateFields, signer)
+}
+
+func makeAppResize(signer Signer) TxData {
+	program, err := logic.AssembleString("#pragma version 13\nint 1")
+	if err != nil {
+		panic(err)
+	}
+
+	return makeTxData(protocol.ApplicationCallTx, transactions.ApplicationCallTxnFields{
+		ApplicationID:     appId,
+		OnCompletion:      transactions.UpdateApplicationOC,
+		ApprovalProgram:   program.Program,
+		ClearStateProgram: program.Program,
+		GlobalStateSchema: basics.StateSchema{NumUint: 3, NumByteSlice: 1},
+		ExtraProgramPages: 2,
+	}, signer)
 }
 
 func makeAppDelete(signer Signer) TxData {
@@ -464,7 +505,8 @@ func computeGroupID(txgroup []transactions.Transaction) (crypto.Digest, error) {
 
 func makeTxGroup(signer Signer) TxGroupData {
 	pay1 := makeSimplePayment(signer)
-	pay2 := makeSimplePayment(signer)
+	// The group must contain distinct transactions under current consensus.
+	pay2 := makePaymentWithAmount(signer)
 	appCall := makeAppCall(signer)
 
 	txGroup := []transactions.Transaction{pay1.Stxn.Txn, pay2.Stxn.Txn, appCall.Stxn.Txn}
@@ -503,7 +545,7 @@ func makeTxGroup(signer Signer) TxGroupData {
 	}
 
 	return TxGroupData{
-		Txns:      []string{"simplePayment", "simplePayment", "appCall"},
+		Txns:      []string{"simplePayment", "paymentWithAmount", "appCall"},
 		TxnBlobs:  txnBlobs,
 		StxnBlobs: stxnBlobs,
 		GroupID:   groupID.String(),
@@ -585,10 +627,13 @@ func main() {
 	}
 
 	writeTestDataFile("simplePayment", makeSimplePayment(simpleSigner))
+	writeTestDataFile("paymentWithAmount", makePaymentWithAmount(simpleSigner))
+	writeTestDataFile("largeNotePayment", makeLargeNotePayment(simpleSigner))
 	writeTestDataFile("simpleAssetTransfer", makeSimpleAssetTransfer(simpleSigner))
 	writeTestDataFile("optInAssetTransfer", makeOptInAssetTransfer(simpleSigner))
 	writeTestDataFile("appCreate", makeAppCreate(simpleSigner, op.Program))
 	writeTestDataFile("appUpdate", makeAppUpdate(simpleSigner, op.Program))
+	writeTestDataFile("appResize", makeAppResize(simpleSigner))
 	writeTestDataFile("appDelete", makeAppDelete(simpleSigner))
 	writeTestDataFile("appCall", makeAppCall(simpleSigner))
 	writeTestDataFile("assetCreate", makeAssetCreate(simpleSigner))
