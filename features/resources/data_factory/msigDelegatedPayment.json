@@ -15,7 +15,9 @@
         "SK": "AgMEBQYHCAkKCwwNDg8QERITFBUWFxgZGhscHR4fICFDzcAj0i1fnhB9GgaTRX010dEOt9IcchGS9W9d5AZl0w==",
         "SignatureVerifier": "Q83AI9ItX54QfRoGk0V9NdHRDrfSHHIRkvVvXeQGZdM="
       }
-    ]
+    ],
+    "msigThreshold": 2,
+    "msigVersion": 1
   },
   "stxn": {
     "lsig": {

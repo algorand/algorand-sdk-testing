@@ -73,8 +73,11 @@ func generateSecrets(numAccs int) []*crypto.SignatureSecrets {
 	return secrets
 }
 
+const msigVersion = 1
+const msigThreshold = 2
+
 func generateMsigAddr(pks [3]crypto.PublicKey) basics.Address {
-	addr, err := crypto.MultisigAddrGen(1, 2, pks[:])
+	addr, err := crypto.MultisigAddrGen(msigVersion, msigThreshold, pks[:])
 
 	if err != nil {
 		panic(err)
@@ -92,6 +95,7 @@ type TxData struct {
 }
 
 type TxGroupData struct {
+	Signer    Signer   `codec:"signer"`
 	Txns      []string `codec:"txns"`
 	TxnBlobs  [][]byte `codec:"txnBlobs"`
 	StxnBlobs [][]byte `codec:"stxnBlobs"`
@@ -99,9 +103,11 @@ type TxGroupData struct {
 }
 
 type Signer struct {
-	SingleSigner *crypto.SignatureSecrets  `codec:"singleSigner,omitempty"`
-	MsigSigners  []crypto.SignatureSecrets `codec:"msigSigners,omitempty"`
-	Lsig         []byte                    `codec:"lsig,omitempty"`
+	SingleSigner  *crypto.SignatureSecrets  `codec:"singleSigner,omitempty"`
+	MsigSigners   []crypto.SignatureSecrets `codec:"msigSigners,omitempty"`
+	MsigVersion   uint8                     `codec:"msigVersion,omitempty"`
+	MsigThreshold uint8                     `codec:"msigThreshold,omitempty"`
+	Lsig          []byte                    `codec:"lsig,omitempty"`
 }
 
 func makeTxData(txType protocol.TxType, fields any, signer Signer) TxData {
@@ -181,8 +187,8 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 
 			toBeSigned := logic.MultisigProgram{Addr: crypto.Digest(stxn.Txn.Sender), Program: program}
 
-			stxn.Lsig.LMsig.Threshold = 2
-			stxn.Lsig.LMsig.Version = 1
+			stxn.Lsig.LMsig.Threshold = msigThreshold
+			stxn.Lsig.LMsig.Version = msigVersion
 			stxn.Lsig.LMsig.Subsigs = make([]crypto.MultisigSubsig, len(pks))
 
 			for i := range signer.MsigSigners {
@@ -201,8 +207,8 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 		}
 
 		stxn.Msig = crypto.MultisigSig{
-			Version:   1,
-			Threshold: 2,
+			Version:   msigVersion,
+			Threshold: msigThreshold,
 			Subsigs:   make([]crypto.MultisigSubsig, len(pks)),
 		}
 
@@ -545,6 +551,7 @@ func makeTxGroup(signer Signer) TxGroupData {
 	}
 
 	return TxGroupData{
+		Signer:    signer,
 		Txns:      []string{"simplePayment", "paymentWithAmount", "appCall"},
 		TxnBlobs:  txnBlobs,
 		StxnBlobs: stxnBlobs,
@@ -583,9 +590,12 @@ func fixNumericKeys(jsonData []byte) []byte {
 	return re.ReplaceAll(jsonData, []byte(`$1"$2"$3:`))
 }
 
+// dataDir is inside features/ so that SDK test harnesses, which copy the features tree, pick it up
+const dataDir = "../features/resources/data_factory"
+
 // writeTestDataFile writes a single test data item to a JSON file
 func writeTestDataFile(name string, data any) {
-	filename := filepath.Join("data", name+".json")
+	filename := filepath.Join(dataDir, name+".json")
 
 	jsonData := protocol.EncodeJSON(data)
 	jsonData = fixNumericKeys(jsonData)
@@ -603,7 +613,9 @@ func main() {
 		SingleSigner: secrets[0],
 	}
 	msigSigner := Signer{
-		MsigSigners: []crypto.SignatureSecrets{*secrets[0], *secrets[1], *secrets[2]},
+		MsigSigners:   []crypto.SignatureSecrets{*secrets[0], *secrets[1], *secrets[2]},
+		MsigVersion:   msigVersion,
+		MsigThreshold: msigThreshold,
 	}
 
 	op, err := logic.AssembleString("int 1")
@@ -622,8 +634,10 @@ func main() {
 	}
 
 	msigDelegatedSigner := Signer{
-		MsigSigners: []crypto.SignatureSecrets{*secrets[0], *secrets[1], *secrets[2]},
-		Lsig:        op.Program,
+		MsigSigners:   []crypto.SignatureSecrets{*secrets[0], *secrets[1], *secrets[2]},
+		MsigVersion:   msigVersion,
+		MsigThreshold: msigThreshold,
+		Lsig:          op.Program,
 	}
 
 	writeTestDataFile("simplePayment", makeSimplePayment(simpleSigner))

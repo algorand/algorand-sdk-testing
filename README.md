@@ -30,6 +30,9 @@ These reside in the [unit features directory](features/unit)
 | @unit.atomic_transaction_composer    | ABI / atomic transaction construction unit tests.                                                           |
 | @unit.atc_method_args                | Test that algod's Atomic Transaction Composer assserts that the same number of arguments given as expected. |
 | @unit.client-no-headers              | Tests that clients don't add non-standard http headers when no (or an empty) auth token is provided.        |
+| @unit.datafactory                    | Transaction encoding and signing against go-algorand generated data (resources/data_factory).               |
+| @unit.datafactory.msgpack            | Msgpack decode/encode round trip of every data factory transaction.                                         |
+| @unit.datafactory.signing            | Signing every data factory transaction with its signer (single, msig, lsig, delegated lsig).                |
 | @unit.feetest                        | Fee transaction encoding tests.                                                                             |
 | @unit.indexer                        | Indexer REST API unit tests.                                                                                |
 | @unit.indexer.logs                   | Application logs endpoints added to Indexer.                                                                |
