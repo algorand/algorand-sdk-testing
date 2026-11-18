@@ -7,6 +7,9 @@ This repo needs to be updated to support the features coming in the next go-algo
 
 Before doing anything, verify you can run `data-factory/generate.sh`. Stop immediately and let the user know if you cannot run the script. Do NOT try to fix/install anything before going to the user.
 
-To determine the upcoming changes, perform a diff of the current `data-factory/go-algorand` reference and upstream go-algorand master.
+To determine the upcoming changes, perform a diff of the current `data-factory/go-algorand` reference and upstream go-algorand master. Below are some guidelines
+
+* opcode changes are always out of scope since it does not affect the SDK
+* any changes to transactions (new fields, new sig types, msg/lsig capabilities, etc.) should be reflected in the data factory
 
 Do not make any changes until you have provided an overview of the changes to the user and asked any clarifying questions.
