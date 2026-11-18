@@ -342,10 +342,12 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 			stxn.Lsig.LMsig.Version = msigVersion
 			stxn.Lsig.LMsig.Subsigs = make([]crypto.MultisigSubsig, len(pks))
 
+			// Every key is listed, but only the first msigThreshold sign
 			for i := range signer.MsigSigners {
-				sig := signer.MsigSigners[i].Sign(toBeSigned)
 				stxn.Lsig.LMsig.Subsigs[i].Key = pks[i]
-				stxn.Lsig.LMsig.Subsigs[i].Sig = sig
+				if i < msigThreshold {
+					stxn.Lsig.LMsig.Subsigs[i].Sig = signer.MsigSigners[i].Sign(toBeSigned)
+				}
 			}
 
 		}
@@ -363,12 +365,12 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 			Subsigs:   make([]crypto.MultisigSubsig, len(pks)),
 		}
 
-		var sigs [][]byte
+		// Every key is listed, but only the first msigThreshold sign
 		for i := range signer.MsigSigners {
-			sig := signer.MsigSigners[i].Sign(stxn.Txn)
-			sigs = append(sigs, sig[:])
 			stxn.Msig.Subsigs[i].Key = pks[i]
-			stxn.Msig.Subsigs[i].Sig = sig
+			if i < msigThreshold {
+				stxn.Msig.Subsigs[i].Sig = signer.MsigSigners[i].Sign(stxn.Txn)
+			}
 		}
 
 	}

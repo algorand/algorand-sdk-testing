@@ -18,12 +18,17 @@ Feature: Data factory transactions
   # (32-byte seed followed by 32-byte public key) under "SK", with its public key under "SignatureVerifier".
   #   singleSigner only          - ed25519 signature of the transaction (sig)
   #   msigSigners only           - multisig account built from msigVersion, msigThreshold and the signers'
-  #                                public keys in order; every signer signs the transaction (msig)
+  #                                public keys in order; the first msigThreshold signers sign the
+  #                                transaction (msig)
   #   pqSigner only              - Falcon-1024 signature of the transaction (pqsig)
   #   lsig only                  - escrow logic signature: the program with no signature (lsig.l)
   #   lsig and singleSigner      - logic signature delegated by singleSigner (lsig.l, lsig.sig)
-  #   lsig and msigSigners       - logic signature delegated by the multisig account, every signer signs
-  #                                "MsigProgram" || multisig address || program (lsig.l, lsig.lmsig)
+  #   lsig and msigSigners       - logic signature delegated by the multisig account, the first
+  #                                msigThreshold signers sign "MsigProgram" || multisig address || program
+  #                                (lsig.l, lsig.lmsig)
+  #
+  # A multisig lists a subsig for every signer, in order. Signers beyond msigThreshold do not sign, so their
+  # subsig contains only the public key (pk) with no signature (s).
   #   lsig and pqSigner          - logic signature delegated by the PQ account, which signs
   #                                "PQProgram" || PQ address || program (lsig.l, lsig.pqsig)
   #
