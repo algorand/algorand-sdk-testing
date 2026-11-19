@@ -12,5 +12,6 @@ To determine the upcoming changes, perform a diff of the current `data-factory/g
 * opcode changes are always out of scope since it does not affect the SDK
 * any changes to transactions (new fields, new sig types, msig/lsig capabilities, etc.) should be reflected in the data factory
 * all API changes should be reflected in the tests, including responses and requests
+* pay close attention to new or modified tests that may indicate changing behavior of existing fields/features
 
 Do not make any changes until you have provided an overview of the changes to the user and asked any clarifying questions.
