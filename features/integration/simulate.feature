@@ -22,7 +22,7 @@ Feature: Simulating transactions
 
   @simulate.size_fees
   Scenario Outline: Simulate payments at and above the standard note size
-    Given I build a self-payment of 1 microalgo from the transient account with a zero-filled note of <note-bytes> bytes and a flat fee of <fee> microalgos
+    Given I build a self-payment of 1 microalgo from the default account with a zero-filled note of <note-bytes> bytes and a flat fee of <fee> microalgos
     When I get the private key
     And I sign the transaction with the private key
     And I simulate the transaction
