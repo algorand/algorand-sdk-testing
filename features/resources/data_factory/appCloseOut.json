@@ -1,0 +1,25 @@
+{
+  "id": "L5NKQSN5VVJLSQGKYZLCMX4TYIRYOZ2WDR6ICGSQFGDMVVF37UCQ",
+  "signer": {
+    "singleSigner": {
+      "SK": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8DoQe/884Qvh1w3RjnS8CZZ+TWMJulDV8d3IZkElUxuA==",
+      "SignatureVerifier": "A6EHv/POEL4dcN0Y50vAmWfk1jCbpQ1fHdyGZBJVMbg="
+    }
+  },
+  "stxn": {
+    "sig": "hLBde6cwDBegzK3iUI47VD0+wuIMSa7BSDGGyZnsJWNYDDKpEOuHCaC6PDxwDAT/BCMKFuOfvln2iPhBNlMPBw==",
+    "txn": {
+      "apan": 2,
+      "apid": 84366825,
+      "fee": 1000,
+      "fv": 50659540,
+      "gen": "testnet-v1.0",
+      "gh": "SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI=",
+      "lv": 50660540,
+      "snd": "AOQQPP7TZYIL4HLQ3UMOOS6ATFT6JVRQTOSQ2XY53SDGIESVGG4MPFYUMQ",
+      "type": "appl"
+    }
+  },
+  "stxnBlob": "gqNzaWfEQISwXXunMAwXoMyt4lCOO1Q9PsLiDEmuwUgxhsmZ7CVjWAwyqRDrhwmgujw8cAwE/wQjChbjn75Z9oj4QTZTDwejdHhuiaRhcGFuAqRhcGlkzgUHVemjZmVlzQPoomZ2zgMFANSjZ2VurHRlc3RuZXQtdjEuMKJnaMQgSGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiKibHbOAwUEvKNzbmTEIAOhB7/zzhC+HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4pHR5cGWkYXBwbA==",
+  "txnBlob": "iaRhcGFuAqRhcGlkzgUHVemjZmVlzQPoomZ2zgMFANSjZ2VurHRlc3RuZXQtdjEuMKJnaMQgSGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiKibHbOAwUEvKNzbmTEIAOhB7/zzhC+HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4pHR5cGWkYXBwbA=="
+}

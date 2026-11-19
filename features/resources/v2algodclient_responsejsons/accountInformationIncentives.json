@@ -1,0 +1,20 @@
+{
+  "address": "ALGORANDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIN5DNAU",
+  "amount": 70000000000,
+  "amount-without-pending-rewards": 70000000000,
+  "min-balance": 1234500,
+  "pending-rewards": 0,
+  "reward-base": 0,
+  "rewards": 0,
+  "round": 6222133,
+  "status": "Online",
+  "total-apps-opted-in": 0,
+  "total-assets-opted-in": 0,
+  "total-created-apps": 0,
+  "total-created-assets": 0,
+  "total-boxes": 3,
+  "total-box-bytes": 1024,
+  "incentive-eligible": true,
+  "last-proposed": 6222000,
+  "last-heartbeat": 6222100
+}

@@ -1,0 +1,21 @@
+{
+  "id": 84366825,
+  "params": {
+    "creator": "ALGORANDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIN5DNAU",
+    "approval-program": "DYEB",
+    "clear-state-program": "DYEB",
+    "extra-program-pages": 2,
+    "global-state-schema": {
+      "num-byte-slice": 1,
+      "num-uint": 3
+    },
+    "local-state-schema": {
+      "num-byte-slice": 0,
+      "num-uint": 0
+    },
+    "version": 4,
+    "size-sponsor": "6F3XDLTSGCBMOODCCSNMU7ODC3HL3EUWLSF7MCRDJ55X26SI5KL7YGF6HY",
+    "foreign-box-reads": true,
+    "family-box-access": true
+  }
+}
