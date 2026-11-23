@@ -20,6 +20,20 @@ Feature: Simulating transactions
       | 0       | X4Bl4wQ9rCo= |
       | 1234523 | X4Bl4wQ9rCo= |
 
+  @simulate.size_fees
+  Scenario Outline: Simulate payments at and above the standard note size
+    Given I build a self-payment of 1 microalgo from the default account with a zero-filled note of <note-bytes> bytes and a flat fee of <fee> microalgos
+    When I get the private key
+    And I sign the transaction with the private key
+    And I simulate the transaction
+    Then the simulation should succeed without any failure message
+    And simulation group 0 should report usage <usage> and fees paid <fee>, with fees paid <fee> for transaction 0
+
+    Examples:
+      | note-bytes | fee  | usage   |
+      | 1024       | 1000 | 1000000 |
+      | 1025       | 1001 | 1000100 |
+
   @simulate
   Scenario: Simulating unsigned payment transaction
     Given default transaction with parameters 100001 "X4Bl4wQ9rCo="

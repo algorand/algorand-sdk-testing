@@ -1,0 +1,24 @@
+{
+  "id": "P7BBC3NXIJFFXC33AF6JYBOEKJOH6JROJKNN647PBDQKWYFBVMUA",
+  "signer": {
+    "singleSigner": {
+      "SK": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8DoQe/884Qvh1w3RjnS8CZZ+TWMJulDV8d3IZkElUxuA==",
+      "SignatureVerifier": "A6EHv/POEL4dcN0Y50vAmWfk1jCbpQ1fHdyGZBJVMbg="
+    }
+  },
+  "stxn": {
+    "sig": "mL9kN0C/QpYwOBWdJmRmyEVjEORhUQ+HgeI0GRjNCB2mV3bDNAHF6//pbvHnxEnmX7g1kqX70k+UH2EZ55ogBw==",
+    "txn": {
+      "fee": 1000,
+      "fv": 50659540,
+      "gen": "testnet-v1.0",
+      "gh": "SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI=",
+      "lv": 50660540,
+      "nonpart": true,
+      "snd": "AOQQPP7TZYIL4HLQ3UMOOS6ATFT6JVRQTOSQ2XY53SDGIESVGG4MPFYUMQ",
+      "type": "keyreg"
+    }
+  },
+  "stxnBlob": "gqNzaWfEQJi/ZDdAv0KWMDgVnSZkZshFYxDkYVEPh4HiNBkYzQgdpld2wzQBxev/6W7x58RJ5l+4NZKl+9JPlB9hGeeaIAejdHhuiKNmZWXNA+iiZnbOAwUA1KNnZW6sdGVzdG5ldC12MS4womdoxCBIY7UYpLPITsgQ8i1PEIHLD3HwWaesIN7GL39w5Qk6IqJsds4DBQS8p25vbnBhcnTDo3NuZMQgA6EHv/POEL4dcN0Y50vAmWfk1jCbpQ1fHdyGZBJVMbikdHlwZaZrZXlyZWc=",
+  "txnBlob": "iKNmZWXNA+iiZnbOAwUA1KNnZW6sdGVzdG5ldC12MS4womdoxCBIY7UYpLPITsgQ8i1PEIHLD3HwWaesIN7GL39w5Qk6IqJsds4DBQS8p25vbnBhcnTDo3NuZMQgA6EHv/POEL4dcN0Y50vAmWfk1jCbpQ1fHdyGZBJVMbikdHlwZaZrZXlyZWc="
+}

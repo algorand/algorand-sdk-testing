@@ -1,0 +1,33 @@
+{
+  "id": "UTDOIJA2G7UQA22FRJ7HOY3IEAUM6H35C6NTYQ7NIMJ6FDRJ3V4A",
+  "signer": {
+    "singleSigner": {
+      "SK": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8DoQe/884Qvh1w3RjnS8CZZ+TWMJulDV8d3IZkElUxuA==",
+      "SignatureVerifier": "A6EHv/POEL4dcN0Y50vAmWfk1jCbpQ1fHdyGZBJVMbg="
+    }
+  },
+  "stxn": {
+    "sig": "SZA2Sdb8MLpdzAVqcrFs0RVmjQf7QhrblQzUIdi8jN5s6Ygh9dYREKPasWTo361kx7IlfTBraYI0z+OHLnj2BA==",
+    "txn": {
+      "apap": "ASABASI=",
+      "apep": 3,
+      "apgs": {
+        "nbs": 1
+      },
+      "apls": {
+        "nbs": 3,
+        "nui": 2
+      },
+      "apsu": "ASABASI=",
+      "fee": 1000,
+      "fv": 50659540,
+      "gen": "testnet-v1.0",
+      "gh": "SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI=",
+      "lv": 50660540,
+      "snd": "AOQQPP7TZYIL4HLQ3UMOOS6ATFT6JVRQTOSQ2XY53SDGIESVGG4MPFYUMQ",
+      "type": "appl"
+    }
+  },
+  "stxnBlob": "gqNzaWfEQEmQNknW/DC6XcwFanKxbNEVZo0H+0Ia25UM1CHYvIzebOmIIfXWERCj2rFk6N+tZMeyJX0wa2mCNM/jhy549gSjdHhujKRhcGFwxAUBIAEBIqRhcGVwA6RhcGdzgaNuYnMBpGFwbHOCo25icwOjbnVpAqRhcHN1xAUBIAEBIqNmZWXNA+iiZnbOAwUA1KNnZW6sdGVzdG5ldC12MS4womdoxCBIY7UYpLPITsgQ8i1PEIHLD3HwWaesIN7GL39w5Qk6IqJsds4DBQS8o3NuZMQgA6EHv/POEL4dcN0Y50vAmWfk1jCbpQ1fHdyGZBJVMbikdHlwZaRhcHBs",
+  "txnBlob": "jKRhcGFwxAUBIAEBIqRhcGVwA6RhcGdzgaNuYnMBpGFwbHOCo25icwOjbnVpAqRhcHN1xAUBIAEBIqNmZWXNA+iiZnbOAwUA1KNnZW6sdGVzdG5ldC12MS4womdoxCBIY7UYpLPITsgQ8i1PEIHLD3HwWaesIN7GL39w5Qk6IqJsds4DBQS8o3NuZMQgA6EHv/POEL4dcN0Y50vAmWfk1jCbpQ1fHdyGZBJVMbikdHlwZaRhcHBs"
+}

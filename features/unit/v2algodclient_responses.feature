@@ -51,6 +51,21 @@ Feature: Algod REST API v2 Responses
       | jsonfiles   | directory                   | err | roundNum |
       | status.json | v2algodclient_responsejsons |     | 6222190  |
 
+  @unit.algod.peers
+  Scenario: GetPeers response
+    Given mock http responses in "nodePeers.json" loaded from "v2algodclient_responsejsons"
+    When we make a GetPeers call using the algod admin token
+    Then the parsed GetPeers response should have 2 peers
+    And peer 0 should have address "192.0.2.1:4160", connection type "inbound", and network type "ws"
+    And peer 1 should have address "/ip4/192.0.2.2/tcp/4160", connection type "outbound", and network type "p2p"
+
+  @unit.applications.boxes.pagination
+  Scenario: GetApplicationBoxes paginated response
+    Given mock http responses in "applicationBoxesPage.json" loaded from "v2algodclient_responsejsons"
+    When we make a GetApplicationBoxes call for applicationID 1234 with limit 1, prefix "b64:/w==", next "", include "values", and round 42
+    Then the parsed application boxes page should have round 42 and next token "b64:/wE="
+    And the only box should have base64 name "/wE=" and base64 value "aGVsbG8="
+
   @unit.algod
   Scenario Outline: Ledger Supply response
     Given mock http responses in "<jsonfiles>" loaded from "<directory>"
@@ -116,6 +131,18 @@ Feature: Algod REST API v2 Responses
     Examples:
       | jsonfiles           | directory                   | err | pool                                         |
       | block-header.base64 | v2algodclient_responsejsons |     | /v////////////////////////////////////////8= |
+
+  @unit.algod.block_load
+  Scenario: Get Block response with load and congestion tax
+    Given mock http responses in "block-load.json" loaded from "v2algodclient_responsejsons"
+    When we make any Get Block call
+    Then the parsed Get Block response should have load 40 and congestion tax 2500 in millionths
+
+  @unit.algod.block_sha512
+  Scenario: Get Block response with SHA-512 hashes
+    Given mock http responses in "block-sha512.json" loaded from "v2algodclient_responsejsons"
+    When we make any Get Block call
+    Then the parsed Get Block response should have SHA-512 previous block hash "oOODl1JcjvSupWw+574ev347KnXZXOfqDKdcpEWaI8wjah1/0OtuCKAHUV+SejUl+8XLdXNz0W4YDbHsIvt4Ig==" and SHA-512 transaction commitment "N/lyVtVgpOw8LjgC8uBlWSMMfmR9opfsnbLSASumaYBneQFXajy3TxsXi5OkptKkMwxRRmDLTMlFAlpGJ44g6w=="
 
   @unit.algod
   Scenario Outline: Suggested Transaction Parameters response

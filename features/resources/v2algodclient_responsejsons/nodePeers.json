@@ -1,0 +1,14 @@
+{
+  "Peers": [
+    {
+      "connection-type": "inbound",
+      "network-address": "192.0.2.1:4160",
+      "network-type": "ws"
+    },
+    {
+      "connection-type": "outbound",
+      "network-address": "/ip4/192.0.2.2/tcp/4160",
+      "network-type": "p2p"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+[submodule "data-factory/go-algorand"]
+	path = data-factory/go-algorand
+	url = https://github.com/algorand/go-algorand

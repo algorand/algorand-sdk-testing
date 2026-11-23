@@ -99,6 +99,20 @@ Feature: Algod REST API v2 Paths
       | /v2/applications/1234/boxes       | 1234           | 0   |
       | /v2/applications/1234/boxes?max=2 | 1234           | 2   |
 
+  @unit.applications.boxes.pagination
+  Scenario Outline: GetApplicationBoxes with pagination options
+    When we make a GetApplicationBoxes call for applicationID <application-id> with limit <limit>, prefix "<prefix>", next "<next>", include "<include>", and round <round>
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                                                                                                  | application-id | limit | prefix     | next         | include | round |
+      | /v2/applications/1234/boxes?limit=2                                                                     | 1234           | 2     |            |              |         | 0     |
+      | /v2/applications/1234/boxes?include=values&limit=2&next=b64%3A%2Fw%3D%3D&prefix=b64%3A%2Fw%3D%3D&round=42 | 1234           | 2     | b64:/w==   | b64:/w==     | values  | 42    |
+
+  @unit.algod.peers
+  Scenario: GetPeers path
+    When we make a GetPeers call using the algod admin token
+    Then expect the request to be "get" "/v2/node/peers"
+
   @unit.algod.ledger_refactoring
   Scenario Outline: Account Information
     When we make an Account Information call against account "<account>" with exclude "<exclude>"
@@ -253,6 +267,14 @@ Feature: Algod REST API v2 Paths
       | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/applications                              | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | 0     |       |         |
       | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/applications?include=params&limit=5        | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | 5     |       | params  |
       | /v2/accounts/47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU/applications?include=params&limit=5&next=x | 47YPQTIGQEO7T4Y4RWDYWEKV6RTR2UNBQXBABEEGM72ESWDQNCQ52OPASU | 5     | x     | params  |
+
+  @unit.blocklogs
+  Scenario Outline: Get Block Logs
+    When we make a GetBlockLogs call against block number <round>
+    Then expect the path used to be "<path>"
+    Examples:
+      | path                     | round    |
+      | /v2/blocks/29608182/logs | 29608182 |
 
   @unit.blocktxids
   Scenario Outline: Get Block TXIDs
