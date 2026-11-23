@@ -1,4 +1,4 @@
-module github.com/algorandfoundation/algokit-polytest/resources/data-factory
+module github.com/algorand/algorand-sdk-testing/data-factory
 
 go 1.25.3
 
