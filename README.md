@@ -38,6 +38,8 @@ These reside in the [unit features directory](features/unit)
 | @unit.datafactory                    | Transaction encoding and signing against go-algorand generated data (resources/data_factory).               |
 | @unit.datafactory.msgpack            | Msgpack decode/encode round trip of every data factory transaction.                                         |
 | @unit.datafactory.signing            | Signing every data factory transaction with its signer (single, msig, lsig, delegated lsig).                |
+| @sksig                               | Salted-key signature (SKsig) unit tests, run for each scheme in their tagged Examples.                      |
+| @sksig.f1                            | SKsig unit test examples for the f1 (Falcon-1024) scheme.                                                   |
 | @unit.feetest                        | Fee transaction encoding tests.                                                                             |
 | @unit.indexer                        | Indexer REST API unit tests.                                                                                |
 | @unit.indexer.logs                   | Application logs endpoints added to Indexer.                                                                |
@@ -99,6 +101,8 @@ These reside in the [integration features directory](features/integration)
 | @simulate.extra\_opcode\_budget             | Test the ability to simulate transactions by specifying extra opcode budget through algod.                             |
 | @simulate.exec\_trace\_with\_stack\_scratch | Test the ability to simulate transactions with execution trace containing stack and scratch slot change through algod. |
 | @simulate.size\_fees                        | Test simulated usage and fees for payments at and above the standard note size.                                        |
+| @sksig                                      | Send and rekey with salted-key signature (SKsig) accounts, run for each scheme in their tagged Examples.               |
+| @sksig.f1                                   | SKsig integration test examples for the f1 (Falcon-1024) scheme.                                                       |
 
 ### Test Implementation Status
 

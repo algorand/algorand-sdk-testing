@@ -20,7 +20,7 @@ Feature: Data factory transactions
   #   msigSigners only           - multisig account built from msigVersion, msigThreshold and the signers'
   #                                public keys in order; the first msigThreshold signers sign the
   #                                transaction (msig)
-  #   pqSigner only              - Falcon-1024 signature of the transaction (pqsig)
+  #   sksigSigner only           - salted-key signature (SKsig) of the transaction (pqsig)
   #   lsig only                  - escrow logic signature: the program with no signature (lsig.l)
   #   lsig and singleSigner      - logic signature delegated by singleSigner (lsig.l, lsig.sig)
   #   lsig and msigSigners       - logic signature delegated by the multisig account, the first
@@ -29,14 +29,15 @@ Feature: Data factory transactions
   #
   # A multisig lists a subsig for every signer, in order. Signers beyond msigThreshold do not sign, so their
   # subsig contains only the public key (pk) with no signature (s).
-  #   lsig and pqSigner          - logic signature delegated by the PQ account, which signs
-  #                                "PQProgram" || PQ address || program (lsig.l, lsig.pqsig)
+  #   lsig and sksigSigner       - logic signature delegated by the salted-address account, which signs
+  #                                "PQProgram" || salted address || program (lsig.l, lsig.pqsig)
   #
-  # pqSigner holds a Falcon-1024 key pair ("pk", "sk"). go-algorand signs with a deterministic Falcon profile,
-  # so signatures are reproducible. A pqsig contains the scheme "f1" (sch), the address salt (slt), the
-  # public key (pk) and the signature (sig). The PQ address is
-  # SHA-512/256("PQA" || "f1" || salt || pk), where salt is the lowest value in 0..255 whose address is
-  # PQ compliant.
+  # sksigSigner holds the signature scheme tag ("scheme") and its key pair ("pk", "sk"). SKsig files are named
+  # <file>_<scheme>, and their scenarios list the scheme alongside the file:
+  #   f1 - Falcon-1024. go-algorand signs with a deterministic Falcon profile, so signatures are reproducible.
+  # An SKsig is encoded under the pqsig key and contains the scheme (sch), the address salt (slt), the public
+  # key (pk) and the signature (sig). The salted address is SHA-512/256("PQA" || scheme || salt || pk), where
+  # salt is the lowest value in 0..255 whose address is not an Edwards25519 curve point.
   #
   # lsigArgs, when present, are set as the logic signature's args (lsig.arg). Args are not signed.
   #
@@ -92,16 +93,28 @@ Feature: Data factory transactions
       | lsigPayment                     |
       | singleDelegatedPayment          |
       | msigDelegatedPayment            |
-      | pqPayment                       |
-      | pqDelegatedPayment              |
       | rekeyedPayment                  |
-      | pqRekeyedPayment                |
       | rekeyedDelegatedPayment         |
-      | pqRekeyedDelegatedPayment       |
       | rekeyedMsigPayment              |
       | rekeyedLsigPayment              |
       | rekeyedMsigDelegatedPayment     |
       | stateProof                      |
+
+  @unit.datafactory.msgpack
+  Scenario Outline: Msgpack round trip with a salted-key signature (<file>, <scheme>)
+    Given data factory transaction "<file>_<scheme>" loaded from "data_factory"
+    When I decode the data factory txnBlob as a transaction
+    Then encoding the transaction should equal the data factory txnBlob
+    When I decode the data factory stxnBlob as a signed transaction
+    Then encoding the signed transaction should equal the data factory stxnBlob
+
+    @sksig.f1
+    Examples:
+      | file                         | scheme |
+      | sksigPayment                 | f1     |
+      | sksigDelegatedPayment        | f1     |
+      | sksigRekeyedPayment          | f1     |
+      | sksigRekeyedDelegatedPayment | f1     |
 
   @unit.datafactory.signing
   Scenario Outline: Signing (<file>)
@@ -145,15 +158,26 @@ Feature: Data factory transactions
       | lsigPayment                     |
       | singleDelegatedPayment          |
       | msigDelegatedPayment            |
-      | pqPayment                       |
-      | pqDelegatedPayment              |
       | rekeyedPayment                  |
-      | pqRekeyedPayment                |
       | rekeyedDelegatedPayment         |
-      | pqRekeyedDelegatedPayment       |
       | rekeyedMsigPayment              |
       | rekeyedLsigPayment              |
       | rekeyedMsigDelegatedPayment     |
+
+  @unit.datafactory.signing
+  Scenario Outline: Signing with a salted-key signature (<file>, <scheme>)
+    Given data factory transaction "<file>_<scheme>" loaded from "data_factory"
+    When I decode the data factory txnBlob as a transaction
+    And I sign the transaction with the data factory signer
+    Then encoding the signed transaction should equal the data factory stxnBlob
+
+    @sksig.f1
+    Examples:
+      | file                         | scheme |
+      | sksigPayment                 | f1     |
+      | sksigDelegatedPayment        | f1     |
+      | sksigRekeyedPayment          | f1     |
+      | sksigRekeyedDelegatedPayment | f1     |
 
   @unit.datafactory.msgpack
   Scenario Outline: Msgpack round trip for a transaction group (<file>)

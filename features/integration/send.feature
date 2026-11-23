@@ -17,18 +17,19 @@ Feature: Sending transactions
       | 0       | X4Bl4wQ9rCo= |
       | 1234523 | X4Bl4wQ9rCo= |
 
-  @send @falcon-1024
-  Scenario Outline: Sending falcon1024 transactions
-    Given I generate and fund a falcon1024 key
-    And I create the default falcon1024 transaction with parameters <amt> "<note>"
-    And I sign the falcon1024 transaction with the private key
+  @send @sksig
+  Scenario Outline: Sending salted-key signature transactions (<scheme>)
+    Given I generate and fund a "<scheme>" salted-key signature key
+    And I create the default salted-key signature transaction with parameters <amt> "<note>"
+    And I sign the salted-key signature transaction with the private key
     And I send the transaction
     Then I wait for the transaction to be confirmed.
 
+    @sksig.f1
     Examples:
-      | amt     | note         |
-      | 0       | X4Bl4wQ9rCo= |
-      | 1234523 | X4Bl4wQ9rCo= |
+      | amt     | note         | scheme |
+      | 0       | X4Bl4wQ9rCo= | f1     |
+      | 1234523 | X4Bl4wQ9rCo= | f1     |
 
   @send
   Scenario Outline: Sending multisig transactions

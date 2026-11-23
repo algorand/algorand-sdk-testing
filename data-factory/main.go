@@ -79,36 +79,93 @@ func generateSecrets(numAccs int) []*crypto.SignatureSecrets {
 	return secrets
 }
 
-// generatePQSigner generates a deterministic Falcon signer for PQ signature test data
-func generatePQSigner() *crypto.FalconSigner {
+// SKsigSigner holds the key pair for a salted-key signature (SKsig) scheme.
+// Scheme is the 2-character scheme tag (e.g. "f1"), which is also the suffix of
+// the data factory files signed with it.
+type SKsigSigner struct {
+	Scheme     string                      `codec:"scheme"`
+	PublicKey  crypto.Falcon1024PublicKey  `codec:"pk"`
+	PrivateKey crypto.Falcon1024PrivateKey `codec:"sk"`
+}
+
+// sigScheme returns the protocol tag for the signer's scheme.
+func (s *SKsigSigner) sigScheme() protocol.SigScheme {
+	if len(s.Scheme) != len(protocol.SigScheme{}) {
+		panic(fmt.Sprintf("invalid sksig scheme %q", s.Scheme))
+	}
+	return protocol.SigScheme([]byte(s.Scheme))
+}
+
+// sign signs message with the signer's scheme.
+func (s *SKsigSigner) sign(message crypto.Hashable) []byte {
+	switch s.sigScheme() {
+	case protocol.SigSchemeFalcon1024:
+		signer := crypto.Falcon1024Signer{PublicKey: s.PublicKey, PrivateKey: s.PrivateKey}
+		sig, err := signer.Sign(message)
+		if err != nil {
+			panic(err)
+		}
+		return sig
+	default:
+		panic(fmt.Sprintf("unsupported sksig scheme %q", s.Scheme))
+	}
+}
+
+// saltedAddress returns the canonical salt and salted address of the signer.
+func (s *SKsigSigner) saltedAddress() (basics.AddressSalt, basics.Address) {
+	salt, address, err := basics.CanonicalAddressSalt(s.sigScheme(), slices.Clone(s.PublicKey[:]))
+	if err != nil {
+		panic(err)
+	}
+	return salt, address
+}
+
+// saltedKeySig signs message and wraps the signature in a SaltedKeySig.
+func (s *SKsigSigner) saltedKeySig(message crypto.Hashable) transactions.SaltedKeySig {
+	salt, _ := s.saltedAddress()
+	return transactions.SaltedKeySig{
+		Scheme:    s.sigScheme(),
+		Salt:      salt,
+		PublicKey: slices.Clone(s.PublicKey[:]),
+		Signature: s.sign(message),
+	}
+}
+
+// generateSKsigSigner generates a deterministic signer for SKsig test data
+func generateSKsigSigner(scheme protocol.SigScheme) *SKsigSigner {
+	if scheme != protocol.SigSchemeFalcon1024 {
+		panic(fmt.Sprintf("unsupported sksig scheme %q", scheme))
+	}
+
 	var seed crypto.FalconSeed
 	for i := range len(seed) {
 		seed[i] = byte(i)
 	}
 
-	signer, err := crypto.GenerateFalconSigner(seed)
+	signer, err := crypto.GenerateFalcon1024Signer(seed)
 	if err != nil {
 		panic(err)
 	}
 
-	return &signer
+	return &SKsigSigner{Scheme: scheme.String(), PublicKey: signer.PublicKey, PrivateKey: signer.PrivateKey}
 }
 
-// PQMnemonicData captures the mnemonic -> seed -> public key -> address chain
-// used to exercise mnemonic-based PQ key derivation without depending on
-// falcon-1024 in the consuming test suite.
-type PQMnemonicData struct {
+// SKsigMnemonicData captures the mnemonic -> seed -> public key -> address chain
+// used to exercise mnemonic-based SKsig key derivation without depending on
+// the signature scheme in the consuming test suite.
+type SKsigMnemonicData struct {
+	Scheme    string `codec:"scheme"`
 	Mnemonic  string `codec:"mnemonic"`
 	Seed      []byte `codec:"seed"`
 	PublicKey []byte `codec:"publicKey"`
 	Address   string `codec:"address"`
 }
 
-// pq25WordMnemonicToSeed mirrors the algosdk helper of the same name: it decodes
-// the 25-word mnemonic to its 32-byte source key and derives the PQ seed as
-// genericHash("PQK" || scheme || sourceKey). algosdk's genericHash is
-// SHA-512/256, which is exactly crypto.Hash here.
-func pq25WordMnemonicToSeed(mnemonic string, scheme protocol.PQScheme) []byte {
+// sksig25WordMnemonicToSeed mirrors the algosdk helper that derives a scheme
+// seed from a mnemonic: it decodes the 25-word mnemonic to its 32-byte source
+// key and derives the seed as genericHash("PQK" || scheme || sourceKey).
+// algosdk's genericHash is SHA-512/256, which is exactly crypto.Hash here.
+func sksig25WordMnemonicToSeed(mnemonic string, scheme protocol.SigScheme) []byte {
 	sourceKey, err := passphrase.MnemonicToKey(mnemonic)
 	if err != nil {
 		panic(err)
@@ -121,28 +178,33 @@ func pq25WordMnemonicToSeed(mnemonic string, scheme protocol.PQScheme) []byte {
 	return seed[:]
 }
 
-// makePQMnemonicData derives the PQ key chain from the all-zero source key,
+// makeSKsigMnemonicData derives the SKsig key chain from the all-zero source key,
 // whose 25-word mnemonic is the canonical "abandon ... invest" phrase.
-func makePQMnemonicData() PQMnemonicData {
+func makeSKsigMnemonicData(scheme protocol.SigScheme) SKsigMnemonicData {
+	if scheme != protocol.SigSchemeFalcon1024 {
+		panic(fmt.Sprintf("unsupported sksig scheme %q", scheme))
+	}
+
 	mnemonic, err := passphrase.KeyToMnemonic(make([]byte, 32))
 	if err != nil {
 		panic(err)
 	}
 
-	seed := pq25WordMnemonicToSeed(mnemonic, protocol.PQSchemeFalcon1024)
+	seed := sksig25WordMnemonicToSeed(mnemonic, scheme)
 
-	signer, err := crypto.GenerateFalconSigner(crypto.FalconSeed(seed))
+	signer, err := crypto.GenerateFalcon1024Signer(crypto.FalconSeed(seed))
 	if err != nil {
 		panic(err)
 	}
 	publicKey := slices.Clone(signer.PublicKey[:])
 
-	_, address, err := basics.CanonicalPQAddressSalt(protocol.PQSchemeFalcon1024, publicKey)
+	_, address, err := basics.CanonicalAddressSalt(scheme, publicKey)
 	if err != nil {
 		panic(err)
 	}
 
-	return PQMnemonicData{
+	return SKsigMnemonicData{
+		Scheme:    scheme.String(),
 		Mnemonic:  mnemonic,
 		Seed:      seed,
 		PublicKey: publicKey,
@@ -197,8 +259,8 @@ type Signer struct {
 	MsigThreshold uint8                     `codec:"msigThreshold,omitempty"`
 	Lsig          []byte                    `codec:"lsig,omitempty"`
 	// LsigArgs are passed to Lsig. They are not signed but are part of the signed transaction.
-	LsigArgs [][]byte             `codec:"lsigArgs,omitempty"`
-	PQSigner *crypto.FalconSigner `codec:"pqSigner,omitempty"`
+	LsigArgs    [][]byte     `codec:"lsigArgs,omitempty"`
+	SKsigSigner *SKsigSigner `codec:"sksigSigner,omitempty"`
 	// RekeyedSender, when set, is used as the transaction Sender while the
 	// signer authorizes on behalf of it via the AuthAddr field (i.e. the
 	// sender account has been rekeyed to the signer's address).
@@ -282,48 +344,16 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 		stxn.Lsig.Args = signer.LsigArgs
 	}
 
-	if signer.PQSigner != nil && len(signer.Lsig) > 0 {
-		// PQ-delegated logic signature: the PQ account delegates signing
-		// authority to the program by signing a PQDelegatedProgram bound to
-		// its own (authorizer) address.
+	if signer.SKsigSigner != nil && len(signer.Lsig) > 0 {
+		// SKsig-delegated logic signature: the salted-address account delegates
+		// signing authority to the program by signing an SKsigDelegatedProgram
+		// bound to its own (authorizer) address.
 		stxn.Lsig.Logic = signer.Lsig
 
-		program := logic.PQDelegatedProgram{Addr: authAddr, Program: signer.Lsig}
-		sig, err := signer.PQSigner.Sign(program)
-		if err != nil {
-			panic(err)
-		}
-
-		publicKey := slices.Clone(signer.PQSigner.PublicKey[:])
-		salt, _, err := basics.CanonicalPQAddressSalt(protocol.PQSchemeFalcon1024, publicKey)
-		if err != nil {
-			panic(err)
-		}
-
-		stxn.Lsig.PQsig = transactions.PQSig{
-			Scheme:    protocol.PQSchemeFalcon1024,
-			Salt:      salt,
-			PublicKey: publicKey,
-			Signature: sig,
-		}
-	} else if signer.PQSigner != nil {
-		sig, err := signer.PQSigner.Sign(stxn.Txn)
-		if err != nil {
-			panic(err)
-		}
-
-		publicKey := slices.Clone(signer.PQSigner.PublicKey[:])
-		salt, _, err := basics.CanonicalPQAddressSalt(protocol.PQSchemeFalcon1024, publicKey)
-		if err != nil {
-			panic(err)
-		}
-
-		stxn.PQsig = transactions.PQSig{
-			Scheme:    protocol.PQSchemeFalcon1024,
-			Salt:      salt,
-			PublicKey: publicKey,
-			Signature: sig,
-		}
+		program := logic.SKsigDelegatedProgram{Addr: authAddr, Program: signer.Lsig}
+		stxn.Lsig.SKsig = signer.SKsigSigner.saltedKeySig(program)
+	} else if signer.SKsigSigner != nil {
+		stxn.SKsig = signer.SKsigSigner.saltedKeySig(stxn.Txn)
 	} else if len(signer.Lsig) > 0 {
 		program := logic.Program(signer.Lsig)
 		stxn.Lsig.Logic = signer.Lsig
@@ -377,8 +407,8 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 	stxns := make([]transactions.SignedTxn, 1)
 	stxns[0] = stxn
 
-	// PQ signature schemes (Falcon-1024) are enabled from consensus v42, so
-	// every signer, PQ included, verifies against the current protocol.
+	// The f1 (Falcon-1024) SKsig scheme is enabled from consensus v42, so
+	// every signer, SKsig included, verifies against the current protocol.
 	proto := protocol.ConsensusCurrentVersion
 
 	blkHdr := createDummyBlockHeader(proto)
@@ -399,13 +429,9 @@ func makeTxDataWithHeader(txType protocol.TxType, fields any, signer Signer, upd
 }
 
 func addr(signer Signer) basics.Address {
-	if signer.PQSigner != nil {
-		publicKey := slices.Clone(signer.PQSigner.PublicKey[:])
-		_, pqAddr, err := basics.CanonicalPQAddressSalt(protocol.PQSchemeFalcon1024, publicKey)
-		if err != nil {
-			panic(err)
-		}
-		return pqAddr
+	if signer.SKsigSigner != nil {
+		_, saltedAddr := signer.SKsigSigner.saltedAddress()
+		return saltedAddr
 	} else if signer.SingleSigner != nil {
 		return basics.Address(signer.SingleSigner.SignatureVerifier)
 	} else if len(signer.MsigSigners) > 0 {
@@ -909,14 +935,14 @@ func main() {
 		LsigArgs:     lsigArgs,
 	}
 
-	pqSigner := Signer{
-		PQSigner: generatePQSigner(),
+	sksigSigner := Signer{
+		SKsigSigner: generateSKsigSigner(protocol.SigSchemeFalcon1024),
 	}
 
-	pqDelegatedSigner := Signer{
-		PQSigner: generatePQSigner(),
-		Lsig:     lsigProgram,
-		LsigArgs: lsigArgs,
+	sksigDelegatedSigner := Signer{
+		SKsigSigner: generateSKsigSigner(protocol.SigSchemeFalcon1024),
+		Lsig:        lsigProgram,
+		LsigArgs:    lsigArgs,
 	}
 
 	msigDelegatedSigner := Signer{
@@ -934,8 +960,8 @@ func main() {
 		RekeyedSender: &rekeyedSender,
 	}
 
-	pqRekeyedSigner := Signer{
-		PQSigner:      generatePQSigner(),
+	sksigRekeyedSigner := Signer{
+		SKsigSigner:   generateSKsigSigner(protocol.SigSchemeFalcon1024),
 		RekeyedSender: &rekeyedSender,
 	}
 
@@ -946,8 +972,8 @@ func main() {
 		RekeyedSender: &rekeyedSender,
 	}
 
-	pqRekeyedDelegatedSigner := Signer{
-		PQSigner:      generatePQSigner(),
+	sksigRekeyedDelegatedSigner := Signer{
+		SKsigSigner:   generateSKsigSigner(protocol.SigSchemeFalcon1024),
 		Lsig:          lsigProgram,
 		LsigArgs:      lsigArgs,
 		RekeyedSender: &rekeyedSender,
@@ -1013,15 +1039,15 @@ func main() {
 	writeTestDataFile("msigDelegatedPayment", makeSimplePayment(msigDelegatedSigner))
 	writeTestDataFile("stateProof", makeStateProof())
 	writeTestDataFile("txGroup", makeTxGroup(simpleSigner))
-	writeTestDataFile("pqPayment", makeSimplePayment(pqSigner))
-	writeTestDataFile("pqDelegatedPayment", makeSimplePayment(pqDelegatedSigner))
+	writeTestDataFile("sksigPayment_f1", makeSimplePayment(sksigSigner))
+	writeTestDataFile("sksigDelegatedPayment_f1", makeSimplePayment(sksigDelegatedSigner))
 	writeTestDataFile("rekeyedPayment", makeSimplePayment(rekeyedSigner))
-	writeTestDataFile("pqRekeyedPayment", makeSimplePayment(pqRekeyedSigner))
+	writeTestDataFile("sksigRekeyedPayment_f1", makeSimplePayment(sksigRekeyedSigner))
 	writeTestDataFile("rekeyedDelegatedPayment", makeSimplePayment(rekeyedDelegatedSigner))
-	writeTestDataFile("pqRekeyedDelegatedPayment", makeSimplePayment(pqRekeyedDelegatedSigner))
+	writeTestDataFile("sksigRekeyedDelegatedPayment_f1", makeSimplePayment(sksigRekeyedDelegatedSigner))
 	writeTestDataFile("rekeyedMsigPayment", makeSimplePayment(rekeyedMsigSigner))
 	writeTestDataFile("rekeyedLsigPayment", makeSimplePayment(rekeyedLsigSigner))
 	writeTestDataFile("rekeyedMsigDelegatedPayment", makeSimplePayment(rekeyedMsigDelegatedSigner))
-	writeTestDataFile("pqMnemonic", makePQMnemonicData())
+	writeTestDataFile("sksigMnemonic_f1", makeSKsigMnemonicData(protocol.SigSchemeFalcon1024))
 
 }
