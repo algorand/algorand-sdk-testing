@@ -23,10 +23,15 @@ These reside in the [unit features directory](features/unit)
 | @unit.algod                          | Algod REST API unit tests.                                                                                  |
 | @unit.algod.heartbeat                | Algod REST API Response Tests for a block with heartbeat txn.                                                                 |
 | @unit.algod.heartbeat.msgp           | Algod REST API MessagePack Tests for block with heartbeat txn.                                                             |
+| @unit.algod.block_load               | Algod REST API Response Tests for a block with load and congestion tax.                                     |
+| @unit.algod.block_sha512             | Algod REST API Response Tests for a block with SHA-512 hashes.                                              |
+| @unit.algod.peers                    | Algod GetPeers (node peers) endpoint path and response tests.                                               |
+| @unit.blocklogs                      | Algod block logs REST API unit tests.                                                                       |
 | @unit.blocksummary                   | Algod / Indexer block REST API unit tests.                                                                  |
 | @unit.blocktxids                     | Algod block transactions REST API unit tests.                                                               |
 | @unit.applications                   | Application endpoints added to Algod and Indexer.                                                           |
 | @unit.applications.boxes             | Box endpoints for Algod and Indexer.                                                                        |
+| @unit.applications.boxes.pagination  | Algod GetApplicationBoxes pagination options (limit, prefix, next, include, round).                         |
 | @unit.atomic_transaction_composer    | ABI / atomic transaction construction unit tests.                                                           |
 | @unit.atc_method_args                | Test that algod's Atomic Transaction Composer assserts that the same number of arguments given as expected. |
 | @unit.client-no-headers              | Tests that clients don't add non-standard http headers when no (or an empty) auth token is provided.        |
@@ -53,13 +58,16 @@ These reside in the [unit features directory](features/unit)
 | @unit.responses.timestamp            | REST Client updates for timestamp offset endpoint.                                                          |
 | @unit.responses.txngroupdeltas       | REST Client updates for algod transaction group deltas endpoints.                                           |
 | @unit.responses.txid.json            | REST Client updates for algod block txids endpoint.                                                         |
+| @unit.responses.app_box_access       | REST Client updates for algod application box access in GetApplicationByID.                                 |
+| @unit.responses.blocklogs            | REST Client updates for algod block logs endpoint.                                                          |
+| @unit.responses.incentives           | REST Client updates for algod account information incentive fields.                                         |
+| @unit.responses.simulate             | REST Client updates for algod simulate response (fix signers, unnamed resources).                           |
 | @unit.sourcemap                      | Test sourcemap decoding. (Legacy behavior, use @unit.sourcemapv2 instead)                                   |
 | @unit.sourcemapv2                    | Test sourcemap decoding against the latest standards.                                                       |
 | @unit.statedelta                     | Test the statedelta endpoint.                                                                               |
 | @unit.stateproof.responses           | REST Client Response Tests for State Proof.                                                                 |
 | @unit.stateproof.responses.msgp      | REST Client MessagePack Tests for State Proofs.                                                             |
 | @unit.stateproof.paths               | REST Client Unit Tests for State Proof feature.                                                             |
-
 | @unit.sync                           | Test the follower sync endpoints.                                                                           |
 | @unit.tealsign                       | Test TEAL signature utilities.                                                                              |
 | @unit.timestamp                      | Test the devmode timestamp offset endpoint.                                                                 |
@@ -90,6 +98,7 @@ These reside in the [integration features directory](features/integration)
 | @simulate.lift\_log\_limits                 | Test the ability to simulate transactions with lifted log limit through algod.                                         |
 | @simulate.extra\_opcode\_budget             | Test the ability to simulate transactions by specifying extra opcode budget through algod.                             |
 | @simulate.exec\_trace\_with\_stack\_scratch | Test the ability to simulate transactions with execution trace containing stack and scratch slot change through algod. |
+| @simulate.size\_fees                        | Test simulated usage and fees for payments at and above the standard note size.                                        |
 
 ### Test Implementation Status
 
